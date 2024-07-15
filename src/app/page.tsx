@@ -13,8 +13,7 @@ const HomePage: NextPage<HomePageProps> = () => {
       <ul className='pl-5 list-disc space-y-2'>
         {analisysNotes.map(note => (
           <li key={note.ref}>
-            <Link href={`/notes/G1/${note.slug.join('/')}`}>{note.title}</Link>{' '}
-            [{note.ref}]
+            <Link href={note.href}>{note.title}</Link> [{note.ref}]
           </li>
         ))}
       </ul>

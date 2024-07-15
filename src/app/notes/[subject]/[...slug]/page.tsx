@@ -11,9 +11,11 @@ interface NotesPageParams {
 
 export const generateStaticParams = () => {
   return analisysNotes.map(note => {
+    const [, subject, ...slug] = note.href.split('/');
+
     return {
-      subject: note.subjectCode,
-      slug: note.slug,
+      subject,
+      slug,
     };
   });
 };
@@ -23,9 +25,11 @@ interface NotesPageProps {
 }
 
 const NotesPage: NextPage<NotesPageProps> = ({ params }) => {
-  const ref = `${params.subject}-${params.slug
-    .map(s => s.split('-')[0])
-    .join('-')}`;
+  const subjectCode = params.subject;
+  const chapterCode = params.slug[0].split('-')[0];
+  let sectionCode = params.slug[1] ? params.slug[1].split('-')[0] : '00';
+
+  const ref = `${subjectCode}-${chapterCode}-${sectionCode}`;
 
   const note = analisysNotes.find(note => note.ref === ref);
 

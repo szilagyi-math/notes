@@ -52,6 +52,10 @@ const analisysNotes = defineCollection({
 
       const s = await getSiblingRefs({ basePath, baseDir, slug, subjectCode });
 
+      const href = `notes/${subjectCode}/${
+        sectionCode !== '00' ? slug.join('/') : slug[0]
+      }`;
+
       return {
         ...n,
         // Codes (ss, xx, yy)
@@ -60,16 +64,17 @@ const analisysNotes = defineCollection({
         sectionCode,
         // Paths,
         depth,
-        slug,
         absolutePath,
         basePath,
         baseDir,
         // References
         ref,
         parentRef,
-        s,
+        prevRef: s.prevRef,
+        nextRef: s.nextRef,
+        href,
         // Local toc if applicable
-        // localToc: localToc.length > 0 ? localToc : null,
+        localToc: localToc.length > 0 ? localToc : null,
       };
     }),
 });

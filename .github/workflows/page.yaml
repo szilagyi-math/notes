@@ -47,7 +47,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: .velite
-          key: ${{ runner.os }}-velite-${{ hashFiles('content/**/index.md') }}
+          key:
+            ${{ runner.os }}-velite-${{ hashFiles('content/**/index.md',
+            'velite.config.ts') }}
           restore-keys: |
             ${{ runner.os }}-velite-
 
