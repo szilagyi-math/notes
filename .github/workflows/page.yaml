@@ -21,10 +21,10 @@ jobs:
         with:
           version: 9
           run_install: false
-      
+
       - name: Get cache directories
-          run: |
-            echo "PNPM=$(pnpm store path)" >> $GITHUB_OUTPUT
+        run: |
+          echo "PNPM=$(pnpm store path)" >> $GITHUB_OUTPUT
 
       - name: Setup pnpm cache
         uses: actions/cache@v3
