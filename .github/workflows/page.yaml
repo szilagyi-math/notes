@@ -34,6 +34,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      - name: Setup next cache
+        uses: actions/cache@v3
+        with:
+          path: .next
+          key: ${{ runner.os }}-next-${{ hashFiles('src/**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-next-
+
+      - name: Setup velite cache
+        uses: actions/cache@v3
+        with:
+          path: .velite
+          key: ${{ runner.os }}-velite-${{ hashFiles('content/**/index.md') }}
+          restore-keys: |
+            ${{ runner.os }}-velite-
+
       - name: Install dependencies
         run: pnpm install
 
