@@ -23,6 +23,7 @@ jobs:
           run_install: false
 
       - name: Get cache directories
+        id: cache-dirs
         run: |
           echo "PNPM=$(pnpm store path)" >> $GITHUB_OUTPUT
 
