@@ -1,0 +1,76 @@
+# THE DEFAULT INDENTATION IS TWO SPACES
+defaultIndent: "  "
+
+# & DELIMS
+lookForAlignDelims:
+  notations: 1
+
+# SPECIAL ENV DEFINED FOR LATER USE
+specialBeginEnd:
+  specialBeforeCommand: 1
+  # display math
+  dMath:
+    lookForThis: 1
+    begin: (?<!\\)\\\[
+    end: \\\]
+
+  pMath:
+    lookForThis: 1
+    begin: (?<!\\)\\\[
+    end: \\\]
+
+  # left right pair in math: TODO: CATCH ALL
+  leftRight:
+    lookForThis: 1
+    begin: '\\left\['
+    end: '\\right\]'
+
+# THE -m SWITCH
+modifyLineBreaks:
+  # special envs
+  specialBeginEnd:
+    dMath:
+      SpecialBeginStartsOnOwnLine: 1
+      SpecialBodyStartsOnOwnLine: 1
+      SpecialEndStartsOnOwnLine: 1
+      SpecialEndFinishesWithLineBreak: 1
+
+  # remove whitespaces at the end of lines
+  removeTrailingWhitespace:
+    beforeProcessing: 1
+
+  # environments should be start on new line
+  environments:
+    BeginStartsOnOwnLine: 1
+    BodyStartsOnOwnLine: 1
+    EndStartsOnOwnLine: 1
+    EndFinishesWithLineBreak: 1
+    # except for these ones
+    matrix:
+      BeginStartsOnOwnLine: -1
+      EndFinishesWithLineBreak: -1
+
+  # do not condense empty lines
+  preserveBlankLines: 1
+  condenseMultipleBlankLinesInto: 0
+
+  # to keep 80 char per line
+  removeParagraphLineBreaks:
+    all: 1
+    beforeTextWrap: 1
+
+  # wrapping instructions
+  textWrapOptions:
+    when: after
+    all: 1
+    beforeTextWrap: 1
+    columns: 81
+    multipleSpacesToSingle: 1
+    blocksEndBefore:
+      other: \\begin\{|\\\[|\\end\{
+    blocksFollow:
+      other: |-
+        (?x)
+          \\\]
+          |
+          \\item(?:\h|\[)

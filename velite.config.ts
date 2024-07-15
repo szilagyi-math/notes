@@ -1,0 +1,89 @@
+import { defineCollection, defineConfig, s } from 'velite';
+
+import { katex, shiki, mdx, getSiblingRefs } from './scripts';
+import remarkMath from 'remark-math';
+
+import type { NoteRef, NoteSlug, Subject } from './scripts';
+
+// Collections
+const analisysNotes = defineCollection({
+  name: 'AnalisysNote',
+  pattern: ['G1-book/**/index.md'],
+  schema: s
+    .object({
+      title: s.string(),
+      path: s.path(),
+      description: s.string().optional(),
+      metadata: s.metadata(),
+      excerpt: s.excerpt(),
+
+      code: mdx(),
+    })
+    .transform(async (n, ctx) => {
+      // TODO: Change this when we have more subjects
+      const path = n.path;
+
+      const ref = path // ss-book/xx-chaptertitle/yy-sectiontitle
+        .split('/') // [ss-book, xx-chaptertitle, yy-sectiontitle]
+        .map(e => e.split('-')[0]) // [ss, xx, yy]
+        .join('-') as NoteRef; // ss-xx-yy
+
+      const [subjectCode, chapterCode, sectionCode] = ref.split('-') as [
+        Subject,
+        string,
+        string
+      ];
+
+      const depth = sectionCode === '00' ? 1 : 2;
+      const [baseDir, ...slug] = path.split('/') as [string, string, string];
+
+      const parentRef =
+        sectionCode === '00' ? null : `${subjectCode}-${chapterCode}-00`;
+
+      // TODO: Make this type-safe and also more elegant
+      const localToc = ctx.meta.localToc as Array<{
+        type: 'definition' | 'theorem' | 'heading';
+        title: string;
+        id: string;
+      }>;
+
+      const absolutePath = ctx.meta.path;
+      const basePath = absolutePath.split(`/${path}/`)[0];
+
+      const s = await getSiblingRefs({ basePath, baseDir, slug, subjectCode });
+
+      return {
+        ...n,
+        // Codes (ss, xx, yy)
+        subjectCode,
+        chapterCode,
+        sectionCode,
+        // Paths,
+        depth,
+        slug,
+        absolutePath,
+        basePath,
+        baseDir,
+        // References
+        ref,
+        parentRef,
+        s,
+        // Local toc if applicable
+        // localToc: localToc.length > 0 ? localToc : null,
+      };
+    }),
+});
+
+// Config
+const config = defineConfig({
+  root: 'content',
+  collections: {
+    analisysNotes,
+  },
+  mdx: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [katex as any, shiki],
+  },
+});
+
+export default config;
