@@ -15,7 +15,18 @@ interface MDXContentProps {
 
 const MDXContent = ({ code }: MDXContentProps) => {
   const Component = getMDXComponent(code);
-  return <Component />;
+  return (
+    <Component
+      components={{
+        Definition: (props: any) => <div {...props} />,
+        Theorem: (props: any) => <div {...props} />,
+        Proof: (props: any) => <div {...props} />,
+        Example: (props: any) => <div {...props} />,
+        Note: (props: any) => <div {...props} />,
+        Statement: (props: any) => <div {...props} />,
+      }}
+    />
+  );
 };
 
 export { MDXContent };
