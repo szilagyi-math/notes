@@ -97,7 +97,9 @@ jobs:
       - name: Move pdfs
         run: |
           mkdir -p out/downloads
-          cp ./**/main.pdf ./out/downloads/G1-tankonyv.pdf
+          ls -R latex-docs
+          [[ -e ./latex-docs/G1-book/build/main.pdf ]] && cp ./latex-docs/G1-book/build/main.pdf ./out/downloads/G1-tankonyv.pdf
+          [[ -e ./G1-book/build/main.pdf ]] && cp ./G1-book/build/main.pdf ./out/downloads/G1-tankonyv.pdf
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.6.0
