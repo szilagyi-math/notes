@@ -93,9 +93,11 @@ jobs:
         with:
           name: latex-docs
 
+      # TODO: Make this dynamic
       - name: Move pdfs
         run: |
-          pnpm dlx tsx ./movefiles.ts
+          mkdir -p out/downloads
+          cp ./**/main.pdf ./out/downloads/G1-tankonyv.pdf
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.6.0
