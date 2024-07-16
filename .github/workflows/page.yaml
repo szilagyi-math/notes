@@ -92,6 +92,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: latex-docs
+          path: latex-docs
 
       # TODO: Make this dynamic
       - name: Move pdfs
