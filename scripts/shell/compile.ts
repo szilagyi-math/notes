@@ -7,7 +7,7 @@ export function configToBash(config: ParsedConfig) {
 CWD=$(pwd)
 
 # Change to the directory of the config file
-cd ${config.absolute_path}
+cd ${config.relative_path}
 
 # Run latexmk with the config file
 ${config.root_files
