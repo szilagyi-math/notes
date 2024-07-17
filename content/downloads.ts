@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-import type { Subject } from 'scripts';
+import type { Subject } from 'mdx';
 
 type File = {
   path: string;

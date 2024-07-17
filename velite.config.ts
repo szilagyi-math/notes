@@ -1,9 +1,9 @@
 import { defineCollection, defineConfig, s } from 'velite';
 
-import { katex, shiki, mdx, getSiblingRefs } from './scripts';
+import { katex, shiki, mdx, getSiblingRefs } from './mdx';
 import remarkMath from 'remark-math';
 
-import type { NoteRef, NoteSlug, Subject } from './scripts';
+import type { NoteRef, Subject } from './mdx';
 
 // Collections
 const analisysNotes = defineCollection({

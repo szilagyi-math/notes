@@ -2,7 +2,7 @@ import { analisysNotes } from 'content';
 import { MDXContent } from '@/components';
 
 import type { NextPage } from 'next';
-import type { NoteSlug, Subject } from 'scripts';
+import type { NoteSlug, Subject } from 'mdx';
 
 interface NotesPageParams {
   subject: Subject;
