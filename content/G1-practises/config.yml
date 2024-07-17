@@ -1,0 +1,7 @@
+subject: G1
+type: practise
+root_files:
+  - source: 01.tex
+    target: G1-gyak-01
+  - source: 02.tex
+    target: G1-gyak-02

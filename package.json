@@ -46,6 +46,7 @@
     "typescript": "^5",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
-    "velite": "^0.1.1"
+    "velite": "^0.1.1",
+    "yaml": "^2.4.5"
   }
 }

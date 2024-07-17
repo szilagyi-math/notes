@@ -8,9 +8,47 @@ on:
     branches: [main]
 
 jobs:
+  generate_script:
+    name: Generate Latex compilation script
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+          run_install: false
+
+      - name: Get Cache directories
+        id: cache-dirs
+        run: |
+          echo "PNPM=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+          path: ${{ steps.cache-dirs.outputs.PNPM }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Generate script
+        run: pnpm dlx tsx ./scripts/index.ts
+
+      - name: Upload script
+        uses: actions/upload-artifact@v3
+        with:
+          name: generate
+
   build_latex:
     name: Build Latex documents
     runs-on: ubuntu-latest
+    needs: generate_script
     container:
       image: texlive/texlive:latest
 
@@ -21,19 +59,23 @@ jobs:
       - name: Link cls and sty files
         run: ./latex-linker.sh
 
-      # TODO: Make this dynamic
+      - name: Download script
+        uses: actions/download-artifact@v3
+        with:
+          name: generate
+          path: generate
+
       - name: Compile documents
         run: |
-          cd content/G1-book
-          latexmk -r ../../.latexmkrc main.tex
-          cd ../..
+          chmod +x ./generate/compile.sh
+          ./generate/compile.sh
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: latex-docs
           path: |
-            content/**/build/*.pdf
+            build/*.pdf
           if-no-files-found: error
 
   build_page:
@@ -94,11 +136,9 @@ jobs:
           name: latex-docs
           path: latex-docs
 
-      # TODO: Make this dynamic
       - name: Move pdfs
         run: |
-          mkdir -p out/downloads
-          cp ./latex-docs/G1-book/build/main.pdf ./out/downloads/G1-tankonyv.pdf
+          mv latex-docs out/downloads
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.6.0
