@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: generate
-          path: generate/compile.sh
+          path: generate
 
   build_latex:
     name: Build Latex documents
