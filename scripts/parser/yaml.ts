@@ -19,17 +19,27 @@ export async function parseConfig(
 
   const json: LatexConfig = parse(configFile);
 
-  const absolute_path = dirname(path);
-  const relative_path = relative(cwd, absolute_path);
+  const absolutePath = dirname(path);
+  const relativePath = relative(cwd, absolutePath);
 
-  const relative_rc = relative(absolute_path, rcFile);
+  const relativeRc = relative(absolutePath, rcFile);
+
+  const downloads = json.root_files.map(file => {
+    return {
+      fileName: `${file.target}.pdf`,
+      displayName: file.display_name,
+    };
+  });
 
   return {
-    absolute_path,
-    relative_path,
-    relative_rc,
-    build_dir: buildDir,
-    ...json,
+    absolutePath,
+    relativePath,
+    relativeRc,
+    buildDir,
+    rootFiles: json.root_files,
+    subject: json.subject,
+    type: json.type,
+    downloads,
   };
 }
 

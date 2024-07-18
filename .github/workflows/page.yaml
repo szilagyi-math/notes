@@ -61,7 +61,7 @@ jobs:
       - name: Link cls and sty files
         run: ./latex-linker.sh
 
-      - name: Download script
+      - name: Download generate
         uses: actions/download-artifact@v3
         with:
           name: generate
@@ -88,6 +88,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Download generate
+        uses: actions/download-artifact@v3
+        with:
+          name: generate
+          path: generate
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2

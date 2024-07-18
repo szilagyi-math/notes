@@ -3,5 +3,7 @@ type: practise
 root_files:
   - source: 01.tex
     target: G1-gyak-01
+    display_name: G1 1. gyakorlat
   - source: 02.tex
     target: G1-gyak-02
+    display_name: G1 2. gyakorlat

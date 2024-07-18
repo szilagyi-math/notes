@@ -5,6 +5,8 @@ import { existsSync, mkdirSync } from 'fs';
 import { parseConfig } from './parser';
 import { configToBash } from './shell';
 
+import type { Downloads } from './types';
+
 const CONFIG_NAME = 'config.yml';
 const RC_FILE = '.latexmkrc';
 
@@ -32,10 +34,29 @@ Promise.all(
   .then(configs => {
     const scripts = configs.map(configToBash);
 
-    return writeFile(
-      join(GENERATE_DIR, 'compile.sh'),
-      [SHEBANG, ...scripts].join('\n\n')
-    );
+    const allDownloads = configs.reduce((acc: Downloads, config) => {
+      if (!acc[config.subject]) {
+        acc[config.subject] = {
+          book: [],
+          practise: [],
+        };
+      }
+
+      acc[config.subject]![config.type]!.push(...config.downloads);
+
+      return acc;
+    }, {});
+
+    return Promise.all([
+      writeFile(
+        join(GENERATE_DIR, 'downloads.json'),
+        JSON.stringify(allDownloads, null, 2)
+      ),
+      writeFile(
+        join(GENERATE_DIR, 'compile.sh'),
+        [SHEBANG, ...scripts].join('\n\n')
+      ),
+    ]);
   })
   .then(() => {
     console.log('Compilation script written to generate/compile.sh');

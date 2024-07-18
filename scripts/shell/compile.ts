@@ -1,18 +1,18 @@
 import type { ParsedConfig } from 'scripts/parser';
 
 export function configToBash(config: ParsedConfig) {
-  const script = `echo "Now compiling files in ${config.relative_path}"
+  const script = `echo "Now compiling files in ${config.relativePath}"
 
 # Save the current directory
 CWD=$(pwd)
 
 # Change to the directory of the config file
-cd ${config.relative_path}
+cd ${config.relativePath}
 
 # Run latexmk with the config file
-${config.root_files
+${config.rootFiles
   .map(file => {
-    return `latexmk -r ${config.relative_rc} -jobname=${file.target} ${file.source}`;
+    return `latexmk -r ${config.relativeRc} -jobname=${file.target} ${file.source}`;
   })
   .join('\n\n')}
 
