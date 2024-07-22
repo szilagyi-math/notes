@@ -38,7 +38,7 @@ const NotesPage: NextPage<NotesPageProps> = ({ params }) => {
   }
 
   return (
-    <div className='p-4 prose dark:prose-invert'>
+    <div className='p-4 prose'>
       <MDXContent code={note.code} />
     </div>
   );

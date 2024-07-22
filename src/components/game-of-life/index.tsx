@@ -132,19 +132,14 @@ const GameOfLife = () => {
 
     const cellSize = 10;
 
-    // If htmk has dark class, use dark theme
-    const theme = document.documentElement.classList.contains('dark')
-      ? 'dark'
-      : 'light';
-
     for (let i = 0; i < height; i++) {
       for (let j = 0; j < width; j++) {
         if (game.prev[i][j] === 1) {
-          ctx.fillStyle = theme === 'dark' ? '#0f0f0f' : '#f8f8f8';
+          ctx.fillStyle = '#f8f8f8';
           ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
         }
         if (game.current[i][j] === 1) {
-          ctx.fillStyle = theme === 'dark' ? '#0d0d0d' : '#eeeeee';
+          ctx.fillStyle = '#eeeeee';
           ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
         }
       }
