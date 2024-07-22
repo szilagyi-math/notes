@@ -1,4 +1,4 @@
-import { GameOfLife } from '@/components/game-of-life';
+import { GameOfLife } from '@/components';
 
 import type { NextPage } from 'next';
 

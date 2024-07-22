@@ -17,8 +17,6 @@
     --gray-11: 100 100 100;
     --gray-12: 32 32 32;
 
-    --radius: 0.5rem;
-
     --primary-bg: var(--gray-1);
     --secondary-bg: var(--gray-2);
     --primary-fg: var(--gray-12);
@@ -42,6 +40,10 @@
     --accent-11: 0 133 115;
     --accent-12: 13 61 56;
     --accent-contrast: 255 255 255;
+
+    --radius: 0.5rem;
+    --content-width: 1386px;
+    --nav-height: 56px;
   }
 
   html {
@@ -65,3 +67,4 @@
 }
 
 @import './not-found.css';
+@import './navigation.css';

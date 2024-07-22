@@ -1,0 +1,12 @@
+.main-nav {
+  border-bottom-width: 2px;
+  height: var(--nav-height);
+  background-color: rgb(var(--secondary-bg));
+}
+
+.main-nav-content {
+  height: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
