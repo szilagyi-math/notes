@@ -10,10 +10,14 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "focus-trap-react": "^10.2.3",
     "jotai": "^2.9.0",
+    "lucide-react": "^0.414.0",
     "next": "14.2.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-remove-scroll": "^2.5.10",
+    "react-use": "^17.5.1"
   },
   "devDependencies": {
     "@mdx-js/mdx": "^3.0.1",

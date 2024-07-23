@@ -73,6 +73,7 @@ const analisysNotes = defineCollection({
         prevRef: s.prevRef,
         nextRef: s.nextRef,
         href,
+        absoluteHref: `/${href}`,
         // Local toc if applicable
         localToc: localToc.length > 0 ? localToc : null,
       };
