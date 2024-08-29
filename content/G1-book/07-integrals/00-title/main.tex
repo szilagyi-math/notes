@@ -1,0 +1,126 @@
+\mainChapter{Integrálszámítás}
+
+\begin{tikzpicture}[
+    remember picture,
+    overlay,
+    thick,
+    shift={($(current page.south west) + (\innerMargin+7.5mm, 35mm)$)},
+  ]
+
+  % Coordinate system
+  \draw[-to, draw=gray, ultra thick, name path = x] (-3.5,0) -- ++(\paperwidth+2cm,0);
+  \draw[-to, draw=gray, ultra thick] (-2,-4) -- ++(0,\paperheight-1cm);
+
+  % Helper clip
+  \draw [opacity = 0, name path = a] (-2.5*1.2,0) -- (15.5*1.2,0);
+
+  % Plot of the function
+  \draw[
+    smooth,
+    samples = 250,
+    domain = -2.5:15.5,
+    red!40!black,
+    ultra thick,
+    % to-to,
+    name path = f,
+  ] plot ({\x*1.2}, {0.0019 * \x^3 + 0.1587 * \x^2 - 2.0811 * \x + 4.3846});
+
+  % Fill between the x-axis and the function
+  \tikzfillbetween[
+    of=f and a,
+    split,
+    every segment no 0/.style={left color=primaryColor!10, right color=primaryColor!50},
+    every segment no 1/.style={secondaryColor!25},
+    every segment no 2/.style={left color=primaryColor!50, right color=primaryColor!10},
+    on layer=bg,
+  ]{}
+
+  % Get zeros, start and end of the domain
+  \coordinate (Z1) at (2.6663,0);
+  \coordinate (Z2) at (9.08407,0);
+  \coordinate (S) at (0,4.3846);
+  \coordinate (E) at (16,19,5);
+
+  % Plus node
+  \node[
+    circle,
+    fill=primaryColor!30,
+    draw=primaryColor,
+    minimum size=.75cm,
+    ultra thick,
+  ] (A1) at (1.25,0.75) {};
+  \draw[primaryColor, very thick, line cap = round] ($(A1) - (1.5mm,0)$) -- ++(3mm,0);
+  \draw[primaryColor, very thick, line cap = round] ($(A1) - (0,1.5mm)$) -- ++(0,3mm);
+
+  % Minus node
+  \node[
+    circle,
+    fill=secondaryColor!30,
+    draw=secondaryColor,
+    minimum size=.75cm,
+    ultra thick,
+  ] (A2) at (7.125,-1) {};
+
+  \draw[secondaryColor, very thick, line cap = round] ($(A2) - (1.5mm,0)$) -- ++(3mm,0);
+
+  % Plus node
+  \node[
+    circle,
+    fill=primaryColor!30,
+    draw=primaryColor,
+    minimum size=.75cm,
+    ultra thick,
+  ] (A3) at (13,0.75) {};
+  \draw[primaryColor, very thick, line cap = round] ($(A3) - (1.5mm,0)$) -- ++(3mm,0);
+  \draw[primaryColor, very thick, line cap = round] ($(A3) - (0,1.5mm)$) -- ++(0,3mm);
+
+  % Original dots
+  % \draw[
+  %   smooth,
+  %   samples=100,
+  % ] plot coordinates {(0,5) (2,0) (4,-1.5) (6,-2) (8,-1) (10,2) (12,6) (14,11) (16,18) (18,30)};
+\end{tikzpicture}
+
+\bgroup
+\color{gray!50!black}
+\sffamily
+
+Az integrálszámítás ugyancsak a matematikai analízis alapvető eszköze, amelynek
+segítségével a változások összegzését és különböző görbék által közbezárt
+területek kiszámítását végezhetjük el. Ezáltal lehetővé válik számunkra, hogy
+megértsük és leírjuk a természetben és a társadalomban zajló folyamatokat.
+Alapjait -- a differenciálszámításhoz hasonlóan -- Isaac Newton és Gottfried
+Wilhelm Leibniz fektették le a 17. században.
+
+A differenciálszámítás során megismert deriváltak a változás sebességét fejezik
+ki, míg az integrálszámítás a kumulált változásokat számszerűsíti. A
+határozatlan integrál segítségével egy adott függvényhez hozzárendeljük azokat a
+függvényeket, amelyek deriváltja az adott függvény. Ilyenkor azt mondjuk, hogy
+megkeressük az adott függvény primitív függvényét. A határozott integrál
+használatával pedig konkrét értékeket rendelhetünk a függvények alatti
+területekhez, kiszámíthatunk olyan fizikai mennyiségeket, mint például a megtett
+út vagy a munka. Az improprius integrál a Riemann-féle integrál kiterjesztése
+olyan esetekre, amikor az integrálandó függvény vagy az integrálási tartomány
+nem korlátos.
+
+Az integrálszámítás nem csupán elméleti jelentőséggel bír, hanem számos
+gyakorlati alkalmazása is van. Ez a fejezet a fenti fogalmakat és az
+integrálszámítás alapjait mutatja be, megvilágítva annak széleskörű
+alkalmazhatóságát és jelentőségét a tudományos és mérnöki problémák
+megoldásában. Az Olvasó megismerkedhet az integrálszámítás alapvető tétele
+ivel, módszereivel és azok alkalmazásával, amelyek elengedhetetlenek a
+matematikai gondolkodás és a problémamegoldó képességek fejlesztéséhez.
+
+% \chaptertoc
+
+% Manual toc to handle the graph
+\section*{A fejezetben érintett témakörök}
+
+\hspace{0.0cm}\parbox{14.8cm}{\contentsline {section}{\numberline {7.1}\nameref{section.7.1}}{\pageref*{section.7.1}}{section.7.1}}\par
+\hspace{0.4cm}\parbox{14.1cm}{\contentsline {section}{\numberline {7.2}\nameref{section.7.2}}{\pageref*{section.7.2}}{section.7.2}}\par
+\hspace{0.8cm}\parbox{13.4cm}{\contentsline {section}{\numberline {7.3}\nameref{section.7.3}}{\pageref*{section.7.3}}{section.7.3}}\par
+\hspace{1.2cm}\parbox{12.6cm}{\contentsline {section}{\numberline {7.4}\nameref{section.7.4}}{\pageref*{section.7.4}}{section.7.4}}\par
+\hspace{1.6cm}\parbox{11.8cm}{\contentsline {section}{\numberline {7.5}\nameref{section.7.5}}{\pageref*{section.7.5}}{section.7.5}}\par
+
+\egroup
+\clearpage

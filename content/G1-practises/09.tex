@@ -1,0 +1,130 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practise}
+
+\title{Folytonosság}
+\area{Függvények}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{9}
+
+\begin{document}
+\maketitle
+
+\subsection{Elméleti Áttekintő}
+
+\begin{blueBox}
+  \sftitle{Szöveges feladatok}
+
+  Ezen a gyakorlaton olyan szöveges feladatokkal fogunk foglalkozni, amelyekben
+  valamilyen szélsőértéket kell meghatároznunk.
+
+  Láttuk, hogy egy adott $f$ függvénynek akkor van szélsőértéke egy adott $x_0$
+  pontban, ha $f'(x_0) = 0$ és $f'(x)$ előjelet vált az $x_0$ pontban, vagy
+  $f''(x_0) \neq 0$.
+
+  Ezen feladatok esetén fontos, hogy a feladat elolvasása után a szöveg alapján
+  felírjuk az alapösszefüggéseket. Ezután meg kell határoznunk azt a függvényt,
+  amelynek a szélsőértékét keressük. Miután meghatároztuk a függvény
+  szélsőértékeit, ellenőriznünk kell, hogy valóban szélsőértéke-e.
+
+  % \begin{itemize}
+  %   \item az alapösszefüggésel felírása a feladat alapján,
+  %   \item azon függvény/változó kijelölése, amelyenek a szélsőértékét keressük,
+  %   \item azon változó kijelölése, amelynek függvényében keressük a
+  %         szélsőértéket,
+  %   \item cél azon pont megtalálása, ahol $f'(x_0)=0$,
+  %   \item ellenőrzés, hogy tényleg szélsőértéke-e?
+  % \end{itemize}
+
+  % Ezen tárgy keretében csak egyváltozós függvényekkel fogunk foglalkozni.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Teljes függvényvizsgálat}
+
+  Cél, hogy a lehető legtöbb információt megtudjuk az adott függvényről!
+  \begin{enumerate}
+    \item Értelmezési tartomány
+          (Hol nincs értelmezve?)
+    \item Zérushelyek
+          ($x$ tengelymetszet)
+    \item Paritás, periodicitás
+          ($f(x) = f(-x)$ -- páros, $f(x) = -f(-x)$ -- páratlan, $f(x) = f(x +
+            kp)$, ahol $k \in \mathbb Z$ -- periodikus)
+    \item Határérték
+          ($\pm \infty$-ben valamint az értélmezési tartomány egyéb szélein,
+          szakadási pontokban.)
+    \item Monotonitás
+          ($f'(x) > 0$ -- nő, $f'(x) < 0$ -- csökken)
+    \item Lokális/Globális szélsőértékek
+          ($f'(x)$ előjelet vált)
+    \item Konvexitás, konkávitás (inflexió)
+          ($f''(x) > 0$ -- konvex, $f''(x) < 0$ -- konkáv)
+    \item Táblázat
+          (Fel kell benne tüntetni a szakadási pontokat, szélsőértékeket,
+          inflexiós pontokat)
+    \item Aszimptóták keresése ($a = mx + b$ alakban)
+          \[
+            m = \lim_{x \to \pm\infty} \frac{f(x)}{x}
+            \quad \text{és} \quad
+            b = \lim_{x \to \pm\infty} f(x) - mx
+          \]
+    \item Ábrázolás
+    \item Értékkészlet leolvasása az ábráról
+  \end{enumerate}
+\end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item Határozzuk meg az 1 literes felül nyitott legkisebb felszínű hengert!
+
+  \item Határozzuk meg a legnagyobb térfogatú $h$ alkotójú kúpot!
+
+  \item Határozzuk meg az $r$ sugarú körbe írt legnagyobb területű derékszögű
+        négyszöget!
+
+  \item Egy $a$ szélességű csatornából derékszögben kinyúlik egy $b$ szélességű
+        csatorna. Határozzuk meg mekkora azon gerenda hossza, amely befordítható
+        egyik csatornából a másikba!
+        % Keressük meg azt az $\alpha$ szöget, amikor az $A$ pontban átmenő
+        % egyenes hossza a legkisebb. Ez lesz a lehető legnagyobb deszka hossza.
+
+  \item A gazda épp a kocsmában mulat, mikor neje felhívja, hogy hol van.
+        (Természetesen titokban ment meccset nézni). A gazda, nehogy lebukjon,
+        azt hazudja, hogy a szomszédnál van és sietve indul haza. Azonban, hogy
+        a kocsmaszagot lemossa magárol, elhatározza, hogy megfürdik a patakban.
+        Milyen úton halad, ha a lehető leggyorsabban akar hazaérni? Mi a
+        legrövidebb út a kocsma és a ház között, ha érintenie kell a folyót!
+        \begin{center}
+          \begin{tikzpicture}[ultra thick]
+            % River
+            \draw[secondaryColor] (-4,0) -- ++(8,0);
+            \draw[secondaryColor] (-4,-0.5) -- ++(8,0);
+
+            % Home
+            \node[draw=secondaryColor, minimum height=6mm, minimum width=6mm] (H) at (-3,1.25) {H};
+            \draw[primaryColor] (H.45) -- ++(-0.3,0.25) -- (H.135) -- cycle;
+
+            \draw[dashed, draw=ternaryColor] (H) -- (-3,0) node[midway, left] {$0,25 \, \mathrm{km}$};
+
+            % Pub
+            \node[draw=secondaryColor, minimum height=6mm, minimum width=6mm] (K) at (3,3) {K};
+            \draw[primaryColor] (K.45) -- ++(-0.3,0.25) -- (K.135) -- cycle;
+
+            \draw[dashed, draw=ternaryColor] (K) -- (3,0) node[midway, right] {$0,75 \, \mathrm{km}$};
+
+            \draw[dashed, draw=ternaryColor] (-3,.25) -- (3,.25) node[midway, above] {$1 \, \mathrm{km}$};
+          \end{tikzpicture}
+        \end{center}
+
+  \item Végezzük el az $f(x) = \dfrac{2x^2}{x^2 - 9}$ függvény teljes
+        vizsgálatát!
+\end{enumerate}
+
+% \\underline\{(\w)\}
+
+\end{document}

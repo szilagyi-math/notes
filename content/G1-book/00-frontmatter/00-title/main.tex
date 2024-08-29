@@ -1,0 +1,333 @@
+\thispagestyle{empty}
+
+\begin{tikzpicture}[
+    remember picture,
+    overlay,
+    shift={(current page.south west)},
+  ]
+  % BME logo at the bottom
+  \node[
+    anchor=south west,
+    fill=primaryColor,
+    minimum width=\paperwidth,
+    minimum height=2.2cm,
+  ] at (0,0) {
+    \includegraphics[height=1.4cm]{../shared/bme-logo-white.pdf}
+  };
+
+  % Title
+  \node[primaryColor, inner sep = 5mm] (subject) at (\paperwidth*0.5, \paperheight*0.745) {
+    \sffamily\bfseries\Huge
+    Matematika G1
+  };
+  \node[below, primaryColor] (code) at (subject.south) {
+    \sffamily\LARGE
+    (BMETE94BG01)
+  };
+  \node[below, primaryColor, inner sep=5mm] (title) at (code.south) {
+    \sffamily\bfseries\LARGE
+    Előadásjegyzet
+  };
+
+  % Title boxed
+  \begin{pgfonlayer}{bg}
+    \draw[
+      primaryColor,
+      line width=1mm,
+      fill=primaryColor!5,
+    ] (0,0) rectangle (\paperwidth, \paperheight);
+    \draw[
+      primaryColor,
+      ultra thick,
+      rounded corners,
+      fill=white
+    ] (subject.north west) rectangle (title.south east -| subject.north east);
+  \end{pgfonlayer}
+
+  % Authors
+  \node[primaryColor, minimum width=5cm, align=center,anchor=north] (authors) at (\paperwidth*0.285, \paperheight*0.355) {
+    \sffamily\itshape\Large
+    Készítették: \\[3mm]
+    \sffamily\bfseries\Large
+    Kun László Ákos \\[2mm]
+    \sffamily\bfseries\Large
+    Sándor Tibor
+  };
+  \node[primaryColor, minimum width=5cm, align=center,anchor=north] (authors) at (\paperwidth*0.715, \paperheight*0.355) {
+    \sffamily\itshape\Large
+    Lektorálta: \\[3mm]
+    \sffamily\bfseries\Large
+    Dr. Szilágyi Brigitta
+  };
+
+  % QR codes
+  \node[black, anchor=south west] (QR1) at (0.5,2.5) {
+    \qrcode[height=1in]{https://github.com/szilagyi-math/notes}
+  };
+  \node[anchor=south west] (QT1) at (QR1.south east) {
+    \sffamily%
+    (1)
+  };
+  \node[black, anchor=south west] (QR2) at (QT1.south east) {
+    \qrcode[height=1in]{https://szilagyi-math.hu/notes/G1}
+  };
+  \node[anchor=south west] (QT2) at (QR2.south east) {
+    \sffamily%
+    (2)
+  };
+
+  \node[black, anchor=south west, minimum width=10cm, align=left] (QR3) at (QT2.south east) {
+    \sffamily%
+    (1) A jegyzet forráskódja\\[2mm]
+    \phantom{(2)}\; (\url{https://github.com/szilagyi-math/notes})\\[2mm]
+    \sffamily%
+    (2) Digitális jegyzet\\[2mm]
+    \phantom{(2)}\; (\url{https://szilagyi-math.hu/notes/G1})
+  };
+
+  % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  % Random set operations
+  % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  % Red: A * B
+  \begin{scope}[shift={(\paperwidth*.1,\paperheight*.925)}, ultra thick]
+    \draw[primaryColor] (0,0) circle (.75cm);
+    \draw[primaryColor] (0.75,0.5) circle (.75cm);
+    \clip[] (0,0) circle (.75cm);
+    \fill[primaryColor!50] (0.75,0.5) circle (0.75cm);
+
+    \draw[primaryColor] (0,0) circle (.75cm);
+    \draw[primaryColor] (0.75,0.5) circle (.75cm);
+  \end{scope}
+
+  % Blue: B - A
+  \begin{scope}[shift={(\paperwidth*.1,\paperheight*.825)}, ultra thick]
+    \draw[secondaryColor, fill=secondaryColor!50] (0.75,0.5) circle (.75cm);
+    \draw[secondaryColor] (0,0) circle (.75cm);
+  \end{scope}
+
+  % Yellow: A - B
+  \begin{scope}[shift={(\paperwidth*.25,\paperheight*.9125)}, ultra thick]
+    \draw[ternaryColor, fill=ternaryColor!50] (0,0) circle (.75cm);
+    \draw[ternaryColor] (0.75,0.5) circle (.75cm);
+  \end{scope}
+
+  % Green: (A - B) + (B - A)
+  \begin{scope}[shift={(\paperwidth*.25,\paperheight*.8125)}, ultra thick]
+    \draw[green!40!black, fill=green!40!black!50] (0,0) circle (.75cm);
+    \draw[green!40!black, fill=green!40!black!50] (0.75,0.5) circle (.75cm);
+    \clip (0,0) circle (.75cm);
+    \fill[white] (0.75,0.5) circle (0.75cm);
+  \end{scope}
+
+  \begin{scope}[shift={(\paperwidth*.25,\paperheight*.8125)}, ultra thick]
+    \draw[green!40!black] (0,0) circle (.75cm);
+    \draw[green!40!black] (0.75,0.5) circle (.75cm);
+  \end{scope}
+
+  % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  % Complex numbers
+  % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  % cartesian
+  \begin{scope}[ultra thick, shift={(\paperwidth*.825,\paperheight*.865)}, rotate=60]
+    \draw[->] (-.5, 0) -- (3, 0) node[above left] {$\Re$};
+    \draw[->] (0, -.5) -- (0, 3) node[above left] {$\Im$};
+
+    \draw[draw=gray, dashed]
+    (1.5,0) node[below right] {$a$}
+    -- (1.5, 2.5)
+    -- (0, 2.5) node[below left] {$b$};
+
+    \draw[fill=primaryColor] (1.5, 2.5) circle (0.1)
+    node[above=2mm] {$z = a + b\iu$};
+  \end{scope}
+
+  % polar
+  \begin{scope}[shift={(\paperwidth*.5,\paperheight*.885)}, scale=3/4]
+    \foreach \ang in {0,...,31} {
+        \draw [lightgray] (0,0) -- (\ang * 180 / 16:3.1);
+      }
+
+    % Concentric circles
+    \foreach \s in {0, 1, 2} {
+        \draw [lightgray, thick] (0,0) circle (\s + 0.5);
+        \draw [primaryColor, thick] (0,0) circle (\s);
+      }
+
+    % Add the labels at multiples of pi/4
+    \foreach \ang/\lab/\dir in {
+    % 0/0/right,
+    1/{\pi/4}/{above right},
+    2/{\pi/2}/above,
+    3/{3\pi/4}/{above left},
+    4/{\pi}/left,
+    5/{5\pi/4}/{below left},
+    7/{7\pi/4}/{below right},
+    6/{3\pi/2}/below} {
+    \draw (0,0) -- (\ang * 180 / 4:3.25);
+    }
+
+    % Outer circle
+    \draw [thick] (0,0) circle (3);
+
+    % 0 angle line
+    \draw [-to, ultra thick] (0,0) -- (3.75,0) node [above left] {$r$};
+
+    % Example
+    \draw[secondaryColor, ultra thick] (0,0) -- (60:2.75);
+    \draw[secondaryColor, thick] (0,0) -- ++(150:.5);
+    \draw[secondaryColor, thick] (60:2.75) -- ++(150:.5);
+
+    \draw[draw=primaryColor, ultra thick, to-to] (150:.35) -- ++(60:2.75)
+    node[midway, above, fill=primaryColor!5, rotate=60, inner sep=2pt, outer sep=2pt]
+    {$r$};
+
+    \draw[ultra thick, primaryColor, -to] (1.4,0) arc
+      [start angle=0, end angle=60, radius=1.4cm];
+
+    \node[fill=primaryColor!5, inner sep=2pt, outer sep=2pt] at (30:.85) {$\varphi$};
+
+    \draw[fill=primaryColor] (60:2.75) circle (0.1)
+    node[anchor=290, yshift=2mm, fill=primaryColor!5, inner sep=2pt, outer sep=5pt]
+      {$z = r(\cos \varphi + \iu \sin \varphi)$};
+
+  \end{scope}
+
+  % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  % Functions (all)
+  % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  % Sine function for integral
+  \begin{scope}[shift={(\paperwidth*.1,\paperheight*.525)}]
+    \draw[opacity=0, name path=r] (-0.5,0) -- (16.5,0);
+
+    \draw[-to, ultra thick, draw=secondaryColor] (-0.75,0) -- (\paperwidth*.80,0) node[above left] {$x$};
+    \draw[-to, ultra thick, draw=secondaryColor] (0,-2) -- (0,2.25) node[below right] {$y$};
+
+    \draw[ultra thick, primaryColor, name path=s]
+    plot[domain=-0.5:16.5, smooth, samples=150]
+    (\x, {1.5*sin(\x r)});
+
+    % Fill between the x-axis and the function
+    \tikzfillbetween[
+      of=r and s,
+      split,
+      every odd segment/.style={primaryColor!25},
+      every even segment/.style={secondaryColor!25},
+      on layer=bg,
+    ]{}
+
+    % + at pi/2 + 2k*pi
+    \foreach \x in {1.571, 7.853, 14.137} {
+        \node[
+          circle,
+          fill=primaryColor!30,
+          draw=primaryColor,
+          minimum size=.65cm,
+          ultra thick,
+        ] (A1) at (\x,0.65) {};
+        \draw[primaryColor, very thick, line cap = round] ($(A1) - (1.5mm,0)$) -- ++(3mm,0);
+        \draw[primaryColor, very thick, line cap = round] ($(A1) - (0,1.5mm)$) -- ++(0,3mm);
+      }
+
+    % - at 3pi/2 + 2k*pi
+    \foreach \x in {4.712, 10.995} {
+        \node[
+          circle,
+          fill=secondaryColor!30,
+          draw=secondaryColor,
+          minimum size=.65cm,
+          ultra thick,
+        ] (A2) at (\x,-0.65) {};
+        \draw[secondaryColor, very thick, line cap = round] ($(A2) - (1.5mm,0)$) -- ++(3mm,0);
+      }
+  \end{scope}
+
+  % -tanh(x) for fn analysis
+  \begin{scope}[shift={(.5\paperwidth,.3275\paperheight)}]
+    \draw[-to, draw=secondaryColor, ultra thick] (0,-3) -- (0,3.25) node[below right] {$y$};
+    \draw[-to, draw=secondaryColor, ultra thick] (-8.5,0) -- (8.5,0) node[above left] {$x$};
+
+    \draw[primaryColor, ultra thick, primaryColor!5, opacity=.75] (-7.25,0) -- ++(5.5,0);
+    \draw[primaryColor, ultra thick, primaryColor!5, opacity=.75] (7.25,0) -- ++(-5.5,0);
+
+    \draw[smooth, samples=150, ultra thick, primaryColor]
+    plot[domain=-6.8:6.8] ({1.25*\x}, {-2.5*tanh(\x)});
+
+    \draw[dashed, gray, thick] (-8.25, 2.5) -- ++ (16.5, 0);
+    \draw[dashed, gray, thick] (-8.25,-2.5) -- ++ (16.5, 0);
+  \end{scope}
+
+
+  % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  % Series, sequences
+  % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  % Fibonacci spiral
+  \begin{scope}[shift={(\paperwidth*.8,\paperheight*.77)}, scale=1/7.7, xscale=-1]
+    \def\inverseSpiral#1{%
+      \pgfmathsetmacro\currentVal{int(#1)}
+      \ifnum\currentVal>0
+        \begin{pgfonlayer}{bg}
+          \draw [primaryColor, thick] (0,0) rectangle ++(1,1);
+        \end{pgfonlayer}
+
+        % Then draw the square and arc for the current step
+        \draw [ultra thick, primaryColor] (0,0) arc (270:360:1);
+
+        % First, recursively call the macro with one less
+        \begin{scope}[scale=1.6180339887, rotate=90, shift={(1/1.6180339887,-1/1.6180339887)}]
+          \inverseSpiral{#1-1}
+        \end{scope}
+      \fi
+    }
+
+    \inverseSpiral{8}
+  \end{scope}
+
+  % sum 1/2^n
+
+  \begin{scope}[shift={(\paperwidth*.065,\paperheight*.625)}, scale=4, draw=primaryColor, very thick]
+    \draw (0,0) rectangle            (1,1); % 1
+    \draw (0.5,0) --               (0.5,1); % 1/2
+    \draw (0.5,0.5) --             (1,0.5); % 1/4
+    \draw (0.75,0.5) --           (0.75,1); % 1/8
+    \draw (0.75,0.75) --          (1,0.75); % 1/16
+    \draw (0.875,0.75) --        (0.875,1); % 1/32
+    \draw (0.875,0.875) --       (1,0.875); % 1/64
+    \draw (0.9375,0.875) --     (0.9375,1); % 1/128
+    \draw (0.9375,0.9375) --    (1,0.9375); % 1/256
+    \draw (0.96875,0.9375) --  (0.96875,1); % 1/512
+    \draw (0.96875,0.96875) -- (1,0.96875); % 1/1024
+
+    \node at (0.25,0.5) {\scalebox{1.7}{$\sfrac{1}{2}$}};
+    \node at (0.75,0.25) {\scalebox{1.2}{$\sfrac{1}{4}$}};
+    \node at (0.625,0.75) {$\sfrac{1}{8}$};
+    \node at (0.875,0.625) {$\sfrac{1}{16}$};
+    \node at (0.8125,0.875) {\scalebox{.8}{$\sfrac{1}{32}$}};
+    \node at (0.9375,0.8125) {\scalebox{.8}{$\sfrac{1}{64}$}};
+    \node at (0.90625,0.9375) {\scalebox{.3}{$\sfrac{1}{128}$}};
+    \node at (0.96875,0.90625) {\scalebox{.2}{$\sfrac{1}{256}$}};
+    \node at (0.953125,0.96875) {\scalebox{.1}{$\sfrac{1}{512}$}};
+    \node at (0.984375,0.953125) {\scalebox{.05}{$\sfrac{1}{1024}$}};
+
+    % Rest
+    \node at (0.984375,0.984375) {\scalebox{.15}{$\dots$}};
+
+  \end{scope}
+
+\end{tikzpicture}
+
+\cleardoublepage
+
+
+% \begin{titlepage}
+%   \includegraphics[width=\paperwidth]{../shared/bme-logo}
+% \end{titlepage}
+
+\tableofcontents
+\clearpage
+\listofdefinitions
+\clearpage
+\listoftheorems

@@ -1,0 +1,135 @@
+\section{Integrálási segédlet}\label{section.7.2}
+
+\begin{blueBox}
+  \begin{center}
+    \newcommand{\cs}{\rule{0pt}{6mm}}
+    \newcommand{\dint}{\displaystyle\int}
+    \newcommand{\dmint}{\displaystyle\int^{\mathstrut}}
+    \newcommand{\fr}{%
+      \hline
+      f(x) & F(x) \\
+      \hline
+    }
+    \newenvironment{intTabular}{%
+      \begin{tabular}[b]{| *{2}{>{\centering\arraybackslash$}p{2cm}<{$}} |}
+        }{%
+        \hline
+      \end{tabular}
+    }
+    \def\arraystretch{1.4}
+    \begin{intTabular}
+      \multicolumn{2}{c}{$\dmint f(x) \dd x = F(x) + C$}               \\[13mm]
+      %
+      \fr
+      %
+      k & kx \\ x^{\alpha} & \dfrac{x^{\alpha + 1}}{\alpha + 1} \\[3mm]
+      %
+      \hline
+      %
+      % \multicolumn{2}{c}{}                                            \\[15.35mm]
+      % %
+      % \hline
+      % %
+      % f(x)                       & F(x)                               \\
+      % %
+      % \hline
+      % %
+      \cs
+      \dfrac{1}{x}               & \ln |x|                            \\[3mm]
+      e^x                        & e^x                                \\
+      a^x                        & \dfrac{a^x}{\ln a}                 \\[3mm]
+      %
+    \end{intTabular}
+    \hfill
+    \begin{intTabular}
+      %
+      \fr
+      %
+      \sin x                     & - \cos x                           \\
+      \cos x                     & \sin x                             \\
+      \dfrac{1}{\cos^2 x}        & \tan x                             \\[3mm]
+      \dfrac{1}{\sin^2 x}        & - \cot x                           \\[3mm]
+      %
+      \hline
+      %
+      \cs
+      \dfrac{1}{\sqrt{1 - x^2}}  & \arcsin x                          \\[3mm]
+      \dfrac{-1}{\sqrt{1 - x^2}} & \arccos x                          \\[3mm]
+      \dfrac{1}{1 + x^2}         & \arctan x                          \\[3mm]
+      \dfrac{-1}{1 + x^2}        & \arccot x                          \\[3mm]
+    \end{intTabular}
+    \hfill
+    \begin{intTabular}
+      %
+      \fr
+      %
+      \sinh x                    & \cosh x                            \\
+      \cosh x                    & \sinh x                            \\
+      \dfrac{1}{\cosh^2 x}       & \tanh x                            \\[3mm]
+      \dfrac{1}{\sinh^2 x}       & -\coth x                           \\[3mm]
+      %
+      \hline
+      %
+      \cs
+      \dfrac{1}{\sqrt{x^2 + 1}}  & \arcsinh x                         \\[3mm]
+      \dfrac{1}{\sqrt{x^2 - 1}}  & \arccosh x                         \\[3mm]
+      \dfrac{1}{1 - x^2}         & \arctanh x                         \\[3mm]
+      \dfrac{1}{1 - x^2}         & \arccoth x                         \\[3mm]
+    \end{intTabular}
+    \\[2mm]
+    \begin{tabularx}{\textwidth}{|
+        >{\centering\arraybackslash$}p{5cm}<{$}
+        >{\centering\arraybackslash$}X<{$}
+        |}
+      %
+      \hline
+      %
+      \multicolumn{2}{| c |}{Linearitás}                                                                                                                             \\
+      %
+      \hline \hline
+      %
+      \cs
+      \dmint \lambda f = \lambda \dmint f                            &
+      \dmint \lambda f(x) \,\dd x = \lambda \dmint f(x) \,\dd x                                                                                                      \\[3mm]
+      \dmint f \pm g = \dmint f \pm \dmint g                         &
+      \dmint f(x) \pm g(x) \,\dd x = \dmint f(x) \,\dd x \pm \dmint g(x) \,\dd x                                                                                     \\[3mm]
+      \dint_a^b f = \dint_a^c f + \dint_c^b f                        &
+      \dint_a^b f(x) \,\dd x = \dint_a^c f(x) \,\dd x + \dint_c^b f(x) \,\dd x                                                                                       \\[3mm]
+      %
+      \hline
+      %
+      \multicolumn{2}{c}{}                                                                                                                                           \\
+      %
+      \hline
+      %
+      \multicolumn{2}{| c |}{Parciális integrálás}                                                                                                                   \\
+      %
+      \hline \hline
+      %
+      \cs
+      \dmint u \, \dd v = uv - \dmint v \, \dd u                     &
+      \dmint f'(x) g(x) \,\dd x = f(x) g(x) - \dmint f(x) g'(x) \,\dd x                                                                                              \\[3mm]
+      %
+      \hline
+      %
+      \multicolumn{2}{c}{}                                                                                                                                           \\
+      %
+      \hline
+      %
+      \multicolumn{2}{| c |}{Helyettesítéses integrálás}                                                                                                             \\
+      %
+      \hline \hline
+      %
+      \multicolumn{2}{| >{$}c<{$} |}{\cs \dmint e^{f(x)} f'(x) \, \dd x = e^{f(x)} + C}                                                                              \\[3mm]
+      \multicolumn{2}{| >{$}c<{$} |}{\dmint \dfrac{f'(x)}{f(x)} \, \dd x = \ln |f(x)| + C}                                                                           \\[3mm]
+      \multicolumn{2}{| >{$}c<{$} |}{\phantom{\quad\alpha\neq1} \dmint f^\alpha(x) f'(x) \, \dd x = \dfrac{f^{\alpha + 1}(x)}{\alpha + 1} + C \quad (\alpha \neq 1)} \\[3mm]
+      \dmint (f \circ g) \cdot g' = \left( \dmint f \right ) \circ g &
+      \dmint f(g(x)) \cdot g'(x) \, \dd x = F(g(x)) + C                                                                                                              \\[3mm]
+      %
+      \hline
+      %
+    \end{tabularx}
+  \end{center}
+\end{blueBox}
+
+\clearpage

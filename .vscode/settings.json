@@ -1,0 +1,27 @@
+{
+  "[tex,cls,sty]": {
+    "editor.defaultFormatter": "James-Yu.latex-workshop",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-utilities.countWord.format": "${words} words, ${math} eq",
+  "latex-workshop.latex.recipes": [
+    { "name": "latexmk-main", "tools": ["main"] }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "main",
+      "command": "latexmk",
+      "args": ["-norc", "-r", "%WORKSPACE_FOLDER%/.latexmkrc", "%DOC%"]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "latexmk-main",
+  "latex-workshop.latexindent.args": [
+    "-l",
+    "%WORKSPACE_FOLDER%/.latexindent.yaml",
+    "-c",
+    "%DIR%/",
+    "%TMPFILE%"
+  ]
+}

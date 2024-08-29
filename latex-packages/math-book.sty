@@ -1,0 +1,500 @@
+% TeX format requirement
+\NeedsTeXFormat{LaTeX2e}
+
+% Package name [\RequirePackage{book-env}]
+\ProvidesPackage{math-book}
+
+% This package provides all the packages to be included
+% UTILITIES
+\PassOptionsToPackage{magyar}{babel}
+\RequirePackage{babel}
+\RequirePackage{xparse}
+\RequirePackage{marginnote}
+\RequirePackage{multicol}
+% \RequirePackage{tocloft}
+\RequirePackage{etoc}
+\RequirePackage{afterpage}
+\RequirePackage{marginnote}
+\RequirePackage{ifoddpage}
+\RequirePackage{booktabs}
+\RequirePackage{qrcode}
+
+% MATH
+\RequirePackage{amsmath}
+\RequirePackage{unicode-math}
+\RequirePackage{derivative}
+\RequirePackage{xfrac}
+
+% FONT
+\RequirePackage[stixtwo]{fontsetup}
+
+% TABLE
+\RequirePackage{array}
+\RequirePackage{tabularx}
+\RequirePackage{colortbl}
+\RequirePackage{makecell}
+
+% GRAPHICS
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{circuitikz}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{calc, arrows.meta}
+\usetikzlibrary{intersections, pgfplots.fillbetween, patterns, fadings, calc}
+\usetikzlibrary{decorations.markings}
+
+\pgfdeclarelayer{ft}
+\pgfdeclarelayer{bg}
+\pgfsetlayers{bg,main,ft}
+
+% COLORS
+\RequirePackage[table]{xcolor}
+\RequirePackage{pagecolor}
+\colorlet{primaryColor}{red!40!black}
+\colorlet{secondaryColor}{cyan!40!black}
+\colorlet{ternaryColor}{yellow!40!black}
+
+% BOXES
+\RequirePackage[most]{tcolorbox}
+\RequirePackage[framemethod=tikz]{mdframed}
+
+% Length declarations and page layout
+\def\innerMargin{20mm}
+\def\outerMargin{30mm}
+
+\setlength\parindent{0pt}
+\setlength\parskip{.33em}
+
+\RequirePackage[
+  inner=\innerMargin,
+  outer=\outerMargin,
+  top=25mm,
+  bottom=25mm,
+  footskip=12mm,
+  % showframe,
+]{geometry}
+
+\RequirePackage[
+  headsepline=1mm:\textwidth,
+  footsepline=1mm:\textwidth,
+  olines,
+]{scrlayer-scrpage}
+
+\RequirePackage[
+  luatex,
+  colorlinks=true,
+  linkcolor=primaryColor,
+  urlcolor=black,
+]{hyperref}
+
+\allowdisplaybreaks
+
+% Provided commands
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand*{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand*{\iu}{{i\mkern1mu}}
+\newcommand*{\Domain}{\mathcal{D}}
+\newcommand*{\Range}{\mathcal{R}}
+
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arcsinh}{arsinh}
+\DeclareMathOperator{\arccosh}{arcosh}
+\DeclareMathOperator{\arctanh}{artanh}
+\DeclareMathOperator{\arccoth}{arcoth}
+\DeclareMathOperator{\iRe}{Re}
+\DeclareMathOperator{\iIm}{Im}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\inner}{int}
+
+\renewcommand*\chapterformat{%
+  \scalebox{2}{\thechapter}\quad%
+}
+\addtokomafont{disposition}{\color{primaryColor}}
+\renewcommand{\chapterlinesformat}[3]{%
+  \parbox{\linewidth}{%
+    \@hangfrom{#2}#3%
+    \rule{\linewidth}{2pt}%
+    % \newpagecolor{red!3}\afterpage{\restorepagecolor}%
+  }%
+}
+
+\newcommand{\chaptertoc}[1][A fejezetben érintett témakörök]{%
+  \etocsetnexttocdepth{section}%
+  \etocsettocstyle{\addsec*{#1}}{}%
+  \localtableofcontents%
+}
+
+\newcommand{\mainChapter}[1]{%
+  \chapter{#1}%
+  \addcontentsline{the}{chapter}{\protect\numberline{\thechapter}#1}%
+  \addcontentsline{def}{chapter}{\protect\numberline{\thechapter}#1}%
+  \thispagestyle{empty}%
+}
+
+\newcommand{\sftitle}[1]{{\bfseries\sffamily#1}}
+
+\addtotoclist{def}
+\newcommand{\listdefinitionsname}{Definíciók jegyzéke}
+\newcommand\listofdefinitions{\listoftoc[Definíciók jegyzéke]{def}}
+\setuptoc{def}{chapteratlist,leveldown}
+
+\addtotoclist{the}
+\newcommand{\listoftheoremsname}{Tételek jegyzéke}
+\newcommand\listoftheorems{\listoftoc[Tételek jegyzéke]{the}}
+\setuptoc{the}{chapteratlist,leveldown}
+
+% \newcommand{\listtheoremname}{Tételek jegyzéke}
+% \newlistof{the}{the}{\listtheoremname}
+
+% Provided environments
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ DEFINITION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\mdfdefinestyle{definition}{%
+  hidealllines=true,%
+  leftline=true,%
+  linewidth=3pt,%
+  linecolor=primaryColor,%
+  frametitlerule=true,%
+  frametitlebackgroundcolor=primaryColor,%
+  backgroundcolor=gray!10,
+  frametitleaboveskip=2mm,
+  frametitlebelowskip=2mm,
+  innertopmargin=3mm,
+}
+
+\newcounter{definition}[chapter]
+\numberwithin{definition}{chapter}
+\newenvironment{definition}[1][\@nil]{%
+  \def\tmp{#1}%
+  \def\rule@@color{primaryColor}%
+  \refstepcounter{definition}%
+  \ifx\tmp\@nnil\else%
+    \addcontentsline{def}{section}{\protect\numberline{\thedefinition}#1}%
+  \fi%
+  \begin{mdframed}[
+      style=definition,
+      nobreak=true,
+      frametitle={
+          \color{white}\sffamily\bfseries%
+          Definíció~\thedefinition%
+          \ifx\tmp\@nnil\else%
+            : #1%
+          \fi%
+        }
+    ]
+    }{%
+  \end{mdframed}
+}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ THEOREM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\mdfdefinestyle{theorem}{%
+  hidealllines=true,%
+  leftline=true,%
+  linewidth=3pt,%
+  linecolor=secondaryColor,%
+  frametitlerule=true,%
+  frametitlebackgroundcolor=secondaryColor,%
+  backgroundcolor=gray!10,
+  frametitleaboveskip=2mm,
+  frametitlebelowskip=2mm,
+  innertopmargin=3mm,
+}
+
+\newcounter{theorem}[chapter]
+\numberwithin{theorem}{chapter}
+\newenvironment{theorem}[1][\@nil]{%
+  \def\tmp{#1}%
+  \def\rule@@color{secondaryColor}%
+  \refstepcounter{theorem}%
+  \ifx\tmp\@nnil\else%
+    \addcontentsline{the}{section}{\protect\numberline{\thetheorem}#1}%
+  \fi%
+  \begin{mdframed}[
+      style=theorem,
+      nobreak=true,
+      frametitle={
+          \color{white}\sffamily\bfseries%
+          Tétel~\thetheorem%
+          \ifx\tmp\@nnil\else%
+            : #1%
+          \fi%
+        }
+    ]
+    }{%
+  \end{mdframed}
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ PROOF ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\RequirePackage{dashrule}
+\newenvironment{proof}[1][\@nil]{%
+  \def\tmp{#1}%
+  % HORIZONTAL DASHED RULE WITH rule@@color
+  {\color{\rule@@color}\hdashrule[.8ex][x]{\dimexpr\textwidth}{1pt}{2mm 3pt}}
+  % PROOF TITLE
+  {%
+    \sffamily\textbf{Bizonyítás}%
+    \ifx\tmp\@nnil
+      :%
+    \else%
+      \ (#1):%
+    \fi
+  }\par
+}{%
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ QUESTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% \begin{noindent}
+\mdfdefinestyle{questions}{%
+  % NO LINES
+  hidealllines=true,%
+  leftline=true,%
+  linewidth=3pt,%
+  linecolor=ternaryColor,%
+  % COLORS
+  frametitlebackgroundcolor=ternaryColor,%
+  backgroundcolor=gray!10,%
+  frametitleaboveskip=3mm,
+  frametitlebelowskip=1mm,
+  innertopmargin=4mm,
+}
+% \end{noindent}
+
+\def\questionsTitle{Felkészülést segítő kérdések}
+\newenvironment{questions}[1][\@nil]{%
+  \def\tmp{#1}%
+  \def\envbgcolor{gray!10}%
+  % ONLY ADD TO TOC IF LABEL IS PROVIDED
+  \ifx\tmp\@nnil\else%
+    \refstepcounter{section}%
+    \addcontentsline{toc}{section}{\protect\numberline{\thesection}\questionsTitle}
+  \fi%
+  \begin{mdframed}[
+      style=questions,
+      frametitle={
+          % Section title like title
+          \color{white}\Large\sffamily\bfseries%
+          % Only add number if label is defined
+          \ifx\tmp\@nnil\else%
+            \thesection.
+          \fi%
+          % Title
+          \questionsTitle%
+          % First optional argument is the reference label
+          \ifx\tmp\@nnil\else%
+            \label{#1}%
+          \fi\par%
+        }
+    ]
+    }{%
+    \vfill
+  \end{mdframed}
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ INSIGHTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdf@do@stringoption{learnMoreTitle=={Kitekintő}}
+\usetikzlibrary{calc,arrows,backgrounds}
+\tikzset{
+  excursus arrow/.style={%
+      line width=2pt,
+      draw=secondaryColor,
+      rounded corners=1ex,
+    },
+  excursus head/.style={
+      font=\bfseries\sffamily,
+      anchor=base west,
+      text=secondaryColor,
+      inner sep=1.5ex,
+      inner ysep=1ex,
+    },
+}
+\pgfdeclarelayer{bg}
+\pgfdeclarelayer{fg}
+\pgfsetlayers{bg,main,fg}
+
+% \begin{noindent}
+\mdfdefinestyle{learnMore}{%
+  singleextra={%
+    % NODE LEFT BOTTOM
+    \path let \p1=(P), \p2=(O) in (\x2,\y1) coordinate (Q);
+    % BOTTOM-LEFT
+    \path let \p1=(Q), \p2=(O) in (\x1,\y2) coordinate (BL);
+    % TOP RIGHT
+    \path let \p1=(Q), \p2=(P) in (\x2,\y1) coordinate (TR);
+    % TITLE
+    \node [excursus head] (A) at ($(Q)+(2.5em,0)$) {\phantom{\mdf@digressiontitle}};
+    % ARROW
+    \path [excursus arrow, line width=2pt] ($(BL)+(1pt,0)$) |- ($(Q)+(2em,0)$);
+    \path [excursus arrow, line width=2pt, fill=gray!10, -to]
+      ($(Q)+(1em,0)$)
+      -| (A.north west)
+      -| (A.base east)
+      -- (TR)
+      ;
+    % \fill [gray!10]
+    %   ($(A.base east)+(1em,0)$)
+    %   -- ++(2em,0)
+    %   .. controls ($(TR)!0.2!(A.base east)+(0,1ex)$) .. ($(TR)+(0,2ex)$)
+    %   -- ++(0,-2ex)
+    %   -- cycle
+    % ;
+    % \path [excursus arrow, round cap-to]
+    %   ($(A.base east)+(1em,0)$)
+    %   -- ++(2em,0)
+    %   .. controls ($(TR)!0.2!(A.base east)+(0,1ex)$) .. ($(TR)+(0,2ex)$)
+    % ;
+    \node [excursus head] (A) at ($(Q)+(2.5em,0)$) {\mdf@digressiontitle};
+  },
+  backgroundcolor=gray!10,
+  middlelinewidth=0,
+  hidealllines=true,topline=true,
+  innertopmargin=2.5ex,
+  innerbottommargin=1.5ex,
+  innerrightmargin=2ex,
+  innerleftmargin=2ex,
+  skipabove=0.5\baselineskip,
+}
+% \end{noindent}
+
+\newenvironment{learnMore}[1][Kitekintő]{%
+  \def\mdf@digressiontitle{#1}%
+  \begin{mdframed}[style=learnMore]
+    }{%
+  \end{mdframed}
+}
+
+\newenvironment{insights}[1][\@nil]{%
+  \bgroup
+  \begin{mdframed}[
+      frametitle={
+          \color{white}\sffamily\bfseries%
+          Kitekintő%
+          \ifx\tmp\@nnil\else%
+            : #1%
+          \fi\par%
+        }
+    ]
+    }{%
+  \end{mdframed}
+  \egroup
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ NOTE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% \begin{noindent}
+\mdfdefinestyle{note}{%
+  % NO LINES
+  hidealllines=true,%
+  leftline=true,%
+  % COLORS
+  backgroundcolor=yellow!10,%
+  linecolor=ternaryColor,%
+  % LENGTHS
+  linewidth=3pt,%
+  innertopmargin=.66em,%
+  innerbottommargin=.66em,%
+}
+% \end{noindent}
+
+\newenvironment{note}{%
+  \begin{mdframed}[style=note]
+    }{%
+  \end{mdframed}
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ BLUEBOX ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% \begin{noindent}
+\mdfdefinestyle{blueBox}{%
+  % NO LINES
+  hidealllines=true,%
+  leftline=true,%
+  % COLORS
+  backgroundcolor=cyan!10,%
+  linecolor=secondaryColor,%
+  % LENGTHS
+  linewidth=3pt,%
+  innertopmargin=.66em,%
+  innerbottommargin=.66em,%
+}
+% \end{noindent}
+
+\newenvironment{blueBox}{%
+  \def\rule@@color{secondaryColor}%
+  \begin{mdframed}[style=blueBox]
+    }{%
+  \end{mdframed}
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ STATEMENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% \begin{noindent}
+\mdfdefinestyle{statement}{%
+  % NO LINES
+  hidealllines=true,%
+  leftline=true,%
+  % COLORS
+  backgroundcolor=primaryColor!10,%
+  linecolor=primaryColor,%
+  % LENGTHS
+  linewidth=3pt,%
+  innertopmargin=.66em,%
+  innerbottommargin=.66em,%
+  % TIKZ
+  singleextra={
+    \path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$) node[
+      rectangle,
+      fill=primaryColor!10,
+      draw=primaryColor,
+      line width=2pt,
+      overlay,
+    ] {\color{primaryColor}\large!};
+  },%
+}
+% \end{noindent}
+
+\newenvironment{statement}{%
+  \def\rule@@color{primaryColor}%
+  \begin{mdframed}[style=statement]
+    }{%
+  \end{mdframed}
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ EXAMPLE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdfdefinestyle{example}{%
+  % NO LINES
+  hidealllines=true, leftline=true,
+  % COLORS
+  backgroundcolor=magenta!10, linecolor=magenta!60!black,
+  % LENGTHS
+  linewidth=3pt, innertopmargin=.66em, innerbottommargin=.66em,}
+
+\newenvironment{example}{%
+  \begin{mdframed}[style=example]
+    }{%
+  \end{mdframed}
+}

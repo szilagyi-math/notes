@@ -1,0 +1,175 @@
+\section{Relációk, leképezések, függvények}
+
+\begin{definition}[Descartes-szorzat]
+  Az $A$ és $B$ halmazok Descartes-szorzatán az $A$ és $B$ halmaz elemeiből álló
+  \textbf{összes rendezett elempár}ok halmazát értjük:
+  \[
+    A \times B := \Big\{\;
+    (a; b) \;\Big|\; (a \in A) \land (b \in B)
+    \;\Big\}
+    \text.
+  \]
+\end{definition}
+
+\begin{example}
+  Legyen $A = \{1;2\}$ és $B = \{a;b\}$, ekkor az $A \times B$
+  Descartes-szorzat:
+  \[
+    A \times B = \Big\{\;
+    (1; a); (1; b); (2; a); (2; b)
+    \;\Big\}
+    \text.
+  \]
+
+\end{example}
+
+\begin{definition}[Binér reláció]
+  Az $A \times B$ szorzathalmaz $T \subset A \times B$ részhalmazát az $A$ és
+  $B$ közötti binér (kételemű) relációnak hívjuk. Ha $(a; b) \in T$, akkor azt
+  mondjuk, hogy $a$ és $b$ relációban vannak, és ezt $aTb$-vel jelöljük.
+\end{definition}
+
+\begin{definition}[Reláció értelmezési tartománya, értékkészlete és inverze]
+  Legyen $ T\subset A\times B$ egy reláció, ekkor
+  \begin{center}
+    \def\arraystretch{1.5}
+    \addtolength{\tabcolsep}{-0.25em}
+    \begin{tabular}{
+        >{$}r<{: = \Big\{$}
+        >{$}c<{$}
+        >{$\Big|$}c
+        >{$}c<{$}
+        >{$\Big\}$}c
+        >{--}c
+        l
+      }
+      \Domain_T
+       & a \in A
+       &         & \exists b \in B: (a;b) \in T
+       &         &                              & a reláció értelmességi tartománya,
+      \\
+      \Range_T
+       & b \in B
+       &         & \exists a \in A: (a;b) \in T
+       &         &                              & a reláció értékkészlete,
+      \\
+      T^{-1}
+       & (b;a)
+       &         & (a;b) \in T
+       &         &                              & a reláció inverze.
+    \end{tabular}
+
+  \end{center}
+\end{definition}
+
+\begin{definition}[Ekvivalenciareláció]
+  Legyen $A \neq \emptyset$, a $T \subset A \times A$ relációt ekvivalencia%
+  relációnak mondjuk, ha teljesülnek az alábbiak:
+  \begin{itemize}
+    \item \textbf{reflexivitás} -- $\forall A \in A$ esetén $(a; a) \in T$,
+    \item \textbf{szimmetria} -- ha $(a; b) \in T$, akkor $(b; a) \in T$,
+    \item \textbf{tranzitivitás} -- ha $(a; b) \in T$ és $(b; c) \in T$, akkor
+          $(a; c) \in T$.
+  \end{itemize}
+\end{definition}
+
+\begin{theorem}[Ekvivalencia osztályok]
+  Minden $A \times A$ halmazon adott ekvivalenciareláció diszjunkt halmazokra
+  bontja fel az A halmazt, ezeket a diszjunkt halmazokat ekvivalencia%
+  osztályoknak nevezzük.
+\end{theorem}
+
+\begin{example}
+  \samepage
+  Két természetes szám relációban van egymással, ha hárommal osztva azonos
+  maradékot adnak.
+  \begin{center}
+    \begin{tikzpicture}[ultra thick]
+      \node[
+        circle,
+        minimum size=3.5cm,
+        draw=primaryColor,
+        fill=primaryColor!10
+      ] (C) at (0,0) {};
+
+      \coordinate (1) at (80:1.75);
+      \coordinate (2) at (100:1.75);
+
+      \draw[primaryColor, fill=primaryColor!10]
+      ($(2)+(1mm,6mm)$)
+      arc (90:180:1mm)
+      -- (2)
+      arc (100:80:1.75)
+      -- ++(0,5mm)
+      arc (0:90:1mm)
+      -- cycle
+      ;
+
+      \node at (0,2.025) {$\mathbb N$};
+
+
+      \draw[secondaryColor] (170:1.75) .. controls (40:.35) .. (290:1.75)
+      coordinate[pos=0.6] (A);
+
+      \draw[secondaryColor] (A) .. controls (30:.75) .. (90:1.75);
+
+      \foreach \angle/\label in {110/0, 230/1, 345/2}{
+          \node at (\angle:1) {$\overline\label$};
+        }
+    \end{tikzpicture}
+  \end{center}
+\end{example}
+
+\begin{definition}[Függvény]
+  A $T \subset A \times B$ binér relációt leképezésnek/függvénynek mondjuk, ha
+  \[
+    (a; b) \in T \land (a; c)\in T \Rightarrow b = c
+    \text.
+  \]
+  Jelölés: $f: A \rightarrow B$, ahol $A$ az értelmezési tartomány ($\Domain_f$)
+  és $B$ az értékkészlet ($\Range_f$).
+\end{definition}
+
+\begin{definition}[Bijekció]
+  Az $f : A \rightarrow B$ kölcsönösen egyértelmű (egy-egyértelmű, bijektív), ha
+  \begin{itemize}
+    \item \textbf{injektív}, vagyis $f(a_1) = f(a_2) \Rightarrow a_1 = a_2$,
+          valamint
+    \item \textbf{szürjektív}, vagyis $\forall b \in B$ esetén $\exists a \in A:
+            f(a) = b$.
+  \end{itemize}
+\end{definition}
+
+\begin{note}
+  Ha az $f: A \rightarrow B$ bijektív, akkor az $f^{-1}: B \rightarrow A$
+  leképezést $f$ \textbf{inverz leképezés}ének hívjuk.
+\end{note}
+
+\begin{example}
+  Az $f: \Reals \rightarrow (0; +\infty), x \mapsto e^x$ függvény bijektív,
+  inverze a természetes alapú logaritmus: $f^{-1}: (0; +\infty) \rightarrow
+    \Reals, x \mapsto \ln x$.
+
+  \begin{center}
+    \begin{tikzpicture}[ultra thick]
+      % COORDINATE SYSTEM
+      \draw[-to, draw=primaryColor] (-2.5,0) -- (3,0) node[above left] {$x$};
+      \draw[-to, draw=primaryColor] (0,-2.5) -- (0,3) node[below left] {$y$};
+
+      \draw[very thick, gray, dashed] (-2,-2) -- (2,2);
+
+      % PLOT EXP(X)
+      \draw plot[domain=-2.25:0.85, samples=25, smooth, draw=secondaryColor]
+      (\x, {exp(\x)})
+      node[above right] {$e^x$}
+      ;
+      % PLOT LN(X)
+      \draw plot[domain=0.10:2.5, samples=25, smooth, draw=secondaryColor]
+      (\x, {ln(\x)})
+      node[above right] {$\ln x$}
+      ;
+    \end{tikzpicture}
+  \end{center}
+\end{example}
+
+% \clearpage

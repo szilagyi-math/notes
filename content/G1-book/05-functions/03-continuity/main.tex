@@ -1,0 +1,122 @@
+\section{Folytonosság}
+
+\begin{definition}[Folytonosság]
+  Egy $f : \Domain_f \rightarrow \Reals$ függvény folytonos egy $a \in
+    \Domain_f$ pontban, ha $\forall \varepsilon > 0$ esetén $\exists \delta(
+    \varepsilon) > 0$, hogy $|f(x) - f(a)| < \varepsilon$, ha $|x - a| < \delta(
+    \varepsilon)$.
+\end{definition}
+
+\begin{statement}
+  A folytonosság definíciója ekvivalens a következővel: $f$ függvény folytonos
+  egy ${a \in \Domain_f}$ pontban, ha
+  \[
+    \lim_{x \to a} f(x) = f(a)
+    \text.
+  \]
+\end{statement}
+
+\begin{note}
+  Ha $f$ és $g$ folytonosak az $a \in \Domain_f \cap \Domain_g$ pontban, akkor
+  $f + g$, $f - g$, $f \cdot g$ és $g \neq 0$ esetén $f / g$ is folytonosak az
+  $a$ pontban.
+\end{note}
+
+\begin{note}
+  Ha $f$ folytonos az $a \in \Domain_f$ pontban és $g$ folytonos az $f(a) \in
+    \Domain_g$ pontban, akkor $g \circ f$ is folytonos az $a$ pontban.
+\end{note}
+
+\begin{definition}[Baloldali folytonosság]
+  Az $f$ függvény balról folytonos az értelmezési tartományának egy $a$
+  pontjában, ha a bal oldali határértéke megegyezik az adott pontbeli
+  függvényértékkel, vagyis:
+  \[
+    \lim_{\phantom{{}^{-}} x \rightarrow a^-} f(x) = f(a)
+    \text.
+  \]
+\end{definition}
+
+\begin{definition}[Jobboldali folytonosság]
+  Az $f$ függvény jobbról folytonos az értelmezési tartományának egy $a$
+  pontjában, ha a jobb oldali határértéke megegyezik az adott pontbeli
+  függvényértékkel, vagyis:
+  \[
+    \lim_{\phantom{{}^{+}} x \rightarrow a^+} f(x) = f(a)
+    \text.
+  \]
+\end{definition}
+
+\begin{note}
+  Az $f$ függvény folytonos az értelmezési tartományának egy pontjában, ha ott
+  jobbról és balról is folytonos.
+\end{note}
+
+\begin{definition}[Függvény folytonossága nyílt intervallumon]
+  Az $f$ függvény folytonos az $(a; b)$ intervallumon, ha ennek az
+  intervallumnak minden pontjában folytonos.
+\end{definition}
+
+\begin{definition}[Függvény folytonossága zárt intervallumon]
+  Az $f$ függvény folytonos az $[a; b]$ intervallumon, ha folytonos az $(a; b)$
+  intervallumon, valamint jobbról folytonos az $a$-ban, illetve balról folytonos
+  a $b$-ben.
+\end{definition}
+
+\begin{theorem}[Bolzano-tétel]
+  Ha az $f$ folytonos az $[a;b]$ intervallumon, akkor itt felvesz minden $f(a)$
+  és $f(b)$ közé eső értéket.
+\end{theorem}
+
+\begin{note}
+  A Bolzano-tétel megfordítása nem igaz.
+\end{note}
+
+\begin{note}
+  A Bolzano-tételből következik, hogy ha valamely $[a; b]$ intervallumon
+  folytonos függvény esetén $f(a) \cdot f(b) < 0$, akkor $\exists \xi \in
+    (a;b)$, hogy $f(\xi) = 0$.
+\end{note}
+
+\begin{theorem}
+  Ha az $f$ függvény folytonos az $[a; b]$ intervallumon, akkor ott korlátos.
+  (Zárt intervallumon folytonos függvény korlátos.)
+\end{theorem}
+
+\begin{definition}
+  Legyen $T \subset \Domain_f$ és $H := f(T) \subset \Range_f$
+  \begin{itemize}
+    \item Ha $H$-nak van legnagyobb értéke, akkor ezt az f függvény $T$-n
+          felvett maximumának mondjuk.
+
+    \item Ha $H$-nak van legkisebb értéke, akkor ezt az f függvény $T$-n felvett
+          minimumának mondjuk.
+  \end{itemize}
+\end{definition}
+
+\begin{theorem}[Weierstrass-tétel]
+  Zárt intervallumon folytonos függvény felveszi a szélsőértékeit
+  függvényértékként.
+\end{theorem}
+
+\begin{definition}[Egyenletes folytonosság]
+  Az $f$ függvény egyenletesen folytonos a $H$ halmazon, ha $\forall
+    \varepsilon > 0$ esetén $\exists \delta(\varepsilon)$, hogy ${|f(x_1) -
+      f(x_2)| < \varepsilon}$, ha $|x_1 - x_2| < \delta(\varepsilon)$,
+  $\forall x_1, x_2 \in H$ esetén.
+\end{definition}
+
+\begin{theorem}
+  Zárt intervallumon folytonos függvény ott egyenletesen folytonos.
+\end{theorem}
+
+\begin{theorem}
+  Zárt intervallumon folytonos szigorúan monoton függvény inverze ugyancsak
+  folytonos és az eredeti függvénnyel megegyező monotonitású.
+\end{theorem}
+
+\begin{theorem}
+  \[
+    \lim_{x \rightarrow 0} \frac{\sin x}{x} = 1
+  \]
+\end{theorem}

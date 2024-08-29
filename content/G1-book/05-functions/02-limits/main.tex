@@ -1,0 +1,88 @@
+\section{Függvények határértéke}
+
+\begin{definition}[Függvény határértéke]
+  Azt mondjuk, hogy az $f$ függvény határértéke az $a$ pontban $A$, ha $\forall
+    \varepsilon < 0$ esetén $\exists \delta(\varepsilon) > 0$, hogy $|f(x) - A| <
+    | < \varepsilon$, ha $0 < |x - a| < \delta(\varepsilon)$. Jele:
+  \[
+    \lim_{x \rightarrow a} f(x) = A
+    \text.
+  \]
+\end{definition}
+
+\begin{theorem}[Átviteli elv]
+  Az $f$ függvény határértéke az $a$ pontban akkor és csak akkor $A$, ha
+  $\forall x_n \rightarrow a$ sorozat esetén $f(x_n) \rightarrow A$.
+\end{theorem}
+
+\begin{theorem}
+  Legyen az $f$ függvény határértéke az $a \in \Domain_f \cap \Domain_g$ pontban
+  $A$, a $g$ függvény $a$ pontbeli határértéke pedig $B$. Ekkor:
+  \begin{itemize}
+    \item $\displaystyle \lim_{x \rightarrow a} f(x) + g(x) = A + B$,
+    \item $\displaystyle \lim_{x \rightarrow a} f(x) \cdot g(x) = A \cdot B$,
+    \item $\displaystyle \lim_{x \rightarrow a} \frac{f(x)}{g(x)} = \frac{A}{B}$,
+          ha  $B \neq 0$.
+  \end{itemize}
+\end{theorem}
+
+\begin{definition}[Baloldali határérték]
+  Azt mondjuk, hogy az $f$ függvény baloldali határértéke az $a$ pontban $A$, ha
+  $\forall \varepsilon > 0$ esetén $\exists \delta(\varepsilon) > 0$, hogy
+  $|f(x) - A| < \varepsilon$, ha $0 < a - x < \delta(\varepsilon)$. Jele:
+  \[
+    \lim_{\phantom{{}^-}x \rightarrow a^-} f(x) = A
+    \text.
+  \]
+\end{definition}
+
+\begin{definition}[Jobboldali határérték]
+  Azt mondjuk, hogy az $f$ függvény jobboldali határértéke az $a$ pontban $A$,
+  ha $\forall \varepsilon > 0$ esetén $\exists \delta(\varepsilon) > 0$, hogy
+  $|f(x) - A| < \varepsilon$, ha $0 < x - a < \delta(\varepsilon)$.
+  Jele:
+  \[
+    \lim_{\phantom{{}^+}x \rightarrow a^+} f(x) = A
+    \text.
+  \]
+\end{definition}
+
+\begin{theorem}
+  Az $f$ függvény határértéke az $a$ pontban, akkor és csak akkor $A$, ha
+  \[
+    \lim_{\phantom{{}^-}x \rightarrow a^-} f(x) = A
+    \quad\text{és}\quad
+    \lim_{\phantom{{}^+}x \rightarrow a^+} f(x) = A
+    \text.
+  \]
+\end{theorem}
+
+\begin{definition}
+  \begin{itemize}
+    \item Az $f$ függvény határértéke a $+\infty$-ben $A$, ha $\forall
+            \varepsilon > 0$ esetén $\exists \delta(\varepsilon) > 0$, \\
+          hogy $|f(x) - A| < \varepsilon$, ha $x > \delta(\varepsilon)$.
+
+    \item Az $f$ függvény határértéke a $-\infty$-ben $A$, ha $\forall
+            \varepsilon > 0$ esetén $\exists \delta(\varepsilon) > 0$, \\
+          hogy $|f(x) - A| < \varepsilon$, ha $x < \delta(\varepsilon)$.
+
+    \item Az $f$ függvény határértéke a $a$-ban $+\infty$, ha $\forall N$ esetén
+          $\exists \delta(N) > 0$, hogy $f(x) > N$, ha $0 < |x - a| <
+            \delta(N)$.
+
+    \item Az $f$ függvény határértéke a $a$-ban $-\infty$, ha $\forall N$ esetén
+          $\exists \delta(N) > 0$, hogy $f(x) < N$, ha $0 < |x - a| <
+            \delta(N)$.
+  \end{itemize}
+\end{definition}
+
+\begin{statement}
+  Legyen az $f$ függvény határértéke az $a \in \Domain_f$ pontban $A$, a $g$
+  függvény $a \in \Domain_g$ pontbeli határértéke pedig $B$. Az $a$ pont egy
+  $x \neq a$ környezetében pedig $g(x) \neq A$. Ekkor:
+  \[
+    \lim_{x \rightarrow a} (g \circ f)(x) = B
+    \text.
+  \]
+\end{statement}

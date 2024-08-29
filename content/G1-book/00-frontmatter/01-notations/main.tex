@@ -1,0 +1,415 @@
+\chapter{Jelölések}
+
+\begin{blueBox}
+  Ez egy egyszerű szövegdoboz.
+\end{blueBox}
+
+\begin{note}
+  Ez egy megjegyzés.
+\end{note}
+
+\begin{statement}
+  Ez egy állítás.
+\end{statement}
+
+\begin{example}
+  Ez egy példa.
+\end{example}
+
+\begin{learnMore}
+  Ez egy kitekintés.
+\end{learnMore}
+
+\begin{definition}
+  Ez egy definíció.
+\end{definition}
+
+\begin{theorem}
+  Ez egy tétel.
+\end{theorem}
+
+\begin{mdframed}[style=questions, frametitle={\color{white}Felkészülést segítő kérdések}]
+  Ezek segítenek a tanulásban.
+\end{mdframed}
+
+% \newcommand{\tname}[1]{\marginnote{\sffamily\bfseries\color{primaryColor}#1}}
+\newcommand{\mfrac}[2]{\frac{{#1}^{\mathstrut}}{{#2}_{\mathstrut}}}
+\newcommand{\mwrap}[1]{{#1}^{\mathstrut}_{\mathstrut}}
+\newenvironment{notations}[1]{%
+  \checkoddpage%
+  \ifoddpage%
+    % \def\tcbleft{0pt}%
+    % \def\tcbright{2pt}%
+    \newcolumntype{U}{r<{\hspace{2mm}}}
+  \else%
+    % \def\tcbleft{2pt}%
+    % \def\tcbright{0pt}%
+    \newcolumntype{U}{l}
+  \fi%
+  % \begin{tcolorbox}[
+  %     frame hidden,
+  %     colframe=white,
+  %     boxsep=0pt,
+  %     left=0pt,
+  %     right=0pt,
+  %     top=12mm,
+  %     bottom=0pt,
+  %     arc=0pt,
+  %     outer arc=0pt,
+  %   ]
+  \begin{center}
+    \def\arraystretch{1.55}
+    \setlength\arrayrulewidth{1pt}
+    \arrayrulecolor{primaryColor}
+    \begin{tabular}
+      {
+      |
+      >{\centering\arraybackslash$\displaystyle}m{3.5cm}<{$}
+      |
+      >{\centering\arraybackslash}m{5cm}
+      |
+      >{\centering\arraybackslash$\displaystyle}m{6cm}<{$}
+      |
+      }
+      \hline
+      \multicolumn{3}{|U|}{
+        \sffamily\Large\bfseries\color{white}\cellcolor{primaryColor}
+        #1
+      }
+      \\
+      \hline
+      \cellcolor{gray!25}\text{\sffamily\color{primaryColor}\textbf{Jel}}
+       & \cellcolor{gray!25}\text{\sffamily\color{primaryColor}\textbf{Megnevezés}}
+       & \cellcolor{gray!25}\text{\sffamily\color{primaryColor}\textbf{Példa}}
+      \\
+      \hline
+      }{%
+      \\
+      \hline
+    \end{tabular}
+  \end{center}
+  % \end{tcolorbox}
+}
+
+\clearpage
+
+\begin{notations}{Logikai szimbólumok}
+  \land       & és               & p \land q
+  \\\hline
+  \lor        & vagy             & p \lor q
+  \\\hline
+  \forall     & minden / bármely & \forall x \in X
+  \\\hline
+  \exists     & létezik          & \exists x \in X
+  \\\hline
+  % \exists!    & biztosan létezik & \exists! x \in X
+  % \\\hline
+  \not\exists & nem létezik      & \not\exists x \in X
+  % \\\hline
+  % !           & legyen           & !x \in X
+\end{notations}
+\hfill
+\begin{notations}{Egyenlőség, relációk}
+  =      & egyenlő              & 2 + 2 = 4
+  \\\hline
+  \neq   & nem egyenlő          & 2 \neq 3
+  \\\hline
+  \equiv & ekvivalens           & 2 \equiv 2
+  \\\hline
+  <      & kisebb               & 2 < 3
+  \\\hline
+  \leq   & kisebb vagy egyenlő  & 2 \leq 3
+  \\\hline
+  >      & nagyobb              & 3 > 2
+  \\\hline
+  \geq   & nagyobb vagy egyenlő & 3 \geq 2
+\end{notations}
+\hfill
+\begin{notations}{Műveletek}
+  a + b       & összeg        & 2 + 3 = 5
+  \\\hline
+  a - b       & különbség     & 5 - 3 = 2
+  \\\hline
+  a \cdot b   & szorzat       & 2 \cdot 3 = 6
+  \\\hline
+  a / b       & hányados      & 6 / 3 = 2
+  \\\hline
+  a^b         & hatvány       & 2^3 = 8
+  \\\hline
+  \sqrt{a}    & négyzetgyök   & \sqrt{4} = 2
+  \\\hline
+  \sqrt[n]{a} & $n$-edik gyök & \sqrt[3]{8} = 2
+  \\\hline
+  a!          & faktoriális   & 3! = 3 \cdot 2 \cdot 1 = 6
+\end{notations}
+
+\clearpage
+
+\begin{notations}{Halmazok és halmazműveletek}
+  \emptyset, \{\} & üreshalmaz
+                  & A := \{ k \mid k \in \mathbb N \land k < 0 \}
+  \\\hline
+  \mathbb N       & természetes számok halmaza
+                  & 1, 2, 3, \dots
+  \\\hline
+  \mathbb Z       & egész számok halmaza
+                  & \dots, -2, -1, 0, 1, 2, \dots
+  \\\hline
+  \mathbb Q       & racionális számok halmaza
+                  & 2/3 \in \mathbb{Q}
+  \\\hline
+  \mathbb Q^*     & irracionális számok halmaza
+                  & \pi \in \mathbb{Q}
+  \\\hline
+  \mathbb R       & valós számok halmaza
+                  & \sqrt{2} \in \mathbb{R}
+  \\\hline
+  \mathbb C       & komplex számok halmaza
+                  & i \in \mathbb{C}
+  \\\hline
+  A, B, C         & halmazok
+                  & A = \{1; 2; 3\}
+  \\\hline
+  a, b, c         & halmazok elemei
+                  & x \in A
+  \\\hline
+  \in             & eleme
+                  & \iu \in \mathbb C
+  \\\hline
+  \notin          & nem eleme
+                  & \pi \notin \mathbb Q
+  \\\hline
+  \sim            & ekvivalencia
+                  & A \sim B
+  \\\hline
+  \subseteq       & részhalmaza
+                  & \{1\} \subseteq \{1; 2\}
+  \\\hline
+  \subset         & valódi részhalmaza
+                  & A \subset B \Leftrightarrow A \subseteq B \land A \neq B
+  \\\hline
+  \overline A     & komplementer halmaz
+                  & \{x \in X \mid x \notin A\}
+  \\\hline
+  \cup            & unió
+                  & \{x \in X \mid x \in A \lor x \in B\}
+  \\\hline
+  \cap            & metszet
+                  & \{x \in X \mid x \in A \land x \in B\}
+  \\\hline
+  \setminus       & kivonás
+                  & \{x \in X \mid x \in A \land x \notin B\}
+\end{notations}
+\hfill
+\begin{notations}{Intervallumok}
+  [a; b] & zárt intervallum                         & [0; 1]
+  \\\hline
+  (a; b) & nyílt intervallum                        & (0; 1)
+  \\\hline
+  [a; b) & balról zárt, jobbról nyitott intervallum & [0; 1)
+  \\\hline
+  (a; b] & balról nyitott, jobbról zárt intervallum & (0; 1]
+\end{notations}
+
+\clearpage
+
+% \begin{notations}{Konstansok}
+%   \pi & pi                 & \pi \approx 3.14159
+%   \\\hline
+%   e   & Euler-féle szám    & e \approx 2.71828
+%   \\\hline
+%   \iu & imaginárius egység & \iu^2 = -1
+% \end{notations}
+% \vfill
+\begin{notations}{Komplex számok}
+  \mathbb C
+   & komplex számok halmaza
+   & z \in \mathbb C
+  \\\hline
+  \iu
+   & imaginárius egység
+   & \iu^2 = -1
+  \\\hline
+  z
+   & komplex szám
+   & z = 3 + 4 \iu
+  \\\hline
+  z = a + b \iu
+   & algebrai alak
+   & \iRe \{z\} = a, \iIm \{z\} = b
+  \\\hline
+  \overline z = a - b \iu
+   & konjugált
+   & \overline{3 + 4\iu} = 3 - 4\iu
+  \\\hline
+  \iRe \{ z \}
+   & valós rész
+   & z = 3 + 2\iu \;\rightarrow\; \iRe \{z\} = 3
+  \\\hline
+  \iIm \{ z \}
+   & képzetes rész
+   & z = 1 + 4\iu \;\rightarrow\; \iIm \{z\} = 4
+  \\\hline
+  | z |
+   & abszolút érték / hossz
+   & | z | = \sqrt{a^2 + b^2}
+  \\\hline
+  \arg \{z\}
+   & argumentum
+   & \arg \{z\} = \arctan(b/a)
+  \\\hline
+  z = r (\cos \varphi + \iu \sin \varphi)
+   & trigonometrikus alak
+   & | z | = r, \arg \{z\} = \varphi
+  \\\hline
+  z = r e^{\iu \varphi}
+   & exponenciális alak
+   & z = r e^{\iu \varphi} = r \exp(\iu \varphi)
+\end{notations}
+\vfill
+\begin{notations}{Sorozatok, sorok}
+  (a_n)
+   & numerikus sorozat
+   & a_n = \mfrac{1}{n}
+  \\\hline
+  \lim_{n \rightarrow \infty} a_n = a
+   & sorozat határértéke
+   & \lim_{n \rightarrow \infty} \mfrac{1}{n} = 0
+  \\\hline
+  a_n = a_{n - 1} + d
+   & számtani sorozat
+   & a_n = a_{n - 1} + 2
+  \\\hline
+  a_n = a_{n - 1} \cdot q
+   & mértani sorozat
+   & a_n = a_{n - 1} \cdot 2
+  \\\hline
+  \mwrap\sum a_n
+   & numerikus sor
+   & \mwrap{\sum \frac{1}{n}}
+  \\\hline
+  L = \sum_{n = 0}^{\infty} a_n
+   & sor összege
+   & L = \mwrap{\sum_{n = 0}^{\infty}} \frac{1}{n} = \infty
+  \\\hline
+  \mwrap\sum a \cdot r^n
+   & \makecell{geometriai sor                               \\ {(${|r| < 1}$ esetén)}}
+   & \mwrap{\sum_{n = 0}^{\infty}} \frac{1}{2^n}
+  = \frac{1}{1 - r}
+  = \frac{1}{1 - \sfrac{1}{2}}
+  = 2
+\end{notations}
+
+\clearpage
+
+\begin{notations}{Függvények}
+  f: \Domain \rightarrow \Range, x \mapsto y
+   & $f$ függvény
+   & f: \Reals \rightarrow \Reals, x \mapsto x^2
+  \\\hline
+  \Domain_f
+   & értelmezési tartomány
+   & \Domain_f = \Reals
+  \\\hline
+  \Range_f
+   & értékkészlet
+   & \Range_f = [0; +\infty)
+  \\\hline
+  \Domain \rightarrow \Range
+   & értékkészlet hozzárendelése az értelmezési tartományhoz
+   & f: \Reals \rightarrow \Reals
+  \\\hline
+  x \mapsto y
+   & függvényértékek hozzárendelése az ősképekhez
+   & f: x \mapsto x^2
+  \\\hline
+  f^{-1}
+   & inverz függvény
+   & \text{ha } f(3) = 5 \text{, akkor } f^{-1}(5) = 3
+  \\\hline
+  f \circ g
+   & összetett függvény
+   & f(x) = e^x, g(x) = x^2 : {(f \circ g)(x) = e^{x^2}}
+  \\\hline
+  \lim_{x \rightarrow a} f(x) = A
+   & függvény határértéke
+   & \lim_{x \rightarrow 0} \mfrac{\sin x}{x} = 1
+  \\\hline
+  \lim_{x \rightarrow a^{+}} f(x) = A
+   & jobboldali
+   & \lim_{x \rightarrow 0^{+}} \mfrac{1}{x} = +\infty
+  \\\hline
+  \lim_{x \rightarrow a^{-}} f(x) = A
+   & baloldali
+   & \lim_{x \rightarrow 0^{-}} \mfrac{1}{x} = -\infty
+\end{notations}
+\vfill
+\begin{notations}{Nevezetes függvények}
+  e^x, \exp x
+   & exponenciális függvény
+   & x \mapsto e^x
+  \\\hline
+  \ln x
+   & természetes alapú logaritmus
+   & x \mapsto \ln x
+  \\\hline
+  a^x
+   & hatványfüggvény
+   & x \mapsto 2^x
+  \\\hline
+  \log_a x
+   & $a$ alapú logaritmus
+   & x \mapsto \log_2 x
+  \\\hline
+  % \lg x
+  %  & tízes alapú logaritmus
+  %  & \lg 100 = 2
+  % \\\hline
+  \makecell{\sin, \cos,             \\ \tan, \cot}
+   & szögfüggvények
+   & x \mapsto \sin x
+  \\\hline
+  \makecell{\arcsin, \arccos,       \\ \arctan, \arccot}
+   & inverz szögfüggvények
+   & x \mapsto \arcsin x
+  \\\hline
+  \makecell{\sinh, \cosh,           \\ \tanh, \coth}
+   & hiperbolikus függvények
+   & x \mapsto \sinh x
+  \\\hline
+  \makecell{\arcsinh, \arccosh,     \\ \arctanh, \arccoth}
+   & inverz hiperbolikus függvények
+   & x \mapsto \arcsinh x
+\end{notations}
+
+\clearpage
+
+\begin{notations}{Kalkulus}
+  f'(x), f''(x), f^{(n)}(x)
+   & első, második és $n$-edik derivált (Lagrange-féle jelölés)
+   & f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+  \\\hline
+  \odv{f}{x}, \odv[order=2]{f}{x}, \odv[order=n]{f}{x}
+   & első, második és $n$-edik derivált (Leibniz-féle jelölés)
+   & f'(x) = \odv{f}{x}
+  \\\hline
+  \dot f, \ddot f, \overset{n}{\dot f}
+   & első, második és $n$-edik derivált (Newton-féle jelölés)
+   & \dot f = \odv{f}{t}
+  \\\hline
+  \mwrap{\int_a^b} f(x) \dd x
+   & Riemann-integrál
+   & \mwrap{\int_0^1} x^2 \dd x = \frac{1}{3}
+  \\\hline
+  \mwrap{\int} f(x) \dd x
+   & határozatlan integrál
+   & \mwrap{\int} f(x) \dd x = F(x) + C
+  \\\hline
+  F
+   & $f$ primitív függvénye
+   & F'(x) = f(x)
+  \\\hline
+  f \in \mathcal R [a; b]
+   & $f$ Riemann-integrálható az $[a; b]$ intervallumon
+   & x^2 \in \mathcal R (-\infty; +\infty)
+\end{notations}

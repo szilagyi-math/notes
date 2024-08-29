@@ -1,0 +1,179 @@
+\section{Nevezetes függvények deriváltjai}\label{section.6.2}
+
+\begin{blueBox}
+  \sftitle{Trigonometrikus függvények}
+
+  \begin{minipage}{0.45\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[ultra thick, scale=.85]
+        \draw[gray, thick] (-2.75,0)--(3,0);
+        \draw[gray, thick] (0,-2.75)--(0,3);
+
+        \draw  (0,0) circle [radius=2.5];
+
+        \draw[primaryColor] (0,0)--(40:4);
+
+        % sin
+        \draw[draw=secondaryColor] (40:2.5) -- (40:2.5 |- 0,0)
+        coordinate (t)
+        node[left, pos=.7] {$\sin x$}
+        ;
+
+        % cos
+        \draw[draw=secondaryColor] (t) -- (0,0)
+        node[below, midway] {$\cos x$}
+        ;
+
+        % tan
+        \draw[draw=secondaryColor] (0:2.5) -- ++(0,2.08) coordinate (t)
+        node[right, midway] {$\tan x$}
+        ;
+
+        % cot
+        \draw[draw=secondaryColor] (90:2.5) -- ++(3,0) coordinate (t)
+        node[above, midway] {$\cot x$}
+        ;
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}%
+  \begin{minipage}{0.275\textwidth}
+    \def\arraystretch{1.5}
+    \begin{tabular}{c | c}
+      $f(x)$   & $f'(x)$                                      \\ \toprule
+      $\sin x$ & $\cos x \vphantom{\dfrac{1}{\sqrt{1-x^2}}}$  \\ [2mm]
+      $\cos x$ & $-\sin x \vphantom{\dfrac{1}{\sqrt{1-x^2}}}$ \\ [2mm]
+      $\tan x$ & $\dfrac{1}{\cos^2 x}$                        \\ [2mm]
+      $\cot x$ & $-\dfrac{1}{\sin^2 x}$                       \\ \bottomrule
+    \end{tabular}
+  \end{minipage}%
+  \begin{minipage}{0.275\textwidth}
+    \def\arraystretch{1.5}
+    \begin{tabular}{c | c}
+      $f(x)$      & $f'(x)$                               \\ \toprule
+      $\arcsin x$ & $\dfrac{1}{\sqrt{1-x^2}}$             \\ [2mm]
+      $\arccos x$ & $-\dfrac{1}{\sqrt{1-x^2}}$            \\ [2mm]
+      $\arctan x$ & $\dfrac{1}{1+x^2 \vphantom{\cos^2}}$  \\ [2mm]
+      $\arccot x$ & $-\dfrac{1}{1+x^2 \vphantom{\sin^2}}$ \\ \bottomrule
+    \end{tabular}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Hiperbolikus függvények}
+
+  \begin{minipage}{0.35\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[ultra thick, scale=.85]
+        \draw[gray, thick] (-2.75,0)--(3,0);
+        \draw[gray, thick] (0,-2.75)--(0,3);
+
+        % unit hyperbola helper
+        \draw[gray, dashed, thick] (2.5, 2.5) -- (-2.5, -2.5);
+        \draw[gray, dashed, thick] (2.5, -2.5) -- (-2.5, 2.5);
+
+        % \draw[domain=0.275:3.5, rotate=-45, samples=75, scale=1/1.141] plot (\x,{1/\x});
+        % \draw[domain=0.275:3.5, rotate=135, samples=75] plot (\x,{1/\x});
+
+        \draw[domain=0:1.5] plot ({cosh(\x)}, {sinh(\x)});
+        \draw[domain=0:1.5] plot ({cosh(\x)}, {-sinh(\x)});
+
+        \draw[domain=0:1.5] plot ({-cosh(\x)}, {sinh(\x)});
+        \draw[domain=0:1.5] plot ({-cosh(\x)}, {-sinh(\x)});
+
+        % cosh(1) = 1.543
+        % sinh(1) = 1.175
+
+        \draw[draw=secondaryColor] (0, 1.175)
+        -- (1.543, 1.175) node [midway, above] {$\cosh x$}
+        -- (1.543, 0) node [midway, right] {$\sinh x$}
+        ;
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}%
+  \begin{minipage}{0.25\textwidth}
+    \def\arraystretch{1.5}
+    \begin{tabular}{c | c}
+      $f(x)$    & $f'(x)$                                      \\ \toprule
+      $\sinh x$ & $\cosh x \vphantom{\dfrac{1}{\sqrt{x^2-1}}}$ \\ [2mm]
+      $\cosh x$ & $\sinh x \vphantom{\dfrac{1}{\sqrt{x^2-1}}}$ \\ [2mm]
+      $\tanh x$ & $\dfrac{1}{\cosh^2 x}$                       \\ [2mm]
+      $\coth x$ & $-\dfrac{1}{\sinh^2 x}$                      \\ \bottomrule
+    \end{tabular}
+  \end{minipage}%
+  \begin{minipage}{0.4\textwidth}
+    \def\arraystretch{1.5}
+    \begin{tabular}{c | l}
+      $f(x)$       & $\;\;\;f'(x)$                                             \\ \toprule
+      $\arcsinh x$ & $\dfrac{1}{\sqrt{x^2+1}}$                                 \\ [2mm]
+      $\arccosh x$ & $\dfrac{1}{\sqrt{x^2-1}} \;\;\;\, (x > 1)$                \\ [2mm]
+      $\arctanh x$ & $\;\;\dfrac{1}{1-x^2 \vphantom{\cosh^2}} \quad (|x| < 1)$ \\ [2mm]
+      $\arccoth x$ & $\;\;\dfrac{1}{1-x^2 \vphantom{\sinh^2}} \quad (|x| > 1)$ \\ \bottomrule
+    \end{tabular}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Hiperbolikus azonosságok}
+  \begin{alignat*}{9}
+    \sinh x   & = \frac{e^x - e^{-x}}{2}
+    \hspace{2cm}
+              & \cosh x                  & = \frac{e^x + e^{-x}}{2}
+    \\[1mm]
+    \sinh x   & = - \iu \sin(\iu x)
+    \hspace{2cm}
+              & \cosh x                  & = \cos(\iu x)
+    \\[1mm]
+    \sinh^2 x & = \frac{\cosh 2x - 1}{2}
+    \hspace{2cm}
+              & \cosh^2 x                & = \frac{\cosh 2x + 1}{2}
+    \\[1mm]
+    \sinh 2x  & = 2 \sinh x \cosh x
+    \hspace{2cm}
+              & \cosh 2x                 & = \cosh^2 x + \sinh^2 x
+  \end{alignat*}
+\end{blueBox}
+
+\begin{note}
+  \sftitle{Osborne-szabály}
+
+  Minden trigonometrikus azonosság egy hiperbolikus azonossággá alakítható, és
+  fordítva, ha végrehajtjuk a következő cseréket:
+  \begin{itemize}
+    \item $\cos x \phantom{\sin^2} \to \quad \phantom{-} \cosh x$,
+    \item $\sin x \phantom{\cos^2} \to \quad \phantom{-} \sinh x$,
+    \item $\sin^2 x \phantom{\cos} \to \quad -\sinh^2 x $.
+  \end{itemize}
+
+  Például:
+  \[
+    \cos^2 x + \sin^2 x = 1 \quad \to \quad \cosh^2 x - \sinh^2 x = 1
+    \text.
+  \]
+\end{note}
+
+\begin{blueBox}
+  \sftitle{További függvények}
+
+  \begin{minipage}{.3\textwidth}
+    \def\arraystretch{1.5}\centering
+    \begin{tabular}{c c}
+      $f(x)$   & $f'(x)$                                                   \\ \toprule
+      $e^x$    & $e^x$                                                     \\[2mm]
+      $\ln x $ & $\dfrac{1}{x} \vphantom{\dfrac{x^{\sfrac{1}{n} - 1}}{n}}$ \\ \bottomrule
+    \end{tabular}
+  \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+    \def\arraystretch{1.5}\centering
+    \begin{tabular}{c c}
+      $f(x)$     & $f'(x)$                                                         \\ \toprule
+      $a^x$      & $a^x \ln a$                                                     \\[2mm]
+      $\log_a x$ & $\dfrac{1}{x \ln a} \vphantom{\dfrac{x^{\sfrac{1}{n} - 1}}{n}}$ \\ \bottomrule
+    \end{tabular}
+  \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+    \def\arraystretch{1.5}\centering
+    \begin{tabular}{c c}
+      $f(x)$        & $f'(x)$                           \\ \toprule
+      $x^n$         & $n \cdot x^{n - 1}$               \\[2mm]
+      $\sqrt[n]{x}$ & $\dfrac{x^{\sfrac{1}{n} - 1}}{n}$ \\ \bottomrule
+    \end{tabular}
+  \end{minipage}
+\end{blueBox}

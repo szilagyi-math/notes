@@ -1,0 +1,102 @@
+\mainChapter{Differenciálszámítás}
+
+\begin{tikzpicture}[
+    remember picture,
+    overlay,
+    thick,
+    shift={($(current page.south west) + (\innerMargin+7.5mm, 40mm)$)},
+  ]
+
+  % Coordinate system
+  \draw[-to, draw=gray, ultra thick, name path = x] (-3.5,0) -- ++(\paperwidth+2cm,0);
+  \draw[-to, draw=gray, ultra thick] (-2,-4) -- ++(0,\paperheight-1cm);
+
+  \draw[
+    smooth,
+    samples = 250,
+    domain = -2.5:15.5,
+    red!40!black,
+    ultra thick,
+    name path = f,
+  ] plot ({\x*1.2}, {0.0019 * \x^3 + 0.1587 * \x^2 - 2.0811 * \x + 4.3846});
+
+  % \draw[secondaryColor, ultra thick]
+  % (9.6,-1.1346) coordinate(A) -- ++(10,8.229)
+  % (A) -- ++(-10,-8.229)
+  % ;
+
+  % \draw[secondaryColor, ultra thick]
+  % (10.8,-0.1055) coordinate(A) -- ++(10,12.372)
+  % (A) -- ++(-10,-12.372)
+  % ;
+
+  % \draw[secondaryColor, ultra thick]
+  % (7.8,-1.91569) coordinate(A) -- ++(10,2.22825)
+  % (A) -- ++(-10,-2.22825)
+  % ;
+
+  \coordinate (D) at (8.4,-1.7551);
+  \coordinate (l1) at ($(D)+(7.5,3.15)$);
+  \coordinate (l2) at ($(D)-(5.0,2.10)$);
+
+  \draw[secondaryColor, ultra thick, to-to] (l1) -- (l2);
+
+  \coordinate (t1) at ($(D)+(2.5,0.00)$);
+  \coordinate (t2) at ($(D)+(2.5,1.05)$);
+
+  \draw[fill=primaryColor] (D) circle (0.1);
+  \draw[dashed, draw=gray] (D)
+  -- (t1) node[midway, below] {$1$}
+  -- (t2) node[midway, right] {$m = \tan \alpha$}
+  ;
+
+  \draw[ultra thick, primaryColor, -to] ($(D)+(1.75,0)$) arc
+    [start angle=0, end angle=22.78, radius=1.75cm];
+
+  \node[shift={(1.25,0.2)}] at (D) {$\alpha$};
+
+\end{tikzpicture}
+
+\bgroup
+\color{gray!50!black}
+\sffamily
+
+A differenciálszámítás a matematika azon területe, amely a változások
+vizsgálatával foglalkozik. A természet, a mérnöki, a gazdasági tudományok számos
+jelenségének megértéséhez elengedhetetlen eszköz, hiszen lehetővé teszi
+számunkra, hogy leírjuk az ott zajló folyamatokat. Alapjait Isaac Newton és
+Gottfried Wilhelm Leibniz fektették le a 17. században.
+
+Ebben a fejezetben a differenciálszámítás alapfogalmaival, mint a derivált és a
+differenciál fogunk megismerkedni. Vizsgáljuk a differenciálhatóság feltételeit,
+bebizonyítjuk a differenciálszámítás alapvető tételeit, mint a Rolle-, a
+Lagrange- és a Cauchy-féle középértéktétel, a deriválási szabályok, beleértve a
+láncszabályt és az összetett függvények, az inverz függvény deriválását is.
+Elemezzük a függvények deriváltjainak geometriai és fizikai jelentését és
+megtanuljuk, hogyan alkalmazhatjuk ezeket a fogalmakat a gyakorlatban.
+
+A differenciálszámítás lehetőséget teremt a függvények jellemzésére,
+segítségével a korábbi fejezetekben már tárgyalt jellemzők (például monotonitás,
+konvexitás) könnyen vizsgálhatók.
+
+A derivált segítségével megérthetjük a sebesség, a gyorsulás, a növekedési ráta
+és más változási sebességek matematikai modelljét. A differenciálszámítás a
+modern tudomány és mérnöki munka alapvető eszköze, a gazdaságtól kezdve a
+fizikán át az informatikáig számos területen alkalmazzák. Megértése nemcsak a
+matematikai elmélet megértéséhez vezet el, hanem a valós világ problémáinak
+megoldásához is hozzájárul.
+
+% \chaptertoc
+
+% Manual toc to handle the graph
+\section*{A fejezetben érintett témakörök}
+
+\hspace{0.0cm}\parbox{14.8cm}{\contentsline {section}{\numberline {6.1}\nameref{section.6.1}}{\pageref*{section.6.1}}{section.6.1}}\par
+\hspace{0.3cm}\parbox{14.3cm}{\contentsline {section}{\numberline {6.2}\nameref{section.6.2}}{\pageref*{section.6.2}}{section.6.2}}\par
+\hspace{0.6cm}\parbox{13.7cm}{\contentsline {section}{\numberline {6.3}\nameref{section.6.3}}{\pageref*{section.6.3}}{section.6.3}}\par
+\hspace{0.8cm}\parbox{13.1cm}{\contentsline {section}{\numberline {6.4}\nameref{section.6.4}}{\pageref*{section.6.4}}{section.6.4}}\par
+\hspace{1.0cm}\parbox{12.5cm}{\contentsline {section}{\numberline {6.5}\nameref{section.6.5}}{\pageref*{section.6.5}}{section.6.5}}\par
+
+\egroup
+
+\clearpage

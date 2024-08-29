@@ -1,0 +1,246 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practise}
+
+\title{Numerikus sorozatok I}
+\area{Sorozatok}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{4}
+
+\begin{document}
+\maketitle
+
+\subsection{Elméleti Áttekintő}
+
+\begin{definition}[Sorozat]
+  A pozitív egész számok halmazán értelmezett $a_n : \mathbb N \rightarrow
+    \Reals$ függvényt \textbf{valós számsorozat}nak hívjuk.
+
+  Az $a_n:\mathbb N \rightarrow \mathbb C $ függvényt \textbf{komplex
+    számsorozat}nak nevezzük.
+
+\end{definition}
+
+\begin{definition}[Konvergencia]
+  Az $(a_n)$ sorozatot konvergensnek mondjuk, ha $\exists a \in \Reals$ valós
+  szám, hogy $\forall \varepsilon > 0$ esetén $\exists N(\varepsilon)$
+  küszöbszám, hogy ha $n > N(\varepsilon)$, akkor $|a_n - a| < \varepsilon$.
+  Jelölése:
+  \[
+    \lim_{n \rightarrow \infty} a_n = a
+    \text{, ahol $a$ a sorozat határértéke.}
+  \]
+\end{definition}
+
+\begin{definition}[Divergencia]
+  Az $(a_n)$ sorozatot divergensnek mondjuk, ha nem konvergens.
+\end{definition}
+
+\begin{definition}[Torlódási pont]
+  Az $(a_n)$ sorozatnak torlódási pontja van az $a \in \Reals$ pontban, ha az
+  $a$ tetszőlegesen kicsiny környezete a sorozat véges sok elemét tartalmazza.
+\end{definition}
+
+\begin{note}
+  A sorozat határértéke egyben torlódási pont is, viszont egy torlódási pont nem
+  feltétlenül határérték. Pl.: $a_n = (-1)^n$ sorozatnak két torlódási pontja is
+  van ($-1$ és $1$), viszont egyik sem határérték, hiszen a sorozat divergens.
+\end{note}
+
+\begin{definition}[Sorozat korlátossága]
+  Az $(a_n)$-t \textbf{alulról korlátos}nak nevezzük, ha $\forall n$ esetén
+  $a_n > k$, vagyis értékkészlete alulról korlátos.
+
+  Az $(a_n)$-t \textbf{felülről korlátos}nak nevezzük, ha $\forall n$ esetén
+  $a_n < K$, vagyis értékkészlete felülről korlátos.
+
+  Az $(a_n)$ sorozat \textbf{korlátos}, ha alulról és felülről is korlátos.
+\end{definition}
+
+\begin{definition}[Sorozat monotonitása]
+  Az $(a_n)$ sorozat monotonitása:
+  \begin{itemize}
+    \item monoton növekvő, ha $a_n \geq a_{n-1}$,
+    \item monoton csökkenő, ha $a_n \leq a_{n-1}$,
+    \item szigorúan monoton növekvő, ha $a_n > a_{n-1}$,
+    \item szigorúan monoton csökkenő, ha $a_n < a_{n-1}$.
+  \end{itemize}
+\end{definition}
+
+\begin{note}
+  Konvergens sorozat mindig korlátos.
+\end{note}
+
+\begin{note}
+  Monoton korlátos sorozat mindig konvergens.
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Nevezetes határértékek}:
+
+  \begin{itemize}
+    \item $
+            a^n \rightarrow \begin{cases}
+              \;0,                & \text{ha } |a| < 1,   \\
+              \;1,                & \text{ha } a = 1,     \\
+              \;\infty,           & \text{ha } a > 1,     \\
+              \;\text{divergens}, & \text{ha } a \leq -1.
+            \end{cases}
+          $
+
+    \item $
+            \sqrt[n]{a} \rightarrow 1
+          $
+
+    \item $
+            a^n \cdot n^k \rightarrow 0
+          $
+          \text{, ha }
+          $
+            |a|<1
+          $
+          \text{ és }
+          $
+            k \in \mathbb N
+          $
+
+    \item  $
+            \sqrt[n]{n} \rightarrow 1
+          $
+
+    \item $
+            \dfrac{a^n}{n!} \rightarrow 0
+          $
+
+    \item $
+            \left(1 + \dfrac{1}{n}\right)^n \rightarrow e
+          $
+
+    \item $
+            \left(1 + \dfrac{r}{n}\right)^n \rightarrow e^r
+          $
+  \end{itemize}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Dominancia elv}:
+  \[
+    \log_n a <
+    \sqrt[n]{a} <
+    \log_a n <
+    \sqrt[a]{n} <
+    n <
+    n^a <
+    a^n <
+    n! <
+    n^n
+  \]
+\end{blueBox}
+
+\begin{note}
+  A dominancia elvet olyan esetekben érdemes használnunk, amikor egy
+  \[
+    a_n = \frac{p_n}{q_n}
+  \]
+  alakú sorozat határértékét keressük, hiszen segítségével megállapíthatjuk,
+  hogy a nevező vagy a számláló fog gyorsabban nőni.
+\end{note}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  % 1
+  \item A konvergencia definíciója segítségével bizonyítsa be, hogy az alábbi
+        sorozatok kon\-ver\-gens\-ek-e.
+        \begin{enumerate}
+          \item $a_n = \left|
+                  \dfrac{n + 1}{3n - 8}
+                  \right|$
+
+          \item $b_n = \dfrac{n \cdot (-1)^n - 1}{2n}$
+        \end{enumerate}
+
+        % 2
+  \item Határozza meg az alábbi sorozatok határértékét!
+        \begin{enumerate}
+          \item $a_n = \dfrac{n^2 - 6n + 7}{n^2 + 12n + 49}$
+
+          \item $b_n = \dfrac{1 + 2 + 3 + \dots + n}{n + 2} - \dfrac{n}{2}$
+
+          \item $c_n = \dfrac{(-2)^n + 3^n}{(-2)^{n + 1} + 3^{n + 1}}$
+
+          \item $d_n = \dfrac{
+                    \sqrt{n^3 + 3n^2} + \sqrt[3]{n^4 + 1}
+                  }{
+                    \sqrt[4]{5n^6 + 2} + \sqrt[5]{n^7 + 3n^3}
+                  } + \dfrac{n!}{(n+1)! + 3^{2n}}$
+
+          \item $e_n = \sqrt{n^2 + n + 1} - \sqrt{n^2 - n + 1}$
+
+          \item $f_n = \sqrt[3]{n^2 - n^3} + n$
+        \end{enumerate}
+
+        % 3
+  \item Igazolja a rendőr-elv segítségével, hogy
+        $
+          \dfrac{n}{3^n} \rightarrow 0
+          \text{, ha }
+          n \rightarrow \infty
+          \text.
+        $
+
+        % 4
+  \item Határozza meg az alábbi határértékeket!
+        \begin{enumerate}
+          \item $\displaystyle
+                  \lim_{n \rightarrow \infty} \sqrt[n]{5n^2 - 30n - 21}
+                $
+
+          \item $\displaystyle
+                  \lim_{n \rightarrow \infty} \left(
+                  \frac{\cos n^3}{2n} - \frac{3n}{6n+1}
+                  \right)
+                $
+
+          \item $\displaystyle
+                  \lim_{n \rightarrow \infty} \left(
+                  1 + \frac{1}{n^2}
+                  \right)^n
+                $
+
+          \item $\displaystyle
+                  \lim_{n \rightarrow \infty} \left(
+                  \frac{3n - 1}{3n + 2}
+                  \right)^{2n}
+                $
+
+          \item $\displaystyle
+                  \lim_{n \rightarrow \infty} \left(
+                  1 + \frac{1}{n}
+                  \right)^{\ln n}
+                $
+
+          \item $\displaystyle
+                  \lim_{n \rightarrow \infty} \left(
+                  \frac{n^2 - n + 1}{n^2 + n + 1}
+                  \right)^{2n + 5}
+                $
+        \end{enumerate}
+
+        % 5
+  \item Bizonyítsa be, hogz bármely $k \geq 0$ egész számra
+        \\[3mm]
+        $\displaystyle
+          \lim_{n \rightarrow \infty} \left(
+          1 + \frac{k}{n}
+          \right)^n = e^k
+          \text.
+        $
+\end{enumerate}
+
+% \\underline\{(\w)\}
+
+\end{document}

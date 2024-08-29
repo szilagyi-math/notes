@@ -1,0 +1,104 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practise}
+
+\title{Numerikus sorozatok II}
+\area{Sorozatok}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{5}
+
+\begin{document}
+\maketitle
+
+\subsection{Elméleti Áttekintő}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  % 1
+  \item A konvergencia definíciója alapján bizonyítsuk be, hogy az alábbi
+        számsorozatok konvergensek, úgy hogy minden $\varepsilon$ esetén adjunk
+        meg egy $N$ köszöbszámort, amelytől kezdve minden $n > N$ esetén
+        $|a_n - a| < \varepsilon$, ahol $a$ az adott sorozat határértéke!
+        \begin{enumerate}
+          \item $\displaystyle
+                  a_n = \frac{2n + 5}{n - 1}
+                  \text,\quad
+                  \varepsilon = 10^{-6}
+                $
+
+          \item $\displaystyle
+                  b_n = \frac{2n + 3 \sqrt{n}}{3n + 1}
+                  \text,\quad
+                  \varepsilon = 10^{-3}
+                $
+        \end{enumerate}
+
+        % 2
+  \item Határozzuk meg az alábbi sorozatok torlódási pontjainak halmazát!
+        \begin{enumerate}
+          \item $\displaystyle
+                  a_n = \frac{\left(
+                    \sqrt{n^2 + 1} + n
+                    \right)^2}{
+                    \sqrt[3]{n^6 + 1}
+                  } \cdot \cos\left(
+                  \frac{n\pi}{3}
+                  \right)
+                $
+
+          \item $\displaystyle
+                  b_n = \frac{(-1)^n \cdot n + 2n}{3n} \cdot \sin\left(
+                  \frac{2n\pi}{3}
+                  \right)
+                $
+        \end{enumerate}
+
+        % 3
+  \item Vizsgáljuk meg monotonitás és korlátosság szempontjából az alábbi
+        sorozatokat!
+        \begin{enumerate}
+          \item $\displaystyle
+                  a_n = \frac{2n^2 + 1}{n^2 - n + 1}
+                $
+
+          \item $\displaystyle
+                  b_n = \frac{n^5}{n!}
+                $
+        \end{enumerate}
+
+  \item Adjuk meg azon sorozat határértékét, melynek első eleme $a_1 = 1$,
+        $n$-edik eleme pedig $a_n = a_{n - 1} + \sfrac{1}{2^{n - 1}}$.
+
+  \item Vizsgáljuk meg azt a sorozatot konvergencia, monotonitás és korlátosság
+        szempontjából, amelynek első eleme $a_1 = 1$, $n$-edik eleme pedig
+        $a_n = \sqrt{1 + a_{n - 1}}$.
+
+  \item Határozzuk meg az alábbi komplex elemű sorozatok határértékeit!
+        \begin{enumerate}
+          \item $\displaystyle
+                  a_n = \frac{n^2 - \iu(n^2 - 1)}{n^2 - \iu^n}
+                $
+
+          \item $\displaystyle
+                  b_n = \frac{\iu^n}{3^n + \iu^n}
+                $
+
+          \item $\displaystyle
+                  c_n = (1 - \iu)^n
+                $
+        \end{enumerate}
+
+  \item Bizonyítsuk be, hogy ha $n \geq 3$, akkor $n^{n + 1} \geq (n + 1)^n$!
+
+  \item Vizsgáljuk az $a_n = \scalebox{1.25}{
+        $\sfrac{\binom{n}{2}}{\binom{n}{3}}$
+          }$ sorozatot monotonitás és korlátosság szempontjából!
+\end{enumerate}
+
+% \\underline\{(\w)\}
+
+\end{document}

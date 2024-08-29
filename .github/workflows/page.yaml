@@ -1,0 +1,155 @@
+name: Manage GH-Pages branch
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  generate_script:
+    name: Generate Latex compilation script
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+          run_install: false
+
+      - name: Get Cache directories
+        id: cache-dirs
+        run: |
+          echo "PNPM=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.cache-dirs.outputs.PNPM }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Generate script
+        run: pnpm dlx tsx ./scripts/index.ts
+
+      - name: Upload script
+        uses: actions/upload-artifact@v3
+        with:
+          name: generate
+          path: generate
+
+  build_latex:
+    name: Build Latex documents
+    runs-on: ubuntu-latest
+    needs: generate_script
+    container:
+      image: texlive/texlive:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Link cls and sty files
+        run: ./latex-linker.sh
+
+      - name: Download generate
+        uses: actions/download-artifact@v3
+        with:
+          name: generate
+          path: generate
+
+      - name: Compile documents
+        run: |
+          chmod +x ./generate/compile.sh
+          ./generate/compile.sh
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: latex-docs
+          path: |
+            build/*.pdf
+          if-no-files-found: error
+
+  build_page:
+    name: Build Next Page
+    runs-on: ubuntu-latest
+    needs: build_latex
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download generate
+        uses: actions/download-artifact@v3
+        with:
+          name: generate
+          path: generate
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+          run_install: false
+
+      - name: Get cache directories
+        id: cache-dirs
+        run: |
+          echo "PNPM=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.cache-dirs.outputs.PNPM }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Setup next cache
+        uses: actions/cache@v3
+        with:
+          path: .next
+          key: ${{ runner.os }}-next-${{ hashFiles('src/**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-next-
+
+      - name: Setup velite cache
+        uses: actions/cache@v3
+        with:
+          path: .velite
+          key:
+            ${{ runner.os }}-velite-${{ hashFiles('content/**/index.md',
+            'velite.config.ts') }}
+          restore-keys: |
+            ${{ runner.os }}-velite-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm velite && pnpm build && touch ./out/.nojekyll
+
+      - name: Download pdfs
+        uses: actions/download-artifact@v3
+        with:
+          name: latex-docs
+          path: latex-docs
+
+      - name: Move pdfs
+        run: |
+          mv latex-docs out/downloads
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.6.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          folder: out

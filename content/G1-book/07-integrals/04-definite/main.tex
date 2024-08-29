@@ -1,0 +1,449 @@
+\clearpage
+\section{Határozott integrál}\label{section.7.4}
+
+\subsection{A Riemann-integrál}
+
+\begin{definition}[Intervallum beosztása]
+  Legyen $a < b \in \Reals$, ekkor az $[a;b]$ egy beosztásán egy
+  \[
+    d := \Big\{ \;
+    x_i \in \Reals
+    \; | \;
+    i = 0; 1; \dots; n,
+    a = x_0 < x_1 < \dots < x_n  = b
+    \; \Big\}
+  \]
+  ponthalmazt értjük. Az $x_i$ a beosztás egy osztópontja, az $[x_{i - 1}; x_i]$
+  a beosztás egy részintervalluma, $||d|| := \max \{x_1 - x_0, x_2 - x_1, \dots
+    x_n - x_{n-1} \}$ a beosztás finomsága.
+\end{definition}
+
+\begin{note}
+  A $d_2$ a $d_1$ beosztás \textbf{továbbosztása}, ha $d_1 \subset d_2$. A $d_1
+    \cup d_2$ a két beosztás \textbf{egyesítése}. Azt mondjuk, hogy a $d_2$
+  beosztása \textbf{finomabb}, mint a $d_1$, ha $||d_2|| < ||d_1||$.
+\end{note}
+
+\begin{note}
+  Legyen $(d_k)$, ahol $k \in \mathbb N$, az $[a; b]$ intervallum beosztásának
+  egy sorozata. A $(d_k)$-t egy normális beosztás sorozatnak hívjuk, ha $||d_k||
+    \rightarrow 0$, ha $k \rightarrow \infty$. A $(d_k)$ normális beosztás sorozatot
+  minden határon túl finomodó beosztás sorozatnak is nevezzük.
+\end{note}
+
+\begin{definition}[Alsó és felső integrálközelítő összeg]
+  Legyen $f: [a;b] \rightarrow \Reals$ korlátos függvény, valamint $d$ a
+  függvény értelmezési tartományának egy beosztása,
+  \begin{alignat*}{9}
+    m_i & := \inf & \; & \Big\{\; f(x) \; | \; x \in [x_{i}; x_{i+1}] \;\Big\}
+    \text,
+    \\
+    M_i & := \sup & \; & \Big\{\; f(x) \; | \; x \in [x_{i}; x_{i+1}] \;\Big\}
+    \text.
+  \end{alignat*}
+  Az $f$ függvény $d$ beosztásához tartozó alsó és felső integrálközelítő
+  összege
+  \begin{align*}
+    s(f, d) & := \sum_{i=0}^{n-1} m_i \cdot (x_{i+1} - x_i)
+    \text,
+    \\
+    S(f, d) & := \sum_{i=0}^{n-1} M_i \cdot (x_{i+1} - x_i)
+    \text.
+  \end{align*}
+\end{definition}
+
+\begin{definition}[Közbeeső érték vektorhoz tartozó integrálközelítő összeg]
+  Legyen $t_i \in [x_i; x_{i +1}]$. Ekkor a $t(t_1, t_2, \dots, t_n)$ neve
+  közbeeső érték vektor, a hozzá tartozó integrálközelítő összeg
+  \[
+    \sigma(f,d,t) := \sum_{i=0}^{n-1} f(t_i) (x_{i + 1} - x_i)
+    \text.
+  \]
+  Az oszcillációs összeg
+  \[
+    o(f,d) := S(f,d) - s(f,d)
+    \text.
+  \]
+\end{definition}
+
+\begin{blueBox}
+  Legyen $f: [a;b] \rightarrow \Reals$ korlátos függvény:
+
+  \begin{enumerate}
+    \item Ha $d$ az $[a;b]$ intervallum egy beosztása, valamint $t$ tetszőleges
+          közbeeső érték vektor, akkor
+          \[
+            s(f,d) \leq \sigma(f,d,t) \leq S(f,d)
+            \text.
+          \]
+
+    \item Ha $d_2 \subset d_1$, azaz $d_2$ a $d_1$ továbbosztása, akkor
+          \[
+            s(f,d_1) \leq s(f,d_2) \leq S(f,d_2) \leq S(f,d_1)
+            \text.
+          \]
+
+    \item Ha $d_1$ és $d_2$ tetszőleges beosztása az $[a;b]$ intervallumnak,
+          akkor
+          \[
+            s(f,d_1) \leq S(f,d_2)
+            \text.
+          \]
+  \end{enumerate}
+\end{blueBox}
+
+\begin{note}
+  Ha az $f: [a;b] \rightarrow \Reals$ függvény korlátos, azaz $\exists K$, hogy
+  $|f(x)| \leq K$, ekkor
+  \[
+    s(f, d)
+    % = \sum_{i=0}^{n-1} m_i \cdot (x_{i+1} - x_i)
+    \leq \sum_{i=0}^{n-1} |m_i| \cdot (x_{i+1} - x_i)
+    \leq \sum_{i=0}^{n-1} K \cdot (x_{i+1} - x_i)
+    % = K \sum_{i=0}^{n-1} \cdot (x_{i+1} - x_i)
+    = K \cdot (b - a)
+    \text.
+  \]
+\end{note}
+
+\begin{definition}[Darboux-féle alsó és felső integrál]
+  Legyen $f: [a;b] \rightarrow \Reals$ korlátos függvény.
+
+  Az $\underline{I} := \sup \{ s(f, d) \}$ valós számot az $f$ függvény
+  Darboux-féle alsó integráljának mondjuk. Jele:
+  \[
+    \underline I =
+    \underline{\int}_{a}^{b} f
+    \text.
+  \]
+
+  Az $\overline{I} := \inf \{ S(f, d) \}$ valós számot az $f$ függvény
+  Darboux-féle felső integráljának mondjuk. Jele:
+  \[
+    \overline I =
+    \overline{\int}_{a}^{b} f
+    \text.
+  \]
+\end{definition}
+
+\begin{definition}[Riemann-integrálhatóság]
+  Az $f$ függvényt Riemann-integrálhatónak nevezzük $[a; b]$-n, ha a
+  Darboux-féle alsó és felső integrálja az $[a; b]$ intervallumon egyenlő. Ezt a
+  közös értéket az $f$ függvény Riemann-integráljának mondjuk. Jele:
+  \[
+    I
+    = \underline I
+    = \overline I
+    = \int_{a}^{b} f
+  \]
+  ahol $\underline I$ és $\overline I$ a függvény alsó és felső Darboux
+  integrálja.
+\end{definition}
+
+\begin{theorem}
+  Legyen $f: [a;b] \rightarrow \Reals$ korlátos függvény, ekkor $\forall
+    \varepsilon > 0$ esetén $\exists \delta(\varepsilon)$, hogy ha az $[a; b]$
+  intervallum egy beosztására teljesül, hogy $||d|| < \delta(\varepsilon)$,
+  akkor:
+  \begin{enumerate}
+    \item $0 < \underline I = |s(f, d) - I| < \varepsilon$,
+    \item $0 < \overline I = |S(f, d) - I| < \varepsilon$,
+  \end{enumerate}
+  ahol $\underline I$ és $\overline I$ a függvény alsó és felső Darboux
+  integrálja.
+\end{theorem}
+
+\begin{note}
+  Ha az $f: [a;b] \rightarrow \Reals$ függvény korlátos, $(d_k)$ pedig az
+  $[a; b]$ intervallum normál beosztása, akkor
+  \begin{enumerate}
+    \item $\displaystyle \lim_{k \rightarrow \infty} s(f, d_k) = \underline I$
+    \item $\displaystyle \lim_{k \rightarrow \infty} S(f, d_k) = \overline I$
+  \end{enumerate}
+\end{note}
+
+\begin{note}
+  Ha az $f: [a;b] \rightarrow \Reals$ függvény Riemann-integrálható az
+  $[a;b]$ intervallumon, $(d_k)$ normális beosztássorozat, $(t_k)$ pedig
+  tetszőleges körbeeső érték vektor, akkor
+  \[
+    \sigma(f, d_k, t_k) \rightarrow
+    \underline I =
+    \overline I =
+    \int_{a}^{b} f
+    \text{, ha }
+    k \rightarrow \infty
+    \text.
+  \]
+\end{note}
+
+\begin{note}
+  \sftitle{Riemann-integrálhatóság jelölése:}
+  \[
+    \mathcal R [a; b] = \Big\{\;
+    f: [a;b] \rightarrow \Reals
+    \text{, }
+    f
+    \text{ Riemann-integrálható az }
+    [a; b]
+    \text{-n}
+    \;\Big\}
+    \text.
+  \]
+\end{note}
+
+
+
+% \begin{blueBox}
+%   \sftitle{A Riemann-integrálhatóság kritériumai:}
+%
+\begin{theorem}[Első kritérium (oszcillációs összeggel)]
+  Legyen $f: [a; b] \rightarrow \Reals$ korlátos függvény, $f \in \mathcal R
+      [a; b]$ akkor és csak akkor, ha $\forall \varepsilon > 0$ esetén létezik
+  olyan $d$ beosztása az $[a; b]$ intervallumnak, hogy $o(f, d) <
+    \varepsilon$.
+
+  % \begin{proof}
+  %   PROOF GOES HERE
+  % \end{proof}
+\end{theorem}
+
+\begin{theorem}[Második kritérium (integrálközelítő összeggel)]
+  Legyen $f: [a; b] \rightarrow \Reals$ korlátos függvény, $f \in \mathcal R
+      [a; b]$ akkor és csak akkor, ha $\exists I \subset \Reals$, hogy $\forall
+    \varepsilon$ esetén $\exists \delta(\varepsilon)$, hogy ha $||d_k|| <
+    \delta(\varepsilon)$, $t(t_1, t_2, \dots, t_n)$ tetszőleges közbeeső érték
+  vektor, akkor $|\sigma(f, d_k, t_k) - I| < \varepsilon$.
+
+  % \begin{proof}
+  %   PROOF GOES HERE
+  % \end{proof}
+\end{theorem}
+
+\begin{theorem}[Harmadik kritérium (normális beosztás sorozattal)]
+  Legyen $f: [a; b] \rightarrow \Reals$ korlátos függvény, $f \in \mathcal R
+      [a; b]$ akkor és csak akkor, ha $\forall (d_k)$ és $\forall (t_k)$ esetén:
+  \[
+    (d_k) \text{ konvergens, valamint }
+    \lim_{k \rightarrow \infty} \sigma(f, d_k, t_k) = \int_{a}^{b} f
+    \text.
+  \]
+
+  % \begin{proof}
+  %   PROOF GOES HERE
+  % \end{proof}
+\end{theorem}
+% \end{blueBox}
+
+% TODO: FORMAT THIS
+% \uppercase{Integrálhatóság analitikus feltételei}
+
+\begin{theorem}[Monoton függvény integrálhatósága]
+  Korlátos, zárt intervallumon monoton függvény ott Riemann-integrálható.
+\end{theorem}
+
+\begin{theorem}[Korlátos függvény integrálhatósága]
+  Korlátos, zárt intervallumon folytonos függvény ott Riemann-integrálható.
+\end{theorem}
+
+\begin{definition}[Nullmértékű halmaz]
+  Egy $H \subset \Reals$ halmazt Lebesgue szerint nullmértékűnek nevezünk, ha
+  lefedhető megszámlálhatóan sok tetszőlegesen kicsi összhosszúságú
+  intervallumrendszer uniójával, azaz $\forall \varepsilon > 0$ esetén $\exists
+    I_k$, ahol $k \in A$ (megszámlálható halmaz), hogy
+  \[
+    H \subset \bigcup_{k \in A} I_k
+    \text{ és }
+    \sum_{k \in A} |I_k| < \varepsilon
+    \text.
+  \]
+
+  Nullmértékű halmazok tulajdonságai:
+  \begin{enumerate}
+    \item véges halmaz Lebesgue szerint nullmértékű,
+    \item megszámlálhatóan végtelen halmaz Lebesgue szerint nullmértékű,
+    \item létezik kontinuum számosságú Lebesgue szerint nullmértékű halmaz, (pl.
+          Can\-tor\--féle halmaz,)
+    \item Lebesgue szerint nullmértékű halmaz minden részhalmaza is nullmértékű,
+    \item megszámlálhatóan sok Lebesgue szerint nullmértékű halmaz uniója
+          ugyancsak Lebesgue szerint nullmértékű.
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Lebesgue tétele]
+  Egy zárt intervallumon korlátos függvény ott Riemann-integrálható akkor és
+  csak akkor, ha a függvény egy Lebesgue szerint nullmértékű halmaz pontjaitól
+  eltekintve folytonos, ilyenkor azt is mondjuk, hogy a függvény majdnem
+  folytonos.
+\end{theorem}
+
+% TODO: Style this
+\begin{theorem}[A Riemann-integrál tulajdonságai]
+  Ha $f, g \in \mathcal R[a;b]$, $\lambda \in \Reals$, $c \in (a; b)$, akkor
+  \begin{center}
+    \begin{tabular}{l l}
+      additív:                              & \(
+      \displaystyle \int_a^b f + g \dd x = \int_a^b f \dd x + \int_a^b g \dd x
+      \),                                        \\[2mm]
+      homogén:                              & \(
+      \displaystyle \int_a^b \lambda \cdot f \dd x = \lambda \cdot \int_a^b f \dd x
+      \),                                        \\[2mm]
+      additív az integrációs intervallumra: & \(
+      \displaystyle \int_a^b f \dd x = \int_a^c f \dd x + \int_c^b f \dd x
+      \).
+    \end{tabular}
+  \end{center}
+\end{theorem}
+
+\begin{theorem}[Integrálszámítás alaptétele]
+  Ha $f \in \mathcal R [a; b]$, valamint $f$ korlátos ($\forall x \in [a; b]$ esetén $m \leq
+    f(x) \leq M$), akkor
+  \[
+    m(b - a) \leq \int_a^b f \leq M(b - a)
+  \]
+
+  \begin{enumerate}
+    \item Ha $f > 0$, $f \in \mathcal R [a; b]$, akkor $\displaystyle \int_a^b f
+            > 0$.
+
+    \item Ha $f \geq g$, $f, g \in \mathcal R [a; b]$, akkor $\displaystyle
+            \int_a^b f \geq \int_a^b g$.
+
+    \item Ha $f \in \mathcal R [a; b]$, akkor $|f| \in \mathcal R [a; b]$ és
+          $\displaystyle \left| \int_a^b f \right| \leq \int_a^b |f|$
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Középértéktétel folytonos függvényekre]
+  Ha $f: [a; b] \rightarrow \Reals$ folytonos az [a; b] intervallumon, akkor
+  $\exists c \in [a; b]$ hogy:
+  \[
+    \int_a^b f = f(c) \cdot (b - a)
+    \text.
+  \]
+\end{theorem}
+
+\subsection{A Newton-Leibniz-formula}
+
+\begin{definition}
+  Ha $f \in \mathcal R [a; b]$, akkor
+  \[
+    \int_a^a f := 0
+    \quad \text{ és } \quad
+    \int_a^b f = - \int_b^a f
+    \text.
+  \]
+\end{definition}
+
+\begin{definition}[Területmérő függvény]
+  Az $f$ függvény területmérő függvénye:
+  \[
+    F(x) := \int_a^x f(t) \dd t
+    \text.
+  \]
+\end{definition}
+
+\begin{theorem}
+  Legyen $f \in \mathcal R [a; b]$ és $F$ az $f$ függvény területmérő függvénye,
+  akkor $F$ egyenletesen folytonos az $[a; b]$ intervallumon és ha $f$ folytonos
+  az $x$ pontban és $F$ differenciálható az $x$ pontban, akkor $F'(x) = f(x)$.
+\end{theorem}
+
+\begin{theorem}[Newton-Leibniz-formula]
+  Legyen $f \in \mathcal R [a; b]$ $F: [a; b] \rightarrow \Reals$ folytonos az
+  $[a; b]$-n és differenciálható az $(a; b)$-n, valamint $F'(x) = f(x)$ $\forall
+    x \in [a; b]$, ekkor
+  \[
+    \int_a^b f(x) \dd x = F(b) - F(a) = F(x) \Big|_a^b = \Big[ F(x) \Big]_a^b
+    \text.
+  \]
+\end{theorem}
+
+\begin{note}
+  Ha az $G$ függvény az $f$ függvény primitív függvénye, akkor az alábbi
+  egyenlőség is igaz:
+  \[
+    G(b) - G(a) = \int_a^b f(x) \dd x
+    \text.
+  \]
+\end{note}
+
+\begin{theorem}[Helyettesítéses integrálás]
+  Tegyük fel, hogy $g: [a; b] \rightarrow [c; d]$ és $f: [c; d] \rightarrow
+    \Reals$, továbbá $g'(x)$ folytonos az $[a; b]$-n $f$ pedig folytonos a
+  $[c; d]$-n. Ekkor:
+  \[
+    \int_a^b f(g(x)) \cdot g'(x) \dd x = \int_{g(a)}^{g(b)} f(t) \dd t
+    \text.
+  \]
+\end{theorem}
+
+\subsection{Improprius integrál}
+% A Riemann-integrál kiterjesztése, ha a függvény vagy az intervallum nem
+% korlátos.
+
+\begin{definition}[Impropius Riemann-integrál]
+  Legyen $a, b \in  \Reals_b$, $a < b$, és tegyük fel, hogy $\forall [x; y]
+    \subset (a; b)$ esetén $f \in \mathcal R [x; y]$ ($x, y \in \Reals$), és
+  $\exists c \in (a; b)$, hogy
+  \[
+    \lim_{x \rightarrow a} \int_x^c f(t) \dd t
+    \quad \text{ és } \quad
+    \lim_{y \rightarrow b} \int_c^y f(t) \dd t
+  \]
+  határértékek végesek, ekkor az
+  \[
+    I
+    = \lim_{x \rightarrow a} \int_x^c f(t) \dd t
+    + \lim_{x \rightarrow b} \int_c^x f(t) \dd t
+  \]
+  összeget az $f$ függvény improprius integráljának nevezzük az $[a; b]$-n.
+
+  Azt is mondjuk, hogy az $f$ függvény improprius Riemann-integrálja konvergens
+  az $(a; b)$-n.
+
+  Ha az első feltétel teljesül, viszont a határértékek divergensek, akkor az $f$
+  függvény improprius Riemann-integrálja divergens.
+\end{definition}
+
+\begin{note}
+  Az integrál értéke nem függ $c$ megválasztásától.
+\end{note}
+
+\begin{note}
+  Ha az $f$ nem korlátos a $\gamma \in (a;b)$ pont környezetében, akkor az
+  $[a; b]$-t két részre bontjuk úgy, hogy $\gamma$ osztópont legyen:
+  \[
+    \int_a^b f = \int_a^\gamma f + \int_\gamma^b f
+    \text.
+  \]
+\end{note}
+
+\begin{example}
+  Számítsuk ki az alábbi integrálok értékét:
+  \[
+    \int_0^\infty e^{-x} \dd x
+    \text, \quad
+    \int_1^\infty \frac{1}{x^2} \dd x
+  \]
+  Az első integrál értéke:
+  \[
+    \int_0^\infty e^{-x} \dd x
+    = \lim_{a \rightarrow \infty} \int_0^a e^{-x} \dd x
+    = \lim_{a \rightarrow \infty} \Big[ -e^{-x} \Big]_0^a
+    = \lim_{a \rightarrow \infty} -e^{-a} + e^0
+    = 0 + 1
+    = 1
+    \text.
+  \]
+  A második integrál értéke:
+  \[
+    \int_1^\infty \frac{1}{x} \dd x
+    = \lim_{a \rightarrow \infty} \int_1^a \frac{1}{x^2} \dd x
+    = \lim_{a \rightarrow \infty} \left[ -\frac{1}{x} \right]_1^a
+    = \lim_{a \rightarrow \infty} -\frac{1}{a} + 1
+    = 0 + 1
+    = 1
+    \text.
+  \]
+\end{example}

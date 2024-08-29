@@ -1,0 +1,315 @@
+\section{Fogalmak, definíciók}
+
+\begin{blueBox}
+  Tekintsük a következő egyenletrendszert:
+  \[
+    \begin{cases}
+      x + y = -10 \\
+      x \cdot y = 40
+    \end{cases}
+  \]
+
+  Az egyenletrendszert megoldva az alábbi megoldásokat kapjuk:
+  \[
+    \begin{cases}
+      x = -5 + \sqrt{-15} \\
+      y = -5 - \sqrt{-15}
+    \end{cases}
+    \quad
+    \begin{cases}
+      x = -5 - \sqrt{-15} \\
+      y = -5 + \sqrt{-15}
+    \end{cases}
+  \]
+
+  Mit jelent, ha a négyzetgyökjel alatt negatív számot kapunk?
+
+  Bővítsük a valós számok halmazát! Legyen $\iu^2 = -1$.
+
+  A komplex számokat az úgynevezett Gauss-számsíkon ábrázoljuk.
+
+  \begin{center}
+    \begin{tikzpicture}[thick, scale=0.75]
+      \draw[->] (-.5, 0) -- (3, 0) node[right] {$\Re$};
+      \draw[->] (0, -.5) -- (0, 3) node[above] {$\Im$};
+
+      \draw[draw=gray, dashed]
+      (1.5,0) node[below] {$a$}
+      -- (1.5, 2.5)
+      -- (0, 2.5) node[left] {$b$};
+
+      \draw[fill=primaryColor] (1.5, 2.5) circle (0.1)
+      node[above right] {$z = a + b\iu$};
+    \end{tikzpicture}
+  \end{center}
+
+  A komplex számok halmazának jele: $\mathbb C$.
+
+  \textbf{Algebrai alak}: $z = a + b\iu$, ahol $a, b \in \Reals$.
+
+  A komplex szám \textbf{valós része}: $\iRe z = \{a\}$.
+
+  A komplex szám \textbf{képzetes része} pedig $\iIm \{z\} = b$.
+\end{blueBox}
+
+\begin{note}
+  A komplex számok halmaza és a valós számok halmazának önmagával vett
+  Descartes-szorzata között kölcsönösen egyértelmű megfeleltetés van, vagyis:
+  $\mathbb C \cong \Reals \times \Reals$.
+\end{note}
+
+\begin{definition}[Két komplex szám egyenlősége]
+  Legyenek $z_1 = a_1 + b_1\iu$ és $z_2 = a_2 + b_2\iu$ komplex számok. Ekkor:
+  \[
+    z_1 = z_2
+    \quad \Leftrightarrow \quad
+    a_1 = a_2 \quad \text{és} \quad b_1 = b_2
+    \text.
+  \]
+\end{definition}
+
+\begin{definition}[Komplex számok összege]
+  Legyenek $z_1 = a_1 + b_1\iu$ és $z_2 = a_2 + b_2\iu$ komplex számok. Ekkor:
+  \[
+    z_1 + z_2 = (a_1 + a_2) + (b_1 + b_2)\iu
+    \text.
+  \]
+\end{definition}
+
+\begin{definition}[Konjugált]
+  Legyen $z = a + b\iu$ egy komplex szám. Ekkor $z$ konjugáltja:
+  \[
+    \overline{z} = a - b\iu
+    \text.
+  \]
+\end{definition}
+
+\begin{note}
+  Komplex szám és konjugáltjának összege valós szám:
+  $z + \overline{z} = 2 a \in \Reals$.
+  % \end{note}
+
+  % \begin{note}
+  Komplex szám és konjugáltjának szorzata valós szám:
+  $z \cdot \overline{z} = a^2 + b^2 \in \Reals$.
+\end{note}
+
+\begin{definition}[Két komplex szám szorzata]
+  \vspace{-1.5em}
+  \begin{align*}
+    z_1 \cdot z_2
+     & = (a_1 + b_1\iu) \cdot (a_2 + b_2\iu)              \\
+     & = a_1 a_2 + a_1 b_2\iu + a_2 b_1\iu + b_1 b_2\iu^2 \\
+     & = (a_1 a_2 - b_1 b_2) + (a_1 b_2 + a_2 b_1)\iu
+  \end{align*}
+\end{definition}
+
+\begin{blueBox}
+  \sftitle{Áttérés a polárkoordináta-rendszerre:}
+
+  Általában a Descartes-féle koordinátarendszerben dolgozunk, ahol a sík pontjai
+  és a számpárok között kölcsönösen egyértelmű megfeleltetés van. Időnként
+  azonban célravezető más koordinátarendszerek alkalmazása is.
+
+  \begin{center}
+    \begin{tikzpicture}[scale=3/4]
+      % Draw the lines at multiples of pi/12
+      \foreach \ang in {0,...,31} {
+          \draw [lightgray] (0,0) -- (\ang * 180 / 16:4.1);
+        }
+
+      % Concentric circles
+      \foreach \s in {0, 1, 2, 3} {
+          \draw [lightgray] (0,0) circle (\s + 0.5);
+          \draw [primaryColor] (0,0) circle (\s);
+        }
+
+      % Add the labels at multiples of pi/4
+      \foreach \ang/\lab/\dir in {
+      % 0/0/right,
+      1/{\pi/4}/{above right},
+      2/{\pi/2}/above,
+      3/{3\pi/4}/{above left},
+      4/{\pi}/left,
+      5/{5\pi/4}/{below left},
+      7/{7\pi/4}/{below right},
+      6/{3\pi/2}/below} {
+      \draw (0,0) -- (\ang * 180 / 4:4.5);
+      \node [fill=cyan!10] at (\ang * 180 / 4:4.35) [\dir] {$\lab$};
+      }
+
+      % Outer circle
+      \draw (0,0) circle (4);
+
+      % 0 angle line
+      \draw [-to, ultra thick] (0,0) -- (6,0) node [above left] {$r$};
+      \node [above right] at (4,0) {$0$};
+
+      % Radius labels
+      \foreach \lab in {0, 1, 2, 3, 4} {
+          \node [fill=cyan!10, inner sep=2pt, outer sep=2pt] at (\lab, 0)
+          [below right] {\lab};
+        }
+
+      % Example
+      \draw[secondaryColor, ultra thick] (0,0) -- (60:3);
+      \draw[secondaryColor, thick] (0,0) -- ++(150:.5);
+      \draw[secondaryColor, thick] (60:3) -- ++(150:.5);
+
+      \draw[draw=primaryColor, ultra thick, to-to] (150:.35) -- ++(60:3)
+      node[midway, above, fill=cyan!10, rotate=60, inner sep=2pt, outer sep=2pt]
+      {$r$};
+
+      \draw[ultra thick, primaryColor, -to] (1.4,0) arc
+        [start angle=0, end angle=60, radius=1.4cm];
+
+      \node[fill=cyan!10, inner sep=2pt, outer sep=2pt] at (30:.85) {$\varphi$};
+
+      \draw[fill=primaryColor] (60:3) circle (0.1)
+      node[below right, fill=cyan!10, inner sep=2pt, outer sep=5pt]
+        {$z = r(\cos \varphi + \iu \sin \varphi)$};
+    \end{tikzpicture}
+  \end{center}
+
+  Ebben az esetben a komplex szám szögfüggvények segítségével fejezhető ki:
+  \[
+    z = r (\cos \varphi + \iu \sin \varphi)
+    \text.
+  \]
+
+  Az algebrai és trigonometrikus alak közötti kapcsolat:
+  \[
+    \begin{cases}
+      a = r \cos \varphi \\
+      b = r \sin \varphi
+    \end{cases}
+    \hspace{3cm}
+    \begin{cases}
+      r = \sqrt{a^2 + b^2} \\
+      \varphi = \arctan(b / a)
+    \end{cases}
+  \]
+
+  Ezek alapján $z_1 = r_1 (\cos \varphi_1 + \iu \sin \varphi_1)$ és $z_2 = r_2 (
+    \cos \varphi_2 + \iu \sin \varphi_2)$ komplex számok szorzata trigonometrikus
+  azonosságok segítségével:
+  \begin{align*}
+    z_1 \cdot z_2
+     & = r_1 (\cos \varphi_1 + \iu \sin \varphi_1) \cdot
+    r_2 (\cos \varphi_2 + \iu \sin \varphi_2)
+    \\
+     & = r_1 r_2 (\cos \varphi_1 \cos \varphi_2 - \sin \varphi_1 \sin \varphi_2) +
+    r_1 r_2 (\cos \varphi_1 \sin \varphi_2 + \sin \varphi_1 \cos \varphi_2) \iu
+    \\
+     & = r_1 r_2 \left(
+    \cos(\varphi_1 + \varphi_2) + \iu \sin(\varphi_1 + \varphi_2)
+    \right)
+    \text.
+  \end{align*}
+
+  A felhasznált azonosságok:
+  \begin{align*}
+    \sin(\alpha + \beta) & = \cos \alpha \sin \beta + \sin \alpha \cos \beta
+    \text,                                                                   \\
+    \cos(\alpha + \beta) & =\cos \alpha \cos \beta - \sin \alpha \sin \beta
+    \text.
+  \end{align*}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Komplex számok hatványozása:}
+  \[
+    z^n
+    = (r(\cos \varphi + \iu \sin \varphi))^n
+    = r^n (\cos (n \varphi) + \iu \sin (n \varphi))
+  \]
+
+  \begin{proof}[Teljes indukció módszerével]
+    Vizsgáljuk meg az első pár esetet:
+    \begin{align*}
+      z^1 & = r^1 (\cos \varphi + \iu \sin \varphi) \text,                                                                                         \\
+      z^2 & = r^2 (\cos \varphi + \iu \sin \varphi)^2                                                                                              \\
+          & = r^2 (\cos^2 \varphi - \sin^2 \varphi + 2\iu \cos \varphi \sin \varphi)                                                               \\
+          & = r^2 (\cos (2\varphi) + \iu \sin (2\varphi)) \text,                                                                                   \\
+      z^3 & = z^2 \cdot z                                                                                                                          \\
+          & = r^2 (\cos (2\varphi) + \iu \sin (2\varphi)) \cdot r(\cos \varphi + \iu \sin \varphi)                                                 \\
+          & = r^3 (\cos (2\varphi) \cos \varphi - \sin (2\varphi) \sin \varphi + \iu (\cos (2\varphi) \sin \varphi + \sin (2\varphi) \cos \varphi) \\
+          & = r^3 (\cos (3\varphi) + \iu \sin (3\varphi)) \text.
+    \end{align*}
+
+    Tegyük fel, hogy $z^k = r^k (\cos k\varphi + \iu \sin k\varphi)$, majd
+    vizsgáljuk meg az $(n + 1)$-edik esetet:
+    \begin{align*}
+      z^{k + 1}
+       & = z^k \cdot z
+      = r^k (\cos (k\varphi) + \iu \sin (k\varphi)) \cdot r(\cos \varphi + \iu \sin \varphi)
+      \\
+       & = r^{k + 1} (\cos (k\varphi) \cos \varphi - \sin (k\varphi) \sin \varphi + \iu \cos (k\varphi) \sin \varphi + \sin (k\varphi) \cos \varphi)
+      \\
+       & = r^{k + 1} (\cos ((k + 1)\varphi) + \iu \sin ((k + 1)\varphi))
+      \text.
+    \end{align*}
+
+    Ezzel bebizonyítottuk, hogy $z^n = r^n (\cos n\varphi + \iu \sin n\varphi)$.
+  \end{proof}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Komplex számok osztása:}
+  \[
+    \frac{z_1}{z_2}
+    = \frac{
+      r_1 (\cos \varphi_1 + \iu \sin \varphi_1)
+    }{
+      r_2 (\cos \varphi_2 + \iu \sin \varphi_2)
+    }
+    = \frac{r_1}{r_2} (\cos (\varphi_1 - \varphi_2) + \iu \sin (\varphi_1 - \varphi_2))
+  \]
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Komplex számok gyökvonása:}
+  \[
+    \sqrt[n]{z}
+    % = \sqrt[n]{r(\cos \varphi + \iu \sin \varphi)}
+    = \sqrt[n]{r} \left(
+    \cos \left( \frac{\varphi + 2k\pi}{n} \right) + \iu \sin \left( \frac{\varphi + 2k\pi}{n} \right)
+    \right)
+    \;
+    k \in \{0; 1; \ldots; n-1\}
+  \]
+\end{blueBox}
+
+\begin{note}
+  Tetszőleges komplex szám $n$-edik gyökei egy olyan szabályos $n$-szög csúcsai,
+  amelynek középpontja az origó.
+  \begin{center}
+    \begin{tikzpicture}[ultra thick]
+      % COORDINATE SYSTEM
+      \draw[-to, draw=primaryColor] (-2, 0) -- (2, 0) node [right] {$\Re$};
+      \draw[-to, draw=primaryColor] (0, -2) -- (0, 2) node [above] {$\Im$};
+
+      \coordinate (P) at (318:1.5);
+      \foreach \deg in {30,102,174,246,318} {
+          \draw[draw=primaryColor] (\deg:1.5) coordinate(C) circle (0.1);
+          \draw[dashed, gray] (P) -- (C);
+          \coordinate (P) at (C);
+        }
+    \end{tikzpicture}
+  \end{center}
+\end{note}
+
+\begin{note}
+  A komplex számokat nem tudjuk rendezni, azonban $(\mathbb C, +, \cdot)$
+  test.
+\end{note}
+
+\begin{theorem}[Az algebra alaptétele]
+  Egy $n$-ed fokú komplex együtthatós polinomnak multiplicitással számolva
+  pontosan $n$ darab gyöke van.
+\end{theorem}
+
+\begin{note}
+  Minden valós együtthatós polinom felírható első és másodfokú tényezők
+  szorzataként.
+\end{note}

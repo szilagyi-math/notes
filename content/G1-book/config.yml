@@ -1,0 +1,6 @@
+subject: G1
+type: book
+root_files:
+  - source: main.tex
+    target: G1-tankonyv
+    display_name: G1 előadás jegyzet

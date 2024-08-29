@@ -1,0 +1,81 @@
+\section{Határozatlan integrál}\label{section.7.1}
+
+\vfill
+
+\begin{definition}[Primitív függvény]
+  Legyen $f: I \rightarrow \Reals$, ekkor az $F : I \rightarrow \Reals$
+  függvényt az $f$ függvény primitív függvényének nevezzük $I$-n, ha $F$
+  differenciálható $I$-n és $F'(x) = f(x) \quad \forall x \in I$.
+\end{definition}
+
+\vfill
+
+\begin{note}
+  Ha az $F$ függvény primitív függvénye az $f$-nek, akkor $G(x) = F(x) + C$
+  ugyancsak primitív függvénye az $f$-nek, ahol $C \in \Reals$.
+\end{note}
+
+\vfill
+
+\begin{note}
+  Ha $F$ és $G$ is $f$ primitív függvényei, akkor $\exists C \in \Reals$, hogy
+  $F(x) = G(x) + C$.
+\end{note}
+
+\vfill
+
+\begin{definition}[Határozatlan integrál]
+  Az $f$ primitív függvényeinek összességét $f$ határozatlan integráljának
+  nevezzük az $I$-n. Jelölése:
+  \[
+    \int f(x) \dd x = F(x) + C
+    \text.
+  \]
+\end{definition}
+
+\vfill
+
+\begin{blueBox}
+  Az $\; 1,\; x,\; e^x,\; \ln x,\; \sin x,\; \arcsin x \;$ függvényekből a négy
+  alapművelet, az összetett függvényképzés és a nyílt halmazra való leszűkítés
+  véges sokszori alkalmasával keletkező függvényeket \textbf{elemi
+    függvényeknek} nevezzük.
+  % \[
+  %   1 \text, \quad
+  %   x \text, \quad
+  %   e^x \text, \quad
+  %   \ln x \text, \quad
+  %   \sin x \text, \quad
+  %   \arcsin x \text.
+  % \]
+
+  A $\cos x$, $\tan x$, $\cot x$, $\sinh x$, $\cosh x$, $\tanh x$, $\coth x$,
+  $\arccos x$, $\arctan x$, $\arccot x$, $\arccosh x$, $\arccosh x$, $\arctanh
+    x$, $\arccoth x$, $x^\alpha$, polinom, racionális függvények elemi
+  függvények.
+
+  A négy alapművelet, az összetett függvényképzés, a nyílt halmazra való
+  leszűkítés megőrzi a differenciálhatóságot, tehát az elemi függvények az
+  értelmezési tartományuk belső pontjában differenciálhatóak. A primitív
+  függvények megkeresése azonban kivezet az elemi függvények köréből, ez
+  indokolja az \textbf{elemien integrálható függvények} elnevezés bevezetését.
+
+  \textbf{Elemien integrálható függvény} olyan elemi függvény, amelynek primitív
+  függvénye ugyancsak elemi függvény.
+
+  Elemien integrálható függvények például:
+  \[
+    x^2 \text, \quad
+    \frac{1}{x + 2} \text, \quad
+    \frac{1}{x^2 + 1} \text.
+  \]
+
+  Nem elemien integrálható függvény például:
+  \[
+    e^{-x^2} \text, \quad
+    \frac{\sin x}{x} \text, \quad
+    \frac{1}{\ln x} \text.
+  \]
+\end{blueBox}
+
+\clearpage

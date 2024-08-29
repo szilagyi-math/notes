@@ -1,0 +1,222 @@
+\section{Fogalmak, definíciók}
+
+\begin{definition}[Numerikus sor]
+  $!(a_n) : \mathbb{N} \rightarrow \Reals$ numerikus sorozat, amelyből képezzük
+  az alábbi sorozatot:
+  \begin{align*}
+    s_1 & = a_1                                          \\
+    s_2 & = a_1 + a_2                                    \\
+        & \vdots                                         \\
+    s_n & = a_1 + a_2 + \dots + a_n = \sum_{i=1}^{n} a_i \\
+  \end{align*}
+  Az így képzett $(s_n)$-t az
+  $(a_n)$ sorozatból képzett numerikus sornak mondjuk. Jele:
+  \[
+    s_n = \sum a_n
+    \text,
+  \]
+  ahol $a_n$ a sor $n$-edik/általános tagja, $s_n$ pedig a sor $n$-edik
+  részletösszege.
+
+  Azt mondjuk, hogy a $\sum a_n$ sor konvergens, ha az $s_n$ sorozat konvergens,
+  továbbá $\sum a_n$ sor divergens, ha $s_n$ sorozat divergens.
+
+  Az $s_n$ sorozat határértékét a $\sum a_n$ sor összegének hívjuk:
+  \[
+    \lim_{n \rightarrow \infty} s_n = \lim_{n \rightarrow \infty}
+    \sum_{i=1}^n a_i=\sum_{i=1}^\infty a_i
+    \text.
+  \]
+\end{definition}
+
+\begin{theorem}[A numerikus sor konvergenciájának szükséges feltétele]
+  Ha a $\sum a_n$ numerikus sor konvergens, akkor az $(a_n)$ nullsorozat, azaz
+  $\lim_{n\rightarrow\infty} a_n=0$, sőt $a_n+a_{n+1}+...+a_{n+p} \rightarrow
+    0$, ha $n\rightarrow \infty$ (ekkor $p\in\mathbb{N}$ rögzített).
+\end{theorem}
+
+\begin{note}
+  A $\sum_0 a q^n$ végtelen geometriai sor konvergens $\Leftrightarrow$
+  ha $|q|<1$, ekkor a sorösszeg $a\cdot \frac{1}{1-q}$.
+\end{note}
+
+\begin{theorem}[A numerikus sor konvergenciájának elégséges feltétele]
+  $\sum a_n$ numerikus sor akkor és csak akkor konvergens ha $\forall
+    \varepsilon > 0 $ esetén
+  \[
+    \exists N(\varepsilon): |a_{n + 1} + a_{n + 2} + \dots + a_m| < \varepsilon
+    \text,
+  \]
+  ha $n, m > N(\varepsilon)$ és $m > n$.
+\end{theorem}
+
+\begin{note}
+  Véges sok tag elhagyása/megváltoztatása a sorozatban a konvergenciát nem
+  változtatja meg, de a sorösszeget igen.
+\end{note}
+
+\begin{note}
+  Legyen $\sum a_n$ és $\sum b_n$ konvergens numerikus sor, ekkor $\sum (a_n +
+    b_n)$ is konvergens és
+  \vspace{-.75em}
+  \[
+    \sum_{n=1}^\infty (a_n + b_n)
+    = \sum_{n=1}^\infty a_n + \sum_{n=1}^\infty b_n
+  \]
+\end{note}
+
+\begin{note}
+  Legyen $\sum a_n$ konvergens numerikus sor és $\lambda$ valós szám, ekkor
+  \vspace{-.75em}
+  \[
+    \sum_{n=1}^\infty \lambda a_n
+    = \lambda \sum_{n=1}^\infty a_n
+    \text.
+  \]
+\end{note}
+
+\begin{theorem}[Csoportosított sor konvergenciája]
+  Ha $\sum a_n$ konvergens, úgy bármely csoportosított sora is konvergens és a
+  két sor összege megegyezik.
+\end{theorem}
+
+\begin{note}
+  A tétel visszafelé is igaz.
+\end{note}
+
+\begin{definition}[Sor abszolút konvergencia]
+  A $\sum a_n$-t abszolút konvergensnek hívjuk, ha $\sum |a_n|$ konvergens.
+\end{definition}
+
+\begin{note}
+  Ha egy nemnegatív tagú sor konvergens, akkor abszolút konvergens. Ha a
+  $\sum a_n$  sor konvergens, de nem abszolút konvergens, akkor feltételes
+  konvergenciáról beszélünk.
+\end{note}
+
+\begin{theorem}[Feltételes konvergencia]
+  Abszolút konvergens sor feltételesen is konvergens.
+\end{theorem}
+
+\begin{note}
+  Az állítás visszafelé nem igaz.
+\end{note}
+
+\begin{theorem}[Riemann-tétel]
+  Legyen $\sum a_n$ feltételesen konvergens, de nem abszolút konvergens
+  numerikus sor és legyen $\alpha$ egy tetszőleges bővített valós szám, ekkor
+  $\sum a_n$-nek van olyan átrendezése, hogy az átrendezett sor összege éppen
+  $\alpha$.
+\end{theorem}
+
+\begin{theorem}[Abszolút konvergens sor átrendezése]
+  Abszolút konvergens sor bármely átrendezett sora is abszolút konvergens és a
+  sorösszeg azonos.
+\end{theorem}
+
+\begin{theorem}[Majoráns (felülről becsül) és minoráns (alulról becsül)
+    kritérium]
+  Legyenek $\sum a_n$ és $\sum b_n$ nemnegatív tagú sorok, melyekre az $a_n <
+    b_n : \forall n \in \mathbb{N}$-re vagy $n_0 < n$ esetén:
+  \begin{enumerate}
+    \item ha $\sum a_n$ divergens, akkor $\sum b_n$ is az (minoráns kritérium),
+    \item ha $\sum b_n$ konvergens, akkor $\sum a_n$ is az (majoráns kritérium).
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[A hányados vagy D'Alambert-teszt]
+  $\sum a_n$ egy pozitív tagú numerikus sor, ha $\exists 0 \leq q < 1$ valós
+  szám, hogy $\frac{a_{n+1}}{a_n} \leq q$, ha $n>n_0$ vagy $\forall n$ esetén,
+  akkor a $\sum a_n$ konvergens. %(ha 1, akkor nem alkalmazható)
+\end{theorem}
+
+\begin{theorem}[Gyök/Cauchy-teszt]
+  Legyen $\sum a_n$ egy nemnegatív tagú sor, ha $\exists 0 \leq q < 1$,
+  hogy $\sqrt[n]{a_n} \leq q$, ha $n>n_0$ vagy $\forall n$-re, akkor
+  $\sum a_n$ konvergens.
+\end{theorem}
+
+\begin{note}
+  Vegyük észre, hogy a majoráns illetve minoráns kritérium és az előző két
+  teszt az abszolút konvergencia eldöntésére szolgál, a feltételes
+  konvergenciáról nem ad információt.
+\end{note}
+
+\begin{theorem}[Integrál kritérium]
+  Ha $x \geq 1$ esetén az $f$ függvény folytonos, nemnegatív és csökkenő, akkor
+  a $\sum |f_n|$ numerikus sor konvergens vagy divergens aszerint, hogy
+  \[
+    \int_1^\infty f(x) \dd x
+    \text{ konvergens vagy divergens.}
+  \]
+\end{theorem}
+
+\begin{definition}[Alternáló sor]
+  A $\sum (-1)^{n+1} \cdot b_n$, $b_n > 0$ numerikus sort alternáló sornak
+  nevezzük.
+\end{definition}
+
+\begin{theorem}[Leibniz sor]
+  A $\sum  (-1)^{n+1} \cdot b_n$ alternáló numerikus sor konvergens akkor és
+  csakis akkor, ha $(b_n)$ monoton csökkenő nullsorozat, ekkor az $|s - s_n|
+    \leq b_{n + 1}$.
+\end{theorem}
+
+\begin{definition}[TODO]
+  Legyenek $(a_n)$ és $(b_n)$ a nemnegatív egészek halmazán értelmezett
+  numerikus sorozatok és
+  \vspace{-.75em}
+  \[
+    c_n:=\sum_{k=0}^n a_k b_{n-k}
+    \text,
+  \]
+  ekkor a $\sum c_n$-t a $\sum a_n$ és $\sum b_n$ numerikus sorok Cauchy-féle
+  szorzatsorának hívjuk.
+\end{definition}
+
+\begin{theorem}[Cauchy-féle szorzatsorok konvergenciája I]
+  Abszolút konvergens sorok Cauchy-féle szorzatsora is abszolút konvergens és
+  a szorzatsor összege a tényezősorok összegének szorzata.
+\end{theorem}
+
+\begin{theorem}[Cauchy-féle szorzatsorok konvergenciája II]
+  Tegyük fel, hogy a $\sum a_n$ abszolút konvergens és sorösszege $A$ és a
+  $\sum b_n$ feltételesen konvergens és a sorösszege $B$, ekkor a Cauchy-féle
+  szorzatsorok sorösszege $A\cdot B$.
+\end{theorem}
+
+% Numerikus sor konvergenciájának vizsgálata:
+
+% 0. lépés: $a_n \rightarrow 0$, ha $n \rightarrow \infty$, ha nem teljesül akkor
+% a sor divergens, ha teljesül akkor vagy nevezetes sor, vagy alkalmazzuk a
+% teszteket
+
+% % TODO: THIS IS UGLY
+% 1. lépés: nevezetes sorok:
+% \begin{itemize}
+%   \item végtelen sor $\sum a q^n$, ha $|q|<1 \frac{a}{1-q}$,
+%   \item alternáló sor $\sum (-1)^{n+1}$.
+% \end{itemize}
+
+% % TODO: THIS IS VERY UGLY
+% 2. lépés: tesztek, kritériumok: majoráns, minoráns, hányados, gyök, integrál
+
+\begin{theorem}[TODO]
+  Legyen $(a_n)$ monoton csökkenő nemnegatív tagú sorozat, a belőle képzett
+  numerikus sor akkor és csak akkor konvergens, ha
+  \[
+    \sum_{k = 0} 2^k a_{2k} =
+    a_1 + 2 \cdot a_2 + 2^2 \cdot a_4 + \dots
+  \]
+  is konvergens.
+\end{theorem}
+
+\begin{statement}
+  $\displaystyle \sum \dfrac{1}{n^\alpha}$ konvergens, ha $\alpha > 1$ és
+  divergens, ha $\alpha \leq 1$.
+\end{statement}
+
+\begin{statement}
+  $\displaystyle \sum \dfrac{1}{n \cdot (\ln n)^P}$ konvergens, ha $P>1$ és
+  divergens, ha $P \leq 1$.
+\end{statement}

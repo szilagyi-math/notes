@@ -1,0 +1,341 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practise}
+
+\title{Komplex számok}
+\area{Komplex számok}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{3}
+
+\begin{document}
+\maketitle
+
+\subsection{Elméleti Áttekintő}
+
+\subsubsection{A komplex számok megadási módjai}
+
+\begin{blueBox}
+  \sftitle{Algebrai alak}:
+
+  \begin{minipage}{.6\textwidth}
+    A komplex számokat ($\mathbb C$) algebrai alakja:
+    \[
+      z = a + b\iu
+      \text,
+    \]
+    ahol $a, b \in \Reals$ valós számok, és $\iu$ a képzetes egység.
+    A komplex szám valós része $\iRe z = a$, képzetes része pedig $\iIm z = b$.
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \flushright
+    \begin{tikzpicture}[thick, scale=0.75]
+      \draw[->] (-.5, 0) -- (5, 0) node[right] {$\Re$};
+      \draw[->] (0, -.5) -- (0, 3) node[above] {$\Im$};
+
+      \draw[draw=gray, dashed]
+      (1.5,0) node[below] {$a$}
+      -- (1.5, 2.5)
+      -- (0, 2.5) node[left] {$b$};
+
+      \draw[fill=primaryColor] (1.5, 2.5) circle (0.1)
+      node[above right] {$z = a + b\iu$};
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{note}
+  Két komplex szám akkor és csak akkor egyenlő, ha valós és képzetes részük is
+  megegyezik.
+\end{note}
+
+\begin{blueBox}
+  \begin{minipage}{.6\textwidth}
+    \sftitle{Trigonometrikus alak}:\\[3mm]
+    Térjünk át az eddigi Descartes-féle koordinátarendszerből a
+    polárkoordináta-rendszerbe, amelyben
+    \begin{itemize}
+      \item a komplex szám hossza: $r = |z| = \sqrt{a^2 + b^2}$,
+      \item argumentuma pedig: $\varphi = \arg z = \arctan (\sfrac{b}{a})$.
+    \end{itemize}
+    Ebből az alábbi alakot kapjuk:
+    \[
+      z = \rcisrad*{r}{\varphi}
+      \text.
+    \]
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \flushright
+    \begin{tikzpicture}[scale=2/3]
+      % Draw the lines at multiples of pi/12
+      \foreach \ang in {0,...,31} {
+          \draw [lightgray] (0,0) -- (\ang * 180 / 16:3.1);
+        }
+
+      % Concentric circles
+      \foreach \s in {0, 1, 2} {
+          \draw [lightgray] (0,0) circle (\s + 0.5);
+          \draw [primaryColor] (0,0) circle (\s);
+        }
+
+      % Add the labels at multiples of pi/4
+      \foreach \ang/\lab/\dir in {
+      % 0/0/right,
+      1/{\pi/4}/{above right},
+      2/{\pi/2}/above,
+      3/{3\pi/4}/{above left},
+      4/{\pi}/left,
+      5/{5\pi/4}/{below left},
+      7/{7\pi/4}/{below right},
+      6/{3\pi/2}/below} {
+      \draw (0,0) -- (\ang * 180 / 4:3.5);
+      \node [fill=cyan!10] at (\ang * 180 / 4:3.15) [\dir] {\scriptsize$\lab$};
+      }
+
+      % Outer circle
+      \draw (0,0) circle (3);
+
+      % 0 angle line
+      \draw [-to, ultra thick] (0,0) -- (3.75,0) node [above right] {$r$};
+      \node [above right] at (3,0) {\scriptsize$0$};
+
+      % Example
+      \draw[secondaryColor, ultra thick] (0,0) -- (60:2.5);
+      \draw[secondaryColor, thick] (0,0) -- ++(150:.5);
+      \draw[secondaryColor, thick] (60:2.5) -- ++(150:.5);
+
+      \draw[draw=primaryColor, ultra thick, to-to] (150:.35) -- ++(60:2.5)
+      node[midway, above, fill=cyan!10, rotate=60, inner sep=2pt, outer sep=2pt]
+      {$r$};
+
+      \draw[ultra thick, primaryColor, -to] (1.4,0) arc
+        [start angle=0, end angle=60, radius=1.4cm];
+
+      \node[fill=cyan!10, inner sep=2pt, outer sep=2pt] at (30:.85) {$\varphi$};
+
+      \draw[fill=primaryColor] (60:2.5) circle (0.1);
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Exponeciális alak}:
+
+  Induljunk ki a trigonometrikus alakból, és használjuk fel az alábbi
+  azonosságokat:
+  \[
+    \cos \varphi     = \cosh \iu \varphi = \frac{e^{\iu \varphi} + e^{-\iu \varphi}}{2}
+    \text{, és }
+    \iu \sin \varphi = \sinh \iu \varphi = \frac{e^{\iu \varphi} - e^{-\iu \varphi}}{2}
+    \text.
+  \]
+  A trigonometrikus alakba helyettesítve megkapjuk az exponeciális alakot:
+  \[
+    z
+    = \rcisrad*{r}{\varphi}
+    = r \left(
+    \frac{e^{\iu \varphi} + e^{-\iu \varphi}}{2}
+    + \frac{e^{\iu \varphi} - e^{-\iu \varphi}}{2}
+    \right)
+    = r e^{\iu \varphi}
+    \text.
+  \]
+\end{blueBox}
+
+\subsection{Műveletek komplex számokkal}
+
+\begin{blueBox}
+  \begin{minipage}{.6\textwidth}
+    \sftitle{Konjugált}:
+    \\[3mm]
+    Egy $z = a + b \iu$ komplex szám konjugáltját úgy kapjuk meg, hogy
+    tükrözzük a valós tengelyre, vagyis
+    \[
+      \overline z
+      = \overline{a + b \iu}
+      = a - b\iu
+      \text.
+    \]
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+    TODO: TIKZ
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \begin{minipage}{.6\textwidth}
+    \sftitle{Inverz}:
+    \\[3mm]
+    Egy $z = a + b \iu$ komplex szám inverze:
+    \[
+      z^{-1}
+      = \frac{1}{z}
+      = \frac{\overline z}{z \cdot \overline z}
+      = \frac{a - b\iu}{a^2 + b^2}
+      \text.
+    \]
+    Komplex szám inverzének hossza az eredeti szám hosszának a reciproka.
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+    TODO: TIKZ
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \begin{minipage}{.6\textwidth}
+    \sftitle{Összeadás és kivonás}:
+    \\[3mm]
+    Algebrai alakban, a vektorműveletekhez hasonlóan.
+    \[
+      z_1 + z_2 = (a_1 + a_2) + \iu (b_1 + b_2)
+    \]
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Szorzás}:
+
+  \begin{minipage}{.6\textwidth}
+    Algebrai alakban:
+    \begin{align*}
+      z_1 \cdot z_2
+       & = (a_1 + b_1\iu) \cdot (a_2 + b_2\iu)              \\
+       & = a_1 a_2 + a_1 b_2\iu + a_2 b_1\iu + b_1 b_2\iu^2 \\
+       & = (a_1 a_2 - b_1 b_2) + (a_1 b_2 + a_2 b_1)\iu
+    \end{align*}
+
+    Trigonometrikus alakban:
+    \[
+      z_1 \cdot z_2 = r_1 r_2 \left(
+      \cos(\varphi_1 + \varphi_2) + \iu \sin(\varphi_1 + \varphi_2)
+      \right)
+      \text.
+    \]
+
+    Exponenciális alakban:
+    \[
+      z_1 \cdot z_2 = r_1 r_2 e^{\iu (\varphi_1 + \varphi_2)}
+    \]
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Osztás}:
+
+  \begin{minipage}{.6\textwidth}
+    Trigonometrikus alakban:
+    \[
+      \frac{z_1}{z_2} = \frac{r_1}{r_2} \left(
+
+      \right)
+    \]
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Hatványozás}:
+
+  \begin{minipage}{.6\textwidth}
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Gyökvonás}:
+
+  \begin{minipage}{.6\textwidth}
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+  \end{minipage}
+\end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  % 1
+  \item Hozzuk egyszerűbb alakra az alábbi kifejezéseket!
+        \begin{enumerate}
+          \item $\dfrac{
+                    \overline{2 - \iu}
+                  }{
+                    e^{\iu \sfrac{\pi}{3}}
+                  }$
+          \item $\dfrac{5 + \iu}{3 - 2i} \cdot \overline{
+                    \rcisdeg*{3}{45} \cdot
+                    \rcisdeg*{2}{270} \cdot
+                    e^{\iu \sfrac{5\pi}{12}}
+                  }$
+
+          \item $\dfrac{
+                    5 e^{\iu \sfrac{7\pi}{13}}
+                  }{
+                    \rcisdeg*{4}{135}
+                  } \cdot \overline{
+                    \dfrac{1}{2\iu}
+                  } \cdot \left(
+                  2 \sqrt{3} + 2 \iu
+                  \right)
+                $
+        \end{enumerate}
+
+        % 2
+  \item Végezzük el az alábbi hatványozásokat!
+        \begin{enumerate}
+          \item $(\iu - 1)^{16}$
+          \item $(3 + 5\iu)^4 \cdot
+                  (21 - 35\iu)^5 \cdot
+                  \left(\dfrac{1 + \iu}{1 - \iu}\right)^4$
+        \end{enumerate}
+
+        % 3
+  \item Végezzük el az alábbi gyökvonásokat!
+        \begin{enumerate}
+          \item $\sqrt[3]{-8}$
+          \item $\sqrt[4]{1}$
+          \item $\sqrt{3 + 4\iu}$
+        \end{enumerate}
+
+        % 4
+  \item Oldjuk meg a következő egyenleteket!
+        \begin{enumerate}
+          \item $z^4 - 81 \iu = 0$
+          \item $z^2 - 6z + 13 = 0$
+        \end{enumerate}
+
+        % 5
+  \item Oldjuk meg az alábbi egyenletrendszert!\\[2mm]
+        \hspace{2ex}$
+          \begin{cases}
+            z_1 + 2z_2 = 1 + \iu    \\
+            3z_1 + \iu z_2 = 2 - 3i \\
+          \end{cases}
+        $
+
+        % 6
+  \item Adjuk meg a geometriai helyét azoknak a komplex számoknak, amelyekre
+        \dots
+        \begin{enumerate}
+          \item $\iIm \{ z \} > 0$,
+          \item $|z - a| = |z - b|$, ahol $a, b \in \mathbb C$,
+          \item $|z| < 1 - \iRe \{ z \}$.
+        \end{enumerate}
+
+        % 7
+  \item Egy négyzet két szomszédos csúcsát jelölje a $z_1 = 3 + 2 \iu$ és a
+        $z_2 = 4 + 4 \iu$ komplex szám. Hol található a tobbi csúcs?
+
+        % 8
+  \item Írjuk fel a $(-2; 1)$ középpontú, $4$ sugarú kör egyenletét a komplex
+        számsíkon!
+\end{enumerate}
+
+% \\underline\{(\w)\}
+
+\end{document}

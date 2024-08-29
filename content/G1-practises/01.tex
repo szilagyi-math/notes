@@ -1,0 +1,667 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practise}
+
+\area{Analitikus geometria}
+\title{Vektorok}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{1}
+
+\begin{document}
+\maketitle
+
+\subsection{Elméleti Áttekintő}
+
+\begin{definition}[Vektor]
+  Egy $(v_1, v_2, v_3)$ valós számokból alló rendezett számhármast a térben
+  $(\Reals^3)$ vektornak nevezünk. Jelölése: $\rvec v$ (nyomtatott szöveg),
+  $\underline v \; / \; \vec v$ (kézzel írott szöveg).
+\end{definition}
+
+\begin{note}
+  A vektorok geometriai értelemben olyan irányított szakaszok, melyeknek
+  hossza és iránya van.
+\end{note}
+
+\begin{blueBox}
+  \begin{minipage}{.45\textwidth}
+    \sftitle{Vektorok megadása}:\\[3mm]
+    Egy tetszőleges $\rvec v \; (v_1; v_2; v_3)$ vektor a standard normális
+    bázisban
+    \[
+      \rvec v = v_1 \ibase + v_2 \jbase + v_3 \kbase
+      \text.
+    \]
+  \end{minipage}\begin{minipage}{.25\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[z={(210:1)},x={(-30:1)}, scale=0.4]
+        % 3d axis
+        \draw[->, draw=ternaryColor, thick]
+        (0,0,0) -- (4,0,0) node[anchor=south west]{$x$};
+        \draw[->, draw=ternaryColor, thick]
+        (0,0,0) -- (0,4,0) node[right=2mm]        {$y$};
+        \draw[->, draw=ternaryColor, thick]
+        (0,0,0) -- (0,0,4) node[anchor=south east]{$z$};
+
+        % unit vectors
+        \draw[->, draw=primaryColor, ultra thick]
+        (0,0,0) -- (2,0,0) node[anchor=south west]{$\ibase$};
+        \draw[->, draw=primaryColor, ultra thick]
+        (0,0,0) -- (0,2,0) node[right=2mm]        {$\jbase$};
+        \draw[->, draw=primaryColor, ultra thick]
+        (0,0,0) -- (0,0,2) node[anchor=south east]{$\kbase$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}\begin{minipage}{.30\textwidth}
+    \begin{align*}
+      \ibase & = (1; 0; 0) \\
+      \jbase & = (0; 1; 0) \\
+      \kbase & = (0; 0; 1)
+    \end{align*}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Vektorok típusai}:
+
+  \begin{itemize}
+    \item \textbf{kötött vektor}: fix kezdőponttal rendelkezik,
+    \item \textbf{szabad vektor}: nincs fix kezdőpontja,
+    \item \textbf{helyvektor}: olyan kötött vektor, amelynek kezdőpontja az
+          origó.
+  \end{itemize}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Vektor hossza}:
+  \[
+    |\rvec v| = \sqrt{v_1^2 + v_2^2 + v_3^2}
+    \text.
+  \]
+
+  \begin{itemize}
+    \item Ha $|\rvec v| = 0$, akkor $\rvec v$ \textbf{nullvektor}.
+          (Jele: $\nvec$)
+    \item Ha $|\rvec v| = 1$, akkor $\rvec v$ \textbf{egységvektor}.
+  \end{itemize}
+\end{blueBox}
+
+\begin{note}
+  A nullvektor iránya nem definiált.
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Egy adott $\rvec v$ vektorhoz tartozó egységvektor}:
+  \[
+    \uvec e_v
+    = \frac{\rvec v}{|\rvec v|}
+    = \begin{pmatrix}
+      \dfrac{v_1}{|\rvec v|} &
+      \dfrac{v_2}{|\rvec v|} &
+      \dfrac{v_3}{|\rvec v|}
+    \end{pmatrix}
+  \]
+\end{blueBox}
+
+\begin{blueBox}
+  \begin{minipage}{.6\textwidth}
+    \sftitle{Háromszög-egyenlőtlenség}:\\[3mm]
+    Minden $\rvec u$, $\rvec v$ vektorpárra igaz, hogy
+    \[
+      |\rvec u + \rvec v| \leq |\rvec u| + |\rvec v|
+      \text.
+    \]
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+    \begin{tikzpicture}[ultra thick]
+      % Coordinate system
+      \coordinate (O) at (0,0,0);
+      \draw[draw=ternaryColor, ->, thick] (O) -- (3,0,0) node[below left] {$x$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,1.5,0) node[below left] {$y$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,0,1.5) node[right=2mm] {$z$};
+
+      % Vectors
+      \draw[-to, draw=secondaryColor]
+      (O) -- (2,0,1)
+      coordinate (U)
+      node[midway, below]{$\rvec u$}
+      ;
+      \draw[-to, draw=secondaryColor]
+      (U) -- ++ (1.25,1.5,0)
+      coordinate (V)
+      node[midway, right]{$\rvec v$}
+      ;
+      \draw[-to, draw=primaryColor]
+      (O) -- (V)
+      node[midway, above, rotate=20]{$\rvec u + \rvec v$}
+      ;
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \begin{minipage}{.6\textwidth}
+    \sftitle{Paralelogramma-szabály}:\\[3mm]
+    Ha az $\rvec u$ és $\rvec v$ vektor különböző állású, akkor a két vektor
+    összegét megadja az $\rvec u$ és $\rvec v$ vektorokkal, mint oldalakkal
+    szerkesztett paralelogrammának azon átlója, amely a közös pontból indul.
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+    \begin{tikzpicture}[ultra thick]
+      % Coordinate system
+      \coordinate (O) at (0,0,0);
+      \draw[draw=ternaryColor, ->, thick] (O) -- (3,0,0) node[below left] {$x$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,1.5,0) node[below left] {$y$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,0,1.5) node[right=2mm] {$z$};
+
+
+      % Vectors
+      \draw[-to, draw=secondaryColor]
+      (O) -- (2,0,1)
+      coordinate (U)
+      node[midway, below]{$\rvec u$}
+      ;
+      \draw[-to, draw=secondaryColor]
+      (O) -- (1.25,1.5,0)
+      coordinate (V)
+      node[midway, left]{$\rvec v$}
+      ;
+
+      % Helper lines
+      \coordinate (X) at ($(U)+(V)$);
+      \draw[dashed, gray, thick] (U) -- (X) -- (V);
+
+      % Sum
+      \draw[-to, draw=primaryColor]
+      (O) -- (X)
+      node[pos=.5, above, rotate=20]{$\rvec u + \rvec v$}
+      ;
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \begin{minipage}{.65\textwidth}
+    \sftitle{Vektor koordinátatengelyekkel bezárt szöge}:
+    \vspace{5mm}
+    \begin{equation*}
+      \cos \varphi_x = \frac{v_1}{|\rvec v|}
+      \quad
+      \cos \varphi_y = \frac{v_2}{|\rvec v|}
+      \quad
+      \cos \varphi_z = \frac{v_3}{|\rvec v|}
+    \end{equation*}
+  \end{minipage}\begin{minipage}{.35\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=.5, thick]
+      % 3d axis
+      \draw[->, draw=ternaryColor, thick]
+      (0,0,0) -- (6,0,0) node[anchor=south west]{$x$};
+      \draw[->, draw=ternaryColor, thick]
+      (0,0,0) -- (0,4,0) node[right=2mm]        {$y$};
+      \draw[->, draw=ternaryColor, thick]
+      (0,0,0) -- (0,0,4) node[anchor=south east]{$z$};
+
+      \def\xlen{4} % 42.03111377
+      \def\ylen{3} % 56.14548519
+      \def\zlen{2} % 68.19859051
+
+      % vector
+      \draw[->, draw=primaryColor, ultra thick]
+      (0,0,0) -- (4,3,2)
+      coordinate (V)
+      ;
+
+      % % bounding box
+      % \draw[dashed, draw=gray]
+      % % 
+      % (V) -- (\xlen,\ylen,0) coordinate (Vxy)
+      % (V) -- (\xlen,0,\zlen) coordinate (Vxz)
+      % (V) -- (0,\ylen,\zlen) coordinate (Vyz)
+      % % 
+      % (\xlen,0,0) coordinate (Vx) -- (Vxy) --
+      % (0,\ylen,0) coordinate (Vy) -- (Vyz) --
+      % (0,0,\zlen) coordinate (Vz) -- (Vxz) --
+      % cycle
+      % ;
+
+      \def\ecc{2}
+
+      % x angle
+      \begin{scope}[
+          rotate around x=33.69006753,
+          canvas is xy plane at z=0,
+          draw=secondaryColor,
+        ]
+        \draw (\ecc,0) arc (0:42.03111377:\ecc)
+        node[midway, right]{$\varphi_x$}
+        ;
+      \end{scope}
+
+      % y angle
+      \begin{scope}[
+          rotate around y=63.43494882,
+          canvas is yz plane at x=0,
+          draw=secondaryColor,
+        ]
+        \draw (\ecc,0) arc (0:56.14548519:\ecc)
+        node[midway, above right]{$\varphi_y$}
+        ;
+      \end{scope}
+
+      % z angle
+      \begin{scope}[
+          rotate around z=-53.13010235,
+          canvas is zy plane at x=0,
+          draw=secondaryColor,
+        ]
+        \draw (\ecc,0) arc (0:68.19859051:\ecc)
+        node[midway, below right]{$\varphi_z$}
+        ;
+      \end{scope}
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Kollinearitás}:
+
+  Az $\rvec u$ és $\rvec v$ kollineárisak, ha $\rvec v$ előáll $\rvec u$ és egy
+  $\lambda \in \Reals$ szorzataként. Amennyiben $\lambda > 0$, akkor a két
+  vektor azonos irányú.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Komplanaritás}:
+
+  Tetszőleges számú vektor komplanáris, ha azok egy síkban helyezkednek el.
+\end{blueBox}
+
+\begin{definition}[Lineáris függetlenség]
+  Egy $\{ \rvec v_1; \rvec v_2; \dots; \rvec v_n \}$ vektorrendszer lineárisan
+  független, ha a $ \lambda_1 \rvec v_1 + \lambda_2 \rvec v_2 + \dots + \lambda_n
+    \rvec v_n = \nvec $ egyenletnek csak a triviális megoldása létezik. (Azaz
+  $\lambda_1 = \lambda_2 = \dots = \lambda_n$.)
+\end{definition}
+
+\begin{note}
+  \begin{itemize}
+    \item A nullvektor minden vektorral lineárisan függő.
+    \item Két vektor akkor lineárisan független, ha nem kollineáris.
+    \item Ha két vektor nem kollineáris, akkor egyértelműen meghatároznak egy
+          síkot, azaz bármely velük koplanáris vektor előállítható a két vektor
+          lineáris kombinációjaként.
+    \item 3D koordinátarendszerben 3-nál több vektor biztos, hogy lineárisan
+          összefüggő. (Feltéve, hogy nincs köztük nullvektor.)
+    \item 3 vektor lineárisan független ha nem koplanáris. (3D-ben)
+  \end{itemize}
+\end{note}
+
+\begin{blueBox}
+  \begin{minipage}{.5\textwidth}
+    \sftitle{Vektorok összege és különbsége}:
+    \begin{align*}
+      \rvec u + \rvec v & = (u_1 + v_1; u_2 + v_2; u_3 + v_3) \\
+      \rvec u - \rvec v & = (u_1 - v_1; u_2 - v_2; u_3 - v_3)
+    \end{align*}
+    \begin{itemize}
+      \item \textbf{Kommutatív}:
+            $\rvec u + \rvec v = \rvec v + \rvec u$
+
+      \item \textbf{Asszociatív}:
+            $(\rvec u + \rvec v) + \rvec w = \rvec u + (\rvec v + \rvec w)$
+    \end{itemize}
+  \end{minipage}\begin{minipage}{.5\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[scale=2/3, ultra thick]
+        % vectors
+        \draw[draw=ternaryColor, ->]
+        (0,0) -- (2,3) node[midway,anchor=east]{$\rvec u$};
+        \draw[draw=ternaryColor, ->]
+        (0,0) -- (5,1) node[midway,anchor=north]{$\rvec v$};
+
+        % helper lines
+        \draw[dashed, draw=gray, thick]
+        (2,3) -- (7,4)
+        (5,1) -- (7,4)
+        ;
+
+        % sum
+        \draw[primaryColor, ->]
+        (0,0) -- (7,4) node[anchor=south]{$\rvec u + \rvec v$};
+
+        % difference
+        \draw[secondaryColor, ->]
+        (5,1) -- (2,3) node[anchor=south]{$\rvec u - \rvec v$};
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \textbf{Skalárral való szorzás}:
+
+  Skalárral való szorzás esetén a vektor ($\rvec v$) minden koordinátáját
+  megszorozzuk a $\lambda \in \Reals$ skalárral, vagyis:
+  \[
+    \rvec u = \lambda \rvec v = (\lambda v_1; \lambda v_2; \lambda v_3)
+    \text.
+  \]
+  \textbf{A skalárral való szorzás eredménye egy vektor}, melynek hossza az
+  eredeti vektor hosszának skalárszorosa.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Vektorok skaláris szorzata}: (Scalar / Dot product)
+
+  Az $\rvec u$ és $\rvec v$ vektorok skaláris szorzata:
+  \[
+    \rvec u \cdot \rvec v = u_1 v_1 + u_2 v_2 + u_3 v_3
+    \text.
+  \]
+  \textbf{Két vektor skaláris szorzatának eredménye egy skalár.}
+\end{blueBox}
+
+\begin{note}
+  \sftitle{A skaláris szorzat tulajdonságai}:
+  \begin{itemize}
+    \item $\rvec u \cdot \rvec v = \rvec v \cdot \rvec u$
+          (kommutatív)
+
+    \item $\rvec u \cdot (\rvec v + \rvec w) =
+            \rvec u \cdot \rvec v + \rvec u \cdot \rvec w$
+          (disztributív)
+
+    \item $\rvec u \cdot \rvec u = |\rvec u|^2$
+
+    \item $\rvec u \cdot \nvec = 0$
+
+    \item $(\lambda \rvec u) \cdot \rvec v = \lambda (\rvec u \cdot \rvec v)$
+  \end{itemize}
+\end{note}
+
+\begin{note}
+  \begin{minipage}{.6\textwidth}
+    \sftitle{A skaláris szorzat geometriai jelentése}:\\[3mm]
+    A skaláris szorzás segítségével kiszámítható az $\rvec u$ és $\rvec v$
+    vektorok közötti szög.
+    \[
+      \rvec u \cdot \rvec v = |\rvec u| |\rvec v| \cos \varphi
+    \]
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1/2, ultra thick]
+      % vectors
+      \draw[draw=primaryColor, ->]
+      (0,0) -- (2,3)
+      node[midway,anchor=east]{$\rvec u$}
+      coordinate (7)
+      ;
+      \draw[draw=primaryColor, ->]
+      (0,0) -- (5,1)
+      node[midway,anchor=north]{$\rvec v$}
+      coordinate (4)
+      ;
+
+      \coordinate (0) at (0,0);
+
+      % Angle
+      \draw pic["$\varphi$", draw=ternaryColor, angle eccentricity=0.65, angle radius=1.1cm]
+        {angle=4--0--7};
+    \end{tikzpicture}
+  \end{minipage}
+\end{note}
+
+\begin{blueBox}
+  % \sftitle{Vetület}:
+
+  Az $\rvec u$ vektor $\rvec v$ vektorra vett párhuzamos és merőleges
+  komponense:
+  \[
+    \rvec u_{||} = (\rvec u \cdot \uvec e_v) \, \uvec e_v
+    \quad \text{és} \quad
+    \rvec u_{\perp} = \rvec u - \rvec u_{||}
+    \text,
+  \]
+  ahol $\uvec e_v$ a $\rvec v$ irányába mutató egységvektor.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Vektoriális szorzat / keresztszorzat} (Cross product):
+
+  Az $\rvec u$ és $\rvec v$ vektorok keresztszorzata:
+  \[
+    \rvec u \times \rvec v
+    = \begin{bmatrix}
+      u_1 \\ u_2 \\ u_3
+    \end{bmatrix} \times \begin{bmatrix}
+      v_1 \\ v_2 \\ v_3
+    \end{bmatrix}
+    = \left|\begin{matrix}
+      \ibase & \jbase & \kbase \\
+      u_1    & u_2    & u_3    \\
+      v_1    & v_2    & v_3
+    \end{matrix}\right|
+    = \begin{bmatrix}
+      u_2 v_3 - u_3 v_2 \\
+      u_3 v_1 - u_1 v_3 \\
+      u_1 v_2 - u_2 v_1
+    \end{bmatrix}
+    \text.
+  \]
+
+  \textbf{Két vektor keresztszorzatának eredménye egy vektor}, amely merőleges
+  mindkét vektorra, iránya pedig a jobbkéz szabály szerinti.
+\end{blueBox}
+
+\begin{note}
+  \sftitle{A keresztszorzat tulajdonságai}:
+  \begin{itemize}
+    \item $\rvec v \times \rvec v = \nvec$
+
+    \item $\rvec u \times \rvec v = -\rvec v \times \rvec u$
+          (antikommutatív)
+
+    \item $\rvec u \times (\rvec v + \rvec w)
+            = \rvec u \times \rvec v + \rvec u \times \rvec w$
+          (disztributív)
+
+    \item $\rvec u \times (\lambda \rvec v) = \lambda (\rvec u \times \rvec v)$
+
+    \item $\rvec u \times \rvec v = \nvec$ akkor és csak akkor, ha $\rvec u$ és
+          $\rvec v$ kollineárisak, vagy ha valamelyikük nullvektor.
+  \end{itemize}
+\end{note}
+
+\begin{note}
+  \begin{minipage}{.6\textwidth}
+    \sftitle{A keresztszorzat geometriai jelentése}:\\[1mm]
+    Az $\rvec u \times \rvec v$ vektor hossza megegyezik az $\rvec u$ és $\rvec v$
+    vektorok által kifeszített paralelogramma területével.
+
+    \[
+      |\rvec u \times \rvec v| = |\rvec u| |\rvec v| \sin \varphi
+    \]
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1/2, ultra thick]
+      % vectors
+      \draw[draw=primaryColor, ->]
+      (0,0) -- (2,3) node[midway,anchor=east]{$\rvec u$};
+      \draw[draw=primaryColor, ->]
+      (0,0) -- (5,1) node[midway,anchor=north]{$\rvec v$};
+
+      % helper lines
+      \draw[dashed, draw=gray, thick]
+      (2,3) -- (7,4)
+      (5,1) -- (7,4)
+      ;
+
+      \begin{pgfonlayer}{bg}
+        \fill [primaryColor!20] (0,0) -- (2,3) -- (7,4) -- (5,1) -- cycle;
+      \end{pgfonlayer}
+    \end{tikzpicture}
+  \end{minipage}
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Vegyesszorzat}:
+
+  Az $\rvec u$, $\rvec v$ és $\rvec w$ vektorok vegyes szorzata:
+  \[
+    \rvec u \rvec v \rvec w
+    = \rvec u \cdot (\rvec v \times \rvec w)
+  \]
+  \textbf{A vegyesszorzat eredménye egy skalár}.
+\end{blueBox}
+
+\begin{note}
+  \sftitle{A vegyesszorzat tulajdonságai}:
+  \begin{itemize}
+    \item $\rvec u \rvec v \rvec w
+            = \rvec w \rvec u \rvec v
+            = \rvec v \rvec w \rvec u
+            = -\rvec v \rvec u \rvec w
+            = -\rvec w \rvec v \rvec u
+            = -\rvec u \rvec w \rvec v$
+          (ciklikus csere)
+
+    \item lineáris mindhárom változójában:
+          $(\lambda \rvec u + \mu \rvec v) \rvec w \rvec z
+            = \lambda \rvec u \rvec w \rvec z + \mu \rvec v \rvec w \rvec z$
+
+    \item Ha $\rvec u$, $\rvec v$ és $\rvec w$ vektorok egy síkban helyezkednek
+          el, akkor vegyesszorzatuk nulla.
+  \end{itemize}
+\end{note}
+
+\begin{note}
+  \sftitle{A vegyesszorzat geometriai jelentése}:
+
+  3 vektor vegyesszorzata megadja az általuk kifeszített paralelepipedon
+  térfogatát, illetve az általuk kifeszített tetraéder térfogatának hatszorosát.
+\end{note}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  % 1
+  \item Legyen $\rvec u$ és $\rvec v$ két tetszőleges vektor. Milyen $\alpha$ és
+        $\beta$ paraméterek esetén lesznek kollineárisak, ha az $\{ \rvec a;
+          \rvec b; \rvec c \}$ vektorrendszer lineárisan független?
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $
+                    \begin{cases}
+                      \rvec u = 2 \rvec a + 3 \rvec b \\
+                      \rvec v = 4 \rvec b + \alpha \rvec c
+                    \end{cases}
+                  $
+
+            \item $
+                    \begin{cases}
+                      \rvec u = 3 \rvec a - 3 \alpha \rvec b + \beta \rvec c \\
+                      \rvec v = \rvec a - \alpha \rvec b - \rvec c
+                    \end{cases}
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+        % 2
+  \item Legyen az $\{ \rvec a; \rvec b; \rvec c \}$ vektorrendszer lineárisan
+        független. Lineárisan független lesz-e az $\{ \rvec r; \rvec s;
+          \rvec t \}$ vektorrendszer?
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $
+                    \begin{cases}
+                      \rvec r = 3 \rvec a + 2 \rvec b +   \rvec c \\
+                      \rvec s = 5 \rvec a - 3 \rvec b - 2 \rvec c \\
+                      \rvec t = \nvec
+                    \end{cases}
+                  $
+
+            \item $
+                    \begin{cases}
+                      \rvec r = \rvec a + \rvec b + \rvec c \\
+                      \rvec s =           \rvec b + \rvec c \\
+                      \rvec t = \rvec a           + \rvec c
+                    \end{cases}
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+        % 3
+  \item Legyen $\rvec a$, $\rvec b$ és $\rvec c$ közös középpontú komplanáris
+        vektorok. ($\rvec a$ és $\rvec b$ nem kollineáris) Bizonyítsa be,
+        hogy az $\rvec a, \rvec b, \rvec c$ vektorok végpontja akkor és csakis
+        akkor esik egy egyenesre, ha $\rvec c = \alpha \rvec a + \beta \rvec b$
+        előállításban $\alpha + \beta = 1$.
+
+        % 4
+  \item Számítsa ki az $\rvec a (7; -1; 6)$ és $\rvec b (2; 20; 2)$
+        vektorok által bezárt szöget!
+
+        % 5
+  \item Milyen $z$ esetén lesz a $\rvec b(6; -2; z)$ vektor merőleges az
+        $\rvec a(2; -3; 1)$ vektorra?
+
+        % 6
+  \item Ha az $\rvec a + 3 \rvec b$ vektor merőleges a $7 \rvec a - 5 \rvec b$
+        vektorra, az $\rvec a - 4 \rvec b$ vektor pedig merőleges a $7 \rvec a -
+          2 \rvec b$ vektorra, mekkora $\rvec a$ és $\rvec b$ bezárt szögének
+        koszinusza?
+
+        % 7
+  \item Az $ABCD$ téglalap ismert csúcsainak koordinátái: $A(2; 6; 0)$, $B(1; 2;
+          3)$, $C(-2; 8; z)$. Mennyi $z$ értéke? Hol van $D$ pont?
+
+        % 8
+  \item Számítsa ki az $\rvec a \times \rvec b$ keresztszorzatot, amennyiben
+        $\rvec a (-4; 2; 1)$ és $\rvec b (-2; 7; 8)$.
+
+        % 9
+  \item Hozza egyszerűb alakra a $(3 \rvec a - \rvec b) \times (\rvec b +
+          3 \rvec a)$ kifejezést!
+
+        % 10
+  \item Kollineárisak-e az $\rvec a (-3; 4; 7)$ és $\rvec b (2; 5; 1)$ vektorok?
+
+        % 11
+  \item Mekkora az $ABC$ háromszög területe, melynek csúcsai: $A(1; 0; 2)$,
+        $B(-1; 4; 7)$ és $C(5; -2; 1)$?
+
+        % 12
+  \item Igaz-e, hogy ha $\rvec a \times \rvec c = \rvec b \times \rvec c$, akkor
+        $\rvec a = \rvec b$?
+
+        % 13
+  \item Lehet-e az $\rvec a(6; 2; -3)$ és $\rvec b(-3; 6; -2)$ vektor egy kocka
+        egy csúcsából induló élvektorok? Ha igen, határozzuk meg a harmadik élt!
+
+        % 14
+  \item Lineárisan független-e az $\rvec a(2; 3; -1)$, $\rvec b(1; -1; 3)$
+        és $\rvec c(1; 9; -11)$ vektor?
+
+        % 15
+  \item Az $\rvec a$, $\rvec b$ és $\rvec c$ vektorok által kifeszített
+        paralelepipedon térfogata $V$. Mekkora az $\rvec r$, $\rvec s$ és
+        $\rvec t$ vektorok által kifeszített paralelepipedon térfogata?
+
+        % 16
+  \item Milyen $\alpha$ paraméter esetén lesz az $\{ \rvec a, \rvec b, \rvec c$
+        vektorrendszer lineárisan függő, illetve lineárisan független, ha
+        $\rvec a (3; \alpha; 0)$, $\rvec b (0; 3; \alpha)$ és $\rvec c
+          (1; 0; -1)$?
+
+        % 17
+  \item Határozza meg $\rvec a(-1; 2; 1)$ vektor $\rvec b(1; 2; 2)$ vektorra
+        vett vetületét!
+\end{enumerate}
+
+% \\underline\{(\w)\}
+
+\end{document}

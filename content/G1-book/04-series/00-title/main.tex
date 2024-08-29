@@ -1,0 +1,80 @@
+\mainChapter{Sorok}
+
+\begin{tikzpicture}[
+    remember picture,
+    overlay,
+    ultra thick,
+    shift={($(current page.south west) + (\innerMargin+75mm, 4.25cm)$)},
+    % scale=1/4,
+  ]
+  \def\triangles#1{%
+    \pgfmathsetmacro\currentVal{int(#1)}
+    \begin{scope}[transparency group, fill opacity=0.2]
+      \foreach \x in {\currentVal,...,0} {
+          \pgfmathsetmacro\currentRadius{pow(2, \x) / sqrt(3) / 8}
+          \pgfmathsetmacro\currentRotation{mod(\x, 2) * 180}
+          \pgfmathsetmacro\currentMod{int(mod(\x, 3))}
+
+          \ifnum\currentMod=2
+            \def\fillcolor{primaryColor}
+          \fi
+          \ifnum\currentMod=0
+            \def\fillcolor{secondaryColor}
+          \fi
+          \ifnum\currentMod=1
+            \def\fillcolor{ternaryColor}
+          \fi
+
+          \draw [thick, fill=\fillcolor] (\currentRotation+90:\currentRadius) --
+          (\currentRotation+210:\currentRadius) --
+          (\currentRotation+330:\currentRadius) -- cycle;
+        }
+    \end{scope}
+
+    \foreach \x in {0,...,\currentVal} {
+        \pgfmathsetmacro\currentRadius{pow(2, \x) / sqrt(3) / 8}
+        \pgfmathsetmacro\currentRotation{mod(\x, 2) * 180}
+        \pgfmathsetmacro\currentMod{int(mod(\x, 3))}
+
+        \ifnum\currentMod=2
+          \def\drawcolor{primaryColor}
+        \fi
+        \ifnum\currentMod=0
+          \def\drawcolor{secondaryColor}
+        \fi
+        \ifnum\currentMod=1
+          \def\drawcolor{ternaryColor}
+        \fi
+
+        \draw [ultra thick, draw=\drawcolor, rounded corners=2pt] (\currentRotation+90:\currentRadius) --
+        (\currentRotation+210:\currentRadius) --
+        (\currentRotation+330:\currentRadius) -- cycle;
+      }
+  }
+
+  \node at (0,-17) {
+    \begin{tikzpicture}[scale=1.85]
+      \triangles{9}
+    \end{tikzpicture}
+  };
+\end{tikzpicture}
+
+\bgroup
+\color{gray!50!black}
+\sffamily
+
+A numerikus sorok olyan matematikai objektumok, amelyek végtelen sok valós
+számot adnak össze. Egy adott számsorozat tagjainak részletösszegeit sorba
+rendezve kaphatjuk meg őket. Vizsgálatuk célja, hogy megállapítsuk, hogy a sorok
+összegezhetők-e, azaz hogy a részletösszegek sorozata konvergens-e.
+
+Ebben a fejezetben a numerikus sorok definiálását követően megismerjük alapvető
+tulajdonságaikat szükséges, szükséges és elégséges feltételeket fogalmazunk meg
+a konvergenciára, amely a sorok viselkedésének alapvető jellemzője. Foglalkozni
+fogunk olyan nevezetes numerikus sorokkal, melyek különleges tulajdonságaik vagy
+gyakori előfordulásuk miatt kiemelt figyelmet érdemelnek.
+
+\chaptertoc
+\egroup
+
+\clearpage

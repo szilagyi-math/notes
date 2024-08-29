@@ -1,0 +1,75 @@
+\mainChapter{Sorozatok}
+
+\begin{tikzpicture}[
+    remember picture,
+    overlay,
+    ultra thick,
+    shift={($(current page.south west) + (\innerMargin+50mm, 8cm)$)},
+    % shift={(current page.north east)},
+    scale=.04,
+  ]
+  % \def\spiral#1{%
+  %   \pgfmathparse{int(#1)}%
+  %   \ifnum\pgfmathresult>0
+  %     \draw [help lines] (0,0) rectangle ++(1,1);
+  %     \begin{scope}[shift={(1,1)}, rotate=90, scale=1/1.6180339887]
+  %       \spiral{#1-1}
+  %     \end{scope}
+  %     \draw [primaryColor] (0,0) arc (270:360:1);
+  %   \fi
+  % }
+
+  \def\inverseSpiral#1{%
+    \pgfmathsetmacro\currentVal{int(#1)}
+    \ifnum\currentVal>0
+      \pgfmathsetmacro\currentMod{int(mod(\currentVal, 3))}
+
+      \begin{pgfonlayer}{bg}
+        \ifnum\currentMod=0
+          \def\fillcolor{primaryColor}
+        \fi
+        \ifnum\currentMod=1
+          \def\fillcolor{secondaryColor}
+        \fi
+        \ifnum\currentMod=2
+          \def\fillcolor{ternaryColor}
+        \fi
+
+        \draw [draw=\fillcolor, fill=\fillcolor, fill opacity=.2, thick] (0,0) rectangle ++(1,1);
+      \end{pgfonlayer}
+
+      % Then draw the square and arc for the current step
+      \draw [ultra thick, primaryColor] (0,0) arc (270:360:1);
+
+      % First, recursively call the macro with one less
+      \begin{scope}[scale=1.6180339887, rotate=90, shift={(1/1.6180339887,-1/1.6180339887)}]
+        \inverseSpiral{#1-1}
+      \end{scope}
+    \fi
+  }
+  \inverseSpiral{15}
+\end{tikzpicture}
+
+\bgroup
+\color{gray!50!black}
+\sffamily
+
+A számsorozatok olyan matematikai objektumok, amelyek a pozitív egész számokhoz
+rendelnek valós vagy komplex számokat. Gondolhatunk rájuk függvényként is, ahol
+az értelmezési tartomány a pozitív egész számok halmaza, az értékkészlet pedig a
+valós vagy a komplex számok egy részhalmaza.
+
+Ebben a fejezetben a számsorozatok definícióját, különböző megadási módjainak
+ismertetését követően áttekintjük a sorozatok - már középiskolában megtanult -
+tulajdonságait, típusait, majd definiáljuk a határérték, a konvergens és a
+divergens sorozat fogalmát.
+
+Részletesen foglalkozunk a sorozatokkal kapcsolatos fontos tételekkel,
+fogalmakkal. Az itt megszerzett ismeretek kulcsfontosságúak lesznek a későbbi
+tanulmányok során és segítenek abban, hogy mélyebb megértést szerezzünk a
+matematika alapvető elveiről és alkalmazásairól.
+
+\chaptertoc
+\egroup
+
+\clearpage

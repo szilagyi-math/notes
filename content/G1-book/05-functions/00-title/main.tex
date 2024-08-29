@@ -1,0 +1,74 @@
+\mainChapter{Függvények}
+
+\begin{tikzpicture}[
+    remember picture,
+    overlay,
+    % ultra thick,
+    shift={($(current page.south west) + (\innerMargin-20mm, 7.5mm)$)},
+  ]
+
+  \draw[gray!40, thin] (-0.75,-.75) grid (\paperwidth,\paperheight);
+
+  \coordinate (BL) at (\innerMargin-0.25cm,10.75cm-\innerMargin);
+  \coordinate (TR) at ($(\textwidth+5mm,\paperheight-\innerMargin-15.25cm)+(BL)$);
+
+  % tan
+  \draw[ultra thick, primaryColor, domain=-1.55:1.45, samples=100, smooth]
+  plot ({\x*3+5}, {6-tan(\x r)});
+  \draw[ultra thick, primaryColor, domain=1.6:4.6, samples=100, smooth]
+  plot ({\x*3+5}, {6-tan(\x r)});
+  \draw[ultra thick, primaryColor, domain=4.75:7, samples=100, smooth]
+  plot ({\x*3+5}, {6-tan(\x r)});
+
+  % horizontal line
+  \draw[ultra thick, gray, dashed] (-1,6) -- (22,6);
+
+  % vertical asymptotes
+  \draw[ultra thick, gray, dashed] (0.29,\paperheight) -- ++(0,-\paperheight-1cm);
+  \draw[ultra thick, gray, dashed] (9.71,\paperheight) -- ++(0,-\paperheight-1cm);
+  \draw[ultra thick, gray, dashed] (19.14,\paperheight) -- ++(0,-\paperheight-1cm);
+
+
+
+  \fill[white, fill opacity=.9] (BL) rectangle (TR);
+
+
+  % sin
+  % \draw[ultra thick, secondaryColor, domain=-1.5:20.5, samples=200, smooth]
+  % plot (\x, {2+sin(\x r)});
+
+  % 1 / x
+  % \draw[ultra thick, ternaryColor, domain=0.01:5, samples=500, smooth]
+  % plot ({\x+19}, {1/\x + 6});
+  % \draw[ultra thick, ternaryColor, domain=-20:-0.1, samples=500, smooth]
+  % plot ({\x+19}, {1/\x + 6});
+
+
+\end{tikzpicture}
+
+\bgroup
+\color{gray!50!black}
+\sffamily
+
+A matematikában a függvények alapvető fogalmak, amelyek a változók közötti
+kapcsolatokat írják le. Egy függvény egy szabály, amely egy adott halmaz egy
+eleméhez pontosan egy elemet rendel egy másik halmazból. Az előbbi halmazt
+értelmezési tartománynak, az utóbbit értékkészletnek hívjuk. A függvényeket
+gyakran ábrázoljuk grafikusan, az $x$-tengelyen a független változó, az
+$y$-tengelyen pedig a függő változó értékei feltüntetve. A függvényekkel
+kapcsolatos alapvető fogalmak megértése elengedhetetlen a matematika további
+területeinek tanulmányozásához.
+
+Középiskolai tanulmányaink során megismertük a legfontosabb függvényosztályokat:
+a lineáris, a kvadratikus és egyéb hatványfüggvényeket, a trigonometrikus, az
+exponenciális és a logaritmikus függvényeket, foglalkoztunk
+függvénytranszformációkkal. Ebben a fejezetben áttekintjük a függvények
+legfontosabb jellemzőit, amelyek a matematikai analízis alapkövei,
+tanulmányozásuk nemcsak a matematikai elméletben, hanem a gyakorlati
+alkalmazásokban is kulcsfontosságú, hiszen a függvények segítségével
+modellezhetjük a világ különböző jelenségeit.
+
+\chaptertoc
+\egroup
+
+\clearpage

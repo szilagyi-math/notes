@@ -1,0 +1,237 @@
+\section{Fogalmak, definíciók}
+
+\begin{definition}[Sorozat]
+  A pozitív egész számok halmazán értelmezett $a_n:\mathbb{N}\rightarrow
+    \Reals$ függvényt \textbf{valós sorozat}nak hívjuk,
+  az $a_n:\mathbb{N}\rightarrow \mathbb{C}$ függvényt \textbf{komplex
+    sorozat}nak nevezzük.
+\end{definition}
+
+\begin{definition}[Konvergencia]
+  Az $(a_n)$ sorozatot konvergensnek mondjuk, ha $\exists a \in \Reals$ valós
+  szám, hogy $\forall \varepsilon > 0$ esetén $\exists N(\varepsilon)$
+  küszöbszám, hogy $|a_n - a| < \varepsilon$, ha $n > N(\varepsilon)$.
+  Jelölése:
+  \[
+    \lim_{n \rightarrow \infty} a_n = a
+    \text{, ahol $a$ a sorozat határértéke.}
+  \]
+\end{definition}
+
+\begin{definition}[Divergencia]
+  Az $(a_n)$ sorozatot divergensnek mondjuk, ha nem konvergens.
+\end{definition}
+
+\begin{note}
+  Egy konvergens sorozatnak pontosan egy határértéke van.
+\end{note}
+
+\begin{note}
+  Szükséges és elégséges feltételek egy sorozat konvergenciájára.
+
+  Következmény: ha egy sorozatban véges sok elemet megváltoztatunk, vagy egy
+  sorozathoz véges sok elemet hozzáveszünk, vagy belőle véges sok elemet
+  elveszünk, akkor az sem a sorozat határértékét, sem a konvergenciáját nem
+  változtatja meg.
+\end{note}
+
+\begin{definition}[Sorozat korlátossága]
+  \begin{itemize}
+    \item Az $(a_n)$-t \textbf{alulról korlátos}nak nevezzük,
+          ha értékkészlete alulról korlátos.
+    \item Az $(a_n)$-t \textbf{felülről korlátos}nak nevezzük,
+          ha értékkészlete felülről korlátos.
+    \item Az $(a_n)$ sorozat \textbf{korlátos},
+          ha alulról és felülről is korlátos.
+  \end{itemize}
+\end{definition}
+
+\begin{note}
+  Konvergens sorozat korlátos. (Az állítás megfordítása nem igaz.)
+\end{note}
+
+\vspace{-.5em}
+\begin{definition}[Műveletek sorozatokkal]
+  Legyenek $(a_n)$ és $(b_n)$ sorozatok, $\lambda \in \Reals$, ekkor:
+  \begin{itemize}
+    \item $(a_n) + (b_n) := (a_n + b_n)$,
+    \item $\lambda \cdot (a_n) := (\lambda \cdot a_n)$,
+    \item $(a_n)\cdot (b_n):=(a_n\cdot b_n)$,
+    \item $(a_n) / (b_n) = (a_n / b_n)$, ha $b_n \neq 0$.
+  \end{itemize}
+\end{definition}
+
+\begin{note}
+  Legyenek $(a_n)$ és $(b_n)$ konvergens sorozatok $a_n \rightarrow a$,
+  $b_n \rightarrow b$, ha $n \rightarrow \infty $ és legyen ${\lambda \in
+      \Reals}$, ekkor ezen sorozatok összege, számszorosa, szorzata és
+  hányadosa is konvergens, és:
+  \begin{itemize}
+    \item $a_n + b_n \rightarrow{a + b}$,
+    \item $\lambda \cdot a_n \rightarrow \lambda \cdot a$,
+    \item $a_n \cdot b_n\rightarrow a \cdot b$,
+    \item $(a_n / b_n) \rightarrow (a / b)$, ha $b \neq 0$
+  \end{itemize}
+\end{note}
+
+% TODO: FIX
+\begin{note}
+  Konvergens sorozat jeltartó, ha
+  \[
+    \lim_{n \rightarrow\infty} a_n=a\neq 0
+    \text,
+  \]
+  akkor $\exists N_0$ index, hogy $\sgn a_n = \sgn a $, ha $n > N_0$.
+
+  Következmény:
+  \[
+    \lim_{n \rightarrow \infty} a_n = a
+    \text{ és }
+    \lim_{n \rightarrow \infty} b_n = b
+    \text{ és }
+    a_n \geq b_n
+    \quad \Rightarrow \quad
+    a \geq b
+    \text,
+  \]
+  azaz a határátmenet rendezéstartó.
+\end{note}
+
+\begin{theorem}[Rendőr tétel]
+  Tegyük fel, hogy $(a_n)$, $(b_n)$ és $(x_n)$ sorozatokra teljesül, hogy $a_n
+    \leq x_n \leq b_n : \forall n$-re vagy $n > N_0$, továbbá
+  \[
+    \lim_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} b_n = a
+    \text{, ekkor:}
+    \lim_{n \rightarrow \infty} x_n = a
+    \text.
+  \]
+
+  % Következmény:
+  % Ha $(a_n)$ és $(b_n)$ sorozatok nullsorozatok, akkor a rendőr tételből
+  % következik, hogy szorzatuk is nullsorozat.
+\end{theorem}
+
+\begin{note}
+  Ha $(a_n)$ és $(b_n)$ sorozatok nullsorozatok, akkor a rendőr tételből
+  következik, hogy szorzatuk is nullsorozat.
+\end{note}
+
+\begin{note}
+  Ha $(a_n)$ sorozat konvergens és határértéke $a$, akkor
+  \[
+    \lim\limits_{n \rightarrow \infty} |a_n|=|a|
+    \text.
+  \]
+  Visszafelé ez nem igaz (csak nullsorozatokra).
+\end{note}
+
+\begin{definition}[Kibővített valós számok halmaza]
+  Az $\Reals_b := \Reals \cup \{-\infty; \infty\}$ halmazt kibővített valós
+  számok halmazának nevezzük.
+\end{definition}
+
+
+\begin{definition}[Sorozat határértéke $\pm\infty$]
+  Azt mondjuk, hogy az $(a_n)$ határértéke $\infty$, ha $\forall K \in \Reals$
+  esetén $\exists N_K$ : $a_n > K$, ha $n > N_K$.
+
+  Azt mondjuk, hogy az $(a_n)$ határértéke $-\infty$, ha $\forall K \in \Reals$
+  esetén $\exists N_K$ : $a_n < K$, ha $n > N_K$.
+\end{definition}
+
+% \begin{definition}[Sorozat határértéke $-\infty$]
+%   Azt mondjuk, hogy az $(a_n)$ határértéke $-\infty$, ha $\forall K \in \Reals$
+%   esetén $\exists N_K$ : $a_n < K$, ha $n > N_K$.
+% \end{definition}
+
+\begin{definition}[Sorozat monotonitása]
+  Az $(a_n)$ sorozat monotonitása:
+  \begin{itemize}
+    \item monoton növekvő, ha $a_n \geq a_{n-1}$,
+    \item monoton csökkenő, ha $a_n \leq a_{n-1}$,
+    \item szigorúan monoton növekvő, ha $a_n > a_{n-1}$,
+    \item szigorúan monoton csökkenő, ha $a_n < a_{n-1}$.
+  \end{itemize}
+\end{definition}
+
+\begin{note}
+  Ha az $(a_n)$ monoton növekvő, akkor alulról korlátos, illetve ha monoton
+  csökkenő, akkor felülről korlátos.
+\end{note}
+
+\begin{statement}
+  \begin{enumerate}
+    \item Monoton, korlátos sorozat konvergens.
+    \item Monoton, nem korlátos sorozatnak van határértéke.
+    \item Ha egy sorozat divergens, akkor vagy nem létezik a határértéke, vagy a
+          határértéke $\infty$ vagy $-\infty$.
+  \end{enumerate}
+\end{statement}
+
+\begin{definition}[Részsorozat]
+  $!(k_n)$ a természetes számok egy szigorúan növekvő sorozata és $(a_n)$ egy
+  valós számsorozat, ekkor a $b_n = a_{k_n}$ sorozatot az $a_n$ sorozat $k_n$
+  indexsorozathoz tartozó részsorozatának nevezzük.
+\end{definition}
+
+\begin{theorem}[Sorozat határértékének létezése]
+  Ha az $a_n$ sorozatnak van határértéke, akkor bármely részsorozatának is van
+  határértéke, és ez a két határérték megegyezik.
+\end{theorem}
+
+\begin{theorem}[Monoton részsorozat létezése]
+  Bármely sorozatnak van monoton részsorozata.
+\end{theorem}
+
+\begin{theorem}[Bolzano--Weierstrass-tétel]
+  Minden korlátos sorozatnak van konvergens részsorozata.
+\end{theorem}
+
+\begin{definition}[Limesz szuperior és inferior]
+  Az $(a_n)$ sorozat limesz szuperiorjának nevezzük az alábbi mennyiséget:
+  \[
+    \lim \sup a_n
+    = \overline{\lim} \; a_n
+    := \lim_{n \rightarrow \infty} \sup \{\;
+    a_{n + 1}; a_{n + 2}; \dots
+    \;\}
+    \text.
+  \]
+
+  Az $(a_n)$ sorozat limesz inferiorjának nevezzük az alábbi mennyiséget:
+  \[
+    \lim \inf a_n
+    = \underline{\lim} \; a_n
+    := \lim_{n \rightarrow \infty} \inf \{\;
+    a_{n + 1}; a_{n + 2}; \dots
+    \;\}
+    \text.
+  \]
+\end{definition}
+
+% \begin{note}
+%   Sorozat limesz szuperiorja sok esetben egybeesik a határértékkel.
+% \end{note}
+
+% \begin{definition}[Limesz inferior]
+%   Az $(a_n)$ sorozat limesz inferiorjának nevezzük az alábbi mennyiséget:
+%   \[
+%     \lim \inf a_n
+%     = \underline{\lim} \; a_n
+%     = \lim_{n \rightarrow \infty} \inf \{\;
+%     a_{n + 1}; a_{n + 2}; \dots
+%     \;\}
+%     \text.
+%   \]
+% \end{definition}
+
+\begin{definition}[Cauchy-sorozat]
+  Az $(a_n)$ sorozatot Cauchy-sorozatnak nevezzük, ha $\forall \varepsilon > 0$
+  esetén $\exists N(\varepsilon)$, hogy $|a_n - a_m| < \varepsilon$, ha $n, m >
+    N(\varepsilon)$.
+\end{definition}
+
+\begin{theorem}[Cauchy-féle konvergencia kritérium]
+  Az $(a_n)$ konvergens $\Leftrightarrow$ ha Cauchy-sorozat.
+\end{theorem}

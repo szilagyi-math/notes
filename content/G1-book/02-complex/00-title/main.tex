@@ -1,0 +1,89 @@
+\mainChapter{Komplex számok}
+
+\begin{tikzpicture}[
+    remember picture,
+    overlay,
+    ultra thick,
+    shift={($(current page.south west) + (\innerMargin-15mm, 7.5mm)$)},
+  ]
+  % Complex numbers grid
+  % \draw[gray, thin] (-0.75,-.75) grid (\paperwidth,13.25cm-\innerMargin);
+  % \draw[gray, thin] (-0.75,-.75) grid (\innerMargin-0.75cm,\paperheight);
+
+  \draw[gray!40, thin] (-0.75,-.75) grid (\paperwidth,\paperheight);
+
+  \coordinate (BL) at (\innerMargin-0.75cm,13.25cm-\innerMargin);
+  \coordinate (TR) at ($(\textwidth+1cm,\paperheight-\innerMargin-17.25cm)+(BL)$);
+
+  \coordinate (O) at (7, 6);
+
+  \coordinate (L) at ($(O)+(-10.25,0)$);
+  \coordinate (R) at ($(O)+(+12.5,0)$);
+  \coordinate (T) at ($(O)+(0,+22.5)$);
+  \coordinate (B) at ($(O)+(0,-6.25)$);
+
+  \draw[draw=secondaryColor, ultra thick, ->] (L) -- (R) node [above=2mm] {$\Re$};
+  \draw[draw=secondaryColor, ultra thick, ->] (B) -- (T) node [right=2mm] {$\Im$};
+
+  \foreach \r in {1,2,...,25} {
+      \draw[gray, thin] (O) circle (\r cm);
+    }
+
+
+  \foreach \angle/\mark in {
+      10/A,%
+      30/B,%
+      50/C,%
+      70/D,%
+      90/E,%
+      110/F,%
+      130/G,%
+      150/H,%
+      170/I,%
+      190/J,%
+      210/K,%
+      230/L,%
+      250/M,%
+      270/N,%
+      290/P,%
+      310/Q,%
+      330/R,%
+      350/S%
+    } {
+      \draw[primaryColor,->, line width=2.5pt, opacity=\angle/500+0.2]
+      (O) -- ++(\angle-235:\angle*.375mm+3cm) coordinate (\mark);
+    }
+
+  % \draw[smooth, line width=1pt, gray]
+  % (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- (G) -- (H) -- (I) -- (J) -- (K) -- (L) -- (M) -- (N) -- (O) -- (P) -- (Q) -- (R);
+
+  \draw[gray, line width=1pt, opacity=.5] plot [smooth, tension=0.5] coordinates {
+      (A) (B) (C) (D) (E) (F) (G) (H) (I) (J) (K) (L) (M) (N) (P) (Q) (R) (S)
+    };
+
+  \fill[white, fill opacity=.9] (BL) rectangle (TR);
+\end{tikzpicture}
+
+\bgroup
+\color{gray!50!black}
+\sffamily
+
+Amikor a matematikusok évszázadokkal ezelőtt csak a valós számokkal dolgoztak,
+találkoztak olyan problémákkal, amelyeket nehezen vagy egyáltalán nem tudtak
+megoldani. A sikert az hozta el, mikor bővítették a valós számok halmazát.
+
+A komplex számok bevezetése tehát egyfajta természetes kiterjesztése volt a
+valós számoknak A komplex számok segítségével megoldhatunk olyan egyenleteket,
+amelyeknek nincsenek valós megoldásai, például az $x^2 + 1 = 0$ egyenlet ilyen
+és minden további, aminek negatív a diszkriminánsa.
+
+Ebben a fejezetben megismerkedünk a komplex számok fogalmával, ábrázolásával,
+műveleteivel és alkalmazásaival a matematika és a természettudományok különböző
+területein. A komplex számok tanulmányozása gazdagítja a matematikai
+ismereteinket, mélyíti a matematikai gondolkodásunkat és új lehetőségeket nyit
+számunkra a problémamegoldásban.
+
+\chaptertoc
+\egroup
+
+\clearpage

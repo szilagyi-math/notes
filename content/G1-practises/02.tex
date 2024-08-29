@@ -1,0 +1,663 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practise}
+
+\title{Térgeometriai alakzatok}
+\area{Analitikus geometria}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{2}
+
+\begin{document}
+\maketitle
+
+\subsection{Elméleti Áttekintő}
+
+\begin{blueBox}
+  \begin{minipage}{.575\textwidth}
+    \sftitle{Egyenes 2D-ben}:
+    \begin{alignat*}{9}
+      \rvec n   & (A; B)     &  & \text{ -- egyenes normálvektora}        \\
+      \rvec r   & (x; y)     &  & \text{ -- tetszőleges pont helyvektora} \\
+      \rvec r_0 & (x_0; y_0) &  & \text{ -- $P_0$ fixpont helyvektora}
+    \end{alignat*}
+  \end{minipage}\begin{minipage}{.425\textwidth}
+    \centering
+    \begin{tikzpicture}[ultra thick]
+      % Coordinate system
+      \coordinate (O) at (0, 0);
+      \draw[draw=ternaryColor, ->, thick] (O) -- (4, 0) node[above left] {$x$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0, 2) node[below left] {$y$};
+
+      % Line
+      \draw[draw=secondaryColor, thick] (-.5, .5) -- (3.5, 1.25)
+      node[right] {$e$}
+      coordinate[pos=.3] (P0)
+      coordinate[pos=.65] (P)
+      coordinate[pos=.85] (N)
+      ;
+
+      % Points
+      \node[above] at (P0) {$\rvec r_0$};
+      \node[above left] at (P) {$\rvec r$};
+
+      % Vectors
+      \draw[draw=primaryColor, ->] (O) -- (P0);
+      \draw[draw=primaryColor, ->] (O) -- (P);
+
+      \draw[draw=primaryColor, ->] (N) -- ++(-0.1875,1)
+      coordinate (Q)
+      node[midway, right] {$\rvec n$}
+      ;
+
+      % Right angle
+      \draw pic["$\cdot$", draw, angle eccentricity=.5, angle radius=4mm, thick]
+        {angle=Q--N--P}
+      ;
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Az egyenes egyenlete}:
+  \begin{gather*}
+    (\rvec r_0 - \rvec r) \cdot \rvec n = 0
+    \\[2mm]
+    \rvec r \cdot \rvec n = \rvec r_0 \cdot \rvec n
+    \\[2mm]
+    Ax + By = \underbrace{Ax_0 + By_0}_{=: -C}
+    \quad\rightarrow\quad
+    Ax + By + C = 0
+  \end{gather*}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Hesse-féle normálalak}:
+  \[
+    \frac{Ax + By + C}{\sqrt{A^2 + B^2}} = 0
+  \]
+
+  A Hesse-féle normálalakot úgy kapjuk, hogy az egyenes normálvektorát
+  egységhosszúságúra normáljuk.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Két egyenes viszonya}:
+
+  Két egyenes által \textbf{közbezárt szög} a két egyenes normálvektorai által
+  bezárt szög.
+
+  Ebből következik, hogy ha a normálvektorok által bezárt szög $90^\circ$,
+  akkor a két egyenes merőleges egymásra. Ha a normálvektorok párhuzamosak,
+  akkor a két egyenes is párhuzamos.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Pont és egyenes távolsága}:
+
+  \begin{minipage}{.625\textwidth}
+    Adott egy $e$ egyenes Hesse-féle normálalakja és egy $P_0(x_0; y_0)$ pont.
+    Ekkor a pont és az egyenes távolsága:
+    \[
+      d = \left|
+      \frac{Ax_0 + By_0 + C}{\sqrt{A^2 + B^2}}
+      \right|
+      \text.
+    \]
+  \end{minipage}\begin{minipage}{.375\textwidth}
+    \centering
+    \begin{tikzpicture}[ultra thick]
+      % Coordinate system
+      \coordinate (O) at (0, 0);
+      \draw[draw=ternaryColor, ->, thick] (O) -- (4, 0) node[above left] {$x$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0, 2) node[below left] {$y$};
+
+      % Line
+      \draw[draw=secondaryColor, thick] (-.5,0.25) -- ++(4,1)
+      node[right] {$e$}
+      coordinate[pos=.5] (P)
+      coordinate (E)
+      ;
+
+      %  Distance
+      \draw[draw=primaryColor]
+      (P) -- ++(-.375,1.5)
+      coordinate (P0)
+      node[right=2mm] {$P_0$}
+      node[midway, left] {$d$}
+      ;
+
+      % Point
+      \draw[fill=primaryColor] (P0) circle (0.1);
+
+      % Right angle
+      \draw pic["$\cdot$", draw, angle eccentricity=.5, angle radius=4mm, thick]
+        {angle=E--P--P0}
+      ;
+    \end{tikzpicture}
+  \end{minipage}
+
+  A formula csak azon pontokra ad zérus értéket, amelyek rajta vannak az
+  egyenesen.
+\end{blueBox}
+
+\begin{blueBox}
+  \begin{minipage}{.6\textwidth}
+    \sftitle{Egyenes 3D-ben}:
+    \begin{alignat*}{9}
+      \rvec v   & (a; b; c)       &  & \text{ -- egyenes irányvektora}         \\
+      \rvec r   & (x; y; z)       &  & \text{ -- tetszőleges pont helyvektora} \\
+      \rvec r_0 & (x_0; y_0; z_0) &  & \text{ -- $P_0$ fixpont helyvektora}
+    \end{alignat*}
+    % \begin{gather*}
+    %   (\rvec r - \rvec r_0) \;||\; \rvec v \text{ (irányvektor)}
+    %   \\
+    %   \Downarrow
+    %   \\
+    %   (\rvec r - \rvec r_0) \times \rvec v = \nvec
+    % \end{gather*}
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=.4, ultra thick]
+      % Coordinate system
+      \coordinate (O) at (0,0,0);
+      \draw[draw=ternaryColor, ->, thick] (O) -- (8,0,0) node[below left] {$x$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,4,0) node[below left] {$y$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,0,4) node[below left] {$z$};
+
+      % Line
+      \draw[draw=secondaryColor, thick] (-2.5, 1, 0) coordinate (E) -- (7, 3.25, 0.75)
+      node[pos=.05, above] {$e$}
+      coordinate[pos=1] (V)
+      coordinate[pos=.5] (P0)
+      coordinate[pos=.8] (P)
+      ;
+
+      % Vectors
+      \draw[draw=primaryColor, ->] (O) -- (P0)
+      node[above] {$\rvec r_0$}
+      ;
+      \draw[draw=primaryColor, ->] (O) -- (P)
+      node[above] {$\rvec r$}
+      ;
+      \draw[draw=primaryColor, ->] (V) -- ++($0.3*(V)-0.3*(E)$)
+      node[midway, above] {$\rvec v$}
+      ;
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{3D egyenes paraméteres alakja}:
+
+  \begin{minipage}{.45\textwidth}
+    \begin{alignat*}{9}
+      \rvec r_0 & (x_0; y_0; z_0) &  & \text{ -- $P_0$ fixpont helyvektora} \\
+      \rvec v   & (a; b; c)       &  & \text{ -- egyenes irányvektora}      \\
+      t         & \in \Reals      &  & \text{ -- paraméter}
+    \end{alignat*}
+  \end{minipage}\begin{minipage}{.55\textwidth}
+    \[
+      \rvec r(t) = \rvec r_0 + t \rvec v
+      \quad\rightarrow\quad
+      \begin{cases}
+        \;x(t) = x_0 + a t \\
+        \;y(t) = y_0 + b t \\
+        \;z(t) = z_0 + c t
+      \end{cases}
+    \]
+  \end{minipage}
+
+  A paraméteres egyenletekből $t$-t kifejezve is megadhatjuk az egyenest:
+  \[
+    (t = \; ) \;
+    \frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}
+    \text.
+  \]
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Két egyenes viszonya}:
+
+  Két egyenes által közbezárt szög a két egyenes irányvektorai által bezárt
+  szög.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Pont és egyenes távolsága}:
+
+  \begin{minipage}{.55\textwidth}
+    Egy $\rvec r_1$ irányvektorú $P_1$ pont, és egy $\rvec r(t) = \rvec r_0 + t
+      \rvec v$ egyenletű egyenes távolsága
+    \[
+      d = \left|
+      \frac{\rvec v \times (\rvec r_0 - \rvec r_1)}{|\rvec v|}
+      \right|
+    \]
+  \end{minipage}\begin{minipage}{.45\textwidth}
+
+    \centering
+    \begin{tikzpicture}[scale=.4, ultra thick]
+      % Coordinate system
+      \coordinate (O) at (0,0,0);
+      \draw[draw=ternaryColor, ->, thick] (O) -- (8,0,0) node[above left] {$x$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,5,0) node[below left] {$y$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,0,4) node[below left] {$z$};
+
+      % Line
+      \draw[draw=secondaryColor, thick] (-2.5, 2.5, 1) coordinate (E) -- (8, 2.5, 8)
+      node[pos=.05, below] {$e$}
+      coordinate[pos=1] (V)
+      coordinate[pos=.55] (P)
+      ;
+
+      % Vectors
+      \draw[draw=primaryColor, ->] (V) -- ++($0.3*(V)-0.3*(E)$)
+      node[midway, below] {$\rvec v$}
+      ;
+
+      % Point
+      \coordinate (Q) at (2,2.5,-2);
+      \node [right] at (Q) {$P_1$};
+      \draw[draw=primaryColor] (Q) -- (P)
+      node[midway, above left] {$d$}
+      ;
+      \draw[fill=primaryColor] (Q) circle (0.1);
+
+      % Right angle
+      \draw pic["$\cdot$", draw, angle eccentricity=.55, angle radius=4mm, thick]
+        {angle=V--P--Q}
+      ;
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Két egyenes távolsága}:
+
+  \begin{minipage}{.6\textwidth}
+    Az $e_1: \rvec p_1(t_1) = \rvec r_1 + t_1 \rvec v_1$ és $e_2: \rvec p_2(t_2)
+      = \rvec r_2 + t_2 \rvec v_2$ egyenesek távolsága
+    \[
+      d = \Bigg|
+      (\rvec r_2 - \rvec r_1) \cdot
+      \underbrace{\frac{(\rvec v_1 \times \rvec v_2)}{|\rvec v_1 \times \rvec v_2|}}_{\uvec n_T}
+      \Bigg| = \left|
+      (\rvec r_2 - \rvec r_1) \cdot \uvec n_T
+      \right|
+      \text,
+    \]
+    ahol $\uvec n_T$ egy olyan egységvektor, amely merőleges mindkét egyenesre.
+    (normál transzverzális)
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+    \begin{tikzpicture}[ultra thick]
+      % Coordinate system
+      \coordinate (O) at (0,0,0);
+      \draw[draw=ternaryColor, ->, thick] (O) -- (4,0,0) node[above left] {$x$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,3,0) node[below left] {$y$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,0,2) node[below left] {$z$};
+
+      % 2 lines
+      \draw[draw=secondaryColor, thick] (-1, 2) -- (4, 3)
+      coordinate (V1)
+      node[pos=.05, below] {$e_1$}
+      coordinate[pos=.5] (P1)
+      ;
+      \draw[draw=secondaryColor, thick] (-1.5, 1) -- (3.75, -.5)
+      coordinate[pos=0] (V2)
+      node[pos=.05, below] {$e_2$}
+      coordinate[pos=.5] (P2)
+      ;
+
+      % Distance
+      \draw[draw=primaryColor] (P1) -- (P2)
+      node[midway, left] {$d$}
+      ;
+
+      % Right angles
+      \draw
+      pic["$\cdot$", draw, angle eccentricity=.5, angle radius=4mm, thick]
+        {angle=P2--P1--V1}
+      pic["$\cdot$", draw, angle eccentricity=.5, angle radius=4mm, thick]
+        {angle=P1--P2--V2}
+      ;
+    \end{tikzpicture}
+  \end{minipage}
+
+  Amennyiben $e_1$ és $e_2$ párhuzamosak, akkor a távolságukat a pont és egyenes
+  távolságának képletével számolhatjuk.
+\end{blueBox}
+
+\begin{blueBox}
+  \begin{minipage}{.575\textwidth}
+    \sftitle{Sík 3D-ben}:
+    \begin{alignat*}{9}
+      \rvec n   & (A; B; C)       &  & \text{ -- sík normálvektor}             \\
+      \rvec r   & (x; y; z)       &  & \text{ -- tetszőleges pont helyvektora} \\
+      \rvec r_0 & (x_0; y_0; z_0) &  & \text{ -- $P_0$ fixpont helyvektora}
+    \end{alignat*}
+  \end{minipage}\begin{minipage}{.425\textwidth}
+    \centering
+    \begin{tikzpicture}[ultra thick]
+      % Coordinate system
+      \coordinate (O) at (0,0,0);
+      \draw[draw=ternaryColor, ->, thick] (O) -- (4,0,0) node[above left] {$x$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,2.25,0) node[below left] {$y$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,0,1.5) node[right=2mm] {$z$};
+
+      % Plane at y = 1.5
+      \draw[draw=secondaryColor, fill=secondaryColor, fill opacity=.35, thick]
+      (-1, 1.25, -.5) -- (4, 1.25, -.5) -- (4, 1.25, 2) -- (-1, 1.25, 2) -- cycle
+      ;
+
+      % Vectors
+      \draw[draw=primaryColor, ->, ultra thick] (O) -- (-.5, 1.25, 1)
+      node[midway, below left] {$\rvec r_0$}
+      ;
+      \draw[draw=primaryColor, ->, ultra thick] (O) -- (2, 1.25, 1)
+      node[midway, below right] {$\rvec r$}
+      ;
+      \draw[draw=primaryColor, ->, ultra thick]
+      (3, 1.25, .5) coordinate (N)
+      -- ++(0, 1, 0) coordinate (Q)
+      node[pos=.7, right] {$\rvec n$}
+      ;
+
+      \coordinate (S) at (2, 1.25, .5);
+      \draw[gray, dashed] (S) -- (N);
+
+      % Right angle
+      \draw pic["$\cdot$", draw, angle eccentricity=.5, angle radius=4mm, thick]
+        {angle=Q--N--S};
+
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Sík egyenlete}:
+
+  A sík tetszőleges $\rvec r$ pontjára igaz, hogy
+  \begin{gather*}
+    (\rvec r - \rvec r_0) \cdot \rvec n = 0
+    \text,\\
+    \rvec r \cdot \rvec n = \rvec r_0 \cdot \rvec n =: -D
+    \text,\\
+    Ax + By + Cz + D = 0
+    \text.
+  \end{gather*}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Hesse-féle normálegyenlet}:
+
+  \[
+    \left|\frac{
+      Ax + By + Cz + D
+    }{
+      \sqrt{A^2 + B^2 + C^2}
+    }\right| = 0
+  \]
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Két sík viszonya}:
+
+  Két sík által bezárt szög a síkok normálvektorai által bezárt szög.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Sík és egyenes döféspontja}:
+
+  Egy $s: Ax + By+ Cz + D = 0$ sík és egy $e: \rvec r(t) = \rvec r_0 + t \rvec
+    v$ egyenes döféspontjait meghatározhatjuk, ha megoldjuk a következő
+  egyenletrendszert:
+  \[
+    \begin{cases}
+      \; x = x_0 + a t \\
+      \; y = y_0 + b t \\
+      \; z = z_0 + c t
+    \end{cases}
+    \; \text{ és} \qquad
+    Ax + By + Cz + D = 0
+    \text.
+  \]
+
+  A megoldások száma alapján:
+  \begin{center}
+    \begin{tikzpicture}[thick]
+      % 0 solutions
+      \draw[primaryColor, ultra thick, xshift=-5.25cm] (-.75, 1.35, 0) -- ++(4.5, 0, 0);
+
+      %  1 solution
+      \draw[primaryColor, ultra thick] (2.25, 0, 0.75) -- ++(-1, 2, 0)
+      coordinate[pos=.5] (Q)
+      ;
+      \draw[fill=primaryColor] (Q) circle (0.075);
+
+      % infinite solutions
+      \draw[primaryColor, ultra thick, xshift=5.25cm] (-.75, 1, 0.75) -- ++(4.5, 0, 0);
+
+      \foreach \xs/\sol in {-5.25/{$0$},0/{$1$},5.25/{$\infty$}} {
+      \begin{scope}[xshift=\xs cm]
+        % Coordinate system
+        \coordinate (O) at (0,0,0);
+        \draw[draw=ternaryColor, ->, thick] (O) -- (3,0,0) node[below left] {$x$};
+        \draw[draw=ternaryColor, ->, thick] (O) -- (0,2,0) node[below left] {$y$};
+        \draw[draw=ternaryColor, ->, thick] (O) -- (0,0,1.5) node[right=2mm] {$z$};
+
+        % Plane at y = 1
+        \draw[draw=secondaryColor, fill=secondaryColor, fill opacity=.35]
+        (0, 1, -.5) -- (3, 1, -.5) -- (3, 1, 2) -- (0, 1, 2) -- cycle
+        ;
+
+        % Solutions
+        \node at (1.5,-1) {\sol{} megoldás};
+      \end{scope}
+      }
+
+    \end{tikzpicture}
+  \end{center}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Sík és egyenes által bezárt szög}:
+
+  Egy sík és egy egyenes által bezárt szög a sík normálvektora és az egyenes
+  irányvektora által bezárt szöggel egyenlő.
+\end{blueBox}
+
+\begin{blueBox}
+  \begin{minipage}{.6\textwidth}
+    \sftitle{Sík és pont távolsága}:\\[3mm]
+    Egy $P_0(x_0; y_0;z_0)$ pont és egy $s: Az + By + Cz + D = 0$ sík távolsága:
+    \[
+      d = \left|
+      \frac{Ax_0 + By_0 + Cz_0 + D}{\sqrt{A^2 + B^2 + C^2}}
+      \right|
+      \text.
+    \]
+  \end{minipage}\begin{minipage}{.4\textwidth}
+    \centering
+    \begin{tikzpicture}[ultra thick]
+      % Coordinate system
+      \coordinate (O) at (0,0,0);
+      \draw[draw=ternaryColor, ->, thick] (O) -- (3,0,0) node[below left] {$x$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,2.5,0) node[below left] {$y$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,0,1.5) node[right=2mm] {$z$};
+
+      % Plane at y = 1
+      \draw[draw=secondaryColor, fill=secondaryColor, fill opacity=.35, thick]
+      (0, 1, -.5) -- (3, 1, -.5) -- (3, 1, 2) -- (0, 1, 2) -- cycle
+      ;
+
+      % Point
+      \coordinate (P) at (1.5, 2.5, 0.75);
+      \draw[fill=primaryColor] (P) circle (0.075);
+
+      % Distance
+      \draw[draw=primaryColor] (P)
+      node[above right] {$P_0$}
+      -- ++(0, -1.5, 0)
+      node[midway, right] {$d$}
+      coordinate (Q)
+      ;
+
+      % Right angle
+      \draw[dashed, gray] (Q) -- ++(-1,0,0) coordinate (R);
+      \draw pic["$\cdot$", draw, angle eccentricity=.5, angle radius=4mm, thick]
+        {angle=P--Q--R};
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Két sík metszésvonala}:
+
+  \begin{minipage}{.65\textwidth}
+    A metszésvonal irányvektora mindkét sík normálvektorára merőleges:
+    \[
+      \rvec v = \rvec n_1 \times \rvec n_2
+      \text.
+    \]
+    Ezen kívül szükségünk van még egy tetszőleges pontra, amely rajta van
+    mindkét síkon. Ezt megkaphatjuk úgy, hogy az egyik koordinátát fixáljuk,
+    és a másik kettőt kiszámítjuk a 2 sík egyenletéből. (Pl. $z = 0$)
+  \end{minipage}\begin{minipage}{.35\textwidth}
+    \centering
+    \begin{tikzpicture}[ultra thick]
+      % Coordinate system
+      \coordinate (O) at (0,0,0);
+      \draw[draw=ternaryColor, ->, thick] (O) -- (3,0,0) node[below left] {$x$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,2.5,0) node[below left] {$y$};
+      \draw[draw=ternaryColor, ->, thick] (O) -- (0,0,1.5) node[right=2mm] {$z$};
+
+      \begin{scope}[transparency group, fill opacity=.35]
+        % Plane at y = 1
+        \fill[fill=secondaryColor]
+        (0, 1.25, -.5) -- (3, 1.25, -.5) -- (3, 1.25, 2) -- (0, 1.25, 2) -- cycle
+        ;
+
+        % Plane at x = 1.5
+        \fill[fill=secondaryColor]
+        (1.5, 0, -.5) -- (1.5, 2.5, -.5) -- (1.5, 2.5, 2) -- (1.5, 0, 2) -- cycle
+        ;
+      \end{scope}
+
+
+      % Plane at y = 1
+      \draw[draw=secondaryColor, thick]
+      (0, 1.25, -.5) -- (3, 1.25, -.5) -- (3, 1.25, 2) -- (0, 1.25, 2) -- cycle
+      ;
+
+      % Plane at x = 1.5
+      \draw[draw=secondaryColor, thick]
+      (1.5, 0, -.5) -- (1.5, 2.5, -.5) -- (1.5, 2.5, 2) -- (1.5, 0, 2) -- cycle
+      ;
+
+      % Line (Yes, not in 3D xd)
+      \draw[draw=primaryColor] (0,-0.25) -- ++(45:3.5);
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  % 1
+  \item Számítsa ki az $e_1: 3x - 4y - 10 = 0$ és az $e_2: 6x - 8y + 5 = 0$
+        egyenes távolságát!
+
+        % 2
+  \item Írja fel azon egyenesnek az egyenletét, amely átmegy a $P(-2;5;6)$ és a
+        $Q(7; -1; 3)$ pontokon!
+
+        % 3
+  \item Határozza meg az $\alpha$ paramétert, ha ismert, hogy az alábbi
+        egyenesek metszik egymást!
+        \[
+          \frac{x + 2}{2} = \frac{y    }{-3} = \frac{z - 1}{4}
+          \hspace{2cm}
+          \frac{x - 3}{a} = \frac{y - 1}{4 } = \frac{z - 7}{2}
+        \]
+
+        % 4
+  \item Határozza meg az alábbi egyenesek távolságát!
+        \[
+          \begin{cases}
+            \; x_1(t) =  2 + 3 t_1 \\
+            \; y_1(t) = -1 + 4 t_1 \\
+            \; z_1(t) =      2 t_1
+          \end{cases}
+          \hspace{2cm}
+          \begin{cases}
+            \; x_2(t) = 7 + 6 t_2 \\
+            \; y_2(t) = 1 + 8 t_2 \\
+            \; z_2(t) = 3 + 4 t_2
+          \end{cases}
+        \]
+
+  \item Adott két egyenes. Határozza meg a távolságukat és normáltraszverzálisuk
+        egyenletrendszerét!
+        \[
+          \begin{cases}
+            \; x_1(t) = -7 + 3 t \\
+            \; y_1(t) =  4 - 2 t \\
+            \; z_1(t) =  4 + 3 t
+          \end{cases}
+          \hspace{2cm}
+          \begin{cases}
+            \; x_2(t) =   1 +   t \\
+            \; y_2(t) =  -8 + 2 t \\
+            \; z_2(t) = -12 -   t
+          \end{cases}
+        \]
+
+        % 6
+  \item Vizsgálja meg, hogy a $P(0;-1;2)$, a $Q(2;-1;1)$ és az $R(4;3;-2)$
+        pontok egy egyenesbe esnek-e! Ha nem, akkor írja fel az általuk
+        kifeszített sík egyenletét!
+
+        % 7
+  \item Határozza meg az $\alpha$ paramétert, ha ismert, hogy az $e$ egyenes és
+        az $s$ sík párhuzamos egymással!
+        \[
+          e: \frac{x - 1}{2} = \frac{y - 2}{2} = \frac{z}{\alpha}
+          \hspace{2cm}
+          s: x + 3y - 2\alpha z = 0
+        \]
+
+        % 8
+  \item Számítsa ki az $e$ egyenes és az $s$ sík metszéspontját!
+        \[
+          e: x - 1 = \frac{y + 1}{-2} = \frac{z}{6}
+          \hspace{2cm}
+          s: 2x + 3y + z - 1 = 0
+        \]
+
+        % 9
+  \item Adja meg az $s_1$ és $s_2$ síkok metszésvonalának egyenletrendszerét!
+        \[
+          s_1: x - 2y + 3z - 4 = 0
+          \hspace{2cm}
+          s_2: 3x + 2y - 5z - 4 = 0
+        \]
+
+        % 10
+  \item Igazolja, hogy az alábbi három síknak egy közös pontja van. Írja fel
+        ezen a ponton átmenő síkot, amely párhuzamos az $x + y + 2z = 0$ síkkal!
+        \[
+          \begin{cases}
+            \; s_1: 2x + y - z - 2 = 0 \\
+            \; s_2: x - 3y + z + 1 = 0 \\
+            \; s_3: x + y + z - 3 = 0
+          \end{cases}
+        \]
+\end{enumerate}
+
+% \\underline\{(\w)\}
+
+\end{document}
