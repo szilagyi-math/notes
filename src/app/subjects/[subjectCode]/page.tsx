@@ -25,7 +25,7 @@ const data = {
     breakdown: {
       credit: 6,
       lectures: 4,
-      practises: 2,
+      practices: 2,
       labs: 0,
       isExam: true,
     },

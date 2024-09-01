@@ -1,7 +1,11 @@
 import 'katex/dist/katex.min.css';
 import '@/styles/globals.css';
 
-import { Footer, Header, Main } from '@/components';
+import {
+  Footer,
+  //  Header,
+  Main,
+} from '@/components';
 
 interface RootLayoutProps {
   children: React.ReactNode;
