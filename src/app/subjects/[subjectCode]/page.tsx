@@ -1,6 +1,6 @@
 import { LectureTable } from '@/components';
 import type { NextPage } from 'next';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 interface SubjectsPageParams {
   subjectCode: 'G1';
@@ -46,13 +46,14 @@ const data = {
         to: '12:00',
       },
     ],
-    practises: [
+    practices: [
       {
         group: 'HM1',
         room: 'R501',
         day: 'Hétfő',
         from: '8:15',
         to: '10:00',
+        edubase: 'https://www.edubase.net/coupon/6xXc9n9mdn8DfL46',
         staff: [
           {
             name: 'Beharóczki István',
@@ -68,6 +69,7 @@ const data = {
         day: 'Hétfő',
         from: '10:15',
         to: '12:00',
+        edubase: 'https://www.edubase.net/coupon/ejWTL7MpQzkiG4nW',
         staff: [
           {
             name: 'Biebel Botond',
@@ -83,6 +85,7 @@ const data = {
         day: 'Hétfő',
         from: '16:15',
         to: '18:00',
+        edubase: 'https://www.edubase.net/coupon/WK39KrnBS96bYa4C',
         staff: [
           {
             name: 'Biebel Botond',
@@ -98,6 +101,7 @@ const data = {
         day: 'Kedd',
         from: '14:15',
         to: '16:00',
+        edubase: ' https://www.edubase.net/coupon/AbOwIp5tXQ8LYJ5q',
         staff: [
           {
             name: 'Török Regina',
@@ -113,6 +117,7 @@ const data = {
         day: 'Szerda',
         from: '12:15',
         to: '14:00',
+        edubase: 'https://www.edubase.net/coupon/Ox9fS9dsw9thHT1A',
         staff: [
           {
             name: 'Sándor Tibor',
@@ -125,6 +130,7 @@ const data = {
         day: 'Szerda',
         from: '14:15',
         to: '16:00',
+        edubase: 'https://www.edubase.net/coupon/8SCh2JFsyU7XrxFY',
         staff: [
           {
             name: 'Kun László Ákos',
@@ -137,6 +143,7 @@ const data = {
         day: 'Csütörtök',
         from: '10:15',
         to: '12:00',
+        edubase: 'https://www.edubase.net/coupon/76SkYrSQRQ4O91hF',
         staff: [
           {
             name: 'Patacsi Mátyás',
@@ -149,6 +156,7 @@ const data = {
         day: 'Csütörtök',
         from: '12:15',
         to: '14:00',
+        edubase: 'https://www.edubase.net/coupon/JGz2gogz7NsxZUpn',
         staff: [
           {
             name: 'Sándor Tibor',
@@ -161,6 +169,7 @@ const data = {
         day: 'Csütörtök',
         from: '12:15',
         to: '14:00',
+        edubase: 'https://www.edubase.net/coupon/TWUEMzRzK3V8LjRD',
         staff: [
           {
             name: 'Prónai Sára',
@@ -193,7 +202,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
         <p className='mb-2'>
           Heti óraszám:{' '}
           <span className='font-semibold'>{subject.breakdown.lectures}</span> /{' '}
-          <span className='font-semibold'>{subject.breakdown.practises}</span> /{' '}
+          <span className='font-semibold'>{subject.breakdown.practices}</span> /{' '}
           <span className='font-semibold'>{subject.breakdown.labs}</span>
         </p>
         <p className='mb-2'>
@@ -209,14 +218,14 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
           >
             PDF
           </a>
-          {' (Letölthető) / '}
-          <Link
+          {/* {' (Letölthető) / '} */}
+          {/* <Link
             className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
             href={subject.onlineNotes}
           >
             Online
           </Link>
-          {' (Weben olvasható, jelenleg fejlesztés alatt)'}
+          {' (Weben olvasható, jelenleg fejlesztés alatt)'} */}
         </p>
       </div>
 
@@ -241,9 +250,21 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
             </tr>
           </thead>
           <tbody>
-            {subject.practises.map(practise => (
+            {subject.practices.map(practise => (
               <tr key={practise.group}>
-                <td className='border px-4 py-2'>{practise.group}</td>
+                <td className='border px-4 py-2'>
+                  {practise.group}
+                  {' ['}
+                  <a
+                    href={practise.edubase}
+                    target='_blank'
+                    rel='noreferrer'
+                    className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
+                  >
+                    Edubase
+                  </a>
+                  {']'}
+                </td>
                 <td className='border px-4 py-2'>{practise.room}</td>
                 <td className='border px-4 py-2'>
                   {practise.day}, {practise.from} - {practise.to}

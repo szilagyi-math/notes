@@ -8,7 +8,8 @@ const Main = ({ children }: MainProps) => {
   return (
     <main
       id='main'
-      className='mx-auto max-w-content-width min-h-content-height'
+      // TODO: Reconfiguure height once the header is implemented
+      className='mx-auto max-w-content-width min-h-screen'
     >
       {children}
     </main>

@@ -11,7 +11,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='hu'>
       <body>
-        <Header />
+        {/* <Header /> */}
         <Main>{children}</Main>
         <Footer />
       </body>
