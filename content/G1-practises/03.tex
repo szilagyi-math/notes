@@ -20,13 +20,14 @@
   \sftitle{Algebrai alak}:
 
   \begin{minipage}{.6\textwidth}
-    A komplex számokat ($\mathbb C$) algebrai alakja:
+    A komplex számok ($\mathbb C$) algebrai alakja:
     \[
       z = a + b\iu
       \text,
     \]
-    ahol $a, b \in \Reals$ valós számok, és $\iu$ a képzetes egység.
-    A komplex szám valós része $\iRe z = a$, képzetes része pedig $\iIm z = b$.
+    ahol $a, b \in \Reals$ valós számok, és $\iu = \sqrt{-1}$ az
+    \textbf{imaginárius egység}. A komplex szám \textbf{valós rész}e
+    $\iRe \{z\} = a$, \textbf{képzetes rész}e pedig $\iIm \{z\} = b$.
   \end{minipage}\begin{minipage}{.4\textwidth}
     \flushright
     \begin{tikzpicture}[thick, scale=0.75]
@@ -46,17 +47,18 @@
 
 \begin{note}
   Két komplex szám akkor és csak akkor egyenlő, ha valós és képzetes részük is
-  megegyezik.
+  megegyezik. ($z_1 = z_2 \; \Leftrightarrow \; \iRe \{z_1\} = \iRe \{z_2\} \;
+    \land \; \iIm \{z_1\} = \iIm\{z_2\}$)
 \end{note}
 
 \begin{blueBox}
   \begin{minipage}{.6\textwidth}
     \sftitle{Trigonometrikus alak}:\\[3mm]
-    Térjünk át az eddigi Descartes-féle koordinátarendszerből a
-    polárkoordináta-rendszerbe, amelyben
+    Térjünk át az eddigi Descartes-féle koordinátarendszerről a
+    \textbf{polárkoordináta-rendszer}re, amelyben
     \begin{itemize}
       \item a komplex szám hossza: $r = |z| = \sqrt{a^2 + b^2}$,
-      \item argumentuma pedig: $\varphi = \arg z = \arctan (\sfrac{b}{a})$.
+      \item valós tengellyel bezárt szöge: $\varphi = \arg z$.
     \end{itemize}
     Ebből az alábbi alakot kapjuk:
     \[
@@ -157,14 +159,30 @@
     \]
   \end{minipage}\begin{minipage}{.4\textwidth}
     \centering
-    TODO: TIKZ
+    \begin{tikzpicture}[ultra thick]
+      \draw[-to, draw=ternaryColor, thick] (-1, 0) -- (3, 0) node [below left] {$\Re$};
+      \draw[-to, draw=ternaryColor, thick] (0, -1.5) -- (0, 1.5) node [below left] {$\Im$};
+
+      \draw[-to, draw=secondaryColor] (0,0) -- (+30:2.5) coordinate (A)
+      node[above, pos=.7] {$z$};
+      \draw[-to, draw=primaryColor]   (0,0) -- (-30:2.5) coordinate (B)
+      node[below, pos=.7] {$\overline z$};
+
+      \coordinate (O) at (0,0);
+      \coordinate (X) at (1,0);
+
+      \draw pic[to-to, "$\varphi$", draw=ternaryColor, angle eccentricity=0.7, angle radius=1.2cm, thick]
+        {angle=X--O--A};
+      \draw pic[to-to, "$\varphi$", draw=ternaryColor, angle eccentricity=0.7, angle radius=1.2cm, thick]
+        {angle=B--O--X};
+    \end{tikzpicture}
   \end{minipage}
 \end{blueBox}
 
 \begin{blueBox}
+  \sftitle{Inverz}:
+
   \begin{minipage}{.6\textwidth}
-    \sftitle{Inverz}:
-    \\[3mm]
     Egy $z = a + b \iu$ komplex szám inverze:
     \[
       z^{-1}
@@ -176,7 +194,23 @@
     Komplex szám inverzének hossza az eredeti szám hosszának a reciproka.
   \end{minipage}\begin{minipage}{.4\textwidth}
     \centering
-    TODO: TIKZ
+    \begin{tikzpicture}[ultra thick]
+      \draw[-to, draw=ternaryColor, thick] (-1, 0) -- (3, 0) node [below left] {$\Re$};
+      \draw[-to, draw=ternaryColor, thick] (0, -1.5) -- (0, 1.5) node [below left] {$\Im$};
+
+      \draw[-to, draw=secondaryColor] (0,0) -- (+30:2.5) coordinate (A)
+      node[above, pos=.7] {$z$};
+      \draw[-to, draw=primaryColor]   (0,0) -- (-30:1.5) coordinate (B)
+      node[below, pos=.7] {$z^{-1}\phantom{z}$};
+
+      \coordinate (O) at (0,0);
+      \coordinate (X) at (1,0);
+
+      \draw pic[to-to, "$\varphi$", draw=ternaryColor, angle eccentricity=0.7, angle radius=1.2cm, thick]
+        {angle=X--O--A};
+      \draw pic[to-to, "$\varphi$", draw=ternaryColor, angle eccentricity=0.7, angle radius=1.2cm, thick]
+        {angle=B--O--X};
+    \end{tikzpicture}
   \end{minipage}
 \end{blueBox}
 
@@ -184,24 +218,48 @@
   \begin{minipage}{.6\textwidth}
     \sftitle{Összeadás és kivonás}:
     \\[3mm]
-    Algebrai alakban, a vektorműveletekhez hasonlóan.
+    Algebrai alakban, a vektorműveletekhez hasonlóan:
     \[
       z_1 + z_2 = (a_1 + a_2) + \iu (b_1 + b_2)
+      \text.
     \]
   \end{minipage}\begin{minipage}{.4\textwidth}
     \centering
+    \begin{tikzpicture}[scale=1/2, ultra thick, rotate=-20]
+      \node at(-2.5,0) {};
+
+      % vectors
+      \draw[draw=ternaryColor, ->]
+      (0,0) -- (2,3) node[midway,anchor=east]{$z_1$};
+      \draw[draw=ternaryColor, ->]
+      (0,0) -- (5,1) node[midway,anchor=north]{$z_2$};
+
+      % helper lines
+      \draw[dashed, draw=gray, thick]
+      (2,3) -- (7,4)
+      (5,1) -- (7,4)
+      ;
+
+      % sum
+      \draw[primaryColor, ->]
+      (0,0) -- (7,4) node[anchor=south]{$z_1 + z_2$};
+
+      % difference
+      \draw[secondaryColor, ->]
+      (5,1) -- (2,3) node[anchor=south]{$z_1 - z_2$};
+    \end{tikzpicture}
   \end{minipage}
 \end{blueBox}
 
 \begin{blueBox}
-  \sftitle{Szorzás}:
-
   \begin{minipage}{.6\textwidth}
+    \sftitle{Szorzás}:
+    \\[3mm]
     Algebrai alakban:
     \begin{align*}
       z_1 \cdot z_2
-       & = (a_1 + b_1\iu) \cdot (a_2 + b_2\iu)              \\
-       & = a_1 a_2 + a_1 b_2\iu + a_2 b_1\iu + b_1 b_2\iu^2 \\
+      %  & = (a_1 + b_1\iu) \cdot (a_2 + b_2\iu)              \\
+      %  & = a_1 a_2 + a_1 b_2\iu + a_2 b_1\iu + b_1 b_2\iu^2 \\
        & = (a_1 a_2 - b_1 b_2) + (a_1 b_2 + a_2 b_1)\iu
     \end{align*}
 
@@ -210,7 +268,6 @@
       z_1 \cdot z_2 = r_1 r_2 \left(
       \cos(\varphi_1 + \varphi_2) + \iu \sin(\varphi_1 + \varphi_2)
       \right)
-      \text.
     \]
 
     Exponenciális alakban:
@@ -219,48 +276,174 @@
     \]
   \end{minipage}\begin{minipage}{.4\textwidth}
     \centering
+    \begin{tikzpicture}[ultra thick]
+      \draw[-to, draw=ternaryColor, thick] (-1, 0) -- (3, 0) node [below left] {$\Re$};
+      \draw[-to, draw=ternaryColor, thick] (0, -1) -- (0,4.5) node [below left] {$\Im$};
+
+      \draw[-to, draw=secondaryColor] (0,0) -- (15:1.5) coordinate (A)
+      node[right] {$z_1$};
+      \draw[-to, draw=secondaryColor] (0,0) -- (45:3) coordinate (B)
+      node[right] {$z_2$};
+
+      \draw[-to, draw=primaryColor] (0,0) -- (60:4.5) coordinate (A)
+      node[right] {$z_1 \cdot z_2$};
+    \end{tikzpicture}
   \end{minipage}
 \end{blueBox}
 
 \begin{blueBox}
-  \sftitle{Osztás}:
-
   \begin{minipage}{.6\textwidth}
+    \sftitle{Osztás}:
+    \\[3mm]
     Trigonometrikus alakban:
     \[
       \frac{z_1}{z_2} = \frac{r_1}{r_2} \left(
-
+      \cos(\varphi_1 - \varphi_2) + \iu \sin(\varphi_1 - \varphi_2)
       \right)
+    \]
+
+    Exponenciális alakban:
+    \[
+      \frac{z_1}{z_2} = \frac{r_1}{r_2} e^{\iu (\varphi_1 - \varphi_2)}
     \]
   \end{minipage}\begin{minipage}{.4\textwidth}
     \centering
+    \begin{tikzpicture}[ultra thick]
+      \draw[-to, draw=ternaryColor, thick] (-1, 0) -- (3, 0) node [below left] {$\Re$};
+      \draw[-to, draw=ternaryColor, thick] (0, -1) -- (0,3.5) node [below left] {$\Im$};
+
+      \draw[-to, draw=secondaryColor] (0,0) -- (60:3.5) coordinate (A)
+      node[right] {$z_1$};
+      \draw[-to, draw=secondaryColor] (0,0) -- (45:2.5) coordinate (B)
+      node[right] {$z_2$};
+
+      \draw[-to, draw=primaryColor] (0,0) -- (15:1.4) coordinate (A)
+      node[right] {$z_1 / z_2$};
+    \end{tikzpicture}
   \end{minipage}
 \end{blueBox}
 
 \begin{blueBox}
-  \sftitle{Hatványozás}:
-
   \begin{minipage}{.6\textwidth}
+    \sftitle{Hatványozás}:
+    \\[3mm]
+    Trigonometrikus alakban:
+    \[
+      z^n = \rcisrad*{r^n}{n\varphi}
+    \]
+    Exponenciális alakban:
+    \[
+      z^n = r^n e^{\iu \cdot n \varphi}
+    \]
   \end{minipage}\begin{minipage}{.4\textwidth}
     \centering
+    \begin{tikzpicture}[ultra thick]
+      \draw[-to, draw=ternaryColor, thick] (-1.5, 0) -- (2.5, 0) node [below left] {$\Re$};
+      \draw[-to, draw=ternaryColor, thick] (0, -1) -- (0,2.75) node [right] {$\Im$};
+
+      \draw[-to, draw=secondaryColor] (0,0) -- (20:1.25)
+      node[right] {$z$};
+
+      \draw[-to, draw=primaryColor] (0,0) -- (50:1.5625)
+      node[right] {$z^2$};
+      \draw[-to, draw=primaryColor] (0,0) -- (75:1.953125)
+      node[right] {$z^3$};
+      \draw[-to, draw=primaryColor] (0,0) -- (100:2.44140625)
+      node[left] {$z^4$};
+      \draw[-to, draw=primaryColor] (0,0) -- (125:3.05175781)
+      node[left] {$z^5$};
+    \end{tikzpicture}
   \end{minipage}
 \end{blueBox}
+
+\begin{note}
+  Ha egy komplex számot az $n$-edik hatványra emelünk, akkor
+  \begin{itemize}
+    \item hossza az $n$-szeresére nő,
+    \item argumentuma is az $n$-szeresére nő.
+  \end{itemize}
+\end{note}
 
 \begin{blueBox}
   \sftitle{Gyökvonás}:
 
-  \begin{minipage}{.6\textwidth}
-  \end{minipage}\begin{minipage}{.4\textwidth}
-    \centering
-  \end{minipage}
+  Trigonometrikus alakban:
+  \[
+    \sqrt[n]{z} = \rcisrad{\sqrt[n]{r}}{
+      \frac{\varphi + 2k\pi}{n}
+    }
+    \text{, ahol }
+    k \in \{0; 1; \ldots; n-1\}
+  \]
+
+  Exponenciális alakban:
+  \[
+    \sqrt[n]{z} = \sqrt[n]{r} e^{
+        \iu \cdot \frac{\varphi + 2k\pi}{n}
+      }
+    \text{, ahol }
+    k \in \{0; 1; \ldots; n-1\}
+  \]
 \end{blueBox}
+
+\begin{note}
+  Tetszőleges komplex szám $n$-edik gyökei egy olyan szabályos $n$-szög csúcsai,
+  amelynek középpontja az origó.
+  \begin{center}
+    \begin{tikzpicture}[ultra thick, scale=.9]
+      % COORDINATE SYSTEM
+      \draw[-to, draw=primaryColor] (-2, 0) -- (2, 0) node [right] {$\Re$};
+      \draw[-to, draw=primaryColor] (0, -2) -- (0, 2) node [above] {$\Im$};
+
+      \coordinate (P) at (318:1.5);
+      \foreach \deg in {30,102,174,246,318} {
+          \draw[draw=primaryColor] (\deg:1.5) coordinate(C) circle (0.1);
+          \draw[dashed, gray] (P) -- (C);
+          \coordinate (P) at (C);
+        }
+      \draw[dashed, gray] (0,0) circle (1.5);
+      \node[below] at (0,-2) {$\sqrt[5]{z}$};
+
+      \begin{scope}[xshift=-6cm]
+        % COORDINATE SYSTEM
+        \draw[-to, draw=primaryColor] (-2, 0) -- (2, 0) node [right] {$\Re$};
+        \draw[-to, draw=primaryColor] (0, -2) -- (0, 2) node [above] {$\Im$};
+
+        \coordinate (P) at (300:1.5);
+        \foreach \deg in {30,120,210,300} {
+            \draw[draw=primaryColor] (\deg:1.5) coordinate(C) circle (0.1);
+            \draw[dashed, gray] (P) -- (C);
+            \coordinate (P) at (C);
+          }
+
+        \draw[dashed, gray] (0,0) circle (1.5);
+        \node[below] at (0,-2) {$\sqrt[4]{z}$};
+      \end{scope}
+
+      \begin{scope}[xshift=-12cm]
+        \draw[-to, draw=primaryColor] (-2, 0) -- (2, 0) node [right] {$\Re$};
+        \draw[-to, draw=primaryColor] (0, -2) -- (0, 2) node [above] {$\Im$};
+
+        \coordinate (P) at (315:1.5);
+        \foreach \deg in {75,195,315} {
+            \draw[draw=primaryColor] (\deg:1.5) coordinate(C) circle (0.1);
+            \draw[dashed, gray] (P) -- (C);
+            \coordinate (P) at (C);
+          }
+
+        \draw[dashed, gray] (0,0) circle (1.5);
+        \node[below] at (0,-2) {$\sqrt[3]{z}$};
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+\end{note}
 
 \clearpage
 \subsection{Feladatok}
 
 \begin{enumerate}
   % 1
-  \item Hozzuk egyszerűbb alakra az alábbi kifejezéseket!
+  \item Hozza egyszerűbb alakra az alábbi kifejezéseket!
         \begin{enumerate}
           \item $\dfrac{
                     \overline{2 - \iu}
@@ -286,7 +469,7 @@
         \end{enumerate}
 
         % 2
-  \item Végezzük el az alábbi hatványozásokat!
+  \item Végezze el az alábbi hatványozásokat!
         \begin{enumerate}
           \item $(\iu - 1)^{16}$
           \item $(3 + 5\iu)^4 \cdot
@@ -295,7 +478,7 @@
         \end{enumerate}
 
         % 3
-  \item Végezzük el az alábbi gyökvonásokat!
+  \item Végezze el az alábbi gyökvonásokat!
         \begin{enumerate}
           \item $\sqrt[3]{-8}$
           \item $\sqrt[4]{1}$
@@ -303,14 +486,14 @@
         \end{enumerate}
 
         % 4
-  \item Oldjuk meg a következő egyenleteket!
+  \item Oldja meg a következő egyenleteket!
         \begin{enumerate}
           \item $z^4 - 81 \iu = 0$
           \item $z^2 - 6z + 13 = 0$
         \end{enumerate}
 
         % 5
-  \item Oldjuk meg az alábbi egyenletrendszert!\\[2mm]
+  \item Oldja meg az alábbi egyenletrendszert!\\[2mm]
         \hspace{2ex}$
           \begin{cases}
             z_1 + 2z_2 = 1 + \iu    \\
@@ -319,7 +502,7 @@
         $
 
         % 6
-  \item Adjuk meg a geometriai helyét azoknak a komplex számoknak, amelyekre
+  \item Adja meg a geometriai helyét azoknak a komplex számoknak, amelyekre
         \dots
         \begin{enumerate}
           \item $\iIm \{ z \} > 0$,
@@ -329,10 +512,10 @@
 
         % 7
   \item Egy négyzet két szomszédos csúcsát jelölje a $z_1 = 3 + 2 \iu$ és a
-        $z_2 = 4 + 4 \iu$ komplex szám. Hol található a tobbi csúcs?
+        $z_2 = 4 + 4 \iu$ komplex szám. Hol található a többi csúcs?
 
         % 8
-  \item Írjuk fel a $(-2; 1)$ középpontú, $4$ sugarú kör egyenletét a komplex
+  \item Írja fel a $(-2; 1)$ középpontú, $4$ sugarú kör egyenletét a komplex
         számsíkon!
 \end{enumerate}
 

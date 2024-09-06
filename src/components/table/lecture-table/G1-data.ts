@@ -29,7 +29,7 @@ const G1Data: Week[] = [
       '',
     ],
     practice: 'Komplex számok',
-    // practiceLink: '/downloads/G1-gyak-03.pdf',
+    practiceLink: '/downloads/G1-gyak-03.pdf',
   },
   {
     week: '4',
