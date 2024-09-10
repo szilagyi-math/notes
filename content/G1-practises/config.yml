@@ -7,7 +7,9 @@ root_files:
   - source: 02.tex
     target: G1-gyak-02
     display_name: G1 2. gyakorlat
-
+  - source: 03.tex
+    target: G1-gyak-03
+    display_name: G1 3. gyakorlat
   - source: 04.tex
     target: G1-gyak-04
     display_name: G1 4. gyakorlat
