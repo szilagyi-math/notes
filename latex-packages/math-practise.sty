@@ -306,4 +306,41 @@
     }{%
   \end{mdframed}
 }
+% \end{noindent}
 
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ STATEMENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% \begin{noindent}
+\mdfdefinestyle{statement}{%
+  % NO LINES
+  hidealllines=true,%
+  leftline=true,%
+  % COLORS
+  backgroundcolor=primaryColor!10,%
+  linecolor=primaryColor,%
+  % LENGTHS
+  linewidth=3pt,%
+  innertopmargin=.66em,%
+  innerbottommargin=.66em,%
+  % TIKZ
+  singleextra={
+    \path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$) node[
+      rectangle,
+      fill=primaryColor!10,
+      draw=primaryColor,
+      line width=2pt,
+      overlay,
+    ] {\color{primaryColor}\large!};
+  },%
+}
+% \end{noindent}
+
+\newenvironment{statement}{%
+  \def\rule@@color{primaryColor}%
+  \begin{mdframed}[style=statement]
+    }{%
+  \end{mdframed}
+}

@@ -59,6 +59,7 @@ const G1Data: Week[] = [
       '',
     ],
     practice: 'Függvények – folytonosság, határérték',
+    practiceLink: '/downloads/G1-gyak-06.pdf',
   },
   {
     week: '7',

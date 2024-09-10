@@ -14,11 +14,162 @@
 
 \subsection{Elméleti Áttekintő}
 
+\begin{definition}[Cauchy-féle határérték definíció]
+  Azt mondjuk, hogy az $f$ függvény határértéke az $a$ pontban $A$, ha $\forall
+    \varepsilon > 0$ esetén $\exists \delta(\varepsilon) > 0$, hogy $|f(x) - A|
+    < \varepsilon$, ha $0 < |x - a| < \delta(\varepsilon)$. Jele:
+  \[
+    \lim_{x \rightarrow a} f(x) = A
+    \text.
+  \]
+\end{definition}
+
+\begin{definition}[Heine-féle határérték definíció]
+  Az $f$ függvény határértéke az $a$ pontban akkor és csak akkor $A$, ha
+  $\forall x_n \rightarrow a$ sorozat esetén $f(x_n) \rightarrow A$.
+\end{definition}
+
+\begin{note}
+  A két definíció teljesen ekvivalens egymással.
+\end{note}
+
+\begin{theorem}
+  \[
+    \lim_{x \rightarrow 0} \frac{\sin x}{x} = 1
+  \]
+\end{theorem}
+
+\begin{definition}[Folytonosság]
+  Egy $f : \Domain_f \rightarrow \Reals$ függvény folytonos egy $a \in
+    \Domain_f$ pontban, ha $\forall \varepsilon > 0$ esetén $\exists \delta(
+    \varepsilon) > 0$, hogy $|f(x) - f(a)| < \varepsilon$, ha $|x - a| < \delta(
+    \varepsilon)$.
+\end{definition}
+
+\begin{statement}
+  A folytonosság definíciója ekvivalens a következővel: $f$ függvény folytonos
+  egy ${a \in \Domain_f}$ pontban, ha
+  \[
+    \lim_{x \to a} f(x) = f(a)
+    \text.
+  \]
+\end{statement}
+
+\begin{note}
+  Ha ez nem teljesül, akkor a függvénynek az adott pontban szakadása van. Ez
+  lehet
+  \begin{itemize}
+    \item \textbf{megszüntethető}, tehát a függvény az adott pontban nincsen
+          értelmezve, viszont a pontbeli határértéke létezik,
+    \item \textbf{nem megszüntethető}, vagyis nem létezik az adott pontbeli
+          határértéke.
+  \end{itemize}
+\end{note}
+
 \clearpage
 \subsection{Feladatok}
 
 \begin{enumerate}
-  \item Alma
+  \item A függvényhatárérték két definíciója segítségével bizonyítsa be, hogy
+        \[
+          \lim_{x \rightarrow 2} \frac{3x + 1}{5x + 4} = \frac12
+          \text.
+        \]
+
+  \item Számítsa ki az alábbi határértékeket!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \lim_{x \rightarrow -\infty} \left(
+                    \frac{x^2}{2x + 1} +
+                    \frac{x^3 + 4x^2 - 2}{1 - 2x^2}
+                    \right)
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow 0} \frac{3}{2^{\sfrac{\sqrt2}{x}} + 1}
+                  $
+
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow -1} \frac{x + 1}{\sqrt{6x^2 + 3} + 3x}
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow 1} \left(
+                    \frac{1 + x}{2 + x}
+                    \right)^{\frac{1 - \sqrt x}{1 - x}}
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow \sfrac{\pi}{6}} \frac{
+                      2 \sin^2 x + \sin x - 1
+                    }{
+                      2 \sin^2 x - 3 \sin x + 1
+                    }
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow \sfrac{\pi}{2}} \frac{
+                      \cos x - \sin x + 1
+                    }{
+                      \cos x + \sin x - 1
+                    }
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow 0} \frac{\sin 5x}{x}
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow 0} \frac{\tan x - \sin x}{x^3}
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow 0} \frac{\sin 8x}{\tan 5x}
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow \sfrac{\pi}{2}} (\sfrac{\pi}{2} - x) \tan x
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow 0} \frac{1 - \cos \sin x}{\sin^2 x}
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+  \item Vizsgálja meg az alábbi függvényt folytonosság szempontjából!
+        \[
+          f(x) = \frac{x^2 + 3x - 10}{x^2 - 3x + 2}
+        \]
+
+  \item Vizsgálja meg az alábbi függvényt folytonossát a nullában!
+        \[
+          f(x) = x \sin \frac1x
+        \]
+
+  \item Határozza meg az $a$ és $b$ paraméterek értékét úgy, hogy $f$ függvény
+        folytonos legyen!
+        \[
+          f(x) = \begin{cases}
+            x \text,            & \text{ha } |x| < 1    \\
+            x^2 + ax + b \text, & \text{ha } |x| \geq 1
+          \end{cases}
+        \]
+
+  \item Határozza meg az alábbi komplexebb határértékeket!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \lim_{x \rightarrow 0} \frac{\ln \cos 2x}{x^2}
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow \sfrac{\pi}{4}} \tan^{\tan 2x} x
+                  $
+          \end{enumerate}
+        \end{multicols}
 \end{enumerate}
 
 % \\underline\{(\w)\}
