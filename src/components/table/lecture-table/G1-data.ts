@@ -49,6 +49,7 @@ const G1Data: Week[] = [
       '',
     ],
     practice: 'Numerikus sorozatok II',
+    practiceLink: '/downloads/G1-gyak-05.pdf',
   },
   {
     week: '6',
