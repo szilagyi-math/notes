@@ -193,6 +193,7 @@
 \newcounter{definition}[section]
 \numberwithin{definition}{section}
 \newenvironment{definition}[1][\@nil]{%
+  \def\tmp{#1}%
   \def\rule@@color{primaryColor}%
   \refstepcounter{definition}%
   \begin{mdframed}[
@@ -201,6 +202,44 @@
       frametitle={
           \color{white}\sffamily\bfseries%
           Definíció~\thedefinition%
+          \ifx\tmp\@nnil\else%
+            : #1%
+          \fi%
+        }
+    ]
+    }{%
+  \end{mdframed}
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ THEOREM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\mdfdefinestyle{theorem}{%
+  hidealllines=true,%
+  leftline=true,%
+  linewidth=3pt,%
+  linecolor=secondaryColor,%
+  frametitlerule=true,%
+  frametitlebackgroundcolor=secondaryColor,%
+  backgroundcolor=gray!10,
+  frametitleaboveskip=2mm,
+  frametitlebelowskip=2mm,
+  innertopmargin=3mm,
+}
+
+\newcounter{theorem}[section]
+\numberwithin{theorem}{section}
+\newenvironment{theorem}[1][\@nil]{%
+  \def\tmp{#1}%
+  \def\rule@@color{secondaryColor}%
+  \refstepcounter{theorem}%
+  \begin{mdframed}[
+      style=theorem,
+      nobreak=true,
+      frametitle={
+          \color{white}\sffamily\bfseries%
+          Tétel~\thetheorem%
           \ifx\tmp\@nnil\else%
             : #1%
           \fi%

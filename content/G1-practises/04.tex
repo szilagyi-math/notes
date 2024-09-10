@@ -71,9 +71,7 @@
 
 \begin{note}
   Konvergens sorozat mindig korlátos.
-\end{note}
 
-\begin{note}
   Monoton korlátos sorozat mindig konvergens.
 \end{note}
 
@@ -148,7 +146,17 @@
   hogy a nevező vagy a számláló fog gyorsabban nőni.
 \end{note}
 
-\clearpage
+\begin{theorem}[Rendőrelv]
+  Tegyük fel, hogy $(a_n)$, $(b_n)$ és $(x_n)$ sorozatokra teljesül, hogy $a_n
+    \leq x_n \leq b_n : \forall n$-re vagy $n > N_0$, továbbá
+  \[
+    \lim_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} b_n = a
+    \text{, ekkor }
+    \lim_{n \rightarrow \infty} x_n = a
+    \text.
+  \]
+\end{theorem}
+
 \subsection{Feladatok}
 
 \begin{enumerate}
@@ -184,7 +192,7 @@
         \end{enumerate}
 
         % 3
-  \item Igazolja a rendőr-elv segítségével, hogy
+  \item Igazolja a rendőrelv segítségével, hogy
         $
           \dfrac{n}{3^n} \rightarrow 0
           \text{, ha }
@@ -194,44 +202,46 @@
 
         % 4
   \item Határozza meg az alábbi határértékeket!
-        \begin{enumerate}
-          \item $\displaystyle
-                  \lim_{n \rightarrow \infty} \sqrt[n]{5n^2 - 30n - 21}
-                $
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \lim_{n \rightarrow \infty} \sqrt[n]{5n^2 - 30n - 21}
+                  $
 
-          \item $\displaystyle
-                  \lim_{n \rightarrow \infty} \left(
-                  \frac{\cos n^3}{2n} - \frac{3n}{6n+1}
-                  \right)
-                $
+            \item $\displaystyle
+                    \lim_{n \rightarrow \infty} \left(
+                    \frac{\cos n^3}{2n} - \frac{3n}{6n+1}
+                    \right)
+                  $
 
-          \item $\displaystyle
-                  \lim_{n \rightarrow \infty} \left(
-                  1 + \frac{1}{n^2}
-                  \right)^n
-                $
+            \item $\displaystyle
+                    \lim_{n \rightarrow \infty} \left(
+                    1 + \frac{1}{n^2}
+                    \right)^n
+                  $
 
-          \item $\displaystyle
-                  \lim_{n \rightarrow \infty} \left(
-                  \frac{3n - 1}{3n + 2}
-                  \right)^{2n}
-                $
+            \item $\displaystyle
+                    \lim_{n \rightarrow \infty} \left(
+                    \frac{3n - 1}{3n + 2}
+                    \right)^{2n}
+                  $
 
-          \item $\displaystyle
-                  \lim_{n \rightarrow \infty} \left(
-                  1 + \frac{1}{n}
-                  \right)^{\ln n}
-                $
+            \item $\displaystyle
+                    \lim_{n \rightarrow \infty} \left(
+                    1 + \frac{1}{n}
+                    \right)^{\ln n}
+                  $
 
-          \item $\displaystyle
-                  \lim_{n \rightarrow \infty} \left(
-                  \frac{n^2 - n + 1}{n^2 + n + 1}
-                  \right)^{2n + 5}
-                $
-        \end{enumerate}
+            \item $\displaystyle
+                    \lim_{n \rightarrow \infty} \left(
+                    \frac{n^2 - n + 1}{n^2 + n + 1}
+                    \right)^{2n + 5}
+                  $
+          \end{enumerate}
+        \end{multicols}
 
         % 5
-  \item Bizonyítsa be, hogz bármely $k \geq 0$ egész számra
+  \item Bizonyítsa be, hogy bármely $k \geq 0$ egész számra
         \\[3mm]
         $\displaystyle
           \lim_{n \rightarrow \infty} \left(
