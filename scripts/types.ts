@@ -1,6 +1,6 @@
 import type { Subject } from 'mdx';
 
-export type DocumentType = 'book' | 'practise';
+export type DocumentType = 'book' | 'practice';
 
 export type LatexConfig = {
   root_files: Array<{

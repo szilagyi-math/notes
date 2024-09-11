@@ -250,13 +250,13 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
             </tr>
           </thead>
           <tbody>
-            {subject.practices.map(practise => (
-              <tr key={practise.group}>
+            {subject.practices.map(practice => (
+              <tr key={practice.group}>
                 <td className='border px-4 py-2'>
-                  {practise.group}
+                  {practice.group}
                   {' ['}
                   <a
-                    href={practise.edubase}
+                    href={practice.edubase}
                     target='_blank'
                     rel='noreferrer'
                     className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
@@ -265,15 +265,15 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
                   </a>
                   {']'}
                 </td>
-                <td className='border px-4 py-2'>{practise.room}</td>
+                <td className='border px-4 py-2'>{practice.room}</td>
                 <td className='border px-4 py-2'>
-                  {practise.day}, {practise.from} - {practise.to}
+                  {practice.day}, {practice.from} - {practice.to}
                 </td>
                 <td className='border px-4 py-2'>
-                  {practise.staff.map((staff, index) => (
+                  {practice.staff.map((staff, index) => (
                     <span key={staff.name}>
                       {staff.name}
-                      {index !== practise.staff.length - 1 && ', '}
+                      {index !== practice.staff.length - 1 && ', '}
                     </span>
                   ))}
                 </td>

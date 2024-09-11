@@ -13,7 +13,7 @@ const RC_FILE = '.latexmkrc';
 const CWD = cwd();
 const BASE_DIR = join(CWD, 'content');
 const GENERATE_DIR = join(CWD, 'generate');
-const LATEX_DIRS = ['G1-book', 'G1-practises'];
+const LATEX_DIRS = ['G1-book', 'G1-practices'];
 
 const SHEBANG = '#!/bin/bash';
 
@@ -38,7 +38,7 @@ Promise.all(
       if (!acc[config.subject]) {
         acc[config.subject] = {
           book: [],
-          practise: [],
+          practice: [],
         };
       }
 
