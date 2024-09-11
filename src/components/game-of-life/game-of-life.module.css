@@ -1,10 +1,10 @@
-.not-found-wrapper {
+.wrapper {
   min-height: 100vh;
   min-height: -webkit-fill-available;
   width: 100%;
 }
 
-.not-found-content {
+.content {
   position: absolute;
   inset: 0;
   display: flex;
@@ -13,13 +13,13 @@
   align-items: center;
 }
 
-.not-found-main-content {
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.not-found-code {
+.code {
   font-weight: 700;
   padding-right: 1.25rem;
   border-right: 2px solid rgb(var(--primary-fg));
@@ -28,21 +28,22 @@
   line-height: 1.1em;
 }
 
-.not-found-text {
+.text {
   font-weight: 700;
   padding-left: 1rem;
 
   font-size: clamp(1.25rem, 3.5vw, 2rem);
 }
 
-.not-found-description {
+.description {
   padding-top: 1rem;
   font-weight: 400;
   color: rgb(var(--secondary-fg));
   font-size: clamp(1rem, 2.5vw, 1.5rem);
-  > a {
-    text-decoration: none;
-    font-weight: 700;
-    text-decoration: underline;
-  }
+}
+
+.link {
+  text-decoration: none;
+  font-weight: 700;
+  text-decoration: underline;
 }

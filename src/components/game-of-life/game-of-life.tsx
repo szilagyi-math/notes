@@ -1,6 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
+
+import styles from './game-of-life.module.css';
 
 type Cell = 0 | 1;
 type Game = Cell[][];
@@ -147,11 +150,27 @@ const GameOfLife = () => {
   }, [game, width, height, running]);
 
   return (
-    <canvas
-      style={{ transition: 'opacity 1s', opacity: 0, position: 'absolute' }}
-      ref={ref}
-      className='game-of-life-canvas'
-    />
+    <div className={styles.wrapper}>
+      <canvas
+        style={{ transition: 'opacity 1s', opacity: 0, position: 'absolute' }}
+        ref={ref}
+      />
+      <div className={styles.content}>
+        <div className={styles.main}>
+          <h1 className={styles.code}>404</h1>
+          <p className={styles.text}>A keresett oldal nem található</p>
+        </div>
+        <p className={styles.description}>
+          Vissza a{' '}
+          <Link
+            className={styles.link}
+            href='/'
+          >
+            főoldalra
+          </Link>
+        </p>
+      </div>
+    </div>
   );
 };
 
