@@ -1,0 +1,155 @@
+name: Matematika G1
+code: BMETE94BG01
+lecturer: Dr. Szilágyi Brigitta
+breakdown:
+  credits: 6
+  lectures: 4
+  practicals: 2
+  labs: 0
+  is_exam: true
+book:
+  dir: book
+  source: main.tex
+  target: G1-tankonyv
+  display_name: G1 előadás jegyzet
+online_notes: null
+practice_material:
+  dir: practice
+  files:
+    - source: 01.tex
+      target: G1-gyak-01
+      display_name: G1 1. gyakorlat
+      description: Analitikus geometria I – Vektorok
+      week: 1
+    - source: 02.tex
+      target: G1-gyak-02
+      display_name: G1 2. gyakorlat
+      description: Analitikus geometria II – Térgeometriai alakzatok
+      week: 2
+    - source: 03.tex
+      target: G1-gyak-03
+      display_name: G1 3. gyakorlat
+      description: Komplex számok
+      week: 3
+    - source: 04.tex
+      target: G1-gyak-04
+      display_name: G1 4. gyakorlat
+      description: Numerikus sorozatok I
+      week: 4
+    - source: 05.tex
+      target: G1-gyak-05
+      display_name: G1 5. gyakorlat
+      description: Numerikus sorozatok II
+      week: 5
+    - source: 06.tex
+      target: G1-gyak-06
+      display_name: G1 6. gyakorlat
+      description: Függvények – folytonosság, határérték
+      week: 6
+    - source: 07.tex
+      target: G1-gyak-07
+      display_name: G1 7. gyakorlat
+      description: Differenciálszámítás I
+      week: 7
+    - description: Differenciálszámítás II
+      week: 8
+    - description: Differenciálszámítás III
+      week: 9
+    - description: Integrálszámítás I
+      week: 10
+    - description: Integrálszámítás II
+      week: 11
+    - description: Integrálszámítás III
+      week: 12
+    - description: Integrálszámítás IV
+      week: 13
+    - description: Numerikus sorok
+      week: 14
+hide_lectures: true
+lectures:
+  - room: CHFMAX
+    day: 2 # Tuesday
+    start: [8, 15]
+    end: [10, 0]
+  - room: CHFMAX
+    day: 5 # Friday
+    start: [10, 15]
+    end: [12, 0]
+hide_practicals: true
+practicals:
+  - group: HM1
+    room: R501
+    day: 1 # Monday
+    start: [8, 15]
+    end: [10, 0]
+    edubase: https://www.edubase.net/coupon/6xXc9n9mdn8DfL46
+    staff:
+      - name: Beharóczki István
+      - name: Sovák Adrienn
+  - group: 'HM2'
+    room: 'R513'
+    day: 1 # Monday
+    start: [10, 15]
+    end: [12, 0]
+    edubase: 'https://www.edubase.net/coupon/ejWTL7MpQzkiG4nW'
+    staff:
+      - name: 'Biebel Botond'
+      - name: 'Pesti Patrik'
+  - group: 'HM3'
+    room: 'R513'
+    day: 1 # Monday
+    start: [16, 15]
+    end: [18, 0]
+    edubase: 'https://www.edubase.net/coupon/WK39KrnBS96bYa4C'
+    staff:
+      - name: 'Biebel Botond'
+      - name: 'Pesti Patrik'
+  - group: 'HM4'
+    room: 'R513'
+    day: 2 # Tuesday
+    start: [14, 15]
+    end: [16, 0]
+    edubase: 'https://www.edubase.net/coupon/AbOwIp5tXQ8LYJ5q'
+    staff:
+      - name: 'Török Regina'
+      - name: 'Tusor Bálint'
+  - group: 'HM5'
+    room: 'R515'
+    day: 3
+    start: [12, 15]
+    end: [14, 0]
+    edubase: 'https://www.edubase.net/coupon/Ox9fS9dsw9thHT1A'
+    staff:
+      - name: 'Sándor Tibor'
+  - group: 'HM6'
+    room: 'R516'
+    day: 3 # Wednesday
+    start: [14, 15]
+    end: [16, 0]
+    edubase: 'https://www.edubase.net/coupon/8SCh2JFsyU7XrxFY'
+    staff:
+      - name: 'Kun László Ákos'
+  - group: 'HM7'
+    room: 'R501'
+    day: 4 # Thursday
+    start: [10, 15]
+    end: [12, 0]
+    edubase: 'https://www.edubase.net/coupon/76SkYrSQRQ4O91hF'
+    staff:
+      - name: 'Patacsi Mátyás'
+  - group: 'HE1'
+    room: 'R513'
+    day: 4
+    start: [12, 15]
+    end: [14, 0]
+    edubase: 'https://www.edubase.net/coupon/JGz2gogz7NsxZUpn'
+    staff:
+      - name: 'Sándor Tibor'
+  - group: 'HE2'
+    room: 'R514'
+    day: 4 # Thursday
+    start: [12, 15]
+    end: [14, 0]
+    edubase: 'https://www.edubase.net/coupon/TWUEMzRzK3V8LjRD'
+    staff:
+      - name: 'Prónai Sára'

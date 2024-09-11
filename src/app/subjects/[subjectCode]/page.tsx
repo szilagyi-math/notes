@@ -1,6 +1,7 @@
 import { LectureTable } from '@/components';
+import { config } from '.generate/index';
+
 import type { NextPage } from 'next';
-// import Link from 'next/link';
 
 interface SubjectsPageParams {
   subjectCode: 'G1';
@@ -18,176 +19,14 @@ export const generateStaticParams = async () => {
   ];
 };
 
-const data = {
-  G1: {
-    title: 'Matematika G1',
-    code: 'BMETE94BG01',
-    breakdown: {
-      credit: 6,
-      lectures: 4,
-      practices: 2,
-      labs: 0,
-      isExam: true,
-    },
-    pdfNotes: '/downloads/G1-tankonyv.pdf',
-    onlineNotes: '/subjects/G1/notes/',
-    lecturer: 'Dr. Szilágyi Brigitta',
-    lectures: [
-      {
-        room: 'CHFMAX',
-        day: 'Kedd',
-        from: '8:15',
-        to: '10:00',
-      },
-      {
-        room: 'CHFMAX',
-        day: 'Péntek',
-        from: '10:15',
-        to: '12:00',
-      },
-    ],
-    practices: [
-      {
-        group: 'HM1',
-        room: 'R501',
-        day: 'Hétfő',
-        from: '8:15',
-        to: '10:00',
-        edubase: 'https://www.edubase.net/coupon/6xXc9n9mdn8DfL46',
-        staff: [
-          {
-            name: 'Beharóczki István',
-          },
-          {
-            name: 'Sovák Adrienn',
-          },
-        ],
-      },
-      {
-        group: 'HM2',
-        room: 'R513',
-        day: 'Hétfő',
-        from: '10:15',
-        to: '12:00',
-        edubase: 'https://www.edubase.net/coupon/ejWTL7MpQzkiG4nW',
-        staff: [
-          {
-            name: 'Biebel Botond',
-          },
-          {
-            name: 'Pesti Patrik',
-          },
-        ],
-      },
-      {
-        group: 'HM3',
-        room: 'R513',
-        day: 'Hétfő',
-        from: '16:15',
-        to: '18:00',
-        edubase: 'https://www.edubase.net/coupon/WK39KrnBS96bYa4C',
-        staff: [
-          {
-            name: 'Biebel Botond',
-          },
-          {
-            name: 'Pesti Patrik',
-          },
-        ],
-      },
-      {
-        group: 'HM4',
-        room: 'R513',
-        day: 'Kedd',
-        from: '14:15',
-        to: '16:00',
-        edubase: ' https://www.edubase.net/coupon/AbOwIp5tXQ8LYJ5q',
-        staff: [
-          {
-            name: 'Török Regina',
-          },
-          {
-            name: 'Tusor Bálint',
-          },
-        ],
-      },
-      {
-        group: 'HM5',
-        room: 'R515',
-        day: 'Szerda',
-        from: '12:15',
-        to: '14:00',
-        edubase: 'https://www.edubase.net/coupon/Ox9fS9dsw9thHT1A',
-        staff: [
-          {
-            name: 'Sándor Tibor',
-          },
-        ],
-      },
-      {
-        group: 'HM6',
-        room: 'R516',
-        day: 'Szerda',
-        from: '14:15',
-        to: '16:00',
-        edubase: 'https://www.edubase.net/coupon/8SCh2JFsyU7XrxFY',
-        staff: [
-          {
-            name: 'Kun László Ákos',
-          },
-        ],
-      },
-      {
-        group: 'HM7',
-        room: 'R501',
-        day: 'Csütörtök',
-        from: '10:15',
-        to: '12:00',
-        edubase: 'https://www.edubase.net/coupon/76SkYrSQRQ4O91hF',
-        staff: [
-          {
-            name: 'Patacsi Mátyás',
-          },
-        ],
-      },
-      {
-        group: 'HE1',
-        room: 'R513',
-        day: 'Csütörtök',
-        from: '12:15',
-        to: '14:00',
-        edubase: 'https://www.edubase.net/coupon/JGz2gogz7NsxZUpn',
-        staff: [
-          {
-            name: 'Sándor Tibor',
-          },
-        ],
-      },
-      {
-        group: 'HE2',
-        room: 'R514',
-        day: 'Csütörtök',
-        from: '12:15',
-        to: '14:00',
-        edubase: 'https://www.edubase.net/coupon/TWUEMzRzK3V8LjRD',
-        staff: [
-          {
-            name: 'Prónai Sára',
-          },
-        ],
-      },
-    ],
-  },
-};
-
 const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
   const subjectCode = params.subjectCode;
-  const subject = data[subjectCode];
+  const subject = config[subjectCode];
 
   return (
     <>
       <h1 className='text-3xl mt-8 pb-2 mx-4 border-b-2 font-semibold'>
-        {subject.title}
+        {subject.name}
       </h1>
 
       <h2 className='mx-4 text-xl mt-4 py-2 border-b-2'>Alapadatok</h2>
@@ -197,13 +36,13 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
         </p>
         <p className='mb-2'>
           Kreditérték:{' '}
-          <span className='font-semibold'>{subject.breakdown.credit}</span>
+          <span className='font-semibold'>{subject.breakdown.credits}</span>
         </p>
         <p className='mb-2'>
           Heti óraszám:{' '}
           <span className='font-semibold'>{subject.breakdown.lectures}</span> /{' '}
-          <span className='font-semibold'>{subject.breakdown.practices}</span> /{' '}
-          <span className='font-semibold'>{subject.breakdown.labs}</span>
+          <span className='font-semibold'>{subject.breakdown.practicals}</span>{' '}
+          / <span className='font-semibold'>{subject.breakdown.labs}</span>
         </p>
         <p className='mb-2'>
           Oktató: <span className='font-semibold'>{subject.lecturer}</span>
@@ -211,7 +50,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
         <p className='mb-2'>
           Előadás jegyzet:{' '}
           <a
-            href={subject.pdfNotes}
+            href={`/downloads/${subject.downloads.book.fileName}`}
             target='_blank'
             rel='noreferrer'
             className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
@@ -231,7 +70,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
 
       <h2 className='mx-4 text-xl mt-4 py-2 border-b-2'>Ütemterv</h2>
       <div className='p-4 overflow-x-auto'>
-        <LectureTable />
+        <LectureTable subjectCode={subjectCode} />
       </div>
 
       <h2 className='mx-4 text-xl mt-4 py-2 border-b-2'>
@@ -250,7 +89,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
             </tr>
           </thead>
           <tbody>
-            {subject.practices.map(practice => (
+            {subject.practicals.map(practice => (
               <tr key={practice.group}>
                 <td className='border px-4 py-2'>
                   {practice.group}
@@ -267,7 +106,17 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
                 </td>
                 <td className='border px-4 py-2'>{practice.room}</td>
                 <td className='border px-4 py-2'>
-                  {practice.day}, {practice.from} - {practice.to}
+                  {/* TODO: Do it nicer */}
+                  {practice.day === 1 && 'Hétfő'}
+                  {practice.day === 2 && 'Kedd'}
+                  {practice.day === 3 && 'Szerda'}
+                  {practice.day === 4 && 'Csütörtök'}
+                  {practice.day === 5 && 'Péntek'}
+                  {', '}
+                  {practice.start[0].toString().padStart(2, '0')}:
+                  {practice.start[1].toString().padStart(2, '0')} -{' '}
+                  {practice.end[0].toString().padStart(2, '0')}:
+                  {practice.end[1].toString().padStart(2, '0')}
                 </td>
                 <td className='border px-4 py-2'>
                   {practice.staff.map((staff, index) => (

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { ChangeEvent, Fragment, useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
 
 import type { NextPage } from 'next';
 import { Input, Label, RadioGroup } from '@/components';
@@ -98,7 +98,7 @@ const items = [
 
 const typeRadioItems = [
   {
-    value: null,
+    value: 'all',
     label: 'Összes',
   },
   {
@@ -117,7 +117,7 @@ const typeRadioItems = [
 
 const semesterRadioItems = [
   {
-    value: null,
+    value: 0,
     label: 'Összes',
   },
   {
@@ -144,17 +144,17 @@ type Type = 'mandatory' | 'catch-up' | 'optional';
 const SubjectsPage: NextPage<SubjectsPageProps> = () => {
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
-  const [semester, setSemester] = useState<Semester | null>(null);
-  const [type, setType] = useState<Type | null>(null);
+  const [semester, setSemester] = useState<Semester | 0>(0);
+  const [type, setType] = useState<Type | 'all'>('all');
 
-  const isDirty = name || code || semester || type;
+  const isDirty = name || code || semester || type !== 'all';
   let nonEmpty = false;
 
   const reset = useCallback(() => {
     setName('');
     setCode('');
-    setSemester(null);
-    setType(null);
+    setSemester(0);
+    setType('all');
   }, []);
 
   const handleNameChange = useCallback(
@@ -232,7 +232,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = () => {
       </div>
 
       {items.map(({ title, subjects, value }) => {
-        if (type && type !== value) return null;
+        if (type !== 'all' && type !== value) return null;
 
         let filteredSubjects = subjects;
 

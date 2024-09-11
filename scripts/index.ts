@@ -1,19 +1,22 @@
 import { join } from 'path';
 import { cwd } from 'process';
-import { writeFile } from 'fs/promises';
 import { existsSync, mkdirSync } from 'fs';
 import { parseConfig } from './parser';
-import { configToBash } from './shell';
 
-import type { Downloads } from './types';
+import type { Subject, SubjectData } from 'common/types';
+import { configToBash } from './shell';
+import { writeFile } from 'fs/promises';
 
 const CONFIG_NAME = 'config.yml';
 const RC_FILE = '.latexmkrc';
 
 const CWD = cwd();
 const BASE_DIR = join(CWD, 'content');
-const GENERATE_DIR = join(CWD, 'generate');
-const LATEX_DIRS = ['G1-book', 'G1-practices'];
+const GENERATE_DIR = join(CWD, '.generate');
+const SUBJECT_DIRS: Array<[Subject, string]> = [
+  // Add more subjects here
+  ['G1', 'G1'],
+];
 
 const SHEBANG = '#!/bin/bash';
 
@@ -22,42 +25,46 @@ if (!existsSync(GENERATE_DIR)) {
 }
 
 Promise.all(
-  LATEX_DIRS.map(relativeDir => {
-    return parseConfig(
-      join(BASE_DIR, relativeDir, CONFIG_NAME),
-      CWD,
-      RC_FILE,
-      BASE_DIR
-    );
+  SUBJECT_DIRS.map(s => {
+    return parseConfig(BASE_DIR, s, CONFIG_NAME, join(CWD, RC_FILE), 'build');
   })
 )
-  .then(configs => {
-    const scripts = configs.map(configToBash);
-
-    const allDownloads = configs.reduce((acc: Downloads, config) => {
-      if (!acc[config.subject]) {
-        acc[config.subject] = {
-          book: [],
-          practice: [],
+  .then(arr => {
+    const obj = arr.reduce(
+      (acc, val) => {
+        return {
+          ...acc,
+          ...val,
         };
+      },
+      {} as {
+        [key in Subject]: SubjectData;
       }
+    );
 
-      acc[config.subject]![config.type]!.push(...config.downloads);
-
-      return acc;
-    }, {});
+    return obj;
+  })
+  .then(config => {
+    const compileScript = configToBash(config);
 
     return Promise.all([
       writeFile(
-        join(GENERATE_DIR, 'downloads.json'),
-        JSON.stringify(allDownloads, null, 2)
+        join(GENERATE_DIR, 'compile.sh'),
+        [SHEBANG, compileScript].join('\n\n')
       ),
       writeFile(
-        join(GENERATE_DIR, 'compile.sh'),
-        [SHEBANG, ...scripts].join('\n\n')
+        join(GENERATE_DIR, 'config.json'),
+        JSON.stringify(config, null, 2)
+      ),
+      writeFile(
+        join(GENERATE_DIR, 'index.ts'),
+        `import { Subject, SubjectData } from '../common/types';
+import configJSON from './config.json';
+
+const config = configJSON as { [key in Subject]: SubjectData };
+
+export { config }
+`
       ),
     ]);
-  })
-  .then(() => {
-    console.log('Compilation script written to generate/compile.sh');
   });

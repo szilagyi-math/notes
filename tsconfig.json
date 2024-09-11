@@ -29,7 +29,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "./.velite"
+    "./.velite",
+    "./.generate",
+    "./common"
   ],
   "exclude": ["node_modules"]
 }

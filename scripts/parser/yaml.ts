@@ -1,7 +1,9 @@
+import camelize from 'camelize-ts';
+
 import { stringify, parse } from 'yaml';
 import { writeFile, readFile } from 'fs/promises';
-import { dirname, relative } from 'path';
-import { LatexConfig } from 'scripts/types';
+import { SubjectData, Subject, Downloads } from 'common/types';
+import { join } from 'path';
 
 export async function writeYaml(path: string, content: string) {
   const yaml = stringify(content);
@@ -10,36 +12,47 @@ export async function writeYaml(path: string, content: string) {
 }
 
 export async function parseConfig(
-  path: string,
-  cwd: string,
+  baseDir: string,
+  subject: [Subject, string],
+  configName: string,
   rcFile: string,
   buildDir: string
 ) {
-  const configFile = await readFile(path, 'utf-8');
+  const configFile = await readFile(
+    join(baseDir, subject[1], configName),
+    'utf-8'
+  );
+  const json = parse(configFile);
+  const config = camelize(json) as any;
 
-  const json: LatexConfig = parse(configFile);
+  const downloads: Downloads[Subject] = {
+    book: {
+      displayName: config.book.displayName,
+      fileName: `${config.book.target}.pdf`,
+    },
+    practice: [],
+  };
 
-  const absolutePath = dirname(path);
-  const relativePath = relative(cwd, absolutePath);
+  for (const file of config.practiceMaterial.files) {
+    if (file.displayName && file.source && file.target) {
+      downloads.practice.push({
+        displayName: file.displayName,
+        fileName: `${file.target}.pdf`,
+      });
+    }
+  }
 
-  const relativeRc = relative(absolutePath, rcFile);
-
-  const downloads = json.root_files.map(file => {
-    return {
-      fileName: `${file.target}.pdf`,
-      displayName: file.display_name,
-    };
-  });
+  const data = {
+    dir: subject[1],
+    absoluteDir: join(baseDir, subject[1]),
+    rcFile,
+    buildDir,
+    ...config,
+    downloads,
+  } as SubjectData;
 
   return {
-    absolutePath,
-    relativePath,
-    relativeRc,
-    buildDir,
-    rootFiles: json.root_files,
-    subject: json.subject,
-    type: json.type,
-    downloads,
+    [subject[0]]: data,
   };
 }
 

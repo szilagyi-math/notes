@@ -1,0 +1,80 @@
+subject: G1
+type: practice
+root_files:
+  - source: 01.tex
+    target: G1-gyak-01
+    display_name: G1 1. gyakorlat
+    description: Analitikus geometria I – Vektorok
+    week: 1
+  - source: 02.tex
+    target: G1-gyak-02
+    display_name: G1 2. gyakorlat
+    description: Analitikus geometria II – Térgeometriai alakzatok
+    week: 2
+  - source: 03.tex
+    target: G1-gyak-03
+    display_name: G1 3. gyakorlat
+    description: Komplex számok
+    week: 3
+  - source: 04.tex
+    target: G1-gyak-04
+    display_name: G1 4. gyakorlat
+    description: Numerikus sorozatok I
+    week: 4
+  - source: 05.tex
+    target: G1-gyak-05
+    display_name: G1 5. gyakorlat
+    description: Numerikus sorozatok II
+    week: 5
+  - source: 06.tex
+    target: G1-gyak-06
+    display_name: G1 6. gyakorlat
+    description: Függvények – folytonosság, határérték
+    week: 6
+  - source: 07.tex
+    target: G1-gyak-07
+    display_name: G1 7. gyakorlat
+    description: Differenciálszámítás I
+    week: 7
+  - source: 08.tex
+    target: G1-gyak-08
+    display_name: G1 8. gyakorlat
+    description: Differenciálszámítás II
+    week: 8
+    should_compile: false
+  - source: 09.tex
+    target: G1-gyak-09
+    display_name: G1 9. gyakorlat
+    description: Differenciálszámítás III
+    week: 9
+    should_compile: false
+  - source: 10.tex
+    target: G1-gyak-10
+    display_name: G1 10. gyakorlat
+    description: Integrálszámítás I
+    week: 10
+    should_compile: false
+  - source: 11.tex
+    target: G1-gyak-11
+    display_name: G1 11. gyakorlat
+    description: Integrálszámítás II
+    week: 11
+    should_compile: false
+  - source: 12.tex
+    target: G1-gyak-12
+    display_name: G1 12. gyakorlat
+    description: Integrálszámítás III
+    week: 12
+    should_compile: false
+  - source: 13.tex
+    target: G1-gyak-13
+    display_name: G1 13. gyakorlat
+    description: Integrálszámítás IV
+    week: 13
+    should_compile: false
+  - source: 14.tex
+    target: G1-gyak-14
+    display_name: G1 14. gyakorlat
+    description: Numerikus sorok
+    week: 14
+    should_compile: false

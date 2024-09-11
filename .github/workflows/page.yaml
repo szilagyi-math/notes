@@ -44,8 +44,8 @@ jobs:
       - name: Upload script
         uses: actions/upload-artifact@v3
         with:
-          name: generate
-          path: generate
+          name: .generate
+          path: .generate
 
   build_latex:
     name: Build Latex documents
@@ -64,20 +64,19 @@ jobs:
       - name: Download generate
         uses: actions/download-artifact@v3
         with:
-          name: generate
-          path: generate
+          name: .generate
+          path: .generate
 
       - name: Compile documents
         run: |
-          chmod +x ./generate/compile.sh
-          ./generate/compile.sh
+          chmod +x ./.generate/compile.sh
+          ./.generate/compile.sh
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: latex-docs
-          path: |
-            build/*.pdf
+          name: .downloads
+          path: .downloads
           if-no-files-found: error
 
   build_page:
@@ -92,8 +91,8 @@ jobs:
       - name: Download generate
         uses: actions/download-artifact@v3
         with:
-          name: generate
-          path: generate
+          name: .generate
+          path: .generate
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -141,12 +140,12 @@ jobs:
       - name: Download pdfs
         uses: actions/download-artifact@v3
         with:
-          name: latex-docs
-          path: latex-docs
+          name: .downloads
+          path: .downloads
 
       - name: Move pdfs
         run: |
-          mv latex-docs out/downloads
+          mv .downloads out/downloads
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.6.0
