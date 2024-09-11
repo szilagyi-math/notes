@@ -69,6 +69,7 @@ const G1Data: Week[] = [
       '',
     ],
     practice: 'Differenciálszámítás I',
+    practiceLink: '/downloads/G1-gyak-07.pdf',
   },
   {
     week: '8',

@@ -19,3 +19,6 @@ root_files:
   - source: 06.tex
     target: G1-gyak-06
     display_name: G1 6. gyakorlat
+  - source: 07.tex
+    target: G1-gyak-07
+    display_name: G1 7. gyakorlat
