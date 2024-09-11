@@ -1,38 +1,40 @@
 import type { Subject, SubjectData } from 'common/types';
 
-function handleSubjectData(data: SubjectData) {
-  const absoluteBookDir = `${data.absoluteDir}/${data.book.dir}`;
-  const absolutePracticeDir = `${data.absoluteDir}/${data.practiceMaterial.dir}`;
+function handleSubjectData(subject: SubjectData) {
   const docsDir = `latex-docs`;
 
-  const script = `Now compiling files in ${data.dir}
+  const script = `Now compiling files in ${subject.dir}
+
+# Create the directory for the compiled files
+mkdir -p ${docsDir}
 
 # Save the current directory
 CWD=$(pwd)
 
 # Change to the book directory
-cd ${absoluteBookDir}
+cd content/${subject.dir}/${subject.book.dir}
 
 # Run latexmk with the config file
-latexmk -r ${data.rcFile} ${data.book.source}
+latexmk -r ../../../.latexmkrc ${subject.book.source}
 
 # Copy the book to the ${docsDir} directory
-cp ${data.buildDir}/${data.book.source.replace(
+cp ${subject.buildDir}/${subject.book.source.replace(
     /\.tex$/,
     '.pdf'
-  )} $CWD/${docsDir}/${data.book.target}.pdf
+  )} $CWD/${docsDir}/${subject.book.target}.pdf
 
 # Change to the practice directory
-cd ${absolutePracticeDir}
+cd ../${subject.practiceMaterial.dir}
 
 # Run latexmk with the config file and copy the files to the ${docsDir} directory
-${data.practiceMaterial.files
+${subject.practiceMaterial.files
   .map(file => {
     if (file.displayName && file.source && file.target) {
-      return `latexmk -r ${data.rcFile} ${file.source}
-cp ${data.buildDir}/${file.source.replace(/\.tex$/, '.pdf')} $CWD/${docsDir}/${
-        file.target
-      }.pdf`;
+      return `latexmk -r ../../../.latexmkrc ${file.source}
+cp ${subject.buildDir}/${file.source.replace(
+        /\.tex$/,
+        '.pdf'
+      )} $CWD/${docsDir}/${file.target}.pdf`;
     } else {
       return `# Skipping ${file.description}`;
     }
