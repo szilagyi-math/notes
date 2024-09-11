@@ -25,7 +25,7 @@ const LectureTable = ({ subjectCode }: LectureTableProps) => {
       <tbody>
         {subject.practiceMaterial.files.map(row => (
           <tr key={row.week}>
-            <td className='border px-4 py-2'>{row.week}</td>
+            <td className='border px-4 py-2 text-center'>{row.week}</td>
             <td className='border px-4 py-2'>
               {row.description}
               {row.target && (

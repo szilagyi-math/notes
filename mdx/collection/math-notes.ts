@@ -2,7 +2,7 @@ import { defineCollection, s } from 'velite';
 
 import { mdx, getSiblingRefs } from '..';
 
-import type { NoteRef, Subject } from '../types';
+import type { NoteRef, Subject } from 'common/types';
 
 // Collections
 const mathNotes = defineCollection({

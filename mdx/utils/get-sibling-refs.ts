@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 
-import type { NoteRef, Subject } from '../types';
+import type { NoteRef, Subject } from 'common/types';
 
 interface GetSiblingRefsConfig {
   // Path to the content folder
