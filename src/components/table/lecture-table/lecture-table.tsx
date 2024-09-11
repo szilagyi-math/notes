@@ -1,4 +1,4 @@
-import { config } from '.generate';
+import { data } from 'latex-docs';
 
 type Week = {
   week: string;
@@ -12,7 +12,7 @@ interface LectureTableProps {
 }
 
 const LectureTable = ({ subjectCode }: LectureTableProps) => {
-  const subject = config[subjectCode];
+  const subject = data[subjectCode];
 
   return (
     <table className='table-fixed w-full border border-accent-9'>

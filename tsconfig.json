@@ -21,7 +21,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "content": ["./.velite"]
+      "content": ["./.velite"],
+      "latex-docs": ["./generate"]
     }
   },
   "include": [
@@ -30,7 +31,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "./.velite",
-    "./.generate",
+    "./generate",
     "./common"
   ],
   "exclude": ["node_modules"]

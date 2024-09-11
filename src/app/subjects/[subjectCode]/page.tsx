@@ -1,5 +1,5 @@
 import { LectureTable } from '@/components';
-import { config } from '.generate/index';
+import { data } from 'latex-docs';
 
 import type { NextPage } from 'next';
 
@@ -21,7 +21,7 @@ export const generateStaticParams = async () => {
 
 const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
   const subjectCode = params.subjectCode;
-  const subject = config[subjectCode];
+  const subject = data[subjectCode];
 
   return (
     <>

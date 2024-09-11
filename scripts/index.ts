@@ -12,7 +12,8 @@ const RC_FILE = '.latexmkrc';
 
 const CWD = cwd();
 const BASE_DIR = join(CWD, 'content');
-const GENERATE_DIR = join(CWD, '.generate');
+const GENERATE_DIR = join(CWD, 'generate');
+const DOCS_DIR = join(CWD, 'latex-docs');
 const SUBJECT_DIRS: Array<[Subject, string]> = [
   // Add more subjects here
   ['G1', 'G1'],
@@ -22,6 +23,9 @@ const SHEBANG = '#!/bin/bash';
 
 if (!existsSync(GENERATE_DIR)) {
   mkdirSync(GENERATE_DIR, { recursive: true });
+}
+if (!existsSync(DOCS_DIR)) {
+  mkdirSync(DOCS_DIR, { recursive: true });
 }
 
 Promise.all(
@@ -61,9 +65,9 @@ Promise.all(
         `import { Subject, SubjectData } from '../common/types';
 import configJSON from './config.json';
 
-const config = configJSON as { [key in Subject]: SubjectData };
+const data = configJSON as { [key in Subject]: SubjectData };
 
-export { config }
+export { data }
 `
       ),
     ]);

@@ -3,6 +3,7 @@ import type { Subject, SubjectData } from 'common/types';
 function handleSubjectData(data: SubjectData) {
   const absoluteBookDir = `${data.absoluteDir}/${data.book.dir}`;
   const absolutePracticeDir = `${data.absoluteDir}/${data.practiceMaterial.dir}`;
+  const docsDir = `latex-docs`;
 
   const script = `Now compiling files in ${data.dir}
 
@@ -15,24 +16,21 @@ cd ${absoluteBookDir}
 # Run latexmk with the config file
 latexmk -r ${data.rcFile} ${data.book.source}
 
-# Create a downloads directory in cwd if it doesn't exist
-mkdir -p $CWD/.downloads
-
-# Copy the book to the downloads directory
+# Copy the book to the ${docsDir} directory
 cp ${data.buildDir}/${data.book.source.replace(
     /\.tex$/,
     '.pdf'
-  )} $CWD/.downloads/${data.book.target}.pdf
+  )} $CWD/${docsDir}/${data.book.target}.pdf
 
 # Change to the practice directory
 cd ${absolutePracticeDir}
 
-# Run latexmk with the config file and copy the files to the downloads directory
+# Run latexmk with the config file and copy the files to the ${docsDir} directory
 ${data.practiceMaterial.files
   .map(file => {
     if (file.displayName && file.source && file.target) {
       return `latexmk -r ${data.rcFile} ${file.source}
-cp ${data.buildDir}/${file.source.replace(/\.tex$/, '.pdf')} $CWD/.downloads/${
+cp ${data.buildDir}/${file.source.replace(/\.tex$/, '.pdf')} $CWD/${docsDir}/${
         file.target
       }.pdf`;
     } else {

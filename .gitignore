@@ -37,5 +37,5 @@ next-env.d.ts
 
 .velite
 *.log
-.generate
-.downloads
+generate
+latex-docs
