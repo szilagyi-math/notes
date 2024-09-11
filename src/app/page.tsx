@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ChangeEvent, useCallback, useState } from 'react';
 
 import type { NextPage } from 'next';
-import { Input, Label, RadioGroup } from '@/components';
+import { Input, Label, Main, RadioGroup } from '@/components';
 
 interface SubjectsPageProps {}
 
@@ -172,7 +172,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = () => {
   );
 
   return (
-    <>
+    <Main>
       <h1 className='text-3xl font-semibold mt-8 border-b-2 pb-2 mx-4'>
         Tantárgyak
       </h1>
@@ -309,7 +309,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = () => {
           Nincs találat a keresési feltételeknek.
         </div>
       )}
-    </>
+    </Main>
   );
 };
 

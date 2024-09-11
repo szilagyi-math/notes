@@ -1,4 +1,4 @@
-import { LectureTable } from '@/components';
+import { LectureTable, Main } from '@/components';
 import { data } from 'latex-docs';
 
 import type { NextPage } from 'next';
@@ -24,7 +24,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
   const subject = data[subjectCode];
 
   return (
-    <>
+    <Main>
       <h1 className='text-3xl mt-8 pb-2 mx-4 border-b-2 font-semibold'>
         {subject.name}
       </h1>
@@ -131,7 +131,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
           </tbody>
         </table>
       </div>
-    </>
+    </Main>
   );
 };
 
