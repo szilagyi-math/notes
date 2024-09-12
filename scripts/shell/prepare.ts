@@ -22,10 +22,6 @@ if [ "$GITHUB_ACTIONS" == "true" ]; then
   cd content/G1/practice
 
   for file in $(find . -name "*.tex"); do
-    # Debug log
-    echo "$file"
-    git log -1 --format="%ad" -- "$file"
-
     # Get the year, month (number), and day
     year=$(git log -1 --format="%ad" --date=format:"%Y" -- "$file")
     month_num=$(git log -1 --format="%ad" --date=format:"%m" -- "$file")
@@ -53,7 +49,9 @@ if [ "$GITHUB_ACTIONS" == "true" ]; then
     # Use sed to replace today with the last modification date
     if [[ "$OSTYPE" == "darwin"* ]]; then
       sed -i '' "s/\\\\\\today/$hungarian_date/g" $file
-    eles
+    else
+      echo "Changing the date in $file"
+      git log -1 --format="%ad" -- "$file"
       sed -i "s/\\\\\\today/$hungarian_date/g" $file
     fi
   done
