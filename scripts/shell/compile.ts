@@ -31,6 +31,10 @@ cd ../${subject.practiceMaterial.dir}
 
 # Change today to the last updated date
 for file in $(find . -name "*.tex"); do
+  # Debug log
+  echo "$file"
+  git log -1 --format="%ad" -- "$file"
+
   # Get the year, month (number), and day
   year=$(git log -1 --format="%ad" --date=format:"%Y" -- "$file")
   month_num=$(git log -1 --format="%ad" --date=format:"%m" -- "$file")
