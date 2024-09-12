@@ -17,6 +17,9 @@ cd content/${subject.dir}/${subject.book.dir}
 # Run latexmk with the config file
 latexmk -r ../../../.latexmkrc ${subject.book.source}
 
+# Add safe dir
+git config --global --add safe.directory /__w/notes/notes
+
 # Copy the book to the ${docsDir} directory
 cp ${subject.buildDir}/${subject.book.source.replace(
     /\.tex$/,
