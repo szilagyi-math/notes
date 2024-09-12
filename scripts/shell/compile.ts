@@ -56,7 +56,7 @@ for file in $(find . -name "*.tex"); do
   hungarian_date="$year. $month $day."
 
   # Use sed to replace today with the last modification date
-  sed -i '' "s/\\\\\\today/$hungarian_date/g" $file
+  sed -i "s/\\\\\\today/$hungarian_date/g" $file
 done
 
 
