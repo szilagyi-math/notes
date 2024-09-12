@@ -8,7 +8,7 @@ import { configToBash } from './shell';
 import { writeFile } from 'fs/promises';
 
 const CONFIG_NAME = 'config.yml';
-const RC_FILE = '.latexmkrc';
+const RC_FILE = '.latexmkrc.prod';
 
 const CWD = cwd();
 const BASE_DIR = join(CWD, 'content');

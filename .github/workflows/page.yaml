@@ -73,6 +73,7 @@ jobs:
       - name: Compile documents
         run: |
           chmod +x ./generate/compile.sh
+          GITHUB_ACTIONS="true"
           ./generate/compile.sh
 
       - name: Upload artifacts
