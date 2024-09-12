@@ -3,7 +3,7 @@ import type { Subject, SubjectData } from 'common/types';
 function handleSubjectData(subject: SubjectData) {
   const docsDir = `latex-docs`;
 
-  const script = `Now compiling files in ${subject.dir}
+  const script = `#Now compiling files in ${subject.dir}
 
 # Create the directory for the compiled files
 mkdir -p ${docsDir}
@@ -52,7 +52,7 @@ for file in $(find . -name "*.tex"); do
   # Format the final Hungarian date
   hungarian_date="$year. $month $day."
 
-  # Use sed with # as a delimiter
+  # Use sed to replace today with the last modification date
   sed -i '' "s/\\\\\\today/$hungarian_date/g" $file
 done
 
