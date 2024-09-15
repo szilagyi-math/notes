@@ -1,6 +1,6 @@
 import { getNoteRef } from '@/utils';
 import { notFound } from 'next/navigation';
-import { Main } from '@/components';
+import { mathNotes } from 'content';
 
 import type { Subject, NoteSlug } from 'common/types';
 import type { NextPage } from 'next';
@@ -10,13 +10,11 @@ interface NotePageParams {
   noteSlug: NoteSlug;
 }
 
-export const generateStaticParams = () => {
-  return [
-    {
-      subjectCode: 'G1',
-      noteSlug: ['01-sets'],
-    },
-  ];
+export const generateStaticParams = (): NotePageParams[] => {
+  return mathNotes.map(note => ({
+    subjectCode: note.subjectCode,
+    noteSlug: note.slug,
+  }));
 };
 
 interface NotePageProps {
@@ -31,10 +29,9 @@ const NotesPage: NextPage<NotePageProps> = ({ params }) => {
   const ref = getNoteRef(params.subjectCode, params.noteSlug);
 
   return (
-    <Main>
+    <div>
       <h1>{ref}</h1>
-      <pre>{JSON.stringify(params, null, 2)}</pre>
-    </Main>
+    </div>
   );
 };
 

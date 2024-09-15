@@ -64,15 +64,7 @@ const mathNotes = defineCollection({
         baseDir,
       });
 
-      console.log({
-        prev: s.prevRef,
-        ref,
-        next: s.nextRef,
-      });
-
-      let href = `/subjects/${subjectCode}/notes/${chapter}`;
-
-      sectionCode === '00' && (href += `/${section}`);
+      let href = `/subjects/${subjectCode}/notes/${slug.join('/')}`;
 
       return {
         ...n,
@@ -92,7 +84,6 @@ const mathNotes = defineCollection({
         prevRef: s.prevRef,
         nextRef: s.nextRef,
         href,
-        absoluteHref: href,
         // Local toc if applicable
         localToc: localToc.length > 0 ? localToc : null,
       };
