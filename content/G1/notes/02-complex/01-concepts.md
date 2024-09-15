@@ -1,5 +1,5 @@
 ---
-title: Bevezetés
+title: "Fogalmak, definíciók"
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet enim sit

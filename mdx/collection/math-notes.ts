@@ -2,12 +2,15 @@ import { defineCollection, s } from 'velite';
 
 import { mdx, getSiblingRefs } from '..';
 
-import type { NoteRef, Subject } from 'common/types';
+import type { NoteRef, NoteSlug, Subject } from 'common/types';
 
 // Collections
 const mathNotes = defineCollection({
   name: 'MathNotes',
-  pattern: ['G1-book/**/index.md'],
+  pattern: [
+    //
+    'G1/notes/**/*.md',
+  ],
   schema: s
     .object({
       title: s.string(),
@@ -19,13 +22,14 @@ const mathNotes = defineCollection({
       code: mdx(),
     })
     .transform(async (n, ctx) => {
-      // TODO: Change this when we have more subjects
       const path = n.path;
 
-      const ref = path // ss-book/xx-chaptertitle/yy-sectiontitle
-        .split('/') // [ss-book, xx-chaptertitle, yy-sectiontitle]
-        .map(e => e.split('-')[0]) // [ss, xx, yy]
-        .join('-') as NoteRef; // ss-xx-yy
+      // G1/book/xx-chaptertitle/yy-sectiontitle
+      const [subject, book, chapter, section] = path.split('/');
+
+      const ref: NoteRef = `${subject}-${chapter.split('-')[0]}-${
+        section.split('-')[0]
+      }`;
 
       const [subjectCode, chapterCode, sectionCode] = ref.split('-') as [
         Subject,
@@ -34,7 +38,6 @@ const mathNotes = defineCollection({
       ];
 
       const depth = sectionCode === '00' ? 1 : 2;
-      const [baseDir, ...slug] = path.split('/') as [string, string, string];
 
       const parentRef =
         sectionCode === '00' ? null : `${subjectCode}-${chapterCode}-00`;
@@ -46,14 +49,30 @@ const mathNotes = defineCollection({
         id: string;
       }>;
 
-      const absolutePath = ctx.meta.path;
-      const basePath = absolutePath.split(`/${path}/`)[0];
+      const slug: NoteSlug =
+        sectionCode === '00' ? [chapter] : [chapter, section];
 
-      const s = await getSiblingRefs({ basePath, baseDir, slug, subjectCode });
+      const pathParts = ctx.meta.path.split('/');
+      const fileName = pathParts.pop() as string;
+      const subDir = pathParts.pop() as string;
+      const baseDir = pathParts.join('/') as string;
 
-      const href = `notes/${subjectCode}/${
-        sectionCode !== '00' ? slug.join('/') : slug[0]
-      }`;
+      const s = await getSiblingRefs({
+        subjectCode,
+        fileName,
+        subDir,
+        baseDir,
+      });
+
+      console.log({
+        prev: s.prevRef,
+        ref,
+        next: s.nextRef,
+      });
+
+      let href = `/subjects/${subjectCode}/notes/${chapter}`;
+
+      sectionCode === '00' && (href += `/${section}`);
 
       return {
         ...n,
@@ -63,16 +82,17 @@ const mathNotes = defineCollection({
         sectionCode,
         // Paths,
         depth,
-        absolutePath,
-        basePath,
+        fileName,
+        subDir,
         baseDir,
         // References
+        slug,
         ref,
         parentRef,
         prevRef: s.prevRef,
         nextRef: s.nextRef,
         href,
-        absoluteHref: `/${href}`,
+        absoluteHref: href,
         // Local toc if applicable
         localToc: localToc.length > 0 ? localToc : null,
       };
