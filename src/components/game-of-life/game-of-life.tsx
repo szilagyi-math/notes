@@ -138,7 +138,7 @@ const GameOfLife = () => {
     for (let i = 0; i < height; i++) {
       for (let j = 0; j < width; j++) {
         if (game.prev[i][j] === 1) {
-          ctx.fillStyle = '#f8f8f8';
+          ctx.fillStyle = '#f5f5f5';
           ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
         }
         if (game.current[i][j] === 1) {
