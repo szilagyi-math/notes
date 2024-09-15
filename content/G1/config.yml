@@ -15,9 +15,11 @@ book:
 online_notes: null
 practice_material:
   dir: practice
+  solutionsDir: practice-solutions
   files:
     - source: 01.tex
       target: G1-gyak-01
+      solution: G1-gyak-01-megoldas.pdf
       display_name: G1 1. gyakorlat
       description: Analitikus geometria I – Vektorok
       week: 1

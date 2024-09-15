@@ -42,11 +42,13 @@ export type SubjectData = {
   // Practice material
   practiceMaterial: {
     dir: string;
+    solutionsDir: string;
     files: {
       // Only needed if downloadable
       source?: string;
       target?: string;
       displayName?: string;
+      solution?: string;
       // Required for all
       description: string;
       week: number;

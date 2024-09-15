@@ -42,6 +42,20 @@ const LectureTable = ({ subjectCode }: LectureTableProps) => {
                   {')'}
                 </>
               )}
+              {row.solution && (
+                <>
+                  {' ('}
+                  <a
+                    href={`/downloads/${row.solution}`}
+                    target='_blank'
+                    rel='noreferrer'
+                    className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
+                  >
+                    Megoldások
+                  </a>
+                  {')'}
+                </>
+              )}
             </td>
           </tr>
         ))}

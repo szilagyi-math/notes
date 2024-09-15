@@ -39,6 +39,13 @@ export async function parseConfig(
         displayName: file.displayName,
         fileName: `${file.target}.pdf`,
       });
+
+      if (file.solution) {
+        downloads.practice.push({
+          displayName: `${file.displayName} - Megoldások`,
+          fileName: `${file.target}-megoldas.pdf`,
+        });
+      }
     }
   }
 
