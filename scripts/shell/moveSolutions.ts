@@ -9,13 +9,17 @@ export function moveSolutions(subject: SubjectData) {
 
   const script = `echo "Moving solutions in ${subject.dir}"
 
+if ls ${solutionsDir}/*.pdf 1> /dev/null 2>&1; then
   for file in ${solutionsDir}/*.pdf; do
     # Get the filename without the extension
     filename=$(basename "$file")
 
-    # Move the file to the solutions directory
-    mv "$file" "latex-docs/$filename"
+    # Copy the file to the solutions directory
+    cp "$file" "latex-docs/$filename"
   done
+else
+  echo "No PDF files found in ${solutionsDir}"
+fi
 `;
 
   return script;
