@@ -56,6 +56,20 @@ const LectureTable = ({ subjectCode }: LectureTableProps) => {
                   {')'}
                 </>
               )}
+              {row.videoLink && (
+                <>
+                  {' ('}
+                  <a
+                    href={row.videoLink}
+                    target='_blank'
+                    rel='noreferrer'
+                    className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
+                  >
+                    Videó
+                  </a>
+                  {')'}
+                </>
+              )}
             </td>
           </tr>
         ))}

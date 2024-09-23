@@ -49,6 +49,7 @@ export type SubjectData = {
       target?: string;
       displayName?: string;
       solution?: string;
+      videoLink?: string;
       // Required for all
       description: string;
       week: number;

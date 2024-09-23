@@ -20,12 +20,14 @@ practice_material:
     - source: 01.tex
       target: G1-gyak-01
       solution: G1-gyak-01-megoldas.pdf
+      video_link: https://youtu.be/xIiAnpM3uSI
       display_name: G1 1. gyakorlat
       description: Analitikus geometria I – Vektorok
       week: 1
     - source: 02.tex
       target: G1-gyak-02
       solution: G1-gyak-02-megoldas.pdf
+      video_link: https://youtu.be/qOatMC5SSCU
       display_name: G1 2. gyakorlat
       description: Analitikus geometria II – Térgeometriai alakzatok
       week: 2
