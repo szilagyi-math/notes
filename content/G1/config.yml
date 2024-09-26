@@ -33,6 +33,7 @@ practice_material:
       week: 2
     - source: 03.tex
       target: G1-gyak-03
+      solution: G1-gyak-03-megoldas.pdf
       display_name: G1 3. gyakorlat
       description: Komplex számok
       week: 3
