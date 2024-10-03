@@ -34,12 +34,15 @@ practice_material:
     - source: 03.tex
       target: G1-gyak-03
       solution: G1-gyak-03-megoldas.pdf
+      video_link: https://youtu.be/R7WRV5dkUVQ
       display_name: G1 3. gyakorlat
       description: Komplex számok
       week: 3
     - source: 04.tex
       target: G1-gyak-04
       display_name: G1 4. gyakorlat
+      solution: G1-gyak-04-megoldas.pdf
+      video_link: https://youtu.be/Q7re319JuNo5
       description: Numerikus sorozatok I
       week: 4
     - source: 05.tex
