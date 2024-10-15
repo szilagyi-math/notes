@@ -47,6 +47,8 @@ practice_material:
       week: 4
     - source: 05.tex
       target: G1-gyak-05
+      solution: G1-gyak-05-megoldas.pdf
+      video_link: https://youtu.be/2EL1Qg0bEnU
       display_name: G1 5. gyakorlat
       description: Numerikus sorozatok II
       week: 5
