@@ -2,8 +2,8 @@
 
 \usepackage{math-practice}
 
-\title{Folytonosság}
-\area{Függvények}
+\title{Differenciálás II}
+\area{Kalkulus}
 \subject{Matematika G1}
 \subjectCode{BMETE94BG01}
 \date{Utoljára frissítve: \today}
@@ -14,12 +14,226 @@
 
 \subsection{Elméleti Áttekintő}
 
+\begin{blueBox}
+  \sftitle{Implicit függvények differenciálása}:
+
+  A korábbiakban $y = f(x)$ alakú függvényeket vizsgáltunk. Az ilyen függvények
+  az $x \mapsto f(x)$ hozzárendelés alapján egyértelműen megadják, hogy az egyes
+  ősképekhez ($x \in \Domain_f$) milyen értékek tartoznak ($y \in \Range_f$).
+
+  Előfordulhat azonban olyan eset, amikor nehéz, vagy éppen lehetetlen
+  \textbf{explicit alakban} megadni egy görbét. Ennek a problémának a
+  feloldására vezessük be az \textbf{implicit függvények} fogalmát. Az ilyen
+  függvények esetén az ősképek és képek közötti kapcsolatot az $F(x; y) = 0$
+  egyenlettel adhatjuk meg.
+
+  Ilyen függvények differenciálásakor mindig az összetett függvények deriválási
+  szabályait kell alkalmazni:
+  \[
+    \left[ g(y) \right]' = g'(y) \cdot y'
+  \]
+\end{blueBox}
+
+\begin{note}
+  Implicit függvény deriváltjai a parciális deriváltak segítségével is
+  meghatározhatóak. Parciális deriválás során a függvényt úgy tekintjük, mintha
+  az $x$ és $y$ változók függetlenek lennének egymástól. Az $x$ szerinti
+  parciális derivált esetén $y$-t, az $y$ szerinti parciális derivált esetén
+  pedig $x$-et konstansként kezeljük.
+
+  Az $x$ szertini derivált:
+  \[
+    \frac{\partial F}{\partial x} + \frac{\partial F}{\partial y} \cdot y' = 0
+    \quad \rightarrow \quad
+    y' = -\frac{\partial F / \partial x}{\partial F / \partial y} = -\frac{F'_x}{F'_y}
+    \text.
+  \]
+  Az $y$ szerinti derivált pedig:
+  \[
+    \frac{\partial F}{\partial x} \cdot x' + \frac{\partial F}{\partial y} = 0
+    \quad \rightarrow \quad
+    x' = -\frac{\partial F / \partial y}{\partial F / \partial x} = -\frac{F'_y}{F'_x}
+  \]
+  % A második deriváltak:
+  % \[
+  %   y''
+  %   = \odv{}{x} \left( -\frac{\partial F / \partial x}{\partial F / \partial y} \right)
+  %   = - \frac{
+  %     \odv{}{x} \left( \pdv{F}{X} \right) \cdot \pdv{F}{y}
+  %     - \pdv{F}{x} \cdot \odv{}{x} \left( \pdv{F}{y} \right)
+  %   }{
+  %     \pdv[2]{F}{y}
+  %   } = \frac{
+  %     F''_x \cdot F'_y - F''_xy \cdot F'x
+  %   }{
+  %     F''y
+  %   }
+  % \]
+  % A láncszabály alapján:
+  % \[
+  %   \odv{}{x} \left( \pdv{F}{x} \right)
+  %   = \pdv[2]{F}{x} + \pdv{F}{x,y} \cdot y'
+  %   \quad \text{és} \quad
+  %   \odv{}{x} \left( \pdv{F}{y} \right)
+  %   = \pdv{F}{x,y} + \pdv{F}{y,y} \cdot y'
+  % \]
+\end{note}
+
+\begin{note}
+  Az $(f(x))^{g(x)}$ típusú függvényekeket az implicit függvény deriválási
+  szabályai szerint is differenciálhatjuk.
+  \begin{gather*}
+    y = f(x)^{g(x)}
+    \quad \rightarrow \quad
+    \ln y = g(x) \ln f(x)
+    \quad \rightarrow \quad
+    \frac{y'}{y} = g'(x) \ln f(x) + \frac{g(x) f'(x)}{f(x)}
+    \\
+    \Downarrow
+    \\
+    y' = f(x)^{g(x)} \left( g'(x) \ln f(x) + \frac{g(x) f'(x)}{f(x)} \right)
+  \end{gather*}
+\end{note}
+
+\begin{note}
+  Határozzuk meg az $\ln^x x$ függvény deriváltját!
+  \begin{gather*}
+    y = \ln^x x
+    \quad \rightarrow \quad
+    \ln y = x \ln \ln x
+    \quad \rightarrow \quad
+    \frac{y'}{y} = 1 \cdot \ln \ln x + x \cdot \frac{1}{\ln x} \cdot \frac{1}{x}
+    \\
+    \Downarrow
+    \\
+    y' = \ln^x x \left( \ln \ln x + \frac{1}{\ln x} \right)
+  \end{gather*}
+
+  A feladat az előző gyakorlaton tanult módszerrel is megoldható:
+  \[
+    y = e^{x \ln \ln x}
+    \quad \rightarrow \quad
+    y' = e^{x \ln \ln x} \left( 1 \cdot \ln \ln x + x \cdot \frac{1}{\ln x} \cdot \frac{1}{x} \right)
+    = \ln^x x \left( \ln \ln x + \frac{1}{\ln x} \right)
+    \text.
+  \]
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Inverz függvény differenciálása}:
+
+  Függvény invertálása során a függvény görbéjét tükrözzük az $y = x$ egyenesre.
+  Jele: $f^{-1}(x)$. Amennyiben az eredeti függvény differenciálható az $x_0$
+  pontban, és $f'(x_0) \neq 0$, akkor az inverz függvény deriváltja az
+  $y_0 = f(x_0)$ pontban:
+  \[
+    \left. \odv{f^{-1}(x)}{x} \right|_{f(x_0)} = \frac{1}{f'(x_0)}
+  \]
+\end{blueBox}
+
+\begin{note}
+  Az inverz függvény létezésének szükséges feltétele, hogy az eredeti függvény
+  bijektív legyen.
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Paraméteresen megadott függvények differenciálása}:
+
+  Paraméteresen megadott függvények esetén egy paraméterünk ($t$), viszont kettő
+  egyenletünk ($x(t)$ és $y(t)$) van. Az $x$ szerinti derivált:
+  \[
+    \odv{y}{x}
+    = \odv{y}{t} \cdot \odv{t}{x}
+    = \frac{\sfrac{\dd y}{\dd t}}{\sfrac{\dd x}{\dd t}}
+    = \frac{\dot y}{\dot x}
+    \text.
+  \]
+  Az $y$ szerinti derivált pedig ennek a reciproka:
+  \[
+    \odv{x}{y}
+    = \odv{x}{t} \cdot \odv{t}{y}
+    = \frac{\sfrac{\dd x}{\dd t}}{\sfrac{\dd y}{\dd t}}
+    = \frac{\dot x}{\dot y}
+    \text.
+  \]
+  A másosik deriváltak:
+  \[
+    \odv[2]{y}{x}
+    = \odv{y'}{x}
+    = \odv{y'}{t} \cdot \odv{t}{x}
+    = \frac{\dot{(y')}}{\dot x}
+    = \frac{\odv{}{t}\left(\odv{y}{x}\right)}{\dot x}
+    = \frac{\odv{}{t}\left(\frac{\dot y}{\dot x}\right)}{\dot x}
+    = \frac{\ddot y \dot x - \dot y \ddot x}{\dot x^3}
+  \]
+  \[
+    \odv[2]{x}{y}
+    = \odv{x'}{y}
+    = \odv{x'}{t} \cdot \odv{t}{y}
+    = \frac{\dot{(x')}}{\dot y}
+    = \frac{\odv{}{t}\left(\odv{x}{y}\right)}{\dot y}
+    = \frac{\odv{}{t}\left(\frac{\dot x}{\dot y}\right)}{\dot y}
+    = \frac{\ddot x \dot y - \dot x \ddot y}{\dot y^3}
+  \]
+\end{blueBox}
+
+\begin{theorem}[L'Hôpital-szabály]
+  Legyenek $f$ és $g$ differenciálhatóak az $\alpha \in \Reals_b$ pont egy
+  környezetében ($\alpha$-ban nem szükségképpen), továbbá $g(x) \neq 0$ és
+  $g'(x) \neq 0$ és
+  \[
+    \lim\limits_{x \rightarrow \alpha} f(x) = \lim\limits_{x \rightarrow \alpha} g(x)=0
+    \text{, vagy}
+    \lim\limits_{x \rightarrow \alpha} |f(x)|=\lim\limits_{x \rightarrow \alpha}|g(x)|=\infty
+    \text,
+  \]
+  \[
+    \text{ekkor, ha}
+    \lim\limits_{x \rightarrow \alpha} \frac{f'(x)}{g'(x)}=B
+    \text{, akkor }
+    \lim\limits_{x \rightarrow \alpha} \frac{f(x)}{g(x)}=B
+    \text.
+  \]
+\end{theorem}
+
+\begin{theorem}[Rolle-tétel]
+  Legyen $f$ folytonos $[a; b]$ intervallumon és differenciálható $(a; b)$
+  intervallumon, továbbá $f(a) = f(b) = 0$, ekkor létezik $ \xi \in (a; b)$,
+  melyre teljesül, hogy
+  \[
+    f'(\xi) = 0
+    \text.
+  \]
+\end{theorem}
+
+\begin{theorem}[Lagrange-féle középértéktétel]
+  Legyen $f : I \subset R \to R$ folytonos $[a; b]$ intervallumon és
+  differenciálható $(a; b)$ intervallumon, ekkor létezik olyan $\delta \in
+    (a; b)$ hogy
+  \[
+    f'(\delta) = \frac{f(b)-f(a)}{b-a}
+    \text.
+  \]
+\end{theorem}
+
+\begin{theorem}[Cauchy-féle középértéktétel]
+  Legyen $f$ és $g$ függvények folytonosak $[a; b]$ intervallumon és
+  differenciálhatóak $(a; b)$ intervallumon, valamint tegyük fel, hogy $g'(x)
+    \neq 0$ bármely $x \in (a; b)$ esetén. Ekkor létezik olyan $\eta \in
+    (a; b)$
+  hogy
+  \[
+    \frac{f(b)-f(a)}{g(b)-g(a)} = \frac{f'(\eta)}{g'(\eta)}
+    \text.
+  \]
+\end{theorem}
+
 \clearpage
 \subsection{Feladatok}
 
 \begin{enumerate}
   \item Határozza meg az alábbi függvény deriváltjait!
-        ($y' = \partial y / \partial x$ és $x' = \partial x / \partial y$)
+        ($y' = \dd y / \dd x$ és $x' = \dd x / \dd y$)
         \[
           F(x; y) = x^4 y + 5 y^2 x- 4 = 0
         \]
@@ -28,6 +242,72 @@
         az érintőjének egyenletét a $P(1;1)$ pontban!
         \[
           \ln y + xy = 1
+        \]
+
+  \item Határozza meg az $x^2 + y^2 = 25$ kör azon pontjait, amelyekben a kör
+        érintőjének meredeksége $3/4$!
+
+  \item Írja fel az $f(x) = 5 x^3 + x - 7$ függvény inverzét, és annak
+        deriváltját! Adja meg ennek értékét az $f(x_0)$ pontban, ha $x_0 = 1$!
+
+  \item Határozza meg az alábbi paraméteresen megadott függvény $x$ szerinti
+        első és második deriváltját. Mekkora lesz az érintő meredeksége a
+        $t = \pi / 6$-hoz tartozó pontban?
+        \[
+          \begin{cases}
+            x(t) = e^t \cos t \\
+            y(t) = e^t \sin t
+          \end{cases}
+        \]
+
+  \item Határozza meg az alábbi paraméteresen megadott kör azon pontjait,
+        ahol az érintő meredeksége $3/4$!
+        \[
+          \begin{cases}
+            x(t) = 5 \cos t \\
+            y(t) = 5 \sin t
+          \end{cases}
+        \]
+
+  \item Határozza meg az alábbi határértékeket a L'Hôpital szabály segítségével!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \lim_{x \rightarrow 3} = \frac{3^x - x^3}{x - 3}
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow 3^{+}} \frac{\ln(x - 3)}{\ln(e^x - e^3)}
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow 0} x \ln x
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow 0} x^x
+                  $
+
+            \item $\displaystyle
+                    \lim_{x \rightarrow 0} \left(
+                    \frac{\cos x}{x} - \frac{1}{\sin x}
+                    \right)
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+  \item Vizsgálja meg, hogy alkalmazható-e a L'Hôpital szabály az alábbi
+        határértékek kiszámítására! Ha igen, alkalmazza, ha nem, indokolja meg!
+        \[
+          \lim_{x \rightarrow 0} \frac{x^2 \sin(\sfrac{1}{x})}{\sin x}
+        \]
+
+  \item A Rolle-féle középértéktétel segítségével bizonyítsa be, hogy az
+        $f(x) = 3x^5 + 15x - 2$ függvénynek egy valós gyöke van!
+
+  \item Határozza meg az alábbi függvény lokális szélsőértékeit!
+        \[
+          f(x) = \frac{x^3}{x^2 - x - 2}
         \]
 \end{enumerate}
 
