@@ -37,6 +37,261 @@
 \end{note}
 
 \begin{blueBox}
+  \sftitle{Fontosabb függvények és deriváltjaik}:
+
+  \begin{minipage}{.3\textwidth}
+    \def\arraystretch{1.5}\centering
+    \begin{tabular}{c c}
+      $f(x)$   & $f'(x)$                                                   \\ \toprule
+      $e^x$    & $e^x$                                                     \\[2mm]
+      $\ln x $ & $\dfrac{1}{x} \vphantom{\dfrac{x^{\sfrac{1}{n} - 1}}{n}}$ \\ \bottomrule
+    \end{tabular}
+  \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+    \def\arraystretch{1.5}\centering
+    \begin{tabular}{c c}
+      $f(x)$     & $f'(x)$                                                         \\ \toprule
+      $a^x$      & $a^x \ln a$                                                     \\[2mm]
+      $\log_a x$ & $\dfrac{1}{x \ln a} \vphantom{\dfrac{x^{\sfrac{1}{n} - 1}}{n}}$ \\ \bottomrule
+    \end{tabular}
+  \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+    \def\arraystretch{1.5}\centering
+    \begin{tabular}{c c}
+      $f(x)$        & $f'(x)$                           \\ \toprule
+      $x^n$         & $n \cdot x^{n - 1}$               \\[2mm]
+      $\sqrt[n]{x}$ & $\dfrac{x^{\sfrac{1}{n} - 1}}{n}$ \\ \bottomrule
+    \end{tabular}
+  \end{minipage}
+\end{blueBox}
+
+\begin{note}
+  A konstans függvény deriváltja zérus.
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Trigonometrikus függvények és deriváltjaik}:
+
+  \begin{minipage}{0.45\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[ultra thick, scale=.85]
+        \draw[gray, thick] (-2.75,0)--(3,0);
+        \draw[gray, thick] (0,-2.75)--(0,3);
+
+        \draw  (0,0) circle [radius=2.5];
+
+        \draw[primaryColor] (0,0)--(40:4);
+
+        % sin
+        \draw[draw=secondaryColor] (40:2.5) -- (40:2.5 |- 0,0)
+        coordinate (t)
+        node[left, pos=.7] {$\sin x$}
+        ;
+
+        % cos
+        \draw[draw=secondaryColor] (t) -- (0,0)
+        node[below, midway] {$\cos x$}
+        ;
+
+        % tan
+        \draw[draw=secondaryColor] (0:2.5) -- ++(0,2.08) coordinate (t)
+        node[right, midway] {$\tan x$}
+        ;
+
+        % cot
+        \draw[draw=secondaryColor] (90:2.5) -- ++(3,0) coordinate (t)
+        node[above, midway] {$\cot x$}
+        ;
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}%
+  \begin{minipage}{0.275\textwidth}
+    \def\arraystretch{1.5}
+    \begin{tabular}{c | c}
+      $f(x)$   & $f'(x)$                                      \\ \toprule
+      $\sin x$ & $\cos x \vphantom{\dfrac{1}{\sqrt{1-x^2}}}$  \\ [2mm]
+      $\cos x$ & $-\sin x \vphantom{\dfrac{1}{\sqrt{1-x^2}}}$ \\ [2mm]
+      $\tan x$ & $\dfrac{1}{\cos^2 x}$                        \\ [2mm]
+      $\cot x$ & $-\dfrac{1}{\sin^2 x}$                       \\ \bottomrule
+    \end{tabular}
+  \end{minipage}%
+  \begin{minipage}{0.275\textwidth}
+    \def\arraystretch{1.5}
+    \begin{tabular}{c | c}
+      $f(x)$      & $f'(x)$                               \\ \toprule
+      $\arcsin x$ & $\dfrac{1}{\sqrt{1-x^2}}$             \\ [2mm]
+      $\arccos x$ & $-\dfrac{1}{\sqrt{1-x^2}}$            \\ [2mm]
+      $\arctan x$ & $\dfrac{1}{1+x^2 \vphantom{\cos^2}}$  \\ [2mm]
+      $\arccot x$ & $-\dfrac{1}{1+x^2 \vphantom{\sin^2}}$ \\ \bottomrule
+    \end{tabular}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Hiperbolikus függvények és deriváltjaik}:
+
+  \begin{minipage}{0.35\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[ultra thick, scale=.85]
+        \draw[gray, thick] (-2.75,0)--(2.75,0);
+        \draw[gray, thick] (0,-2.75)--(0,2.75);
+
+        % unit hyperbola helper
+        \draw[gray, dashed, thick] (2.5, 2.5) -- (-2.5, -2.5);
+        \draw[gray, dashed, thick] (2.5, -2.5) -- (-2.5, 2.5);
+
+        % \draw[domain=0.275:3.5, rotate=-45, samples=75, scale=1/1.141] plot (\x,{1/\x});
+        % \draw[domain=0.275:3.5, rotate=135, samples=75] plot (\x,{1/\x});
+
+        \draw[domain=0:1.5] plot ({cosh(\x)}, {sinh(\x)});
+        \draw[domain=0:1.5] plot ({cosh(\x)}, {-sinh(\x)});
+
+        \draw[domain=0:1.5] plot ({-cosh(\x)}, {sinh(\x)});
+        \draw[domain=0:1.5] plot ({-cosh(\x)}, {-sinh(\x)});
+
+        % cosh(1) = 1.543
+        % sinh(1) = 1.175
+
+        \draw[draw=secondaryColor] (0, 1.175)
+        -- (1.543, 1.175) node [midway, above] {$\cosh x$}
+        -- (1.543, 0) node [midway, right] {$\sinh x$}
+        ;
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}%
+  \begin{minipage}{0.25\textwidth}
+    \def\arraystretch{1.5}
+    \begin{tabular}{c | c}
+      $f(x)$    & $f'(x)$                                      \\ \toprule
+      $\sinh x$ & $\cosh x \vphantom{\dfrac{1}{\sqrt{x^2-1}}}$ \\ [2mm]
+      $\cosh x$ & $\sinh x \vphantom{\dfrac{1}{\sqrt{x^2-1}}}$ \\ [2mm]
+      $\tanh x$ & $\dfrac{1}{\cosh^2 x}$                       \\ [2mm]
+      $\coth x$ & $-\dfrac{1}{\sinh^2 x}$                      \\ \bottomrule
+    \end{tabular}
+  \end{minipage}%
+  \begin{minipage}{0.4\textwidth}
+    \def\arraystretch{1.5}
+    \begin{tabular}{c | l}
+      $f(x)$       & $\;\;\;f'(x)$                                             \\ \toprule
+      $\arcsinh x$ & $\dfrac{1}{\sqrt{x^2+1}}$                                 \\ [2mm]
+      $\arccosh x$ & $\dfrac{1}{\sqrt{x^2-1}} \;\;\;\, (x > 1)$                \\ [2mm]
+      $\arctanh x$ & $\;\;\dfrac{1}{1-x^2 \vphantom{\cosh^2}} \quad (|x| < 1)$ \\ [2mm]
+      $\arccoth x$ & $\;\;\dfrac{1}{1-x^2 \vphantom{\sinh^2}} \quad (|x| > 1)$ \\ \bottomrule
+    \end{tabular}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Hiperbolikus azonosságok}:
+  \begin{alignat*}{9}
+    \sinh x   & = \frac{e^x - e^{-x}}{2}
+    \hspace{2cm}
+              & \cosh x                  & = \frac{e^x + e^{-x}}{2}
+    \\[2mm]
+    \sinh x   & = - \iu \sin(\iu x)
+    \hspace{2cm}
+              & \cosh x                  & = \cos(\iu x)
+    \\[2mm]
+    \sinh^2 x & = \frac{\cosh 2x - 1}{2}
+    \hspace{2cm}
+              & \cosh^2 x                & = \frac{\cosh 2x + 1}{2}
+    \\[2mm]
+    \sinh 2x  & = 2 \sinh x \cosh x
+    \hspace{2cm}
+              & \cosh 2x                 & = \cosh^2 x + \sinh^2 x
+    \\[2mm]
+    \multicolumn{4}{c}{$1 = \cosh^2 x - \sinh^2 x$}
+  \end{alignat*}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Műveleti szabályok}:
+
+  \centering
+  \setlength{\tabcolsep}{0mm}
+  \begin{tabular}{>{\bullet\hskip1ex\bfseries\sffamily}l<{:} >{\hskip1.5em$\displaystyle}c<{$\hskip1.5em} >{$\displaystyle}c<{$ }}
+    Konstans kiemelhető                                 &
+    (cf)' = cf'                                         &
+    \odv{}{x}(cf)) = c \odv{f}{x}
+    \\[5mm]
+    Összeg- és különbségfüggvény                        &
+    (f \pm g)' = f' \pm g'                              &
+    \odv{}{x}(f \pm g) = \odv{f}{x} \pm \odv{g}{x}
+    \\[5mm]
+    Szorzatfüggvény                                     &
+    (fg)' = f'g + fg'                                   &
+    \odv{}{x}(fg) = \odv{f}{x}g + f\odv{g}{x}
+    \\[5mm]
+    Hányadosfüggvény                                    &
+    \left( \frac{f}{g} \right)' = \frac{f'g - fg'}{g^2} &
+    \odv{}{x}\left( \frac{f}{g} \right) = \frac{\displaystyle\odv{f}{x}g - f\odv{g}{x}}{g^2}
+  \end{tabular}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Láncszabály}:
+
+  A láncszabály segítségével összetett függvényeket tudunk differenciálni.
+  Az összefüggést három különböző jelölésmóddal is felírhatjuk:
+  \[
+    (f(g(x)))' = f'(g(x)) \cdot g'(x)
+    \quad \text{vagy} \quad
+    (f \circ g)' = (f' \circ g) \cdot g'
+    \quad \text{vagy} \quad
+    \odv{f(g)}{x} = \odv{f(g)}{g} \cdot \odv{g}{x}
+  \]
+\end{blueBox}
+
+% \begin{note}
+%   Határozzuk meg az $\ln \sin x$ függvény deriváltját a láncszabály
+%   segítségével!
+
+%   Jelen esetben a külső függvény $f(x) = \ln x$, a belső függvény pedig
+%   $g(x) = \sin x$. Ezek deriváljai: $f'(x) = 1/x$ és $g'(x) = \cos x$.
+%   Ezek alapján az összetett függvény deriváltja:
+%   \[
+%     (\ln \sin x)' = \frac{1}{\sin x} \cdot \cos x
+%     = \frac{\cos x}{\sin x}
+%     = \cot x
+%     \text.
+%   \]
+% \end{note}
+
+\clearpage
+
+\begin{blueBox}
+  \sftitle{Elemi átalakításos módszer}:
+
+  Előfordulhat olyan eset, hogy $(f(x))^{g(x)}$ alakú függvényeket kell
+  differenciálni. Ebben az esetben az alábbi átalakítást alkalmazzuk:
+  \[
+    (f(x))^{g(x)} = e^{\ln (f(x))^{g(x)}} = e^{g(x) \ln f(x)}
+    \text.
+  \]
+
+  Az $e^{g(x) \ln f(x)}$ függvény deriváltja a láncszabály segítségével:
+  \begin{align*}
+    \left((f(x))^{g(x)}\right)'
+     & =\left(e^{g(x) \ln f(x)}\right)'                                            \\
+     & = e^{g(x) \ln f(x)} \left( g'(x) \ln f(x) + g(x) \frac{f'(x)}{f(x)} \right) \\
+     & = (f(x))^{g(x)} \left( g'(x) \ln f(x) + g(x) \frac{f'(x)}{f(x)} \right)
+    \text.
+  \end{align*}
+\end{blueBox}
+
+\begin{note}
+  Határozzuk meg az $\ln^x x$ függvény deriváltját!
+
+  Az $\ln^x x$ függvényt $e^{x \ln \ln x}$ alakra hozva, a láncszabály
+  segítségével differenciálható:
+  \begin{align*}
+    \left(\ln^x x\right)'
+     & = \left(e^{x \ln \ln x}\right)'                                                        \\
+     & = e^{x \ln \ln x} \left( \ln \ln x + x \cdot \frac{1}{\ln x} \cdot \frac{1}{x} \right) \\
+     & = \ln^x x \left( \ln \ln x + \frac{1}{\ln x} \right)
+    \text.
+  \end{align*}
+\end{note}
+
+\begin{blueBox}
   \sftitle{Geometriai alkalmazás}:
 
   Az $f$ függvény $a$ pontbeli \textbf{érintő}jének \textbf{egyenlete} onnan
@@ -67,7 +322,7 @@
   \begin{gather*}
     M = \frac{-1}{f'(a)}
     \text, \quad \text{és} \quad
-    (a; f(a)) \in Y = M \cdot x + B
+    (a; f(a)) \in y = M \cdot x + B
     \text,
     \\
     \boxed{
@@ -76,7 +331,6 @@
     }
   \end{gather*}
 \end{blueBox}
-
 
 \clearpage
 \subsection{Feladatok}
