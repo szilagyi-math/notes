@@ -36,23 +36,29 @@
 
 \begin{note}
   Implicit függvény deriváltjai a parciális deriváltak segítségével is
-  meghatározhatóak. Parciális deriválás során a függvényt úgy tekintjük, mintha
-  az $x$ és $y$ változók függetlenek lennének egymástól. Az $x$ szerinti
-  parciális derivált esetén $y$-t, az $y$ szerinti parciális derivált esetén
-  pedig $x$-et konstansként kezeljük.
+  meghatározhatóak. Parciális deriválás során az $F(x;y)$ függvényre úgy
+  tekintük, mintha az $x$ és $y$ változói függetlenek lennének egymástól. Az
+  $x$ szerinti parciális derivált esetén $y$-t, az $y$ szerinti parciális
+  derivált esetén pedig $x$-et konstansként kezeljük.
 
   Az $x$ szertini derivált:
   \[
     \frac{\partial F}{\partial x} + \frac{\partial F}{\partial y} \cdot y' = 0
     \quad \rightarrow \quad
-    y' = -\frac{\partial F / \partial x}{\partial F / \partial y} = -\frac{F'_x}{F'_y}
+    y'
+    = \odv{y}{x}
+    = -\frac{\partial F / \partial x}{\partial F / \partial y}
+    = -\frac{F'_x}{F'_y}
     \text.
   \]
   Az $y$ szerinti derivált pedig:
   \[
     \frac{\partial F}{\partial x} \cdot x' + \frac{\partial F}{\partial y} = 0
     \quad \rightarrow \quad
-    x' = -\frac{\partial F / \partial y}{\partial F / \partial x} = -\frac{F'_y}{F'_x}
+    x'
+    = \odv{x}{y}
+    = -\frac{\partial F / \partial y}{\partial F / \partial x}
+    = -\frac{F'_y}{F'_x}
   \]
   % A második deriváltak:
   % \[
@@ -80,7 +86,7 @@
 \end{note}
 
 \begin{note}
-  Az $(f(x))^{g(x)}$ típusú függvényekeket az implicit függvény deriválási
+  Az $(f(x))^{g(x)}$ típusú függvényeket az implicit függvény deriválási
   szabályai szerint is differenciálhatjuk.
   \begin{gather*}
     y = f(x)^{g(x)}
