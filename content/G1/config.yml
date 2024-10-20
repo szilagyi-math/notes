@@ -67,7 +67,10 @@ practice_material:
       display_name: G1 8. gyakorlat
       description: Differenciálszámítás II
       week: 8
-    - description: Differenciálszámítás III
+    - source: 09.tex
+      target: G1-gyak-09
+      display_name: G1 9. gyakorlat
+      description: Differenciálszámítás III
       week: 9
     - description: Integrálszámítás I
       week: 10
