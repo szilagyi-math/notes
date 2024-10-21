@@ -55,6 +55,8 @@ practice_material:
     - source: 06.tex
       target: G1-gyak-06
       display_name: G1 6. gyakorlat
+      solution: G1-gyak-06-megoldas.pdf
+      video_link: https://youtu.be/qzTEZYRykUA
       description: Függvények – folytonosság, határérték
       week: 6
     - source: 07.tex
