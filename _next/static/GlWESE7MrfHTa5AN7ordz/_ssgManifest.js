@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Fsubjects\u002F[subjectCode]","\u002Fsubjects\u002F[subjectCode]\u002Fnotes\u002F[...noteSlug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
