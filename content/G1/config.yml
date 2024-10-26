@@ -56,12 +56,13 @@ practice_material:
       target: G1-gyak-06
       display_name: G1 6. gyakorlat
       solution: G1-gyak-06-megoldas.pdf
-      video_link: https://youtu.be/qzTEZYRykUA
+      video_link: https://youtu.be/VJoVvFfEagc
       description: Függvények – folytonosság, határérték
       week: 6
     - source: 07.tex
       target: G1-gyak-07
       display_name: G1 7. gyakorlat
+      video_link: https://youtu.be/qzTEZYRykUA
       description: Differenciálszámítás I
       week: 7
     - source: 08.tex
