@@ -2,8 +2,8 @@
 
 \usepackage{math-practice}
 
-\title{??}
-\area{??}
+\title{Integrálszámítás I}
+\area{Kalkulus}
 \subject{Matematika G1}
 \subjectCode{BMETE94BG01}
 \date{Utoljára frissítve: \today}
@@ -14,15 +14,165 @@
 
 \subsection{Elméleti Áttekintő}
 
+\begin{blueBox}
+  \sftitle{Alapintegrálok}:
+
+  \centering
+  \newcommand{\cs}{\rule{0pt}{6mm}}
+  \newcommand{\dint}{\displaystyle\int}
+  \newcommand{\dmint}{\displaystyle\int^{\mathstrut}}
+  \newcommand{\fr}{%
+    \hline
+    f(x) & F(x) \\
+    \hline
+  }
+  \newenvironment{intTabular}{%
+    \begin{tabular}[b]{| *{2}{>{\centering\arraybackslash$}p{2cm}<{$}} |}
+      }{%
+      \hline
+    \end{tabular}
+  }
+  \def\arraystretch{1.4}
+  \begin{intTabular}
+    \multicolumn{2}{c}{$\dmint f(x) \dd x = F(x) + C$}              \\[6mm]
+    %
+    \fr
+    %
+    k                                       & kx                                 \\[1mm]
+    x^{\alpha}                              & \dfrac{x^{\alpha + 1}}{\alpha + 1} \\[3mm]
+    %
+    \hline
+    % %
+    \cs
+    \dfrac{1^{\mathstrut}}{x}               & \ln |x|                            \\[3mm]
+    e^x                                     & e^x                                \\
+    a^x                                     & \dfrac{a^x}{\ln a}                 \\[3mm]
+    %
+  \end{intTabular}
+  \hfill
+  \begin{intTabular}
+    %
+    \fr
+    %
+    \sin x                                  & - \cos x                           \\
+    \cos x                                  & \sin x                             \\
+    \dfrac{1}{\cos^2 x}                     & \tan x                             \\[3mm]
+    \dfrac{1}{\sin^2 x}                     & - \cot x                           \\[3mm]
+    %
+    \hline
+    %
+    \cs
+    \dfrac{1^{\mathstrut}}{\sqrt{1 - x^2}}  & \arcsin x                          \\[3mm]
+    \dfrac{-1}{\sqrt{1 - x^2}}              & \arccos x                          \\[3mm]
+    \dfrac{1}{1 + x^2}                      & \arctan x                          \\[3mm]
+  \end{intTabular}
+  \hfill
+  \begin{intTabular}
+    %
+    \fr
+    %
+    \sinh x                                 & \cosh x                            \\
+    \cosh x                                 & \sinh x                            \\
+    \dfrac{1}{\cosh^2 x}                    & \tanh x                            \\[3mm]
+    \dfrac{1}{\sinh^2 x}                    & -\coth x                           \\[3mm]
+    %
+    \hline
+    %
+    \cs
+    \dfrac{1^{\mathstrut}}{\sqrt{x^2 + 1}}  & \arcsinh x                         \\[3mm]
+    \dfrac{1}{\sqrt{x^2 - 1}}               & \arccosh x                         \\[3mm]
+    \dfrac{1}{1 - x^2}                      & \arctanh x                         \\[3mm]
+  \end{intTabular}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Integrálás tulajdonságai}:
+
+  \begin{tabular}{l<{:} >{$\displaystyle}l<{$}}
+    Linearitás                            & \int (\lambda f + \mu g) = \lambda \int f + \mu \int g \\[3mm]
+    Lineáris az integrációs intervallumra & \int_a^b f = \int_a^c f + \int_c^b f                   \\
+  \end{tabular}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Speciális helyettesítéses módszerek}:
+
+  \begin{itemize}
+    \item $\displaystyle \int f^\alpha \cdot f' = \frac{f^{\alpha + 1}}
+            {\alpha + 1}$, ahol $\alpha \neq -1$,
+    \item $\displaystyle \int \frac{f'}{f} = \ln |f| + C$,
+    \item $\displaystyle \int e^f \cdot f' = e^f + C$,
+    \item $\displaystyle \int (f \circ g) \cdot g' \dd x = \left( \int f \right)
+            \circ g$.
+  \end{itemize}
+\end{blueBox}
+
 \clearpage
 \subsection{Feladatok}
 
 \begin{enumerate}
-  \item Végezzük el az $f(x) = x \cdot e^{\sfrac{-1}{x}}$ függvény vizsgálatát!
+  \item Végezze el az $f(x) = x \cdot e^{\sfrac{-1}{x}}$ függvény vizsgálatát!
 
-  \item Végezzük el a $g(x) = \sin^2 x - 2 \sin x$ függvény vizsgálatát!
+  \item Végezze el a $g(x) = \sin^2 x - 2 \sin x$ függvény vizsgálatát!
 
-  \item
+  \item Végezze el az alábbi határozatlan integrálok számítását!
+        \begin{enumerate}
+          \item $\displaystyle
+                  \int x^2 (x^2 - 1) + 2 \sqrt{x \sqrt{x \sqrt{x}}} \dd x
+                $
+
+          \item $\displaystyle
+                  \int \frac{x^2 - 4x + 7}{x - 2} \dd x
+                $
+
+          \item $\displaystyle
+                  \int \tan^2 x \dd x
+                $
+
+          \item $\displaystyle
+                  \int \frac{\ln 2}{\sqrt{2 + 2x^2}} + \frac{e^{3x} + 1}{e^x + 1} \dd x
+                $
+        \end{enumerate}
+
+  \item Határozza meg az alábbi integrálok értékét a helyettesítéses módszer
+        segítségével!
+        \begin{enumerate}
+          \item $\displaystyle
+                  \int (x^3 + 2x) \cdot \cos\left(x^4 + 4x^2\right) \dd x
+                $
+
+          \item $\displaystyle
+                  \int \frac{\sqrt[3]{\tan x}}{\cos^2 x} \dd x
+                $
+
+          \item $\displaystyle
+                  \int \frac{x}{x^4 + 1} \dd x
+                $
+
+          \item $\displaystyle
+                  \int \sin^3(2x + 1) \cdot \cos(2x + 1) \dd x
+                $
+
+          \item $\displaystyle
+                  \int \frac{x}{4 + x^2} \dd x
+                $
+
+          \item $\displaystyle
+                  \int \frac{1}{\sin x \cdot \cos x} \dd x
+                $
+
+          \item $\displaystyle
+                  \int \frac{1}{\tan x} \dd x
+                $
+
+          \item $\displaystyle
+                  \int \frac{1}{x \cdot \ln x} \dd x
+                $
+
+          \item $\displaystyle
+                  \int \frac{2x + 1}{x^2 + 2} \dd x
+                $
+        \end{enumerate}
 \end{enumerate}
 
 % \\underline\{(\w)\}
