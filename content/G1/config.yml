@@ -62,6 +62,7 @@ practice_material:
     - source: 07.tex
       target: G1-gyak-07
       display_name: G1 7. gyakorlat
+      solution: G1-gyak-07-megoldas.pdf
       video_link: https://youtu.be/qzTEZYRykUA
       description: Differenciálszámítás I
       week: 7
