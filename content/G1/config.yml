@@ -108,6 +108,7 @@ practice_material:
     - source: 08.tex
       target: G1-gyak-08
       display_name: G1 8. gyakorlat
+      solution: G1-gyak-08-megoldas.pdf
       description: Differenciálszámítás II
       video_link: https://youtu.be/t_ZtR2x0eFA
       week: 8
