@@ -124,7 +124,10 @@ practice_material:
       description: Integrálszámítás I
       video_link: https://youtu.be/2YKb0qVEljo
       week: 10
-    - description: Integrálszámítás II
+    - source: 11.tex
+      target: G1-gyak-11
+      display_name: G1 11. gyakorlat
+      description: Integrálszámítás II
       video_link: https://youtu.be/7Wc1erfk1Ug
       video_mistakes:
         - '17:55 -> F5-ös példánál lemaradt a +c valós konstans.'

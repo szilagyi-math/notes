@@ -2,7 +2,7 @@
 
 \usepackage{math-practice}
 
-\title{Integrálszámítás I}
+\title{Integrálszámítás II}
 \area{Integrálszámítás}
 \subject{Matematika G1}
 \subjectCode{BMETE94BG01}
@@ -14,11 +14,753 @@
 
 \subsection{Elméleti Áttekintő}
 
+\begin{blueBox}
+  A \textbf{parciális integrálás} módszerének bevezetéséhez írjuk fel két
+  függvény szorzatának deriváltját:
+  \[
+    (f(x) \cdot g(x))' = f'(x) \cdot g(x) + f(x) \cdot g'(x)
+    \text.
+  \]
+  Integráljuk $x$ szerint az egyenlet mindkét oldalát:
+  \[
+    \int (f(x) \cdot g(x))' \dd x = \int f'(x) \cdot g(x) \dd x +
+    \int f(x) \cdot g'(x) \dd x
+    \text.
+  \]
+  Az integrálás és a deriválás műveletei egymás inverzei, így az egyenlet bal
+  oldala az alábbi alakot ölti:
+  \[
+    f(x) \cdot g(x) = \int f'(x) \cdot g(x) \dd x + \int f(x) \cdot g'(x) \dd x
+  \]
+  Rendezzük át az egyenletet:
+  \[
+    \int f(x) \cdot g'(x) \dd x = f(x) g(x) - \int f'(x) \cdot g(x) \dd x
+    \text.
+  \]
+  Amennyiben bevezetjük az $f(x) = u$, $g(x) = v$, $\dd u = u \dd x$, $\dd v = v
+    \dd x$ jelöléseket, akkor megkapjuk a parciális integrálás egy másik gyakran
+  használt alakját:
+  \[
+    \int u \dd v = u v - \int v \dd u
+    \text.
+  \]
+\end{blueBox}
+
+\begin{note}
+  A parciális integrálás módszerét az alábbi esetekben érdemes alkalmazni:
+  \begin{itemize}
+    \item polinom és trigonometrikus/exponenciális függvény szorzatának
+          integrálása:
+          \[
+            \int x \sin x \dd x
+            \text,\qquad
+            \int x \cos x \dd x
+            \text,\qquad
+            \int x \, e^x \dd x
+            \text,
+          \]
+    \item exponenciális és trigonometrikus függvények szorzatának integrálása:
+          \[
+            \int e^x \sin x \dd x
+            \text,\qquad
+            \int e^x \cos x \dd x
+            \text,
+          \]
+    \item logaritmus függvények integrálása,
+    \item egyéb esetek, ahol egy szorzatfüggvényt kell integrálni.
+  \end{itemize}
+\end{note}
+
+\begin{blueBox}
+  Egy \textbf{racionális törtfüggvény} polinomok hányadosaként áll elő.
+  Általános alakja:
+  \[
+    R(x) = \frac{P(x)}{Q(x)}
+    \text.
+  \]
+
+  Amennyiben a nevező fokszáma kisebb, mint a számlálóé, vagyis ${\deg P(x) \geq
+      \deg Q(x)}$, akkor a \textbf{polinomosztás} módszeréhez kell folyamodnunk,
+  mely elvégzése után a törtfüggvény az alábbi alakot ölti:
+  \[
+    R(x) = T(x) + \frac{S(x)}{Q(x)}
+    \text,
+  \]
+  hol $T(x)$ egy újabb polinom, $S(x)$ fokszáma pedig már kisebb, mint $Q(x)$
+  fokszáma.
+
+  Ezután \textbf{parciális törtekké} bontjuk a $S(x) / Q(x)$ hányadost, majd
+  ezeket, illetve a $T(x)$ polinomot integráljuk.
+
+  Amennyiben a nevező fokszáma nagyobb, mint a számláló fokszáma, vagyis
+  $\deg P(x) < \deg Q(x)$, akkor polinomosztás nélkül tudjuk parciális törtekké
+  bontani a függvényt.
+
+  A parciális törtekre való bontáshoz az \textbf{algebra alaptételét} használjuk
+  fel, miszerint bármely valós együtthatós polinom felbontható első és
+  másodrendű kifejezések szorzatára, vagyis
+  \[
+    p(x) = A
+    \cdot
+    \underbrace{\prod (x - a_i)}_{\text{valós gyökök}}
+    \cdot
+    \underbrace{\prod (x^2 + p_i x + q_i)}_{\text{komplex gyökök}}
+    \text.
+  \]
+  Valós gyökök esetén $a_i$ maga a polinom gyöke, míg komplex gyökök esetén
+  \[
+    x^2 + p_i x + q_i
+    = (x - z_i)(x - \overline z_i)
+    = x^2 - 2 \iRe(z_i) x + |z_i|^2
+    \text.
+  \]
+  Vegyük például a $p(x) = x^5 - 13 x^4 + 73 x^3 - 193 x^2 + 232 x - 100$
+  polinomot, melynek gyökei: $x_1 = 1$, $x_2 = 2$, $x_3 = 2$, $x_4 = 4 + 3i$,
+  $x_5 = 4 - 3i$. Ekkor a polinom felbontható:
+  \[
+    p(x)
+    = \underbrace{(x - 1)}_{x_1}
+    \cdot \underbrace{(x - 2)^2}_{x_2, x_3}
+    \cdot \underbrace{(x^2 - 6x + 25)}_{x_4, x_5}
+    \text.
+  \]
+\end{blueBox}
+
+\begin{example}
+  Hozzuk $R(x) = T(x) + S(x) / Q(x)$ alakra ($\deg S < \deg Q$) az $R(x) =
+    P(x) / Q(x)$ függvényt, ahol ${P(x)=x^3 - 12x^2 - 42}$ és $Q(x) = x - 3$.
+  Végezzük el a polinomosztást:
+  \[
+    \def\arraycolsep{4pt}
+    \begin{array}{rrr}
+      \begin{array}{l}
+        \\{\color{primaryColor}x^2} \cdot (x - 3) \rightarrow
+      \end{array}
+       &
+      \begin{array}{lrlll}
+          & (x^3 & -12x^2 & {\color{gray}+0x}\phantom2 & -42)               \\
+        - & (x^3 & -3x^2  & {\color{gray}+0x}\phantom2 & {\color{gray}+0x}) \\ \hline
+      \end{array}
+       &
+      \begin{array}{llll}
+        \hspace{-8pt}\div & (x-3) & = &
+        {\color{primaryColor}x^2}
+          {\color{secondaryColor}\;-\;9x}
+          {\color{ternaryColor}\;-\;27}
+        \text.                          \\\\
+      \end{array}
+      \\
+      \begin{array}{l}
+        \\{\color{secondaryColor}-9x} \cdot (x - 3) \rightarrow
+      \end{array}
+       &
+      \begin{array}{lrll}
+          & -9x^2\phantom2  & {\color{gray}+0x} & -42                        \\
+        - & (-9x^2\phantom2 & +27x              & {\color{gray}+0\phantom2}) \\ \hline
+      \end{array}
+       &
+      \\
+      \begin{array}{l}
+        \\{\color{ternaryColor}-27} \cdot (x - 3) \rightarrow
+      \end{array}
+       &
+      \begin{array}{lrl}
+          & -27x  & -42  \\
+        - & (-27x & +81) \\ \hline
+      \end{array}
+       &
+      \\
+       &
+      -123
+    \end{array}
+  \]
+  Az eredmény tehát:
+  \[
+    R(x) = x^2 - 9x - 27 - \frac{123}{x - 3}
+    \text.
+  \]
+\end{example}
+
+\begin{blueBox}
+  \sftitle{Félszöges tangens helyettesítés}:
+
+  Amennyiben trigonometrikus ($\sin x$, $\cos x$) függvényekből álló racionális
+  törtfüggvényeket szeretnénk integrálni, akkor az alábbi helyettesítés
+  alkalmazásával közönséges, $t$-től függő racionális törtfüggvényeket kapunk:
+  \[
+    t = \tan \frac{x}{2}
+    \quad \rightarrow \quad
+    \dd x = \frac{2 \dd t}{1 + t^2}
+    \text.
+  \]
+  Ilyen esetben a $\sin x$ és $\cos x$ trigonometrikus függvényeket a következő
+  módon helyettesítjük:
+  \[
+    \sin x = \frac{2t}{1 + t^2}
+    \quad \text{és} \quad
+    \cos x = \frac{1 - t^2}{1 + t^2}
+    \text.
+  \]
+  Egy ilyen integrál általános alakja:
+  \[
+    \int R(\sin x; \cos x) \dd x =
+    \int R\left(
+    \frac{2t}{1 + t^2}; \frac{1 - t^2}{1 + t^2}
+    \right) \frac{2 \dd t}{1 + t^2}
+    \text.
+  \]
+\end{blueBox}
+
+\begin{note}
+  \sftitle{Félszöges tangens helyettesítés levezetése}:
+
+  Használjuk az alábbi trigonometrikus azonosságokat:
+  \begin{align*}
+    \sin x & = 2 \sin (\sfrac{x}{2}) \cos (\sfrac{x}{2}) \text,     \\[1mm]
+    \cos x & = \cos^2 (\sfrac{x}{2}) - \sin^2 (\sfrac{x}{2}) \text, \\[1mm]
+    1      & = \cos^2 (\sfrac{x}{2}) + \sin^2 (\sfrac{x}{2}) \text.
+  \end{align*}
+
+  Ezek alapján a $\sin x$ és $\cos x$ trigonometrikus függvényeket a következő
+  módon helyettesíthetjük:
+  \begin{align*}
+    \sin x & = \frac{\sin x}{1} = \frac{
+      2 \sin (\sfrac{x}{2}) \cos (\sfrac{x}{2})
+    }{
+      \cos^2 (\sfrac{x}{2}) + \sin^2 (\sfrac{x}{2})
+    } \stackrel{*}{=} \frac{
+      2 \tan (\sfrac{x}{2})
+    }{
+      1 + \tan^2 (\sfrac{x}{2})
+    } = \frac{
+      2t
+    }{
+      1 + t^2
+    }
+    \text, \qquad \left(*: \cdot \; \frac{1/\cos^2(\sfrac{1}{x})}{1/\cos^2(\sfrac{1}{x})} \right)
+    \\[1mm]
+    \cos x & = \frac{\cos x}{1}= \frac{
+      \cos^2 (\sfrac{x}{2}) - \sin^2 (\sfrac{x}{2})
+    }{
+      \cos^2 (\sfrac{x}{2}) + \sin^2 (\sfrac{x}{2})
+    } \stackrel{*}{=} \frac{
+      1 - \tan^2 (\sfrac{x}{2})
+    }{
+      1 + \tan^2 (\sfrac{x}{2})
+    } = \frac{
+      1 - t^2
+    }{
+      1 + t^2
+    }
+    \text. \qquad \left(*: \cdot \; \frac{1/\cos^2(\sfrac{1}{x})}{1/\cos^2(\sfrac{1}{x})} \right)
+  \end{align*}
+
+  Végül pedig $t = \tan (\sfrac{x}{2})$ alapján:
+  \[
+    x = 2 \arctan t
+    \quad \rightarrow \quad
+    \odv{x}{t} = \frac{2}{1 + t^2}
+    \quad \rightarrow \quad
+    \dd x = \frac{2 \dd t}{1 + t^2}
+  \]
+\end{note}
+
+\begin{example}
+  \sftitle{A koszekáns integrálása}:
+  \[
+    \int \csc x \dd x
+    = \int \frac{1}{\sin x} \dd x
+    = \int \frac{1 + t^2}{2t} \frac{2 \dd t}{1 + t^2}
+    = \int \frac{\dd t}{t}
+    = \ln |t| + C
+    = \ln \left|\tan \frac{x}{2}\right| + C
+  \]
+\end{example}
+
+
+\begin{learnMore}[Félszöges tangens helyettesítés geometriai levezetése]
+  \begin{minipage}{.5\textwidth}
+    % \centering
+    \begin{tikzpicture}[scale=2.5, thick]
+      \draw[->, shorten >=-5mm, shorten <=-5mm]
+      (-1,0) -- (1,0) node[below right] {$\xi$};
+      \draw[->, shorten >=-5mm, shorten <=-5mm]
+      (0,-1) -- (0,1) node[above left] {$\eta$};
+
+      \draw (0,0) circle (1);
+
+      \coordinate (O) at (0,0);
+      \coordinate (A) at (50:1);
+      \coordinate (B) at (-1,0);
+      \coordinate (C) at (0,0.46630766); % (tan(25/180*pi))
+      \coordinate (D) at (1,1.19175359); % (tan(50/180*pi))
+      \coordinate (E) at (O-|A);
+
+      % Big triangle
+      \draw [ultra thick, draw=primaryColor]
+      (O)
+      -- (A) node [midway, above, rotate=50] {$1$}
+      -- (E) node [midway, above, rotate=90] {$\sin x$}
+      -- cycle node[midway, below] {$\cos x$}
+      ;
+
+      % Small triangle
+      \draw [ultra thick, draw=secondaryColor]
+      (B)
+      -- (O) node[below, midway] {$1$}
+      -- (C) node[left, midway] {$t$}
+      -- cycle % node[above, midway, rotate=25] {$\sqrt{1+t^2}$}
+      ;
+
+      % Draw line with slope t
+      \draw[
+        dashed, draw=ternaryColor, ultra thick,
+        shorten >=-20mm, shorten <=-10mm
+      ] (B) -- (A)
+      % node [above=10mm, right=-14mm] {$e: \eta = t(\xi + 1)$}
+      node [above=8mm, right=10mm] {$e$}
+      ;
+
+      % Mark important points
+      \draw[fill=primaryColor, thick] (B)
+      node[above left] {$(-1;0)$}
+      circle (0.03)
+      ;
+      \draw[fill=primaryColor, thick] (A)
+      node[below=1mm, right=2mm] {$(\xi_2; \eta_2)$}
+      circle (0.03)
+      ;
+
+      % Half angle
+      \draw pic [
+          draw,
+          "$\sfrac{x}{2}$",
+          angle eccentricity=.75,
+          angle radius=1.5cm,
+        ] {angle = O--B--C};
+
+      % Full angle
+      \draw pic [
+          draw,
+          "$x$",
+          angle eccentricity=.65,
+          angle radius=1cm,
+        ] {angle = E--O--A};
+
+      % Circle equation
+      % \node[below left] at (250:1) {$k: \xi^2 + \eta^2 = 1$};
+      \node[below left] at (240:1) {$k$};
+    \end{tikzpicture}
+  \end{minipage}\hfill\begin{minipage}{.475\textwidth}
+    A $k$ egységkör egyenlete a $\xi\eta$ koordinátarendszerben:
+    \[
+      k: \xi^2 + \eta^2 = 1
+      \text.
+    \]
+    Az $e$ egyenes átmegy a $(-1;0)$ ponton, meredeksége pedig $t$.
+    Egyenlete:
+    \[
+      e: \eta = t(\xi + 1)
+      \text.
+    \]
+    Helyettesítsük be az egyenes egyenletét a kör egyenletébe:
+    \[
+      \xi^2 + (t(\xi + 1))^2 = 1
+    \]
+  \end{minipage}
+
+  Fejezzük ki a $\xi$, majd $\eta$ koordinátákat a $t$ függvényében!
+  \[
+    0
+    = \xi^2 + t^2(\xi + 1)^2 - 1
+    = \xi^2 + t^2\xi^2 + 2t^2\xi + t^2 - 1
+    = (1 + t^2)\xi^2 + 2t^2\xi + t^2 - 1
+  \]
+
+  Használjuk a másodfokú egyenlet megoldóképletét!
+  \[
+    \xi_{12} = \frac{
+      - 2t^2 \pm \sqrt{4t^4 - 4(1 + t^2)(t^2 - 1)}
+    }{
+      2(1 + t^2)
+    } = \frac{
+      -t^2 \pm \sqrt{(t^4 - (t^4 - 1))}
+    }{
+      1 + t^2
+    } = \frac{
+      \pm 1 - t^2
+    }{
+      1 + t^2
+    }
+  \]
+
+  Az egyenlet egyik megoldásából visszakaphatjuk a $(-1;0)$ pontot:
+  \[
+    \xi_1 = \frac{-1 - t^2}{1 + t^2} = -1
+    \quad \rightarrow \quad
+    \eta_1 = t(\xi_1 + 1) = t(-1 + 1) = 0
+    \text.
+    \hspace{41mm}
+  \]
+
+  A másik megoldásból pedig a $(\xi_2; \eta_2)$ pontot:
+  \[
+    \xi_2 = \frac{1 - t^2}{1 + t^2}
+    \quad \rightarrow \quad
+    \eta_2 = t(\xi_2 + 1) = t\left(
+    \frac{1 - t^2}{1 + t^2} + 1
+    \right) = t\left(
+    \frac{1 - t^2 + 1 + t^2}{1 + t^2}
+    \right) = \frac{2t}{1 + t^2}
+    \text.
+  \]
+  A kék háromszög alapján:
+  \[
+    \tan \frac{x}{2} = \frac{t}{1}
+    \quad \rightarrow \quad
+    t = \tan \frac{x}{2}
+    \text.
+  \]
+  A piros háromszög alapján:
+  \[
+    \sin x = \eta_2 = \frac{2t}{1 + t^2}
+    \text,
+    \hspace{1cm}
+    \cos x = \xi_2 = \frac{1 - t^2}{1 + t^2}
+    \text.
+  \]
+\end{learnMore}
+
+\begin{note}
+  A két háromszög bejelölt szögeinek aránya kerületi és
+  középponti szögek tételéből következik, amely kimondja, hogy adott körben
+  adott ívhez tartozó kerületi szög mindig fele az ívhez tartozó középponti
+  szögnek.
+\end{note}
+
+
+\begin{blueBox}
+  \sftitle{Félszöges tangens hiperbolikusz helyettesítés}:
+
+  A trigonometrikus függvényekhez nagyon hasonló ez az eset is, viszont itt
+  hiperbolikus ($\sinh x$, $\cosh x$) függvényekből álló racionális
+  törtfüggvényeket szeretnénk integrálni. A helyettesítés:
+  \[
+    u = \tanh \frac{x}{2}
+    \quad \rightarrow \quad
+    \dd x = \frac{2 \dd u}{1 - u^2}
+  \]
+  Ilyen esetben a $\sinh x$ és $\cosh x$ hiperbolikus függvényeket a következő
+  módon helyettesítjük:
+  \[
+    \sinh x = \frac{2u}{1 - u^2}
+    \quad \text{és} \quad
+    \cosh x = \frac{1 + u^2}{1 - u^2}
+    \text.
+  \]
+  Egy ilyen integrál általános alakja:
+  \[
+    \int R(\sinh x; \cosh x) \dd x =
+    \int R\left(
+    \frac{2u}{1 - u^2}; \frac{1 + u^2}{1 - u^2}
+    \right) \frac{2 \dd u}{1 - u^2}
+    \text.
+  \]
+\end{blueBox}
+
+\begin{note}
+  \sftitle{Félszöges tangens hiperbolikusz helyettesítés levezetése}:
+
+  Használjuk az alábbi hiperbolikus azonosságokat:
+  \begin{align*}
+    \sinh x & = 2 \sinh (\sfrac{x}{2}) \cosh (\sfrac{x}{2}) \text,     \\[1mm]
+    \cosh x & = \cosh^2 (\sfrac{x}{2}) + \sinh^2 (\sfrac{x}{2}) \text, \\[1mm]
+    1       & = \cosh^2 (\sfrac{x}{2}) - \sinh^2 (\sfrac{x}{2}) \text.
+  \end{align*}
+
+  Ezek alapján a $\sinh x$ és $\cosh x$ hiperbolikus függvényeket a következő
+  módon helyettesíthetjük:
+  \begin{align*}
+    \sinh x & = \frac{\sinh x}{1} = \frac{
+      2 \sinh (\sfrac{x}{2}) \cosh (\sfrac{x}{2})
+    }{
+      \cosh^2 (\sfrac{x}{2}) - \sinh^2 (\sfrac{x}{2})
+    } = \frac{
+      2 \tanh (\sfrac{x}{2})
+    }{
+      1 - \tanh^2 (\sfrac{x}{2})
+    } = \frac{
+      2u
+    }{
+      1 - u^2
+    }
+    \text,
+    \\[2mm]
+    \cosh x & = \frac{\cosh x}{1}= \frac{
+      \cosh^2 (\sfrac{x}{2}) + \sinh^2 (\sfrac{x}{2})
+    }{
+      \cosh^2 (\sfrac{x}{2}) - \sinh^2 (\sfrac{x}{2})
+    } = \frac{
+      1 + \tanh^2 (\sfrac{x}{2})
+    }{
+      1 - \tanh^2 (\sfrac{x}{2})
+    } = \frac{
+      1 + u^2
+    }{
+      1 - u^2
+    }
+    \text.
+  \end{align*}
+
+  Végül pedig $u = \tanh (\sfrac{x}{2})$ alapján:
+  \[
+    x = 2 \arctanh u
+    \quad \rightarrow \quad
+    \odv{x}{u} = \frac{2}{1 - u^2}
+    \quad \rightarrow \quad
+    \dd x = \frac{2 \dd u}{1 - u^2}
+  \]
+\end{note}
+
+\begin{example}
+  \sftitle{A koszekáns hiperbolikusz integrálása}:
+  \[
+    \int \operatorname{csch} x \dd x
+    = \int \frac{1}{\sinh x} \dd x
+    = \int \frac{1 - u^2}{2u} \frac{2 \dd u}{1 - u^2}
+    = \int \frac{\dd u}{u}
+    = \ln |u| + C
+    = \ln \left|\tanh \frac{x}{2}\right| + C
+  \]
+\end{example}
+
+\begin{learnMore}[Félszöges tangens hiperbolikusz helyettesítés geometriai levezetése]
+  \begin{minipage}{.5\textwidth}
+    % \centering
+    \begin{tikzpicture}[scale=2.25, thick]
+      % Coordinate system
+      \draw[->]
+      (-1.35,0) -- (2,0) node[below left] {$\xi$};
+      \draw[->]
+      (0,-1.5) -- (0,1.75) node[below left] {$\eta$};
+
+      % Unit hyperbola 
+      \draw[domain=1:1.75, samples=100, smooth, -to]
+      plot ({\x}, {sqrt(\x^2 - 1)});
+      \draw[domain=1:1.75, samples=100, smooth, -to]
+      plot ({\x}, {-sqrt(\x^2 - 1)});
+
+      % Coordinates
+      \coordinate (O) at (0,0);
+      \coordinate (A) at (1.54308063,1.17520119); % (cosh(1), sinh(1))
+      \coordinate (B) at (-1,0);
+      \coordinate (C) at (0,0.46211716); % (0,tanh(0.5))
+      \coordinate (D) at (1,0.76159416); % (1,tanh(1))
+      \coordinate (E) at (O-|A);
+
+      % Hyperbolic functions
+      \draw [ultra thick, draw=primaryColor]
+      (O)
+      -- (E) node [pos=.35, below] {$\cosh x$}
+      -- (A) node [midway, below, rotate=90] {$\sinh x$}
+      % -- cycle
+      % (O)
+      % -| (D) node [pos=.7125, above, rotate=90] {$\tanh x$}
+      % (O)
+      % -- (A)
+      ;
+
+      % Slope of the line
+      \draw [ultra thick, draw=secondaryColor]
+      (B)
+      -- (O) node[below, midway] {$1$}
+      -- (C) node[left, midway] {$u$}
+      -- cycle
+      ;
+
+      % Draw line with slope t
+      \draw[
+        dashed, draw=ternaryColor, ultra thick,
+        shorten >=-10mm, shorten <=-10mm
+      ] (B) -- (A)
+      % node [above=10mm, right=-14mm] {$e: \eta = t(\xi + 1)$}
+      node [above=6mm, right=6mm] {$e$}
+      ;
+
+      % Mark important points
+      \draw[fill=primaryColor, thick] (B)
+      node[above=1mm] {$(-1;0)$}
+      circle (0.06)
+      ;
+      \draw[fill=primaryColor, thick] (A)
+      node[above left] {$(\xi_2; \eta_2)$}
+      circle (0.06)
+      ;
+    \end{tikzpicture}
+  \end{minipage}\hfill\begin{minipage}{.475\textwidth}
+    Az egységhiperbola egyenlete a $\xi\eta$ koordinátarendszerben:
+    \[
+      h: \xi^2 - \eta^2 = 1
+      \text.
+    \]
+    Az $e$ egyenes átmegy a $(-1;0)$ ponton, meredeksége pedig $u$.
+    Egyenlete:
+    \[
+      e: \eta = u(\xi + 1)
+      \text.
+    \]
+    Helyettesítsük be az egyenes egyenletét a hiperbola egyenletébe:
+    \[
+      \xi^2 - (u(\xi + 1))^2 = 1
+      \text.
+    \]
+  \end{minipage}
+
+  Fejezzük ki a $\xi$, majd $\eta$ koordinátákat a $u$ függvényében!
+  \[
+    0
+    = \xi^2 - u^2(\xi + 1)^2 - 1
+    = \xi^2 - u^2\xi^2 - 2u^2\xi - u^2 - 1
+    = (1 - u^2)\xi^2 - 2u^2\xi - u^2 - 1
+  \]
+  Használjuk a másodfokú egyenlet megoldóképletét!
+  \[
+    \xi_{12} = \frac{
+      2u^2 \pm \sqrt{4u^4 + 4(1 - u^2)(u^2 + 1)}
+    }{
+      2(1 - u^2)
+    } = \frac{
+      u^2 \pm \sqrt{(u^4 + (1 - u^4))}
+    }{
+      1 - u^2
+    } = \frac{
+      \pm 1 + u^2
+    }{
+      1 - u^2
+    }
+  \]
+  Az egyenlet egyik megoldásából visszakaphatjuk a $(-1;0)$ pontot:
+  \[
+    \xi_1 = \frac{-1 + u^2}{1 - u^2} = -1
+    \quad \rightarrow \quad
+    \eta_1 = u(\xi_1 + 1) = u(-1 + 1) = 0
+    \text.
+    \hspace{43mm}
+  \]
+  A másik megoldásból pedig a $(\xi_2; \eta_2)$ pontot:
+  \[
+    \xi_2 = \frac{1 + u^2}{1 - u^2}
+    \quad \rightarrow \quad
+    \eta_2 = u(\xi_2 + 1) = u\left(
+    \frac{1 + u^2}{1 - u^2} + 1
+    \right) = u\left(
+    \frac{1 + u^2 + 1 - u^2}{1 - u^2}
+    \right) = \frac{2u}{1 - u^2}
+    \text.
+  \]
+  Hasonló háromszögek alapján:
+  \[
+    u
+    = \frac{\sinh x}{1 + \cosh x}
+    = \tanh \frac{x}{2}
+    \text.
+  \]
+  Az egységhiperbola parametrikus egyenlete alapján:
+  \[
+    \cosh x = \xi_2 = \frac{1 + u^2}{1 - u^2}
+    \quad \text{és} \quad
+    \sinh x = \eta_2 = \frac{2u}{1 - u^2}
+    \text.
+  \]
+\end{learnMore}
+
+\begin{note}
+  \[
+    \tanh \frac{x}{2}
+    % = \frac{\sinh(\sfrac{x}{2})}{\cosh(\sfrac{x}{2})}
+    = \frac{e^{x/2} - e^{-x/2}}{e^{x/2} + e^{-x/2}}
+    \cdot \frac{e^{x/2} + e^{-x/2}}{e^{x/2} + e^{-x/2}}
+    = \frac{e^x - e^{-x}}{2 + e^x + e^{-x}}
+    = \frac{(e^x - e^{-x})/2}{1 + (e^x + e^{-x})/2}
+    = \frac{\sinh x}{1 + \cosh x}
+  \]
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Speciális helyettesítések összefoglaló}:
+  \begin{itemize}
+    \item $R(\sin x; \cos x)$
+          \[
+            t = \tan \frac{x}{2}
+            \quad
+            \dd x = \frac{2 \dd t}{1 + t^2}
+            \quad
+            \sin x = \frac{2t}{1 + t^2}
+            \quad
+            \cos x = \frac{1 - t^2}{1 + t^2}
+          \]
+
+    \item $R(\sinh x; \cosh x)$
+          \[
+            u = \tanh \frac{x}{2}
+            \quad
+            \dd x = \frac{2 \dd u}{1 - u^2}
+            \quad
+            \sinh x = \frac{2u}{1 - u^2}
+            \quad
+            \cosh x = \frac{1 + u^2}{1 - u^2}
+          \]
+
+    \item $R(e^x; e^{2x}; \dots)$
+          \[
+            t = e^x
+            \quad
+            \dd x = \frac{\dd t}{t}
+          \]
+
+    \item $R(x; \sqrt{1 - x^2})$
+          \[
+            x = \sin t
+            \quad
+            t = \arcsin x
+            \quad
+            \dd x = \sqrt{1 - x^2} \cdot \dd t
+          \]\[
+            1 = \cos^2 t + \sin^2 t
+          \]
+
+    \item $R(x; \sqrt{x^2 + 1})$
+          \[
+            x = \sinh t
+            \quad
+            t = \arcsinh x
+            \quad
+            \dd x = \sqrt{x^2 + 1} \cdot \dd t
+          \]\[
+            1 = \cosh^2 t - \sinh^2 t
+          \]
+
+    \item $R(x^{\sfrac{a}{c}}; x^{\sfrac{b}{c}}; \dots)$
+          \[
+            x = t^c
+            \quad
+            \dd x = c x^{1 - \sfrac{1}{c}} \dd t
+          \]
+  \end{itemize}
+\end{blueBox}
+
+\begin{note}
+  A $t = \tan(\sfrac{x}{2})$ és $u = \tanh(\sfrac{x}{2})$ helyettesítésekhez
+  tartozó levezetéseket nem szükséges fejből tudni, csupán a megértés érdekében
+  szerepelnek az elméleti áttekintőben.
+\end{note}
+
 \clearpage
 \subsection{Feladatok}
 
 \begin{enumerate}
-  \item Határozzuk meg az alábbi integrálok értékét!
+  \item Határozza meg az alábbi integrálok értékét!
+        (Ajánlott módszer: parciális integrálás.)
         \begin{enumerate}
           \item $\displaystyle
                   \int x \cos x \dd x
@@ -49,7 +791,7 @@
                 $
         \end{enumerate}
 
-  \item Integráljuk az alábbi racionális törtfüggvényeket!
+  \item Integrálja az alábbi racionális törtfüggvényeket!
         \begin{enumerate}
           \item $\displaystyle
                   \int \frac{x^3 - 9x^2 + 27x - 26}{x^2 - 7x + 12} \dd x
@@ -64,10 +806,15 @@
                 $
         \end{enumerate}
 
-  \item Végezzük el az alábbi integrálokat!
+  \item Határozza meg az alábbi integrálok értékét!
+        (Ajánlott módszer: helyettesítéses integrálás.)
         \begin{enumerate}
           \item $\displaystyle
                   \int \frac{1}{5 + 3 \cos x} \dd x
+                $
+
+          \item $\displaystyle
+                  \int \frac{1}{1 + \cosh x + 2 \sinh x}
                 $
 
           \item $\displaystyle
