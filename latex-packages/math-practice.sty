@@ -344,3 +344,91 @@
     }{%
   \end{mdframed}
 }
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ INSIGHTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdf@do@stringoption{learnMoreTitle=={Kitekintő}}
+\usetikzlibrary{calc,arrows,backgrounds}
+\tikzset{
+  excursus arrow/.style={%
+      line width=2pt,
+      draw=secondaryColor,
+      rounded corners=1ex,
+    },
+  excursus head/.style={
+      font=\bfseries\sffamily,
+      anchor=base west,
+      text=secondaryColor,
+      inner sep=1.5ex,
+      inner ysep=1ex,
+    },
+}
+
+% \begin{noindent}
+\mdfdefinestyle{learnMore}{%
+  singleextra={%
+    % NODE LEFT BOTTOM
+    \path let \p1=(P), \p2=(O) in (\x2,\y1) coordinate (Q);
+    % BOTTOM-LEFT
+    \path let \p1=(Q), \p2=(O) in (\x1,\y2) coordinate (BL);
+    % TOP RIGHT
+    \path let \p1=(Q), \p2=(P) in (\x2,\y1) coordinate (TR);
+    % TITLE
+    \node [excursus head] (A) at ($(Q)+(2.5em,0)$) {\phantom{\mdf@digressiontitle}};
+    % ARROW
+    \path [excursus arrow, line width=2pt] ($(BL)+(1pt,0)$) |- ($(Q)+(2em,0)$);
+    \path [excursus arrow, line width=2pt, fill=gray!10, -to]
+      ($(Q)+(1em,0)$)
+      -| (A.north west)
+      -| (A.base east)
+      -- (TR)
+      ;
+    % \fill [gray!10]
+    %   ($(A.base east)+(1em,0)$)
+    %   -- ++(2em,0)
+    %   .. controls ($(TR)!0.2!(A.base east)+(0,1ex)$) .. ($(TR)+(0,2ex)$)
+    %   -- ++(0,-2ex)
+    %   -- cycle
+    % ;
+    % \path [excursus arrow, round cap-to]
+    %   ($(A.base east)+(1em,0)$)
+    %   -- ++(2em,0)
+    %   .. controls ($(TR)!0.2!(A.base east)+(0,1ex)$) .. ($(TR)+(0,2ex)$)
+    % ;
+    \node [excursus head] (A) at ($(Q)+(2.5em,0)$) {\mdf@digressiontitle};
+  },
+  backgroundcolor=gray!10,
+  middlelinewidth=0,
+  hidealllines=true,topline=true,
+  innertopmargin=2.5ex,
+  innerbottommargin=1.5ex,
+  innerrightmargin=2ex,
+  innerleftmargin=2ex,
+  skipabove=0.5\baselineskip,
+}
+% \end{noindent}
+
+\newenvironment{learnMore}[1][Kitekintő]{%
+  \def\mdf@digressiontitle{#1}%
+  \begin{mdframed}[style=learnMore]
+    }{%
+  \end{mdframed}
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ EXAMPLE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdfdefinestyle{example}{%
+  % NO LINES
+  hidealllines=true, leftline=true,
+  % COLORS
+  backgroundcolor=magenta!10, linecolor=magenta!60!black,
+  % LENGTHS
+  linewidth=3pt, innertopmargin=.66em, innerbottommargin=.66em,}
+
+\newenvironment{example}{%
+  \begin{mdframed}[style=example, nobreak=true]
+    }{%
+  \end{mdframed}
+}
