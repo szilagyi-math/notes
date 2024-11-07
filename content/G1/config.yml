@@ -115,6 +115,7 @@ practice_material:
     - source: 09.tex
       target: G1-gyak-09
       display_name: G1 9. gyakorlat
+      solution: G1-gyak-09-megoldas.pdf
       description: Differenciálszámítás III
       video_link: https://youtu.be/wImfxPqRqNk
       week: 9
