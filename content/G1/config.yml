@@ -152,7 +152,10 @@ practice_material:
       description: Integrálszámítás IV
       video_link: https://youtu.be/bzMjsAGt1x0
       week: 13
-    - description: Numerikus sorok
+    - source: 14.tex
+      target: G1-gyak-14
+      display_name: G1 14. gyakorlat
+      description: Numerikus sorok
       video_link: https://youtu.be/Y33dpnUZ5hk
       week: 14
 hide_lectures: true
