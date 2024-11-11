@@ -16,8 +16,9 @@
       "args": ["-norc", "-r", "%WORKSPACE_FOLDER%/.latexmkrc", "%DOC%"]
     }
   ],
+  "latex-workshop.formatting.latex": "latexindent",
   "latex-workshop.latex.recipe.default": "latexmk-main",
-  "latex-workshop.latexindent.args": [
+  "latex-workshop.formatting.latexindent.args": [
     "-l",
     "%WORKSPACE_FOLDER%/.latexindent.yaml",
     "-c",
