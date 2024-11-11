@@ -14,6 +14,162 @@
 
 \subsection{Elméleti Áttekintő}
 
+\begin{blueBox}
+  \sftitle{Improprius integrál}:
+
+  A Riemann-integrál definíció szerint akkor használható, hogyha az integrációs
+  intervallum véges, valamint ezen intervallumon az integrálandó függvény is
+  korlátos. Előfordulhat azonban olyan eset, hogy
+  \begin{itemize}
+    \item végtelen tartományon szeretnénk integrálni,
+    \item az integrálandó függvény nem korlátos az integrálási tartományban.
+  \end{itemize}
+
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \begin{tikzpicture}[ultra thick]
+      \draw[-to] (-1,0) -- (5,0) node[below left] {$x$};
+      \draw[-to] (-.5,-.5) -- (-.5,3) node[below left] {$y$};
+
+      \draw[opacity=0, name path=x] (-.5,0) -- (5,0);
+
+      \draw [
+        domain=1:6.5,
+        samples=100,
+        primaryColor,
+        name path=p,
+        -to,
+      ] plot (\x-1.5, {2/\x});
+
+      \tikzfillbetween[
+        of=p and x,
+        on layer=bg,
+      ]{primaryColor!10}
+
+      \node at (3.5,1.5) {$\displaystyle
+          \lim_{\beta \rightarrow \infty} \int_a^\beta f(x) \dd x
+        $};
+    \end{tikzpicture}
+
+    Végtelen tartomány
+  \end{minipage}\begin{minipage}{.5\textwidth}
+    \centering
+    \begin{tikzpicture}[ultra thick]
+      \draw[-to] (-1,0) -- (5,0) node[below left] {$x$};
+      \draw[-to] (-.5,-.5) -- (-.5,3) node[below left] {$y$};
+
+      \draw[opacity=0, name path=x] (0.25,0) -- (3,0);
+      \draw[draw=gray, dashed] (0.25,0) node[below] {$a$} -- ++(0,3);
+      \draw[draw=gray, dashed] (3,0) -- ++(0,.25);
+
+      \draw [
+        domain=.25:3,
+        samples=100,
+        primaryColor,
+        name path=p,
+        to-
+      ] plot (\x, {.75/\x});
+
+      \tikzfillbetween[
+        of=p and x,
+        on layer=bg,
+      ]{primaryColor!10}
+
+      \node at (3.5,1.5) {$\displaystyle
+          \lim_{\alpha \rightarrow a^{+}} \int_\alpha^b f(x) \dd x
+        $};
+    \end{tikzpicture}
+
+    Nem korlátos függvény
+  \end{minipage}
+
+  Ezekben az esetekben az improprius integrált hívhatjuk segítségül.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Ívhossz számítása integrálással}:
+
+  Egy görbét háromféleképpen is definiálhatunk:
+  \begin{itemize}
+    \item explicit alakban: $y = f(x)$,
+    \item paraméteres alapban: $x = x(t)$, $y = y(t)$,
+    \item polárkoordináta-rendszerben: $r = r(\varphi)$.
+  \end{itemize}
+
+  Az ívhossz számítására az alábbi képletet használhatjuk:
+  \begin{itemize}
+    \item explicit: $\displaystyle
+            L = \int_a^b \sqrt{1 + \left( f'(x) \right)^2} \dd x
+          $
+
+    \item paraméteres: $\displaystyle
+            L = \int_a^b \sqrt{ \dot x^2 + \dot y^2} \dd t
+          $
+
+    \item polár: $\displaystyle
+            L = \int_a^b \sqrt{ {\dot r}^2 (\varphi) + r^2(\varphi)} \dd \varphi
+          $
+  \end{itemize}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Forgástestek térfogata és felszíne}:
+
+  Egy görbe $x$ tengely körüli megforgatásával egy forgástestet kapunk.
+  \def\arraycolsep{12pt}
+  \[
+    \begin{array}{lll}
+      \text{explicit:}    & \displaystyle V = \pi \int_a^b f^2(x) \dd x
+                          & \displaystyle A = 2\pi \int_a^b f(x) \sqrt{1 + (f'(x))^2} \dd x
+      \\[7mm]
+      \text{paraméteres:} & \displaystyle V = \pi \int_a^b y^2(t) \dot x(t) \dd t
+                          & \displaystyle A = 2\pi \int_a^b y(t) \sqrt{{\dot x}^2(t) + {\dot y}^2(t)} \dd t
+    \end{array}
+  \]
+\end{blueBox}
+
+\begin{note}
+  Fontos figyelembe venni, hogy a fenti képletek csak a forgástestek palástjának
+  felszínét adják eredményül.
+
+  Abban az esetben, hogyha például egy csonkakúpnak a felszínét szeretnénk
+  meghatározni, akkor az alső és felső alapok felületét hozzá kell adni
+  az előbbi képletekkel kapott eredményhez.
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Görbeív súlypontja}:
+
+  Egy konstans sűrűségű görbe súlypontjainak koordinátáit az alábbi képletekkel
+  számíthatjuk ki:
+  \[
+    \begin{array}{lll}
+      \text{explicit:}    & \displaystyle S_x = \frac{1}{L} \int_a^b x \sqrt{1 + (f'(x))^2} \dd x
+                          & \displaystyle S_y = \frac{1}{L} \int_a^b f(x) \sqrt{1 + (f'(x))^2} \dd x
+      \\[7mm]
+      \text{paraméteres:} & \displaystyle S_x = \frac{1}{L} \int_a^b x(t) \sqrt{{\dot x}^2(t) + {\dot y}^2(t)} \dd t
+                          & \displaystyle S_y = \frac{1}{L} \int_a^b y(t) \sqrt{{\dot x}^2(t) + {\dot y}^2(t)} \dd t
+    \end{array}
+  \]
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Görbe által meghatározott síktartomány súlypontja}:
+
+  Egy görbe és az $x$ tengely által meghatározott síktartomány súlypontjainak
+  koordinátáit az alábbi képletekkel számíthatjuk ki:
+  \def\arraycolsep{20pt}
+  \[
+    \begin{array}{lll}
+      \text{explicit:}    & \displaystyle S_x = \dfrac{\displaystyle\int_a^b x f(x) \dd x}{\displaystyle\int_a^b f(x) \dd x}
+                          & \displaystyle S_y = \dfrac{\dfrac{1}{2} \displaystyle\int_a^b f^2(x) \dd x}{\displaystyle\int_a^b f(x) \dd x}
+      \\[15mm]
+      \text{paraméteres:} & \displaystyle S_x = \dfrac{\displaystyle\int_a^b x(t) \, y(t) \, \dot x(t) \dd t}{\displaystyle\int_a^b y(t) \, \dot x(t) \dd t}
+                          & \displaystyle S_y = \dfrac{\dfrac{1}{2} \displaystyle\int_a^b y^2(t) \, \dot x(t) \dd t}{\displaystyle\int_a^b y(t) \, \dot x(t) \dd t}
+    \end{array}
+  \]
+\end{blueBox}
+
 \clearpage
 \subsection{Feladatok}
 
@@ -24,7 +180,7 @@
           \int_a^b (x^4 - 2x^2) \dd x
         \]
 
-  \item Határozzuk meg az alábbi integrálok értékeit!
+  \item Határozza meg az alábbi határozott integrálok értékeit!
         \begin{multicols}{3}
           \begin{enumerate}
             \item $\displaystyle
@@ -53,19 +209,19 @@
           \end{enumerate}
         \end{multicols}
 
-  \item Adjuk meg az $f(x) = x^2$ függvény görbéjének ívhosszát az $x \in [0, 2]$
+  \item Adja meg az $f(x) = x^2$ függvény görbéjének ívhosszát az $x \in [0, 2]$
         intervallumon!
 
-  \item Számítsuk ki a ciklois egy ívének hosszát! ($x(t) = a \cdot (t - \sin t)$,
+  \item Számítsa ki a ciklois egy ívének hosszát! ($x(t) = a \cdot (t - \sin t)$,
         $y(t) = a \cdot (1 - \cos t)$, $t \in [0, 2\pi]$)
 
-  \item Számítsuk ki annak a csonkakúpnak a térfogatát, melynek alapja egy
+  \item Számítsa ki annak a csonkakúpnak a térfogatát, melynek alapja egy
         $R = 5$ sugarú kör, teteje egy $r = 2$ sugarú kör, magassága pedig
         $h = 6$!
 
-  \item Vezessük le a gömb térfogatának képletét!
+  \item Vezesse le a gömb térfogatának képletét!
 
-  \item Adjuk meg az $f(x) = x^3$ görbe, valamint az $y = 0$ és $x = 1$
+  \item Adja meg az $f(x) = x^3$ görbe, valamint az $y = 0$ és $x = 1$
         egyenesek által határolt rész súlypontjának koordinátáit!
 \end{enumerate}
 
