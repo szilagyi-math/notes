@@ -2,7 +2,7 @@
 
 \usepackage{math-practice}
 
-\title{Integrálszámítás II}
+\title{Integrálszámítás III}
 \area{Integrálszámítás}
 \subject{Matematika G1}
 \subjectCode{BMETE94BG01}
@@ -14,28 +14,269 @@
 
 \subsection{Elméleti Áttekintő}
 
+% \begin{blueBox}
+%   Trigonometrikus integrálást
+%   \[
+%     f(x) = \sin^n x \cos^m x
+%   \]
+%   alakú függvényekre tudunk alkalmazni. Integrálás során a trigonometrikus
+%   azonosságokat használjuk fel, hogy a függvényt könnyebben integrálható alakra
+%   hozzuk. A legfontosabb azonosságok:
+%   \begin{align*}
+%     \sin^2 x & = \frac{1 - \cos 2x}{2} \text, \\
+%     \cos^2 x & = \frac{1 + \cos 2x}{2} \text, \\
+%     1        & = \cos^2 x + \sin^2 x \text.   \\
+%   \end{align*}
+% \end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Trigonometrikus integrálás}:
+
+  Trigonometrikus függvények integrálásakor a tanult trigonometrikus
+  azonosságokat kell alkalmaznunk. Ezek közül a legfontosabbak:
+  \begin{align*}
+    1        & = \sin^2 x + \cos^2 x \text,   \\
+    \sin^2 x & = \frac{1 - \cos 2x}{2} \text, \\
+    \cos^2 x & = \frac{1 + \cos 2x}{2} \text, \\
+    \sin 2x  & = 2 \sin x \cos x \text,       \\
+    \cos 2x  & = \cos^2 x - \sin^2 x \text.
+  \end{align*}
+
+  Amennyiben a szögfüggvény fokszáma páros, akkor a függvényt a fenti
+  trigonometrikus azonosságok segítségével át tudjuk alakítani.
+
+  Amennyiben a szögfüggvény fokszáma páratlan ($2k + 1$), akkor azt felbontjuk
+  egy $2k$-s és egy $1$-es szögfüggvény szorzataként, majd a már páros fokszámú
+  tagot az előbbi módszerrel tudjuk integrálni.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Határozott integrál}:
+
+  Egy függvény $[a; b]$ intervallumon vett határozott integrálja a
+  Newton-Leibniz formula alapján
+  \[
+    \int_a^b f(x) \dd x = F(b) - F(a)
+    \text,
+  \]
+  ahol $F(x)$ az $f(x)$ primitív függvénye.
+\end{blueBox}
+
+\begin{note}
+  A határozott integrálás során a határozatlan integrálásnál tanult
+  összefüggéseket alkalmazhatjuk. Azonban két integrálási technikánál különösen
+  figyelnünk kell az integrálási tartományra:
+  \begin{itemize}
+    \item Parciális integrálás: $\displaystyle
+            \int_a^b f g' = \Big[ f \, g \Big]_a^b - \int_a^b f' g
+          $,
+
+    \item Helyettesítéses integrálás: $\displaystyle
+            \int_a^b f(x) \dd x = \int_{\varphi^{-1}(a)}^{\varphi^{-1}(b)} f(\varphi(t)) \cdot  \varphi'(t) \dd t
+          $.
+  \end{itemize}
+\end{note}
+
+\clearpage
+\begin{blueBox}
+  \sftitle{Görbe alatti terület}:
+
+  A határozott integrál segítségével a függvény görbéje és az $x$-tengely által
+  bezárt \textbf{előjeles} területet tudjuk meghatározni. Amennyiben a függvény
+  képe a tengely alatt van, akkor a terület negatív előjelű lesz.
+
+  \begin{minipage}{.45\textwidth}
+    \centering
+    \begin{tikzpicture}[thick]
+      \draw[opacity=0, name path=x] (1,0) -- (3,0);
+
+      \draw [samples=150, smooth, domain=1:3, ultra thick, draw=primaryColor, name path=f]
+      plot (\x, {(sin(\x*240)/4+\x)/2 + 1})
+      ;
+
+      \tikzfillbetween[
+        of=f and x,
+        on layer=main,
+      ]{primaryColor!25}
+
+      \draw [->, draw=ternaryColor] (-.5,0) -- (5,0) node [below left] {$x$};
+      \draw [->, draw=ternaryColor] (0,-.5) -- (0,3) node [below left] {$y$};
+
+      \draw [samples=150, domain=-.5:4, ultra thick, draw=primaryColor, to-to]
+      plot (\x, {(sin(\x*240)/4+\x)/2 + 1})
+      ;
+
+      \draw[draw=gray, dashed, thick] (1,2.75) -- ++(0,-2.75) node[below] {$a\vphantom{b}$};
+      \draw[draw=gray, dashed, thick] (3,2.75) -- ++(0,-2.75) node[below] {$b$};
+
+      \node at (2,1) {$A$};
+    \end{tikzpicture}
+    \[
+      A = \int_a^b f(x) \dd x
+    \]
+  \end{minipage}\hfill\begin{minipage}{.45\textwidth}
+    \centering
+    \begin{tikzpicture}[thick]
+      \draw[opacity=0, name path=x] (1,0) -- (3,0);
+
+      \draw [samples=150, smooth, domain=1:3, ultra thick, draw=primaryColor, name path=f]
+      plot (\x, {(\x - 1)*(\x - 2)*(\x - 3)*1.5})
+      ;
+
+      \tikzfillbetween[
+        of=f and x,
+        split,
+        every segment no 0/.style={primaryColor!25},
+        every segment no 1/.style={secondaryColor!25},
+        on layer=main,
+      ]{}
+
+      \draw [->, draw=ternaryColor, thick] (-.5,0) -- (5,0) node [below left] {$x$};
+      \draw [->, draw=ternaryColor, thick] (0,-1.5) -- (0,2) node [below left] {$y$};
+
+      \draw [samples=150, smooth, domain=0.75:3.25, ultra thick, draw=primaryColor, to-to]
+      plot (\x, {(\x - 1)*(\x - 2)*(\x - 3)*1.5})
+      ;
+
+      \node [above left] at (1,0) {$a$};
+      \node [above right] at (2,0) {$c$};
+      \node [below right] at (3,0) {$b$};
+    \end{tikzpicture}
+    \[
+      A = \int_a^c f(x) \dd x - \int_c^b f(x) \dd x
+    \]
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \begin{minipage}{.55\textwidth}
+    \sftitle{Két görbe által bezárt terület}:
+    \\[4mm]
+    Két függvény által bezárt területet a két függvény különbségének
+    integrálásával tudjuk meghatározni:
+    \[
+      A = \int_a^b |f(x) - g(x)| \dd x
+      \text.
+    \]
+  \end{minipage}\hfill\begin{minipage}{.4\textwidth}
+    \centering
+    \begin{tikzpicture}[thick]
+      \draw [->, draw=ternaryColor] (-.5,0) -- (5,0) node [below left] {$x$};
+      \draw [->, draw=ternaryColor] (0,-.5) -- (0,3) node [below left] {$y$};
+
+      \draw [samples=150, smooth, name path=f, domain=1:3, ultra thick, draw=primaryColor]
+      plot (\x, {(sin(\x*240)/4+\x)/2 + 1})
+      ;
+
+      \draw [samples=150, smooth, name path=g, domain=1:3, ultra thick, draw=primaryColor]
+      plot (\x, {(cos(\x*240)/6+\x)/2})
+      ;
+
+      \tikzfillbetween[
+        of=f and g,
+        on layer=main,
+      ]{primaryColor!25}
+
+      \draw [samples=150, to-to, domain=-.5:4, ultra thick, draw=primaryColor]
+      plot (\x, {(sin(\x*240)/4+\x)/2 + 1})
+      node [right] {$f(x)$}
+      ;
+
+      \draw [samples=150, to-to, domain=-.5:4, ultra thick, draw=primaryColor]
+      plot (\x, {(cos(\x*240)/6+\x)/2})
+      node [right] {$g(x)$}
+      ;
+
+      \draw[draw=gray, dashed, thick] (1,2.75) -- ++(0,-2.75) node[below] {$a\vphantom{b}$};
+      \draw[draw=gray, dashed, thick] (3,2.75) -- ++(0,-2.75) node[below] {$b$};
+
+      \node at (2,1.5) {$A$};
+    \end{tikzpicture}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Paraméteres görbe által meghatározott görbevonalú trapéz terület}:
+
+  Egy $\gamma: (x(t); y(t))$ görbe $t_1$ és $t_2$ paraméterpontok közötti
+  görbevonalú trapéz területe
+  \[
+    A = \int_{t_1}^{t_2} \left| \dot x(t) \cdot y(t) \right| \dd t
+    \text.
+  \]
+\end{blueBox}
+
+\begin{example}
+  Határozzuk meg a ciklois egy $t \in [0; 2\pi]$ intervallumhoz tartozó
+  görbevonalú trapéz területét!
+
+  \begin{minipage}{.5\textwidth}
+    A ciklois paraméteres egyenlete:
+
+    \[
+      \begin{aligned}
+        x(t) & = t - \sin t \text, \\
+        y(t) & = 1 - \cos t \text.
+      \end{aligned}
+    \]
+  \end{minipage}\begin{minipage}{.5\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \draw[opacity=0, name path=x] (0,0) -- (4,0);
+
+      \draw [samples=150, smooth, name path=f, domain=0:2*pi, ultra thick, draw=primaryColor]
+      plot ({1/2 * (\x - sin(deg(\x)))}, {1/2 * (1 - cos(deg(\x)))})
+      ;
+
+      \tikzfillbetween[
+        of=f and x,
+        on layer=main,
+      ]{primaryColor!25}
+
+      \draw [-to, draw=ternaryColor, thick] (-.5,0) -- (5,0) node [below left] {$x$};
+      \draw [-to, draw=ternaryColor, thick] (0,-.5) -- (0,2) node [below left] {$y$};
+
+      \draw [samples=150, domain=-1.5:9, ultra thick, draw=primaryColor, to-to, smooth]
+      plot ({1/2 * (\x - sin(deg(\x)))}, {1/2 * (1 - cos(deg(\x)))})
+      ;
+
+      \node at (1.57079633,.45) {$A$};
+    \end{tikzpicture}
+  \end{minipage}
+
+  \[
+    A
+    = \int_{0}^{2\pi} \left| \dot x(t) \cdot y(t) \right| \dd t
+    = \int_{0}^{2\pi} (1 - \cos t)^2 \dd t
+    = \int_{0}^{2\pi} 1 - 2 \cos t + \cos^2 t \dd t
+    = \dots
+    = 3\pi
+  \]
+\end{example}
+
+
 \clearpage
 \subsection{Feladatok}
 
 \begin{enumerate}
-  \item Határozzuk meg az alábbi trigonometrikus integrálok értékét!
-        \begin{multicols}{3}
-          \begin{enumerate}
-            \item $\displaystyle
-                    \int \cos^3 x \sin x \dd x
-                  $
+  \item Határozza meg az alábbi trigonometrikus integrálok értékét!
+        %   \begin{multicols}{3}
+        \begin{enumerate}
+          \item $\displaystyle
+                  \int \cos^3 x \sin x \dd x
+                $
 
-            \item $\displaystyle
-                    \int \cos^5 x \dd x
-                  $
+          \item $\displaystyle
+                  \int \cos^5 x \dd x
+                $
 
-            \item $\displaystyle
-                    \int \sin^4 x \cos^2 x \dd x
-                  $
-          \end{enumerate}
-        \end{multicols}
+          \item $\displaystyle
+                  \int \sin^4 x \cos^2 x \dd x
+                $
+        \end{enumerate}
+        %   \end{multicols}
 
-  \item Oldjuk meg az alábbi összetett integrálási feladatokat!
+  \item Oldja meg az alábbi összetett integrálási feladatokat!
         \begin{enumerate}
           \item $\displaystyle
                   \int \sin \sqrt x \dd x
@@ -73,16 +314,15 @@
                 $
         \end{enumerate}
 
-  \item Határozzuk meg az $f(x) = (x + 1) x  (x - 2)$ függvény és az $x$-tengely
+  \item Határozza meg az $f(x) = (x + 1) \, x \, (x - 2)$ függvény és az $x$-tengely
         által bezárt geometriai területet!
 
-  \item Adjuk meg az $f(x) = x^4$ és a $g(x) = 3x^2 - 2$ függvények által bezárt
+  \item Adja meg az $f(x) = x^4$ és a $g(x) = 3x^2 - 2$ függvények által bezárt
         terület nagyságát!
 
-  \item Adjuk meg egy $a$ sugarú körvonal ($x(t) = a \cos t$, $y(t) = a \sin t$)
+  \item Adja meg egy $a$ sugarú körvonal ($x(t) = a \cos t$, $y(t) = a \sin t$)
         alapján a $t \in [0; 2\pi]$ intervallumhoz tartozó görbevonalú trapéz
         területét!
-
 \end{enumerate}
 
 % \\underline\{(\w)\}
