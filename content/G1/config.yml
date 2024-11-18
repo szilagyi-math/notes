@@ -122,6 +122,7 @@ practice_material:
     - source: 10.tex
       target: G1-gyak-10
       display_name: G1 10. gyakorlat
+      solution: G1-gyak-10-megoldas.pdf
       description: Integrálszámítás I
       video_link: https://youtu.be/2YKb0qVEljo
       week: 10
@@ -133,7 +134,10 @@ practice_material:
       video_mistakes:
         - '17:55 -> F5-ös példánál lemaradt a +c valós konstans.'
       week: 11
-    - description: Integrálszámítás III
+    - source: 12.tex
+      target: G1-gyak-12
+      display_name: G1 12. gyakorlat
+      description: Integrálszámítás III
       video_link: https://youtu.be/mU497mbNvyg
       video_mistakes:
         - 'F3: 12:57-nél a nevezőben a 3 helyett 2 a helyes kifejezés.'
