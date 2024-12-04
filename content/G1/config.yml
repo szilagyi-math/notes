@@ -137,6 +137,7 @@ practice_material:
     - source: 12.tex
       target: G1-gyak-12
       display_name: G1 12. gyakorlat
+      solution: G1-gyak-12-megoldas.pdf
       description: Integrálszámítás III
       video_link: https://youtu.be/mU497mbNvyg
       video_mistakes:
