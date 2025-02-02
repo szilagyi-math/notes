@@ -1,4 +1,4 @@
-import * as React from 'react';
+import styles from './main.module.css';
 
 interface MainProps {
   children: React.ReactNode;
@@ -8,8 +8,7 @@ const Main = ({ children }: MainProps) => {
   return (
     <main
       id='main'
-      // TODO: Reconfiguure height once the header is implemented
-      className='mx-auto max-w-content-width min-h-screen'
+      className={styles.main}
     >
       {children}
     </main>

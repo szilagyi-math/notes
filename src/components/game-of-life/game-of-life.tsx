@@ -8,6 +8,8 @@ import styles from './game-of-life.module.css';
 type Cell = 0 | 1;
 type Game = Cell[][];
 
+const NAV_HEIGHT = 64;
+
 const GameOfLife = () => {
   const ref = useRef<HTMLCanvasElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -32,14 +34,14 @@ const GameOfLife = () => {
 
       setDimensions({
         width: Math.floor(window.innerWidth / 10),
-        height: Math.floor(window.innerHeight / 10),
+        height: Math.floor((window.innerHeight - NAV_HEIGHT) / 10),
       });
 
       timeoutRef.current = setTimeout(() => {
         if (!ref.current) return;
         ref.current.style.opacity = '1';
         ref.current.width = window.innerWidth;
-        ref.current.height = window.innerHeight;
+        ref.current.height = window.innerHeight - NAV_HEIGHT;
         setRunning(true);
       }, 1000);
     };
@@ -59,8 +61,8 @@ const GameOfLife = () => {
     const newGame = Array.from({ length: height }, () =>
       Array.from(
         { length: width },
-        () => Math.round(Math.random() - 0.35) as Cell
-      )
+        () => Math.round(Math.random() - 0.35) as Cell,
+      ),
     );
 
     setGame({
@@ -76,7 +78,7 @@ const GameOfLife = () => {
       if (!current) return prev;
 
       const newGame: Game = Array.from({ length: height }, () =>
-        Array.from({ length: width }, () => 0 as Cell)
+        Array.from({ length: width }, () => 0 as Cell),
       );
 
       for (let i = 0; i < height; i++) {
