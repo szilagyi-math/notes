@@ -1,10 +1,11 @@
 import { LectureTable, Main } from '@/components';
+import { Subject } from 'common/types';
 import { data } from 'latex-docs';
 
 import type { NextPage } from 'next';
 
 interface SubjectsPageParams {
-  subjectCode: 'G1';
+  subjectCode: Subject;
 }
 
 interface SubjectsPageProps {
@@ -15,6 +16,9 @@ export const generateStaticParams = async () => {
   return [
     {
       subjectCode: 'G1',
+    },
+    {
+      subjectCode: 'G2',
     },
   ];
 };

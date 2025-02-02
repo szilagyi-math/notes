@@ -1,0 +1,23 @@
+name: Matematika G2
+code: BMETE94BG02
+lecturer: Dr. Szilágyi Brigitta
+breakdown:
+  credits: 6
+  lectures: 4
+  practicals: 2
+  labs: 0
+  is_exam: true
+book:
+  dir: book
+  source: main.tex
+  target: G2-tankonyv
+  display_name: G2 előadás jegyzet
+online_notes: null
+practice_material:
+  dir: practice
+  solutionsDir: practice-solutions
+  files: []
+hide_lectures: true
+lectures: []
+hide_practicals: true
+practicals: []

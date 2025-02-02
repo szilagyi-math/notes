@@ -17,6 +17,7 @@ const DOCS_DIR = join(CWD, 'latex-docs');
 const SUBJECT_DIRS: Array<[Subject, string]> = [
   // Add more subjects here
   ['G1', 'G1'],
+  ['G2', 'G2'],
 ];
 
 const SHEBANG = '#!/bin/bash';
@@ -31,7 +32,7 @@ if (!existsSync(DOCS_DIR)) {
 Promise.all(
   SUBJECT_DIRS.map(s => {
     return parseConfig(BASE_DIR, s, CONFIG_NAME, join(CWD, RC_FILE), 'build');
-  })
+  }),
 )
   .then(arr => {
     const obj = arr.reduce(
@@ -43,10 +44,10 @@ Promise.all(
       },
       {} as {
         [key in Subject]: SubjectData;
-      }
+      },
     );
 
-    return obj;
+    return obj as { [key in Subject]: SubjectData };
   })
   .then(config => {
     const compileScript = configToBash(config);
@@ -54,11 +55,11 @@ Promise.all(
     return Promise.all([
       writeFile(
         join(GENERATE_DIR, 'compile.sh'),
-        [SHEBANG, compileScript].join('\n\n')
+        [SHEBANG, compileScript].join('\n\n'),
       ),
       writeFile(
         join(GENERATE_DIR, 'config.json'),
-        JSON.stringify(config, null, 2)
+        JSON.stringify(config, null, 2),
       ),
       writeFile(
         join(GENERATE_DIR, 'index.ts'),
@@ -68,7 +69,7 @@ import configJSON from './config.json';
 const data = configJSON as { [key in Subject]: SubjectData };
 
 export { data }
-`
+`,
       ),
     ]);
   });

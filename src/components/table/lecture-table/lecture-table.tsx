@@ -1,3 +1,4 @@
+import { Subject } from 'common/types';
 import { data } from 'latex-docs';
 
 type Week = {
@@ -8,7 +9,7 @@ type Week = {
 };
 
 interface LectureTableProps {
-  subjectCode: 'G1';
+  subjectCode: Subject;
 }
 
 const LectureTable = ({ subjectCode }: LectureTableProps) => {
