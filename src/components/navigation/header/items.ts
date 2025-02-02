@@ -6,8 +6,8 @@ type MainNavItem = {
 
 const items: Array<MainNavItem> = [
   { label: 'Kezdőlap', href: '/', prefetch: true },
-  // { label: 'Munkatársak', href: '/staff', prefetch: true },
   { label: 'Tantárgyak', href: '/subjects', prefetch: true },
+  { label: 'Letöltések', href: '/downloads', prefetch: true },
 ];
 
 export default items;

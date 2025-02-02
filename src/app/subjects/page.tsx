@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 import { useCallback, useState } from 'react';
-import { Input, Label, Main, RadioGroup } from '@/components';
+import { Input, Label, RadioGroup } from '@/components';
 
 import type { NextPage } from 'next';
 import type { ChangeEvent } from 'react';
@@ -25,6 +25,7 @@ const items = [
         name: 'Matematika G2',
         code: 'BMETE94BG02',
         semester: 2,
+        href: '/subjects/G2',
       },
       {
         name: 'Matematika G3',
@@ -173,7 +174,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = () => {
   );
 
   return (
-    <Main>
+    <>
       <h1 className='text-3xl font-semibold mt-8 border-b-2 pb-2 mx-4'>
         Tantárgyak
       </h1>
@@ -310,7 +311,7 @@ const SubjectsPage: NextPage<SubjectsPageProps> = () => {
           Nincs találat a keresési feltételeknek.
         </div>
       )}
-    </Main>
+    </>
   );
 };
 

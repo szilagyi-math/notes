@@ -1,8 +1,8 @@
 import type { NextPage, Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Főoldal | Szilágyi Brigitta weboldala',
-  description: `Itt megtalálhatóak a legfrissebb híreket, bejegyzéseket, és a főbb tantárgyakat.`,
+  title: 'Letöltések | Szilágyi Brigitta weboldala',
+  description: `Az oldalon található letölthető tananyagok, jegyzetek, és egyéb segédanyagok.`,
   keywords: [
     'Szilágyi Brigitta',
     'BME',
