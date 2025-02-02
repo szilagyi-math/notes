@@ -1,6 +1,79 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@import './ui-components.css' layer(utilities);
+@import './side-navigation.css' layer(utilities);
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 864px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1440px;
+
+  --spacing-nav-height: var(--nav-height);
+  --spacing-nav-height-no-border: var(--nav-height-no-border);
+  --spacing-nav-border-bottom-width: var(--nav-border-bottom-width);
+  --spacing-content-width: var(--content-width);
+  --spacing-note-width: var(--note-width);
+  --spacing-aside-width: var(--aside-width);
+  --spacing-content-gap: var(--content-gap);
+  --spacing-content-padding: var(--content-padding);
+  --spacing-content-height: var(--content-height);
+
+  --color-primary-bg: rgba(var(--primary-bg));
+  --color-primary-fg: rgba(var(--primary-fg));
+
+  --color-secondary-bg: rgba(var(--secondary-bg));
+  --color-secondary-fg: rgba(var(--secondary-fg));
+
+  --color-border: rgba(var(--border));
+
+  --color-gray-1: rgba(var(--gray-1));
+  --color-gray-2: rgba(var(--gray-2));
+  --color-gray-3: rgba(var(--gray-3));
+  --color-gray-4: rgba(var(--gray-4));
+  --color-gray-5: rgba(var(--gray-5));
+  --color-gray-6: rgba(var(--gray-6));
+  --color-gray-7: rgba(var(--gray-7));
+  --color-gray-8: rgba(var(--gray-8));
+  --color-gray-9: rgba(var(--gray-9));
+  --color-gray-10: rgba(var(--gray-10));
+  --color-gray-11: rgba(var(--gray-11));
+  --color-gray-12: rgba(var(--gray-12));
+  --color-gray-contrast: rgba(var(--gray-contrast));
+
+  --color-accent-1: rgba(var(--accent-1));
+  --color-accent-2: rgba(var(--accent-2));
+  --color-accent-3: rgba(var(--accent-3));
+  --color-accent-4: rgba(var(--accent-4));
+  --color-accent-5: rgba(var(--accent-5));
+  --color-accent-6: rgba(var(--accent-6));
+  --color-accent-7: rgba(var(--accent-7));
+  --color-accent-8: rgba(var(--accent-8));
+  --color-accent-9: rgba(var(--accent-9));
+  --color-accent-10: rgba(var(--accent-10));
+  --color-accent-11: rgba(var(--accent-11));
+  --color-accent-12: rgba(var(--accent-12));
+  --color-accent-contrast: rgba(var(--accent-contrast));
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @layer base {
   @layer base {
@@ -88,6 +161,3 @@
     }
   }
 }
-
-@import './ui-components.css';
-@import './side-navigation.css';
