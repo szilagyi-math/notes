@@ -1,0 +1,164 @@
+\clearpage
+\section{Iránymenti és parciális deriváltak}\label{sec-03-02}
+
+\begin{definition}[Iránymenti derivált]
+  Legyen $I \in \Reals^n$ nyílt halmaz, $f: I \to \Reals$ függvény és
+  legyen adva egy $\rvec v \in \Reals^n$ egységvektor. Ha létezik a
+  $$
+    \lim_{\lambda \to 0^+} \frac{
+      f(\rvec x - \lambda \rvec v) - f(\rvec x)
+    }{
+      \lambda
+    }
+  $$
+  határérték és ez egy valós szám, akkor ezt az $f$ függvény $\rvec a$
+  pontbeli $\rvec v$ irányú, iránymenti deriváltjának nevezzük. Jele:
+  $$
+    \partial_{\rvec v} f(\rvec x) = \lim_{\lambda \to 0^+} \frac{
+      f(\rvec x - \lambda \rvec v) - f(\rvec x)
+    }{
+      \lambda
+    }
+    \text.
+  $$
+\end{definition}
+
+\begin{note}
+  Amennyiben $\rvec v$ az $n$-dimenziós téren az $i$-edik irányba mutat,
+  akkor azt parciális deriváltnak nevezzük, jelölései:
+  $$
+    \pdv{f(\rvec x)}{x_i}
+    = \partial_i f(\rvec x)
+    = \partial_{x_i} f(\rvec x)
+    = f'_{x_i}(\rvec x)
+    = \lim_{\lambda \to 0^+} \frac{
+      f(x_1, \ldots, x_{i-1}, x_i - \lambda, x_{i+1}, \ldots, x_n) - f(\rvec x)
+    }{
+      \lambda
+    }
+    \text.
+  $$
+\end{note}
+
+\begin{example}
+  Adjuk meg az $f(x; y) = x^3 + 5x^2y + 3xy^2 - 12y^3 + 5x - 6y + 7$ függvény
+  parciális deriváltjait az $(1;2)$ pontban!
+
+  \hdashrule[.8ex][x]{\dimexpr\textwidth}{1pt}{2mm 3pt}
+
+  Először határozzuk meg a parciális deriváltakat parametrikusan, majd
+  számoljuk ki az $(1;2)$ pontbeli értékeket:
+  \begin{alignat*}{9}
+    \pdv{f(x; y)}{x}                      & = 3x^2 + 10xy + 3y^2 + 5
+                                          & \qquad\Rightarrow\quad
+    \left.\pdv{f(x; y)}{x}\right|_{(1;2)} & = 3 + 20 + 12 + 5 = 40
+    \text,
+    \\
+    \pdv{f(x; y)}{y}                      & = 5x^2 + 6xy - 36y^2 - 6
+                                          & \qquad\Rightarrow\quad
+    \left.\pdv{f(x; y)}{y}\right|_{(1;2)} & = 5 + 12 - 144 - 6 = -133
+    \text.
+  \end{alignat*}
+\end{example}
+
+\begin{definition}[Gradiens]
+  Legyen $f: \Reals^n \to \Reals$. Az $f$ függvény
+  $\rvec a(a_{1}; a_{2}; \ldots; a_{n})$ pontbeli gradiensén az alábbi
+  oszlopvektort értjük:
+  \def\arraystretch{1.5}
+  $$
+    \grad f(\rvec a) = \nabla f(\rvec a) = \begin{bmatrix}
+      \partial_1 f(\rvec a) \\
+      \partial_2 f(\rvec a) \\
+      \vdots                \\
+      \partial_n f(\rvec a)
+    \end{bmatrix} = \begin{pmatrix}
+      \displaystyle\pdv{f(\rvec x_0)}{x_1} &
+      \displaystyle\pdv{f(\rvec x_0)}{x_2} &
+      \cdots                               &
+      \displaystyle\pdv{f(\rvec x_0)}{x_n}
+    \end{pmatrix}^\T
+  $$
+\end{definition}
+
+\begin{note}
+  A gyakrolatban az iránymenti deriváltakat a gradiens segítségével számítjuk:
+  $$
+    \partial_{\rvec v} f(\rvec a) = \grad f(\rvec a) \cdot \rvec v
+    \text.
+  $$
+\end{note}
+
+\begin{example}
+  Számítsuk ki az $f(x; y) = x^3 + 5x^2y + 3xy^2 - 12y^3 + 5x - 6y + 7$
+  függvény $\rvec v(3;4)$ irányú deriváltját az $(1;2)$ pontban!
+
+  \hdashrule[.8ex][x]{\dimexpr\textwidth}{1pt}{2mm 3pt}
+
+  A gradiens az előző példában számolt parciális deriváltak alapján:
+  $$
+    \grad f(1;2) = \begin{bmatrix}
+      40 \\ -133
+    \end{bmatrix}
+    \text.
+  $$
+  Az iránymenti derivált számításához még szükségünk van az $\rvec v$ irányú
+  egységvektorra:
+  $$
+    \|\rvec v\| = \sqrt{3^2 + 4^2} = 5
+    \quad\Rightarrow\quad
+    \uvec e_v = \frac{\rvec v}{\|\rvec v\|} = \frac{1}{5} \begin{bmatrix}
+      3 \\ 4
+    \end{bmatrix} = \begin{bmatrix}
+      3/5 \\ 4/5
+    \end{bmatrix}
+    \text.
+  $$
+  Az iránymenti derivált:
+  $$
+    \partial_{\rvec v} f(1;2) = \grad f(1;2) \cdot \rvec v = \begin{bmatrix}
+      40 \\ -133
+    \end{bmatrix} \cdot \begin{bmatrix}
+      3/5 \\ 4/5
+    \end{bmatrix} = 40 \cdot 3/5 - 133 \cdot 4/5 = -82,4
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Jacobi-mátrix]
+  Legyen $\rvec f: \Reals^n \to \Reals^k$ leképezés.
+  Ekkor $\rvec f'(\rvec a) = \rmat J \rvec f(\rvec a)$,
+  ahol $\rmat J \in \mathscr M_{k \times n}$. A $\rmat J$ mátrixot az
+  $\rvec f$ függvény Jacobi-mátrixának nevezzük, melynek elemei:
+  \def\arraystretch{1.5}
+  $$
+    \rmat J(\rvec a) = \begin{bmatrix}
+      \displaystyle\pdv{f_1(\rvec x)}{x_1} & \displaystyle\pdv{f_1(\rvec x)}{x_2} & \cdots & \displaystyle\pdv{f_1(\rvec x)}{x_n} \\
+      \displaystyle\pdv{f_2(\rvec x)}{x_1} & \displaystyle\pdv{f_2(\rvec x)}{x_2} & \cdots & \displaystyle\pdv{f_2(\rvec x)}{x_n} \\
+      \vdots                               & \vdots                               & \ddots & \vdots                               \\
+      \displaystyle\pdv{f_k(\rvec x)}{x_1} & \displaystyle\pdv{f_k(\rvec x)}{x_2} & \cdots & \displaystyle\pdv{f_k(\rvec x)}{x_n}
+    \end{bmatrix}_{|\rvec x = \rvec a} = \begin{bmatrix}
+      \grad^\T f_1(\rvec a) \vphantom{\displaystyle\pdv{f_1}{x_1}} \\
+      \grad^\T f_2(\rvec a) \vphantom{\displaystyle\pdv{f_1}{x_1}} \\
+      \vdots                                                       \\
+      \grad^\T f_k(\rvec a) \vphantom{\displaystyle\pdv{f_1}{x_1}}
+    \end{bmatrix}
+  $$
+\end{definition}
+
+\begin{theorem}[Young-tétel]
+  Legyen adott az $I \subset \Reals^n$ nyílt halmaz, $f: H \to \Reals$ és
+  $\rvec a \in I$, továbbá $\rvec a$-nak létezik olyan környezete, amelyben
+  $f$ összes $p$-edrendű parciális deriváltja létezik és folytonos. Ekkor
+  $$
+    \partial_i \partial_j f(\rvec a) = \partial_j \partial_i f(\rvec a)
+    \text,\quad
+    i;j \in \{1;2;\ldots;n\}
+    \text,
+  $$
+  azaz a parciális deriváltak sorrendje $p$-ed rendig felcserélhető.
+
+  \begin{proof}
+    \vspace{7em}
+  \end{proof}
+\end{theorem}

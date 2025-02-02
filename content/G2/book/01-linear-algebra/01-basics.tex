@@ -1,0 +1,360 @@
+\clearpage
+
+\section{Alapfogalmak}\label{sec-01-01}
+
+\begin{definition}[Csoport]
+  Legyen G nemüres halmaz, és $\circ$ egy művelet. Ekkor a $(G; \circ)$ csoport,
+  ha teljesülnek az alábbiak:
+  \begin{enumerate}
+    \item $\forall a; b; c \in G: (a \circ b) \circ c = a \circ (b \circ c)$,
+          \hfill (\textbf{asszociativitás})
+
+    \item $\exists e \in G: \forall a \in G: e \circ a = a \circ e = a$,
+          \hfill(\textbf{egységelem})
+
+    \item $\forall a \in G: \exists a^{-1} \in G:
+            a \circ a^{-1} = a^{-1} \circ a = e$.
+          \hfill (\textbf{inverzelem})
+  \end{enumerate}
+\end{definition}
+
+\begin{note}
+  Ha a $\circ$ művelet kommutatív, azaz $\forall a, b \in G: a \circ b = b \circ
+    a$, akkor a csoportot \textbf{Abel-csoport}nak nevezzük.
+\end{note}
+
+\begin{example}
+  A $(\mathbb R; \cdot)$, $(\mathbb Q; +)$, $\mathbb C; +$ mindegyike
+  Abel-csoport.
+
+  Nem csoport $(\mathbb N; +)$, hiszen nincs inverz elem.
+
+  $(\mathbb Q^*; +)$ sem csoport, mert nem létezik egységelem.
+\end{example}
+
+\begin{definition}[Gyűrű]
+  Legyen $R$ nemüres halmaz, és $\circ, +$ két művelet. Ekkor a $(R; +, \circ)$
+  gyűrű, ha teljesülnek az alábbiak:
+  \begin{enumerate}
+    \item $(R; +)$ \textbf{Abel-csoport},
+
+    \item $\forall a; b; c \in R: (a \circ b) \circ c = a \circ (b \circ c)$
+          \hfill (\textbf{asszociativitás})
+
+    \item teljesül a disztributivitás:
+          \begin{itemize}
+            \item $\forall a; b; c \in R:
+                    a \circ (b + c) = a \circ b + a \circ c$,
+                  \hfill (\textbf{$+$ disztributív $\circ$-ra})
+
+            \item $\forall a; b; c \in R:
+                    (a + b) \circ c = a \circ c + b \circ c$.
+                  \hfill (\textbf{$\circ$ disztributív $+$-ra})
+          \end{itemize}
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}[Test]
+  Legyen $T$ nemüres halmaz, és $\circ, +$ két művelet. Ekkor a $(T; +, \circ)$
+  test, ha teljesülnek az alábbiak:
+  \begin{enumerate}
+    \item $(T; +)$ \textbf{Abel-csoport},
+
+    \item $\forall a; b; c \in T: (a \circ b) \circ c = a \circ (b \circ c)$,
+          \hfill (\textbf{asszociativitás})
+
+    \item $\exists e \in T: \forall a \in F: e \circ a = a \circ e = a$,
+          \hfill (\textbf{egységelem})
+
+    \item $\forall a \in T \exists a^{-1} \in T:
+            a \circ a^{-1} = a^{-1} \circ a = e$,
+          \hfill (\textbf{inverzelem})
+
+    \item teljesül a \textbf{disztributivitás}.
+          % \begin{itemize}
+          %   \item $\forall a; b; c \in F: a \circ (b + c) = a \circ b + a \circ c$,
+          %         \hfill ($+$ disztributív $\circ$-ra)
+
+          %   \item $\forall a; b; c \in F: (a + b) \circ c = a \circ c + b \circ c$.
+          %         \hfill ($\circ$ disztributív $+$-ra)
+          % \end{itemize}
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  A $(\mathbb R; +, \cdot)$, $(\mathbb Q; +, \cdot)$, $(\mathbb C; +, \cdot)$
+  mindegyike test.
+\end{example}
+
+\begin{definition}[Vektortér]
+  Legyen $V$ nemüres halmaz, és $\circ, +$ két művelet, $T$ test.
+  A $(V; +, \circ)$ a $T$ test feletti vektortér, ha teljesülnek az alábbiak:
+  \begin{enumerate}
+    \item $(V; +)$ Abel-csoport,
+
+    \item $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
+            (\lambda \circ \mu) \circ \rvec x
+            = \lambda \circ (\mu \circ \rvec x)$,
+
+    \item ha $\varepsilon$ a $T$-beli egységelem, akkor
+          $\forall \rvec x \in V: \varepsilon \circ \rvec x = \rvec x$,
+
+    \item teljesül a disztributivitás:
+          \begin{itemize}
+            \item $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
+                    \lambda \circ (\rvec x + \rvec y)
+                    = \lambda \circ \rvec x + \lambda \circ \rvec y$,
+
+            \item $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
+                    (\lambda + \mu) \circ \rvec x
+                    = \lambda \circ \rvec x + \mu \circ \rvec x$.
+          \end{itemize}
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  A legfeljebb $n$-edfokú polinomok a skalárral való szorzásra és az összeadásra
+  vektorteret alkotnak.
+
+  A függvények az összeadásra és a skalárral való szorzásra vektorteret alkotnak.
+\end{example}
+
+\begin{definition}[Vektor]
+  A vektortér elemeit vektoroknak nevezzük.
+  Jelölés: $\rvec x$, vagy $\underbar x$.
+\end{definition}
+
+\begin{statement}
+  \textbf{A zéruselem és ellentett elem létezése egyértelmű.}
+
+  \begin{proof}
+    \begin{enumerate}
+      \item {\sffamily A zéruselem létezése egyértelmű}
+
+            Tegyük fel, hogy $\nvec$ és $\hat \nvec$ különböző
+            zéruselemek, vagyis $\nvec \neq \hat \nvec$. Ebben az esetben
+            $$
+              \nvec = \nvec + \hat \nvec = \hat \nvec
+              \text.
+            $$
+            Ez ellentmondás, tehát a zéruselem egyértelmű.
+
+            \bigskip
+
+      \item {\sffamily Az ellentett elem létezése egyértelmű}
+
+            Tegyük fel, hogy $-\rvec v$ és $-\hat{\rvec v}$ egyaránt
+            $\rvec v$ ellentettjei, valamint $-\rvec v \neq -\hat{\rvec v}$.
+            Ebben az esetben
+            $$
+              -\hat{\rvec v}
+              = (-\rvec v + \rvec v) + (-\hat{\rvec v})
+              = (-\rvec v) + (\rvec v + (-\hat{\rvec v}))
+              = -\rvec v
+              \text.
+            $$
+            Ez ellentmondás, tehát az ellentett elem egyértelmű.
+    \end{enumerate}
+  \end{proof}
+\end{statement}
+
+\begin{statement}
+  0-val való szorzás:
+  $\forall \rvec v \in V: 0 \cdot \rvec v = \nvec$.
+
+  \begin{proof}
+    \vspace{3em}
+  \end{proof}
+\end{statement}
+
+\begin{statement}
+  Nullvektorral való szorzás:
+  $\forall \lambda \in T: \lambda \cdot \nvec = \nvec$.
+
+  \begin{proof}
+    \vspace{3em}
+  \end{proof}
+\end{statement}
+
+\begin{statement}
+  $\lambda \cdot \rvec v = \nvec \quad \Longleftrightarrow \quad
+    \lambda = 0 \; \lor \; \rvec v = \nvec$
+
+  \begin{proof}
+    \vspace{3em}
+  \end{proof}
+\end{statement}
+
+\begin{definition}[Lineáris függetlenség]
+
+  A $(V; +; \lambda)$ vektortér $\rvec v_1, \rvec v_2, \ldots, \rvec v_n$
+  vekrorait lineárisan függetlennek mondjuk, ha a
+  $$
+    \lambda_1 \rvec v_1
+    + \lambda_2 \rvec v_2
+    + \ldots
+    + \lambda_n \rvec v_n
+    = \nvec
+  $$
+  vektoregyenletnek \textbf{csak a triviális megoldása} létezik, azaz
+  $\lambda_1 = \lambda_2 = \ldots = \lambda_n = 0$.
+
+  Ha az egyenletnek nem csak a triviális megoldása létezik, akkor a vektorok
+  lineárisan függők.
+\end{definition}
+
+\begin{definition}[Altér]
+  Legyen $V; +; \lambda$ $\mathbb R$ feletti vektortér, valamint
+  $\emptyset \neq L \subset V$. $L$-t altérnek nevezzük a $V$-ben, ha
+  $(L; +; \lambda)$ ugyancsak vektortér.
+\end{definition}
+
+\begin{example}
+  A polinomok vektorterének alterte a legfeljebb $n$-edfokú polinomok
+  vektortere.
+\end{example}
+
+\begin{statement}
+  Alterek metszete ugyancsak altér. Alterek uniója azonban általában nem altér.
+\end{statement}
+
+\begin{definition}[Generátorrendszer]
+  Legyen $V$ vektortér, valamint $\emptyset \neq G \subset V$. $G$ által
+  generált altérnek nevezzük azt a legszűkebb alteret, amely tartalmazza $G$-t.
+  Jele: $\mathcal L(G)$.
+
+  $G$ generátorrendszere $V$-nek, ha $\mathcal L(G) = V$.
+\end{definition}
+
+\begin{note}
+  Ha $G$ véges generátorrendszere $V$-nek, akkor $G$-t végesen generált
+  vektorrendszernek nevezzük.
+\end{note}
+
+\begin{definition}[Bázis]
+  A $V$ vektorrendszer egy lineárisan független generátorrendszerét a $V$
+  bázisának nevezzük.
+\end{definition}
+
+\begin{statement}
+  Végesen generált vektortérben bármely két bázis azonos tagszámú.
+\end{statement}
+
+\begin{definition}[Vektortér dimenziója]
+  Végesen generált vektortér dimenzióján a bázisainak közös tagszámát értjük.
+\end{definition}
+
+\begin{statement}
+  Legyen $\{ \rvec b_1; \rvec b_2; \dots; \rvec b_n \}$ a $V$ vektortér egy
+  bázisa. Ekkor tetszőleges $V$-beli vektor egyértelműen eéőállítható a
+  bázisvektorok lineáris kombinációjaként.
+
+  Azaz $\forall \rvec v \in V: \exists! (\lambda_1; \lambda_2; \dots; \lambda_n)$,
+  hogy
+  $$
+    \rvec v
+    = \lambda_1 \rvec b_1
+    + \lambda_2 \rvec b_2
+    + \ldots
+    + \lambda_n \rvec b_n
+    \text.
+  $$
+  A ($\lambda_1; \lambda_2; \dots; \lambda_n$) szám $n$-est az $\rvec v$ vektor
+  $\{ \rvec b_1; \rvec b_2; \dots; \rvec b_n \}$ bázisaira vonatkozó
+  koordinátáinak nevezzük.
+
+  %   Bizonyítás: ( egzisztencia )
+  % {b1,b2...bn}lineárisan függetlenek, mert bázis. Ezért {v,b1,b2...bn}már lineárisan
+  % függő, így a
+  % λv + α1b1 + α2b2 +···+ αnbn = 0
+  % vektoregyenletnekléteziktriviálistólkülönbözőmegoldása,azaznemlehet(λ,α1,α2,...,αn)
+  % minden eleme egyszerre 0.
+  % Tehát λ̸= 0, mert ellenkező esetben α1 = α2 = ···= αn = 0 állna fent, így oszthatjuk
+  % az egyenletet λ-val:
+  % v =−
+  % α1
+  % λ
+  % :=ξ1
+  % b1 +−
+  % α2
+  % λ
+  % :=ξ2
+  % b2 +···+−
+  % αn
+  % λ
+  % :=ξn
+  % bn.
+  % Bizonyítás: ( unicitás )
+  % Tegyük fel hogy (ξ1,ξ2 ...ξn) és (η1,η2 ...ηn) egyaránt v koordinátái a {b1,b2...bn}
+  % bázisban, azaz
+  % n
+  % i=1
+  % n
+  % i=1
+  % ξibi
+  % ηibi
+  % v =
+  % v =
+  % Vonjuk ki egymásból a két egyenletet:
+  % 0 = (ξ1−η1)
+  % b1 + (ξ2−η2)
+  % b2 +···+ (ξn−ηn)
+  % bn.
+  % 0
+  % 0
+  % 0
+  % Ezzel ellentmondásra jutunk, mivel {b1,b2...bn}bázis, ezért a nullvektornak csak trivi-
+  % ális előállítása létezik, ami az együtthatók 0 voltát vonná maga után, az pedig a megfelelő
+  % koordináták egyenlőségével ekvivalens. Tehát nem igaz a feltevés.
+  \begin{proof}[Egzisztencia]
+    $\{ \rvec b_1; \rvec b_2; \dots; \rvec b_n \}$ lineárisan
+    függetlenek, mert bázis. Ezért $\{ \rvec v, \rvec b_1; \rvec b_2;
+      \ldots; \rvec b_n \}$ már lineárisan függő, így a
+    $
+      \mu \rvec v + \xi_1 \rvec b_1 + \xi_2 \rvec b_2 + \ldots
+      + \xi_n \rvec b_n = \nvec
+    $
+    vektoregyenletnek létezik triviálistól különböző megoldása, azaz nem
+    lehet $(\mu; \xi_1; \xi_2; \ldots; \xi_n)$ minden eleme
+    egyszerre 0.
+
+    Tehát $\mu \neq 0$, mert ellenkező esetben $\xi_1 = \xi_2
+      = \ldots = \xi_n = 0$ állna fent, így oszthatjuk az egyenletet
+    $\mu$-vel:
+    $$
+      \rvec v
+      = \underbrace{\left(-\frac{\xi_1}{\lambda}\right)}_{:= \lambda_1} \rvec b_1
+      + \underbrace{\left(-\frac{\xi_2}{\lambda}\right)}_{:= \lambda_2} \rvec b_2
+      + \dots
+      + \underbrace{\left(-\frac{\xi_n}{\lambda}\right)}_{:= \lambda_n} \rvec b_n
+      \text.
+    $$
+  \end{proof}
+
+  \begin{proof}[Unicitás]
+    Tegyük fel, hogy a $(\lambda_1; \lambda_2; \ldots; \lambda_n)$ és a
+    $(\mu_1; \mu_2; \ldots; \mu_n)$ is a $\rvec v$
+    koordinátái a $\{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \}$
+    bázisban, azaz
+    $$
+      \rvec v = \sum_{i=1}^n \lambda_i \rvec b_i
+      \text{ és }
+      \rvec v = \sum_{i=1}^n \mu_i \rvec b_i
+      \text.
+    $$
+    Vonjuk ki egymásból a két egyenletet:
+    $$
+      \nvec
+      = \underbrace{(\lambda_1 - \mu_1)}_{0} \rvec b_1
+      + \underbrace{(\lambda_2 - \mu_2)}_{0} \rvec b_2
+      + \ldots
+      + \underbrace{(\lambda_n - \mu_n)}_{0} \rvec b_n
+      \text.
+    $$
+    Ezzel ellentmondásra jutunk, mivel $\{ \rvec b_1; \rvec b_2;
+      \ldots; \rvec b_n \}$ bázis, ezért a nullvektornak csak triviális
+    előállítása létezik, ami az együtthatók 0 voltát vonná maga után,
+    az pedig a megfelelő koordináták egyenlőségével ekvivalens. A
+    feltevés tehát hamis.
+  \end{proof}
+\end{statement}

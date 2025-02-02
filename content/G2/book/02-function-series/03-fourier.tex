@@ -1,0 +1,166 @@
+\clearpage
+\section{Fourier-sorok}\label{sec-02-03}
+
+\begin{definition}[Trigonometrikus polinom]
+  Az alábbi alakú függvényt trigonometrikus polinopmnak nevezzük:
+  $$
+    t_n(x)
+    = a_0
+    + a_1 \cos x + b_1 \sin x
+    + a_2 \cos 2x + b_2 \sin 2x
+    + \ldots
+    + a_n \cos nx + b_n \sin nx
+    \text.
+  $$
+\end{definition}
+
+\begin{definition}[Trigonometrikus sor]
+  Az alábbi alakó összeget trigonometrikus sornak nevezzük:
+  \begin{align*}
+    t(x)
+     & = a_0
+    + a_1 \cos x + b_1 \sin x
+    + \ldots
+    + a_n \cos nx + b_n \sin nx
+    + \ldots
+    =
+    \\
+     & = a_0
+    + \sum_{k=1}^{\infty} a_k \cos kx + b_k \sin kx
+  \end{align*}
+\end{definition}
+
+\begin{note}
+  \begin{enumerate}
+    \item Az összegfüggvény, ha létezik $2\pi$ szerint periodikus.
+
+    \item Ha folytonos a függvény és egyenletesen konvergens, akkor az
+          összegfüggvény is konvergens.
+  \end{enumerate}
+\end{note}
+
+\begin{definition}[Fourier-sor]
+  Legyen $f : \Reals \to \Reals$ egy $2p$ szerint periodikus függvény, amely a
+  $[0; 2p]$ intervallumon Riemann-integrálható. Ekkor a függvény Fourier-során
+  az alábbi trigonometrikus sort értjük:
+  $$
+    F(x)
+    = a_0
+    + \sum_{k=1}^{\infty} \left[
+      a_k \cos \left(\frac{k\pi x}{p}\right) + b_k \sin \left(\frac{k\pi x}{p}\right)
+    \right]
+    \text,
+  $$
+  ahol az együtthatók a következők:
+  \begin{align*}
+    a_0 & = \frac{1}{2p} \int_{0}^{2p} f(x) \dd x
+    \text,                                                                          \\
+    a_k & = \frac{1}{p} \int_{0}^{2p} f(x) \cos \left(\frac{k\pi x}{p}\right) \dd x
+    \text,                                                                           \qquad
+    b_k = \frac{1}{p} \int_{0}^{2p} f(x) \sin \left(\frac{k\pi x}{p}\right) \dd x
+  \end{align*}
+\end{definition}
+
+\begin{note}
+  Ha az $f$ függvény előáll a fenti típusú összegként, akkor az együtthatók
+  csak ilyenek lehetnek.
+\end{note}
+
+\begin{note}
+  Ha az $f$ függvény $2p$ szerint periodikus, akkor mindegy, hogy a $[0; 2p]$
+  intervallumon, vagy egy skalárral eltolva az $[a; a+2p]$ intervallumon
+  integrálunk, vagyis:
+  $$
+    \int_0^{2p} f(x) \dd x = \int_a^{a+2p} f(x) \dd x
+  $$
+\end{note}
+
+\begin{theorem}
+  Ha a $2\pi$ szerint periodikus $f$ függvénynek létezik az $x_0$ pontban a
+  jobb- és baloldali határértéke, továbbá az $f$ függvény Fourier-sora ebben a
+  pontban konvergens, akkor a Fourier-sor összege ezen pontokban a függvény
+  bal- és jobboldali határértékeinek számtani középe.
+
+  \begin{proof}
+    \vspace{8em}
+  \end{proof}
+\end{theorem}
+
+\begin{note}
+  Ha az $f$ függvény folytonos az $x_0$ pontban, akkor a Fourier-sor összege
+  ebben a pontban a függvény határértékével egyezik meg.
+\end{note}
+
+\begin{theorem}
+  Ha a $2\pi$ szerint periodikus, integrálható $f$ függvény szakaszonként
+  monoton és az $x_0$ pontban differenciálható, akkor az $f$ függvény
+  Fourier-sora ebben a pontban konvergens.
+
+  \begin{proof}
+    \vspace{8em}
+  \end{proof}
+\end{theorem}
+
+\begin{statement}
+  Ha egy függvény páros, akkor a Fourier-sorában csak $a_0$ és koszinusz tagok
+  szerepelnek, vagyis $b_k \equiv 0$.
+
+  \begin{proof}
+    \vspace{8em}
+  \end{proof}
+\end{statement}
+
+\begin{statement}
+  Ha egy függvény páratlan, akkor a Fourier-sorában csak szinusz tagok
+  szerepelnek, vagyis $a_0 \equiv 0$ és $a_k \equiv 0$.
+
+  \begin{proof}
+    \vspace{8em}
+  \end{proof}
+\end{statement}
+
+\begin{example}
+  \bgroup\sffamily
+  Állítsuk elő az $f$ függvény Fourier-sorát, $f(x) = x^2$, ha
+  $x \in [-\pi; \pi]$ és $f(x) = f(x + 2k\pi)$, ahol $k \in \mathbb Z$.
+  \egroup
+
+  \hdashrule[.8ex][x]{\dimexpr\textwidth}{1pt}{2mm 3pt}
+
+  Mivel a függvény páros, ezért a Fourier-sorában csak $a_0$ és $a_k$ tagok
+  szerepelnek. Az integrációs intervallumot $[-\pi; \pi]$-re választjuk.
+
+  Az $a_0$ együttható:
+  $$
+    a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} x^2 \dd x
+    = \frac{1}{2\pi} \left[ \frac{x^3}{3} \right]_{-\pi}^{\pi}
+    = \frac{1}{2\pi} \left( \frac{\pi^3}{3} - \frac{(-\pi)^3}{3} \right)
+    = \frac{\pi^3}{3}
+    \text.
+    $$
+
+      Az $a_k$ meghatározása:
+      \begin{align*}
+        a_k
+         & = \frac{1}{\pi} \int_{-\pi}^{\pi} x^2 \cos kx \dd x
+        = \frac{1}{\pi} \left(
+        \left[\frac{x^2 \sin kx}{k}\right]_{-\pi}^{\pi}
+        - \left[\frac{2x \cos kx}{k^2}\right]_{-\pi}^{\pi}
+        + \left[\frac{2 \sin kx}{k^3}\right]_{-\pi}^{\pi}
+        \right) =
+        \\
+         & = \frac{1}{\pi} \left(
+        \frac{2\pi \cos k\pi}{k^2} + \frac{2\pi \cos (-k\pi)}{k^2}
+        \right) = \frac{1}{\pi} \left(
+        \frac{4\pi \cos k\pi}{k^2}
+        \right) = \frac{4}{k^2} \cos k\pi
+        = \frac{4}{k^2} (-1)^k
+        \text.
+      \end{align*}
+
+      A Fourier-sor tehát:
+    $$
+    F(x) = \frac{\pi^3}{3} + \sum_{k=1}^{\infty} \frac{4(-1)^k}{k^2} \cos kx
+    \text.
+  $$
+\end{example}

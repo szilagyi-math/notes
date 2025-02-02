@@ -1,0 +1,160 @@
+\clearpage
+\section{Lineáris egyenletrendszerek}\label{sec-01-03}
+
+\begin{definition}[Lineáris egyenletrendszer]
+  Véges sok elsőfokú egyenletet és véges sok ismeretlent tartalmazó
+  egyenletrendszert lineáris egyenletrendszernek nevezünk.
+
+  Az $m$ egyenletből és $n$ ismeretlenből álló lineáris egyenletrendszer
+  általános alakja:
+  $$
+    \begin{array}{*{9}{c}}
+      a_{11} x_{1} & + & a_{12} x_{2} & + & \dots  & + & a_{1n} x_{n} & = & b_{1}\text, \\[1mm]
+      a_{21} x_{1} & + & a_{22} x_{2} & + & \dots  & + & a_{2n} x_{n} & = & b_{2}\text, \\[1mm]
+      \vdots       &   & \vdots       &   & \vdots &   & \vdots       &   & \vdots      \\[1mm]
+      a_{m1} x_{1} & + & a_{m2} x_{2} & + & \dots  & + & a_{mn} x_{n} & = & b_{m}\text,
+    \end{array}
+  $$
+  ahol $a_{ij}$ együtthatók, $b_{j}$ konstansok, $x_{j}$ ismeretlenek.
+\end{definition}
+
+\begin{blueBox}
+  \sftitle{Lineáris egyenletrendszer csoportosítása}:
+
+  \begin{itemize}
+    \item A lineáris egyenletrendszert \textbf{megoldható}nak nevezzük,
+          ha létezik megoldása.
+
+    \item A lineáris egyenletrendszert \textbf{ellentmondó}nak nevezzük,
+          ha nincs megoldása.
+
+    \item A lineáris egyenletrendszert \textbf{határozott}nak nevezzük,
+          ha csupán egyetlen megoldása van.
+
+    \item A lineáris egyenletrendszert \textbf{határozatlan}nak nevezzük,
+          ha végtelen sok megoldása van.
+  \end{itemize}
+\end{blueBox}
+
+\begin{definition}
+  Két lineáris egyenletrendszer ekvivalens, ha a megoldáshalmazuk megegyezik.
+\end{definition}
+
+\begin{note}
+  Az ekvivalencia szemponjából az egyenletek és az ismeretlenek sorrendje nem
+  számít.
+\end{note}
+
+\begin{statement}
+  Az eredetivel ekvivalens lineáris egyenletrendszert kapunbk, ha az
+  egyenletrendszer valamelyik egyenletét egy nemnulla számmal szorozzuk, vagy
+  valamelyik egyenlethet a lineáris egyenletrendszer egy másik egyenletét
+  hozzáadjuk.
+
+  \begin{proof}
+    \vspace{10em}
+  \end{proof}
+\end{statement}
+
+\clearpage
+\begin{blueBox}
+  \sftitle{Lineáris egyenletrendszer mátrixos alakja:}
+
+  Egy lineáris egyenletrendszer felírható $\rmat A \rvec x = \rmat b$
+  alakban, ahol $\rmat A$ az együttható mátrix, $\rvec x$ az ismeretlenek
+  vektora, $\rvec b$ pedig a konstans vektor.
+  $$
+    \underbrace{\begin{bmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} & \cdots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m1} & a_{m2} & \cdots & a_{mn}
+      \end{bmatrix}}_{\rmat A} \underbrace{\begin{bmatrix}
+        x_{1} \\ x_{2} \\ \vdots \\ x_{n}
+      \end{bmatrix}}_{\rvec x} = \underbrace{\begin{bmatrix}
+        b_{1} \\ b_{2} \\ \vdots \\ b_{n}
+      \end{bmatrix}}_{\rvec b}
+  $$
+\end{blueBox}
+
+\begin{theorem}[LER megoldhatóságának szükséges és elégséges feltétele]
+  Az $\rmat A \rvec x = \rvec b$ lineáris egyenletrendszer akkor és csak
+  akkor oldható meg, ha $\rg(\rmat A) = \rg(\rmat A | \rvec b)$, ahol az
+  $(\rmat A | \rvec b)$ mátrixot kibővített mátrixnak nevezzük.
+
+  A feltétel mátrixosan:
+  \[
+    \rg \begin{bmatrix}
+      a_{11} & a_{12} & \cdots & a_{1n} \\
+      a_{21} & a_{22} & \cdots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{m1} & a_{m2} & \cdots & a_{mn}
+    \end{bmatrix} = \rg \left[\begin{array}{cccc|c}
+        a_{11} & a_{12} & \cdots & a_{1n} & b_1    \\
+        a_{21} & a_{22} & \cdots & a_{2n} & b_2    \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        a_{m1} & a_{m2} & \cdots & a_{mn} & b_n
+      \end{array}\right]\text.
+  \]
+
+  \begin{proof}
+    \vspace{8em}
+  \end{proof}
+\end{theorem}
+
+\begin{definition}[Homogén lineáris egyenletrendszer]
+  Az $\rmat A \rvec x = \rvec b$ lineáris egyenletrendszer homogénnek mondjuk,
+  ha $\rvec b = \nvec$.
+
+  Ha $\rvec b \neq \nvec$, akkor a lineáris egyenletrendszer inhomogén.
+\end{definition}
+
+\begin{note}
+  A feltételből következik, hogy homogén lineáris egyenletrendszer
+  ($\rvec b = \nvec$) mindig megoldható, hiszen az együttható mátrixból és egy
+  nullvektorból képzett kibővített mátrix rangja mindig meg fog egyezni az
+  együttható mátrix rangjával.
+\end{note}
+
+\begin{note}
+  Tekintsük az $n$ egyenletből és $n$ ismeretlenből álló homogén lineáris
+  egyenletrendszert. Ekkor ha az $\rmat A$ mátrix reguláris, akkor az
+  egyenletrendszernek csak a triviális megoldása létezik. Ha az $\rmat A$
+  szinguláris, akkor létezik nemtriviális megoldás is.
+\end{note}
+
+\clearpage
+\begin{blueBox}
+  \sftitle{Megoldási módszerek}:
+
+  \begin{enumerate}
+    \item Ha az $\rmat A$ mátrix reguláris, akkor invertálható és az
+          $\rvec x = \rmat A^{-1} \rvec b$.
+
+    \item Cramer-szabály: ha az $\rmat A$ mátrix reguláris, akkor az
+          együtthatók az alábbi módon számíthatóak:
+          $$
+            x_i = \frac{\det \rmat A_i}{\det \rmat A}
+            \text,
+          $$
+          ahol az $\rmat A_i$ mátrixot úgy képezzük, hogy az $i$-edik oszlopába
+          $\rvec b$ vektort írjuk be.
+
+    \item Gauss-elimináció: sorműveletekkel alakítjuk a kibővített mátrixot:
+          $$
+            \left[\begin{array}{cccc|c}
+                a_{11} & a_{12} & \cdots & a_{1n} & b_1    \\
+                a_{21} & a_{22} & \cdots & a_{2n} & b_2    \\
+                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                a_{m1} & a_{m2} & \cdots & a_{mn} & b_n
+              \end{array}\right]
+            \quad\sim\quad
+            \left[\begin{array}{cccc|c}
+                \square & \square & \cdots & \square & \square \\
+                0       & \square & \cdots & \square & \square \\
+                \vdots  & \vdots  & \ddots & \vdots  & \vdots  \\
+                0       & 0       & \cdots & \circ   & \circ
+              \end{array}\right]
+          $$
+  \end{enumerate}
+\end{blueBox}

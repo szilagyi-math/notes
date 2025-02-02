@@ -1,0 +1,455 @@
+\clearpage
+\section{Alapfogalmak}\label{sec-02-01}
+
+\begin{definition}[Függvénysorozat]
+  Az $f_n : I \subset \mathbb R \to \mathbb R$ sorozatot függvénysorozatnak
+  nevezzük.
+\end{definition}
+
+\begin{example}
+  \sftitle{Példák függvénysorozatokra:}
+
+  % \begin{itemize}
+  %   \item $f_n : \mathbb R \to [-1; 1]$, \quad $f_n(x) = \sin nx$
+  %   \item $g_n: [0; \infty] \to \mathbb R$, \quad $g_n(x) = x^n$
+  % \end{itemize}
+
+  \def\arraystretch{1.33}
+  \begin{tabular}{ll}
+    \bullet \; $f_n: \mathbb R \to [-1; 1]$     & $f_n(x) = \sin nx$ \\
+    \bullet \; $g_n: [0; \infty] \to \mathbb R$ & $g_n(x) = x^n$     \\
+    \bullet \; $h_n: \mathbb R \to \mathbb R$   & $h_n(x) = e^{nx}$  \\
+  \end{tabular}
+\end{example}
+
+\begin{definition}[Függvénysorozat pontbeli konvergenciája]
+  Ha az $x_0 \in I$ pontban az $(f_n(x_0))$ számsorozat konvergens, akkor azt
+  mondjuk, hogy az $(f_n)$ függvénysorozat konvergens az $x_0$-ban. A
+  konvergenciahalmaz:
+  $$
+    H := \big\{\;
+    x \mid x \in I \land (f_n) \text{ konvergens az } x \text{ pontban}
+    \;\big\}
+    \text.
+  $$
+\end{definition}
+
+\begin{example}
+  \sftitle{Példák konvergenciahalmazra}:
+
+  % \begin{itemize}
+  %   \item $f_n(x) = \sin nx$, \quad $H_{f_n} = \{ k\pi; k \in \mathbb Z \}$,
+  %   \item $g_n(x) = x^n$, \quad $H_{g_n} = [0; 1]$.
+  % \end{itemize}
+
+  \def\arraystretch{1.33}
+  \begin{tabular}{ll}
+    \bullet \; $f_n(x) = \sin nx$ & $H_{f_n} = \{ k\pi; k \in \mathbb Z \}$ \\
+    \bullet \; $g_n(x) = x^n$     & $H_{g_n} = [0; 1]$                      \\
+    \bullet \; $h_n(x) = e^{nx}$  & $H_{h_n} = \{0\}$                       \\
+  \end{tabular}
+\end{example}
+
+\begin{definition}[Függvénysorozat határfüggvénye]
+  Az $f$ függvényt az $(f_n)$ függvénysorozat határfüggvényének nevezzük:
+  $$
+    f(x) := \lim_{n \to \infty} f_n(x)
+    \text,\quad
+    x \in H
+    \text.
+  $$
+  Azt mondjuk, hogy az $(f_n)$ függvénysorozat pontonként konvergál az $f$
+  határfüggvényhez a $H$-n, ha $\forall \varepsilon > 0$ esetén
+  $\exists N(\varepsilon; x)$, hogy $|f_n(x) - f(x)| < \varepsilon$, ha
+  $n > N(\varepsilon; x)$.
+\end{definition}
+
+\begin{definition}[Függvénysorozat egyenletes konvergenciája]
+  Az  $(f_n)$ egyenletesen konvergens az $E \subset H$ halmazon, ha
+  $\forall\varepsilon > 0$ esetén létezik $N(\varepsilon)$ úgy, hogy
+  $|f_n(x) - f(x)| < \varepsilon$, ha $n > N(\varepsilon)$ minden $x \in E$
+  esetén.
+\end{definition}
+
+\begin{note}
+  Az egyenletes konvergenciából következik a pontonkénti konvergencia.
+
+  Az állítás azonban megfordítva nem igaz.
+\end{note}
+
+\clearpage
+\begin{theorem}[Cauchy-kritérium függvénysorozatok konvergenciájára]
+  \begin{itemize}
+    \item Az $(f_n)$ akkor és csak akkor konvergens az $x_0 \in H$ pontban,
+          ha $\forall \varepsilon > 0$ esetén $\exists N(\varepsilon)$, hogy
+          $|f_n(x_0) - f_m(x_0)| < \varepsilon$, ha $n; m > N(\varepsilon)$.
+
+    \item Az $(f_n)$ akkor és csak akkor konvergens az $H \subset I$ halmazon,
+          ha $\forall \varepsilon > 0$ esetén $\exists N(\varepsilon, x)$, hogy
+          ha $n; m > N(\varepsilon, x)$, akkor $\forall x \in H$ esetén
+          $|f_n(x) - f_m(x)| < \varepsilon$.
+
+    \item Az $(f_n)$ akkor és csak akkor egyenletesen konvergens az
+          $E \subset H$ halmazon, ha $\forall \varepsilon > 0$ esetén
+          $\exists N(\varepsilon)$, hogy ha $n; m > N(\varepsilon)$, akkor
+          $\forall x \in E$ esetén ${|f_n(x) - f_m(x)| < \varepsilon}$.
+  \end{itemize}
+
+  \begin{proof}
+    Az első két eset bizonyítása a numerikus sorozatoknál tanultak szerint
+    történik.
+
+    A harmadik eset bizonyítása:
+    \begin{itemize}
+      \item[$(\Rightarrow)$] Ha $(f_n)$ egyenletesen konvergens $E$-n, akkor
+            $\forall \varepsilon > 0$ esetén $\exists N(\varepsilon)$ úgy, hogy:
+            \begin{alignat*}{9}
+              |f_n(x) - f(x)| & < \frac{\varepsilon}{2}
+              \text, \quad \text{ha} \quad
+              n               & \;>\;                   & N\left(\frac{\varepsilon}{2}\right), \forall x \in E
+              \text,
+              \\
+              |f_m(x) - f(x)| & < \frac{\varepsilon}{2}
+              \text, \quad \text{ha} \quad
+              m               & \;>\;                   & N\left(\frac{\varepsilon}{2}\right), \forall x \in E
+              \text.
+            \end{alignat*}
+
+            Továbbá, ha $n; m > N(\varepsilon / 2)$ és a
+            háromszög-egyenlőtlenséget felhasználva:
+            \begin{align*}
+              |f_n(x) - f_m(x)|
+               & = |f_n(x) - f(x) + f(x) - f_m(x)| \leq
+              \\
+               & \leq \underbrace{|f_n(x) - f(x)|}_{< \varepsilon / 2}
+              + \underbrace{|f(x) - f_m(x)|}_{< \varepsilon / 2}
+              < \frac{\varepsilon}{2} + \frac{\varepsilon}{2}
+              = \varepsilon
+              \text.
+            \end{align*}
+
+      \item[$(\Leftarrow)$] $|f_n(x) - f_m(x)| < \varepsilon / 2$,
+            ha $n; m > N(\varepsilon)$ és $x \in E$. Ekkor $f_n$ Cauchy-sorozat,
+            $f_m$ is az, azaz $f_m \rightarrow(x) \to f(x)$, ha $m \to \infty$,
+            Ekkor:
+            $$
+              |f_n(x) - f(x)| < \frac{\varepsilon}{2} < \varepsilon
+              \text, \quad \text{ha} \quad
+              n > N(\varepsilon)
+              \text, \quad
+              \forall x \in E.
+            $$
+    \end{itemize}
+  \end{proof}
+\end{theorem}
+
+\begin{definition}[Függvénysor]
+  Legyen $f_n : I \subset \Reals \to \Reals$ függvénysorozat. Képezzük az
+  alábbi függvénysorozatot:
+  \begin{align*}
+    s_1(x) & := f_1(x)
+    \text,                              \\
+    s_2(x) & := f_1(x) + f_2(x)
+    \text,                              \\
+           & \phantom{:} \vdots
+    \\
+    s_j(x) & := \sum_{i = 1}^{j} f_i(x)
+    \\
+           & \phantom{:} \vdots
+  \end{align*}
+
+  Az így előálló $(s_n)$ függvénysorozatot az $(f_n)$ függvénysorozatból képzett
+  függvénysornak hívjuk és $\sum f_n$-nel jelöljük.
+\end{definition}
+
+\begin{definition}[Függvénysor pontbeli konvergenciája]
+  A $\sum f_n$ függvénysor konvergens az $x_0 \in I$ pontban, ha az $(s_n)$
+  függvénysorozat konvergens az $x_0$ pontban.
+\end{definition}
+
+\begin{definition}[Függvénysor konvergenciahalmaza]
+  Az $\sum f_n$ függvénysor konvergens a $H \subset I$ halmazon, ha az
+  $(s_n)$ függvénysorozat konvergens a $H$-n.
+\end{definition}
+
+\begin{definition}[Függvénysor egyenletes konvergenciája]
+  Az $\sum f_n$ függvénysor egyenletesen konvergens az $E \subset H$
+  halmazon, ha az $(s_n)$ függvénysorozat egyenletesen konvergens az $E$-n.
+\end{definition}
+
+\begin{definition}[Függvénysor összegfüggvénye]
+  Az $\sum f_n$ függvénysorozat összegfüggvénye az $s(x) := \lim\limits_{n \to
+      \infty} s_n(x)$ függvény, ahol $x \in H$.
+\end{definition}
+
+\begin{theorem}[%
+    Cauchy-féle konvergencia kritérium egyenletes konvergenciára
+  ]
+  A $\sum f_n$ akkor és csak akkor egyenletesen konvergens az
+  $E \subset H$ halmazon, ha $\forall \varepsilon > 0$ esetén
+  $\exists N(\varepsilon)$ úgy, hogy ha $n; m > N(\varepsilon)$,
+  akkor $\forall x \in E$ esetén ${|s_n(x) - s_m(x)| < \varepsilon}$.
+
+  \begin{proof}
+    \vspace{5em}
+  \end{proof}
+\end{theorem}
+
+\begin{theorem}[Weierstrass-tétel függvénysorok egyenletes konvergenciájára]
+  Legyen $f_n : I \subset \Reals \to \Reals$ függvénysorozat és $\sum f_n$
+  a belőle képzett függvénysor, továbbá $\sum a_n$ olyan konvergens numerikus
+  sor, melyre $\forall x \in I$ esetén $|f_n(x)| \leq a_n$
+  $\forall n \in \mathbb N$-re $n > n_0 \in \mathbb N$ esetén.
+
+  Ekkor a $\sum f_n$ füffvénysor egyenletesen konvergens.
+
+  \begin{proof}
+    \vspace{5em}
+  \end{proof}
+\end{theorem}
+
+\begin{definition}[Függvénysor abszolút konvergenciája]
+  A $\sum f_n$ függvénysort abszolút konvergensnek mondjuk, ha a $\sum |f_n|$
+  függvénysor konvergens.
+\end{definition}
+
+\begin{note}
+  A Weierstrass-tételbeli konvergencia abszolút konvergencia is.
+\end{note}
+
+\begin{definition}[Hatványsor]
+  Legyen $f_n(x) := a_n \, (x - x_0)^n$. A belőle képzett
+  $$
+    \sum f_n(x) = \sum a_n \, (x - x_0)^n
+  $$
+  függvénysort hatványsornak nevezzük, ahol $a_n$ a hatványsor $n$-edik
+  együtthatója, $x_0$ pedig a sorfejtés centruma.
+\end{definition}
+
+\begin{note}
+  Ha $x_0 = 0$, akkor a hatványsor az alábbi alakra egyszerűsödik:
+  $$
+    \sum a_n \cdot x^n
+    \text.
+  $$
+\end{note}
+
+\begin{definition}[Hatványsor konvergenciasugara]
+  A $\sum a_n \, (x - x_0)^n$ hatványsor konvergenciasugara:
+  $$
+    r = \frac{1}{\limsup\limits_{n \to \infty} \sqrt[n]{|a_n|}} \in \Reals_b
+    \text.
+  $$
+\end{definition}
+
+\begin{theorem}[Függvénysor konvergenciája]
+  Legyen a $\sum f_n$ függvénysor egyenletesen konvergens az $x_0$ pontot
+  tartalmazó környezetben, továbbá legyenek a sor tagjai az $x_0$-ban
+  folytonosak. Ekkor az összegfüggvény is folytonos az $x_0$ pontban.
+
+  \begin{proof}
+    Tudjuk, hogy a $\sum f_n$ folytonos és egyenletesen konvergens. Azt akarjuk
+    belátni, hogy $|f(x) - f(x_0)|$ tetszőlegesen kicsivé tehető, mert ekkor az
+    összegfüggvény folytonos.
+    \begin{align*}
+      |f(x) - f(x_0)|
+       & = |f(x) - f_n(x) + f_n(x) - f_n(x_0) + f_n(x_0) - f(x_0)| \leq
+      \\
+       & \leq \underbrace{|f(x) - f_n(x)|}_{< \varepsilon / 3 \; (i)}
+      + \underbrace{|f_n(x) - f_n(x_0)|}_{< \varepsilon / 3 \; (ii)}
+      + \underbrace{|f_n(x_0) - f(x_0)|}_{< \varepsilon / 3 \; (iii)}
+      < 3 \cdot \frac{\varepsilon}{3} = \varepsilon
+      \text,
+    \end{align*}
+    ha $n > N(\varepsilon / 3) := \max \left\{
+      N_1(\varepsilon / 3); N_2(\varepsilon / 3); N_3(\varepsilon / 3)
+      \right\}$.
+    \begin{itemize}
+      \item[$(i)$] egyenletes konvergencia miatt,
+      \item[$(ii)$] folytonosság miatt,
+      \item[$(iii)$] egyenletes konvergencia miatt.
+    \end{itemize}
+  \end{proof}
+\end{theorem}
+
+\begin{statement}
+  \begin{enumerate}
+    \item Folytonos függvények egyenletesen konvergens sorozatának
+          határfüggvénye is \\folytonos.
+
+    \item Folytonos függvények egyenletesen konvergens függvénysorának
+          összegfüggvénye is folytonos, ha a függvénysor tagjai folytonosak.
+  \end{enumerate}
+
+  \begin{proof}
+    \vspace{6em}
+  \end{proof}
+\end{statement}
+
+\begin{theorem}[Tagonkénti integrálhatóság]
+  Legyenek a $\sum f_n$ függvénysor tagjai integrálhatóak az $[a; b]$ zárt
+  intervallumon. Tegyük fel, hogy a sor egyenletesen konvergens az $[a; b]$-n
+  és összegfüggvénye folytonos. Ekkor
+  $$
+    \int_a^b f(x) \dd x = \sum_{n = 1}^{\infty} \int_a^b f_n(x) \dd x
+    \text.
+  $$
+
+  \begin{proof}
+    \vspace{7em}
+  \end{proof}
+\end{theorem}
+
+\begin{note}
+  Nem korlátos intervallum esetén nem igaz az állítás.
+\end{note}
+
+\begin{theorem}[Tagonkénti diﬀerenciálhatóság]
+  Legyenek az $f_n$ függvénysor tagjai differenciálhatóak a $J$ intervallumon,
+  $f'_n$ függvények folytonosak a $J$-n, valamint a $\sum f'_n$ és a $\sum f_n$
+  függvénysorok egyenletesen konvergensek a $J$-n. Ekkor
+  $$
+    f'(x) = \sum_{n = 1}^{\infty} f'_n(x)
+    \text.
+  $$
+
+  \begin{proof}
+    \vspace{7em}
+  \end{proof}
+\end{theorem}
+
+\begin{theorem}[Hatványsor konvergenciája]
+  Ha a $\sum a_n x^n$ hatványsor konvergens az $x_0$ pontban, akkor az $x < x_0$
+  helyeken abszolút és egyenletesen konvergens.
+
+  \begin{center}
+    \begin{tikzpicture}[very thick, scale=3/4]
+      \draw[draw=secondaryColor, -to] (-3,0) -- ++(6,0) node[below left] {$x$};
+
+      \draw[primaryColor] (-1.5,.5)
+      .. controls (-1.7,.5) and (-1.7,-.5) ..
+      (-1.5,-.5);
+
+      \draw[primaryColor] (1.5,.5)
+      .. controls (1.7,.5) and (1.7,-.5) ..
+      (1.5,-.5);
+
+      \draw[primaryColor] (0,.1) -- (0,-.1);
+
+      \node[below] at (-1.65,-.5) {$-x_0\vphantom{0}$};
+      \node[below] at (1.65,-.5) {$x_0\vphantom{0}$};
+      \node[below] at (0,-.5) {$0\vphantom{x_0}$};
+    \end{tikzpicture}
+  \end{center}
+
+  \begin{proof}
+    Ha a $\sum a_n x^n$ hatványsor konvergens az $x_0$ pontban, akkor
+    $a_n x^n \to 0$, ha $n \to \infty$. Ekkor tehát korlátos is, azaz
+    $\exists K \in \Reals$, hogy $|a_n x^n| \leq K$.
+    $$
+      \left| a_n x^n \right|
+      = \frac{|a_n|^{\phantom{n}}}{|x_0|^n} |x_0|^n |x|^n
+      = \underbrace{|a_n x_0^n|}_{\leq K}
+      \underbrace{\left|\frac{x}{x_0}\right|^n}_{< 1 \text{ ha } |x| < |x_0|}
+      \rightarrow 0
+    $$
+    Ekkor $|a_n x^n| \leq K \cdot q^n$,
+    tehát $\sum a_n x^n \leq \sum K \cdot q^n = K \cdot \sum q^n$. Láthatjuk,
+    hogy így konvergens geometriai sorral becsülhetjük a hatványsort. Alkalmazva
+    a Weierstrass-tételt, $\sum a_n x^n$ abszolút és egyenletesen is konvergens,
+    ha $|x| < |x_0|$.
+  \end{proof}
+\end{theorem}
+
+\begin{theorem}[Cauchy-Hadamard-tétel]
+  Legyen $r$ a $\sum a_n x^n$ hatványsor konvergenciasugara. Ha \dots
+  \begin{enumerate}
+    \item $r = 0$, akkor a hatványsor csak az $x_0 = 0$ pontban konvergens,
+    \item $r = \infty$, akkor a hatványsor $\forall x \in \Reals$ esetén
+          konvergens,
+    \item $0 < r < \infty$, akkor a hatványsor konvergens, ha $|x| < r$ és
+          divergens, ha $|x| > r$.
+  \end{enumerate}
+
+  \begin{center}
+    \begin{tikzpicture}[thick]
+      \draw[very thick, -to, draw=secondaryColor]
+      (0,0) -- (6,0) node[below left] {$x$};
+
+      \foreach \x/\l in {1/-r,3/0,5/+r}{
+          \draw[draw=primaryColor] (\x, 3pt) -- (\x, -3pt) node[below]{$\l$};
+        }
+      \draw [
+        draw=primaryColor,
+        decorate,
+        decoration={brace,amplitude=5pt,mirror,raise=4ex}
+      ]
+      (1,0) -- (5,0) node[midway,yshift=-3em] {abszolút konvergencia};
+    \end{tikzpicture}
+  \end{center}
+
+  \begin{proof}
+    Az első két eset az előző tételek alapján könnyen adódik.
+
+    A harmadik esetben a hatványsor konvergens, ha $|x_0| < r$:
+    $$
+      \limsup \sqrt[n]{|a_n x_0^n|}
+      = |x_0| \limsup \sqrt[n]{|a_n|}
+      = \frac{|x_0|}{r}
+      < 1.
+    $$
+    Azaz létezik $q < 1$, hogy a $\sum a_n x^n$ hatványsor a gyökteszt miatt
+    konvergens. Mivel $x_0$ tetszőleges volt ($|x_0| < r$), így minden $|x| < r$
+    esetén igaz, hogy a $\sum a_n x^n$ hatványsor konvergens. Ugyancsak a
+    gyökteszt miatt a hatványsor divergens, ha $|x| > r$.
+  \end{proof}
+\end{theorem}
+
+\begin{note}
+  Ha a $\lim\limits_{n \to \infty} \sqrt[n]{|a_n|}$ határérték létetik, akkor ez
+  megegyezik a $\limsup \sqrt[n]{|a_n|}$ határértékkel.
+
+  Gyakran így számolunk:
+  $$
+    r = \frac{1}{\lim\limits_{n \to \infty} \sqrt[n]{|a_n|}}
+    \text.
+  $$
+\end{note}
+
+\begin{theorem}[Abel második tétele]
+  Tegyük fel, hogy a $\sum a_n x^n$ hatványsor konvergenciasugara $r$ és ez a
+  hatványsor az $x = r$ pontban konvergens. Ekkor a hatványsor a $[0; r]$
+  intervallumon egyenletesen konvergens, így az összegfüggvény is folytonos a
+  $[0; r]$ intervallumon. Ha a hatványsor az $x = -r$ pontban konvergens, akkor
+  a hatványsor a $[-r; 0]$ intervallumon egyenletesen konvergens, így az
+  összegfüggvény is folytonos a $[-r; 0]$ intervallumon.
+
+  \begin{proof}
+    \vspace{20em}
+  \end{proof}
+\end{theorem}
+
+\begin{note}
+  \sftitle{Abel második tételének következményei:}
+
+  \begin{enumerate}
+    \item A hatványsor összegfüggvénye a konvergencia intervallum belsejében
+          folytonos.
+
+    \item A hatványsor konvergenciaintervallum tetszőleges részintervallumán
+          tagonként integrálható, azaz ha $[a; b] \subset (-r; r)$ és
+          $s(x) := \sum a_n x^n$ összegfüggvény, akkor
+          $$
+            \int_a^b s(x) \dd x = \sum_{n = 0}^{\infty} \int_a^b a_n x^n \dd x
+            \text.
+          $$
+
+    \item Ha $s(x)$ a hatványsor összegfüggvénye, akkor
+          $$
+            s'(x)
+            = \sum_{n = 0}^{\infty} \left( a_n x^n \right)'
+            = \sum_{n = 0}^{\infty} n \, a_n \, x^{n - 1}
+            \text.
+          $$
+  \end{enumerate}
+\end{note}
