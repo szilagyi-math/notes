@@ -3,11 +3,16 @@ import { notFound } from 'next/navigation';
 import { mathNotes } from 'content';
 
 import type { Subject, NoteSlug } from 'common/types';
-import type { NextPage } from 'next';
+import type { Metadata, NextPage, ResolvingMetadata } from 'next';
+import { Main } from '@/components';
 
 interface NotePageParams {
   subjectCode: Subject;
   noteSlug: NoteSlug;
+}
+
+interface NotePageProps {
+  params: Promise<NotePageParams>;
 }
 
 export const generateStaticParams = (): NotePageParams[] => {
@@ -17,12 +22,21 @@ export const generateStaticParams = (): NotePageParams[] => {
   }));
 };
 
-interface NotePageProps {
-  params: NotePageParams;
-}
+export const generateMetadata = async (
+  props: NotePageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> => {
+  const { subjectCode, noteSlug } = await props.params;
+  const ref = getNoteRef(subjectCode, noteSlug);
+
+  return {
+    title: `${subjectCode}`,
+  };
+};
 
 const NotesPage: NextPage<NotePageProps> = async props => {
   const params = await props.params;
+
   if (process.env.NODE_ENV !== 'development') {
     return notFound();
   }
@@ -30,9 +44,9 @@ const NotesPage: NextPage<NotePageProps> = async props => {
   const ref = getNoteRef(params.subjectCode, params.noteSlug);
 
   return (
-    <div>
+    <Main>
       <h1>{ref}</h1>
-    </div>
+    </Main>
   );
 };
 
