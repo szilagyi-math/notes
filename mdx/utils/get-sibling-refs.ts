@@ -13,7 +13,7 @@ const formatNumber = (n: number) => (n < 10 ? `0${n}` : `${n}`);
 
 const formatRef = (subjectCode: Subject, chapter: number, section: number) => {
   return `${subjectCode}-${formatNumber(chapter)}-${formatNumber(
-    section
+    section,
   )}` as NoteRef;
 };
 
@@ -27,7 +27,7 @@ const getSiblingRefs = async ({
 
   const baseRes = (await fs.readdir(baseDir)).filter(f => f.match(/^\d{2}-/));
   const chapterRes = (await fs.readdir(chapterRoot)).filter(f =>
-    f.match(/^\d{2}-/)
+    f.match(/^\d{2}-/),
   );
 
   // Chapter indexing starts from 1 !!!
@@ -58,7 +58,7 @@ const getSiblingRefs = async ({
       const prevChapterRoot = `${baseDir}/${baseRes[currentChapter - 1]}`;
 
       const prevChapterRes = (await fs.readdir(prevChapterRoot)).filter(f =>
-        f.match(/^\d{2}-/)
+        f.match(/^\d{2}-/),
       );
 
       const prevSectionCount = prevChapterRes.length;
@@ -66,7 +66,7 @@ const getSiblingRefs = async ({
       prevRef = formatRef(
         subjectCode,
         currentChapter - 1,
-        prevSectionCount - 1
+        prevSectionCount - 1,
       );
     }
   }
@@ -78,3 +78,5 @@ const getSiblingRefs = async ({
 };
 
 export { getSiblingRefs };
+
+export type { GetSiblingRefsConfig };
