@@ -10,6 +10,7 @@ const mathNotes = defineCollection({
   pattern: [
     //
     'G1/notes/**/*.md',
+    'G2/notes/**/*.md',
   ],
   schema: s
     .object({
@@ -25,7 +26,7 @@ const mathNotes = defineCollection({
       const path = n.path;
 
       // G1/book/xx-chaptertitle/yy-sectiontitle
-      const [subject, book, chapter, section] = path.split('/');
+      const [subject, , chapter, section] = path.split('/');
 
       const ref: NoteRef = `${subject}-${chapter.split('-')[0]}-${
         section.split('-')[0]
@@ -34,7 +35,7 @@ const mathNotes = defineCollection({
       const [subjectCode, chapterCode, sectionCode] = ref.split('-') as [
         Subject,
         string,
-        string
+        string,
       ];
 
       const depth = sectionCode === '00' ? 1 : 2;

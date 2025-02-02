@@ -23,7 +23,8 @@ export const generateStaticParams = async () => {
   ];
 };
 
-const SubjectsPage: NextPage<SubjectsPageProps> = ({ params }) => {
+const SubjectsPage: NextPage<SubjectsPageProps> = async props => {
+  const params = await props.params;
   const subjectCode = params.subjectCode;
   const subject = data[subjectCode];
 

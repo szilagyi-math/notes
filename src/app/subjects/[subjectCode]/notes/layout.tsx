@@ -10,10 +10,16 @@ interface NotesLayoutParams {
 
 interface NotesLayoutProps {
   children: React.ReactNode;
-  params: NotesLayoutParams;
+  params: Promise<NotesLayoutParams>;
 }
 
-const NotesLayout = ({ children, params }: NotesLayoutProps) => {
+const NotesLayout = async (props: NotesLayoutProps) => {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const subjectToc = toc[params.subjectCode];
 
   return (

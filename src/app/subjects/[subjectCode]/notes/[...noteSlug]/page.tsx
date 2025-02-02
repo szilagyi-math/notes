@@ -21,7 +21,8 @@ interface NotePageProps {
   params: NotePageParams;
 }
 
-const NotesPage: NextPage<NotePageProps> = ({ params }) => {
+const NotesPage: NextPage<NotePageProps> = async props => {
+  const params = await props.params;
   if (process.env.NODE_ENV !== 'development') {
     return notFound();
   }
