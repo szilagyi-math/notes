@@ -2,14 +2,14 @@ import { LectureTable, Main } from '@/components';
 import { Subject } from 'common/types';
 import { data } from 'latex-docs';
 
-import type { NextPage } from 'next';
+import type { Metadata, NextPage, ResolvingMetadata } from 'next';
 
 interface SubjectsPageParams {
   subjectCode: Subject;
 }
 
 interface SubjectsPageProps {
-  params: SubjectsPageParams;
+  params: Promise<SubjectsPageParams>;
 }
 
 export const generateStaticParams = async () => {
@@ -21,6 +21,21 @@ export const generateStaticParams = async () => {
       subjectCode: 'G2',
     },
   ];
+};
+
+export const generateMetadata = async (
+  props: SubjectsPageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> => {
+  const params = await props.params;
+  const subjectCode = params.subjectCode;
+  const subject = data[subjectCode];
+  const parentMetadata = await parent;
+
+  return {
+    title: `${subject.name} - Tantárgyak | Szilágyi Brigitta Weboldala`,
+    keywords: [subject.name, subject.code, ...(parentMetadata.keywords || [])],
+  };
 };
 
 const SubjectsPage: NextPage<SubjectsPageProps> = async props => {
