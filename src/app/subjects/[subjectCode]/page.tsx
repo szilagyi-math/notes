@@ -1,6 +1,7 @@
 import { LectureTable, Main } from '@/components';
 import { Subject } from 'common/types';
 import { data } from 'latex-docs';
+import Link from 'next/link';
 
 import type { Metadata, NextPage, ResolvingMetadata } from 'next';
 
@@ -77,14 +78,18 @@ const SubjectsPage: NextPage<SubjectsPageProps> = async props => {
           >
             PDF
           </a>
-          {/* {' (Letölthető) / '} */}
-          {/* <Link
-            className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
-            href={subject.onlineNotes}
-          >
-            Online
-          </Link>
-          {' (Weben olvasható, jelenleg fejlesztés alatt)'} */}
+          {subject.onlineNotes && (
+            <>
+              {' (Letölthető) / '}
+              <Link
+                className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
+                href={subject.onlineNotes}
+              >
+                Online
+              </Link>
+              {' (Weben olvasható, jelenleg fejlesztés alatt)'}
+            </>
+          )}
         </p>
       </div>
 

@@ -12,7 +12,7 @@ book:
   source: main.tex
   target: G2-tankonyv
   display_name: G2 előadás jegyzet
-online_notes: null
+online_notes: /subjects/G2/notes/01-linear-algebra
 practice_material:
   dir: practice
   solutionsDir: practice-solutions
