@@ -183,7 +183,7 @@
   $$
 \end{example}
 
-\begin{definition}[Mátrixok és skalár szorzata]
+\begin{definition}[Mátrix és skalár szorzata]
   Egy mátrix és egy skalár szorzata olyan mátrix, melynek minden eleme
   skalárszorosa az eredeti mátrix elemeinek, azaz ha
   $\rmat A \in \mathcal M_{m \times n}$ és $\lambda \in \mathbb R$, akkor
@@ -501,16 +501,16 @@
   $$
 \end{example}
 
-\begin{definition}[Mátrix inverze]
-  Az $\rmat A \in \mathcal M_{n \times n}$ mátrix inverzén egy olyan
-  $\rmat A^{-1} \in \mathcal M_{n \times n}$ mátrixot értünk, melyre
-  $$
-    \rmat A \cdot \rmat A^{-1} = \rmat A^{-1} \cdot \rmat A = \imat
-    \text.
-  $$
-\end{definition}
+% \begin{definition}[Mátrix inverze]
+%   Az $\rmat A \in \mathcal M_{n \times n}$ mátrix inverzén egy olyan
+%   $\rmat A^{-1} \in \mathcal M_{n \times n}$ mátrixot értünk, melyre
+%   $$
+%     \rmat A \cdot \rmat A^{-1} = \rmat A^{-1} \cdot \rmat A = \imat
+%     \text.
+%   $$
+% \end{definition}
 
-\begin{theorem}
+\begin{theorem}[Lineárisan független vektorok]
   Az $\{\rvec a_1; \rvec a_2; \ldots; \rvec a_n\}$ vektorok lineárisan
   függetlenek, ha $\det(\rvec a_1; \rvec a_2; \ldots; \rvec a_n) \neq 0$.
 
@@ -547,7 +547,7 @@
   \end{proof}
 \end{theorem}
 
-\begin{definition}
+\begin{definition}[Mátrix elemi átalakításai]
   Egy mátrix elemi átalakításainak nevezzük a következőket:
   \begin{itemize}
     \item A mátrix egy tetszőleges sorát vagy oszlopát egy 0-tól különböző
@@ -556,8 +556,7 @@
     \item A mátrix egy tetszőleges sorát vagy oszlopát felcseréljük.
 
     \item A mátrix egy tetszőleges sorához vagy oszlopához egy másik tetszőleges
-          sorát vagy
-          oszlopát adjuk.
+          sorát vagy oszlopát adjuk.
   \end{itemize}
 \end{definition}
 
@@ -597,7 +596,7 @@
   \end{itemize}
 \end{statement}
 
-\begin{definition}
+\begin{definition}[Mátrix inverze]
   Az $\rmat A \in \mathcal M_{n \times n}$ mátrix inverzét az $\rmat A^{-1}$
   jelöli, és az a mátrix, melyre $\rmat A \cdot \rmat A^{-1} = \imat$
   teljesül.
@@ -631,7 +630,7 @@
       = \underbrace{\det \imat}_{=1}
       \text.
     $$
-    Látjuk hogy ezzel ellenmondásra jutunk.
+    Látjuk, hogy ezzel ellenmondásra jutunk.
   \end{proof}
 \end{statement}
 

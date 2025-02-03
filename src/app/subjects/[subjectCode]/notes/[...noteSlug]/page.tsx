@@ -4,6 +4,15 @@ import { mathNotes } from 'content';
 
 import type { Subject, NoteSlug } from 'common/types';
 import type { Metadata, NextPage } from 'next';
+import {
+  NotesBottomNavigation,
+  NotesChapterOverview,
+  NotesChapterOverviewTitle,
+  NotesLocalToc,
+  NotesMobileNavigation,
+  SideNavigation,
+} from '@/components';
+import { MDXContent } from '@/components/mdx';
 
 interface NotePageParams {
   subjectCode: Subject;
@@ -56,10 +65,88 @@ const NotesPage: NextPage<NotePageProps> = async props => {
   }
 
   const ref = getNoteRef(params.subjectCode, params.noteSlug);
+  const note = mathNotes.find(n => n.ref === ref);
+
+  if (!note) return notFound();
+
+  let subitems:
+    | { title: string; href: string; description: string }[]
+    | undefined = undefined;
+
+  if (!note.parentRef) {
+    subitems = mathNotes
+      .filter(n => {
+        return n.parentRef === note.ref;
+      })
+      .sort((a, b) => {
+        return a.ref.localeCompare(b.ref);
+      })
+      .map(d => ({
+        title: d.title,
+        href: d.href,
+        description: d.description || d.excerpt,
+      }));
+  }
+
+  const prevNote = mathNotes.find(n => n.ref === note.prevRef);
+  const nextNote = mathNotes.find(n => n.ref === note.nextRef);
+  const prevItem = prevNote
+    ? {
+        title: prevNote.title,
+        href: prevNote.href,
+      }
+    : undefined;
+  const nextItem = nextNote
+    ? {
+        title: nextNote.title,
+        href: nextNote.href,
+      }
+    : undefined;
+
+  console.log(note.localToc);
 
   return (
     <>
-      <h1>{ref}</h1>
+      <article className='relative space-y-8 pb-8 md:pl-0 w-text flex-1 overflow-x-clip max-w-full md:max-w-[calc(100vw-var(--aside-width))] lg:max-w-[calc(100vw-2*var(--aside-width))]'>
+        <NotesMobileNavigation
+          showRight={note.noLocalToc}
+          leftBreakpoint='md'
+          rightBreakpoint='lg'
+        />
+        <div className='prose prose-custom mx-auto px-4 md:pl-8 lg:pr-8 max-w-full'>
+          <h1 className='mt-7'>{note.title}</h1>
+          <MDXContent code={note.code} />
+        </div>
+        {subitems && (
+          <>
+            <hr className='my-4 border' />
+            <NotesChapterOverviewTitle />
+            <NotesChapterOverview sections={subitems} />
+          </>
+        )}
+        <hr className='mb-4 border' />
+        <NotesBottomNavigation
+          prev={prevItem}
+          next={nextItem}
+        />
+      </article>
+      {note.localToc?.length && !note.noLocalToc ? (
+        <SideNavigation
+          title='Tartalomjegyzék'
+          description='A fejezet / alfejezet tartalomjegyzéke'
+          breakpoint='lg'
+          position='right'
+        >
+          <NotesLocalToc items={note.localToc} />
+        </SideNavigation>
+      ) : (
+        <div
+          aria-hidden='true'
+          className='side-nav'
+          data-position='right'
+          data-breakpoint='lg'
+        />
+      )}
     </>
   );
 };

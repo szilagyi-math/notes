@@ -1,8 +1,11 @@
+import {
+  NotesGlobalToc,
+  SideNavigation,
+  SideNavigationBackdrop,
+} from '@/components';
 import toc from '@/lib/toc/math-notes';
-import { Main } from '@/components';
 
 import type { Subject } from 'common/types';
-import Link from 'next/link';
 
 interface NotesLayoutParams {
   subjectCode: Subject;
@@ -14,31 +17,22 @@ interface NotesLayoutProps {
 }
 
 const NotesLayout = async (props: NotesLayoutProps) => {
-  const params = await props.params;
-
-  const {
-    children
-  } = props;
-
-  const subjectToc = toc[params.subjectCode];
+  const { children } = props;
+  const { subjectCode } = await props.params;
 
   return (
-    <Main>
-      <pre>{JSON.stringify(toc[params.subjectCode], null, 2)}</pre>
-      {subjectToc.map(item => (
-        <div key={item.id}>
-          <h2>{item.title}</h2>
-          <ul>
-            {item.subItems.map(subItem => (
-              <li key={subItem.id}>
-                <Link href={subItem.href}>{subItem.title}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div className='max-w-content-width mx-auto my-0 flex'>
+      <SideNavigation
+        breakpoint='md'
+        position='left'
+        title={`Matematika ${subjectCode}`}
+        description='A tárgyhoz tartozó jegyzet fejezetei és alfejezetei'
+      >
+        <NotesGlobalToc items={toc[subjectCode]} />
+      </SideNavigation>
+      <SideNavigationBackdrop />
       {children}
-    </Main>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 
 @import './ui-components.css' layer(utilities);
 @import './side-navigation.css' layer(utilities);
@@ -114,6 +115,8 @@
 
       --radius: 0.5rem;
       --content-width: 1386px;
+      --note-width: 768px;
+      --aside-width: 286px;
       --nav-height: 56px;
 
       --nav-height-no-border: 56px;

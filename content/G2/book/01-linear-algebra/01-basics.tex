@@ -3,7 +3,7 @@
 \section{Alapfogalmak}\label{sec-01-01}
 
 \begin{definition}[Csoport]
-  Legyen G nemüres halmaz, és $\circ$ egy művelet. Ekkor a $(G; \circ)$ csoport,
+  Legyen $G$ nemüres halmaz, és $\circ$ egy művelet. Ekkor a $(G; \circ)$ csoport,
   ha teljesülnek az alábbiak:
   \begin{enumerate}
     \item $\forall a; b; c \in G: (a \circ b) \circ c = a \circ (b \circ c)$,
@@ -24,7 +24,7 @@
 \end{note}
 
 \begin{example}
-  A $(\mathbb R; \cdot)$, $(\mathbb Q; +)$, $\mathbb C; +$ mindegyike
+  A $(\mathbb R; \cdot)$, $(\mathbb Q; +)$, $(\mathbb C; +)$ mindegyike
   Abel-csoport.
 
   Nem csoport $(\mathbb N; +)$, hiszen nincs inverz elem.
@@ -38,7 +38,7 @@
   \begin{enumerate}
     \item $(R; +)$ \textbf{Abel-csoport},
 
-    \item $\forall a; b; c \in R: (a \circ b) \circ c = a \circ (b \circ c)$
+    \item $\forall a; b; c \in R: (a \circ b) \circ c = a \circ (b \circ c)$,
           \hfill (\textbf{asszociativitás})
 
     \item teljesül a disztributivitás:
@@ -186,7 +186,6 @@
 \end{statement}
 
 \begin{definition}[Lineáris függetlenség]
-
   A $(V; +; \lambda)$ vektortér $\rvec v_1, \rvec v_2, \ldots, \rvec v_n$
   vekrorait lineárisan függetlennek mondjuk, ha a
   $$
@@ -204,7 +203,7 @@
 \end{definition}
 
 \begin{definition}[Altér]
-  Legyen $V; +; \lambda$ $\mathbb R$ feletti vektortér, valamint
+  Legyen $(V; +; \lambda)$ $\mathbb R$ feletti vektortér, valamint
   $\emptyset \neq L \subset V$. $L$-t altérnek nevezzük a $V$-ben, ha
   $(L; +; \lambda)$ ugyancsak vektortér.
 \end{definition}
@@ -263,49 +262,6 @@
   $\{ \rvec b_1; \rvec b_2; \dots; \rvec b_n \}$ bázisaira vonatkozó
   koordinátáinak nevezzük.
 
-  %   Bizonyítás: ( egzisztencia )
-  % {b1,b2...bn}lineárisan függetlenek, mert bázis. Ezért {v,b1,b2...bn}már lineárisan
-  % függő, így a
-  % λv + α1b1 + α2b2 +···+ αnbn = 0
-  % vektoregyenletnekléteziktriviálistólkülönbözőmegoldása,azaznemlehet(λ,α1,α2,...,αn)
-  % minden eleme egyszerre 0.
-  % Tehát λ̸= 0, mert ellenkező esetben α1 = α2 = ···= αn = 0 állna fent, így oszthatjuk
-  % az egyenletet λ-val:
-  % v =−
-  % α1
-  % λ
-  % :=ξ1
-  % b1 +−
-  % α2
-  % λ
-  % :=ξ2
-  % b2 +···+−
-  % αn
-  % λ
-  % :=ξn
-  % bn.
-  % Bizonyítás: ( unicitás )
-  % Tegyük fel hogy (ξ1,ξ2 ...ξn) és (η1,η2 ...ηn) egyaránt v koordinátái a {b1,b2...bn}
-  % bázisban, azaz
-  % n
-  % i=1
-  % n
-  % i=1
-  % ξibi
-  % ηibi
-  % v =
-  % v =
-  % Vonjuk ki egymásból a két egyenletet:
-  % 0 = (ξ1−η1)
-  % b1 + (ξ2−η2)
-  % b2 +···+ (ξn−ηn)
-  % bn.
-  % 0
-  % 0
-  % 0
-  % Ezzel ellentmondásra jutunk, mivel {b1,b2...bn}bázis, ezért a nullvektornak csak trivi-
-  % ális előállítása létezik, ami az együtthatók 0 voltát vonná maga után, az pedig a megfelelő
-  % koordináták egyenlőségével ekvivalens. Tehát nem igaz a feltevés.
   \begin{proof}[Egzisztencia]
     $\{ \rvec b_1; \rvec b_2; \dots; \rvec b_n \}$ lineárisan
     függetlenek, mert bázis. Ezért $\{ \rvec v, \rvec b_1; \rvec b_2;

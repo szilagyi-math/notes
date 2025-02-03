@@ -18,6 +18,7 @@ const mathNotes = defineCollection({
       title: s.string(),
       description: s.string().optional(),
       tags: s.array(s.string()).optional(),
+      noLocalToc: s.boolean().optional(),
 
       // Generated fields
       path: s.path(),
