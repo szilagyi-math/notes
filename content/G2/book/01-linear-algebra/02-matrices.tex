@@ -112,25 +112,25 @@
   $$
 \end{example}
 
-\begin{definition}[Szimmertikus mátrix]
+\begin{definition}[Szimmetrikus mátrix]
   Egy $\rmat A \in \mathcal M_{n \times n}$ mátrix szimmetrikus, ha
   $\rmat A = \rmat A^\T$.
 \end{definition}
 
-\begin{definition}[Antiszimmertikus mátrix]
-  Egy $\rmat A \in \mathcal M_{n \times n}$ mátrix antiszimmertikus, ha
+\begin{definition}[Antiszimmetrikus mátrix]
+  Egy $\rmat A \in \mathcal M_{n \times n}$ mátrix antiszimmetrikus, ha
   $\rmat A = -\rmat A^\T$.
 \end{definition}
 
 \begin{note}
-  Antiszimmertikus mátrixok főátlójában csak nullák szerepelnek.
+  Antiszimmetrikus mátrixok főátlójában csak nullák szerepelnek.
 \end{note}
 
 \begin{definition}[Mátrixok egyenlősége]
   Két mátrix akkor és csak akkor egyenlő, ha a megfelelő helyeken álló elemei
   egyenlőek.
   $$
-    !A, B \in \mathcal M_{m \times n}: A = B
+    !\rmat A, \rmat B \in \mathcal M_{m \times n}: \rmat A = \rmat B
     \quad \Longleftrightarrow \quad
     \forall i \in \{1, 2, \ldots, m\}
     \; \land \;
@@ -187,7 +187,7 @@
   Egy mátrix és egy skalár szorzata olyan mátrix, melynek minden eleme
   skalárszorosa az eredeti mátrix elemeinek, azaz ha
   $\rmat A \in \mathcal M_{m \times n}$ és $\lambda \in \mathbb R$, akkor
-  $C := \lambda \rmat A$, ahol $c_{ij} := \lambda a_{ij}$.
+  $\rmat C := \lambda \rmat A$, ahol $c_{ij} := \lambda a_{ij}$.
 \end{definition}
 
 \begin{example}
@@ -297,7 +297,7 @@
   $\rmat A \cdot (\rmat B \cdot \rmat C)$ mátrixszorzat is létezik, és
   ezek egyenlőek.
 
-  A mátrixszorzás tehát \textbf{asszociativív}.
+  A mátrixszorzás tehát \textbf{asszociatív}.
 
   \begin{proof}
     \vspace{4em}
@@ -623,14 +623,14 @@
     Legyen $\rmat A \in \mathcal M_{n \times n}$ szinguláris mátrix. Tegyük fel,
     hogy létezik az inverze. Ekkor igaz, hogy
     $\rmat A \cdot \rmat A^{-1} = \imat$.
-    Vigzgáljuk meg a következő egyenlőséget:
+    Vizsgáljuk meg a következő egyenlőséget:
     $$
       \underbrace{\det \rmat A}_{=0} \cdot \det \rmat A^{-1}
       = \det \left( \rmat A \cdot \rmat A^{-1} \right)
       = \underbrace{\det \imat}_{=1}
       \text.
     $$
-    Látjuk, hogy ezzel ellenmondásra jutunk.
+    Látjuk, hogy ezzel ellentmondásra jutunk.
   \end{proof}
 \end{statement}
 

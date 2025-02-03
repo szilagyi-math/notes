@@ -33,14 +33,14 @@ description: A lineáris algebra alapfogalmai
   Legyen $R$ nemüres halmaz, és $\circ, +$ két művelet. Ekkor a $(R; +, \circ)$
   gyűrű, ha teljesülnek az alábbiak:
 
-  - $(R; +)$ **Abel-csoport**,
-  - $\forall a; b; c \in R: (a \circ b) \circ c = a \circ (b \circ c)$,
+  1. $(R; +)$ **Abel-csoport**,
+  2. $\forall a; b; c \in R: (a \circ b) \circ c = a \circ (b \circ c)$,
     <span style={{float: "right"}}>(**asszociativitás**)</span>
-  - teljesül a disztributivitás:
-    - $\forall a; b; c \in R: a \circ (b + c) = a \circ b + a \circ c$,
-      <span style={{float: "right"}}>(**$\circ$ disztributív $+$-ra**)</span>
-    - $\forall a; b; c \in R: (a + b) \circ c = a \circ c + b \circ c$.
-      <span style={{float: "right"}}>(**$+$ disztributív $\circ$-ra**)</span>
+  3. teljesül a disztributivitás:
+     - $\forall a; b; c \in R: a \circ (b + c) = a \circ b + a \circ c$,
+       <span style={{float: "right"}}>(**$\circ$ disztributív $+$-ra**)</span>
+     - $\forall a; b; c \in R: (a + b) \circ c = a \circ c + b \circ c$.
+       <span style={{float: "right"}}>(**$+$ disztributív $\circ$-ra**)</span>
 </Definition>
 
 <Definition title="Test" id="definition.1.3" >
@@ -74,10 +74,10 @@ description: A lineáris algebra alapfogalmai
   3. ha $\varepsilon$ a $T$-beli egységelem, akkor
       $\forall \rvec x \in V: \varepsilon \circ \rvec x = \rvec x$,
   4. teljesül a disztributivitás:
-    - $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
+     - $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
         \lambda \circ (\rvec x + \rvec y)
         = \lambda \circ \rvec x + \lambda \circ \rvec y$,
-    - $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
+     - $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
         (\lambda + \mu) \circ \rvec x
         = \lambda \circ \rvec x + \mu \circ \rvec x$.
 </Definition>
@@ -95,9 +95,9 @@ description: A lineáris algebra alapfogalmai
 </Definition>
 
 <Statement>
-  A zéruselem és ellentett elem létezése egyértelmű.
+  A zéruselem létezése egyértelmű.
 
-  <Proof title="A zéruselem létezése egyértelmű" >
+  <Proof>
     Tegyük fel, hogy $\nvec$ és $\hat \nvec$ különböző
     zéruselemek, vagyis $\nvec \neq \hat \nvec$. Ebben az esetben
     $$
@@ -106,8 +106,12 @@ description: A lineáris algebra alapfogalmai
     $$
     Ez ellentmondás, tehát a zéruselem egyértelmű.
   </Proof>
+</Statement>
 
-  <Proof title="Az ellentett elem létezése egyértelmű" >
+<Statement>
+  Az ellentett elem létezése egyértelmű.
+  
+  <Proof>
     Tegyük fel, hogy $-\rvec v$ és $-\hat{\rvec v}$ egyaránt
     $\rvec v$ ellentettjei, valamint $-\rvec v \neq -\hat{\rvec v}$.
     Ebben az esetben
@@ -139,7 +143,7 @@ description: A lineáris algebra alapfogalmai
 
 <Definition title="Lineáris függetlenség" id="definition.1.6" >
   A $(V; +; \lambda)$ vektortér $\rvec v_1, \rvec v_2, \ldots, \rvec v_n$
-  vekrorait lineárisan függetlennek mondjuk, ha a
+  vektorait lineárisan függetlennek mondjuk, ha a
   $$
     \lambda_1 \rvec v_1
     + \lambda_2 \rvec v_2
@@ -183,7 +187,7 @@ description: A lineáris algebra alapfogalmai
 </Note>
 
 <Definition title="Bázis" id="definition.1.9" >
-  A $V$ vektorrendszer egy lineárisan független generátorrendszerét a $V$
+  A $V$ vektortér egy lineárisan független generátorrendszerét a $V$
   bázisának nevezzük.
 </Definition>
 
@@ -197,7 +201,7 @@ description: A lineáris algebra alapfogalmai
 
 <Statement>
  Legyen $\{ \rvec b_1; \rvec b_2; \dots; \rvec b_n \}$ a $V$ vektortér egy
-  bázisa. Ekkor tetszőleges $V$-beli vektor egyértelműen eéőállítható a
+  bázisa. Ekkor tetszőleges $V$-beli vektor egyértelműen előállítható a
   bázisvektorok lineáris kombinációjaként.
   Azaz $\forall \rvec v \in V: \exists! (\lambda_1; \lambda_2; \dots; \lambda_n)$,
   hogy
@@ -226,10 +230,10 @@ description: A lineáris algebra alapfogalmai
     $\mu$-vel:
     $$
       \rvec v
-      = \underbrace{\left(-\frac{\xi_1}{\lambda}\right)}_{:= \lambda_1} \rvec b_1
-      + \underbrace{\left(-\frac{\xi_2}{\lambda}\right)}_{:= \lambda_2} \rvec b_2
+      = \underbrace{\left(-\frac{\xi_1}{\mu}\right)}_{:= \lambda_1} \rvec b_1
+      + \underbrace{\left(-\frac{\xi_2}{\mu}\right)}_{:= \lambda_2} \rvec b_2
       + \dots
-      + \underbrace{\left(-\frac{\xi_n}{\lambda}\right)}_{:= \lambda_n} \rvec b_n
+      + \underbrace{\left(-\frac{\xi_n}{\mu}\right)}_{:= \lambda_n} \rvec b_n
       \text.
     $$
   </Proof>

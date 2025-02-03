@@ -34,54 +34,56 @@ description: Mátrixok
   oszlopok számával adják meg.
 </Note>
 
-**Speciális mátrixstruktúrák:**
+<BlueBox>
+  **Speciális mátrixstruktúrák:**
 
-$$
-  \begin{array}{rccl}
-     & \begin{bmatrix}
-         a_{11} \\ a_{21} \\ \vdots \\ a_{n1}
-       \end{bmatrix}
-     & \in \; \mathcal M_{n \times 1}
-     & \sim\;\;\text{oszlopvektor / oszlopmátrix}
-    \\[12mm]
-     & \begin{bmatrix}
-         \;a_{11} & a_{12} & \ldots & a_{1n}\;
-       \end{bmatrix}
-     & \in \; \mathcal M_{1 \times n}
-     & \sim\;\;\text{sorvektor / sormátrix}
-    \\[4mm]
-     & \begin{bmatrix}
-         a_{11} & a_{12} & \ldots & a_{1n} \\
-         a_{21} & a_{22} & \ldots & a_{2n} \\
-         \vdots & \vdots & \ddots & \vdots \\
-         a_{n1} & a_{n2} & \ldots & a_{nn}
-       \end{bmatrix}
-     & \in \; \mathcal M_{n \times n}
-     & \sim\;\;\text{kvadratikus / négyzetes mátrix}
-    \\[12mm]
-        \imat =
-     & \begin{bmatrix}
-         \hphantom{a_{n1}} & \hphantom{a_{n2}} & \hphantom{\ldots} & \hphantom{a_{nn}} \\[-14pt]
-         1      & 0      & \ldots & 0      \\
-         0      & 1      & \ldots & 0      \\
-         \vdots & \vdots & \ddots & \vdots \\
-         0      & 0      & \ldots & 1
-       \end{bmatrix}
-     & \in \; \mathcal M_{n \times n}
-     & \sim\;\;\text{egységmátrix}
-    \\[12mm]
-    \nmat =
-     & \begin{bmatrix}
-         \hphantom{a_{n1}} & \hphantom{a_{n2}} & \hphantom{\ldots} & \hphantom{a_{nn}} \\[-14pt]
-         0      & 0      & \ldots & 0      \\
-         0      & 0      & \ldots & 0      \\
-         \vdots & \vdots & \ddots & \vdots \\
-         0      & 0      & \ldots & 0
-       \end{bmatrix}
-     & \in \; \mathcal M_{m \times n}
-     & \sim\;\;\text{nullmátrix}
-  \end{array}
-$$
+  $$
+    \begin{array}{rccl}
+       & \begin{bmatrix}
+           a_{11} \\ a_{21} \\ \vdots \\ a_{n1}
+         \end{bmatrix}
+       & \in \; \mathcal M_{n \times 1}
+       & \sim\;\;\text{oszlopvektor / oszlopmátrix}
+      \\[12mm]
+       & \begin{bmatrix}
+           \;a_{11} & a_{12} & \ldots & a_{1n}\;
+         \end{bmatrix}
+       & \in \; \mathcal M_{1 \times n}
+       & \sim\;\;\text{sorvektor / sormátrix}
+      \\[4mm]
+       & \begin{bmatrix}
+           a_{11} & a_{12} & \ldots & a_{1n} \\
+           a_{21} & a_{22} & \ldots & a_{2n} \\
+           \vdots & \vdots & \ddots & \vdots \\
+           a_{n1} & a_{n2} & \ldots & a_{nn}
+         \end{bmatrix}
+       & \in \; \mathcal M_{n \times n}
+       & \sim\;\;\text{kvadratikus / négyzetes mátrix}
+      \\[12mm]
+          \imat =
+       & \begin{bmatrix}
+           \hphantom{a_{n1}} & \hphantom{a_{n2}} & \hphantom{\ldots} & \hphantom{a_{nn}} \\[-14pt]
+           1      & 0      & \ldots & 0      \\
+           0      & 1      & \ldots & 0      \\
+           \vdots & \vdots & \ddots & \vdots \\
+           0      & 0      & \ldots & 1
+         \end{bmatrix}
+       & \in \; \mathcal M_{n \times n}
+       & \sim\;\;\text{egységmátrix}
+      \\[12mm]
+      \nmat =
+       & \begin{bmatrix}
+           \hphantom{a_{n1}} & \hphantom{a_{n2}} & \hphantom{\ldots} & \hphantom{a_{nn}} \\[-14pt]
+           0      & 0      & \ldots & 0      \\
+           0      & 0      & \ldots & 0      \\
+           \vdots & \vdots & \ddots & \vdots \\
+           0      & 0      & \ldots & 0
+         \end{bmatrix}
+       & \in \; \mathcal M_{m \times n}
+       & \sim\;\;\text{nullmátrix}
+    \end{array}
+  $$
+</BlueBox>
 
 <Definition title="Mátrixok transzponáltja" id="definition.1.12" >
   Egy $\rmat A \in \mathcal M_{m \times n}$ mátrix transzponáltja a főátlójára
@@ -93,7 +95,6 @@ $$
       1 & 2 & 3 \\
       4 & 5 & 6
     \end{bmatrix}$ mátrix transzponáltját!
-
   $$
     \rmat A = \begin{bmatrix}
       1 & 2 & 3 \\
@@ -108,25 +109,25 @@ $$
   $$
 </Example>
 
-<Definition title="Szimmertikus mátrix" id="definition.1.13" >
+<Definition title="szimmetrikus mátrix" id="definition.1.13" >
   Egy $\rmat A \in \mathcal M_{n \times n}$ mátrix szimmetrikus, ha
   $\rmat A = \rmat A^\T$.
 </Definition>
 
-<Definition title="Antiszimmertikus mátrix" id="definition.1.14" >
-  Egy $\rmat A \in \mathcal M_{n \times n}$ mátrix antiszimmertikus, ha
+<Definition title="Antiszimmetrikus mátrix" id="definition.1.14" >
+  Egy $\rmat A \in \mathcal M_{n \times n}$ mátrix antiszimmetrikus, ha
   $\rmat A = -\rmat A^\T$.
 </Definition>
 
 <Note>
-  Antiszimmertikus mátrixok főátlójában csak nullák szerepelnek.
+  Antiszimmetrikus mátrixok főátlójában csak nullák szerepelnek.
 </Note>
 
 <Definition title="Mátrixok egyenlősége" id="definition.1.15" >
   Két mátrix akkor és csak akkor egyenlő, ha a megfelelő helyeken álló elemei
   egyenlőek.
   $$
-    !A, B \in \mathcal M_{m \times n}: A = B
+    !\rmat A, \rmat B \in \mathcal M_{m \times n}: \rmat A = \rmat B
     \quad \Longleftrightarrow \quad
     \forall i \in \{1, 2, \ldots, m\}
     \; \land \;
@@ -178,7 +179,7 @@ $$
   Egy mátrix és egy skalár szorzata olyan mátrix, melynek minden eleme
   skalárszorosa az eredeti mátrix elemeinek, azaz ha
   $\rmat A \in \mathcal M_{m \times n}$ és $\lambda \in \mathbb R$, akkor
-  $C := \lambda \rmat A$, ahol $c_{ij} := \lambda a_{ij}$.
+  $\rmat C := \lambda \rmat A$, ahol $c_{ij} := \lambda a_{ij}$.
 </Definition>
 
 <Example>
@@ -220,32 +221,34 @@ $$
   $$
 </Definition>
 
-**A mátrixszorzás vizualizálása:**
+<BlueBox>
+  **A mátrixszorzás vizualizálása:**
 
-$$
-  \begin{align*}
-     & \left[\begin{array}{ccc}
-                 \phantom{\sum a_{mi} b_{i1}} & \phantom{\dots} & \phantom{\sum a_{mi} b_{ip}} \\[-14pt]
-                 b_{11} & \dots  & b_{1p} \\
-                 b_{21} & \dots  & b_{2p} \\
-                 \vdots & \ddots & \vdots \\
-                 b_{n1} & \dots  & b_{np}
-               \end{array}\right]
-    \\
-    \left[\begin{array}{cccc}
-              a_{11} & a_{12} & \dots  & a_{1n} \\
-              a_{21} & a_{22} & \dots  & a_{2n} \\
-              \vdots & \vdots & \ddots & \vdots \\
-              a_{m1} & a_{m2} & \dots  & a_{mn}
-            \end{array}\right]
-     & \left[\begin{array}{ccc}
-                 \sum a_{1i} b_{i1} & \dots  & \sum a_{1i} b_{ip} \\
-                 \sum a_{2i} b_{i1} & \dots  & \sum a_{2i} b_{ip} \\
-                 \vdots             & \ddots & \vdots             \\
-                 \sum a_{mi} b_{i1} & \dots  & \sum a_{mi} b_{ip}
-               \end{array}\right]
-  \end{align*}
-$$
+  $$
+    \begin{align*}
+       & \left[\begin{array}{ccc}
+                   \phantom{\sum a_{mi} b_{i1}} & \phantom{\dots} & \phantom{\sum a_{mi} b_{ip}} \\[-14pt]
+                   b_{11} & \dots  & b_{1p} \\
+                   b_{21} & \dots  & b_{2p} \\
+                   \vdots & \ddots & \vdots \\
+                   b_{n1} & \dots  & b_{np}
+                 \end{array}\right]
+      \\
+      \left[\begin{array}{cccc}
+                a_{11} & a_{12} & \dots  & a_{1n} \\
+                a_{21} & a_{22} & \dots  & a_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{m1} & a_{m2} & \dots  & a_{mn}
+              \end{array}\right]
+       & \left[\begin{array}{ccc}
+                   \sum a_{1i} b_{i1} & \dots  & \sum a_{1i} b_{ip} \\
+                   \sum a_{2i} b_{i1} & \dots  & \sum a_{2i} b_{ip} \\
+                   \vdots             & \ddots & \vdots             \\
+                   \sum a_{mi} b_{i1} & \dots  & \sum a_{mi} b_{ip}
+                 \end{array}\right]
+    \end{align*}
+  $$
+</BlueBox>
 
 <Example>
   Határozzuk meg az $\rmat A = \begin{bmatrix}
@@ -286,7 +289,7 @@ $$
   $\rmat A \cdot (\rmat B \cdot \rmat C)$ mátrixszorzat is létezik, és
   ezek egyenlőek.
 
-  A mátrixszorzás tehát **asszociativív**.
+  A mátrixszorzás tehát **asszociatív**.
 </Statement>
 
 <Definition title="Determináns" id="definition.1.19" >
@@ -515,7 +518,7 @@ $$
   </Proof>
 </Statement>
 
-<Definition title="Kvadratikus és szinguláris mátrix" id="definition.22" >
+<Definition title="Kvadratikus és szinguláris mátrix" id="definition.1.22" >
   Egy kvadratikus (négyzetes) mátrixot **regulárisnak** mondunk, ha
   determinánsa nem zérus.
 
@@ -529,7 +532,7 @@ $$
 </Theorem>
 
 <Statement>
-  $(\mathcal M_{n \times n}; +; \cdot)$ egységelemes gyűrű, mert\dots
+  $(\mathcal M_{n \times n}; +; \cdot)$ egységelemes gyűrű, mert$\dots$
   -  $(\mathcal M_{n \times n}; +)$ Abel-csoport,
   - $(\mathcal M_{n \times n}; \cdot)$ asszociatív,
   - teljesül a disztributivitás,
@@ -559,14 +562,14 @@ $$
     Legyen $\rmat A \in \mathcal M_{n \times n}$ szinguláris mátrix. Tegyük fel,
     hogy létezik az inverze. Ekkor igaz, hogy
     $\rmat A \cdot \rmat A^{-1} = \imat$.
-    Vigzgáljuk meg a következő egyenlőséget:
+    Vizsgáljuk meg a következő egyenlőséget:
     $$
       \underbrace{\det \rmat A}_{=0} \cdot \det \rmat A^{-1}
       = \det \left( \rmat A \cdot \rmat A^{-1} \right)
       = \underbrace{\det \imat}_{=1}
       \text.
     $$
-    Látjuk, hogy ezzel ellenmondásra jutunk.
+    Látjuk, hogy ezzel ellentmondásra jutunk.
   </Proof>
 </Statement>
 
@@ -579,61 +582,63 @@ $$
   $$
 </Statement>
 
-Egy $3 \times 3$-as mátrix adjugáltja:
+<BlueBox>
+  Egy $3 \times 3$-as mátrix adjugáltja:
 
-$$
-  \rmat A = \begin{bmatrix}
-    a_{11} & a_{12} & a_{13} \\
-    a_{21} & a_{22} & a_{23} \\
-    a_{31} & a_{32} & a_{33}
-  \end{bmatrix}
-  \quad
-  \Rightarrow
-  \quad
-  \adj \rmat A = \begin{bmatrix}
-    + \begin{vmatrix}
-        a_{22} & a_{23} \\
-        a_{32} & a_{33}
-      \end{vmatrix}
-     &
-    - \begin{vmatrix}
-        a_{12} & a_{13} \\
-        a_{32} & a_{33}
-      \end{vmatrix}
-     &
-    +\begin{vmatrix}
-       a_{12} & a_{13} \\
-       a_{22} & a_{23}
-     \end{vmatrix}
-    \\[10pt]
-    - \begin{vmatrix}
-        a_{21} & a_{23} \\
-        a_{31} & a_{33}
-      \end{vmatrix}
-     &
-    + \begin{vmatrix}
-        a_{11} & a_{13} \\
-        a_{31} & a_{33}
-      \end{vmatrix}
-     &
-    - \begin{vmatrix}
-        a_{11} & a_{13} \\
-        a_{21} & a_{23}
-      \end{vmatrix}
-    \\[10pt]
-    + \begin{vmatrix}
-        a_{21} & a_{22} \\
-        a_{31} & a_{32}
-      \end{vmatrix}
-     &
-    - \begin{vmatrix}
-        a_{11} & a_{12} \\
-        a_{31} & a_{32}
-      \end{vmatrix}
-     &
-    +\begin{vmatrix}
-       a_{11} & a_{12} \\
-       a_{21} & a_{22}
-     \end{vmatrix}
-  \end{bmatrix}
-$$
+  $$
+    \rmat A = \begin{bmatrix}
+      a_{11} & a_{12} & a_{13} \\
+      a_{21} & a_{22} & a_{23} \\
+      a_{31} & a_{32} & a_{33}
+    \end{bmatrix}
+    \quad
+    \Rightarrow
+    \quad
+    \adj \rmat A = \begin{bmatrix}
+      + \begin{vmatrix}
+          a_{22} & a_{23} \\
+          a_{32} & a_{33}
+        \end{vmatrix}
+       &
+      - \begin{vmatrix}
+          a_{12} & a_{13} \\
+          a_{32} & a_{33}
+        \end{vmatrix}
+       &
+      +\begin{vmatrix}
+         a_{12} & a_{13} \\
+         a_{22} & a_{23}
+       \end{vmatrix}
+      \\[10pt]
+      - \begin{vmatrix}
+          a_{21} & a_{23} \\
+          a_{31} & a_{33}
+        \end{vmatrix}
+       &
+      + \begin{vmatrix}
+          a_{11} & a_{13} \\
+          a_{31} & a_{33}
+        \end{vmatrix}
+       &
+      - \begin{vmatrix}
+          a_{11} & a_{13} \\
+          a_{21} & a_{23}
+        \end{vmatrix}
+      \\[10pt]
+      + \begin{vmatrix}
+          a_{21} & a_{22} \\
+          a_{31} & a_{32}
+        \end{vmatrix}
+       &
+      - \begin{vmatrix}
+          a_{11} & a_{12} \\
+          a_{31} & a_{32}
+        \end{vmatrix}
+       &
+      +\begin{vmatrix}
+         a_{11} & a_{12} \\
+         a_{21} & a_{22}
+       \end{vmatrix}
+    \end{bmatrix}
+  $$
+</BlueBox>

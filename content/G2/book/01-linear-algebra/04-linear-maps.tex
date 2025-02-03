@@ -46,7 +46,7 @@
 \end{definition}
 
 \begin{statement}
-  Véges dimenziós vektorterek esetén az egymással izomorf vektorterek dimenziója
+  Véges dimenziójú vektorterek esetén az egymással izomorf vektorterek dimenziója
   azonos.
 \end{statement}
 
@@ -59,12 +59,6 @@
   \end{proof}
 \end{statement}
 
-% Bizonyítás: ( egzisztencia )
-% Konstruktív bizonyítás. Legyen ϕ : V1 →V2, és x −→ϕ(x). Ha (ξ1,ξ2,...ξn) az x
-% koordinátái, akkor, ϕ(x) = ξ1 a1 +···+ ξnan. Hasonló módon, legyen y (η1,η2,...ηn)
-% koordinátákkal.
-% ϕ(x+y) = (ξ1+η1)a1+···+(ξn+ηn)an = ξ1 a1+···+ξnan+η1 a1+···+ηnan = ϕ(x)+ϕ(y)
-% ϕ(ϑx) = ϑξ1 a1 +···+ ϑξnan = ϑ(ξ1 a1 +···+ ξnan) = ϑϕ(x)
 \begin{theorem}[Lineáris leképezések alaptétele]
   Legyenek $V_1$ és $V_2$ ugyanazon test feletti vektorterek, és legyen
   $\{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \}$ bázis $V_1$-ben, és
@@ -123,7 +117,7 @@
 \end{theorem}
 
 \begin{blueBox}
-  \sftitle{Lineáris léképkezesek mátrixreprezentációja:}
+  \sftitle{Lineáris leképezések mátrixreprezentációja:}
 
   Legyenek $V_1$ és $V_2$ ugyanazon test feletti vektorterek, és $\dim V_1 = n$,
   valamint $\dim V_2 = k$. Legyen $\{ \rvec a_1; \rvec a_2; \ldots; \rvec a_n \}$
@@ -195,8 +189,12 @@
 
 \begin{definition}[Leképezés magtere]
   Legyen $\varphi: V_1 \rightarrow V_2$ lineáris leképezés, ekkor a
-  $\ker \varphi := \{ \rvec v \; | \; \rvec v \in V_1 \land \varphi(\rvec v) =
-    \nvec \}$ halmazt a leképezés magterének nevezzük.
+  $$
+    \ker \varphi := \{
+    \rvec v \; | \; \rvec v \in V_1 \land \varphi(\rvec v) = \nvec
+    \}
+  $$
+  halmazt a leképezés magterének nevezzük.
 \end{definition}
 
 \begin{statement}
@@ -235,7 +233,7 @@
   $\rg \varphi = \dim \varphi(V_1)$.
 \end{definition}
 
-\begin{theorem}[Rang-nullitás tétele ]
+\begin{theorem}[Rang-nullitás tétele]
   Legyen $V_1$ véges dimenziós vektortér, $\varphi: V_1 \rightarrow V_2$
   lineáris leképezés, ekkor
   $$
@@ -259,7 +257,7 @@
   \end{proof}
 \end{statement}
 
-\begin{theorem}
+\begin{theorem}[Másik bázisra való áttérés mátrixa]
   Legyen $\varphi: V \rightarrow V$ lineáris leképezés,
   $\{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \}$ és $\{ \hat{\rvec b}_1;
     \hat{\rvec b}_2; \ldots; \hat{\rvec b}_n \}$ bázisok $V$-ben. A
@@ -289,7 +287,7 @@
   \end{itemize}
 \end{note}
 
-\begin{definition}[Sajátértékekek és sajátvektorok]
+\begin{definition}[Sajátértékek és sajátvektorok]
   Legyen $V$ a $T$ test feletti vektortér, $\rvec v \in V$, $\rvec v \neq
     \nvec$. $\rvec v$-t a $\varphi: V \rightarrow V$ lineáris leképezés
   sajátvektorának mondjuk, ha önmaga skalárszorosába megy át a leképezés
@@ -459,16 +457,6 @@
   \end{enumerate}
 \end{definition}
 
-% Legyen {e1,e2,...,en}kanonikus bázis, melyben x =
-% Ekkor:
-% <x,y >:=
-% n
-% i=1
-% ξi ηi
-% az így előállított (V, < , >) valós euklideszi tér.
-% Jelölés: En: n dimenziós euklideszi tér.
-% A valós euklideszi térben értelmezhetjük a vektorok hosszát: ||x||= √<x,x >.
-% Valamint értelmezhetjük x és y vektorok szögét:
 \begin{definition}[Euklideszi tér]
   Legyen $\{ \rvec e_1; \rvec e_2; \ldots; \rvec e_n \}$ kanonikus bázis,
   melyben
@@ -506,31 +494,20 @@
   $.
 \end{definition}
 
-% \begin{note}
-%   \begin{itemize}
-%     \item $\displaystyle
-%             -1 \leq \frac{\langle \rvec x; \rvec y \rangle}{\|\rvec x\|\|\rvec y\|} \geq 1
-%           $
-
-%     \item $\displaystyle
-%             \langle \rvec x; \rvec y \rangle^2 \leq \|\rvec x\|^2 \cdot \|\rvec y\|^2
-%           $
-%           --  Cauchy-Bunyakovszkij-Schwartz-egyenlőtlenség
-%   \end{itemize}
-% \end{note}
-
 \begin{note}
-  Valós euklideszi térekben érvények a
-  Cauchy-Bunyakovszkij-Schwartz-egyenlőtlenség:
+  Valós euklideszi térekben érvényesek a
+  Cauchy-Bunyakovszkij-Schwartz-egyen\-lőt\-len\-ség:
   $$
     \langle \rvec x; \rvec y \rangle^2
     \leq \|\rvec x\|^2 \cdot \|\rvec y\|^2
     = \langle \rvec x; \rvec x \rangle \cdot \langle \rvec y; \rvec y \rangle
+    \text.
   $$
 
   Ebből következik, hogy a háromszög egyenlőtlenség is teljesül:
   $$
     \|\rvec x + \rvec y\| \leq \|\rvec x\| + \|\rvec y\|
+    \text.
   $$
 \end{note}
 

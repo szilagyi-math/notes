@@ -142,6 +142,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: var(--scroll-padding-top);
     }
 
     body {

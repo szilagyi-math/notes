@@ -103,8 +103,6 @@ const NotesPage: NextPage<NotePageProps> = async props => {
       }
     : undefined;
 
-  console.log(note.localToc);
-
   return (
     <>
       <article className='relative space-y-8 pb-8 md:pl-0 w-text flex-1 overflow-x-clip max-w-full md:max-w-[calc(100vw-var(--aside-width))] lg:max-w-[calc(100vw-2*var(--aside-width))]'>
@@ -114,7 +112,15 @@ const NotesPage: NextPage<NotePageProps> = async props => {
           rightBreakpoint='lg'
         />
         <div className='prose prose-custom mx-auto px-4 md:pl-8 lg:pr-8 max-w-full'>
-          <h1 className='mt-7'>{note.title}</h1>
+          <h1 className='mt-7'>
+            {note.slug
+              .map(s => {
+                return parseInt(s.split('-')[0]);
+              })
+              .join('.')}
+            <span className='ml-4' />
+            {note.title}
+          </h1>
           <MDXContent code={note.code} />
         </div>
         {subitems && (
