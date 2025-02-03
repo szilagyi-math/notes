@@ -18,6 +18,98 @@ practice_material:
   solutionsDir: practice-solutions
   files: []
 hide_lectures: true
-lectures: []
+lectures:
+  - room: K155
+    day: 2 # Tuesday
+    start: [10, 15]
+    end: [12, 00]
+  - room: K155
+    day: 5 # Friday
+    start: [10, 15]
+    end: [12, 00]
 hide_practicals: true
-practicals: []
+practicals:
+  - group: HE1
+    room: R512
+    day: 4 # Thursday
+    start: [14, 15]
+    end: [16, 0]
+    # edubase: null
+    staff:
+      - name: Kun László Ákos
+  - group: HE2
+    room: R516
+    day: 4 # Thursday
+    start: [14, 15]
+    end: [16, 0]
+    # edubase: null
+    staff:
+      - name: Beharóczki István
+      - name: Sovák Adrienn
+  - group: HM1
+    room: R510
+    day: 1 # Monday
+    start: [16, 15]
+    end: [18, 0]
+    # edubase: null
+    staff:
+      - name: Sándor Tibor
+  - group: HM2
+    room: KF84
+    day: 1 # Monday
+    start: [8, 15]
+    end: [10, 0]
+    # edubase: null
+    staff:
+      - name: Hegyi Norbert
+      - name: Tusor Bálint
+  - group: HM3
+    room: KF86
+    day: 2 # Tuesday
+    start: [14, 15]
+    end: [16, 0]
+    # edubase: null
+    staff:
+      - name: Sándor Tibor
+  - group: HM4
+    room: R501
+    day: 3 # Wednesday
+    start: [10, 15]
+    end: [12, 0]
+    # edubase: null
+    staff:
+      - name: Prónai Sára
+  - group: HM5
+    room: KF83
+    day: 3 # Wednesday
+    start: [16, 15]
+    end: [18, 0]
+    # edubase: null
+    staff:
+      - name: Patacsi Mátyás
+  - group: HM6
+    room: R513
+    day: 1 # Monday
+    start: [16, 15]
+    end: [18, 0]
+    # edubase: null
+    staff:
+      - name: Török Regina
+      - name: Tusor Bálint
+  - group: HM7
+    room: R514
+    day: 1 # Monday
+    start: [16, 15]
+    end: [18, 0]
+    # edubase: null
+    staff:
+      - name: Kun László Ákos
+  - group: HM8
+    room: R501
+    day: 3 # Wednesday
+    start: [16, 15]
+    end: [18, 0]
+    # edubase: null
+    staff:
+      - name: Biebel Botond
+      - name: Pesti Patrik
