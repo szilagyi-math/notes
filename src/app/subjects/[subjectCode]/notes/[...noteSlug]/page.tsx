@@ -107,7 +107,7 @@ const NotesPage: NextPage<NotePageProps> = async props => {
     <>
       <article className='relative space-y-8 pb-8 md:pl-0 w-text flex-1 overflow-x-clip max-w-full md:max-w-[calc(100vw-var(--aside-width))] lg:max-w-[calc(100vw-2*var(--aside-width))]'>
         <NotesMobileNavigation
-          showRight={note.noLocalToc}
+          showRight={!note.noLocalToc && !!note.localToc?.length}
           leftBreakpoint='md'
           rightBreakpoint='lg'
         />
