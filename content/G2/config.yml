@@ -16,7 +16,130 @@ online_notes: /subjects/G2/notes/01-linear-algebra
 practice_material:
   dir: practice
   solutionsDir: practice-solutions
-  files: []
+  files:
+    - source: 01.tex
+      target: G2-gyak-01
+      display_name: G2 1. gyakorlat
+      description: Lineáris algebra – Mátrixok I
+      video_link: https://youtu.be/vXfezEYGyOY
+      week: 1
+    - source: 02.tex
+      target: G2-gyak-02
+      display_name: G2 2. gyakorlat
+      description: Lineáris algebra – Mátrixok II
+      video_link: https://youtu.be/5WS2ScaDUOU
+      video_mistakes:
+        - 'F1: hibásan szerepel a táblán A pont harmadik koordinátája, ami
+          helyesen -4. AD vektor helyesen (0;-2;0), tehát a második koordináta
+          előjele hibás. Ezt figyelembe kell venni a mátrixba rendezés és a
+          determináns számolásakor is. A determináns azonban így is 0, tehát az
+          eredmény és a levont következtetés helyes.'
+      week: 2
+    - description: Lineáris algebra – Lineáris egyenletrendszerek
+      video_link: https://youtu.be/qpWTmZljiMA
+      week: 3
+    - description: Lineáris algebra – Lineáris leképezések I
+      video_link: https://youtu.be/qpWTmZljiMA
+      video_mistakes:
+        - '46:50 - Elírás: természetesen negatív alfa esetén is 1 a determináns.
+          (Abban az esetben lenne -1 a determináns (alfa előjelétől akkor is
+          független), ha az orientáció pont ellentétes lenne a feladatban
+          felvettel.)'
+      week: 4
+    - description: Lineáris algebra – Lineáris leképezések II
+      video_link: https://youtu.be/qpWTmZljiMA
+      video_mistakes:
+        - 14:40 - nél az a megjegyzés nem igaz, hogy (inv(A))^T=adj(A)!
+      week: 5
+    - description: Lineáris algebra – Lineáris leképezések III
+      video_link: https://youtu.be/L5PvkUyLrKM
+      video_mistakes:
+        - '1:30 - F1-es feladat: nem lett eléggé kihangsúlyozva, hogy egy
+          sajátértékhez végtelen sok lineárisan függő sajátvektor tartozik, ezek
+          közül csak 1-et írtunk fel a feladatban. A többi sajátvektor ennek a
+          felírt vektornak a (nem nulla) skalár-szorosaként írható fel.'
+        - '18:00 - az F4 és F5 feladatokban mindkétszer az A mátrixban b helyett
+          2*b lett írva. Helyesen az xy együtthatója 2b, azaz annak a felét
+          kellett volna a mátrixba beírni, de a további számításoknál kijött
+          eredmények a helyes mátrixxal lettek kiszámolva.'
+        - '44:41 - x^n függvénysorozat a 0-1 intervallumon lett lerajzolva,
+          hiszen 1^n=1 bármely n esetén, ezért metszik a görbék ott egymást.'
+      week: 6
+    - description: Függvénysorozatok
+      video_link: https://youtu.be/GdnWFPA0vf4
+      video_mistakes:
+        - '4:09-nél nyelvbotlás miatt hangzik el  numerikus sor a függvénysor
+          helyett. A kifejezésben természetesen függvénysorról van szó.'
+        - "38:20-nál az f'_n=df_n/dx, azaz itt az f_n függvénysorozat x szerinti
+          deriváltját jelenti a jelölés. Így is írhatnánk: f'_n(x)=df_n(x)/dx"
+        - '1:08:00-nál a határérték vizsgálatánál, n páratlan esetében, az
+          elhangzottakkal ellentétben 2/n tart nullába, ha n tart a végtelenbe.'
+        - 'Az utolsó F12 feladattal kapcsolatban úgy döntöttünk, hogy végül
+          kihagyjuk a gyakorlat anyagából.'
+      week: 7
+    - description: Taylor-sorok
+      video_link: https://www.youtube.com/watch?v=5aigfYrjc4Q
+      video_mistakes:
+        - Az F14-es példában elhangzik, hogy a szokásos módon kiszámolt
+          konvergenciasugár az x^2-re vonatkozik minden olyan esetben, amikor a
+          zárt alakban x^(2n) szerepel és nem x^n. A korábbi feladatokban, ahol
+          x a 2n-edik hatványon szerepelt (F5, F12, F13) azért nem lett ez
+          kihangsúlyozva, mert a konvergenciasugár 1 vagy végtelen volt, így az
+          x-re vonatkozó konvergenciasugár is 1 vagy végtelen.
+        - '27:13 - Az a_n+1 tag el lett írva: a_n+1=5^(2*(n+1))/(2*(n+1))!=
+          5^(2n+2)/(2n+2)! a helyes.'
+        - '1:04:21 - F12: amikor az n-et nem 1-től, hanem nullától indítjuk,
+          akkor az x^(2n+1)-en lesz, nem pedig a 2n-ediken.'
+      week: 8
+    - description: Fourier-sorok
+      video_link: https://youtu.be/5kPqVB2qIYY
+      video_mistakes:
+        - '05:04: A táblán jól szerepel, de rosszul lett kimondva, nem
+          1/sqrt(2*pi), csak simán 1/(2*pi)'
+        - '06:10: Valójában itt a bázisvektorokra képeztünk le, de egyszerűen
+          irányvektornak neveztük őket'
+        - '12:55: x helyett pi szerepel a kifejezésben'
+        - '17:55: x helyett pi szerepel a kifejezésben'
+        - '19:47: Az F3-as példa ábráján a 3. szaggatott vonalnál a 2pi helyett
+          3pi a helyes'
+        - '22:55: Lemaradt egy negatív előjel magyarázás közben, de a végső
+          megoldás helyesen lett felírva.'
+        - '49:06: Elírás, nem 1-cos(kx) szerepel helyesen a zárójelben, hanem
+          1*cos(kx), ezután viszont a helyes eredménnyel dolgoztunk'
+      week: 9
+    - description: Többváltozós analízis – Többváltozós függvények
+      video_link: https://youtu.be/-RfHLk4HTho
+      video_mistakes:
+        - '45:00: F8-as feladatban f(a)=f(x,y)'
+      week: 10
+    - description: Többváltozós analízis – Differenciálás I
+      video_link: https://youtu.be/69GI6iN4HhA
+      week: 11
+    - description: Többváltozós analízis – Differenciálás II
+      video_link: https://youtu.be/kdqcBt54fNo
+      video_mistakes:
+        - "1:20:00 - f'(x)=0 egyenlet rosszul lett egyszerűsítve. Kiemelés és
+          2-vel való egyszerűsítés után ennek kéne szerepelnie:
+          sin(t)*cos(t)*(cos^2(t)-sin^2(t))=0. Ebből következően pedig a
+          következő 3 esetet kell figyelembe venni: cos(t)=0, sin(t)=0 és
+          sin^2(t)=cos^2(t). A megoldások felírása már helyes volt."
+        - '1:29:03 - lambda nem -2+sqrt(3)/2, hanem -1+sqrt(3)/2'
+        - 'Szóban helytelenül hangzott el: Feltételes szélsőérték esetén nem
+          kell a Hesse-mátrix aldeterminánsait még külön vizsgálni. Elég az
+          értékek felírása, ahogy ez a táblán írásos formában megtörtént.'
+      week: 12
+    - description: Többváltozós analízis – Integrálás I
+      video_link: https://youtu.be/cKlHANzUJ7A
+      video_mistakes:
+        - '11:38: A második feladatban az y-szerinti integrálás után a szinuszos
+          tag szorzója is ¼, nem pedig ½. Az eredmény így lesz helyes.'
+      week: 13
+    - description: Többváltozós analízis – Integrálás II
+      video_link: https://youtu.be/l1nMNaeko6E
+      video_mistakes:
+        - '34:00 - Henger koordinátarendszer esetén a Jacobi mátrix 22-es eleme
+          helyesen r*cos(phi).'
+      week: 14
 hide_lectures: true
 lectures:
   - room: K155
