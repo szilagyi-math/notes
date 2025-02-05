@@ -1,10 +1,10 @@
-import { UnderConstruction } from '@/components/under-construction';
+import SubjectsPage from './subjects/SubjectsPage';
 
 import type { NextPage, Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Főoldal | Szilágyi Brigitta weboldala',
-  description: `Itt megtalálhatóak a legfrissebb híreket, bejegyzéseket, és a főbb tantárgyakat.`,
+  description: `Itt megtalálhatóak a tanárnő által oktatott tárgyak listája, valamint a hozzájuk tartozó információk.`,
   keywords: [
     'Szilágyi Brigitta',
     'BME',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 const NotFound: NextPage = () => {
-  return <UnderConstruction />;
+  return <SubjectsPage />;
 };
 
 export default NotFound;

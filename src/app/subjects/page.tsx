@@ -1,6 +1,7 @@
 import type { Metadata, NextPage } from 'next';
 
 import SubjectsPageLogic from './SubjectsPage';
+import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'Tantárgyak | Szilágyi Brigitta weboldala',
@@ -22,6 +23,8 @@ export const metadata: Metadata = {
 };
 
 const SubjectsPage: NextPage = () => {
+  return notFound();
+
   return <SubjectsPageLogic />;
 };
 
