@@ -55,7 +55,7 @@ const getSiblingRefs = async ({
     prevRef = formatRef(subjectCode, currentChapter, currentSection - 1);
   } else {
     if (currentChapter !== 1) {
-      const prevChapterRoot = `${baseDir}/${baseRes[currentChapter - 1]}`;
+      const prevChapterRoot = `${baseDir}/${baseRes[currentChapter - 2]}`;
 
       const prevChapterRes = (await fs.readdir(prevChapterRoot)).filter(f =>
         f.match(/^\d{2}-/),
