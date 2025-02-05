@@ -23,9 +23,9 @@ import { getAtom, getCloseButtonId, getContentId, getTriggerId } from './utils';
  * ```
  */
 const useSideNavigationTrigger = <
-  TTrigger extends HTMLElement = HTMLButtonElement
+  TTrigger extends HTMLElement = HTMLButtonElement,
 >(
-  pos: 'left' | 'right' = 'left'
+  pos: 'left' | 'right' = 'left',
 ) => {
   const [isOpen, setIsOpen] = useAtom(getAtom(pos));
 
@@ -43,7 +43,7 @@ const useSideNavigationTrigger = <
       grabFocus();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 
   const handleClose = React.useCallback(
@@ -57,7 +57,7 @@ const useSideNavigationTrigger = <
       releaseFocus();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 
   const triggerProps: React.HTMLAttributes<TTrigger> = React.useMemo(
@@ -70,7 +70,7 @@ const useSideNavigationTrigger = <
       'data-state-open': isOpen ? '' : undefined,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [isOpen]
+    [isOpen],
   );
 
   return {
@@ -92,7 +92,7 @@ const useSideNavigationTrigger = <
 };
 
 type UseSideNavigationTriggerFnReturn<
-  TTrigger extends HTMLElement = HTMLButtonElement
+  TTrigger extends HTMLElement = HTMLButtonElement,
 > = ReturnType<typeof useSideNavigationTrigger<TTrigger>>;
 
 export { useSideNavigationTrigger };
