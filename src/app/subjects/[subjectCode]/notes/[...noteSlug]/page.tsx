@@ -60,9 +60,9 @@ export const generateMetadata = async (
 const NotesPage: NextPage<NotePageProps> = async props => {
   const params = await props.params;
 
-  if (process.env.NODE_ENV !== 'development') {
-    return notFound();
-  }
+  // if (process.env.NODE_ENV !== 'development') {
+  //   return notFound();
+  // }
 
   const ref = getNoteRef(params.subjectCode, params.noteSlug);
   const note = mathNotes.find(n => n.ref === ref);
