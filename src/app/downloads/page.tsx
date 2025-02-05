@@ -1,7 +1,6 @@
 import { data } from 'latex-docs';
 
 import type { NextPage, Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Letöltések | Szilágyi Brigitta weboldala',
