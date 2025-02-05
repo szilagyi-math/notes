@@ -35,7 +35,10 @@ practice_material:
           determináns számolásakor is. A determináns azonban így is 0, tehát az
           eredmény és a levont következtetés helyes.'
       week: 2
-    - description: Lineáris algebra – Lineáris egyenletrendszerek
+    - source: 03.tex
+      target: G2-gyak-03
+      display_name: G2 3. gyakorlat
+      description: Lineáris algebra – Lineáris egyenletrendszerek
       video_link: https://youtu.be/qpWTmZljiMA
       week: 3
     - description: Lineáris algebra – Lineáris leképezések I

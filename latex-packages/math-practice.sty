@@ -18,8 +18,9 @@
 
 % MATH
 \RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage[
-  mathit = sym, mathup = sym, mathbf = sym,
+  mathit = sym, mathup = sym,
   math-style = ISO, bold-style = ISO
 ]{unicode-math}
 \RequirePackage{derivative}
@@ -99,6 +100,10 @@
 \newcommand{\rvec}[1]{\mathbfit{#1}}
 \newcommand{\uvec}[1]{\hat{\mathbfit{#1}}}
 \newcommand{\nvec}{\text{\textbf{\textit{0}}}}
+\newcommand{\rmat}[1]{\mathbf{#1}}
+\newcommand{\imat}{\mathbb{E}}
+\newcommand{\nmat}{\mathbb{0}}
+\newcommand*{\T}{\intercal}
 
 % TODO: Fix these
 \newcommand\ibase{\hat{\mathbfit{\imath}}}
@@ -144,6 +149,12 @@
 \DeclareMathOperator{\card}{card}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\inner}{int}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\rg}{rg}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\Vol}{vol}
+\DeclareMathOperator{\diam}{diam}
 
 
 \newcommand{\area}[1]{\def\@area{#1}}

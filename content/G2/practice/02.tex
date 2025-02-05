@@ -1,0 +1,357 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{arydshln}
+
+\area{Mátrixok}
+\title{Mátrixok II}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{2}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+
+\begin{definition}[Determináns és lineáris függetlenség]
+  Definíció szerint a determináns értéke pontosan akkor zérus, ha sorvektroai lineárisan függetlenek. Példa:
+  \begin{center}
+    \begin{tikzpicture}[ultra thick]
+      \node[] at (0,0) {$\rmat A = \begin{bmatrix}
+            a_{11} & a_{12} & a_{13} \\
+            \\
+            a_{21} & a_{22} & a_{23} \\
+            \\
+            a_{31} & a_{32} & a_{33}
+          \end{bmatrix} $};
+
+      \draw[secondaryColor] (0.425,0.97) ellipse (1.25cm and .4cm);
+      \draw[secondaryColor] (0.425,-0.05) ellipse (1.25cm and .4cm);
+      \draw[secondaryColor] (0.425,-1.07) ellipse (1.25cm and .4cm);
+
+      \node[secondaryColor] at (2.25,1) {$\rvec u$};
+      \node[secondaryColor] at (2.25,0) {$\rvec v$};
+      \node[secondaryColor] at (2.25,-1) {$\rvec w$};
+    \end{tikzpicture}
+  \end{center}
+  Ha $\rvec u,\, \rvec v$ és $\rvec w$ lineárisan függetlenek, akkor $\det(\textbf{A})\neq 0$. Ha $\rvec u,\, \rvec v$ és $\rvec w$ lineárisan függőek, akkor $\det(\textbf{A})=0$.
+\end{definition}
+
+\begin{note}
+  Korábban 3 vektor lineáris függetlenségét a vegyesszorzat segítségével
+  vizsgáltuk. $3 \times 3$-as mátrixok esetén a vegyesszorzat értéke megegyezik
+  a vektorokból alkotott mátrix determinánsával.
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Sarrus-szabály}
+
+  A lineáris algebrában használt módszer, melynek segítségével
+  könnyedén meghatározható egy $3 \times 3$-as négyzetes mátrix determinánsa.
+  A szabály nevét Pierre Frédéric Sarrus francia matematikusról kapta.
+
+  \begin{center}
+    \begin{tikzpicture}[ultra thick]
+      \node[] at (0,0) {$\textbf{M}=\left[\begin{array}{ccc:cc}
+              a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\
+              a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\
+              a_{31} & a_{32} & a_{33} & a_{31} & a_{32}
+            \end{array}\right]$};
+      \draw[primaryColor] (-1.75,.75) -- (0.75,-.75);
+      \draw[secondaryColor] (-1.75,-.75) -- (0.75,.75);
+      \draw[primaryColor] (-0.75,.75) -- (1.75,-.75);
+      \draw[secondaryColor] (-0.75,-.75) -- (1.75,.75);
+      \draw[primaryColor] (0.15,.75) -- (2.75,-.75);
+      \draw[secondaryColor] (0.15,-.75) -- (2.75,.75);
+    \end{tikzpicture}
+  \end{center}
+  $$
+    \det \rmat M = \textcolor{primaryColor}{
+    a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}
+    } \textcolor{secondaryColor}{
+    - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}
+    }
+  $$
+\end{blueBox}
+
+\begin{definition}[Mátrix rangja]
+  A mátrix rangja a mátrixból kiválasztható legnagyobb el nem tünő (nem zérus) determinánsának rendje. A lineárisan független vektorok száma. Jele:
+  $$
+    \rg \textbf{A}
+  $$
+
+\end{definition}
+
+\begin{note}
+  A mátrix rangja elemi mátrix átalakítások során nem változik.
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Jó tudni!}
+
+  \begin{itemize}
+    \item Ha $\det \rmat A \neq 0$ négyzetes mátrix esetén, akkor a mátrix rangja
+          maximális, azaz ha $\rmat A \in \mathcal M_{n \times n}$, akkor
+          $\rg \rmat A = n$,
+
+    \item Ha $\rmat A \in \mathcal M_{m \times n}$-es mátrix rangja maximális,
+          akkor az $m$ és az $n$ közül a kisebbik érték a rang.
+
+    \item Csak a nullmátrixnak lehet 0 rangja.
+  \end{itemize}
+\end{blueBox}
+
+\begin{blueBox}
+  \textbf{\large Mátrix rangjának meghatározása:}\\
+  \,\\
+  \textbf{1. módszer:} A mátrix rangjának meghatározása a mátrix determinánsának segítségével. \textbf{Csak négyzetes mátrixok esetén} Lépések:
+  \begin{enumerate}
+    \item \textbf{Négyzetes részmátrixok kiválasztása:}
+          \begin{itemize}
+            \item A mátrix rangját a legnagyobb olyan négyzetes részmátrix mérete határozza meg, amelynek a determinánsa nem nulla.
+          \end{itemize}
+
+    \item \textbf{Determináns kiszámítása:}
+          \begin{itemize}
+            \item Számítsd ki az összes lehetséges négyzetes részmátrix determinánsát.
+            \item Keress egy olyan \( k \times k \) méretű részmátrixot, amelyre \( \det \neq 0 \).
+          \end{itemize}
+
+    \item \textbf{Legnagyobb \( k \)-érték meghatározása:}
+          \begin{itemize}
+            \item A mátrix rangja megegyezik a legnagyobb olyan \( k \)-val, amelyre létezik egy \( k \times k \) részmátrix, amelynek determinánsa nem nulla.
+          \end{itemize}
+  \end{enumerate}
+  \textbf{2. módszer:} A mátrix rangjának meghatározása a mátrix sorai és oszlopai alapján
+  \begin{enumerate}
+    \item \textbf{Elemi mátrixműveletek alkalmazása:}
+          \begin{itemize}
+            \item A mátrixon végezhető műveletek: Sorok/oszlop összeadása, szorzása egy nem nulla skalárral.
+          \end{itemize}
+
+    \item \textbf{A mátrix átalakítása egyszerűsített alakra:}
+          \begin{itemize}
+            \item Az a cél, hogy a mátrixot olyan alakra hozzuk, amelyben, minden sorban és oszlopban legfeljebb egy \( 1 \)-es szerepel.
+          \end{itemize}
+
+    \item \textbf{A mátrix rangjának meghatározása:}
+          \begin{itemize}
+            \item A mátrix rangja megegyezik az egyszerűsített alakban lévő \( 1 \)-esek számával.
+          \end{itemize}
+
+
+  \end{enumerate}
+
+\end{blueBox}
+
+\begin{definition}[Mátrix inverz]
+  A lineáris algebrában egy $n \times n$-es (négyzetes) $\mathbf{A}$ mátrix \textbf{invertálható}, \textbf{reguláris}, \textbf{nemelfajuló} vagy \textbf{nem szinguláris}, ha létezik egy olyan $n \times n$-es $\mathbf{B}$ mátrix, melyre igaz:
+  \[
+    \mathbf{A}\mathbf{B} = \mathbf{B}\mathbf{A} = \mathbf{I}_n,
+  \]
+  ahol $\mathbf{I}_n$ az $n \times n$-es egységmátrixot jelöli, és a szorzás a szokásos mátrixszorzás. Ebben az esetben a $\mathbf{B}$ mátrixot egyértelműen meghatározza a $\mathbf{A}$ mátrix, és $\mathbf{A}$ mátrix \textbf{inverzének} hívják, melyet $\mathbf{A}^{-1}$-gyel jelölünk.
+
+  Igazolható, hogy ha a $\mathbf{A}$ és $\mathbf{B}$ négyzetes mátrixokra $\mathbf{A}\mathbf{B} = \mathbf{I}_n$, akkor $\mathbf{B}\mathbf{A} = \mathbf{I}_n$ is teljesül.
+
+  A nem invertálható négyzetes mátrixot \textbf{szingulárisnak} vagy \textbf{degeneráltnak} nevezzük. Ebben az esetben a determináns értéke nulla:
+  \[
+    \det(\mathbf{A}) = 0.
+  \]
+
+  A mátrixban lévő elemek többnyire valós vagy komplex számok, de a definíciók gyűrű fölötti mátrixokra is érvényesek.
+
+\end{definition}
+
+\begin{blueBox}
+  \textbf{\large Mátrix inverz meghatározása:}\\
+
+  \textbf{1. módszer - definíció alapján:} Az inverz meghatározása a mátrix determinánsának segítségével.
+  \[
+    \textbf{A}^{-1} = \frac{1}{\text{det}(\textbf{A})} \cdot \text{adj}(\textbf{A})
+  \]
+  \textbf{2. módszer - Gauss-Jordan módszer:} Az inverz meghatározása a mátrix sorai és oszlopai alapján
+  \begin{enumerate}
+    \item \textbf{Mátrix előkészítése:} Írd fel a mátrixot bővített alakban.
+    \item \textbf{Főelemek kiválasztása:}
+          \begin{itemize}
+            \item Az aktuális főelemet állítsd \(1\)-re (osztással).
+            \item Nullázd ki az oszlop többi elemét (fölötte és alatta).
+          \end{itemize}
+    \item \textbf{Redukált lépcsős alak (Row echelon form):} Ismételd a fenti lépéseket, amíg minden oszlopban lépcsőzetesen emelkedő \(1\)-eseket kapsz.
+    \item \textbf{Megoldás:} A rangot vagy az egyenletrendszer megoldását a mátrix egyszerűsített alakjából olvasd ki.
+  \end{enumerate}
+
+\end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item Egy síkon vannak-e az $A(2,3,-4)$, $B(3,-1,-6)$, $C(-1,5,2)$ és
+        $D(2,1,-4)$ pontok?
+
+  \item Számolja ki azalábbi mátrixok determinánsát Sarrus-szabállyal!
+        $$
+          \rmat A =
+          \begin{bmatrix}
+            4 & 9 & 2 \\
+            3 & 5 & 7 \\
+            8 & 1 & 6
+          \end{bmatrix}
+          \qquad
+          \rmat B =
+          \begin{bmatrix}
+            3 & 5 & 7 \\
+            5 & 6 & 3 \\
+            2 & 1 & 4
+          \end{bmatrix}
+          \qquad
+          \rmat C =
+          \begin{bmatrix}
+            8  & 4 & 3  \\
+            -5 & 6 & -2 \\
+            7  & 9 & -8
+          \end{bmatrix}
+          \qquad
+          \rmat D =
+          \begin{bmatrix}
+            4 & -3 & 0 \\
+            2 & -1 & 2 \\
+            1 & 5  & 7
+          \end{bmatrix}
+        $$
+
+  \item Adja meg az azalábbi mátrixok rangját!
+        \begin{alignat*}{9}
+          \rmat A & =
+          \begin{bmatrix}
+            1 & 2 & 3 \\
+            3 & 2 & 1 \\
+            2 & 1 & 3
+          \end{bmatrix}
+          \hspace{5cm}
+                  & \rmat B & =
+          \begin{bmatrix}
+            1  & 3  & -2 \\
+            -2 & -6 & 4  \\
+            -1 & -3 & 2
+          \end{bmatrix}
+          \\
+          \rmat C & =
+          \begin{bmatrix}
+            1  & 1 & 2  & 3 \\
+            2  & 4 & 5  & 2 \\
+            -1 & 1 & -1 & 0
+          \end{bmatrix}
+          \qquad
+                  & \rmat D & =
+          \begin{bmatrix}
+            1 & 2 & 3 & 4 & 5 \\
+            2 & 3 & 4 & 5 & 6 \\
+            5 & 6 & 7 & 8 & 9 \\
+            4 & 5 & 6 & 7 & 8
+          \end{bmatrix}
+        \end{alignat*}
+
+
+  \item Vizsgálja az $\rmat A$ mátrix rangját $x$ függvényében!
+        $$
+          \rmat A = \begin{bmatrix}
+            1 & -1 & -3 & 3 \\
+            x & 4  & 10 & 1 \\
+            1 & 7  & 17 & 3 \\
+            2 & 2  & 4  & 1
+          \end{bmatrix}
+        $$
+
+  \item Számítsa ki az alábbi mátrixok inverzét!
+        $$
+          \rmat A =
+          \begin{bmatrix}
+            1 & 2 \\
+            3 & 4
+          \end{bmatrix}
+          \qquad
+          \rmat B =
+          \begin{bmatrix}
+            4 & 5 \\
+            2 & 6
+          \end{bmatrix}
+          \qquad
+          \rmat C =
+          \begin{bmatrix}
+            1 & 3 & 3 \\
+            1 & 3 & 4 \\
+            1 & 4 & 3
+          \end{bmatrix}
+          \qquad
+          \rmat D =
+          \begin{bmatrix}
+            1 & 2 & 3 \\
+            3 & 2 & 1 \\
+            2 & 1 & 3
+          \end{bmatrix}
+        $$
+
+  \item Milyen $k$ érték esetén lesz invertálható az alábbi mátrix?
+        $$
+          \begin{bmatrix}
+            k-1 & 2   \\
+            2   & k-1
+          \end{bmatrix}
+        $$
+
+  \item Oldja meg az alábbi mátrix egyenletét!
+        $$
+          \begin{bmatrix}
+            x  & 5 \\
+            -3 & z
+          \end{bmatrix}
+          \begin{bmatrix}
+            7 & y \\
+            0 & 6
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            -14 & 8 \\
+            w   & 3
+          \end{bmatrix}
+        $$
+
+  \item Adottak az $\rmat A$, $\rmat B$ és $\rmat C$ mátrixok. Oldja meg az
+        alábbi mátrixegyenletet!
+        $$
+          \rmat A = \begin{bmatrix}
+            4 & 3 \\
+            1 & 1
+          \end{bmatrix}
+          \qquad
+          \rmat B = \begin{bmatrix}
+            1 & 2 \\
+            3 & 4
+          \end{bmatrix}
+          \qquad
+          \rmat C = \begin{bmatrix}
+            1 & -1 \\
+            2 & -3
+          \end{bmatrix}
+          \qquad \Rightarrow \qquad
+          \rmat A \rvec x + \rmat C = 2\rmat B \rmat C \rvec x
+        $$
+
+  \item Számítsa ki az alábbi, komplex elemű mátrix rangját!
+        $$
+          \begin{bmatrix}
+            1  & 2i & 1+2i    \\
+            3  & i  & 3-i     \\
+            4i & -3 & -1 + 4i
+          \end{bmatrix}
+        $$
+\end{enumerate}
+
+
+\end{document}
