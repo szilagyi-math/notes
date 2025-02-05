@@ -1,3 +1,5 @@
+import { UnderConstruction } from '@/components/under-construction';
+
 import type { NextPage, Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 const NotFound: NextPage = () => {
-  return 'Hello World';
+  return <UnderConstruction />;
 };
 
 export default NotFound;

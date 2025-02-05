@@ -20,6 +20,19 @@ const MDXContent = ({ code }: MDXContentProps) => {
   return (
     <Component
       components={{
+        UnderConstruction: () => (
+          <div className='min-h-[200px] w-full flex flex-col items-center justify-center px-4'>
+            <div className='flex items-center text-xl'>
+              <span className='mr-4 text-3xl w-8'>🚧🚧🚧</span>
+              <p className='text-center'>
+                Az oldal jelenleg fejlesztés alatt áll. Kérlek, látogass vissza
+                később!
+              </p>
+              <span className='ml-4 text-3xl w-8'>🚧🚧🚧</span>
+            </div>
+          </div>
+        ),
+
         // TODO: Create these components
         Definition: (props: any) => {
           const [, chapter, section] = props.id.split('.');
