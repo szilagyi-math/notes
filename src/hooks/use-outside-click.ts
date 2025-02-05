@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 const useOutsideClick = <TElement extends HTMLElement>(
-  ref: React.RefObject<TElement>,
+  ref: React.RefObject<TElement | null>,
   cb: (e: MouseEvent) => void,
-  enabled = true
+  enabled = true,
 ) => {
   React.useEffect(() => {
     if (!enabled) return;
