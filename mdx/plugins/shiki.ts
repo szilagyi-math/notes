@@ -3,14 +3,18 @@ import {
   transformerMetaHighlight,
   transformerMetaWordHighlight,
 } from '@shikijs/transformers';
-import { createCssVariablesTheme, getHighlighterCore } from 'shiki';
+import {
+  createCssVariablesTheme,
+  createHighlighterCore,
+  createOnigurumaEngine,
+} from 'shiki';
 
 const theme = createCssVariablesTheme({
   name: 'css-variables',
   variablePrefix: '--shiki-',
 });
 
-const highlighter = await getHighlighterCore({
+const highlighter = await createHighlighterCore({
   themes: [
     theme,
     import('shiki/themes/vitesse-dark.mjs'),
@@ -24,7 +28,7 @@ const highlighter = await getHighlighterCore({
     import('shiki/langs/tex.mjs'),
     import('shiki/langs/latex.mjs'),
   ],
-  loadWasm: import('shiki/wasm'),
+  engine: createOnigurumaEngine(import('shiki/wasm')),
 });
 
 export const shiki = [
