@@ -165,3 +165,11 @@
     }
   }
 }
+
+.katex {
+  font-size: 1em !important;
+}
+
+.katex-display {
+  overflow-x: auto;
+}

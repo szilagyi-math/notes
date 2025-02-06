@@ -366,13 +366,6 @@ description: Mátrixok
                                       \vdots & \vdots & \ddots & \vdots \\
                                       0      & a_{n2} & \cdots & a_{nn}
                                     \end{vmatrix} +
-    \\[2mm]
-     & \phantom{= a_{11}\; \begin{vmatrix}
-                                         1      & 0      & \cdots & 0      \\
-                                         0      & a_{22} & \cdots & a_{2n} \\
-                                         \vdots & \vdots & \ddots & \vdots \\
-                                         0      & a_{n2} & \cdots & a_{nn}
-                                       \end{vmatrix}} 
     + \dots
     + a_{n1}\; \begin{vmatrix}
                                       0      & a_{12} & \cdots & a_{1n} \\
@@ -394,13 +387,6 @@ description: Mátrixok
                                       \vdots & \vdots & \ddots & \vdots \\
                                       a_{n2} & 0      & \cdots & a_{nn}
                                     \end{vmatrix}
-    + \\[2mm]
-    & \phantom{= a_{11}\; \begin{vmatrix}
-                                         1      & 0      & \cdots & 0      \\
-                                         0      & a_{22} & \cdots & a_{2n} \\
-                                         \vdots & \vdots & \ddots & \vdots \\
-                                         0      & a_{n2} & \cdots & a_{nn}
-                                       \end{vmatrix}}
     + \dots
     + (-1)^{n-1} a_{n1}\; \begin{vmatrix}
                                                  a_{12} & \cdots & a_{1n} & 0      \\
