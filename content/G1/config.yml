@@ -13,6 +13,7 @@ book:
   target: G1-tankonyv
   display_name: G1 előadás jegyzet
 online_notes: null
+hide_edubase: true
 practice_material:
   dir: practice
   solutionsDir: practice-solutions

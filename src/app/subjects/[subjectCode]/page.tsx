@@ -118,16 +118,20 @@ const SubjectsPage: NextPage<SubjectsPageProps> = async props => {
               <tr key={practice.group}>
                 <td className='border px-4 py-2'>
                   {practice.group}
-                  {' ['}
-                  <a
-                    href={practice.edubase}
-                    target='_blank'
-                    rel='noreferrer'
-                    className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
-                  >
-                    Edubase
-                  </a>
-                  {']'}
+                  {practice.edubase && !subject.hideEdubase && (
+                    <>
+                      {' ['}
+                      <a
+                        href={practice.edubase}
+                        target='_blank'
+                        rel='noreferrer'
+                        className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
+                      >
+                        Edubase
+                      </a>
+                      {']'}
+                    </>
+                  )}
                 </td>
                 <td className='border px-4 py-2'>{practice.room}</td>
                 <td className='border px-4 py-2'>
