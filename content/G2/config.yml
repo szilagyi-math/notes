@@ -222,7 +222,6 @@ practicals:
     # edubase: null
     staff:
       - name: Török Regina
-      - name: Tusor Bálint
   - group: HM7
     room: R514
     day: 1 # Monday
