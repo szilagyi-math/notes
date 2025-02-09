@@ -2,7 +2,7 @@
 
 \usepackage{math-practice}
 
-\area{Mátrixok}
+\area{Lineáris Algebra}
 \title{Mátrixok I}
 \subject{Matematika G2}
 \subjectCode{BMETE94BG02}
@@ -15,22 +15,35 @@
 \subsection{Elméleti Áttekintő}
 
 \begin{blueBox}
-  Az előző félévben az $\Reals^3$-at, az $3$-dimenziós oszlopvektorok
+  Az előző félévben az $\Reals^n$-et, az $n$-dimenziós oszlopvektorok
   vektorterét vizsgáltuk. Idén egy általánosabb vektor fogalmat vezetünk be.
 
-  A vektorok olyan objektumok, amelyeket össze lehet adni és skálázni lehet.
-  Bár egyes vektorok számok listáinak tűnnek (például oszlopvektorok,
-  sorvektorok), más típusú vektorok egyáltalán nem hasonlítanak számok listáira
-  (például függvények, polinomok). A lineáris algebra erejének egyik forrása az
-  a képességünk, hogy sok váratlan helyen találunk vektortereket.
-
   A félév elején átismételjük azokat a fogalmakat, amelyeket már az előző
-  félévben az $\Reals^n$ kontextusában megismertünk. Például szó lesz lineáris
-  kombinációkról, lineáris függetlenségről, lineáris egyenletrendszerekről és
-  így tovább. Ezeket a fogalmakat eredetileg az $\Reals^n$ vektortér keretében
-  vezettük be, hogy könnyebben megérthetők legyenek. Most azonban látni fogjuk,
-  hogy valójában minden vektortérre alkalmazhatóak.
+  félévben az $\Reals^n$ kontextusában megismertünk. Szó lesz például lineáris
+  kombinációkról, lineáris függetlenségről. Ezeket a fogalmakat eredetileg az
+  $\Reals^n$ vektortér keretein belül vezettük be, most azonban látni fogjuk,
+  hogy valójában tetszőleges vektortérre alkalmazhatóak.
 \end{blueBox}
+
+\begin{definition}[Abel-csoport]
+  Legyen $G$ nemüres halmaz, és $\circ$ egy művelet. Ekkor a $(G; \circ)$ csoport,
+  ha teljesülnek az alábbiak:
+  \begin{enumerate}
+    \item $\forall a; b; c \in G: (a \circ b) \circ c = a \circ (b \circ c)$,
+          \hfill (\textbf{asszociativitás})
+
+    \item $\exists e \in G: \forall a \in G: e \circ a = a \circ e = a$,
+          \hfill(\textbf{egységelem})
+
+    \item $\forall a \in G: \exists a^{-1} \in G:
+            a \circ a^{-1} = a^{-1} \circ a = e$.
+          \hfill (\textbf{inverzelem})
+
+    \item $\forall a, b \in G:
+            a \circ b = b \circ a$
+          \hfill (\textbf{kommutativitás})
+  \end{enumerate}
+\end{definition}
 
 \begin{definition}[Vektortér]
   Legyen $V$ nemüres halmaz, és $\circ, +$ két művelet, $T$ test.
@@ -58,6 +71,14 @@
   \end{enumerate}
 \end{definition}
 
+\begin{example}
+  A $(\Reals^3; +, \lambda)$ vektortér, ahol $+$ az összeadás, $\lambda$ pedig
+  a skalárral való szorzást jelöli.
+
+  A legfeljebb $n$-edfokú polinomok a skalárral való szorzásra és az összeadásra
+  vektorteret alkotnak.
+\end{example}
+
 \begin{definition}[Lineáris függetlenség]
   A $(V; +; \lambda)$ vektortér $\rvec v_1, \rvec v_2, \ldots, \rvec v_n$
   vektorait lineárisan függetlennek mondjuk, ha a
@@ -81,6 +102,14 @@
   $(L; +; \lambda)$ ugyancsak vektortér.
 \end{definition}
 
+\begin{example}
+  $(\Reals^3; +; \lambda)$ altere az olyan vektorok halmaza, amelyek első
+  koordinátája $0$.
+
+  A polinomok vektorterének alterte a legfeljebb $n$-edfokú polinomok
+  vektortere.
+\end{example}
+
 \begin{definition}[Generátorrendszer]
   Legyen $V$ vektortér, valamint $\emptyset \neq G \subset V$. $G$ által
   generált altérnek nevezzük azt a legszűkebb alteret, amely tartalmazza $G$-t.
@@ -89,10 +118,56 @@
   $G$ generátorrendszere $V$-nek, ha $\mathcal L(G) = V$.
 \end{definition}
 
+\begin{example}
+  Az $\Reals^3$ vektortér generátorrendszere például:
+  $$
+    \big\{\;
+    (1; 0; 0);
+    (1; 1; 0);
+    (0; 1; 1);
+    (0; 0; 1)
+    \;\big\}
+    \text.
+  $$
+
+  A legfeljebb másodfokú polinomok vektortérének generátorrendszere például:
+  $$
+    \big\{\;
+    1;
+    1 + x;
+    x + x^2;
+    x^2
+    \;\big\}
+    \text.
+  $$
+\end{example}
+
 \begin{definition}[Bázis]
   A $V$ vektortér egy lineárisan független generátorrendszerét a $V$
   bázisának nevezzük.
 \end{definition}
+
+\begin{example}
+  Az $\Reals^3$ vektortér bázisa például:
+  $$
+    \big\{\;
+    (1; 0; 0);
+    (0; 1; 0);
+    (0; 0; 1)
+    \;\big\}
+    \text.
+  $$
+
+  A legfeljebb másodfokú polinomok vektortérének bázisa például:
+  $$
+    \big\{\;
+    1;
+    x;
+    x^2
+    \;\big\}
+    \text.
+  $$
+\end{example}
 
 \begin{definition}[Vektortér dimenziója]
   Végesen generált vektortér dimenzióján a bázisainak közös tagszámát értjük.
@@ -124,24 +199,62 @@
   $a_{ij}$-vel jelöljük.
 \end{definition}
 
+\begin{note}
+  A mátrix dimenzióit mindig először a sorok számával, majd azt követően az
+  oszlopok számával adják meg.
+\end{note}
+
 \begin{definition}[Mátrix transzponáltja]
   Egy $\rmat A \in \mathcal M_{m \times n}$ mátrix transzponáltja a főátlójára
   vett tükörképe. Jele: $\rmat A^\T \in \mathcal M_{n \times m}$.
   $$
     \rmat A = \begin{bmatrix}
-      a_{11} & \cdots & a_{1n} \\
-      a_{21} & \cdots & a_{2n} \\
-      \vdots & \ddots & \vdots \\
-      a_{m1} & \cdots & a_{mn}
+      a_{11} & a_{12} & \cdots & a_{1n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{m1} & a_{m1} & \cdots & a_{mn}
     \end{bmatrix}
     \quad \Rightarrow \quad
     \rmat A^\T = \begin{bmatrix}
-      a_{11} & a_{21} & \cdots & a_{m1} \\
-      \vdots & \vdots & \ddots & \vdots \\
-      a_{1n} & a_{2n} & \cdots & a_{mn}
+      % a_{11} & a_{21} & \cdots & a_{m1} \\
+      % \vdots & \vdots & \ddots & \vdots \\
+      % a_{1n} & a_{2n} & \cdots & a_{mn}
+      a_{11} & \cdots & a_{m1} \\
+      a_{12} & \cdots & a_{m2} \\
+      \vdots & \ddots & \vdots \\
+      a_{1n} & \cdots & a_{mn}
     \end{bmatrix}
   $$
 \end{definition}
+
+\begin{example}
+  Határozzuk meg az $\rmat A = \begin{bmatrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6
+    \end{bmatrix}$ mátrix transzponáltját!
+
+  $$
+    \rmat A = \begin{bmatrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6
+    \end{bmatrix} \in \mathcal M_{2 \times 3}
+    \quad \Rightarrow \quad
+    \rmat A^\T = \begin{bmatrix}
+      1 & 4 \\
+      2 & 5 \\
+      3 & 6
+    \end{bmatrix} \in \mathcal M_{3 \times 2}
+  $$
+\end{example}
+
+\begin{note}
+  Két vektor skaláris szorzatának gyakori jelölései:
+  $$
+    \rvec a \cdot \rvec b
+    = \langle \rvec a; \rvec b \rangle
+    = \rvec a^\T \rvec b
+    \text.
+  $$
+\end{note}
 
 \begin{blueBox}
   \sftitle{Speciális mátrixstruktúrák:}
@@ -152,7 +265,7 @@
     \end{bmatrix}
   }
   $$
-    \begin{array}{rc>{\in\;}c>{\sim\;\;}l}
+    \begin{array}{rc>{\in\quad}c>{\sim\;\;}l}
        & \begin{bmatrix}
            a_{11} \\ a_{21} \\ \vdots \\ a_{n1}
          \end{bmatrix}
@@ -174,7 +287,7 @@
        & \mathcal M_{n \times n}
        & \text{kvadratikus / négyzetes mátrix}
       \\[12mm]
-      \imat =
+      \imat = \hspace{-5mm}
        & \begin{tmatrix}
            1      & 0      & \ldots & 0      \\
            0      & 1      & \ldots & 0      \\
@@ -184,7 +297,7 @@
        & \mathcal M_{n \times n}
        & \text{egységmátrix}
       \\[12mm]
-      \nmat =
+      \nmat = \hspace{-5mm}
        & \begin{tmatrix}
            0      & 0      & \ldots & 0      \\
            0      & 0      & \ldots & 0      \\
@@ -194,7 +307,6 @@
        & \mathcal M_{m \times n}
        & \text{nullmátrix}
       \\[12mm]
-
        & \begin{bmatrix}
            a_{11} & 0      & \ldots & 0      \\
            0      & a_{22} & \ldots & 0      \\
@@ -203,6 +315,33 @@
          \end{bmatrix}
        & \mathcal M_{n \times n}
        & \text{diagonális mátrix}
+      \\[12mm]
+       & \begin{bmatrix}
+           a_{11} & a_{12} & \ldots & a_{1n} \\
+           0      & a_{22} & \ldots & a_{2n} \\
+           \vdots & \vdots & \ddots & \vdots \\
+           0      & 0      & \ldots & a_{nn}
+         \end{bmatrix}
+       & \mathcal M_{n \times n}
+       & \text{felső háromszög mátrix}
+      \\[12mm]
+       & \begin{bmatrix}
+           a_{11} & a_{12} & \ldots & a_{1n} \\
+           a_{12} & a_{22} & \ldots & a_{2n} \\
+           \vdots & \vdots & \ddots & \vdots \\
+           a_{1n} & a_{2n} & \ldots & a_{nn}
+         \end{bmatrix}
+       & \mathcal M_{n \times n}
+       & \text{szimmetrikus mátrix}
+      \\[12mm]
+       & \begin{bmatrix}
+           0       & a_{12}  & \ldots & a_{1n} \\
+           -a_{12} & 0       & \ldots & a_{2n} \\
+           \vdots  & \vdots  & \ddots & \vdots \\
+           -a_{1n} & -a_{2n} & \ldots & 0
+         \end{bmatrix}
+       & \mathcal M_{n \times n}
+       & \text{antiszimmetrikus mátrix}
     \end{array}
   $$
 \end{blueBox}
@@ -214,12 +353,71 @@
   $c_{ij} := a_{ij} + b_{ij}$.
 \end{definition}
 
+\begin{example}
+  Határozzuk meg az $\rmat A = \begin{bmatrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6
+    \end{bmatrix}$ és a $\rmat B = \begin{bmatrix}
+      6 & 5 & 4 \\
+      3 & 2 & 1
+    \end{bmatrix}$ mátrixok összegét!
+  $$
+    \rmat A + \rmat B
+    =
+    \begin{bmatrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+      6 & 5 & 4 \\
+      3 & 2 & 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 + 6 & 2 + 5 & 3 + 4 \\
+      4 + 3 & 5 + 2 & 6 + 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      7 & 7 & 7 \\
+      7 & 7 & 7
+    \end{bmatrix}
+  $$
+\end{example}
+
 \begin{definition}[Mátrix és skalár szorzata]
   Egy mátrix és egy skalár szorzata olyan mátrix, melynek minden eleme
   skalárszorosa az eredeti mátrix elemeinek, azaz ha
   $\rmat A \in \mathcal M_{m \times n}$ és $\lambda \in \mathbb R$, akkor
   $\rmat C := \lambda \rmat A$, ahol $c_{ij} := \lambda a_{ij}$.
 \end{definition}
+
+\begin{example}
+  Határozzuk meg a $\lambda = 2$ skalár és az $\rmat A = \begin{bmatrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6
+    \end{bmatrix}$ mátrix szorzatát!
+
+  $$
+    \lambda \cdot \rmat A
+    = 2 \cdot
+    \begin{bmatrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      2 \cdot 1 & 2 \cdot 2 & 2 \cdot 3 \\
+      2 \cdot 4 & 2 \cdot 5 & 2 \cdot 6
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      2 & 4  & 6  \\
+      8 & 10 & 12
+    \end{bmatrix}
+  $$
+\end{example}
 
 \begin{definition}[Mátrixok szorzata]
   Legyen $\rmat A \in \mathcal M_{m \times n}$ és
@@ -262,6 +460,37 @@
   \end{align*}
 \end{blueBox}
 
+\begin{example}
+  Határozzuk meg az $\rmat A = \begin{bmatrix}
+      1  & 0 \\
+      -1 & 2
+    \end{bmatrix}$ és a $\rmat B = \begin{bmatrix}
+      1  & 0  \\
+      -2 & -1
+    \end{bmatrix}$ mátrixok szorzatát!
+
+  \newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+  \newcolumntype{F}[1]{>{$}x{#1}<{$}}
+  \begin{align*}
+     & \left[\begin{array}{F{3cm}F{3cm}}
+                 1  & 0  \\
+                 -2 & -1 \\
+               \end{array}\right]
+    \\
+    \left[\begin{array}{ccc}
+              1  & 0 \\
+              -1 & 2
+            \end{array}\right]
+     & \left[\begin{array}{F{3cm}F{3cm}}
+                 1 \cdot 1 + 0 \cdot (-2)  & 1 \cdot 0 + 0 \cdot 2     \\
+                 -1 \cdot 1 + 2 \cdot (-2) & -1 \cdot 0 + 2 \cdot (-1)
+               \end{array}\right] = \begin{bmatrix}
+                                    1  & 0  \\
+                                    -5 & -2
+                                  \end{bmatrix}
+  \end{align*}
+\end{example}
+
 \begin{definition}[Szimmetrikus mátrix]
   Egy $\rmat A \in \mathcal M_{n \times n}$ mátrix szimmetrikus, ha
   $\rmat A = \rmat A^\T$.
@@ -280,18 +509,61 @@
   $$
 \end{blueBox}
 
-% \begin{blueBox}
-%   \sftitle{Speciális tulajdonságok:}
-
-%   Legyen $\rmat A$ és $\rmat B$ megfelelő méretű mátrixok, és
-%   $\lambda \in \Reals$. Ekkor az alábbiak teljesülnek:
-%   \begin{enumerate}
-%     \item $\left(\rmat A^\T\right)^\T = \rmat A$,
-%     \item $\left(\rmat A + \rmat B\right)^\T = \rmat A^\T + \rmat B^\T$
-%     \item $\left(\lambda \rmat A\right)^\T = \lambda \rmat A^\T$,
-%     \item $\left(\rmat A \rmat B\right)^\T = \rmat B^\T \rmat A^\T$,
-%   \end{enumerate}
-% \end{blueBox}
+\begin{example}
+  Határozzuk meg az $\rmat A = \begin{bmatrix}
+      1 & 2 \\
+      3 & 4
+    \end{bmatrix}$ mátrix szimmetrikus és antiszimmetrikus részét!
+  \begin{alignat*}{9}
+    \rmat A_\text{s}
+     & = \frac{1}{2}(\rmat A + \rmat A^\T)
+    = \frac{1}{2}\left(
+    \begin{bmatrix}
+        1 & 2 \\
+        3 & 4
+      \end{bmatrix}
+    +
+    \begin{bmatrix}
+        1 & 3 \\
+        2 & 4
+      \end{bmatrix}
+    \right)
+    = \frac{1}{2}
+    \begin{bmatrix}
+      2 & 5 \\
+      5 & 8
+    \end{bmatrix}
+     & \;=\;                               &
+    \begin{bmatrix}
+      1   & 5/2 \\
+      5/2 & 4
+    \end{bmatrix}
+    \\[2mm]
+    \rmat A_\text{as}
+     & = \frac{1}{2}(\rmat A - \rmat A^\T)
+    = \frac{1}{2}\left(
+    \begin{bmatrix}
+        1 & 2 \\
+        3 & 4
+      \end{bmatrix}
+    -
+    \begin{bmatrix}
+        1 & 3 \\
+        2 & 4
+      \end{bmatrix}
+    \right)
+    = \frac{1}{2}
+    \begin{bmatrix}
+      0 & -1 \\
+      1 & 0
+    \end{bmatrix}
+     & \;=\;                               &
+    \begin{bmatrix}
+      0   & -1/2 \\
+      1/2 & 0
+    \end{bmatrix}
+  \end{alignat*}
+\end{example}
 
 \begin{definition}[Determináns]
   \newcommand\noskp{\vspace{-3mm}}
@@ -324,7 +596,7 @@
             \det \imat =\det \begin{pmatrix}
               \uvec e_1 & \uvec e_2 & \cdots & \uvec e_n
             \end{pmatrix} = 1
-            \text,
+            \text.
           $$
   \end{enumerate}
 \end{definition}
@@ -335,6 +607,132 @@
 
   Ellenkező esetben lineárisan összefüggőek.
 \end{note}
+
+\begin{example}
+  Határozzuk meg az $\rmat A = \begin{bmatrix}
+      1 & 2 \\
+      3 & 4
+    \end{bmatrix}$ mátrix determinánsát!
+
+  A determináns a kifejtési tétel alapján:
+  $$
+    \det \rmat A
+    = 1 \cdot 4 - 2 \cdot 3
+    = 4 - 6
+    = -2
+    \text.
+  $$
+
+  A determináns a definíció alapján:
+  $$
+    \det \rmat A
+    = \begin{vmatrix}
+      1 & 2 \\
+      3 & 4
+    \end{vmatrix}
+    \overset{1}{=} \begin{vmatrix}
+      1 & 2  \\
+      0 & -2
+    \end{vmatrix}
+    \overset{2}{=} \begin{vmatrix}
+      1 & 0  \\
+      0 & -2
+    \end{vmatrix}
+    \overset{3}{=} -2 \begin{vmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{vmatrix}
+    \overset{4}{=} -2
+    \text.
+  $$
+  \begin{enumerate}
+    \item Az első sor háromszorosát kivonjuk a második sorból.
+    \item Az első oszlop kétszeresét kivonjuk a második oszlopból.
+    \item A második oszlopból kiemelünk $-2$-t.
+    \item Az egységmátrix determinánsa $1$.
+  \end{enumerate}
+\end{example}
+
+\begin{note}
+  $3 \times 3$-as mátrix bármelyik sora vagy oszlopa szerint kifejthető.
+  Az alábbi előjelszabályt kell alkalmazni:
+  $$
+    \begin{vmatrix}
+      + & - & + \\
+      - & + & - \\
+      + & - & +
+    \end{vmatrix}
+    \text.
+  $$
+\end{note}
+
+\begin{example}
+  Határozzuk meg az $\rmat A = \begin{bmatrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6 \\
+      7 & 8 & 9
+    \end{bmatrix}$ mátrix determinánsát!
+
+  A determináns a kifejtési tétel alapján, az első sor szerint:
+  $$
+    \det \rmat A = 1 \cdot \begin{vmatrix}
+      5 & 6 \\
+      8 & 9
+    \end{vmatrix} - 2 \cdot \begin{vmatrix}
+      4 & 6 \\
+      7 & 9
+    \end{vmatrix} + 3 \cdot \begin{vmatrix}
+      4 & 5 \\
+      7 & 8
+    \end{vmatrix}
+    = 1 \cdot (5 \cdot 9 - 6 \cdot 8)
+    - 2 \cdot (4 \cdot 9 - 6 \cdot 7)
+    + 3 \cdot (4 \cdot 8 - 5 \cdot 7)
+    = 0
+    \text.
+  $$
+
+  A determináns a kifejtési tétel alapján, a második oszlop szerint:
+  $$
+    \det \rmat A = -2 \cdot \begin{vmatrix}
+      4 & 6 \\
+      7 & 9
+    \end{vmatrix} +5 \cdot \begin{vmatrix}
+      1 & 3 \\
+      7 & 9
+    \end{vmatrix} - 8 \cdot \begin{vmatrix}
+      1 & 3 \\
+      4 & 6
+    \end{vmatrix}
+    = -2 \cdot (4 \cdot 9 - 6 \cdot 7)
+    + 5 \cdot (1 \cdot 9 - 3 \cdot 7)
+    - 8 \cdot (1 \cdot 6 - 3 \cdot 4)
+    = 0
+    \text.
+  $$
+
+  A determináns a definíció alapján:
+  $$
+    \det \rmat A
+    = \begin{vmatrix}
+      1 & 2 & 3 \\
+      4 & 5 & 6 \\
+      7 & 8 & 9
+    \end{vmatrix}
+    \overset{1}{=} \begin{vmatrix}
+      1 & 1 & 1 \\
+      4 & 1 & 1 \\
+      7 & 1 & 1
+    \end{vmatrix}
+    \overset{2}{=} 0
+    \text.
+  $$
+  \begin{enumerate}
+    \item A második és a harmadik oszlopból kivonjuk az első oszlopot.
+    \item Amennyiben a mátrixban két oszlop vagy sor azonos, akkor a determináns
+          zérus.
+  \end{enumerate}
+\end{example}
 
 \clearpage
 \subsection{Feladatok}
@@ -395,7 +793,7 @@
         \end{center}
 
   \item Vizsgálja meg, hogy az $\rvec v_1(1; 2; 3)$, $\rvec v_2(1; 3; -1)$ és
-        $\rvec v_3 (1, 0, 0)$ vektorok $\Reals^3$-ban bázist vagy
+        $\rvec v_3 (1; 0; 0)$ vektorok $\Reals^3$-ban bázist vagy
         generátorrendszert alkotnak-e!
 
   \item Írja fel az $\rmat A$ mátrix transzponáltját!
