@@ -1,0 +1,91 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{arydshln}
+
+\area{Valós analízis}
+\title{Taylor-sorok}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{8}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+\begin{definition}[Taylor polinom]
+    Legyen egy $f$ olyan függvény, mely értelmezett a $a\in \Reals$ rögzített helyen egy környezetében, s ott $n$-szer folytonosan differenciálható. Ekkor a $f$ függvény $a$ körüli $n$-edfokú Taylor polinomja a következő: 
+    \[
+    T_n f(x) = f(a) + \cfrac{1}{1!} f'(a)(x-a) + \cfrac{1}{2!} f''(a)(x-a)^2 + \ldots + \cfrac{1}{n!} f^{(n)}(a)(x-a)^n
+    \]
+\end{definition}
+
+\begin{definition}[Maclaurin-sor]
+    Legyen az $f(x)$ függvény a $0$ egy környezetében tetszőlegesen sokszor
+differenciálható, ekkor $f(x)$ Maclaurin-során a $\displaystyle \sum_{n=0}^{\infty} \cfrac{f^{(n)}(0)}{n!}x^n$
+függvénysort
+értjük.
+\end{definition}
+
+\begin{definition}[Taylor-sor]
+    Legyen az $f(x)$ függvény az $x_0$ egy környezetében tetszőlegesen sokszor differenciálható, ekkor $f(x)$ Taylor-során a $\displaystyle \sum_{n=0}^{\infty} \cfrac{f^{n}(x_0)}{n!}(x-x_0)^n$
+\end{definition}
+\begin{blueBox}
+\textbf{Alapfüggvények Maclauren-sora}
+\begin{multicols}{2}    
+    \begin{itemize}
+        \item[] $e^x = \displaystyle \sum_{n=0}^{\infty} \cfrac{x^n}{n!}\qquad \forall x \in \Reals$
+        \item[] $\sin x = \displaystyle \sum_{n=0}^{\infty} \cfrac{(-1)^n}{(2n+1)!}x^{2n+1}$
+        \item[] $\cos x = \displaystyle \sum_{n=0}^{\infty} \cfrac{(-1)^n}{(2n)!}x^{2n}$ 
+        \item[] $\ln(1+x) = \displaystyle \sum_{n=0}^{\infty} (-1)^{n+1} \cfrac{x^n}{n}$
+        \item[] 
+        \item[] $\sinh x = \displaystyle \sum_{n=0}^{\infty} \cfrac{x^{2n+1}}{(2n+1)!}$
+        \item[] $\cosh x = \displaystyle \sum_{n=0}^{\infty} \cfrac{x^{2n}}{(2n)!}$
+        \item[] $(1+x)^{\alpha} = \displaystyle \sum_{n=0}^{\infty} \left(\begin{matrix}
+            \alpha \\ 
+            n
+        \end{matrix}
+        \right)x^n$
+        \item[] $\cfrac{1}{1+x} = \displaystyle \sum_{n=0}^{\infty} x^n$
+        \item[] 
+    \end{itemize}
+\end{multicols}
+\end{blueBox}
+\clearpage
+\subsection{Feladatok}
+\begin{enumerate}
+    \item Írjuk fel az $(1+x)^3$ függvény  Maclauren-sorát!
+    \item Írjuk fel az $(1+x)^3$ függvény Taylor-sorát $x_0 = 1$ pont körül! Mi lesz a konvergenciasugár?
+    \item Határozzuk meg az $e^x$ függvény Taylor-sorát $x_0 = 1$ pont körül és konvergenciasugarát! 
+    \item Határozzuk meg az $\ln x$ függvény Taylor-sorát $x_0 = 1$ pont körül és konvergenciasugarát! 
+    \item Határozzuk meg a $\cos 5x$ függvény Maclauren sorát! Mi lesz a konvergenciasugár?
+    \item Határozzuk meg a $\sin \sqrt{n}$ függvény Maclauren sorát! Mi lesz a konvergenciasugár?
+    \item Határozzuk meg a $\sin^2 x$ függvény Maclauren sorát!
+    \item Határozzuk meg a $\sqrt[3]{e^{-x^2}}$ függvény Maclauren sorát!
+    \item Határozzuk meg a $\cfrac{x+1}{x+3}$ függvény Taylor sorát $x_0 = -2$ pont körül!
+    \item Határozzuk meg a $\cfrac{x+1}{x+3}$ függvény Taylor sorát $x_0 = -1$ pont körül!
+    \item Írjuk fel az alábbi függvény $x_0 = 2$ pontra illeszkedő Taylor sorát! Mi lesz a konvergenciasugár?
+    \[
+    f(x) = \cfrac{1}{x^2-3x+2}
+    \]
+    \item Határozzuk meg a $\cfrac{x}{1+x^2}$ függvény Maclauren sorát!
+    \item Határozzuk meg a $\arctan{x}$ függvény Maclauren sorát!
+    \item Határozzuk meg a $\cfrac{1}{\sqrt{2+x^2}}$ függvény Maclauren sorát!
+    \item Melyik függvény Taylor-sora az alábbi?
+    \[
+    \sum_{n=0}^{\infty} \cfrac{2n+1}{n!}x^{2n}
+    \]
+    \item Hanyadfokú taylor polinom közelíti a $\sin \pi/60$ értékét 4 tizedes jegy pontossággal?
+    \item Számítsunk ki 3 tizedesjegy pontossággal az alábbi integrált!
+    \[
+    \int_{0}^{0.2} e^{2x}dx
+    \]
+\end{enumerate}
+
+
+
+
+\end{document}

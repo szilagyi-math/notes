@@ -1,0 +1,303 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{arydshln}
+
+\area{Lineáris Algebra}
+\title{Lineáris leképzések II}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{5}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+
+\begin{definition}[Ortogonális transzformáció]
+  Az $n$ dimenziós  euklideszi tér $\mathcal A: V \rightarrow V$ lineáris
+  transzformációját ortogonálisnak mondjuk, ha $\langle \mathcal A \rvec x;
+    \mathcal A \rvec y \rangle = \langle \rvec x; \rvec y \rangle$, minden $\rvec
+    x; \rvec y \in V$ esetén.
+\end{definition}
+
+\begin{note}
+  Egy ortogonális transzformáció $\rvec Q$ mátrixának inverze megegyezik a
+  transzponáltjával.
+
+  Amennyiben $\det \rvec Q = 1$, akkor a transzformáció orientciótartó.
+
+  Amennyiben $\det \rvec Q = -1$, akkor a transzformáció orientációváltó.
+\end{note}
+
+\begin{example}
+  A két dimenziós térben való forgatás orientációtartó, hiszen
+  $$
+    \det \rmat Q
+    = \begin{vmatrix}
+      \cos \alpha & -\sin \alpha \\
+      \sin \alpha & \cos \alpha
+    \end{vmatrix}
+    = \cos^2 \alpha + \sin^2 \alpha
+    = 1
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Sajátértékek és sajátvektorok]
+  Legyen $V$ a $T$ test feletti vektortér, $\rvec v \in V$, $\rvec v \neq
+    \nvec$. $\rvec v$-t a $\varphi: V \rightarrow V$ lineáris leképezés
+  sajátvektorának mondjuk, ha önmaga skalárszorosába megy át a leképezés
+  során, azaz $\varphi(\rvec v) = \lambda \rvec v$,  $\lambda \in T$.
+  $\lambda$-t a $\rvec v$ sajátvektorhoz tartozó sajátértéknek mondjuk.
+\end{definition}
+
+\begin{note}
+  Ha a $\rvec v$ sajátvektora a $\varphi$-nek, akkor annak skalárszorosa is.
+\end{note}
+
+\begin{theorem}[Sajátértékek számítása]
+  Az $\rmat A \in \mathcal M_{n \times n}$ mátrix sajátértékei a
+  $$
+    \det(\rmat A - \lambda \imat) = 0
+  $$
+  karakterisztikus egyenlet gyökei.
+\end{theorem}
+
+\begin{note}
+  A $\det(\rmat A - \lambda \imat) = 0$ egyenletet \textbf{karakterisztikus
+    egyenlet}nek nevezzük.
+
+  A $\det(\rmat A - \lambda \imat)$ polinomot \textbf{karakterisztikus
+    polinom}nak nevezzük.
+\end{note}
+
+\begin{note}
+  Szimmetrikus mátrix sajátvektorai ortogonálisak és a sajátértékek mindig valósak.
+\end{note}
+
+\begin{note}
+  Antiszimmetrikus mátrix sajátvektorai páronként konjugáltak és a sajátértékek mindig tisztán képzetesek.
+\end{note}
+
+\begin{definition}[Sajátaltér]
+  Legyen \( \textbf{A} \) egy \( n \times n \)-es mátrix, és legyen \( \lambda \) az \( \textbf{A} \) egy sajátértéke. A \( \lambda \)-hoz tartozó sajátvektortér az alábbi halmaz:
+  \[
+    E_\lambda = \{ \rvec{v} \mid \textbf{A}\rvec{v} = \lambda\rvec{v} \}.
+  \]
+  Ez az \( \mathbb{R}^n \) egy altere.
+\end{definition}
+
+Itt meg kellene az algebrai es a geometriai multiplicitast is emliteni, de nem vagyok benne mi a helyes megfogalmazás, zavaros a kézzel írt jegyzet.
+
+\begin{definition}[Karakterisztikus polinom]
+  Legyen \( \textbf{A} \) egy négyzetes mátrix. Az alábbi kifejezést:
+  \[
+    p(\lambda) = \det(\textbf{A} - \lambda \mathbb{I})
+  \]
+  \( \textbf{A} \) karakterisztikus polinomjának nevezzük.
+\end{definition}
+
+\begin{blueBox}
+  Legyen \( \textbf{A} \) egy \( n \times n \)-es mátrix. Az \( \textbf{A} \)-hoz tartozó sajátértékek és sajátvektorok meghatározásának lépései a következők:
+  \begin{enumerate}
+    \item Számítsd ki a karakterisztikus polinomot: \( \det(\textbf{A} - \lambda \mathbb{I}) \).
+    \item A sajátértékek a karakterisztikus polinom gyökei.
+    \item Minden sajátértékre (\( \lambda \)) határozz meg egy bázist a sajátvektorokhoz az alábbi homogén egyenletrendszer megoldásával:
+          \[
+            (\textbf{A} - \lambda \mathbb{I})\rvec{v} = 0.
+          \]
+  \end{enumerate}
+\end{blueBox}
+
+\begin{note}
+  Legyen \( \textbf{A} \) egy felső vagy alsó háromszögmátrix. Ekkor az \( \textbf{A} \)-hoz tartozó sajátértékek a főátló elemei.
+\end{note}
+
+\begin{definition}[Diagonalizálható mátrix]
+  Legyen \( \textbf{A} \) egy \( n \times n \)-es mátrix. Az \( \textbf{A} \)-t diagonalizálhatónak nevezzük, ha létezik egy invertálható \( \textbf{P} \) mátrix és egy \( \textbf{D} \) diagonális mátrix, amelyekre teljesül, hogy
+  \[
+    \textbf{P}^{-1}\textbf{AP} = \textbf{D}.
+  \]
+\end{definition}
+
+\begin{theorem}[Diagonizálhatóság és sajátvektorok]
+  Egy \( n \times n \)-es mátrix \( A \) akkor és csak akkor diagonalizálható, ha \( A \)-nak \( n \) lineárisan független sajátvektora van.
+
+  Továbbá, ebben az esetben legyen \( P \) az az invertálható mátrix, amelynek oszlopai \( A \) \( n \) lineárisan független sajátvektorai, és legyen \( D \) az a diagonális mátrix, amelynek főátlójában a megfelelő sajátértékek szerepelnek. Ekkor
+  \[
+    P^{-1}AP = D.
+  \]
+\end{theorem}
+
+\begin{definition}[Mátrixfüggvények]
+  Ide kell egy definíció, mert nincs rendes a füzetben!
+\end{definition}
+
+\begin{blueBox}
+  \textbf{Kvadratikus formák}\\
+  Csupa másodfokú tagot tartalmazó polinomokat átírhatóak mátrixos alakba.
+  \[
+    ax^2 + 2bxy + cy^2 = \begin{bmatrix}
+      x & y
+    \end{bmatrix} \begin{bmatrix}
+      a & b \\
+      b & c
+    \end{bmatrix} \begin{bmatrix}
+      x \\
+      y
+    \end{bmatrix}
+  \]
+  \textbf{Másodrendű görbe}
+  \[
+    ax^2 + 2bxy + cy^2 + dx + ey + f = 0
+  \]
+  \[
+    \begin{bmatrix}
+      x & y
+    \end{bmatrix} \begin{bmatrix}
+      a & b \\
+      b & c
+    \end{bmatrix} \begin{bmatrix}
+      x \\
+      y
+    \end{bmatrix} + \begin{bmatrix}
+      d & e
+    \end{bmatrix} \begin{bmatrix}
+      x \\
+      y
+    \end{bmatrix} + f = 0
+  \]
+
+  Másodrendű görbék lehetnek ellipszisek, hiperbólák és parabolák.
+
+  IDE KÉNE EGY KIS rendezett leírás, arra, hogy mikor is lehet kvadratikus alakot áttranszformálni sajátértékek koordinata rendszerébe, hogyan alakulnak az egyenletek es mikor is lesz semi deficit deficit és indeficit.
+\end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+\begin{enumerate}
+  \item Írja fel az $e$ egyenes körül pozizív $y$ irányból $90^\circ$-os
+        forgatás mátrixát a szokásos, illetve a $\rvec v_1(1; 0; 0)$,
+        $\rvec v_2(1; 1; 0)$ és $\rvec v_3 = (1; 1; 1)$ bázisokban, ha az
+        egyenes egyenletrendszere:
+        $$
+          e:
+          \frac{-1}{2} x + \frac{\sqrt{3}}{2} y = 0
+          \quad \text{és} \quad
+          z = 0
+          \text.
+        $$
+
+  \item Adja meg a $\alpha$ és $\beta$ paramétereket, hogy a $\varphi$ leképezés
+        $\rmat A$ mátrixa orientciótartó és skalárisszorzattartó legyen
+        (ortogonális)!
+        $$
+          \rmat A = \begin{bmatrix}
+            \alpha & \beta & 0 \\
+            1      & 0     & 0 \\
+            0      & 0     & 1
+          \end{bmatrix}
+        $$
+
+  \item Adja meg az alábbi mátrixok sajátvektorait és sajátértékeit!
+        \begin{alignat*}{9}
+          \rmat A & =
+          \begin{bmatrix}
+            4 & 3 \\
+            1 & 2
+          \end{bmatrix}
+                  & \rmat B & =
+          \begin{bmatrix}
+            -2 & -8 & -12 \\
+            1  & 4  & 4   \\
+            0  & 0  & 1
+          \end{bmatrix}
+          \hspace{15mm}
+                  & \rmat C & =
+          \begin{bmatrix}
+            0  & 1 \\
+            -1 & 0
+          \end{bmatrix}
+          \\
+          \rmat D & =
+          \begin{bmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 2 & 1 \\
+            0 & 0 & 0 & 2
+          \end{bmatrix}
+          \hspace{15mm}
+                  & \rmat E & =
+          \begin{bmatrix}
+            4 & 1 & 0 \\
+            0 & 4 & 1 \\
+            0 & 0 & 4
+          \end{bmatrix}
+                  & \rmat F & =
+          \begin{bmatrix}
+            2 & 2 & 1 \\
+            1 & 3 & 1 \\
+            1 & 2 & 2
+          \end{bmatrix}
+        \end{alignat*}
+
+  \item A leképezés mátrixainak felírása nélkül adja meg a lehető legtöbb
+        sajátértélet és sajátvektort!
+        \begin{enumerate}
+          \item $z$-tengely körüli $45^\circ$-os forgatás,
+          \item $xy$ síkra vetítés,
+          \item $xy$ síkra tükrözés.
+        \end{enumerate}
+
+  \item Diagonizálhatóak-e a harmadik feladatban szereplő $\rmat E$, $\rmat D$
+        és $\rmat B$ mátrixok?
+
+  \item A sajátértékek kiszámítása nélkül mondjuk meg a lehető legtöbb
+        sajátér\-ték-sa\-ját\-vek\-tor párt!
+        $$
+          \rmat A =
+          \begin{bmatrix}
+            1 & 0 & 0 \\
+            2 & 4 & 0 \\
+            3 & 0 & 5
+          \end{bmatrix}
+          \hspace{2cm}
+          \rmat B =
+          \begin{bmatrix}
+            5 & 0 & 0 \\
+            0 & 7 & 0 \\
+            0 & 0 & 9
+          \end{bmatrix}
+        $$
+
+  \item Határozzuk meg a harmadik feladatban szereplő $\rmat B$ mátrix tizedik
+        hatványát!
+
+  \item Határozzuk meg az $e^{10^{\rmat B}}$ függvényt, ha $\rmat B$ a harmadik
+        feladatban szereplő mátrix!
+
+  \item Milyen alakzatot írnak le az alábbi másodrendű görbék?
+        Írja fel a kanonikus egyenletüket!
+        \begin{enumerate}
+          \item $
+                  -3x^2 + 23y^2 + 26\sqrt{3}xy = 144
+                $
+
+          \item $
+                  57x^2 + 43y^2 + 14\sqrt{3}xy = 576
+                $
+
+          \item $
+                  2x^2 - 5 = 0
+                $
+        \end{enumerate}
+\end{enumerate}
+
+
+
+
+\end{document}

@@ -1,0 +1,193 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{arydshln}
+
+\area{Mátrixok}
+\title{Lineáris leképzések I.}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{4}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+
+\begin{definition}[Lineáris leképzés]
+  Legyen $V_1$ és $v_2$ ugyanazon $\mathbb{T}$ test feletti vektorterek. Az $f : V_1 \to v_2$ leképezést lineárisnak nevezzük, ha teljesül az alábbi két feltétel:
+
+  \begin{enumerate}
+    \item $f(\lambda \rvec{v}) = \lambda f(\rvec{v})$ minden $\rvec{v} \in V$ és $\lambda \in K$ esetén,
+    \item $f(\rvec{v_1} + \rvec{v_2}) = f(\rvec{v_1}) + f(\rvec{v_2})$ minden $\rvec{v_1}, \rvec{v_2} \in V$ esetén.
+  \end{enumerate}
+
+  Az összes ilyen leképezés halmazát $L(V_1, V_2)$-vel jelöljük. Az $f : V_1 \to V_2$ lineáris leképezést lineáris transzformációnak vagy (vektortér) homomorfizmusnak is nevezzük. Egy bijektív lineáris leképezést izomorfizmusnak nevezünk. Ha létezik izomorfizmus $V_1$ és $V_2$ között, akkor a $V_1$ és $V_2$ tereket izomorfnak nevezzük, és ezt a következőképpen jelöljük:
+  \[
+    V_1 \cong V_2.
+  \]
+
+  Egy $f \in L(V_1, V_2)$ leképezést endomorfizmusnak nevezünk, egy bijektív endomorfizmust pedig automorfizmusnak.
+
+\end{definition}
+
+\begin{definition}[Bázistranszformáció]
+  Egy olyan mátrixokkal végzett művelet, amely során egy vektor koordinátáit egy új bázisra írjuk át, miközben egy bázisvektort lecserélünk. Ez a művelet kulcsfontosságú a lineáris algebra területén, mivel segítségével meghatározható egy mátrix rangja (a lineárisan független vektorok száma), a $\textbf{A}$ kvadratikus mátrix ($m = n$) inverze, valamint megoldhatók lineáris egyenletrendszerek, amelyeket például a Cramer-szabály nem kezel az alapmátrix dimenziója miatt.
+
+\end{definition}
+
+\begin{definition}[Lineáris leképezés mátrixa]
+  A lineáris leképezés mátrixa egy olyan mátrix, amely a vektorterek közötti lineáris transzformációt írja le adott bázisokhoz viszonyítva. Ha adott egy $T: V \to W$ lineáris leképezés, ahol $V$ és $W$ vektorterek, valamint adottak a $V$ tér $\{\rvec{v}_1, \rvec{v}_2, \dots, \rvec{v}_n\}$ és a $W$ tér $\{\rvec{w}_1, \rvec{w}_2, \dots, \rvec{w}_m\}$ bázisai, akkor a lineáris leképezés mátrixa az alábbi módon határozható meg:
+  \begin{enumerate}
+    \item Alkalmazzuk a $T$ leképezést a $V$ tér bázisvektoraira:
+          \[
+            T(\rvec{v}_i) = a_{1i} \rvec{w}_1 + a_{2i} \rvec{w}_2 + \dots + a_{mi} \rvec{w}_m \quad \text{minden } i = 1, 2, \dots, n.
+          \]
+
+    \item Az így kapott $a_{ji}$ együtthatók képezik a leképezés mátrixát:
+          \[
+            A = \begin{bmatrix}
+              a_{11} & a_{12} & \cdots & a_{1n} \\
+              a_{21} & a_{22} & \cdots & a_{2n} \\
+              \vdots & \vdots & \ddots & \vdots \\
+              a_{m1} & a_{m2} & \cdots & a_{mn}
+            \end{bmatrix}.
+          \]
+  \end{enumerate}
+
+  \textbf{Mit jelent a lineáris leképezés mátrixa?}
+
+  A mátrix sorai a $W$ tér bázisában kifejezett képeket tartalmazzák a $T$ leképezés hatására. Ha $\rvec{x} \in V$ vektornak a bázisra vonatkozó koordinátavektora $\rvec{[x]}_V$, akkor a $T$ leképezés hatása:
+  \[
+    \rvec{[T(x)]}_W = \textbf{A} \cdot \rvec{[x]}_V.
+  \]
+  Ez azt jelenti, hogy a mátrix egyszerűen a $T$ leképezést írja le bázisok közötti viszonyban, és lehetővé teszi a transzformáció számítását a koordináták szintjén.
+
+  \textbf{Mátrix átalakítása másik bázisba}
+
+  Ha az $S = \{\rvec{u}_1, \rvec{u}_2, \dots, \rvec{u}_n\}$ bázis a $V$ térben, és az $R = \{\rvec{z}_1, \rvec{z}_2, \dots, \rvec{z}_m\}$ bázis a $W$ térben az eredeti bázisok helyett, akkor az új bázisra vonatkozó mátrix az alábbi módon számítható:
+
+  \[
+    \textbf{A}' = \textbf{P}_R^{-1} \cdot \textbf{A} \cdot \textbf{P}_S,
+  \]
+
+  ahol $P_S$ a $V$ tér régi bázisából az új bázisba történő bázistranszformáció mátrixa, $P_R$ pedig a $W$ tér hasonló bázistranszformációja.
+\end{definition}
+
+\begin{definition}[Magtér]
+  A magtér (vagy nulltér) egy lineáris leképezés olyan altérhalmaza, amely tartalmazza a leképezés által a nullvektorba képezett vektorokat. A magtér a $\operatorname{Ker}(\varphi)$ jelöléssel szokásos.
+
+\end{definition}
+
+\begin{definition}[Defektus]
+  A defektus egy lineáris leképezés olyan tulajdonsága, amely a magtér dimenzióját jelöli. A defektust a $\operatorname{def}(\varphi)$ jelöléssel szokásos.
+\end{definition}
+
+\begin{definition}[Képtér]
+  A képtér egy lineáris leképezés olyan altérhalmaza, amely tartalmazza a leképezés által a vektortérben képezett vektorokat. A képtér a $\operatorname{Im}(\varphi)$ jelöléssel szokásos. A képtér dimenzióját a rangnak nevezzük. $\operatorname{dim}(\operatorname{Im}\varphi) = \operatorname{rank}\varphi $
+\end{definition}
+\begin{note}
+  \textbf{Őskép:} $P'$ ősképe a $P$, ha $\varphi(P)=P'$
+\end{note}
+
+
+\begin{theorem}[Rangnullitás]
+  Legyen $\varphi: V_1 \to V_2$ egy lineáris leképezés, ahol $V_1$ és $V_2$ $\mathbb{T}$ test feletti vektorterek. A tétel szerint a $\varphi$ leképezés rangja és nullitása között az alábbi összefüggés áll fenn:
+
+  \[
+    \dim(V_1) = \operatorname{rank}(\varphi) + \operatorname{def}(\varphi).
+  \]
+
+\end{theorem}
+
+\begin{definition}[Összetett leképzés]
+  Ha egymás után több transzformációt kell elvégezni, akkor azokat összetett leképzésnek nevezzük. Az összetett leképezés jelölése: $\varphi \circ \psi$. Ha a sorrendónk $\textbf{A}, \textbf{B}\, \text{és}\, \textbf{C}$, akkor: $$\rvec r' = \textbf{C}\textbf{B}\textbf{A} \rvec r.$$
+\end{definition}
+
+\clearpage
+\subsection{Feladatok}
+\begin{enumerate}
+  \item Állapítsuk meg, hogy az alábbi leképezés lineáris-e?\\
+        $\varphi: \Reals^2 \to \Reals^2$
+        $$
+          \begin{pmatrix}
+            x \\
+            y
+          \end{pmatrix} \longrightarrow \begin{pmatrix}
+            x+y \\
+            5xy
+          \end{pmatrix}
+        $$
+  \item Állapítsuk meg, hogy az alábbi leképezés lineáris-e?\\
+        $\varphi: \Reals^2 \to \Reals^3$
+        $$
+          \begin{pmatrix}
+            x \\
+            y
+          \end{pmatrix} \longrightarrow \begin{pmatrix}
+            x \\
+            y \\
+            x+y
+          \end{pmatrix}
+        $$
+  \item Határozzuk meg a $P(5,-4,-1)$ pont új koordinátáit az $\rvec a_1=(2, 1,0),\, \rvec a_2=(0,2,1)$ és $\rvec a_3=(1,0,2)$ vektorok által meghatározott bázisban.
+  \item Írjuk fel az $\{i, j, k \}$ és az $\{z_1, z_2, z_3\}$ ortonormált bázisok közti báziscsere mátrixát!
+  \item A báziscsere mátrixának felírásával oldjuk meg a 3. feladatot!
+  \item Írjuk fel a 2D Descartes koordinátarendszer $\alpha$ fokos elforgatásával nyert új koordinátarendszerbe mutató báziscsere mátrixát!
+  \item Adjuk meg annak a lineáris leképezésnek a mátrixát, amely az alábbi vektorba viszi át a bázisodat!
+  \item Adjuk meg az 2. feladatban a leképezés mátrixát!
+  \item Írjuk fel az alap geometriai leképezéseket 3D-ben és $\Reals^3$-ban!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item Tükrözés $x$ tengelyre
+            \item Tükrözés az $x-y$ síkra
+            \item Vetítés az $x$ tengyelre
+            \item Vetítés az $x-y$ síkra
+            \item Forgatás az $x$ tengely körül
+            \item Forgatás az $y$ tengely körül
+            \item Forgatás az $z$ tengely körül
+            \item $x$ irányú, $\lambda$ nagyságú nyújtás
+          \end{enumerate}
+        \end{multicols}
+  \item Határozzuk meg az origón áthaladó $\rvec u (a,b,c)$ normálisú $(a^2+b^2+c^2 = 1)$ síkra vonatkozó tükrözés mátrixát!
+  \item Adott egy lineáris leképezés a szokásos $(i, j)$ bázisban. Írjuk fel a leképezés mátrixát az $f$ bázisban, ha $f_1 = (2,1)$ és $f_2 = (1,1)$.
+  \item Adott két lineáris leképezés mátrixa $\textbf{A}$ és $\textbf{B}$. Mit ad eredményül:
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $(\textbf{A}+\textbf{B})\rvec r$
+            \item $\textbf{A}\textbf{B}\rvec r$
+            \item $\textbf{A}^2 \rvec r$
+            \item $\textbf{A}^{-1}\rvec r$
+          \end{enumerate}
+        \end{multicols}
+        \clearpage
+  \item Adott egy lineáris leképezés mátrixa. Döntsük el, hogy:
+        $$\begin{bmatrix}
+            1  & 2  & 3  \\
+            -1 & 0  & -2 \\
+            3  & -1 & 4
+          \end{bmatrix}
+        $$
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $P(2,0,1)$ elemet képzi-e a magtérnek?
+            \item $Q'(1,4,0)$ ősképe-e?
+            \item Mennyi a képtér dimenziójának rangja?
+            \item Mennyi a defektus?
+          \end{enumerate}
+        \end{multicols}
+  \item Mennyi az adott lineáris leképezés defektusa
+        \begin{enumerate}
+          \item $x$ tengelyre való vetítés esetén,
+          \item $y$ tengelyre való vetítés esetén.
+        \end{enumerate}
+  \item Írjuk fel annak a leképezésnek a mátrixát amely elforgatja a testet $z$ körül $\alpha$ szöggel, tükröz az $x-y$ síkra és nyújtja 2 és 3 szorosra $x$ és $z$ irányokban! Mi lesz az $(1,0,1)$ pont képe?
+  \item Írjuk fel azt a leképezést, amely az $y=x$ és $z=0$ egyenletrendszerű egyenesre tükröz!
+\end{enumerate}
+
+
+
+\end{document}

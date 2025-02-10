@@ -1,0 +1,119 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{arydshln}
+
+\area{Valós analízis}
+\title{Fourier-sorok}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{9}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+\begin{definition}[Fourier-sor]
+  Legyen $f : \mathbb R \rightarrow \mathbb R$ egy $2p$ szerint periodikus
+  függvény, amely a $[0;2p]$ intervallumon Riemann-integrálható ($f \in
+    \mathcal R [0; 2p]$). Ekkor $f$ Fourier-során az alábbi trigonometrikus
+  sort értjük:
+  \[
+    F(x)
+    = a_0
+    + \sum_{k = 1}^\infty a_k \cos \left( \frac{k \pi x}{p} \right)
+    + \sum_{k = 1}^\infty b_k \sin \left( \frac{k \pi x}{p} \right)
+  \]
+  Ha a függvény $2 \pi$ szerint periodikus:
+  \[
+    F(x)
+    = a_0
+    + \sum_{n = 1}^\infty a_n \cos (nx)
+    + \sum_{n = 1}^\infty b_n \sin (nx)
+  \]
+\end{definition}
+
+\begin{blueBox}
+  \textbf{Fourier együtthatók számítása ($2\pi$ / $2p$ periodicitás esetén)}
+  \begin{alignat*}{9}
+      a_0 & =
+      \frac{1}{2\pi} \int_0^{2\pi} f(x) \, \mathrm d x
+          &   & a_0
+          &   & =
+      \frac{1}{2p} \int_0^{2p} f(x) \, \mathrm d x
+      \\
+      a_n & =
+      \frac{1}{\pi} \int_0^{2\pi} f(x) \cos(n x) \, \mathrm d x
+      \hspace{2.2cm}
+          &   & a_k
+          &   & =
+      \frac{1}{p} \int_0^{2p} f(x) \cos \left( \frac{k \pi x}{p} \right) \, \mathrm d x
+      \\
+      b_n & =
+      \frac{1}{\pi} \int_0^{2\pi} f(x) \sin(n x) \, \mathrm d x
+          &   & b_k
+          &   & =
+      \frac{1}{p} \int_0^{2p} f(x) \sin \left( \frac{k \pi x}{p} \right) \, \mathrm d x
+    \end{alignat*}
+\end{blueBox}
+
+\begin{blueBox}
+  \textbf{Hasznos trigonometrikus összefüggések}
+  \begin{center}
+      \def\arraystretch{1.1}
+      \begin{tabular}[t]{ x{5cm} x{5cm} }
+        \multicolumn{2}{ c }{\cos^2 x + \sin^2 x = 1}                          \\[2mm]
+        \sin 2x = 2 \sin x \cos x         & \cos 2x = \cos^2 x - \sin^2 x      \\[2mm]
+        \sin^2 x = \dfrac{1 - \cos 2x}{2} & \cos^2 x = \dfrac{1 + \cos 2x}{2}  \\[4mm]
+        \multicolumn{2}{ c }{\sin (t \pm s) = \sin t \cos s \pm \cos t \sin s} \\[1mm]
+        \multicolumn{2}{ c }{\cos (t \pm s) = \cos t \cos s \mp \sin t \sin s} \\[1mm]
+        \multicolumn{2}{ c }{2 \sin t \sin s = \cos(t - s) - \cos(t + s)}      \\[1mm]
+        \multicolumn{2}{ c }{2 \cos t \cos s = \cos(t - s) + \cos(t + s)}      \\[1mm]
+        \multicolumn{2}{ c }{2 \sin t \cos s = \sin(t - s) + \sin(t + s)}      \\[1mm]
+      \end{tabular}
+    \end{center}
+\end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+\begin{enumerate}
+    \item Határozzuk meg az alábbi függvény Fourier-sorát!
+    \[
+    f(x) =
+    \begin{cases}
+        0, & -\pi < x \leq 0 \\
+        \pi, & 0 < x \leq \pi
+    \end{cases}
+    \]
+    \item Határozzuk meg az alábbi függvény Fourier-sorát!
+    \[
+    f(x) = \begin{cases}
+      x, & -\pi < x < \pi \\ 
+    \end{cases}
+    \]
+    \item Írjuk fel az alábbi $2\pi$ szerint periodikus függvény Fourier-sorát!
+    \[
+    f(x) = \begin{cases}
+      \sin x, & 0 \leq x < \pi \\
+      0, & \pi \leq x < 2\pi
+    \end{cases}
+    \]
+    \item Adjuk meg az alábbi függvény Fourier-sorát!
+    \[
+    f(x) = \sin^4 x
+    \]
+    \item Írjuk fel az alábbi függvény Fourier-sorát!
+    \[
+    f(x) = \cos 3x \sin^2 x  
+    \]
+    \item Írjuk fel az alábbi függvény Fourier-sorát!
+    \[
+    f(x) = x^2
+    \]
+\end{enumerate}
+
+
+\end{document}

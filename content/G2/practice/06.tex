@@ -1,0 +1,113 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{arydshln}
+
+\area{Valós analízis}
+\title{Függvénysorozatok}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{6}
+
+\begin{document}
+\maketitle
+\subsection*{Ajánlott elmélet}
+A gyakorlat előtt ajánlott átismételni a Numerikus sorokról tanultakat Matematika G1-ből!
+\subsection{Elméleti Áttekintő}
+\begin{definition}[Függvénysorozat]
+    Olyan sorozatok, amelynek tagjai valós függvények. Adottak az $f_1, f_2, \dots f_n : D \rightarrow \Reals $ függvények, közös értelmezési tartománnyal. Ezek sorozatát függvénysorozatnak nevezzük. Jele: $(f_n)$
+\end{definition}
+
+\begin{definition}[Függvénysorozat értelmezési tartománya]
+    Azon halmaz, hol az $(f_n)$ függvények mindegyike értelmezve van. Jelölés:
+    \[
+    D = \bigcap_{n=0}^\infty D_{f_n}
+    \]
+\end{definition}
+
+\begin{definition}[Függvénysorozat konvergencia tartománya]
+    Azon $x$ pontok halmaza, ahol a $(f_n)$-ből vett számsorozat konvergens. Itt az $(f_n)$ függvénysorozat pontonként konvergens. Jelölés: $K$
+\end{definition}
+
+\begin{definition}[Függvénysorozat határfüggvénye]
+    $(f_n)$ határfüggvénye $f$
+    \[
+    x_0 \in D_f = H \quad \text{és} \quad \underbrace{f(x_0)}_{A} = \lim_{n \to \infty} \underbrace{f_n(x_0)}_{a_n}
+    \]
+
+    Azaz $\forall x_0 \in K$-ra tetszőleges $\varepsilon > 0$-hoz $\exists N(\varepsilon, x_0)$:
+    \[
+    (| a_n - A |=) \quad |f_n(x_0)-f(x_0)| < \varepsilon, \quad \text{ha} \quad n > N(\varepsilon, x_0)
+    \]
+    $N(\varepsilon, x_0)$ neve: küszöbindex, köszöbszám.
+\end{definition}
+
+\begin{definition}[Konvergencia ebben az esetben]
+    IDE KELL DEF.
+\end{definition}
+
+\begin{definition}[Deriválás és határátmenet]
+    IDE KELL DEF.
+\end{definition}
+\clearpage
+\subsection{Feladatok}
+\begin{enumerate}
+    \item Konvergensek-e az alábbi numerikus sorok?
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $\displaystyle \sum_{n= 1}^{\infty} \cfrac{(\cos^n \pi/2 )^{4n}}{n^n + 1}$
+            \item $\displaystyle \sum_{n = 1}^{\infty} \cfrac{2n^2}{\left(2 + \frac{1}{n}\right)^n}$
+            \item $\displaystyle \sum_{n = 1}^{\infty} \cfrac{1}{\sqrt{n}}\left(1-\frac{1}{n}\right)^n$
+            \item $\displaystyle \sum_{n= 0}^{\infty} \cfrac{n!}{2^n + 1}$
+            \item $\displaystyle \sum_{n=1}^{\infty} (-1)^{n+1} \cfrac{n}{n^2-1}$
+            \item $\displaystyle \sum_{n=1}^{\infty} \cfrac{n}{e^n}$
+        \end{enumerate}
+    \end{multicols}
+    \item Határozzuk meg az alábbi függvénysorozatok értelmezési tartományát, konvergencia tartományát és határfüggvényét!
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $f_n(x) = x^n$
+            \item $f_n(x) = \frac{x^{n+2}+1}{x^n}$
+            \item $f_n(x) = \frac{\sin nx}{n}$
+            \item $f_n(x) = (\ln x)^n$
+            \item $f_n(x) = n\sin\left(\frac{x}{n}\right)$
+            \item $f_n(x) = n\cos\left(\frac{x}{n}\right)$
+        \end{enumerate}
+    \end{multicols}    
+    \item Egyenletesen konvergens-e az alábbi függvénysorozat a $(2, 5)$ intervallumon?
+    \[
+    f_n(x) = \frac{2x^3n^2}{x^2n^2+5}
+    \]
+    \item Adott az alábbi függvénysorozat:
+    \[
+    f_n(x)= \left\{\begin{matrix}
+        n^2x, \quad \text{ha} \quad 0\leq x \leq \cfrac{1}{n}, \quad n \in \mathbb{N}^{+}\\
+        \cfrac{1}{x}, \quad \text{ha} \quad \cfrac{1}{n}\leq x \leq 2, \quad n \in \mathbb{N}^{+}
+    \end{matrix}\right.
+    \]
+    \begin{enumerate}
+        \item $f(x) = \lim_{n\to \infty } f_n(x) = ?$ az $x \in [0,2]$ intervallumon
+        \item Egyenletes-e a konvergencia az intervallumon?
+    \end{enumerate}
+    \item Bizonyítsuk be, hogy
+    \[
+    \lim_{x \to \infty} \int_{0}^{2\pi} \cfrac{\sin (n^4x^2+3)}{x^2+n^3} \, dx = 0
+    \]
+    \item Adott az alábbi függvénysorozat:
+    \[
+    \lim_{n \to \infty} \qquad f_n(x) = x^2 + \cfrac{1}{n}\sin(n(x+\pi/2))
+    \]
+    Írja fel a határfüggvényét! Egyenletes-e a konvergencia az $\mathbb{R}$ halmazon?
+    \[
+    \lim_{n \to \infty}\, \cfrac{d}{dx}\, f_n(x) \overset{?}{=} \cfrac{d}{dx}\, \lim_{n \to \infty}\, f_n(x)
+    \]
+\end{enumerate}
+
+
+
+
+\end{document}

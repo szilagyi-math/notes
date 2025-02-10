@@ -1,0 +1,436 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+
+\area{Lineáris Algebra}
+\title{Lineáris leképzések I}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{4}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+
+\begin{definition}[Lineáris leképezés]
+  Legyenek $V_1$ és $V_2$ ugyanazon $T$ test feletti vektorterek. Legyen
+  $\varphi: V_1 \rightarrow V_2$ leképezés, melyet lineáris leképezésnek
+  nevezünk, ha tetszőleges két $V_1$-beli vektor ($\forall \rvec a; \rvec b \in
+    V_1$) és $T$-beli skalár ($\lambda \in T$) esetén teljesülnek az alábbiak:
+
+  \def\arraystretch{1.5}
+  \begin{tabular}{>{\bullet\;}l>{$\quad \sim \quad$}l}
+    $\varphi(\rvec a + \rvec b) = \varphi(\rvec a) + \varphi(\rvec b)$
+     & additív (összegre tagonként hat), \\
+    $\varphi(\lambda \rvec a) = \lambda \varphi(\rvec a)$
+     & homogén (skalár kiemelhető).
+  \end{tabular}
+\end{definition}
+
+\begin{definition}[Leképezés magtere]
+  Legyen $\varphi: V_1 \rightarrow V_2$ lineáris leképezés, ekkor a
+  $$
+    \ker \varphi := \big\{\;
+    \rvec v \; \big| \; \rvec v \in V_1 \land \varphi(\rvec v) = \nvec
+    \;\big\}
+  $$
+  halmazt a leképezés magterének nevezzük.
+\end{definition}
+
+\begin{definition}[Leképezés defektusa]
+  A magtér dimenzióját defektusnak nevezzük, és $\operatorname{def} \varphi$-vel
+  jelöljük.
+\end{definition}
+
+\begin{note}
+  Nem létezik olyan vektortér, melynek magtere az üreshalmaz
+  (a nullvektor mindig benne van, mert a nullvektor képe mindig nullvektor).
+\end{note}
+
+\begin{note}
+  Invertálható lineáris leképezés magtere a nullvektor.
+\end{note}
+
+\begin{definition}[Lineáris leképezés rangja]
+  Egy lineáris leképezés rangjának nevezzük a képtér dimenzióját.
+  $\rg \varphi = \dim \varphi(V_1)$.
+\end{definition}
+
+\begin{theorem}[Rang-nullitás tétele]
+  Legyen $V_1$ véges dimenziós vektortér, $\varphi: V_1 \rightarrow V_2$
+  lineáris leképezés, ekkor
+  $$
+    \rg \varphi + \operatorname{def} \varphi = \dim V_1
+    \text.
+  $$
+\end{theorem}
+
+\begin{blueBox}
+  \sftitle{Lineáris leképezések mátrixreprezentációja:}
+
+  Legyenek $V_1$ és $V_2$ ugyanazon test feletti vektorterek, és $\dim V_1 = n$,
+  valamint $\dim V_2 = k$. Legyen $\{ \rvec a_1; \rvec a_2; \ldots; \rvec a_n \}$
+  bázis $V_1$-ben, és $\{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \}$ bázis
+  $V_2$-ben. Legyen $\varphi: V_1 \rightarrow V_2$ lineáris leképezés, ekkor
+  $$
+    \varphi(\rvec a_i)
+    = \alpha_{1i} \rvec b_1
+    + \alpha_{2i} \rvec b_2
+    + \ldots
+    + \alpha_{ki} \rvec b_k
+    = \sum_{j=1}^{k} \alpha_{ji} \rvec b_j
+    \quad\Rightarrow\quad
+    \rmat A := \begin{bmatrix}
+      \alpha_{11} & \alpha_{2i} & \cdots & \alpha_{1n} \\
+      \alpha_{21} & \alpha_{2i} & \cdots & \alpha_{2n} \\
+      \vdots      & \vdots      & \ddots & \vdots      \\
+      \alpha_{k1} & \alpha_{ki} & \cdots & \alpha_{kn}
+    \end{bmatrix}_{k \times n}
+    \text.
+  $$
+  Az $\rmat A$ mátrixot $\varphi$ leképezést reprezentáló mátrixnak hívjuk,
+  segítségével tetszőleges $\rvec x \in V_1$ képét meghatározhatjuk. Legyenek
+  $(\xi_1, \xi_2, \ldots, \xi_n)$ az $\rvec x$ koordinátái, ekkor a képét az
+  alábbi módon számíthatjuk:
+  $$
+    \varphi(\rvec x)
+    = \varphi\left( \sum_{i=1}^{n} \xi_i \rvec a_i \right)
+    = \sum_{i=1}^{n} \xi_i \varphi(\rvec a_i)
+    = \begin{bmatrix}
+      \alpha_{11} & \alpha_{2i} & \cdots & \alpha_{1n} \\
+      \alpha_{21} & \alpha_{2i} & \cdots & \alpha_{2n} \\
+      \vdots      & \vdots      & \ddots & \vdots      \\
+      \alpha_{k1} & \alpha_{ki} & \cdots & \alpha_{kn}
+    \end{bmatrix} \begin{bmatrix}
+      \xi_1  \\
+      \xi_2  \\
+      \vdots \\
+      \xi_n
+    \end{bmatrix}
+    \text.
+  $$
+\end{blueBox}
+
+\begin{definition}[Bázistranszformáció]
+  Legyenek $\{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \}$ és
+  $\{ \hat{\rvec b}_1; \hat{\rvec b}_2; \ldots; \hat{\rvec b}_n \}$ bázisok
+  $V$-ben. Ekkor a $\{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \} \rightarrow
+    \{ \hat{\rvec b}_1; \hat{\rvec b}_2; \ldots; \hat{\rvec b}_n \}$
+  bázistranszformáció $\rmat S$ mátrixa a következőképpen írható fel:
+  $$
+    \left.\begin{array}{rl}
+      \hat{\rvec b}_1 & = s_{11} \rvec b_1 + s_{21} \rvec b_2 + \ldots + s_{n1} \rvec b_n \\
+      \hat{\rvec b}_2 & = s_{12} \rvec b_1 + s_{22} \rvec b_2 + \ldots + s_{n2} \rvec b_n \\
+                      & \vdots                                                            \\
+      \hat{\rvec b}_j & = s_{1j} \rvec b_1 + s_{2j} \rvec b_2 + \ldots + s_{nj} \rvec b_n \\
+                      & \vdots                                                            \\
+      \hat{\rvec b}_n & = s_{1n} \rvec b_1 + s_{2n} \rvec b_2 + \ldots + s_{nn} \rvec b_n
+    \end{array}\right\}
+    \quad\Rightarrow\quad
+    \rmat S = \begin{bmatrix}
+      s_{11} & s_{12} & \cdots & s_{1n} \\
+      s_{21} & s_{22} & \cdots & s_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      s_{n1} & s_{n2} & \cdots & s_{nn}
+    \end{bmatrix}
+  $$
+\end{definition}
+
+\clearpage
+\begin{blueBox}
+  \sftitle{Alap geometriai leképezések:}
+
+  \begin{itemize}
+    \item \textbf{Tükrözés} valamely tengelyre:
+          \vspace{-10mm}
+          \begin{multicols}{3}
+            $$
+              \rmat T_x = \begin{bmatrix}
+                1 & 0  & 0  \\
+                0 & -1 & 0  \\
+                0 & 0  & -1
+              \end{bmatrix}
+              \phantom{= \rmat T_x}
+            $$
+            $x$-tengelyre tükrözés
+
+            $$
+              \rmat T_y = \begin{bmatrix}
+                -1 & 0 & 0  \\
+                0  & 1 & 0  \\
+                0  & 0 & -1
+              \end{bmatrix}
+              \phantom{= \rmat T_y}
+            $$
+            $y$-tengelyre tükrözés
+
+            $$
+              \rmat T_z = \begin{bmatrix}
+                -1 & 0  & 0 \\
+                0  & -1 & 0 \\
+                0  & 0  & 1
+              \end{bmatrix}
+              \phantom{= \rmat T_z}
+            $$
+            $z$-tengelyre tükrözés
+          \end{multicols}
+
+    \item \textbf{Vetítés} valamely tengelyre:
+          \vspace{-10mm}
+          \begin{multicols}{3}
+            $$
+              \rmat T_x = \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 0 & 0 \\
+                0 & 0 & 0
+              \end{bmatrix}
+              \phantom{= \rmat T_x}
+            $$
+            $x$-tengelyre tükrözés
+
+            $$
+              \rmat T_y = \begin{bmatrix}
+                0 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & 0 & 0
+              \end{bmatrix}
+              \phantom{= \rmat T_y}
+            $$
+            $y$-tengelyre tükrözés
+
+            $$
+              \rmat T_z = \begin{bmatrix}
+                0 & 0 & 0 \\
+                0 & 0 & 0 \\
+                0 & 0 & 1
+              \end{bmatrix}
+              \phantom{= \rmat T_z}
+            $$
+            $z$-tengelyre tükrözés
+          \end{multicols}
+
+    \item \textbf{ükrözés} valamely síkra:
+          \vspace{-10mm}
+          \begin{multicols}{3}
+            $$
+              \rmat T_{xy} = \begin{bmatrix}
+                1 & 0 & 0  \\
+                0 & 1 & 0  \\
+                0 & 0 & -1
+              \end{bmatrix}
+              \phantom{= \rmat T_{xy}}
+            $$
+            $xy$ síkra tükrözés
+
+            $$
+              \rmat T_{yz} = \begin{bmatrix}
+                -1 & 0 & 0 \\
+                0  & 1 & 0 \\
+                0  & 0 & 1
+              \end{bmatrix}
+              \phantom{= \rmat T_{yz}}
+            $$
+            $yz$ síkra tükrözés
+
+            $$
+              \rmat T_{xz} = \begin{bmatrix}
+                1 & 0  & 0 \\
+                0 & -1 & 0 \\
+                0 & 0  & 1
+              \end{bmatrix}
+              \phantom{= \rmat T_{xz}}
+            $$
+            $xz$ síkra tükrözés
+          \end{multicols}
+
+    \item \textbf{Vetítés} valamely síkra:
+          \vspace{-10mm}
+          \begin{multicols}{3}
+            $$
+              \rmat T_{xy} = \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & 0 & 0
+              \end{bmatrix}
+              \phantom{= \rmat T_{xy}}
+            $$
+            $xy$ síkra vetítés
+
+            $$
+              \rmat T_{yz} = \begin{bmatrix}
+                0 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & 0 & 1
+              \end{bmatrix}
+              \phantom{= \rmat T_{yz}}
+            $$
+            $yz$ síkra vetítés
+
+            $$
+              \rmat T_{xz} = \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 0 & 0 \\
+                0 & 0 & 1
+              \end{bmatrix}
+              \phantom{= \rmat T_{xz}}
+            $$
+            $xz$ síkra vetítés
+          \end{multicols}
+
+    \item \textbf{Forgatás} $+\alpha$ szöggel:
+          \begin{alignat*}{9}
+            \rmat R_{x}
+             & = \begin{bmatrix}
+                   1 & 0           & 0            \\
+                   0 & \cos \alpha & -\sin \alpha \\
+                   0 & \sin \alpha & \cos \alpha
+                 \end{bmatrix}
+             & \quad \sim \quad
+             & \text{$x$ tengely körüli forgatás} \hspace{3.5cm}
+            \\
+            \rmat R_{y}
+             & = \begin{bmatrix}
+                   \cos \alpha  & 0 & \sin \alpha \\
+                   0            & 1 & 0           \\
+                   -\sin \alpha & 0 & \cos \alpha
+                 \end{bmatrix}
+             & \quad \sim \quad
+             & \text{$y$ tengely körüli forgatás}
+            \\
+            \rmat R_{z}
+             & = \begin{bmatrix}
+                   \cos \alpha & -\sin \alpha & 0 \\
+                   \sin \alpha & \cos \alpha  & 0 \\
+                   0           & 0            & 1
+                 \end{bmatrix}
+             & \quad \sim \quad
+             & \text{$z$ tengely körüli forgatás}
+          \end{alignat*}
+  \end{itemize}
+\end{blueBox}
+
+\begin{note}
+  Az előzőekben felsorolt leképezések olyan elemi transzformációk, amelyek
+  segítségével bonyolultabb geometriai leképezések is megadhatóak.
+\end{note}
+
+\clearpage
+\subsection{Feladatok}
+\begin{enumerate}
+  \item Állapítsa meg, hogy az alábbi leképezések lineárisak-e?
+        $$\displaystyle
+          \varphi: \Reals^2 \to \Reals^2;
+          \begin{bmatrix}
+            x \\
+            y
+          \end{bmatrix} \mapsto \begin{bmatrix}
+            x+y \\
+            5xy
+          \end{bmatrix}
+          \hspace{2cm}
+          \psi: \Reals^2 \to \Reals^3;
+          \begin{bmatrix}
+            x \\
+            y
+          \end{bmatrix} \mapsto \begin{bmatrix}
+            x \\
+            y \\
+            x+y
+          \end{bmatrix}
+        $$
+
+  \item Határozza meg a $P(5; -4; -1)$ pont koordinátáit az $\rvec a_1(2; 1;0)$,
+        $\rvec a_2(0; 2; 1)$ és $\rvec a_3(1; 0; 2)$ vektorok által
+        meghatározott bázisban!
+
+  \item Írja fel az $\{ \rvec i, \rvec j, \rvec k \}$ és a $\{ \rvec z_1,
+          \rvec z_2, \rvec z_3\}$ ortonormált bázisok közti báziscsere mátrixát!
+
+  \item A harmadik feladatban meghatározott báziscsere mátrixát felhasználva
+        oldja meg a második feladatot!
+
+  \item Írja fel a 2D Descartes koordinátarendszer $\alpha$ fokos elforgatásával
+        nyert új koordinátarendszerbe mutató báziscsere mátrixát!
+
+  \item Adjuk meg annak a lineáris leképezésnek a mátrixát, amely az alábbi
+        vektorba viszi át a bázisodat:
+        $$
+          \rvec i \mapsto \begin{bmatrix}
+            2 \\ 1 \\ 3
+          \end{bmatrix}
+          \text, \quad
+          \rvec j \mapsto \begin{bmatrix}
+            5 \\ 5 \\ 5
+          \end{bmatrix}
+          \text, \quad
+          \rvec k \mapsto \begin{bmatrix}
+            0 \\ 0 \\ -1
+          \end{bmatrix}
+          \text.
+        $$
+        Mi lesz a $P(1; 1; 1)$ pont képe?
+
+  \item Adja meg az első feladatban szereplő leképezések mátrixait!
+
+  \item Határozza meg az origón áthaladó $\rvec u (a,b,c)$ normálisú
+        $(a^2+b^2+c^2 = 1)$ síkra vonatkozó tükrözés mátrixát!
+
+  \item Adott egy lineáris leképezés a szokásos $\{ \rvec i, \rvec j \}$
+        bázisban. Írja fel a leképezés mátrixát az $\{ \rvec f_1; \rvec f_2 \}$
+        bázisban, ha $\rvec f_1(2; 1)$ és $\rvec f_2(1; 1)$.
+
+  \item Adott két lineáris leképezés mátrixa $\rmat A$ és $\rmat B$.
+        Mit ad eredményül\dots
+        \begin{multicols}{4}
+          \begin{enumerate}
+            \item $(\rmat A + \rmat B) \rvec r$,
+            \item $\rmat A \rmat B \rvec r$,
+            \item $\rmat A^2 \rvec r$,
+            \item $\rmat A^{-1} \rvec r$?
+          \end{enumerate}
+        \end{multicols}
+
+  \item Egy $\varphi$ leképezés mátrixa $\rmat A$. Döntsük el, hogy:\\[-2mm]
+        \begin{minipage}[b]{.25\textwidth}
+          $$
+            \rmat A = \begin{bmatrix}
+              1  & 2  & 3  \\
+              -1 & 0  & -2 \\
+              3  & -1 & 4  \\
+            \end{bmatrix}
+          $$
+        \end{minipage}\hfill
+        \begin{minipage}[c]{.35\textwidth}
+          \begin{enumerate}
+            \item $P(2,0,1) \in \ker \varphi$,
+            \item mi $Q'(1,4,0)$ ősképe,
+          \end{enumerate}
+        \end{minipage}
+        \begin{minipage}[c]{.3\textwidth}
+          \begin{enumerate}
+            \setcounter{enumii}{2}
+            \item $\dim \varphi = ?$
+            \item $\operatorname{def} \varphi = ?$
+          \end{enumerate}
+        \end{minipage}
+
+  \item Mennyi a leképezés defektusa\dots
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $x$ tengelyre való vetítés esetén,
+            \item $yz$ síkra való vetítés esetén?
+          \end{enumerate}
+        \end{multicols}
+
+  \item Írja fel annak a leképezésnek a mátrixát amely $z$ körül $\alpha$
+        szöggel forgat, majd tükröz az $xy$ síkra, végül $x$ irányba $2$-szeres,
+        $z$ irányba $3$-szoros nagyítást végez!
+
+  \item Írja fel azt a leképezést, amely az $y=x$ és $z=0$ egyenletrendszerű
+        egyenesre tükröz!
+\end{enumerate}
+
+
+
+\end{document}

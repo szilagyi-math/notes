@@ -1,0 +1,273 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{arydshln}
+
+\area{Lineáris Algebra}
+\title{Lineáris leképzések II}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{5}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+\begin{definition}[Ortogonalitás]
+  Egy mátrix ortogonális, ha
+  \[
+    \textbf{Q}^{-1} = \textbf{Q}^T.
+  \]
+  Az ortogonalitás azt jelenti, hogy ha $<\rvec v, \rvec w>=0$, akkor $<\textbf{A}\rvec v, \textbf{A}\rvec{w}> =0$, azaz két merőleges vektor a transzforméció után is merőleges marad. Bázistranszformáció esetén ha 2 ortonormált bázisunk van, akkor a bázistrafó mátrixa ortogonális.
+\end{definition}
+\begin{blueBox}
+  A bázis orientációja változhat, ha a mátrix determinánsa negatív.\\
+  \textbf{Példa:} $\alpha$ szöggel forgatás mátrixa $\begin{bmatrix}
+      \cos \alpha & -\sin \alpha \\
+      \sin \alpha & \cos \alpha
+    \end{bmatrix}$, ami ortogonális, mivel $\operatorname{det}\textbf{A}$ = $\cos^2 \alpha + \sin^2 \alpha = 1$.
+\end{blueBox}
+
+\begin{definition}[Sajátérték, sajátvektor]
+  Tegyük fel, hogy adott egy $\textbf{A}_{n \times n}$ és egy nem zérus $n$ hosszúságú vektor $\rvec{v}$. Ha az $\textbf{A}$-szal történő szorzás $\rvec{v}$-vel (jelölve: $\textbf{A}\rvec{v}$) egyszerűen $\rvec{v}$-t egy $\lambda$ skalár faktorral méretezi át, ahol $\lambda$ egy skalár, akkor $\rvec{v}$-t $\textbf{A}$ sajátvektorának nevezzük, és $\lambda$ az ehhez tartozó sajátérték. Ez a kapcsolat az alábbi módon fejezhető ki:
+  \[
+    \textbf{A}\rvec{v} = \lambda \rvec{v}.
+  \]
+\end{definition}
+
+\begin{note}
+  Szimmetrikus mátrix sajátvektorai ortogonálisak és a sajátértékek mindig valósak.
+\end{note}
+
+\begin{note}
+  Antiszimmetrikus mátrix sajátvektorai páronként konjugáltak és a sajátértékek mindig tisztán képzetesek.
+\end{note}
+
+\begin{definition}[Sajátaltér]
+  Legyen \( \textbf{A} \) egy \( n \times n \)-es mátrix, és legyen \( \lambda \) az \( \textbf{A} \) egy sajátértéke. A \( \lambda \)-hoz tartozó sajátvektortér az alábbi halmaz:
+  \[
+    E_\lambda = \{ \rvec{v} \mid \textbf{A}\rvec{v} = \lambda\rvec{v} \}.
+  \]
+  Ez az \( \mathbb{R}^n \) egy altere.
+\end{definition}
+
+Itt meg kellene az algebrai es a geometriai multiplicitast is emliteni, de nem vagyok benne mi a helyes megfogalmazás, zavaros a kézzel írt jegyzet.
+
+\begin{definition}[Karakterisztikus polinom]
+  Legyen \( \textbf{A} \) egy négyzetes mátrix. Az alábbi kifejezést:
+  \[
+    p(\lambda) = \det(\textbf{A} - \lambda \mathbb{I})
+  \]
+  \( \textbf{A} \) karakterisztikus polinomjának nevezzük.
+\end{definition}
+
+\begin{blueBox}
+  Legyen \( \textbf{A} \) egy \( n \times n \)-es mátrix. Az \( \textbf{A} \)-hoz tartozó sajátértékek és sajátvektorok meghatározásának lépései a következők:
+  \begin{enumerate}
+    \item Számítsd ki a karakterisztikus polinomot: \( \det(\textbf{A} - \lambda \mathbb{I}) \).
+    \item A sajátértékek a karakterisztikus polinom gyökei.
+    \item Minden sajátértékre (\( \lambda \)) határozz meg egy bázist a sajátvektorokhoz az alábbi homogén egyenletrendszer megoldásával:
+          \[
+            (\textbf{A} - \lambda \mathbb{I})\rvec{v} = 0.
+          \]
+  \end{enumerate}
+\end{blueBox}
+
+\begin{note}
+  Legyen \( \textbf{A} \) egy felső vagy alsó háromszögmátrix. Ekkor az \( \textbf{A} \)-hoz tartozó sajátértékek a főátló elemei.
+\end{note}
+
+\begin{definition}[Diagonalizálható mátrix]
+  Legyen \( \textbf{A} \) egy \( n \times n \)-es mátrix. Az \( \textbf{A} \)-t diagonalizálhatónak nevezzük, ha létezik egy invertálható \( \textbf{P} \) mátrix és egy \( \textbf{D} \) diagonális mátrix, amelyekre teljesül, hogy
+  \[
+    \textbf{P}^{-1}\textbf{AP} = \textbf{D}.
+  \]
+\end{definition}
+
+\begin{theorem}[Diagonizálhatóság és sajátvektorok]
+  Egy \( n \times n \)-es mátrix \( A \) akkor és csak akkor diagonalizálható, ha \( A \)-nak \( n \) lineárisan független sajátvektora van.
+
+  Továbbá, ebben az esetben legyen \( P \) az az invertálható mátrix, amelynek oszlopai \( A \) \( n \) lineárisan független sajátvektorai, és legyen \( D \) az a diagonális mátrix, amelynek főátlójában a megfelelő sajátértékek szerepelnek. Ekkor
+  \[
+    P^{-1}AP = D.
+  \]
+\end{theorem}
+
+\begin{definition}[Mátrixfüggvények]
+  Ide kell egy definíció, mert nincs rendes a füzetben!
+\end{definition}
+
+\begin{blueBox}
+  \textbf{Kvadratikus formák}\\
+  Csupa másodfokú tagot tartalmazó polinomokat átírhatóak mátrixos alakba.
+  \[
+    ax^2 + 2bxy + cy^2 = \begin{bmatrix}
+      x & y
+    \end{bmatrix} \begin{bmatrix}
+      a & b \\
+      b & c
+    \end{bmatrix} \begin{bmatrix}
+      x \\
+      y
+    \end{bmatrix}
+  \]
+  \textbf{Másodrendű görbe}
+  \[
+    ax^2 + 2bxy + cy^2 + dx + ey + f = 0
+  \]
+  \[
+    \begin{bmatrix}
+      x & y
+    \end{bmatrix} \begin{bmatrix}
+      a & b \\
+      b & c
+    \end{bmatrix} \begin{bmatrix}
+      x \\
+      y
+    \end{bmatrix} + \begin{bmatrix}
+      d & e
+    \end{bmatrix} \begin{bmatrix}
+      x \\
+      y
+    \end{bmatrix} + f = 0
+  \]
+
+  Másodrendű görbék lehetnek ellipszisek, hiperbólák és parabolák.
+
+  IDE KÉNE EGY KIS rendezett leírás, arra, hogy mikor is lehet kvadratikus alakot áttranszformálni sajátértékek koordinata rendszerébe, hogyan alakulnak az egyenletek es mikor is lesz semi deficit deficit és indeficit.
+\end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+\begin{enumerate}
+  \item Írjuk fel az $\frac{-1}{2}x + \frac{\sqrt{3}}{2}y = 0$ és $z=0$ egyenes körül pozizív $y$ irányból $90^\circ$-os forgatás mátrixát a szokásos, illetve a $\rvec{v}_1 = (1,0,0)$, $\rvec{v}_2 =(1,1,0)$ és $\rvec{v}_3 = (1,1,1)$ bázisokban!
+  \item Adjuk meg a $\beta$ és $\alpha$ paramétereket, hogy az alábbi leképezés mátrixa orientciótartó és skalárisszorzattartó legyen (ortogonális)!
+  \item Számolja ki az alábbi mátrix sajátvektorait és sajátértékeit!
+        \begin{multicols}{3}
+          \begin{enumerate}
+            \item $\begin{bmatrix}
+                      4 & 3 \\
+                      1 & 2
+                    \end{bmatrix}$
+            \item $\begin{bmatrix}
+                      -2 & -8 & -12 \\
+                      1  & 4  & 4   \\
+                      0  & 0  & 1
+                    \end{bmatrix}$
+            \item $\begin{bmatrix}
+                      0  & 1 \\
+                      -1 & 0
+                    \end{bmatrix}$
+            \item $\begin{bmatrix}
+                      1 & 0 & 0 & 0 \\
+                      0 & 1 & 0 & 0 \\
+                      0 & 0 & 2 & 1 \\
+                      0 & 0 & 0 & 2
+                    \end{bmatrix}$
+
+            \item $ \begin{bmatrix}
+                      4 & 1 & 0 \\
+                      0 & 4 & 1 \\
+                      0 & 0 & 4
+                    \end{bmatrix}$
+
+            \item $\begin{bmatrix}
+                      2 & 2 & 1 \\
+                      1 & 3 & 1 \\
+                      1 & 2 & 2
+                    \end{bmatrix}$
+          \end{enumerate}
+        \end{multicols}
+  \item A leképezés mátrixával felírása nélkül adjuk meg, hogy a lehető legtöbb sajátvektor/sajátértéket!
+        \begin{enumerate}
+          \item $z$ körüli $45^{\circ}$-os forgatás
+          \item $xy$-ra való vetítés
+          \item $xy$-ra való tükrözés
+        \end{enumerate}
+  \item Diagonizálható-e az alábbi mátrixok feladatbeli mátrix?
+        \begin{multicols}{3}
+          \begin{enumerate}
+            \item $\begin{bmatrix}
+                      4 & 3 \\
+                      1 & 2
+                    \end{bmatrix}$
+            \item $\begin{bmatrix}
+                      -2 & -8 & -12 \\
+                      1  & 4  & 4   \\
+                      0  & 0  & 1
+                    \end{bmatrix}$
+            \item $\begin{bmatrix}
+                      0  & 1 \\
+                      -1 & 0
+                    \end{bmatrix}$
+            \item $\begin{bmatrix}
+                      1 & 0 & 0 & 0 \\
+                      0 & 1 & 0 & 0 \\
+                      0 & 0 & 2 & 1 \\
+                      0 & 0 & 0 & 2
+                    \end{bmatrix}$
+
+            \item $ \begin{bmatrix}
+                      4 & 1 & 0 \\
+                      0 & 4 & 1 \\
+                      0 & 0 & 4
+                    \end{bmatrix}$
+
+            \item $\begin{bmatrix}
+                      2 & 2 & 1 \\
+                      1 & 3 & 1 \\
+                      1 & 2 & 2
+                    \end{bmatrix}$
+          \end{enumerate}
+        \end{multicols}
+
+  \item A sajátértékek kiszámítása nélkül mondjuk meg a lehető legtöbb sajátérték-sajátvektor párt!
+        \[
+          \text{a)}
+          \begin{bmatrix}
+            1 & 0 & 0 \\
+            2 & 4 & 0 \\
+            3 & 0 & 5
+          \end{bmatrix} \quad
+          \text{b)}
+          \begin{bmatrix}
+            5 & 0 & 0 \\
+            0 & 7 & 0 \\
+            0 & 0 & 9
+          \end{bmatrix}
+        \]
+
+  \item Határozzuk meg az alábbi mátrix tizedik hatványát!
+        \[
+          \begin{bmatrix}
+            -2 & -8 & -12 \\
+            1  & 4  & 4   \\
+            0  & 0  & 1
+          \end{bmatrix}.
+        \]
+
+  \item Határozzuk meg az \( e^{10^{\textbf{A}}} \) függvényt!
+
+  \item Milyen alakzatot ír le az alábbi másodrendű görbe? Írjuk fel a kanonikus egyenletét!
+        \[
+          -3x^2 + 23y^2 + 26\sqrt{3}xy = 144.
+        \]
+
+  \item Milyen alakzatot ír le az alábbi másodrendű görbe? Írjuk fel a kanonikus egyenletét!
+        \[
+          57x^2 + 43y^2 + 14\sqrt{3}xy = 576.
+        \]
+
+  \item Milyen alakzatot ír le az alábbi másodrendű görbe? Írjuk fel a kanonikus egyenletét!
+        \[
+          2x^2 - 5 = 0.
+        \]
+\end{enumerate}
+
+
+
+
+\end{document}
