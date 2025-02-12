@@ -42,7 +42,10 @@ practice_material:
       description: Lineáris algebra – Lineáris egyenletrendszerek
       video_link: https://youtu.be/qpWTmZljiMA
       week: 3
-    - description: Lineáris algebra – Lineáris leképezések I
+    - source: 04.tex
+      target: G2-gyak-04
+      display_name: G2 4. gyakorlat
+      description: Lineáris algebra – Lineáris leképezések I
       video_link: https://youtu.be/qpWTmZljiMA
       video_mistakes:
         - '46:50 - Elírás: természetesen negatív alfa esetén is 1 a determináns.

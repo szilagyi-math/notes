@@ -137,14 +137,44 @@
   $$
 \end{definition}
 
-\clearpage
+\begin{definition}[Ortogonális transzformáció]
+  Az $n$ dimenziós  euklideszi tér $\mathcal A: V \rightarrow V$ lineáris
+  transzformációját ortogonálisnak mondjuk, ha $\langle \mathcal A \rvec x;
+    \mathcal A \rvec y \rangle = \langle \rvec x; \rvec y \rangle$, minden $\rvec
+    x; \rvec y \in V$ esetén.
+\end{definition}
+
+\begin{note}
+  Egy ortogonális transzformáció $\rvec Q$ mátrixának inverze megegyezik a
+  transzponáltjával.
+
+  Amennyiben $\det \rvec Q = 1$, akkor a transzformáció orientciótartó.
+
+  Amennyiben $\det \rvec Q = -1$, akkor a transzformáció orientációváltó.
+\end{note}
+
+\begin{example}
+  A két dimenziós térben való forgatás orientációtartó, hiszen
+  $$
+    \det \rmat Q
+    = \begin{vmatrix}
+      \cos \alpha & -\sin \alpha \\
+      \sin \alpha & \cos \alpha
+    \end{vmatrix}
+    = \cos^2 \alpha + \sin^2 \alpha
+    = 1
+    \text.
+  $$
+\end{example}
+
 \begin{blueBox}
   \sftitle{Alap geometriai leképezések:}
 
   \begin{itemize}
     \item \textbf{Tükrözés} valamely tengelyre:
-          \vspace{-10mm}
+          \vspace{-11mm}
           \begin{multicols}{3}
+            \centering
             $$
               \rmat T_x = \begin{bmatrix}
                 1 & 0  & 0  \\
@@ -175,10 +205,12 @@
             $$
             $z$-tengelyre tükrözés
           \end{multicols}
+          \vspace{-3mm}
 
     \item \textbf{Vetítés} valamely tengelyre:
-          \vspace{-10mm}
+          \vspace{-11mm}
           \begin{multicols}{3}
+            \centering
             $$
               \rmat T_x = \begin{bmatrix}
                 1 & 0 & 0 \\
@@ -209,10 +241,12 @@
             $$
             $z$-tengelyre tükrözés
           \end{multicols}
+          \vspace{-3mm}
 
-    \item \textbf{ükrözés} valamely síkra:
-          \vspace{-10mm}
+    \item \textbf{Tükrözés} valamely síkra:
+          \vspace{-11mm}
           \begin{multicols}{3}
+            \centering
             $$
               \rmat T_{xy} = \begin{bmatrix}
                 1 & 0 & 0  \\
@@ -243,10 +277,12 @@
             $$
             $xz$ síkra tükrözés
           \end{multicols}
+          \vspace{-3mm}
 
     \item \textbf{Vetítés} valamely síkra:
-          \vspace{-10mm}
+          \vspace{-11mm}
           \begin{multicols}{3}
+            \centering
             $$
               \rmat T_{xy} = \begin{bmatrix}
                 1 & 0 & 0 \\
@@ -277,19 +313,56 @@
             $$
             $xz$ síkra vetítés
           \end{multicols}
+          \vspace{-3mm}
+
+    \item $\lambda$-szoros \textbf{nyújtás} valamely irányban:
+          \vspace{-11mm}
+          \begin{multicols}{3}
+            \centering
+            $$
+              \rmat T_{x} = \begin{bmatrix}
+                \lambda & 0 & 0 \\
+                0       & 1 & 0 \\
+                0       & 0 & 1
+              \end{bmatrix}
+              \phantom{= \rmat T_{x}}
+            $$
+            $x$ irányba
+
+            $$
+              \rmat T_{y} = \begin{bmatrix}
+                1 & 0       & 0 \\
+                0 & \lambda & 0 \\
+                0 & 0       & 1
+              \end{bmatrix}
+              \phantom{= \rmat T_{y}}
+            $$
+            $y$ irányba
+
+            $$
+              \rmat T_{z} = \begin{bmatrix}
+                1 & 0 & 0       \\
+                0 & 1 & 0       \\
+                0 & 0 & \lambda
+              \end{bmatrix}
+              \phantom{= \rmat T_{z}}
+            $$
+            $z$ irányba
+          \end{multicols}
+          \vspace{-3mm}
 
     \item \textbf{Forgatás} $+\alpha$ szöggel:
           \begin{alignat*}{9}
-            \rmat R_{x}
+            \rmat R_{x}(\alpha)
              & = \begin{bmatrix}
                    1 & 0           & 0            \\
                    0 & \cos \alpha & -\sin \alpha \\
                    0 & \sin \alpha & \cos \alpha
                  \end{bmatrix}
              & \quad \sim \quad
-             & \text{$x$ tengely körüli forgatás} \hspace{3.5cm}
+             & \text{$x$ tengely körüli forgatás} \hspace{3.25cm}
             \\
-            \rmat R_{y}
+            \rmat R_{y}(\alpha)
              & = \begin{bmatrix}
                    \cos \alpha  & 0 & \sin \alpha \\
                    0            & 1 & 0           \\
@@ -298,7 +371,7 @@
              & \quad \sim \quad
              & \text{$y$ tengely körüli forgatás}
             \\
-            \rmat R_{z}
+            \rmat R_{z}(\alpha)
              & = \begin{bmatrix}
                    \cos \alpha & -\sin \alpha & 0 \\
                    \sin \alpha & \cos \alpha  & 0 \\
@@ -310,17 +383,13 @@
   \end{itemize}
 \end{blueBox}
 
-\begin{note}
-  Az előzőekben felsorolt leképezések olyan elemi transzformációk, amelyek
-  segítségével bonyolultabb geometriai leképezések is megadhatóak.
-\end{note}
-
 \clearpage
 \subsection{Feladatok}
 \begin{enumerate}
   \item Állapítsa meg, hogy az alábbi leképezések lineárisak-e?
-        $$\displaystyle
+        $$
           \varphi: \Reals^2 \to \Reals^2;
+          \quad
           \begin{bmatrix}
             x \\
             y
@@ -330,6 +399,7 @@
           \end{bmatrix}
           \hspace{2cm}
           \psi: \Reals^2 \to \Reals^3;
+          \quad
           \begin{bmatrix}
             x \\
             y
@@ -429,6 +499,29 @@
 
   \item Írja fel azt a leképezést, amely az $y=x$ és $z=0$ egyenletrendszerű
         egyenesre tükröz!
+
+  \item Írja fel az $e$ egyenes körül pozizív $y$ irányból $90^\circ$-os
+        forgatás mátrixát a szokásos, illetve a $\rvec v_1(1; 0; 0)$,
+        $\rvec v_2(1; 1; 0)$ és $\rvec v_3 = (1; 1; 1)$ bázisokban, ha az
+        egyenes egyenletrendszere:
+        $$
+          e:
+          \frac{-1}{2} x + \frac{\sqrt{3}}{2} y = 0
+          \quad \text{és} \quad
+          z = 0
+          \text.
+        $$
+
+  \item Adja meg a $\alpha$ és $\beta$ paramétereket, hogy a $\varphi$ leképezés
+        $\rmat A$ mátrixa orientciótartó és skalárisszorzattartó legyen
+        (ortogonális)!
+        $$
+          \rmat A = \begin{bmatrix}
+            \alpha & \beta & 0 \\
+            1      & 0     & 0 \\
+            0      & 0     & 1
+          \end{bmatrix}
+        $$
 \end{enumerate}
 
 
