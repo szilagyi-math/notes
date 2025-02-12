@@ -24,9 +24,9 @@ practice_material:
       description: Lineáris algebra – Mátrixok I
       video_link: https://youtu.be/vXfezEYGyOY
       week: 1
-    - #source: 02.tex
-      #target: G2-gyak-02
-      #display_name: G2 2. gyakorlat
+    - source: 02.tex
+      target: G2-gyak-02
+      display_name: G2 2. gyakorlat
       description: Lineáris algebra – Mátrixok II
       video_link: https://youtu.be/5WS2ScaDUOU
       video_mistakes:
