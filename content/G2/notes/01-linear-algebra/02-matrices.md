@@ -569,7 +569,7 @@ description: Mátrixok
 </Statement>
 
 <BlueBox>
-  Egy $3 \times 3$-as mátrix adjugáltja:
+  Egy $3 \times 3$-as mátrix adjungáltja:
 
   $$
     \rmat A = \begin{bmatrix}
