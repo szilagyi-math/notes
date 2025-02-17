@@ -480,8 +480,8 @@
       ;
 
       \node at (0,-2.25) {$\alpha_{11} = + \begin{vmatrix}
-            a_{22} & a_{23} \\
-            a_{32} & a_{33}
+            a_{22} & a_{32} \\
+            a_{23} & a_{33}
           \end{vmatrix}$};
 
       \begin{scope}[xshift=5cm]
@@ -576,18 +576,18 @@
   $$
     \adj \rmat A = \begin{bmatrix}
       + \begin{vmatrix}
-          4 & 5 \\
-          6 & 8
+          4 & 6 \\
+          5 & 8
         \end{vmatrix}
        &
       - \begin{vmatrix}
-          2 & 3 \\
-          6 & 8
+          2 & 6 \\
+          3 & 8
         \end{vmatrix}
        &
       + \begin{vmatrix}
-          2 & 3 \\
-          4 & 5
+          2 & 4 \\
+          3 & 5
         \end{vmatrix}
       \\
       - \begin{vmatrix}
@@ -596,8 +596,8 @@
         \end{vmatrix}
        &
       + \begin{vmatrix}
-          1 & 3 \\
-          5 & 8
+          1 & 5 \\
+          3 & 8
         \end{vmatrix}
        &
       - \begin{vmatrix}
@@ -606,18 +606,18 @@
         \end{vmatrix}
       \\
       + \begin{vmatrix}
-          3 & 4 \\
-          5 & 6
+          3 & 5 \\
+          4 & 6
         \end{vmatrix}
        &
       - \begin{vmatrix}
-          1 & 2 \\
-          5 & 6
+          1 & 5 \\
+          2 & 6
         \end{vmatrix}
        &
       + \begin{vmatrix}
-          1 & 2 \\
-          3 & 4
+          1 & 3 \\
+          2 & 4
         \end{vmatrix}
     \end{bmatrix}
     =
@@ -709,8 +709,8 @@
 \subsection{Feladatok}
 
 \begin{enumerate}
-  \item Egy síkon vannak-e az $A(2,3,-4)$, $B(3,-1,-6)$, $C(-1,5,2)$ és
-        $D(2,1,-4)$ pontok?
+  \item Egy síkon vannak-e az $A(2; 3; -4)$, $B(3; -1; -6)$, $C(-1; 5; 2)$ és
+        $D(2; 1; -4)$ pontok?
 
   \item Számolja ki azalábbi mátrixok determinánsát Sarrus-szabállyal!
         $$
@@ -858,7 +858,7 @@
             2 & -3
           \end{bmatrix}
           \qquad \Rightarrow \qquad
-          \rmat A \rvec x + \rmat C = 2\rmat B \rmat C \rvec x
+          \rmat A \rmat X + \rmat C = 2\rmat B \rmat C \rmat X
         $$
 
   \item Számítsa ki az alábbi, komplex elemű mátrix rangját!
