@@ -46,7 +46,7 @@ practice_material:
       target: G2-gyak-04
       display_name: G2 4. gyakorlat
       description: Lineáris algebra – Lineáris leképezések I
-      video_link: https://youtu.be/qpWTmZljiMA
+      video_link: https://youtu.be/kD8Rpx6ljAU
       video_mistakes:
         - '46:50 - Elírás: természetesen negatív alfa esetén is 1 a determináns.
           (Abban az esetben lenne -1 a determináns (alfa előjelétől akkor is
@@ -54,7 +54,7 @@ practice_material:
           felvettel.)'
       week: 4
     - description: Lineáris algebra – Lineáris leképezések II
-      video_link: https://youtu.be/qpWTmZljiMA
+      video_link: https://youtu.be/ZjV1wFAH1Cw
       video_mistakes:
         - 14:40 - nél az a megjegyzés nem igaz, hogy (inv(A))^T=adj(A)!
       week: 5
@@ -160,7 +160,7 @@ lectures:
 hide_practicals: true
 practicals:
   - group: HE1
-    room: R512
+    room: R513
     day: 4 # Thursday
     start: [14, 15]
     end: [16, 0]
@@ -177,7 +177,7 @@ practicals:
       - name: Beharóczki István
       - name: Sovák Adrienn
   - group: HM1
-    room: R510
+    room: H607
     day: 1 # Monday
     start: [16, 15]
     end: [18, 0]
