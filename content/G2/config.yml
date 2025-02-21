@@ -20,6 +20,7 @@ practice_material:
   files:
     - source: 01.tex
       target: G2-gyak-01
+      solution: G2-gyak-01-megoldas.pdf
       display_name: G2 1. gyakorlat
       description: Lineáris algebra – Mátrixok I
       video_link: https://youtu.be/vXfezEYGyOY
