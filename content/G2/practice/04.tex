@@ -117,55 +117,56 @@
   $\{ \hat{\rvec b}_1; \hat{\rvec b}_2; \ldots; \hat{\rvec b}_n \}$ bázisok
   $V$-ben. Ekkor a $\{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \} \rightarrow
     \{ \hat{\rvec b}_1; \hat{\rvec b}_2; \ldots; \hat{\rvec b}_n \}$
-  bázistranszformáció $\rmat S$ mátrixa a következőképpen írható fel:
+  bázistranszformáció $\rmat T$ mátrixa a következőképpen írható fel:
   $$
     \left.\begin{array}{rl}
-      \hat{\rvec b}_1 & = s_{11} \rvec b_1 + s_{21} \rvec b_2 + \ldots + s_{n1} \rvec b_n \\
-      \hat{\rvec b}_2 & = s_{12} \rvec b_1 + s_{22} \rvec b_2 + \ldots + s_{n2} \rvec b_n \\
+      \hat{\rvec b}_1 & = t_{11} \rvec b_1 + t_{21} \rvec b_2 + \ldots + t_{n1} \rvec b_n \\
+      \hat{\rvec b}_2 & = t_{12} \rvec b_1 + t_{22} \rvec b_2 + \ldots + t_{n2} \rvec b_n \\
                       & \vdots                                                            \\
-      \hat{\rvec b}_j & = s_{1j} \rvec b_1 + s_{2j} \rvec b_2 + \ldots + s_{nj} \rvec b_n \\
+      \hat{\rvec b}_j & = t_{1j} \rvec b_1 + t_{2j} \rvec b_2 + \ldots + t_{nj} \rvec b_n \\
                       & \vdots                                                            \\
-      \hat{\rvec b}_n & = s_{1n} \rvec b_1 + s_{2n} \rvec b_2 + \ldots + s_{nn} \rvec b_n
+      \hat{\rvec b}_n & = t_{1n} \rvec b_1 + t_{2n} \rvec b_2 + \ldots + t_{nn} \rvec b_n
     \end{array}\right\}
     \quad\Rightarrow\quad
-    \rmat S = \begin{bmatrix}
-      s_{11} & s_{12} & \cdots & s_{1n} \\
-      s_{21} & s_{22} & \cdots & s_{2n} \\
+    \rmat T = \begin{bmatrix}
+      t_{11} & t_{12} & \cdots & t_{1n} \\
+      t_{21} & t_{22} & \cdots & t_{2n} \\
       \vdots & \vdots & \ddots & \vdots \\
-      s_{n1} & s_{n2} & \cdots & s_{nn}
+      t_{n1} & t_{n2} & \cdots & t_{nn}
     \end{bmatrix}
   $$
 \end{definition}
 
-\begin{definition}[Ortogonális transzformáció]
-  Az $n$ dimenziós  euklideszi tér $\mathcal A: V \rightarrow V$ lineáris
-  transzformációját ortogonálisnak mondjuk, ha $\langle \mathcal A \rvec x;
-    \mathcal A \rvec y \rangle = \langle \rvec x; \rvec y \rangle$, minden $\rvec
-    x; \rvec y \in V$ esetén.
-\end{definition}
-
 \begin{note}
-  Egy ortogonális transzformáció $\rvec Q$ mátrixának inverze megegyezik a
-  transzponáltjával.
-
-  Amennyiben $\det \rvec Q = 1$, akkor a transzformáció orientciótartó.
-
-  Amennyiben $\det \rvec Q = -1$, akkor a transzformáció orientációváltó.
-\end{note}
-
-\begin{example}
-  A két dimenziós térben való forgatás orientációtartó, hiszen
+  A $\rmat T$ bázistranszformációs mátrix segítségével a régi és új bázisban
+  felírt vektorok kordinátái közötti kapcsolat mátrixosan:
   $$
-    \det \rmat Q
-    = \begin{vmatrix}
-      \cos \alpha & -\sin \alpha \\
-      \sin \alpha & \cos \alpha
-    \end{vmatrix}
-    = \cos^2 \alpha + \sin^2 \alpha
-    = 1
+    \rvec x = \rmat T \rvec x'
+    \quad\text{és}\quad
+    \rvec x' = \rmat T^{-1} \rvec x
     \text.
   $$
-\end{example}
+\end{note}
+
+\begin{theorem}[Lineáris leképezés mátrixa új bázisban]
+  Legyen $\varphi: V \rightarrow V$ lineáris leképezés,
+  $\{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \}$ és $\{ \hat{\rvec b}_1;
+    \hat{\rvec b}_2; \ldots; \hat{\rvec b}_n \}$ bázisok $V$-ben. A
+  $\varphi$ $\{ \rvec b_1; \rvec b_2; \ldots \rvec b_n \}$ bázisra vonatkozó
+  mátrixa $\rmat A$, a $\varphi$ $\{ \hat{\rvec b}_1; \hat{\rvec b}_2; \ldots;
+    \hat{\rvec b}_n \}$ bázisra vonatkozó mátrixa $\hat{\rmat A}$. Jelölje
+  $\rmat T$ a $\{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \}$ bázisról a
+  $\{ \hat{\rvec b}_1; \hat{\rvec b}_2; \ldots; \hat{\rvec b}_n \}$ bázisra
+  való áttérés mátrixát, ekkor
+  $$
+    \hat{\rmat A} = \rmat T^{-1} \rmat A \rmat T
+    \text.
+  $$
+\end{theorem}
+
+\begin{note}
+  A $\rmat A$ és $\hat{\rmat A}$ mátrix hasonló.
+\end{note}
 
 \begin{blueBox}
   \sftitle{Alap geometriai leképezések:}
@@ -219,7 +220,7 @@
               \end{bmatrix}
               \phantom{= \rmat T_x}
             $$
-            $x$-tengelyre tükrözés
+            $x$-tengelyre vetítés
 
             $$
               \rmat T_y = \begin{bmatrix}
@@ -229,7 +230,7 @@
               \end{bmatrix}
               \phantom{= \rmat T_y}
             $$
-            $y$-tengelyre tükrözés
+            $y$-tengelyre vetítés
 
             $$
               \rmat T_z = \begin{bmatrix}
@@ -239,7 +240,7 @@
               \end{bmatrix}
               \phantom{= \rmat T_z}
             $$
-            $z$-tengelyre tükrözés
+            $z$-tengelyre vetítés
           \end{multicols}
           \vspace{-3mm}
 
@@ -382,6 +383,45 @@
           \end{alignat*}
   \end{itemize}
 \end{blueBox}
+
+\begin{note}
+  Ha egymás után több transzformációt kell végrehajtani $\rmat A$,
+  $\rmat B$, $\rmat C$ sorrendben, akkor:
+  $$
+    \rvec x' = \rmat C \rmat B \rmat A \rvec x
+    \text.
+  $$
+\end{note}
+
+\begin{definition}[Ortogonális transzformáció]
+  Az $n$ dimenziós  euklideszi tér $\mathcal A: V \rightarrow V$ lineáris
+  transzformációját ortogonálisnak mondjuk, ha $\langle \mathcal A \rvec x;
+    \mathcal A \rvec y \rangle = \langle \rvec x; \rvec y \rangle$, minden $\rvec
+    x; \rvec y \in V$ esetén.
+\end{definition}
+
+\begin{note}
+  Egy ortogonális transzformáció $\rmat Q$ mátrixának inverze megegyezik a
+  transzponáltjával.
+
+  Amennyiben $\det \rmat Q = 1$, akkor a transzformáció orientációtartó.
+
+  Amennyiben $\det \rmat Q = -1$, akkor a transzformáció orientációváltó.
+\end{note}
+
+\begin{example}
+  A két dimenziós térben való forgatás orientációtartó, hiszen
+  $$
+    \det \rmat Q
+    = \begin{vmatrix}
+      \cos \alpha & -\sin \alpha \\
+      \sin \alpha & \cos \alpha
+    \end{vmatrix}
+    = \cos^2 \alpha + \sin^2 \alpha
+    = 1
+    \text.
+  $$
+\end{example}
 
 \clearpage
 \subsection{Feladatok}
