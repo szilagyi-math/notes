@@ -62,7 +62,10 @@ practice_material:
       video_mistakes:
         - 14:40 - nél az a megjegyzés nem igaz, hogy (inv(A))^T=adj(A)!
       week: 5
-    - description: Lineáris algebra – Lineáris leképezések III
+    - source: 06.tex
+      target: G2-gyak-06
+      display_name: G2 6. gyakorlat
+      description: Függvénysorozatok
       video_link: https://youtu.be/L5PvkUyLrKM
       video_mistakes:
         - '1:30 - F1-es feladat: nem lett eléggé kihangsúlyozva, hogy egy
@@ -76,7 +79,7 @@ practice_material:
         - '44:41 - x^n függvénysorozat a 0-1 intervallumon lett lerajzolva,
           hiszen 1^n=1 bármely n esetén, ezért metszik a görbék ott egymást.'
       week: 6
-    - description: Függvénysorozatok
+    - description: Függvény- és hatványsorok
       video_link: https://youtu.be/GdnWFPA0vf4
       video_mistakes:
         - '4:09-nél nyelvbotlás miatt hangzik el  numerikus sor a függvénysor
@@ -88,7 +91,10 @@ practice_material:
         - 'Az utolsó F12 feladattal kapcsolatban úgy döntöttünk, hogy végül
           kihagyjuk a gyakorlat anyagából.'
       week: 7
-    - description: Taylor-sorok
+    - source: 08.tex
+      target: G2-gyak-08
+      display_name: G2 8. gyakorlat
+      description: Taylor-sorok
       video_link: https://www.youtube.com/watch?v=5aigfYrjc4Q
       video_mistakes:
         - Az F14-es példában elhangzik, hogy a szokásos módon kiszámolt
@@ -102,7 +108,10 @@ practice_material:
         - '1:04:21 - F12: amikor az n-et nem 1-től, hanem nullától indítjuk,
           akkor az x^(2n+1)-en lesz, nem pedig a 2n-ediken.'
       week: 8
-    - description: Fourier-sorok
+    - source: 09.tex
+      target: G2-gyak-09
+      display_name: G2 9. gyakorlat
+      description: Fourier-sorok
       video_link: https://youtu.be/5kPqVB2qIYY
       video_mistakes:
         - '05:04: A táblán jól szerepel, de rosszul lett kimondva, nem

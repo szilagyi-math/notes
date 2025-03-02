@@ -1,10 +1,6 @@
 \documentclass[a4paper, 12pt]{scrartcl}
 
 \usepackage{math-practice}
-\usepackage{tikz}
-\usepackage{multicol}
-\usepackage{amsmath}
-\usepackage{arydshln}
 
 \area{Valós analízis}
 \title{Fourier-sorok}
@@ -16,103 +12,378 @@
 \begin{document}
 \maketitle
 \subsection{Elméleti Áttekintő}
+
+% \begin{definition}[Trigonometrikus polinom]
+%   Az alábbi alakú függvényt trigonometrikus polinopmnak nevezzük:
+%   $$
+%     t_n(x)
+%     = a_0
+%     + a_1 \cos x + b_1 \sin x
+%     + a_2 \cos 2x + b_2 \sin 2x
+%     + \ldots
+%     + a_n \cos nx + b_n \sin nx
+%     \text.
+%   $$
+% \end{definition}
+
+% \begin{definition}[Trigonometrikus sor]
+%   Az alábbi alakó összeget trigonometrikus sornak nevezzük:
+%   \begin{align*}
+%     t(x)
+%      & = a_0
+%     + a_1 \cos x + b_1 \sin x
+%     + \ldots
+%     + a_n \cos nx + b_n \sin nx
+%     + \ldots
+%     =
+%     \\
+%      & = a_0
+%     + \sum_{k=1}^{\infty} a_k \cos kx + b_k \sin kx
+%   \end{align*}
+% \end{definition}
+
+\begin{blueBox}
+  \sftitle{A $2\pi$ szerint periodikus függvények vektortere:}
+
+  A $2\pi$ szerint periodikus függvények az összeadásra és a skalárral való
+  szorzásra egy végtelen dimenziós vektorteret alkoznak.
+
+  A vektortér egy bázisa:
+  $$
+    \{\;
+    1;
+    \cos x; \sin x;
+    \cos 2x; \sin 2x;
+    \dots;
+    \cos kx; \sin kx;
+    \dots;
+    \;\}
+    \text.
+  $$
+  A vektortéren belül az alábbi módon definiáljuk a skaláris szorzatot:
+  $$
+    \langle f; g \rangle
+    = \int_{-\pi}^{\pi} f(x) g(x) \dd x
+    \text.
+  $$
+  Az előbb definiált bázis vektorai lineárisan függetlenek, vagyis egymással
+  vett skaláris szorzatuk mindig nulla: ($k \neq l$)
+  \begin{align*}
+    \langle 1; \sin kx \rangle
+     & = \int_{-\pi}^{\pi} \sin kx \dd x = 0
+    \text,
+    \\
+    \langle 1; \cos kx \rangle
+     & = \int_{-\pi}^{\pi} \cos kx \dd x = 0
+    \text,
+    \\
+    \langle \sin kx; \cos lx \rangle
+     & = \int_{-\pi}^{\pi} \sin kx \cos lx \dd x
+    = \frac{1}{2} \int_{-\pi}^{\pi} \sin[(k-l)x] + \sin[(k+l)x] \dd x
+    = 0
+    \text,
+    \\
+    \langle \sin kx; \sin lx \rangle
+     & = \int_{-\pi}^{\pi} \sin kx \sin lx \dd x
+    = \frac{1}{2} \int_{-\pi}^{\pi} \cos[(k-l)x] - \cos[(k+l)x] \dd x
+    = 0
+    \text,
+    \\
+    \langle \cos kx; \cos lx \rangle
+     & = \int_{-\pi}^{\pi} \cos kx \cos lx \dd x
+    = \frac{1}{2} \int_{-\pi}^{\pi} \cos[(k-l)x] + \cos[(k+l)x] \dd x
+    = 0
+    \text.
+  \end{align*}
+  A bázisvektorok hosszai a skaláris szorzat segítségével:
+  \begin{align*}
+    \langle 1; 1 \rangle
+     & = \int_{-\pi}^{\pi} 1 \cdot 1 \dd x = 2\pi
+    \text,
+    \\
+    \langle \sin kx; \sin kx \rangle
+     & = \int_{-\pi}^{\pi} \sin^2 kx \dd x =
+    \int_{-\pi}^{\pi} \frac{1 - \cos 2kx}{2} \dd x
+    = \pi
+    \text,
+    \\
+    \langle \cos kx; \cos kx \rangle
+     & = \int_{-\pi}^{\pi} \cos^2 kx \dd x =
+    \int_{-\pi}^{\pi} \frac{1 + \cos 2kx}{2} \dd x
+    = \pi
+    \text.
+  \end{align*}
+  % \begin{align*}
+  %   \langle 1; 1 \rangle
+  %    & = \int_{-\pi}^{\pi} 1 \cdot 1 \dd x = 2\pi
+  %   \text,
+  %   \\
+  %   \langle 1; \sin kx \rangle
+  %    & = \int_{-\pi}^{\pi} \sin kx \dd x = 0
+  %   \text,
+  %   \\
+  %   \langle 1; \cos kx \rangle
+  %    & = \int_{-\pi}^{\pi} \cos kx \dd x = 0
+  %   \text,
+  %   \\
+  %   \langle \sin kx; \sin lx \rangle
+  %    & = \int_{-\pi}^{\pi} \sin kx \cos lx \dd x
+  %   = 0
+  %   \text,
+  %   \\
+  %   \langle \sin kx; \sin lx \rangle
+  %    & = \int_{-\pi}^{\pi} \sin kx \sin lx \dd x =
+  %   \\
+  %    & = \frac{1}{2} \int_{-\pi}^{\pi} \cos[(k - l)x] - \cos[(k + l)x] \dd x
+  %   = \begin{cases}
+  %       0,   & \text{ha } k \neq l \\
+  %       \pi, & \text{ha } k = l
+  %     \end{cases}
+  %   \text,
+  %   \\
+  %   \langle \cos kx; \cos lx \rangle
+  %    & = \int_{-\pi}^{\pi} \cos kx \cos lx \dd x =
+  %   \\
+  %    & = \frac{1}{2} \int_{-\pi}^{\pi} \cos[(k - l)x] + \cos[(k + l)x] \dd x
+  %   = \begin{cases}
+  %       0,   & \text{ha } k \neq l \\
+  %       \pi, & \text{ha } k = l
+  %     \end{cases}
+  % \end{align*}
+\end{blueBox}
+
+\begin{blueBox}
+  Láthatjuk, hogy az előbb leírt bázis nem ortonormált, azonban ha az egyes
+  vektorokat normáljuk, akkor ortonormált bázist kapunk:
+  $$
+    \left\{\;
+    \frac{1}{\sqrt{2\pi}};
+    \frac{1}{\sqrt{\pi}} \cos x; \frac{1}{\sqrt{\pi}} \sin x;
+    \frac{1}{\sqrt{\pi}} \cos 2x; \frac{1}{\sqrt{\pi}} \sin 2x;
+    \dots;
+    \frac{1}{\sqrt{\pi}} \cos nx; \frac{1}{\sqrt{\pi}} \sin nx;
+    \dots
+    \;\right\}
+  $$
+  Ezek alapján tetszőleges $2\pi$ szerint periodikus függvény felírható az
+  alábbi alakban:
+  $$
+    f(x) = a_0 + \left.\sum_{k=1}^{\infty} \middle( a_k \cos kx + b_k \sin kx \right)
+    \text,
+  $$
+  ahol az együtthatók a következő módon számíthatóak:
+  \begin{alignat*}{9}
+    a_0
+     & = \frac{\langle f; 1 \rangle}{\langle 1; 1 \rangle}
+     & \;=\;
+     & \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) \dd x
+    \text,
+    \\
+    a_k
+     & = \frac{\langle f; \cos kx \rangle}{\langle \cos kx; \cos kx \rangle}
+     & \;=\;
+     & \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos kx \dd x
+    \text,
+    \\
+    b_k
+     & = \frac{\langle f; \sin kx \rangle}{\langle \sin kx; \sin kx \rangle}
+     & \;=\;
+     & \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin kx \dd x
+    \text.
+  \end{alignat*}
+\end{blueBox}
+
+\begin{note}
+  Ezzel analóg módon, ha tekintjük az $\Reals^3$ egy standard normális
+  bázisban $\{\rvec i; \rvec j; \rvec k\}$ felírt $\rvec v(v_1; v_2; v_3)$
+  vektorát és egy másik olyan $\{\rvec b_1; \rvec b_2; \rvec b_3\}$
+  bázist, amely bázisvektorai merőlegesek egymásra, akkor az $\rvec v$ vektor
+  koordinátái az új bázisban:
+  $$
+    v_i = \frac{
+      \langle \rvec v; \rvec b_i \rangle
+    }{
+      \langle \rvec b_i; \rvec b_i \rangle
+    }
+    \text.
+  $$
+\end{note}
+
 \begin{definition}[Fourier-sor]
   Legyen $f : \mathbb R \rightarrow \mathbb R$ egy $2p$ szerint periodikus
   függvény, amely a $[0;2p]$ intervallumon Riemann-integrálható ($f \in
     \mathcal R [0; 2p]$). Ekkor $f$ Fourier-során az alábbi trigonometrikus
   sort értjük:
-  \[
+  $$
     F(x)
     = a_0
     + \sum_{k = 1}^\infty a_k \cos \left( \frac{k \pi x}{p} \right)
     + \sum_{k = 1}^\infty b_k \sin \left( \frac{k \pi x}{p} \right)
-  \]
+    \text.
+  $$
+  % ahol az együtthatók a következők:
+  % \begin{align*}
+  %   a_0 & = \frac{1}{2p} \int_{0}^{2p} f(x) \dd x
+  %   \text,                                                                          \\
+  %   a_k & = \frac{1}{p} \int_{0}^{2p} f(x) \cos \left(\frac{k\pi x}{p}\right) \dd x
+  %   \text,                                                                           \qquad
+  %   b_k = \frac{1}{p} \int_{0}^{2p} f(x) \sin \left(\frac{k\pi x}{p}\right) \dd x
+  % \end{align*}
   Ha a függvény $2 \pi$ szerint periodikus:
-  \[
+  $$
     F(x)
     = a_0
     + \sum_{n = 1}^\infty a_n \cos (nx)
     + \sum_{n = 1}^\infty b_n \sin (nx)
-  \]
+  $$
+  % Az együtthatók pedig:
+  % $$
+  %   a_0 = \frac{1}{2p} \int_{0}^{2p} f(x) \dd x
+  %   \text, \quad
+  %   a_k  = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \cos(nx) \dd x
+  %   \text, \quad
+  %   b_k  = \frac{1}{\pi} \int_{0}^{2\pi} f(x) \sin(nx) \dd x
+  % $$
 \end{definition}
 
-\begin{blueBox}
-  \textbf{Fourier együtthatók számítása ($2\pi$ / $2p$ periodicitás esetén)}
-  \begin{alignat*}{9}
-      a_0 & =
-      \frac{1}{2\pi} \int_0^{2\pi} f(x) \, \mathrm d x
-          &   & a_0
-          &   & =
-      \frac{1}{2p} \int_0^{2p} f(x) \, \mathrm d x
-      \\
-      a_n & =
-      \frac{1}{\pi} \int_0^{2\pi} f(x) \cos(n x) \, \mathrm d x
-      \hspace{2.2cm}
-          &   & a_k
-          &   & =
-      \frac{1}{p} \int_0^{2p} f(x) \cos \left( \frac{k \pi x}{p} \right) \, \mathrm d x
-      \\
-      b_n & =
-      \frac{1}{\pi} \int_0^{2\pi} f(x) \sin(n x) \, \mathrm d x
-          &   & b_k
-          &   & =
-      \frac{1}{p} \int_0^{2p} f(x) \sin \left( \frac{k \pi x}{p} \right) \, \mathrm d x
-    \end{alignat*}
-\end{blueBox}
+\begin{statement}
+  Ha egy függvény páros, akkor a Fourier-sorában csak $a_0$ és koszinusz tagok
+  szerepelnek, vagyis $b_k \equiv 0$.
+\end{statement}
+
+\begin{statement}
+  Ha egy függvény páratlan, akkor a Fourier-sorában csak szinusz tagok
+  szerepelnek, vagyis $a_0 \equiv 0$ és $a_k \equiv 0$.
+\end{statement}
 
 \begin{blueBox}
-  \textbf{Hasznos trigonometrikus összefüggések}
+  \sftitle{Fourier együtthatók számítása:} ($2\pi$ / $2p$ periodicitás esetén)
+  \begin{alignat*}{9}
+    a_0 & =
+    \frac{1}{2\pi} \int_0^{2\pi} f(x) \dd x
+        &   & a_0
+        &   & =
+    \frac{1}{2p} \int_0^{2p} f(x) \dd x
+    \\
+    a_k & =
+    \frac{1}{\pi} \int_0^{2\pi} f(x) \cos(k x) \dd x
+    \hspace{2.2cm}
+        &   & a_k
+        &   & =
+    \frac{1}{p} \int_0^{2p} f(x) \cos \left( \frac{k \pi x}{p} \right) \dd x
+    \\
+    b_k & =
+    \frac{1}{\pi} \int_0^{2\pi} f(x) \sin(k x) \, \mathrm d x
+        &   & b_k
+        &   & =
+    \frac{1}{p} \int_0^{2p} f(x) \sin \left( \frac{k \pi x}{p} \right) \dd x
+  \end{alignat*}
+\end{blueBox}
+
+\begin{note}
+  Ha az $f$ függvény $2p$ szerint periodikus, akkor mindegy, hogy a $[0; 2p]$
+  intervallumon, vagy egy skalárral eltolva az $[a; a+2p]$ intervallumon
+  integrálunk, vagyis:
+  $$
+    \int_0^{2p} f(x) \dd x = \int_a^{a+2p} f(x) \dd x
+  $$
+\end{note}
+
+\begin{theorem}
+  Ha a $2\pi$ szerint periodikus $f$ függvénynek létezik az $x_0$ pontban a
+  jobb- és baloldali határértéke, továbbá az $f$ függvény Fourier-sora ebben a
+  pontban konvergens, akkor a Fourier-sor összege ezen pontokban a függvény
+  bal- és jobboldali határértékeinek számtani középe.
+\end{theorem}
+
+\begin{blueBox}
+  \textbf{Hasznos trigonometrikus összefüggések:}
   \begin{center}
-      \def\arraystretch{1.1}
-      \begin{tabular}[t]{ x{5cm} x{5cm} }
-        \multicolumn{2}{ c }{\cos^2 x + \sin^2 x = 1}                          \\[2mm]
-        \sin 2x = 2 \sin x \cos x         & \cos 2x = \cos^2 x - \sin^2 x      \\[2mm]
-        \sin^2 x = \dfrac{1 - \cos 2x}{2} & \cos^2 x = \dfrac{1 + \cos 2x}{2}  \\[4mm]
-        \multicolumn{2}{ c }{\sin (t \pm s) = \sin t \cos s \pm \cos t \sin s} \\[1mm]
-        \multicolumn{2}{ c }{\cos (t \pm s) = \cos t \cos s \mp \sin t \sin s} \\[1mm]
-        \multicolumn{2}{ c }{2 \sin t \sin s = \cos(t - s) - \cos(t + s)}      \\[1mm]
-        \multicolumn{2}{ c }{2 \cos t \cos s = \cos(t - s) + \cos(t + s)}      \\[1mm]
-        \multicolumn{2}{ c }{2 \sin t \cos s = \sin(t - s) + \sin(t + s)}      \\[1mm]
-      \end{tabular}
-    \end{center}
+    \def\arraystretch{1.1}
+    \newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}$}p{#1}<{$}}
+    \begin{tabular}[t]{ x{5cm} x{5cm} }
+      \cos^2 x + \sin^2 x = 1                    & e^{\iu x} = \cos x + \iu \sin x            \\[2mm]
+      \sin x = \dfrac{e^{\iu x} - e^{-\iu x}}{2} & \cos x = \dfrac{e^{\iu x} + e^{-\iu x}}{2} \\[4mm]
+      \sin 2x = 2 \sin x \cos x                  & \cos 2x = \cos^2 x - \sin^2 x              \\[2mm]
+      \sin^2 x = \dfrac{1 - \cos 2x}{2}          & \cos^2 x = \dfrac{1 + \cos 2x}{2}          \\[4mm]
+      \multicolumn{2}{ >{$}c<{$} }{\sin (t \pm s) = \sin t \cos s \pm \cos t \sin s}          \\[1mm]
+      \multicolumn{2}{ >{$}c<{$} }{\cos (t \pm s) = \cos t \cos s \mp \sin t \sin s}          \\[1mm]
+      \multicolumn{2}{ >{$}c<{$} }{2 \sin t \sin s = \cos(t - s) - \cos(t + s)}               \\[1mm]
+      \multicolumn{2}{ >{$}c<{$} }{2 \cos t \cos s = \cos(t - s) + \cos(t + s)}               \\[1mm]
+      \multicolumn{2}{ >{$}c<{$} }{2 \sin t \cos s = \sin(t - s) + \sin(t + s)}               \\[1mm]
+    \end{tabular}
+  \end{center}
 \end{blueBox}
 
 \clearpage
 \subsection{Feladatok}
 \begin{enumerate}
-    \item Határozzuk meg az alábbi függvény Fourier-sorát!
-    \[
-    f(x) =
-    \begin{cases}
-        0, & -\pi < x \leq 0 \\
-        \pi, & 0 < x \leq \pi
-    \end{cases}
-    \]
-    \item Határozzuk meg az alábbi függvény Fourier-sorát!
-    \[
-    f(x) = \begin{cases}
-      x, & -\pi < x < \pi \\ 
-    \end{cases}
-    \]
-    \item Írjuk fel az alábbi $2\pi$ szerint periodikus függvény Fourier-sorát!
-    \[
-    f(x) = \begin{cases}
-      \sin x, & 0 \leq x < \pi \\
-      0, & \pi \leq x < 2\pi
-    \end{cases}
-    \]
-    \item Adjuk meg az alábbi függvény Fourier-sorát!
-    \[
-    f(x) = \sin^4 x
-    \]
-    \item Írjuk fel az alábbi függvény Fourier-sorát!
-    \[
-    f(x) = \cos 3x \sin^2 x  
-    \]
-    \item Írjuk fel az alábbi függvény Fourier-sorát!
-    \[
-    f(x) = x^2
-    \]
+  \item Határozza meg az alábbi, $2\pi$ szerint periodikus függvények
+        Fourier-sorát!
+        $$
+          f(x)
+          =
+          \begin{cases}
+            0,   & \text{ha } -\pi < x \leq 0            \\
+            \pi, & \text{ha } \phantom-\, 0 < x \leq \pi \\
+          \end{cases}
+          \qquad \land \qquad
+          f(x) = f(x + 2k\pi)
+        $$
+
+  \item Határozzuk meg az alábbi, $2\pi$ szerint periodikus függvények
+        Fourier-sorát! Adja meg a sorösszeget az $x_0 = \pi$ pontban!
+        $$
+          f(x) = x \text{,\quad{ha}\quad{}} x \in (-\pi; \pi)
+          \qquad \land \qquad
+          f(x) = f(x + 2k\pi)
+        $$
+
+  \item Írja fel az alábbi $2\pi$ szerint periodikus függvény Fourier-sorát!
+        $$
+          f(x) = \begin{cases}
+            \sin x, & 0 \leq x < \pi    \\
+            0,      & \pi \leq x < 2\pi
+          \end{cases}
+          \qquad \land \qquad
+          f(x) = f(x + 2k\pi)
+        $$
+
+  \item Adja meg az alábbi trigonometrikus függvények Fourier-sorát!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $f(x) = \sin^4 x$
+            \item $g(x) = \cos 3x \cdot \sin^2 x$
+          \end{enumerate}
+        \end{multicols}
+
+  \item Írja fel az alábbi $2p = 2\pi$ szerint periodikus függvény
+        Fourier-sorát!
+        $$
+          f(x) = x^2
+          \text{,\quad{ha}\quad{}} x \in (-2; 2)
+          \qquad \land \qquad
+          f(x) = f(x + 2k)
+        $$
+
+        % \item Határozzuk meg az alábbi függvény Fourier-sorát!
+        %       \[
+        %         f(x) = \begin{cases}
+        %           x, & -\pi < x < \pi \\
+        %         \end{cases}
+        %       \]
+        % \item Adjuk meg az alábbi függvény Fourier-sorát!
+        %       \[
+        %         f(x) = \sin^4 x
+        %       \]
+        % \item Írjuk fel az alábbi függvény Fourier-sorát!
+        %       \[
+        %         f(x) = \cos 3x \sin^2 x
+        %       \]
+        % \item Írjuk fel az alábbi függvény Fourier-sorát!
+        %       \[
+        %         f(x) = x^2
+        %       \]
 \end{enumerate}
 
 
