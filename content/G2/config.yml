@@ -54,7 +54,10 @@ practice_material:
           független), ha az orientáció pont ellentétes lenne a feladatban
           felvettel.)'
       week: 4
-    - description: Lineáris algebra – Lineáris leképezések II
+    - source: 05.tex
+      target: G2-gyak-05
+      display_name: G2 5. gyakorlat
+      description: Lineáris algebra – Lineáris leképezések II
       video_link: https://youtu.be/ZjV1wFAH1Cw
       video_mistakes:
         - 14:40 - nél az a megjegyzés nem igaz, hogy (inv(A))^T=adj(A)!
