@@ -79,7 +79,10 @@ practice_material:
         - '44:41 - x^n függvénysorozat a 0-1 intervallumon lett lerajzolva,
           hiszen 1^n=1 bármely n esetén, ezért metszik a görbék ott egymást.'
       week: 6
-    - description: Függvény- és hatványsorok
+    - source: 07.tex
+      target: G2-gyak-07
+      display_name: G2 7. gyakorlat
+      description: Függvény- és hatványsorok
       video_link: https://youtu.be/GdnWFPA0vf4
       video_mistakes:
         - '4:09-nél nyelvbotlás miatt hangzik el  numerikus sor a függvénysor

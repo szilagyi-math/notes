@@ -1,10 +1,6 @@
 \documentclass[a4paper, 12pt]{scrartcl}
 
 \usepackage{math-practice}
-\usepackage{tikz}
-\usepackage{multicol}
-\usepackage{amsmath}
-\usepackage{arydshln}
 
 \area{Valós analízis}
 \title{Függvény- és hatványsorok}
@@ -16,119 +12,234 @@
 \begin{document}
 \maketitle
 \subsection{Elméleti Áttekintő}
+
 \begin{definition}[Függvénysor]
-    Legyen $f_n(x)$ függvények egy sorozata, ekkor az $\displaystyle S_N(x):= \sum_{n=1}^{N}f(x)$ függvényt rész\-let\-összeg-függvénynek nevezzük. Az $f_n(x)$ függvénysorozathoz tartozó függvénysornak nevezzük a $\displaystyle \sum_{n=1}^{\infty} f_n(x)$ összeget.
+  Legyen $f_n : I \subset \Reals \to \Reals$ függvénysorozat. Képezzük az
+  alábbi függvénysorozatot:
+  \begin{align*}
+    s_1(x) & := f_1(x)
+    \text,                              \\
+    s_2(x) & := f_1(x) + f_2(x)
+    \text,                              \\
+           & \phantom{:} \vdots
+    \\
+    s_j(x) & := \sum_{i = 1}^{j} f_i(x)
+    \\
+           & \phantom{:} \vdots
+  \end{align*}
+
+  Az így előálló $(s_n)$ függvénysorozatot az $(f_n)$ függvénysorozatból képzett
+  függvénysornak hívjuk és $\sum f_n$-nel jelöljük.
 \end{definition}
 
-\begin{definition}[Konvergenciatartomány]
-    A $\displaystyle \sum_{n=1}^{\infty} f_n(x)$ függvénysor konvergenciatartománya azon $x \in \Reals$-ek halmaza, melyre $S_N$ sorozat konvergens és $F(x) := \displaystyle \lim_{N \to \infty } S_N$ határérték lesz a sor összegfüggvénye.
+\begin{definition}[Függvénysor pontbeli konvergenciája]
+  A $\sum f_n$ függvénysor konvergens az $x_0 \in I$ pontban, ha az $(s_n)$
+  függvénysorozat konvergens az $x_0$ pontban.
 \end{definition}
 
-\begin{definition}[Egyenletes konvergencia]
-    A $S_N$ függvénysor egyenletesen konvergens, ha egyenletesen konvergál $S$-hez. Ha
-    \[
-    \lim |S-S_N| = \lim_{N \to \infty} \left|\sum_{n = 1}^{\infty} f_n(x)\right| = 0
-    \]
+\begin{definition}[Függvénysor konvergenciahalmaza]
+  A $\sum f_n$ függvénysor konvergens a $H \subset I$ halmazon, ha az
+  $(s_n)$ függvénysorozat konvergens a $H$-n.
+\end{definition}
+
+\begin{definition}[Függvénysor egyenletes konvergenciája]
+  A $\sum f_n$ függvénysor egyenletesen konvergens az $E \subset H$
+  halmazon, ha az $(s_n)$ függvénysorozat egyenletesen konvergens az $E$-n.
+\end{definition}
+
+\begin{definition}[Függvénysor összegfüggvénye]
+  A $\sum f_n$ függvénysorozat összegfüggvénye az $s(x) := \lim\limits_{n \to
+      \infty} s_n(x)$ függvény, ahol $x \in H$.
 \end{definition}
 
 \begin{definition}[Abszolút konvergencia]
-    A $\displaystyle \sum_{n=1}^{\infty} f_n(x)$ függvénysor abszolút konvergens, ha $\displaystyle \sum_{n=1}^{\infty} |f_n(x)|$ konvergens.
+  A $\sum f_n$ függvénysor abszolút konvergens, ha a $\sum \left| f_n \right|$
+  függvénysor konvergens.
 \end{definition}
 
-\begin{definition}[Weierstrass kritérium]
-    Abszolút értelemben egy konvergens numerikus sor tagjaival majorálható függvénysor abszolút és egyenletesen konvergens.
-\end{definition}
+\begin{theorem}[%
+    Cauchy-féle konvergencia kritérium egyenletes konvergenciára
+  ]
+  A $\sum f_n$ akkor és csak akkor egyenletesen konvergens az
+  $E \subset H$ halmazon, ha $\forall \varepsilon > 0$ esetén
+  $\exists N(\varepsilon)$ úgy, hogy ha $n; m > N(\varepsilon)$,
+  akkor $\forall x \in E$ esetén ${|s_n(x) - s_m(x)| < \varepsilon}$.
+\end{theorem}
 
-\begin{blueBox}
-    \begin{itemize}
-        \item[] Ha $f_n$ és $\displaystyle \sum f_n$ egyenletesen konvergens, akkor az összegfüggvény is folytonos $[a,b]$ intervallumon. Ez azt jelenti, hogy a szumma és a limesz felcserélhető.
-    \end{itemize}
-\end{blueBox}
-\begin{blueBox}
-\begin{itemize}
-    \item[] Ha $f_n$ folytonos és $\displaystyle \sum f_n$ egyenletesen konvergens, akkor
-    \[
-    \int_{a}^{b} \sum_{n=0}^{\infty} f_n(x)\, dx = \sum_{n=0}^{\infty} \int_{a}^{b} f_n(x)\, dx 
-    \]
-    \item[] Ha $f_n$ foyltonos, $f_n'$ folytonos, $\displaystyle \sum f_n = s(x)$ pontonként konvergens és $\displaystyle \sum f_n'$ egyenletesen konvergens, akkor $s$ deriválható és $s' = g$
-\end{itemize}
-\end{blueBox}
+\begin{theorem}[Weierstrass-tétel függvénysorok egyenletes konvergenciájára]
+  Legyen $f_n : I \subset \Reals \to \Reals$ függvénysorozat és $\sum f_n$
+  a belőle képzett függvénysor, továbbá $\sum a_n$ olyan konvergens numerikus
+  sor, melyre $\forall x \in I$ esetén $|f_n(x)| \leq a_n$
+  $\forall n \in \mathbb N$-re $n > n_0 \in \mathbb N$ esetén.
 
-\subsection{Hatványsorok}
+  Ekkor a $\sum f_n$ függvénysor egyenletesen konvergens.
+\end{theorem}
+
+\clearpage
 
 \begin{definition}[Hatványsor]
-    A $\displaystyle \sum_{n=0}^{\infty} a_n(x-x_0)^n$ alakú függvénysorokat hatványsornak nevezzük.Az $x_0$ a hatványsor középpontjaés $a_n$ 
-    az együtthatósorozat.
+  Legyen $f_n(x) := a_n \, (x - x_0)^n$. A belőle képzett
+  $$
+    \sum f_n(x) = \sum a_n \, (x - x_0)^n
+  $$
+  függvénysort hatványsornak nevezzük, ahol $a_n$ a hatványsor $n$-edik
+  együtthatója, $x_0$ pedig a sorfejtés centruma.
 \end{definition}
 
-\begin{theorem}[Cauchy-Hadamard tétel]
-    A $\displaystyle \sum_{n=0}^{\infty} a_n(x-x_0)^n$ hatványsor konvergenciasugara
-    \[
-    r = \lim_{n \to \infty}\cfrac{1}{\sqrt[n]{\mid a_n \mid}} = \lim_{n \to \infty} \left|\cfrac{a_n }{a_{n+1}}\right|
-    \]
-    A hatványsor az $(x_0-r,x_0+r)$ intervallumon konvergens, míg a $[x_0-r, x_0+r]$ intervallumon kívül divergens.
+\begin{definition}[Hatványsor konvergenciasugara]
+  A $\sum a_n \, (x - x_0)^n$ hatványsor konvergenciasugara:
+  $$
+    r = \frac{1}{\limsup\limits_{n \to \infty} \sqrt[n]{|a_n|}} \in \Reals_b
+    \text.
+  $$
+\end{definition}
+
+\begin{theorem}[Cauchy-Hadamard-tétel]
+  Legyen $r$ a $\sum a_n x^n$ hatványsor konvergenciasugara. Ha \dots
+  \begin{enumerate}
+    \item $r = 0$, akkor a hatványsor csak az $x_0 = 0$ pontban konvergens,
+    \item $r = \infty$, akkor a hatványsor $\forall x \in \Reals$ esetén
+          konvergens,
+    \item $0 < r < \infty$, akkor a hatványsor konvergens, ha $|x| < r$ és
+          divergens, ha $|x| > r$.
+  \end{enumerate}
+
+  \begin{center}
+    \begin{tikzpicture}[thick]
+      \draw[very thick, -to, draw=secondaryColor]
+      (0,0) -- (6,0) node[below left] {$x$};
+
+      \foreach \x/\l in {1/-r,3/0,5/+r}{
+          \draw[draw=primaryColor] (\x, 3pt) -- (\x, -3pt) node[below]{$\l$};
+        }
+      \draw [
+        draw=primaryColor,
+        decorate,
+        decoration={brace,amplitude=5pt,mirror,raise=4ex}
+      ]
+      (1,0) -- (5,0) node[midway,yshift=-3em] {abszolút konvergencia};
+    \end{tikzpicture}
+  \end{center}
 \end{theorem}
 
-\begin{theorem}[Hatványsor deriválása]
-    Az $f(x) = \displaystyle \sum_{n=0}^{\infty}a_n(x-x_0)^n$ hatványsor kon\-ver\-gen\-ci\-a\-tar\-to\-má\-nyá\-nak belsejében a tagonkénti deriválásával kapott $\displaystyle \sum_{n=0}^{\infty}a_n n (x-x_0)^{n-1}$ hatványsor is konvergens ugyanazon intervallumon és $f'(x)$-el egyezik meg.
+\begin{theorem}[Tagonkénti integrálhatóság]
+  Legyenek a $\sum f_n$ függvénysor tagjai integrálhatóak az $[a; b]$ zárt
+  intervallumon. Tegyük fel, hogy a sor egyenletesen konvergens az $[a; b]$-n
+  és összegfüggvénye folytonos. Ekkor
+  $$
+    \int_a^b f(x) \dd x = \sum_{n = 1}^{\infty} \int_a^b f_n(x) \dd x
+    \text.
+  $$
 \end{theorem}
 
-\begin{theorem}[Hatványsor integrálása]
-    Az $f(x) = \displaystyle \sum_{n=0}^{\infty}a_n(x-x_0)^n$ hatványsor kon\-ver\-gen\-ci\-a\-tar\-to\-má\-nyá\-nak bármely belső $[a,b]$ intervallumban tagonként integrálható, azaz
-    \[
-\int_a^b f(x) \, dx = \sum_{n=0}^\infty \int_a^b a_n (x - x_0)^n \, dx 
-= \sum_{n=0}^\infty \frac{a_n}{n+1} \left[(x - x_0)^{n+1}\right]_a^b.
-\]
-    
+\begin{note}
+  Nem korlátos intervallum esetén nem igaz az állítás.
+\end{note}
+
+\begin{theorem}[Tagonkénti diﬀerenciálhatóság]
+  Legyenek az $f_n$ függvénysorozat tagjai differenciálhatóak a $J$ intervallumon,
+  $f'_n$ függvények folytonosak a $J$-n, valamint a $\sum f'_n$ és a $\sum f_n$
+  függvénysorok egyenletesen konvergensek a $J$-n. Ekkor
+  $$
+    f'(x) = \sum_{n = 1}^{\infty} f'_n(x)
+    \text.
+  $$
 \end{theorem}
+
 \clearpage
 \subsection{Feladatok}
 \begin{enumerate}
-    \item Vizsgáljuk meg a következő függvénysorok konvergenciatartományát, értelmezési tartományát ás összegfüggvényét!
-    \begin{multicols}{3}
-        \begin{enumerate}
-            \item $\displaystyle \sum_{n=1}^{\infty} \sqrt[n]{x}$
-            \item $\displaystyle \sum_{n=1}^{\infty} \left(\cfrac{x-1}{x+1}\right)^n$
-            \item $\displaystyle \sum_{n=1}^{\infty} \sin^{2n}x$
-        \end{enumerate}
-    \end{multicols}
-    \item Határozzuk meg az alábbi függvénysorok értelmezési tartományát, konvergenciátartományát és hogy a konvergenciatartományon belül abszolút konvergens-e!
-    \begin{multicols}{2}
-        \begin{enumerate}
-            \item $\displaystyle \sum_{n=1}^{\infty} \cfrac{1}{1+x^{2n}}$
-            \item $\displaystyle \sum_{n=1}^{\infty} \cfrac{\left(\left|\frac{z-i-1}{3}\right|\right)^n}{z}$
-            \item $\displaystyle \sum_{n=1}^{\infty} (-1)^n n^{-x}$
-            \item $\displaystyle \sum_{n=1}^{\infty} \cfrac{\cos (3x^3 +(\pi/3)nx^2)}{3^n +x^4n^4}$
-        \end{enumerate}
-    \end{multicols}
-    \item El lehet-e végezni a következő függvénysorok tagonkénti integrálását?
-    \[
-    \int_0^2 \sum_{n=1}^{\infty} \cfrac{x^n}{e^{nx}}\, dx \overset{?}{=} \sum_{n=1}^{\infty} \int_0^2 \cfrac{x^n}{e^{nx}}\, dx 
-    \]
-    \item El lehet-e végezni a következő függvénysorok tagonkénti deriválását?
-    \[
-    \sum_{n=1}^{\infty} \cfrac{\arctan(x/n)}{n^2}
-    \]
-    \item Határozza meg az alábbi hatványsorok konvergenciatartományát!
-    \begin{multicols}{2}
-        \begin{enumerate}
-            \item $\displaystyle \sum_{n=1}^{\infty} n(x-2)^n$
-            \item $\displaystyle \sum_{n=2}^{\infty} \cfrac{x^n}{2^n(n-1)}$
-            \item $\displaystyle \sum_{n=1}^{\infty} (-1)^n\cfrac{(x-2)^n}{3}$
-            \item $\displaystyle \sum_{n=1}^{\infty} \left(4-\cfrac{1}{n}\right)^n x^n$
-            \item $\displaystyle \sum_{n=1}^{\infty} \left(\cfrac{4n(-1)^n+n+2}{2n}\right)^nx^n$
-        \end{enumerate}
-    \end{multicols}
-    \item Határozza meg az alábbi komplex hatványsorok konvergenciatartományát!
-    \begin{multicols}{3}
-        \begin{enumerate}
-            \item $\displaystyle \sum_{n=1}^{\infty} \cfrac{(n!)^2}{(2!)}z^n$
-            \item $\displaystyle \sum_{n=1}^{\infty} \cfrac{x^{2n-1}}{2n-1}$
-            \item $\displaystyle \sum_{n=1}^{\infty} (n+1)(n+2)x^n$
-        \end{enumerate}
-    \end{multicols}
+  \item Vizsgálja meg a következő függvénysorok konvergenciatartományát,
+        értelmezési tartományát és adja meg az összegfüggvényüket!
+        \begin{multicols}{3}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} \sqrt[n]{x}
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} \left(\cfrac{x-1}{x+1}\right)^n
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=0}^{\infty} \sin^{2n}x
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+  \item Határozza meg az alábbi függvénysorok értelmezési tartományát,
+        konvergenciátartományát és hogy a konvergenciatartományon belül abszolút
+        konvergensek-e!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} \cfrac{1}{1+x^{2n}}
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} \cfrac{\left(\left|\frac{z-i-1}{3}\right|\right)^n}{z}
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} (-1)^n n^{-x}
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} \cfrac{\cos (3x^3 +(\pi/3)nx^2)}{3^n +x^4n^4}
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+  \item El lehet-e végezni a következő függvénysor tagonkénti integrálását?
+        $$
+          \int_0^2 \sum_{n=1}^{\infty} \cfrac{x^n}{e^{nx}}\, dx \overset{?}{=} \sum_{n=1}^{\infty} \int_0^2 \cfrac{x^n}{e^{nx}}\, dx
+        $$
+
+  \item El lehet-e végezni a következő függvénysor tagonkénti deriválását?
+        $$
+          \sum_{n=1}^{\infty} \cfrac{\arctan(x/n)}{n^2}
+        $$
+
+  \item Határozza meg az alábbi hatványsorok konvergenciatartományát!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} n(x-2)^n
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=2}^{\infty} \cfrac{x^n}{2^n(n-1)}
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} (-1)^n\cfrac{(x-2)^n}{3}
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} \left(4-\cfrac{1}{n}\right)^n x^n
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} \left(\cfrac{4n(-1)^n+n+2}{2n}\right)^nx^n
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+  \item Határozza meg az alábbi komplex hatványsorok konvergenciatartományát!
+        \begin{multicols}{3}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} \cfrac{(n!)^2}{(2!)}z^n
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} \cfrac{x^{2n-1}}{2n-1}
+                  $
+
+            \item $\displaystyle
+                    \sum_{n=1}^{\infty} (n+1)(n+2)x^n
+                  $
+          \end{enumerate}
+        \end{multicols}
 \end{enumerate}
-
-
-
 \end{document}
