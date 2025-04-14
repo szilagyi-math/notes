@@ -130,7 +130,10 @@ practice_material:
         - '49:06: Elírás, nem 1-cos(kx) szerepel helyesen a zárójelben, hanem
           1*cos(kx), ezután viszont a helyes eredménnyel dolgoztunk'
       week: 9
-    - description: Többváltozós analízis – Többváltozós függvények
+    - source: 10.tex
+      target: G2-gyak-10
+      display_name: G2 10. gyakorlat
+      description: Többváltozós analízis – Többváltozós függvények
       video_link: https://youtu.be/-RfHLk4HTho
       video_mistakes:
         - '45:00: F8-as feladatban f(a)=f(x,y)'

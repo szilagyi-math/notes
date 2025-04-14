@@ -1,0 +1,262 @@
+\documentclass[a4paper, 12pt, fleqn]{scrartcl}
+
+\usepackage{math-practice}
+
+\area{Többváltozós analízis}
+\title{Többváltozós függvények}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{10}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+
+\begin{blueBox}
+  \sftitle{Többváltozós függvények jelölése:}
+
+  Legyen $\rvec f: \Reals^n \to \Reals^k$ függvény. Ekkor a függvény az alábbi
+  formában írható fel:
+  $$
+    \begin{bmatrix}
+      x_1 \\ x_2 \\ \vdots \\ x_n
+    \end{bmatrix} \mapsto \rvec f(x_1; x_2; \ldots; x_n) = \begin{bmatrix}
+      f_1 (x_1; x_2; \ldots; x_n) \\
+      f_2 (x_1; x_2; \ldots; x_n) \\
+      \vdots                      \\
+      f_k (x_1; x_2; \ldots; x_n)
+    \end{bmatrix}
+    \text,
+  $$
+  ahol az $f_i: \Reals^n \to \Reals, i \in \{1;2;\dots;k\}$ függvényeket
+  komponensfüggvényeknek nevezzük.
+
+  \sftitle{Speciális elnevezések:}
+
+  \def\arraystretch{1.33}
+  \begin{tabular}{ll}
+    \bullet \; $\rvec f: \Reals^n \to \Reals^k$             & vektor-vektor függvény,
+    \\
+    \bullet \; $\rvec f: \Reals^n \to \Reals^{\phantom{k}}$ & vektor-skalár függvény,
+    \\
+    \bullet \; $\rvec f: \Reals^{\phantom{n}} \to \Reals^k$ & skalár-vektor függvény.
+  \end{tabular}
+\end{blueBox}
+
+\begin{definition}[Gömbkörnyezet]
+  Legyen $\rvec p \in \Reals^n$. Ekkor a $\rvec p$ pont $\varepsilon$ sugarú
+  nyílt környezetén (gömbkörnyezetén) a
+  $$
+    B_\varepsilon(\rvec p) := \{
+    \rvec x \in \Reals^n \mid | \rvec x - \rvec p | < \varepsilon
+    \}
+    \text{ halmazt értjük.}
+  $$
+\end{definition}
+
+\begin{definition}[Többváltozós függvény határértéke]
+  Tekintsük az $\rvec f: \Reals^n \to \Reals^k$ leképezést. Azt mondjuk, hogy az
+  $f$ határértéke $\rvec a \in \Reals^n$ pontban $\rvec A \in \Reals^k$, ha az
+  $\rvec A$ tetszőleg $\varepsilon > 0$ sugarú gömbkörnyezetéhez létezik az
+  $\rvec a$-nak olyan $\delta(\varepsilon)$ sugarú gömbkörnyezete, hogy
+  $$
+    \rvec x \in B_{\delta(\varepsilon)}(\rvec a) \setminus \{\rvec a\}
+    \quad \Rightarrow \quad
+    \rvec f(\rvec x) \in B_\varepsilon(\rvec A)
+    \text.
+  $$
+\end{definition}
+
+\begin{theorem}[Az átviteli elv általánosítása]
+  Az $\rvec f: \Reals^n \to \Reals^k$ függvény határértéke az $\rvec a \in \Reals^n$
+  pontban akkor és csak akkor $\rvec A \in \Reals^k$, ha
+  $\forall \rvec x_n \to \rvec a$ sorozat esetén
+  $\rvec f(\rvec x_n) \to \rvec A$.
+\end{theorem}
+
+\clearpage
+\begin{definition}[Iránymenti derivált]
+  Legyen $I \in \Reals^n$ nyílt halmaz, $f: I \to \Reals$ függvény és
+  legyen adva egy $\rvec v \in \Reals^n$ egységvektor. Ha létezik a
+  $$
+    \lim_{\lambda \to 0} \frac{
+      f(\rvec x + \lambda \rvec v) - f(\rvec x)
+    }{
+      \lambda
+    }
+  $$
+  határérték és ez egy valós szám, akkor ezt az $f$ függvény $\rvec a$
+  pontbeli $\rvec v$ irányú, iránymenti deriváltjának nevezzük. Jele:
+  $$
+    \partial_{\rvec v} f(\rvec x) = \lim_{\lambda \to 0} \frac{
+      f(\rvec x + \lambda \rvec v) - f(\rvec x)
+    }{
+      \lambda
+    }
+    \text.
+  $$
+\end{definition}
+
+\begin{note}
+  Amennyiben $\rvec v$ az $n$-dimenziós téren az $i$-edik irányba mutat,
+  akkor azt parciális deriváltnak nevezzük, jelölései:
+  $$
+    \pdv{f(\rvec x)}{x_i}
+    = \partial_i f(\rvec x)
+    = \partial_{x_i} f(\rvec x)
+    = f'_{x_i}(\rvec x)
+    = \lim_{\lambda \to 0} \frac{
+      f(x_1, \ldots, x_{i-1}, x_i + \lambda, x_{i+1}, \ldots, x_n) - f(\rvec x)
+    }{
+      \lambda
+    }
+    \text.
+  $$
+\end{note}
+
+\begin{example}
+  Adjuk meg az $f(x; y) = x^3 + 5x^2y + 3xy^2 - 12y^3 + 5x - 6y + 7$ függvény
+  parciális deriváltjait az $P(1;2)$ pontban!
+
+  Először határozzuk meg a parciális deriváltakat parametrikusan, majd
+  számoljuk ki a $P(1;2)$ pontbeli értékeket:
+  \begin{alignat*}{9}
+    \pdv{f(x; y)}{x}                  & = 3x^2 + 10xy + 3y^2 + 5
+                                      & \quad\Rightarrow\quad
+    \left.\pdv{f(x; y)}{x}\right|_{P} & = 3 + 20 + 12 + 5 = 40
+    \text,
+    \\
+    \pdv{f(x; y)}{y}                  & = 5x^2 + 6xy - 36y^2 - 6
+                                      & \quad\Rightarrow\quad
+    \left.\pdv{f(x; y)}{y}\right|_{P} & = 5 + 12 - 144 - 6 = -133
+    \text.
+  \end{alignat*}
+\end{example}
+
+\begin{definition}[Gradiens]
+  Legyen $f: \Reals^n \to \Reals$. Az $f$ függvény
+  $\rvec a(a_{1}; a_{2}; \ldots; a_{n})$ pontbeli gradiensén az alábbi
+  oszlopvektort értjük:
+  \def\arraystretch{1.5}
+  $$
+    \grad f(\rvec a) = \nabla f(\rvec a) = \begin{bmatrix}
+      \partial_1 f(\rvec a) \\
+      \partial_2 f(\rvec a) \\
+      \vdots                \\
+      \partial_n f(\rvec a)
+    \end{bmatrix} = \begin{pmatrix}
+      \displaystyle\pdv{f(\rvec x_0)}{x_1} &
+      \displaystyle\pdv{f(\rvec x_0)}{x_2} &
+      \cdots                               &
+      \displaystyle\pdv{f(\rvec x_0)}{x_n}
+    \end{pmatrix}^\T
+  $$
+\end{definition}
+
+\begin{note}
+  A gyakrolatban az iránymenti deriváltakat a gradiens segítségével számítjuk:
+  $$
+    \partial_{\rvec v} f(\rvec a) = \grad f(\rvec a) \cdot \rvec v
+    \text,
+  $$
+  ahol $\rvec v$ egységvektor!
+\end{note}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item Határozza meg az alábbi függvények határértékét az origóban!
+        \begin{equation*}
+          f(x; y) = \begin{cases}
+            \frac{2xy}{x^2 + y^2} & \text{ha } x^2 + y^2 > 0 \\
+            0                     & \text{ha } x^2 + y^2 = 0
+          \end{cases}
+          \hspace{14mm}
+          g(x; y) = \frac{x - y}{x + y}
+        \end{equation*}
+
+  \item Határozza meg az alábbi határértéket!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \lim_{\substack{x\to 3\\y\to \infty}} \frac{xy - 1}{y + 1}
+                  $
+
+            \item $\displaystyle
+                    \lim_{\rvec x \to \nvec} \frac{x + y + 2z}{x - z + xy}
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+  \item Határozza meg az alábbi függvények origóban lévő határértékeit
+        \begin{enumerate}
+          \item $\displaystyle
+                  f(x; y) = \frac{x^2 y^2}{x^2 + y^2}
+                  \text,
+                $
+                \tabto{4cm}
+                ha egy $x = r_n \cos \varphi_n$, $y = r_n \sin \varphi_n$,
+                $r_n \to \infty$,
+
+          \item $\displaystyle
+                  g(x; y) = \frac{x^3 y}{x^6 + y^2}
+                  \text,
+                $
+                \tabto{4cm}
+                ha egy $y = mx^k$ görbe mentén közelítjük az origót.
+        \end{enumerate}
+
+  \item Határozza meg az alábbi határértékeket!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \lim_{(x; y) \to (\infty; \infty)}
+                    \frac{x+y}{x^2-xy+y^2}
+                  $
+
+            \item $\displaystyle
+                    \lim_{(x; y) \to (\infty; \infty)}
+                    \left(1 + \frac{1}{x}\right)^{\frac{x^2}{x + y}}
+                  $
+
+            \item $\displaystyle
+                    \lim_{(x; y) \to (0; \infty)} \vphantom{\frac12}
+                    x \cos^2 y
+                  $
+
+            \item $\displaystyle
+                    \lim_{(x; y) \to (\infty; 0)}
+                    \frac{x^2 + y^2}{\sqrt{x^2 + y^2 + 4} - 2}^{\vphantom{\frac12}}
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+  \item Definíció alaján határozza meg az $f(x; y) = x^2 - 2xy - 4y^2$
+        függvény deriváltját a $P(1; -1)$ pontban a $\rvec v(1; -1)$
+        irány mentén!
+
+  \item Határozza meg az alábbi függvények parciális deriváltjait!
+        \begin{enumerate}
+          \item $f(x; y) = x^3 - 5x^2y + 3xy^2 - 12y^3 + 5x - 6y + 7$
+          \item $g(x; y) = x^y$
+          \item $h(x; y) = e^{x^2y} - 2x^2y^3\sin(\ln x + y)$
+        \end{enumerate}
+
+  \item Határozza meg az alábbi függvények gradiensét a megadott pontokban!
+        \begin{enumerate}
+          \item $f(x; y) = \ln\left(x+y\right)$
+                \tabto{7cm} $P_a(-2; 3)$
+
+          \item $g(x; y; z) = z-\sqrt{x^2+y^2}$
+                \tabto{7cm} $P_b(3; -4; 7)$
+        \end{enumerate}
+
+  \item Határozza meg azon pontoknak a halmazát amelyen az $f$
+        függvény gradiense nullvektor!
+        \begin{equation*}
+          f(x; y)=3x^2-4xy+2x+y^2+1
+        \end{equation*}
+\end{enumerate}
+\end{document}
