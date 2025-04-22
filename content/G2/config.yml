@@ -158,7 +158,7 @@ practice_material:
           értékek felírása, ahogy ez a táblán írásos formában megtörtént.'
       week: 12
     - soruce: 13.tex
-      target: target: G2-gyak-13
+      target: G2-gyak-13
       display_name: G2 13. gyakorlat
       description: Többváltozós analízis – Integrálás I
       video_link: https://youtu.be/cKlHANzUJ7A
