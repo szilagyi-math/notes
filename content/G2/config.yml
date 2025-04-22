@@ -138,7 +138,10 @@ practice_material:
       video_mistakes:
         - '45:00: F8-as feladatban f(a)=f(x,y)'
       week: 10
-    - description: Többváltozós analízis – Differenciálás I
+    - source: 11.tex
+      target: G2-gyak-11
+      display_name: G2 11. gyakorlat
+      description: Többváltozós analízis – Differenciálás I
       video_link: https://youtu.be/69GI6iN4HhA
       week: 11
     - description: Többváltozós analízis – Differenciálás II

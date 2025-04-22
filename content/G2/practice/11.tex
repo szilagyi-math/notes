@@ -1,0 +1,292 @@
+\documentclass[a4paper, 12pt, fleqn]{scrartcl}
+
+\usepackage{math-practice}
+
+\area{Többváltozós analízis}
+\title{Differenciálás I}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{11}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+
+\begin{definition}[Iránymenti derivált]
+  Legyen $I \in \Reals^n$ nyílt halmaz, $f: I \to \Reals$ függvény és
+  legyen adva egy $\rvec v \in \Reals^n$ egységvektor. Ha létezik a
+  $$
+    \lim_{\lambda \to 0^+} \frac{
+      f(\rvec x - \lambda \rvec v) - f(\rvec x)
+    }{
+      \lambda
+    }
+  $$
+  határérték és ez egy valós szám, akkor ezt az $f$ függvény $\rvec a$
+  pontbeli $\rvec v$ irányú, iránymenti deriváltjának nevezzük.
+\end{definition}
+
+\begin{definition}[Gradiens]
+  Legyen $f: \Reals^n \to \Reals$. Az $f$ függvény
+  $\rvec a(a_{1}; a_{2}; \ldots; a_{n})$ pontbeli gradiense:
+  \def\arraystretch{1.5}
+  $$
+    \grad f(\rvec a) = \nabla f(\rvec a) = \begin{bmatrix}
+      \partial_1 f(\rvec a) \\
+      \vdots                \\
+      \partial_n f(\rvec a)
+    \end{bmatrix} = \begin{pmatrix}
+      \displaystyle\pdv{f(\rvec x_0)}{x_1} &
+      \cdots                               &
+      \displaystyle\pdv{f(\rvec x_0)}{x_n}
+    \end{pmatrix}^\T
+  $$
+\end{definition}
+
+\begin{note}
+  A gyakrolatban az iránymenti deriváltakat a gradiens segítségével számítjuk:
+  $$
+    \partial_{\rvec v} f(\rvec a) = \grad f(\rvec a) \cdot \rvec v
+    \text.
+  $$
+\end{note}
+
+\begin{example}
+  Számítsuk ki az $f(x; y) = x^3 + 5x^2y + 3xy^2 - 12y^3 + 5x - 6y + 7$
+  függvény $\rvec v(3;4)$ irányú deriváltját az $(1;2)$ pontban!
+
+  A gradiens az előző példában számolt parciális deriváltak alapján:
+  $$
+    \grad f(1;2) = \begin{bmatrix}
+      40 \\ -133
+    \end{bmatrix}
+    \text.
+  $$
+  Az iránymenti derivált számításához még szükségünk van az $\rvec v$ irányú
+  egységvektorra:
+  $$
+    \|\rvec v\| = \sqrt{3^2 + 4^2} = 5
+    \quad\Rightarrow\quad
+    \uvec e_v = \frac{\rvec v}{\|\rvec v\|} = \frac{1}{5} \begin{bmatrix}
+      3 \\ 4
+    \end{bmatrix} = \begin{bmatrix}
+      3/5 \\ 4/5
+    \end{bmatrix}
+    \text.
+  $$
+  Az iránymenti derivált:
+  $$
+    \partial_{\rvec v} f(1;2) = \grad f(1;2) \cdot \uvec e_v = \begin{bmatrix}
+      40 \\ -133
+    \end{bmatrix} \cdot \begin{bmatrix}
+      3/5 \\ 4/5
+    \end{bmatrix} = 40 \cdot 3/5 - 133 \cdot 4/5 = -82,4
+    \text.
+  $$
+\end{example}
+
+
+\begin{note}
+  Kétváltozós függvény esetén az gyakran az irányvektort az $x$-tengellyel
+  bezárt szög ($\alpha$) segítségével adjuk meg. Ekkor az egységvektor:
+  $$
+    \uvec e = \begin{bmatrix}
+      \cos \alpha \\
+      \sin \alpha
+    \end{bmatrix}
+    \text.
+  $$
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Magasabb rendű iránymenti deriváltak:}
+
+  Az elsőrendű iránymenti derivált:
+  $$
+    \pdv{f}{\uvec e} = \grad f \cdot \uvec e
+    \text.
+  $$
+  A másodrendű iránymenti derivált:
+  $$
+    \pdv[order=2]{f}{\uvec e}
+    = \grad \left(\pdv{f}{\uvec e}\right) \cdot \uvec e
+    = \grad \left(\grad f \cdot \uvec e\right) \cdot \uvec e
+    \text.
+  $$
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Adott irányú érintő egyenes kétváltozós függvények esetén:}
+
+  A $z = f(x; y)$ függvény segítségével a 3D-s térben egy felületet adhatunk
+  meg. Ezen felület egy $P_0(x_0; y_0)$ pontbeli, $\uvec e(e_x; e_y)$ irányú
+  érintő egyenese:
+  $$
+    \frac{x - x_0}{e_x}
+    = \frac{y - y_0}{e_y}
+    = \frac{z - z_0}{\partial_{\uvec e}f(x_0; y_0)}
+    \text{, \quad ahol $z_0 = f(x_0; y_0)$.}
+  $$
+  Amennyiben az irány egybeesik az $x$-tengellyel, akkor:
+  $$
+    x - x_0 = \frac{z - z_0}{\partial_x f(x_0; y_0)}
+    \quad \Rightarrow \quad
+    \partial_x f(x_0; y_0) (x - x_0) = z - z_0
+    \text.
+  $$
+  Amennyiben az irány egybeesik az $y$-tengellyel, akkor:
+  $$
+    y - y_0 = \frac{z - z_0}{\partial_y f(x_0, y_0)}
+    \quad \Rightarrow \quad
+    \partial_y f(x_0; y_0) (y - y_0) = z - z_0
+    \text.
+  $$
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Érintősík megadása kétváltozós függvény esetében:}
+
+  Az érintősík független az iránytól, azt csak a felületből kimutató normális,
+  vagyis a gradiens adja meg. Az $\rvec x_0$ pontban felírt normálvektor:
+  $$
+    \rvec n_{\text{be}} = \begin{bmatrix}
+      \partial_x f \\
+      \partial_y f \\
+      -1
+    \end{bmatrix}_{|\rvec x = \rvec x_0}
+    \qquad
+    \rvec n_{\text{ki}} = \begin{bmatrix}
+      -\partial_x f \\
+      -\partial_y f \\
+      1
+    \end{bmatrix}_{|\rvec x = \rvec x_0}
+    \text,
+  $$
+  ahol $\rvec n_{\text{be}}$ a befele, $\rvec n_{\text{ki}}$ pedig a kifele
+  mutató normálvektor. Ezek alapján az érintősík egyenlete:
+  $$
+    \rvec n (\rvec x - \rvec x_0) = 0
+    \quad \Rightarrow \quad
+    \left.\pdv{f}{x}\right|_{\rvec x = \rvec x_0} (x - x_0)
+    + \left.\pdv{f}{y}\right|_{\rvec x = \rvec x_0} (y - y_0)
+    = z - z_0
+    \text.
+  $$
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Implicit függvény parciális deriváltjai:}
+
+  Amennyiben a változók közötti kapcsolat nem írható fel explicit
+  ($z = f(x; y)$) módon, akkor az implicit függvénymegadási módszerhez tudunk
+  fordulni. Ez többváltozós esetben $F(x; y; z) = 0$ alakban tudjuk megtenni.
+
+  Ilyen esetben a $z$-től függő tagokat összetett függvényként kell kezelnünk,
+  a parciális deriváltak pedig a következőek:
+  $$
+    \pdv{f}{x} = \pdv{z}{x}
+    \qquad \text{és} \qquad
+    \pdv{f}{y} = \pdv{z}{y}
+    \text.
+  $$
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Teljes differenciál:}
+
+  Egy $f: \Reals^n \to \Reals$ függvény teljes differenciálja:
+  $$
+    Df = \sum_{i = 1}^n \pdv{f}{x_i} \dd x_i
+    \text.
+  $$
+  Kétváltozós esetben:
+  $$
+    Df
+    = \pdv{f}{x} \dd x
+    + \pdv{f}{y} \dd y
+    \text.
+  $$
+\end{blueBox}
+
+\begin{definition}[Jacobi-mátrix]
+  Legyen $\rvec f: \Reals^n \to \Reals^k$ leképezés.
+  Ekkor $\rvec f'(\rvec a) = \rmat J \rvec f(\rvec a)$,
+  ahol $\rmat J \in \mathscr M_{k \times n}$. A $\rmat J$ mátrixot az
+  $\rvec f$ függvény Jacobi-mátrixának nevezzük, melynek elemei:
+  \def\arraystretch{1.5}
+  $$
+    \rmat J(\rvec a) = \begin{bmatrix}
+      \displaystyle\pdv{f_1(\rvec x)}{x_1} & \displaystyle\pdv{f_1(\rvec x)}{x_2} & \cdots & \displaystyle\pdv{f_1(\rvec x)}{x_n} \\
+      \displaystyle\pdv{f_2(\rvec x)}{x_1} & \displaystyle\pdv{f_2(\rvec x)}{x_2} & \cdots & \displaystyle\pdv{f_2(\rvec x)}{x_n} \\
+      \vdots                               & \vdots                               & \ddots & \vdots                               \\
+      \displaystyle\pdv{f_k(\rvec x)}{x_1} & \displaystyle\pdv{f_k(\rvec x)}{x_2} & \cdots & \displaystyle\pdv{f_k(\rvec x)}{x_n}
+    \end{bmatrix}_{|\rvec x = \rvec a} = \begin{bmatrix}
+      \grad^\T f_1(\rvec a) \vphantom{\displaystyle\pdv{f_1}{x_1}} \\
+      \grad^\T f_2(\rvec a) \vphantom{\displaystyle\pdv{f_1}{x_1}} \\
+      \vdots                                                       \\
+      \grad^\T f_k(\rvec a) \vphantom{\displaystyle\pdv{f_1}{x_1}}
+    \end{bmatrix}
+  $$
+\end{definition}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item Határozza meg az alábbi függvények iránymenti deriváltját az adott
+        pontban és irányszög vagy irányvektor mentén!
+        \begin{enumerate}
+          \item $f(x;y)=x^3-3xy^2+4y^4$,
+                \tabto{7cm} $P_a(1,1)$,
+                \tabto{10cm} $\alpha=45^{\circ}$,
+
+          \item $g(x;y;z) = e^{-\left(x^2+y^2\right)}$,
+                \tabto{7cm} $P_b(1;0;1)$,
+                \tabto{10cm} $\rvec v_b=[3,2,-5]^\T$.
+        \end{enumerate}
+
+  \item Határozza meg azon pontok halmazát, amin nem létezik az
+        $f(x;y)=\ln\left(x^2+xy\right)$ függvény $\alpha=150^\circ$-os irányhoz
+        tartozó iránymenti deriváltja!
+
+  \item Határozza meg az alábbi függvények első és második iránymenti
+        deriváltjait az adott pontban és irányrányszög vagy irányvektor mentén!
+        \begin{enumerate}
+          \item $f(x;y)=4x^4y+y^3x^2$,
+                \tabto{7cm} $P_a(1;1)$,
+                \tabto{10cm} $\alpha=45^\circ$,
+
+          \item $g(x;y;z)=\sqrt{14}\,xyz+\sqrt{14}\,x^2y^2z^2$,
+                \tabto{7cm} $P_b(1;1;1)$,
+                \tabto{10cm} $\rvec v_b=[1;1;1]^\T$.
+        \end{enumerate}
+
+  \item Határozza meg az $f(x; y)=\ln\left(x^2+y^2\right)$ függvény $P(0;1)$
+        ponthoz és $\alpha=60^\circ$ irányhoz tartozó érintőegyenesének
+        egyenletét!
+
+  \item Határozza meg a $f(x; y)=\sin xy$ függvény érintősíkjának egyenletét a
+        $P(\sfrac{\pi}{3};2)$ pontban!
+
+  \item Határozza meg azon pontok halmazát, ahol a $z=2x^2+5y^2-3x+2y-1$ felület
+        érintősíkja párhuzamos a $2x-y+5z-25=0$ síkkal!
+
+  \item Határozza meg az $f(x;y)=\arctan xy$ függvény teljes differenciálját
+        paraméteresen a $P_7(x_0; y_0)$ és a $Q_7(1; 2)$ pontban!
+
+  \item Határozza meg egy henger térfogat mérésének a relatív hibáját, ha
+        ismert, hogy a sugár 1\%-os és a magasság 2\%-os hibával lett mérve!
+
+  \item Határozza meg az $\rvec f: \Reals^3 \to \Reals^2$ függvény Jakobi
+        mátrixát!
+        \begin{equation*}
+          \rvec f(x;y;z)=\begin{bmatrix}
+            x^2 + y^2 +z \sin x \\
+            z^2 + z \sin y
+          \end{bmatrix}
+        \end{equation*}
+\end{enumerate}
+
+
+\end{document}
