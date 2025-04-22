@@ -1,0 +1,150 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+
+\area{Többváltozós analízis}
+\title{Differenciálás II}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{12}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+
+\begin{blueBox}
+  \sftitle{Többváltozós Taylor-formula:}
+
+  Az egyváltozós függvényekhet hasonló módon, az $n$-edrendű Taylor-polinom:
+  \begin{align*}
+    T_0 & = f(\rvec x_0)
+    \\
+    T_1 & = T_0
+    + \pdv{f(\rvec x_0)}{x}(x - x_0)
+    + \pdv{f(\rvec x_0)}{y}(y - y_0)
+    \\
+    T_2 & = T_1 + \frac{1}{2} \left[
+      \pdv[order=2]{f(\rvec x_0)}{x}(x - x_0)^2
+      + \pdv[order=2]{f(\rvec x_0)}{y}(y - y_0)^2
+      + 2 \pdv{f(\rvec x_0)}{x,y}(x - x_0)(y - y_0)
+    \right]
+    \\
+        & \vdots
+  \end{align*}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Többváltozós függvények szélsőérték-számítása:}
+
+  Szélsőérték létezésének \textbf{szükséges} feltétele, hogy az adott pontban a
+  parciális deriváltak eltűnjenek, vagyis
+  $$
+    \forall i:
+    \pdv{f(\rvec x_0)}{x_i} = 0
+    \text.
+  $$
+
+  Szélsőérték létezésének elégséges feltétele, hogy az adott pontban felírt
+  Hesse-mátrix pozitív definit legyen. Ezen mátrix az alábbi módon írható fel:
+  $$
+    \rmat H = \begin{bmatrix}
+      \partial_1^2 f(\rvec x_0)          & \partial_1 \partial_2 f(\rvec x_0) & \cdots & \partial_1 \partial_n f(\rvec x_0) \\
+      \partial_2 \partial_1 f(\rvec x_0) & \partial_2^2 f(\rvec x_0)          & \cdots & \partial_2 \partial_n f(\rvec x_0) \\
+      \vdots                             & \vdots                             & \ddots & \vdots                             \\
+      \partial_n \partial_1 f(\rvec x_0) & \partial_n \partial_2 f(\rvec x_0) & \cdots & \partial_n^2 f(\rvec x_0)
+    \end{bmatrix}
+    \text.
+  $$
+  A determinánsa alapján:
+  \begin{itemize}
+    \item ha $\det \rmat H > 0$, akkor lokális szélsőérték van,
+    \item ha $\det \rmat H < 0$, akkor nincsen szélsőérték,
+    \item ha $\det \rmat H = 0$, akkor nem lehet eldönteni.
+  \end{itemize}
+  Amennyiben $\det \rmat H > 0$, akkor a szélsőérték jellege
+  \begin{itemize}
+    \item lokális maximum, ha $\rmat H$ főátlóra feszített aldeterminánsai
+          váltakozó előjelűek,
+    \item lokális minimun, ha $\rmat H$ főátlóra feszített aldeterminánsai
+          pozitívak.
+  \end{itemize}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Feltételes szélsőérték egy görbe mentén:}
+
+  Amennyiben egy $f$ függvény egy adott $g = 0$ görbe menti szélsőértékeit
+  szeretnénk megkeresni, akkor az
+  $$
+    F = f + \lambda g
+  $$
+  függvényre kell megoldanunk a szélsőérték-feladatot.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Feltételes szélsőérték egy görbe által bezárt területen:}
+
+  Amennyiben egy $f$ függvény szélsőértékeit egy adott $g = 0$ görbe által
+  bezárt tartományán szeretnénk megkeresni, akkor:
+  \begin{itemize}
+    \item először megkeressük a lokális szélsőértékeket, és ezekből kiválasztjuk
+          azokat, amelyek a tartomyán belsejébe esnek.
+    \item utána pedig megkeressük a görbe peremére eső szélsőértékeket az előző
+          módszer alapján.
+  \end{itemize}
+\end{blueBox}
+
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item Határozza meg az $f(x; y)=2x^2-xy-y^2-6x-3y+5$ függvény első és második
+        Taylor polinomját a $P(1; -2)$ pontban!
+
+  \item Határozza meg az $f(x; y; z)=\sin x \sin y \sin z$ függvény első és
+        második Taylor polinomjait a $P_2(\sfrac{\pi}{4}; \sfrac{\pi}{4};
+          \sfrac{\pi}{6})$ pontban!
+
+  \item Végezzen szélsőérték vizsgálatot az $f(x; y)=x^2-xy+y^2+3x-2y+1$
+        függvényen!
+
+  \item Határozza meg az $f(x; y)=x^2+xy+y^2+\sfrac{8}{x}+\sfrac{8}{y}$ függvény
+        egy darab szélsértékét!
+
+  \item Ellenőrizze, hogy az $f(x; y)=\cos x \cos y \cos (x+y)$ függvénynek a
+        $P_1(\sfrac{\pi}{2}; \sfrac{\pi}{2})$ és $P_2(0; 0)$ pontokban
+        szélsőérték helye van!
+
+  \item Határozza meg azt a csomagméretet, amely esetén egy
+        $V=4,5\;\mathrm{dm}^3$ térfogatú téglatest alakú csomag a legkevesebb
+        zsineg felhasználásával az alábbi ábrán látható módón bekötözhető!
+        \begin{center}
+          \begin{tikzpicture}[thick]
+            \draw
+            (0, 1.5) -- (4, 1.5) -- (5.5, 2.5)
+            (4, 1.5) -- (4, 0)
+            (0, 0) -- (4, 0) -- (5.5, 1) -- (5.5, 2.5) -- (1.5,2.5) -- (0, 1.5) -- cycle
+            ;
+
+            \draw[ultra thick, primaryColor]
+            (1.333, 0) -- ++(0,  1.5) -- ++(1.5, 1)
+            (2.667, 0) -- ++(0,  1.5) -- ++(1.5, 1)
+            (0.75,2) -- ++(4, 0) -- ++(0,-1.5)
+            ;
+          \end{tikzpicture}
+        \end{center}
+
+  \item Határozza meg annak a derékszögű hasábnak a minimális térfogatát, amely
+        éleinek összege $l$ hosszú!
+
+  \item Határozza meg a $f(x; y)=x^2y^2$ függvény szélőértékét az
+        $x^2+y^2=1$ egyenletű görbe mentén!
+
+  \item Határozza meg az $f(x; y)=x^2+y^2+xy-x$ függvény globális maximumát és
+        minimumát az $x^2+y^2\leq1$ tartományon!
+\end{enumerate}
+
+
+\end{document}

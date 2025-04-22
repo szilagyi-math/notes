@@ -144,7 +144,10 @@ practice_material:
       description: Többváltozós analízis – Differenciálás I
       video_link: https://youtu.be/69GI6iN4HhA
       week: 11
-    - description: Többváltozós analízis – Differenciálás II
+    - source: 12.tex
+      target: G2-gyak-12
+      display_name: G2 12. gyakrolat
+      description: Többváltozós analízis – Differenciálás II
       video_link: https://youtu.be/kdqcBt54fNo
       video_mistakes:
         - "1:20:00 - f'(x)=0 egyenlet rosszul lett egyszerűsítve. Kiemelés és
