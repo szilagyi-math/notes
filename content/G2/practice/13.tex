@@ -1,0 +1,381 @@
+\documentclass[a4paper, 12pt, fleqn]{scrartcl}
+
+\usepackage{math-practice}
+\usepackage{tabto}
+
+\area{Többváltozós analízis}
+\title{Integrálás I}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{13}
+
+\pgfdeclarelayer{ft}
+\pgfdeclarelayer{bg}
+\pgfsetlayers{bg,main,ft}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+
+\begin{blueBox}
+  \sftitle{Integrálás téglatartományon:}
+
+  Téglatartomány esetén az integrálás sorrendje tetszőleges.
+
+  \begin{minipage}{.4\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[thick, scale=5/4]
+        % Coordinate system
+        \draw[draw = primaryColor, -to]
+        (-0.35,0) -- (3.35,0) node[below] {$x$};
+        \draw[draw = primaryColor, -to]
+        (0,-0.35) -- (0,2.35) node[left] {$y$};
+
+        % Rectangle
+        \draw[
+          draw=secondaryColor,
+          pattern = north east lines,
+          pattern color = secondaryColor,
+        ] (.75,.5) rectangle (2.75,1.75);
+
+        % Dimentions
+        \draw[draw=ternaryColor, dashed]
+        (.75,.5) -- (0,.5) node[left] {$y_1$}
+        (.75,1.75) -- (0,1.75) node[left] {$y_2$}
+        (.75,.5) -- (.75,0) node[below] {$x_1$}
+        (2.75,.5) -- (2.75,0) node[below] {$x_2$}
+        ;
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}\begin{minipage}{.6\textwidth}
+    \begin{equation*}
+      I
+      = \int\limits_{x_1}^{x_2} \int\limits_{y_1}^{y_2} f(x;y) \dd y \dd x
+      = \int\limits_{y_1}^{y_2} \int\limits_{x_1}^{x_2} f(x;y) \dd x \dd y
+    \end{equation*}
+  \end{minipage}
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Integrálás normáltartományon:}
+
+  \begin{minipage}{.4\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[thick, scale=5/4]
+        % Coordinate system
+        \draw[draw = primaryColor, -to]
+        (-0.35,0) -- (3.35,0) node[below] {$x$};
+        \draw[draw = primaryColor, -to]
+        (0,-0.35) -- (0,2.35) node[left] {$y$};
+
+        % Dimentions
+        \draw[draw=ternaryColor, dashed]
+        (.75,2) -- (.75,0) node[below] {$x_1$}
+        (2.75,2) -- (2.75,0) node[below] {$x_2$}
+        ;
+
+        % Lower boundary
+        \draw[draw = secondaryColor, name path = f1]
+        plot[domain=0.75:2.75, smooth, samples=150]
+        ({\x}, {0.25+0.125*sin(540*\x)+\x*0.125})
+        node[right] {$g_1(x)$}
+        ;
+
+        % Upper boundary
+        \draw[draw = secondaryColor,name path = f2]
+        plot[domain=0.75:2.75, smooth, samples=150]
+        ({\x}, {1.75+0.125*sin(540*\x)-\x*0.125})
+        node[right] {$g_2(x)$}
+        ;
+
+        % Fill between boundaries
+        \tikzfillbetween[
+          of=f1 and f2,
+          on layer = bg,
+        ]{
+          pattern = north east lines,
+          pattern color = secondaryColor,
+        }
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}\begin{minipage}{.6\textwidth}
+    \begin{equation*}
+      I
+      = \int\limits_{x_1}^{x_2} \int\limits_{g_1(x)}^{g_2(x)} f(x;y) \dd y \dd x
+      = \int\limits_{y_1}^{y_2} \int\limits_{g^{-1}_1(y)}^{g^{-1}_2(y)} f(x;y) \dd x \dd y
+    \end{equation*}
+  \end{minipage}
+
+  \begin{minipage}{.4\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[thick, scale=5/4]
+        % Coordinate system
+        \draw[draw = primaryColor, -to]
+        (-0.35,0) -- (3.35,0) node[below] {$x$};
+        \draw[draw = primaryColor, -to]
+        (0,-0.35) -- (0,2.35) node[left] {$y$};
+
+        % Dimentions
+        \draw[draw=ternaryColor, dashed]
+        (3,.5) -- (0,.5) node[left] {$y_1$}
+        (3,1.75) -- (0,1.75) node[left] {$y_2$}
+        ;
+
+        % Lower boundary
+        \draw[draw = secondaryColor, name path = f1]
+        plot[domain=1.75:0.5, smooth, samples=150]
+        ({0.75+0.125*sin(540*\x)+\x*0.125}, {\x})
+        ;
+        \node[above] at (1,1.75) {$g_1(y)$};
+
+        % Upper boundary        
+        \draw[draw = secondaryColor,name path = f2]
+        plot[domain=0.5:1.75, smooth, samples=150]
+        ({2.75+0.125*sin(540*\x)-\x*0.125}, {\x})
+        node[above] {$g_2(y)$}
+        ;
+
+        % Fill between boundaries
+        \tikzfillbetween[
+          of=f1 and f2,
+          on layer = bg,
+        ]{
+          pattern = north east lines,
+          pattern color = secondaryColor,
+        }
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}\begin{minipage}{.6\textwidth}
+    \begin{equation*}
+      I
+      = \int\limits_{y_1}^{y_2} \int\limits_{g_1(y)}^{g_2(y)} f(x;y) \dd x \dd y
+      = \int\limits_{x_1}^{x_2} \int\limits_{g^{-1}_1(x)}^{g^{-1}_2(x)} f(x;y) \dd y \dd x
+    \end{equation*}
+  \end{minipage}
+\end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item Számolja ki az alábbi függvények integrálját a megadott tégla
+        tartományokon!
+        \begin{enumerate}
+          \item $f(x; y) = 2x^2 + 3xy + 4y^2$
+                \tabto{6cm} $1 \leq x \leq 2$
+                \tabto{9cm} $0 \leq y \leq 3$
+
+          \item $g(x; y) = xy\sin(x^2 + y^2)$
+                \tabto{6cm} $0 \leq x \leq \sfrac{\pi}{2}$
+                \tabto{9cm} $0 \leq y \leq \sfrac{\pi}{2}$
+
+          \item $h(x; y) = y\cos(2xy)$
+                \tabto{6cm} $1 \leq x \leq 2$
+                \tabto{9cm} $1 \leq y \leq 3$
+        \end{enumerate}
+
+  \item Határozza meg az alábbi hármasintergrált!
+        \begin{equation*}
+          \int_{1}^{2}
+          \int_{0}^{3}
+          \int_{0}^{1}
+          z \, x \, \sqrt{x^2+y}
+          \dd x \dd y \dd z
+        \end{equation*}
+
+  \item Határozza meg az alábbi integrálokat, majd írja fel az integrációs
+        határokat, ha először az $x$, majd a $y$ változó szerint integrálnánk!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \int_{0}^{1} \int_{x^2}^{\sqrt{x}}
+                    \left(x^2 + y^2\right)
+                    \dd y \dd x
+                  $
+
+            \item $\displaystyle
+                    \int_{1}^{3} \int_{0}^{1/x}
+                    \left(2y + x + 2\right)
+                    \dd y \dd x
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+  \item Határozza meg az alábbi felületi integrálok értékét!
+        \newcounter{enumTemp}
+        \setcounter{enumTemp}{0}
+        \newcommand{\nextEnum}{%
+          % Step the counter
+          \stepcounter{enumTemp}%
+          % Negative space
+          \hspace{-7mm}%
+          % Display the counter with a letter
+          \text{\alph{enumTemp})\;\;\;}%
+        }
+
+        \vspace{-3mm}
+        \begin{minipage}{.6\textwidth}
+          \begin{gather*}
+            \nextEnum
+            \iint_T x^2 + y^2 \dd T
+            \\[5mm]
+            T = \left\{
+            (x;y)
+            \;\middle|\;
+            0 \leq y \leq 1
+            \; \land \;
+            y \leq x \leq 3 - y
+            \right\}
+          \end{gather*}
+        \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+          \begin{center}
+            \begin{tikzpicture}[thick]
+              % Coordinate system
+              \draw[draw = primaryColor, -to]
+              (-0.35,0) -- (3.35,0) node[below] {$x$};
+              \draw[draw = primaryColor, -to]
+              (0,-0.85) -- (0,1.85) node[left] {$y$};
+
+              % Dimentions
+              \draw[draw=ternaryColor, dashed]
+              (1,1) -- (0,1) node[left] {\scriptsize$1$}
+              (1,1) -- (1,0) node[below] {\scriptsize$1$}
+              (2,1) -- (2,0) node[below] {\scriptsize$2$}
+              ;
+              \node[below] at (3,0) {\scriptsize$3$};
+              \node[below right] at (0,0) {\scriptsize$0$};
+
+              % Area
+              \draw[
+                draw = secondaryColor,
+                pattern = north east lines,
+                pattern color = secondaryColor,
+              ] (0,0) -- (1,1) -- (2,1) -- (3,0) -- cycle;
+
+              % T area
+              \node[
+                fill = white,
+                fill opacity=.5,
+                text opacity=1
+              ] at (1.5,0.5) {$T$};
+            \end{tikzpicture}
+          \end{center}
+        \end{minipage}
+
+        \vspace{-3mm}
+        \begin{minipage}{.6\textwidth}
+          \begin{gather*}
+            \nextEnum
+            \iint_T x y \dd T
+            \\[5mm]
+            T = \left\{
+            (x; y)
+            \;\middle|\;
+            x^2 + y^2 \leq R^2
+            \; \land \;
+            x; y \geq 0
+            \right\}
+          \end{gather*}
+        \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+          \begin{center}
+            \begin{tikzpicture}[thick]
+              % Coordinate system
+              \draw[draw = primaryColor, -to]
+              (-1.85,0) -- (1.85,0) node[below] {$x$};
+              \draw[draw = primaryColor, -to]
+              (0,-1.35) -- (0,1.35) node[left] {$y$};
+
+              % r = 1 circle
+              \draw[ternaryColor] (0,0) circle (1);
+
+              % First quadrant area dashed
+              \draw[
+                draw = secondaryColor,
+                pattern = north east lines,
+                pattern color = secondaryColor,
+              ] (0,0) -- (1,0) arc (0:90:1) -- cycle;
+
+              % T area
+              \node[
+                fill = white,
+                fill opacity=.5,
+                text opacity=1
+              ] at (0.4,0.4) {$T$};
+
+              % Dimentions
+              \node[above right=-.5mm] at (1,0) {\scriptsize$R$};
+              \node[above right=-.5mm] at (0,1) {\scriptsize$R$};
+            \end{tikzpicture}
+          \end{center}
+        \end{minipage}
+
+        \vspace{-3mm}
+        \begin{minipage}{.634\textwidth}
+          \begin{gather*}
+            \nextEnum
+            \iint_T y \, e^{(x-1)^2} \dd T
+            \\[5mm]
+            T = \left\{
+            (x; y)
+            \;\middle|\;
+            x \leq 1 + y^2
+            \; \land \;
+            y \geq 0
+            \; \land \;
+            x \leq 5
+            \right\}
+          \end{gather*}
+        \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+          \begin{center}
+            \begin{tikzpicture}[thick]
+              % Coordinate system
+              \draw[draw = primaryColor, -to]
+              (-0.85,0) -- (2.85,0) node[below] {$x$};
+              \draw[draw = primaryColor, -to]
+              (0,-0.85) -- (0,1.85) node[left] {$y$};
+
+              % r = 1 circle
+              % \draw[ternaryColor] (0,0) circle (1);
+
+              % First quadrant area dashed
+              \draw[
+                draw = secondaryColor,
+                pattern = north east lines,
+                pattern color = secondaryColor,
+                scale=1/2,
+              ]
+              plot[domain=0:2, smooth, samples=150]
+              ({1+\x*\x}, {\x}) coordinate(T) |- (0,0);
+
+              % T area
+              \node[
+                fill = white,
+                fill opacity=.5,
+                text opacity=1
+              ] at (1.7,0.35) {$T$};
+
+              % Dimentions
+              \node[below] at (2.5,0) {\scriptsize$5$};
+              \node[below] at (0.5,0) {\scriptsize$1$};
+              \draw[draw=ternaryColor, dashed]
+              (T) -- ++(-2.5,0) node[left] {\scriptsize$2$};
+            \end{tikzpicture}
+          \end{center}
+        \end{minipage}
+
+  \item Adja meg az integrációs intervallumokat, ha az alábbi felületeken
+        kell integrálni:
+        \begin{enumerate}
+          \item $R$ sugarú körfelület,
+          \item ha az $x = 0$, $y = x^2$ és $y = 2 - x$ görbék által határolt
+                felület!
+        \end{enumerate}
+
+  \item Adja meg a $f(x; y) = xy$ függvény a $P_1(1;1)$, $P_2(4;5)$ és
+        $P_3(4;2)$ pontok által meghatározott háromszög terület fölötti
+        integrálját!
+\end{enumerate}
+
+
+\end{document}

@@ -157,7 +157,10 @@ practice_material:
           kell a Hesse-mátrix aldeterminánsait még külön vizsgálni. Elég az
           értékek felírása, ahogy ez a táblán írásos formában megtörtént.'
       week: 12
-    - description: Többváltozós analízis – Integrálás I
+    - soruce: 13.tex
+      target: target: G2-gyak-13
+      display_name: G2 13. gyakorlat
+      description: Többváltozós analízis – Integrálás I
       video_link: https://youtu.be/cKlHANzUJ7A
       video_mistakes:
         - '11:38: A második feladatban az y-szerinti integrálás után a szinuszos
