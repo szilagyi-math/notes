@@ -1,0 +1,699 @@
+\documentclass[a4paper, 12pt, fleqn]{scrartcl}
+
+\usepackage{math-practice}
+
+\area{Többváltozós analízis}
+\title{Integrálás II}
+\subject{Matematika G2}
+\subjectCode{BMETE94BG02}
+\date{Utoljára frissítve: \today}
+\docno{14}
+
+\begin{document}
+\maketitle
+\subsection{Elméleti Áttekintő}
+
+\begin{blueBox}
+  \sftitle{Integráltranszformációk:}
+
+  Előfordulhat olyan eset, amikor egy adott $A$ tartományon nehéz elvégezni az
+  integrálást, de létezik egy olyan koordináta-transzformáció, amely által az
+  integrálás egyszerűbbé válik. Ha lézezik egy egyértelmű $\varphi$ leképezés
+  az $A$ tartományról az $A'$ tartományra, akkor az integrálás a következő
+  módon történik:
+  $$
+    \iint_A f(\rvec x) \dd \rmat A
+    =
+    \iint_{A'} f(\rvec x') \left| \rmat J_{\varphi} \right| \dd \rmat A'
+    \text,
+  $$
+  ahol $\rmat J_{\varphi}$ a leképezés Jacobi-mátrixa.
+
+  \sftitle{2D polárkoordináták:}
+
+  \begin{minipage}{.3\textwidth}
+    \begin{tikzpicture}[thick]
+      % Coordinate system
+      \draw[draw = primaryColor, -to]
+      (-0.25,0) -- (2.75,0) node[below] {$x$};
+      \draw[draw = primaryColor, -to]
+      (0,-0.25) -- (0,1.75) node[left] {$y$};
+
+      \coordinate (O) at (0,0);
+      \coordinate (X) at (1,0);
+      \draw[draw=secondaryColor] (30:2)
+      coordinate(P) -- (0,0) node[above, midway, rotate=30] {$r$}
+      ;
+
+      \draw[fill=primaryColor] (P) circle(2pt);
+
+      \draw pic[
+          "$\varphi$",
+          draw = secondaryColor,
+          ->,
+          angle radius=1.5cm,
+          angle eccentricity=.7,
+        ] {angle = X--O--P};
+    \end{tikzpicture}
+  \end{minipage}\begin{minipage}{.25\textwidth}
+    $\displaystyle
+      \begin{aligned}
+        x & = r \cos \varphi \\
+        y & = r \sin \varphi
+      \end{aligned}
+    $
+  \end{minipage}\begin{minipage}{.45\textwidth}
+    $\displaystyle
+      |\rmat J_{\varphi}| = \begin{vmatrix}
+        \cos \varphi & -r \sin \varphi \\
+        \sin \varphi & r \cos \varphi
+      \end{vmatrix} = r
+    $
+  \end{minipage}
+
+  \sftitle{3D hengerkoordináták:}
+
+  \begin{minipage}{.3\textwidth}
+    \begin{tikzpicture}[scale=.8, thick]
+      % Source: https://tikz.net/bloch-sphere/
+      % Define radius
+      \def\r{2}
+
+      % Bloch vector
+      \draw (0, 0)
+      node[circle, fill, inner sep=1] (orig) {} -- (\r/2, 2*\r/3) coordinate (a)
+      ;
+
+      \draw[dashed] (orig) -- (\r/2, -\r/7) coordinate (phi) -- (a);
+
+      \draw[fill=primaryColor] (a) circle(2.5pt);
+
+
+      % Sphere
+      \draw[dashed] (orig) ellipse (\r{} and \r/3);
+
+      % Axes
+      % x
+      \draw[-to, draw = primaryColor]
+      (orig) -- ++(-1.5*\r/5, -1.5*\r/3)
+      coordinate (x)
+      node[right] {$x$}
+      ;
+      % y
+      \draw[-to, draw = primaryColor]
+      (orig) -- ++(1.25*\r, 0)
+      coordinate (y)
+      node[above] {$y$}
+      ;
+      % z
+      \draw[-to, draw = primaryColor]
+      (orig) -- ++(0, 1.25*\r)
+      coordinate (z)
+      node[right] {$z$}
+      ;
+
+      % Angles
+      \pic[draw=secondaryColor, text=secondaryColor, -to, "$\varphi$"]
+      {angle = x--orig--phi};
+
+      % Radius
+      \draw[draw=secondaryColor] (orig) -- (phi) node[above, midway] {$r$};
+    \end{tikzpicture}
+  \end{minipage}\begin{minipage}{.25\textwidth}
+    $\displaystyle
+      \begin{aligned}
+        x & = r \cos \varphi \\
+        y & = r \sin \varphi \\
+        z & = z
+      \end{aligned}
+    $
+  \end{minipage}\begin{minipage}{.45\textwidth}
+    $\displaystyle
+      |\rmat J_{\varphi}| = \begin{vmatrix}
+        \cos \varphi & -r \sin \varphi & 0 \\
+        \sin \varphi & r \cos \varphi  & 0 \\
+        0            & 0               & 1
+      \end{vmatrix} = r
+    $
+  \end{minipage}
+
+  \sftitle{3D gömbkoordináták:}
+
+  \begin{minipage}{.3\textwidth}
+    \begin{tikzpicture}[scale=.8, thick]
+      % Source: https://tikz.net/bloch-sphere/
+      % Define radius
+      \def\r{2}
+
+      % Bloch vector
+      \draw (0, 0)
+      node[circle, fill, inner sep=1] (orig) {} -- (\r/3, \r/2) coordinate (a);
+
+      \draw[dashed] (orig) -- (\r/3, -\r/5) node (phi) {} -- (a);
+
+      % Sphere
+      \draw (orig) circle (\r);
+      \draw[dashed] (orig) ellipse (\r{} and \r/3);
+
+      \draw[fill=primaryColor] (a) circle(2.5pt);
+
+      % Axes
+      % x
+      \draw[-to, draw = primaryColor]
+      (orig) -- ++(-1.5*\r/5, -1.5*\r/3)
+      coordinate (x)
+      node[right] {$x$}
+      ;
+      % y
+      \draw[-to, draw = primaryColor]
+      (orig) -- ++(1.25*\r, 0)
+      coordinate (y)
+      node[above] {$y$}
+      ;
+      % z
+      \draw[-to, draw = primaryColor]
+      (orig) -- ++(0, 1.25*\r)
+      coordinate (z)
+      node[right] {$z$}
+      ;
+
+      % Angles
+      \pic[draw=secondaryColor, text=secondaryColor, -to, "$\varphi$"]
+      {angle = x--orig--phi};
+      \pic[draw=secondaryColor, text=secondaryColor, to-, "$\vartheta$", angle radius=8mm]
+      {angle = a--orig--z};
+    \end{tikzpicture}
+  \end{minipage}\begin{minipage}{.25\textwidth}
+    $\displaystyle
+      \begin{aligned}
+        x & = r \sin \vartheta \cos \varphi \\
+        y & = r \sin \vartheta \sin \varphi \\
+        z & = r \cos \vartheta
+      \end{aligned}
+    $
+  \end{minipage}\begin{minipage}{.45\textwidth}
+    $\displaystyle
+      |\rmat J_{\varphi}| = \begin{vmatrix}
+        s_\vartheta c_\varphi & -r s_\vartheta s_\varphi & c_\vartheta c_\varphi \\
+        s_\vartheta s_\varphi & r s_\vartheta c_\varphi  & c_\vartheta s_\varphi \\
+        c_\vartheta           & 0                        & r
+      \end{vmatrix} = r^2 \sin \vartheta
+    $
+
+  \end{minipage}
+\end{blueBox}
+
+\begin{note}
+  Fontos, hogy a Jacobi-mátrix determinánsával való szorzást ne felejtsük el!
+\end{note}
+
+\begin{blueBox}
+  \sftitle{Görbék megadása:}
+
+  Görbék esetén egy futó változót használunk.
+
+  \sftitle{Egyenes:}
+  $$
+    \rvec r(t) = \rvec r_0 + t \rvec v
+    \text,
+  $$
+  ahol $r_0$ az egyenes egy pontja, $v$ az egyenes irányvektora, $t \in \Reals$
+  pedig a futó paraméter.
+
+  \sftitle{Kör:}
+  $$
+    \rvec r(t) = \begin{bmatrix}
+      R \cdot \cos \varphi \\
+      R \cdot \sin \varphi
+    \end{bmatrix}
+    \text,
+  $$
+  ahol $r$ a kör sugara, $\varphi \in [0; 2\pi]$ pedig a futó paraméter.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Felületek megadása:}
+
+  Felületek esetén két futó paraméterre van szükségünk.
+
+  \sftitle{Körlap:}
+  $$
+    \rvec \rho (r; \varphi) = \begin{bmatrix}
+      r \cos \varphi \\
+      r \sin \varphi
+    \end{bmatrix}
+    \text,
+  $$
+  ahol $r \in [0; R]$, $\varphi \in [0; 2\pi]$.
+
+  \sftitle{Hengerfelület:}
+  $$
+    \rvec \rho(t; s) = \rvec r_0(r) + s \rvec v
+    \text,
+  $$
+  ahol $\rvec r_0(t)$ az alapgörbe, $\rvec v$ pedig az irányvektor, $t$,
+  $s \in \Reals$ pedig a futó paraméterek.
+
+  \sftitle{Forgásfelület:}
+  $$
+    \begin{cases}
+      \; x(t) = f(t) \\
+      \; z(t) = g(t)
+    \end{cases}
+    \quad \Rightarrow \quad
+    \rvec \rho(t;s) = \begin{bmatrix}
+      f(t) \cos s \\
+      f(t) \sin s \\
+      g(t)
+    \end{bmatrix}
+    \text.
+  $$
+\end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item Határozza meg az alábbi felületi integrálokat!
+        \newcounter{enumTemp}
+        \setcounter{enumTemp}{0}
+        \newcommand{\nextEnum}{%
+          % Step the counter
+          \stepcounter{enumTemp}%
+          % Negative space
+          \hspace{-7mm}%
+          % Display the counter with a letter
+          \text{\alph{enumTemp})\;\;\;}%
+        }
+
+        \vspace{-3mm}
+        \begin{minipage}{.6\textwidth}
+          \begin{gather*}
+            \nextEnum
+            \iint_T \frac{1}{\sqrt{x^2 + y^2 + 1}} \dd T
+            \\[5mm]
+            T = \left\{
+            (x; y)
+            \mid
+            x^2 + y^2 \leq 1
+            \;\land\;
+            x; y \geq 0
+            \right\}
+          \end{gather*}
+        \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+          \begin{center}
+            \begin{tikzpicture}[thick]
+              % Coordinate system
+              \draw[draw = primaryColor, -to]
+              (-1.85,0) -- (1.85,0) node[below] {$x$};
+              \draw[draw = primaryColor, -to]
+              (0,-1.35) -- (0,1.35) node[left] {$y$};
+
+              % r = 1 circle
+              \draw[ternaryColor] (0,0) circle (1);
+
+              % First quadrant area dashed
+              \draw[
+                draw = secondaryColor,
+                pattern = north east lines,
+                pattern color = secondaryColor,
+              ] (0,0) -- (1,0) arc (0:90:1) -- cycle;
+
+              % T area
+              \node[
+                fill = white,
+                fill opacity=.5,
+                text opacity=1
+              ] at (0.4,0.4) {$T$};
+
+              % Dimentions
+              \node[above right=-.5mm] at (1,0) {\scriptsize$1$};
+              \node[above right=-.5mm] at (0,1) {\scriptsize$1$};
+            \end{tikzpicture}
+          \end{center}
+        \end{minipage}
+
+        \vspace{-3mm}
+        \begin{minipage}{.6\textwidth}
+          \begin{gather*}
+            \nextEnum
+            \iint_T x^2 + y^2 \dd T
+            \\[5mm]
+            T = \left\{
+            (x; y)
+            \mid
+            (x-3)^2 + (y-2)^2 \leq 1
+            \right\}
+          \end{gather*}
+        \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+          \begin{center}
+            \begin{tikzpicture}[thick]
+              % Coordinate system
+              \draw[draw = primaryColor, -to]
+              (-0.35,0) -- (3.35,0) node[below] {$x$};
+              \draw[draw = primaryColor, -to]
+              (0,-0.35) -- (0,2.35) node[left] {$y$};
+
+              % Dimentions
+              \draw[dashed, draw=ternaryColor]
+              (0, 1.33) node[left] {$2$} -- (1.33, 1.33)
+              (2, 0) node[below] {$3$} -- (2, 0.67)
+              ;
+
+              % r = 1 circle
+              \draw[
+                secondaryColor,
+                pattern = north east lines,
+                pattern color = secondaryColor,
+              ] (2, 1.33) circle (.67);
+
+              % T area
+              \node[
+                fill = white,
+                fill opacity=.5,
+                text opacity=1
+              ] at (2, 1.33) {$T$};
+            \end{tikzpicture}
+          \end{center}
+        \end{minipage}
+
+        \vspace{-3mm}
+        \begin{minipage}{.6\textwidth}
+          \begin{gather*}
+            \nextEnum
+            \iint_T |2xy| \dd T
+            \\[5mm]
+            T = \left\{
+            (x; y)
+            \;\middle|\;
+            \frac{x^2}{9} + \frac{y^2}{4} \leq 1
+            \;\land\;
+            x; y \geq 0
+            \right\}
+          \end{gather*}
+        \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+          \begin{center}
+            \begin{tikzpicture}[thick]
+              % Coordinate system
+              \draw[draw = primaryColor, -to]
+              (-1.85,0) -- (1.85,0) node[below] {$x$};
+              \draw[draw = primaryColor, -to]
+              (0,-1.35) -- (0,1.35) node[left] {$y$};
+
+              % x = 3, y = 2 ellipse
+              \draw[
+                ternaryColor,
+              ] (0,0) ellipse (1.2 and 0.8);
+
+              % Fill the first quadrant
+              \draw[
+                draw = secondaryColor,
+                pattern = north east lines,
+                pattern color = secondaryColor,
+              ] (0,0) -- (1.2,0) arc (0:90:1.2 and 0.8) -- cycle;
+
+              % T area
+              \node[
+                fill = white,
+                fill opacity=.5,
+                text opacity=1
+              ] at (0.45, 0.3) {$T$};
+
+              % Dimentions
+              \node[above right=-.5mm] at (1.2,0) {\scriptsize$3$};
+              \node[above right=-.5mm] at (0,0.8) {\scriptsize$2$};
+            \end{tikzpicture}
+          \end{center}
+        \end{minipage}
+
+        \vspace{-3mm}
+        \begin{minipage}{.631\textwidth}
+          \begin{gather*}
+            \nextEnum
+            \iint_T 4xy^3 \dd T
+            \\[5mm]
+            T = \left\{
+            (x; y)
+            \;\middle|\;
+            1 \leq x^2 + y^2 \leq 4
+            \;\land\;
+            x \geq 0
+            \;\land\;
+            y \geq \frac{x}{\sqrt3}
+            \right\}
+          \end{gather*}
+        \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+          \begin{center}
+            \begin{tikzpicture}[thick]
+              % Coordinate system
+              \draw[draw = primaryColor, -to]
+              (-1.85,0) -- (1.85,0) node[below] {$x$};
+              \draw[draw = primaryColor, -to]
+              (0,-1.35) -- (0,1.35) node[left] {$y$};
+
+              % r = 1 circle
+              \draw[ternaryColor] (0,0) circle (1) circle (.5);
+
+              % First quadrant area dashed
+              \draw[
+                draw = secondaryColor,
+                pattern = north east lines,
+                pattern color = secondaryColor,
+              ] (30:.5) -- (30:1) arc (30:90:1) -- (90:.5) arc (90:30:.5) -- cycle;
+
+              % T area
+              \node[
+                fill = white,
+                fill opacity=.5,
+                text opacity=1,
+                inner sep=.5mm,
+              ] at (60:.75) {\scriptsize$T$};
+
+              % Dimentions
+              \node[above left=-.5mm] at (.5,0) {\scriptsize$1$};
+              \node[below right=-.5mm] at (0,.5) {\scriptsize$1$};
+              \node[above right=-.5mm] at (1,0) {\scriptsize$2$};
+              \node[above right=-.5mm] at (0,1) {\scriptsize$2$};
+            \end{tikzpicture}
+          \end{center}
+        \end{minipage}
+
+        \vspace{-3mm}
+        \begin{minipage}{.6\textwidth}
+          \begin{gather*}
+            \nextEnum
+            \iint_T \sin(x^2 + y^2) \dd T
+            \\[5mm]
+            T = \left\{
+            (x; y)
+            \;\middle|\;
+            x^2 + y^2 \leq 2^2
+            \;\land\;
+            x; y \geq 0
+            \right\}
+          \end{gather*}
+        \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+          \begin{center}
+            \begin{tikzpicture}[thick]
+              % Coordinate system
+              \draw[draw = primaryColor, -to]
+              (-1.85,0) -- (1.85,0) node[below] {$x$};
+              \draw[draw = primaryColor, -to]
+              (0,-1.35) -- (0,1.35) node[left] {$y$};
+
+              % r = 2 circle
+              \draw[ternaryColor] (0,0) circle (1);
+
+              % First quadrant area dashed
+              \draw[
+                draw = secondaryColor,
+                pattern = north east lines,
+                pattern color = secondaryColor,
+              ] (0,0) -- (1,0) arc (0:90:1) -- cycle;
+
+              % T area
+              \node[
+                fill = white,
+                fill opacity=.5,
+                text opacity=1
+              ] at (0.4,0.4) {$T$};
+
+              % Dimentions
+              \node[above right=-.5mm] at (1,0) {\scriptsize$2$};
+              \node[above right=-.5mm] at (0,1) {\scriptsize$2$};
+            \end{tikzpicture}
+          \end{center}
+        \end{minipage}
+
+  \item Határozza meg az alábbi improprius integrálok értékét!
+        \begin{multicols}{2}
+          \begin{enumerate}
+            \item $\displaystyle
+                    \int\limits_{-\infty}^\infty
+                    \int\limits_{-\infty}^\infty
+                    2^{-x^2-y^2}
+                    \dd x \dd y
+                  $
+
+            \item $\displaystyle
+                    \int\limits_0^\infty e^{-x^2} \dd x
+                  $
+          \end{enumerate}
+        \end{multicols}
+
+  \item Határozza meg a gömb térfogatát egy hármas-integrál segítségével:
+
+        \begin{minipage}{.6\textwidth}
+          \begin{gather*}
+            V = \iiint_V \dd V
+            \\[5mm]
+            V = \left\{
+            (x; y; z)
+            \;\middle|\;
+            x^2 + y^2 + z^2 \leq 1
+            \right\}
+          \end{gather*}
+        \end{minipage}\hfill\begin{minipage}{.3\textwidth}
+          \begin{center}
+            \begin{tikzpicture}[scale=.75, thick]
+              % Source: https://tikz.net/bloch-sphere/
+              % Define radius
+              \def\r{2}
+
+              % Bloch vector
+              \draw (0, 0)
+              node[circle, fill, inner sep=1] (orig) {} -- (\r/3, \r/2)
+              node[circle, fill, inner sep=0.7, label=above:$\rvec x$] (a) {};
+
+              \draw[dashed] (orig) -- (\r/3, -\r/5) node (phi) {} -- (a);
+
+              % Sphere
+              \draw (orig) circle (\r);
+              \draw[dashed] (orig) ellipse (\r{} and \r/3);
+
+              % Axes
+              % x
+              \draw[-to, draw = primaryColor]
+              (orig) -- ++(-1.5*\r/5, -1.5*\r/3)
+              coordinate (x)
+              node[right] {$x$}
+              ;
+              % y
+              \draw[-to, draw = primaryColor]
+              (orig) -- ++(1.25*\r, 0)
+              coordinate (y)
+              node[above] {$y$}
+              ;
+              % z
+              \draw[-to, draw = primaryColor]
+              (orig) -- ++(0, 1.25*\r)
+              coordinate (z)
+              node[right] {$z$}
+              ;
+
+              % Angles
+              \pic[draw=secondaryColor, text=secondaryColor, -to, "$\varphi$"]
+              {angle = x--orig--phi};
+              \pic[draw=secondaryColor, text=secondaryColor, to-, "$\vartheta$", angle radius=8mm]
+              {angle = a--orig--z};
+            \end{tikzpicture}
+          \end{center}
+        \end{minipage}
+
+  \item Adja meg az alábbi integrál értékét, ha $V$ az $r = 1$ sugarú, $z = 0$
+        és $z = 2$ síkok által határolt $z$-tengellyel párhuzamos
+        szimmetriavonalú henger a tér első térnyolcadában elhelyezkedő része!
+
+        \begin{minipage}{.65\textwidth}
+          \begin{gather*}
+            \phantom{V =} \iiint_V  z \cdot \sqrt{x^2 + y^2} \dd V
+            \\[5mm]
+            V = \left\{
+            (x; y; z)
+            \;\middle|\;
+            x^2 + y^2 \leq 1
+            \;\land\;
+            0 \leq z \leq 2
+            \;\land\;
+            x; y \geq 0
+            \right\}
+          \end{gather*}
+        \end{minipage}\hfill\begin{minipage}{.275\textwidth}
+          \begin{center}
+            \begin{tikzpicture}[scale=.75, thick]
+              % Source: https://tikz.net/bloch-sphere/
+              % Define radius
+              \def\r{2}
+
+              % Bloch vector
+              \draw (0, 0)
+              node[circle, fill, inner sep=1] (orig) {} -- (\r/2, 2*\r/3) coordinate (a)
+              ;
+
+              \draw[dashed] (orig) -- (\r/2, -\r/7) coordinate (phi) -- (a);
+
+              \draw[fill=primaryColor] (a) circle(2.5pt);
+
+
+              % Sphere
+              \draw[dashed] (orig) ellipse (\r{} and \r/3);
+
+              % Axes
+              % x
+              \draw[-to, draw = primaryColor]
+              (orig) -- ++(-1.5*\r/5, -1.5*\r/3)
+              coordinate (x)
+              node[right] {$x$}
+              ;
+              % y
+              \draw[-to, draw = primaryColor]
+              (orig) -- ++(1.25*\r, 0)
+              coordinate (y)
+              node[above] {$y$}
+              ;
+              % z
+              \draw[-to, draw = primaryColor]
+              (orig) -- ++(0, 1.25*\r)
+              coordinate (z)
+              node[right] {$z$}
+              ;
+
+              % Angles
+              \pic[draw=secondaryColor, text=secondaryColor, -to, "$\varphi$"]
+              {angle = x--orig--phi};
+
+              % Radius
+              \draw[draw=secondaryColor] (orig) -- (phi) node[above, midway] {$r$};
+            \end{tikzpicture}
+          \end{center}
+        \end{minipage}
+
+  \item Határozza meg az $f(x; y; z) = \sqrt{x^2 + y^2 + z^2}$ függvény
+        egységgömbön vett integrálját!
+
+  \item Határozza meg az $\rvec r(t)$ vezérgörbéjű $\rvec v$ irányvektorú
+        hengerefelületet!
+        $$
+          \rvec v(t) = \begin{bmatrix}
+            t^2 + 1 \\
+            5t      \\
+            3t-2
+          \end{bmatrix}
+          \qquad
+          \rvec v = \begin{bmatrix}
+            1 \\
+            2 \\
+            3
+          \end{bmatrix}
+        $$
+
+  \item Adja meg a $2$ sugarú, $z$ tengellyel párhuzamos szimmetriavonalú,
+        origó központú körhenger felületének egyenletét!
+
+  \item Adja meg azon tórusz felületének egyenletét, amelyet az $xz$ síkban
+        elhelyezkedő, $(x; z) = (5; 0)$ középpontú, $r = 3$ sugarú kör $z$
+        tengely körül való forgatásával kapunk!
+\end{enumerate}
+
+
+\end{document}

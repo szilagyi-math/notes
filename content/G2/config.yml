@@ -163,7 +163,10 @@ practice_material:
         - '11:38: A második feladatban az y-szerinti integrálás után a szinuszos
           tag szorzója is ¼, nem pedig ½. Az eredmény így lesz helyes.'
       week: 13
-    - description: Többváltozós analízis – Integrálás II
+    - source: 14.tex
+      target: G2-gyak-14
+      display_name: G2 14. gyakorlat
+      description: Többváltozós analízis – Integrálás II
       video_link: https://youtu.be/l1nMNaeko6E
       video_mistakes:
         - '34:00 - Henger koordinátarendszer esetén a Jacobi mátrix 22-es eleme
