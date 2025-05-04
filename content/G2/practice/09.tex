@@ -96,23 +96,31 @@
     \text.
   \end{align*}
   A bázisvektorok hosszai a skaláris szorzat segítségével:
-  \begin{align*}
+  \begin{alignat*}{9}
     \langle 1; 1 \rangle
      & = \int_{-\pi}^{\pi} 1 \cdot 1 \dd x = 2\pi
-    \text,
+     &
+     & \quad \Rightarrow \quad
+    \|1\| = \sqrt{2\pi}
     \\
     \langle \sin kx; \sin kx \rangle
      & = \int_{-\pi}^{\pi} \sin^2 kx \dd x =
     \int_{-\pi}^{\pi} \frac{1 - \cos 2kx}{2} \dd x
     = \pi
+     &
+     & \quad \Rightarrow \quad
+    \|\sin kx\| = \sqrt{\pi}
     \text,
     \\
     \langle \cos kx; \cos kx \rangle
      & = \int_{-\pi}^{\pi} \cos^2 kx \dd x =
     \int_{-\pi}^{\pi} \frac{1 + \cos 2kx}{2} \dd x
     = \pi
+     &
+     & \quad \Rightarrow \quad
+    \|\cos kx\| = \sqrt{\pi}
     \text.
-  \end{align*}
+  \end{alignat*}
   % \begin{align*}
   %   \langle 1; 1 \rangle
   %    & = \int_{-\pi}^{\pi} 1 \cdot 1 \dd x = 2\pi
