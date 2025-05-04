@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://szilagyi-math.hu/sitemap.xml
