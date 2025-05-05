@@ -64,6 +64,7 @@ practice_material:
       week: 5
     - source: 06.tex
       target: G2-gyak-06
+      solution: G2-gyak-06-megoldas.pdf
       display_name: G2 6. gyakorlat
       description: Függvénysorozatok
       video_link: https://youtu.be/L5PvkUyLrKM
@@ -81,6 +82,7 @@ practice_material:
       week: 6
     - source: 07.tex
       target: G2-gyak-07
+      solution: G2-gyak-07-megoldas.pdf
       display_name: G2 7. gyakorlat
       description: Függvény- és hatványsorok
       video_link: https://youtu.be/GdnWFPA0vf4
@@ -96,6 +98,7 @@ practice_material:
       week: 7
     - source: 08.tex
       target: G2-gyak-08
+      solution: G2-gyak-08-megoldas.pdf
       display_name: G2 8. gyakorlat
       description: Taylor-sorok
       video_link: https://www.youtube.com/watch?v=5aigfYrjc4Q
@@ -113,6 +116,7 @@ practice_material:
       week: 8
     - source: 09.tex
       target: G2-gyak-09
+      solution: G2-gyak-09-megoldas.pdf
       display_name: G2 9. gyakorlat
       description: Fourier-sorok
       video_link: https://youtu.be/5kPqVB2qIYY
@@ -132,6 +136,7 @@ practice_material:
       week: 9
     - source: 10.tex
       target: G2-gyak-10
+      solution: G2-gyak-10-megoldas.pdf
       display_name: G2 10. gyakorlat
       description: Többváltozós analízis – Többváltozós függvények
       video_link: https://youtu.be/-RfHLk4HTho
@@ -140,12 +145,14 @@ practice_material:
       week: 10
     - source: 11.tex
       target: G2-gyak-11
+      solution: G2-gyak-11-megoldas.pdf
       display_name: G2 11. gyakorlat
       description: Többváltozós analízis – Differenciálás I
       video_link: https://youtu.be/69GI6iN4HhA
       week: 11
     - source: 12.tex
       target: G2-gyak-12
+      solution: G2-gyak-12-megoldas.pdf
       display_name: G2 12. gyakrolat
       description: Többváltozós analízis – Differenciálás II
       video_link: https://youtu.be/kdqcBt54fNo
