@@ -1,25 +1,7 @@
-export function createPrepareScript() {
-  const docsDir = `latex-docs`;
+function loop(dir: string): string {
+  return `echo "Changing \\today to the last modification date in the practice files in ${dir}"
 
-  return `# This script prepares the environment for the compilation of latex files
-  
-echo "Preparing the environment for the compilation of latex files"
-echo "Creating the directory for the compiled files"
-
-mkdir -p ${docsDir}
-
-echo "Saving the current directory"
-CWD=$(pwd)
-
-# This only runs on GitHub Actions
-if [ "$GITHUB_ACTIONS" == "true" ]; then
-  echo "Adding safe directory"
-  git config --global --add safe.directory /__w/notes/notes
-
-  echo 'Changing \\today to the last modification date in the practice files'
-
-  # TODO: In the future, this will be unhardcoded
-  cd content/G1/practice
+  cd ${dir}
 
   for file in $(find . -name "*.tex"); do
     # Get the year, month (number), and day
@@ -57,6 +39,30 @@ if [ "$GITHUB_ACTIONS" == "true" ]; then
   done
 
   cd $CWD
+`;
+}
+
+export function createPrepareScript(dirs: string[]): string {
+  const docsDir = `latex-docs`;
+
+  return `# This script prepares the environment for the compilation of latex files
+  
+echo "Preparing the environment for the compilation of latex files"
+echo "Creating the directory for the compiled files"
+
+mkdir -p ${docsDir}
+
+echo "Saving the current directory"
+CWD=$(pwd)
+
+# This only runs on GitHub Actions
+if [ "$GITHUB_ACTIONS" == "true" ]; then
+  echo "Adding safe directory"
+  git config --global --add safe.directory /__w/notes/notes
+
+  echo 'Changing \\today to the last modification date in the practice files'
+
+  ${dirs.map(loop).join('\n')}
 fi
 `;
 }
