@@ -7,7 +7,11 @@ import type { Subject, SubjectData } from 'common/types';
 export function configToBash(mergedConfig: {
   [key in Subject]: SubjectData;
 }) {
-  const preparationScript = createPrepareScript();
+  const practiceDirs = Object.entries(mergedConfig).map(
+    ([subject, data]) => `content/${subject}/${data.practiceMaterial.dir}`,
+  );
+
+  const preparationScript = createPrepareScript(practiceDirs);
 
   const compilationScript = Object.entries(mergedConfig)
     .map(([, data]) => {
