@@ -178,6 +178,7 @@ practice_material:
       week: 13
     - source: 14.tex
       target: G2-gyak-14
+      solution: G2-gyak-14-megoldas.pdf
       display_name: G2 14. gyakorlat
       description: Többváltozós analízis – Integrálás II
       video_link: https://youtu.be/l1nMNaeko6E
