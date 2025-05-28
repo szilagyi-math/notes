@@ -27,6 +27,7 @@ practice_material:
       week: 1
     - source: 02.tex
       target: G2-gyak-02
+      solution: G2-gyak-02-megoldas.pdf
       display_name: G2 2. gyakorlat
       description: Lineáris algebra – Mátrixok II
       video_link: https://youtu.be/5WS2ScaDUOU
@@ -39,12 +40,14 @@ practice_material:
       week: 2
     - source: 03.tex
       target: G2-gyak-03
+      solution: G2-gyak-03-megoldas.pdf
       display_name: G2 3. gyakorlat
       description: Lineáris algebra – Lineáris egyenletrendszerek
       video_link: https://youtu.be/qpWTmZljiMA
       week: 3
     - source: 04.tex
       target: G2-gyak-04
+      solution: G2-gyak-04-megoldas.pdf
       display_name: G2 4. gyakorlat
       description: Lineáris algebra – Lineáris leképezések I
       video_link: https://youtu.be/kD8Rpx6ljAU
@@ -56,6 +59,7 @@ practice_material:
       week: 4
     - source: 05.tex
       target: G2-gyak-05
+      solution: G2-gyak-05-megoldas.pdf
       display_name: G2 5. gyakorlat
       description: Lineáris algebra – Lineáris leképezések II
       video_link: https://youtu.be/ZjV1wFAH1Cw
