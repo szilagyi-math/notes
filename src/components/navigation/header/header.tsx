@@ -22,6 +22,12 @@ const Header = ({}: HeaderProps) => {
             );
           })}
         </ul>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className='block my-2 ml-auto mr-0 h-5/6'
+          src='static/eu-szechenyi-mo.svg'
+          alt='Európai Unió és a Magyar Állam támogatásával'
+        />
       </nav>
     </header>
   );

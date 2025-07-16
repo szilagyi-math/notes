@@ -9,6 +9,13 @@ const Footer = ({}: FooterProps) => {
             Készítette: <a href='https://github.com/tibi1220'>@tibi1220</a>
           </p>
         </div>
+        <div className='col-span-3'>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src='static/eu-szechenyi-mo.svg'
+            alt='Európai Unió és a Magyar Állam támogatásával'
+          />
+        </div>
       </div>
     </footer>
   );

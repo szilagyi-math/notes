@@ -152,6 +152,10 @@ jobs:
         run: |
           mv latex-docs out/downloads
 
+      # - name: Move static files
+      #   run: |
+      #     mv public/static out/static
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.6.0
         with:
