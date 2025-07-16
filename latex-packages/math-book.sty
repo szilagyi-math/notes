@@ -19,6 +19,7 @@
 \RequirePackage{booktabs}
 \RequirePackage{qrcode}
 \RequirePackage{enumitem}
+\RequirePackage[export]{adjustbox}
 
 % MATH
 \RequirePackage{amsmath}
@@ -64,8 +65,19 @@
 \RequirePackage[framemethod=tikz]{mdframed}
 
 % Length declarations and page layout
-\def\innerMargin{15mm}
-\def\outerMargin{25mm}
+\ifdim\paperwidth=210mm\relax
+  \def\innerMargin{20mm}
+  \def\outerMargin{30mm}
+  \def\topMargin{25mm}
+  \def\bottomMargin{25mm}
+  \def\footSkip{12mm}
+\else
+  \def\innerMargin{15mm}
+  \def\outerMargin{25mm}
+  \def\topMargin{20mm}
+  \def\bottomMargin{20mm}
+  \def\footSkip{12mm}
+\fi
 
 \setlength\parindent{0pt}
 \setlength\parskip{.33em}
@@ -73,9 +85,9 @@
 \RequirePackage[
   inner=\innerMargin,
   outer=\outerMargin,
-  top=20mm,
-  bottom=20mm,
-  footskip=12mm,
+  top=\topMargin,
+  bottom=\bottomMargin,
+  footskip=\footSkip,
   % showframe,
 ]{geometry}
 
