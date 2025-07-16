@@ -4,4 +4,41 @@ description: Többváltozós analízis bevezetés
 noLocalToc: true
 ---
 
-<UnderConstruction />
+Eddigi tanulmányaink során olyan függvényekkel foglalkoztunk, amelyek egyetlen
+változótól függtek. Ebben a fejezetben az eddig vizsgált egyváltozós függvények
+síkbeli görbéi után a többdimenziós terek világába lépünk. Célunk, hogy a
+differenciál- és integrálszámítás jól ismert eszközeit átültessük és kibővítsük
+olyan függvényekre, amelyek kettő vagy több független változótól függenek. Ez a
+lépés lehetővé teszi számunkra, hogy a valós világ összetett, több tényezős
+jelenségeit matematikailag is precízebben tudjuk modellezni.
+
+Először az egyváltozós kalkulusból már ismert alapfogalmakat általánosítjuk. A
+tárgyalást a topológiai alapfogalmak, a határérték és a folytonosság
+általánosításával kezdjük. Mivel egy pontot már nem csak balról vagy jobbról,
+hanem végtelen sok irányból megközelíthetünk, ez a konvergencia vizsgálatát
+lényegesen komplexebbé teszi.
+
+Ezt követően bevezetjük a differenciálhatóság többváltozós koncepcióját. A
+derivált egyváltozós fogalmát az iránymenti derivált általánosítja, mely a
+függvény lokális változását írja le tetszőleges irány mentén. Egy speciális
+iránymenti derivált a parciális derivált, amely esetén a koordináta-tengelyek
+irányában elemezzük a változást. A totális differenciálhatóság precíz
+definíciója a függvény lineáris approximálhatóságán alapul, amelynek
+mátrixreprezentációja a Jacobi-mátrix.
+
+A differenciálszámítás elméletét a szélsőérték-feladatok megoldására
+alkalmazzuk. Kidolgozunk egy szisztematikus eljárást a függvények lokális
+maximum- és minimumhelyeinek azonosítására. A lokális extrémumok létezésének
+szükséges feltétele a stacionárius pontok megtalálása, az elégséges feltételét
+pedig a függvény második parciális deriváltjaiból képzett Hesse-mátrix
+definitségének vizsgálatával adjuk meg. A gyakorlati problémákban a
+szélsőértéket egy vagy több feltétel teljesülése mellett keressük. Az ilyen, ún.
+feltételes szélsőérték problémák megoldására a Lagrange-multiplikátoros módszert
+ismertetjük.
+
+Végül, az integrálás fogalmát is általánosítjuk. A görbe alatti terület helyett
+immár felületek alatti térfogatokat és más, magasabb dimenziós tartományokhoz
+rendelt mennyiségeket számítunk ki a többszörös integrálok segítségével. Ez az
+eszköz kulcsfontosságú lesz sík- és térbeli alakzatok geometriai és fizikai
+jellemzőinek (pl. terület, térfogat, tömegközéppont, tehetetlenségi nyomaték)
+meghatározásában.

@@ -4,4 +4,34 @@ description: Függvénysorozatok, függvénysorok
 noLocalToc: true
 ---
 
-<UnderConstruction />
+Ebben a fejezetben a számsorozatokról (numerikus sorozatokról) és a sorokról
+tanult ismereteinket bővítjük, emeljük magasabb szintre: függvényekből alkotott
+sorozatokkal és sorokkal foglalkozunk. Míg egy számsorozat esetén egyetlen
+határértékét létezését vizsgáltuk, addig egy függvénysorozat értelmezési
+tartományának pontjaiban vizsgáljuk a konvergenciát. Azon pontok halmazát, ahol
+a függvénysorozat konvergens, konvergenciahalmaznak hívjuk. Ezekben a pontokban
+a függvénysorozat a határfüggvényhez tart. Ahogy numerikus sornál is külön nevet
+adtunk a határértéknek (sorösszeg), úgy függvénysorok esetén összegfüggvényről
+beszélünk. Megvizsgáljuk, hogy ez a konvergencia hogyan valósulhat meg, és
+bevezetjük a pontonkénti és az egyenletes konvergencia kulcsfontosságú
+fogalmait. Látni fogjuk, hogy az utóbbi egy erős tulajdonság, amely lehetővé
+teszi, hogy a függvények olyan kellemes tulajdonságai, mint a folytonosság vagy
+az integrálhatóság, "öröklődjenek" a határfüggvényre, összegfüggvényre.
+Megismerkedünk a hatványsorokkal, amelyek esetén a konvergencia könnyebben
+vizsgálható, nem egyszer a numerikus sorok esetén megismert eljárásoknak
+köszönhetően.
+
+A fejezet második felében fontos és széles körben alkalmazott függvénysorokkal
+foglalkozunk. A Taylor-sorok speciális hatványsorok, amelyek a korábban
+megismert Taylor-polinomok általánosításaiként is tekinthetők. Használatukkal
+bonyolult függvényeket közelíthetünk polinomokkal. Ez a technika a mérnöki
+számításoktól a fizikai modellezésig számtalan területen elengedhetetlen.
+
+A Fourier-sorok használata a periodikus függvényekkel való számolásokat
+könnyítheti meg, azok szinuszok és koszinuszok végtelen összegeként való
+előállításával foglalkoznak. A Fourier-sorok alapvető eszközt jelentenek a
+jelenségek frekvenciakomponensekre való bontásához, így kulcsfontosságúak a
+jelfeldolgozásban, az akusztikában és a képfeldolgozásban.
+
+Ez a fejezet tehát ajtót nyit a függvények egy új, dinamikusabb szemléletére,
+amely elengedhetetlen a modern matematika és alkalmazásainak megértéséhez.

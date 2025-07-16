@@ -140,11 +140,47 @@
 \end{theorem}
 
 \begin{example}
-  TODO: SOME EXAMPLE
+  Vizsgáljuk az $f(x,y)=x^{3}-3x+y^{2}$ függvény lokális szélsőértékeit!
 
-  \vspace{22em}
+  \hdashrule[.8ex][x]{\dimexpr\textwidth}{1pt}{2mm 3pt}
 
-  TODO: SOME EXAMPLE
+  \textbf{1.~Stacionárius pontok, ahol a gradiens nullvektor:}
+  \begin{alignat*}{9}
+    \partial_x f(x,y) & = 3x^{2}-3 = 0
+    \qquad            & \Rightarrow \qquad & x=\pm 1
+    \text,
+    \\
+    \partial_y f(x,y) & = 2y = 0
+    \qquad            & \Rightarrow \qquad & y = 0
+    \text.
+  \end{alignat*}
+
+  \textbf{2.~Hesse-mátrix:}
+  \[
+    \rmat Q(x,y)=
+    \begin{bmatrix}
+      \partial_{1}^{2}f         & \partial_{1}\partial_{2}f \\[2pt]
+      \partial_{2}\partial_{1}f & \partial_{2}^{2}f
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      6x & 0 \\
+      0  & 2
+    \end{bmatrix}.
+  \]
+
+  \begin{center}
+    \def\arraystretch{1.3}
+    \begin{tabular}{c|c|c|c}
+      pont        & $\mathscr D$         & $\mathscr S$ & következtetés     \\\hline
+      $P_1(1,0)$  & $6\cdot2-0=12>0$     & $6+2=8>0$    & lokális minimum   \\
+      $P_2(-1,0)$ & $(-6)\cdot2-0=-12<0$ & $-6+2=-4$    & nincs szélsőérték
+    \end{tabular}
+  \end{center}
+
+  \medskip
+  Tehát az $f$ függvénynek a $P_1(1,0)$ pontban lokális minimuma van, míg a
+  $P_2(-1,0)$ pontban nincs szélsőértéke.
 \end{example}
 
 \begin{definition}
