@@ -1,0 +1,86 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-solution}
+
+\newcommand\coordv{\rvec r}
+\newcommand\arcv{\rvec r}
+\newcommand\surfv{\rvec \varrho}
+
+\title{Integrálátalakító tételek}
+\area{Többváltozós analízis}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{6}
+
+\begin{document}
+\allowdisplaybreaks
+
+\maketitle
+
+\begin{enumerate}
+  \item Egy automata raktárrendszer ferromágneses manipulátora egy előre
+        számított mágneses potenciálmezőben mozog. A számított Joule-potenciál a
+        munkatérben
+        $$
+          \varphi(\coordv) = 2x^2 y + 3yz
+          \text.
+        $$
+        A csípőkaron lévő, $Q = 1\,\text{C}$ ekvivalens töltéssel modellezett
+        végfogót a vezérlőnek az
+        $$
+          A(0;0;0) \rightarrow B(2;1;3)
+        $$
+        pontok között kell mozgatnia. Mennyi munkát végez a mágneses tér a
+        végfogón, és miért nem kell törődnünk az útvonal pontos alakjával?
+        ($\rvec F = -Q \grad \varphi$, a munka az erő pálya menti integrálja)
+
+  \item Egy elektromágneses rendszer mágneses térerősségét a
+        $$
+          \rvec B(\coordv) = \ijk{y \, \sin x}{z^2 \, \cos y - \cos x}{b_3}
+        $$
+        vektormező írja le. Határozza meg $b_3$ értékét, ha tudjuk, hogy
+        a vektormező bármely zárt görbe mentén vett integrálja zérus!
+        (Vagyis mikor lesz $\rot \rvec B = \nvec$)
+
+  \item Egy $R = 1$ sugarú, kör keresztmetszetű, $z$ tengellyel egybeeső
+        szimmetriavonalú hengerben áramló folyadék sebességét a
+        $$
+          \rvec v(\coordv) = \ijk{2xy + z}{x^2 + z}{y - x}
+        $$
+        vektormező írja le. Adja meg a $z = 1$ síkban lévő keresztmetszet
+        menti cirkulációt!
+        (A cirkuláció a vektormező zárt görbe menti integrálja.)
+
+  \item Egy fotonikus chipeket hordozó wafer-darabot egy ellipszoid alakú
+        Faraday-kalitkába rögzítenek. A kalitka belsejében lineáris
+        feszültségelosztással ($\rvec E(\coordv) = \coordv$) térerőt állítanak
+        elő. Számolja ki a Faraday-kalitka belsejében lévő nettó töltést, ha
+        $\varepsilon_0 = 8,85 \times 10^{-12} \, \text{F/m}$, az ellipszoid
+        egyenlete pedig:
+        $$
+          \frac{(x - 2)^2}{5} + \frac{(y + 3)^2}{19} + \frac{(z - 1)^2}{4} = 1
+          \text.
+        $$
+
+  \item Egy drón IMU-modulját teljes egészében kitöltő, hővezető műgyanta gömb
+        alakú, sugara $R = 0,02 \, \text{m}$, A vezérlő egység folyamatosan
+        hőt disszipál, az állandósult hő\-mér\-sék\-let-mező jó közelítéssel
+        $$
+          \varphi(\coordv) = T_c - \alpha \rvec r^2
+          \text, \quad
+          \alpha = 1,3 \times 10^5 \,\text{K/m}^2
+          \text.
+        $$
+        Becsülje meg, mekkora teljes hőáram távozik a burkolaton át, ha
+        $$
+          q_{\text{hő}}
+          = -\lambda \oint_{\partial V} \scalar{\grad \varphi}{\dd \rvec S}
+          \text,\quad
+          \lambda = 0,2 \, \text{W/(m K)}
+          \text.
+        $$
+\end{enumerate}
+
+\end{document}
+

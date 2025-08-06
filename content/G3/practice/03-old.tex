@@ -1,0 +1,106 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+
+\title{Potenciálosság}
+\area{Többváltozós analízis}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{3}
+
+\begin{document}
+\allowdisplaybreaks
+
+\maketitle
+
+\vspace{-1em}
+
+\subsection{Elméleti áttekinő}
+
+\begin{definition}[Skalárpotenciálosság]
+  Egy $\rvec v: V \rightarrow V$ vektormező skalárpotenciálos, ha létezik olyan
+  $\varphi: V \rightarrow \mathbb R$ skalármező, hogy $\rvec v = \grad \varphi$.
+\end{definition}
+
+\begin{definition}[Vektorpotenciálosság]
+  Egy $\rvec v: V \rightarrow V$ vektormező vektorpotenciálos, ha létezik olyan
+  $\rvec u: V \rightarrow V$ vektormező, hogy $\rvec v = \rot \rvec u$.
+\end{definition}
+
+\begin{theorem}
+  Legyen $\rvec v: V \rightarrow V$ mindenhol értelmezett, legalább egyszer
+  differenciálható vektormező. Ekkor:
+  \begin{itemize}
+    \item $\rvec v$ skalárpotenciálos
+          $\;\Leftrightarrow\;$
+          $\rot \rvec v = \nvec$,
+          hiszen $\rot \grad \varphi \equiv \nvec$,
+    \item $\rvec v$ vektorpotenciálos
+          $\;\Leftrightarrow\;$
+          $\Div \rvec v = 0$,
+          hiszen $\Div \rot \rvec u \equiv 0$.
+  \end{itemize}
+\end{theorem}
+
+\begin{blueBox}
+  \sftitle{Potenciálfüggvények számítása:}
+
+  Legyen $\varphi$ skalármező $\rvec v$ vektormező skalárpotenciálja. Ebben
+  az esetben tudjuk, hogy $\rvec v = \grad \varphi$, vagyis
+  \[
+    \rvec v = \left(
+    \pdv{\varphi}{x_1};
+    \pdv{\varphi}{x_2};
+    \dots;
+    \pdv{\varphi}{x_n}
+    \right)^\T
+    \text.
+  \]
+  Ilyen esetben a potenciálfüggvény az alábbi módon számítható:
+  \[
+    \varphi (\rvec r)
+    = \int_0^{x_1} \rvec v(\xi; x_2; \dots; x_n) \dd \xi
+    + \int_0^{x_2} \rvec v(0; \xi; \dots; x_n) \dd \xi
+    + \dots
+    + \int_0^{x_n} \rvec v(0; 0; \dots; \xi) \dd \xi
+    \text.
+  \]
+  Legyen $\rvec u$ vektormező $\rvec v$ vektormező vektorpotenciálja.
+  A potenciál számtalan alakban előállhat, ezért keressük ezt az alábbi alakban:
+  \[
+    \rvec u = \left( u_x; u_y; 0 \right)^\T
+  \]
+  A potenciál komponensei az alábbi módon számíthatóak:
+  \[
+    u_x = \int_0^z v_y(x; y; \zeta) \dd \zeta
+    \text,
+    \qquad
+    u_y = \int_0^x v_z(\xi; y; 0) \dd \xi
+    - \int_0^z v_x(x; y; \zeta) \dd \zeta
+    \text.
+  \]
+\end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item Vizsgálja meg, hogy az alábbi vektormezők skalárpotenciálisak-e!
+        Amennyiben igen, adja meg a potenciálfüggvényüket!
+        \begin{enumerate}
+          \item $\rvec v(\rvec r) = \ijz{3x^2y - y^3}{x^3 - 3xy^2}$
+          \item $\rvec w(\rvec r) = \ijk{yz}{zx}{xy}$
+          \item $\rvec u(\rvec r) = \ijk{2xy}{x^2 + z^2}{2yz}$
+        \end{enumerate}
+
+  \item Vizsgálja meg, hogy az alábbi vektormezők vektorpotenciálosak-e!
+        Amennyiben igen, adja meg a potenciálfüggvényüket!
+        \begin{enumerate}
+          \item $\rvec v(\rvec r) = \ijk{yz}{zx}{xy}$
+        \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
+
