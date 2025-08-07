@@ -1,0 +1,47 @@
+% TeX format requirement
+\NeedsTeXFormat{LaTeX2e}
+
+% Package name [\usepackage{szb-util}]
+\ProvidesPackage{szb-util}
+
+% Required packages
+\RequirePackage{szb-color}
+
+% CORE
+\RequirePackage[abspath]{currfile}
+\RequirePackage{lipsum}
+\RequirePackage{standalone}
+\RequirePackage[shortlabels]{enumitem}
+\RequirePackage{tabto}
+\RequirePackage{multirow}
+\RequirePackage{multicol}
+\RequirePackage{xparse}
+\RequirePackage{xargs}
+\RequirePackage{afterpage}
+\RequirePackage{booktabs}
+\RequirePackage{qrcode}
+\RequirePackage{lastpage}
+\RequirePackage{tabto}
+
+% TABLE
+\RequirePackage{array}
+\RequirePackage{tabularx}
+
+% LINKS
+\RequirePackage[
+  luatex,
+  colorlinks=true,
+  linkcolor=primaryColor,
+  urlcolor=black,
+]{hyperref}
+
+
+% Provided document commands
+% !!! use these imports in every file !!!
+\newcommand{\relativeinput}[1]{\input{\currfiledir#1}}
+\newcommand{\relativeinclude}[1]{\input{\currfiledir#1}}
+\newcommand{\relativestandalone}[1]{\includestandalone{\currfiledir#1}}
+
+% Fix babel with xetex
+\def\magyar@sugg@to#1{}
+\def\magyar@sugg@ie#1{}

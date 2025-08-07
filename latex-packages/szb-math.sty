@@ -1,0 +1,90 @@
+% TeX format requirement
+\NeedsTeXFormat{LaTeX2e}
+
+% Package name [\usepackage{szb-math}]
+\ProvidesPackage{szb-math}
+
+% Required packages
+\RequirePackage{amsmath}
+\PassOptionsToPackage{mathit=sym, mathup=sym, math-style=ISO, bold-style=ISO}{unicode-math}
+\RequirePackage{unicode-math}
+\RequirePackage{derivative}
+\RequirePackage{xfrac}
+\RequirePackage{icomma}
+\RequirePackage{xparse}
+
+
+% Provided document commands
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand*{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand*{\iu}{{i\mkern1mu}}
+\newcommand*{\Domain}{\mathcal{D}}
+\newcommand*{\Range}{\mathcal{R}}
+\newcommand{\rvec}[1]{\mathbfit{#1}}
+\newcommand{\uvec}[1]{\hat{\mathbfit{#1}}}
+\newcommand{\nvec}{\text{\textbf{\textit{0}}}}
+\newcommand{\rmat}[1]{\mathbf{#1}}
+\newcommand{\imat}{\mathbb{E}}
+\newcommand{\nmat}{\mathbb{0}}
+\newcommand*{\T}{\top}
+
+\newcommand\ibase{\hat{\mathbfit{\imath}}}
+\newcommand\jbase{\hat{\mathbfit{\jmath}}}
+\newcommand\kbase{\hat{k}}
+
+\NewDocumentCommand{\cisdeg}{s m}{%
+  \IfBooleanTF{#1}{%
+    \cos{#2}^\circ + \iu\sin{#2}^\circ%
+  }{%
+    \cos\left({#2}^\circ\right) + \iu\sin\left({#2}^\circ\right)%
+  }%
+}
+\NewDocumentCommand{\rcisdeg}{s m m}{%
+  \IfBooleanTF{#1}{%
+    #2 \left(\cos{#3}^\circ + \iu\sin{#3}^\circ\right)%
+  }{%
+    #2 \left(\cos\left({#3}^\circ\right) + \iu\sin\left({#3}^\circ\right)\right)%
+  }%
+}
+\NewDocumentCommand{\cisrad}{s m}{%
+  \IfBooleanTF{#1}{%
+    \cos{#2} + \iu\sin{#2}%
+  }{%
+    \cos\left({#2}\right) + \iu\sin\left({#2}\right)%
+  }%
+}
+\NewDocumentCommand{\rcisrad}{s m m}{%
+  \IfBooleanTF{#1}{%
+    #2 \left(\cos{#3} + \iu\sin{#3}\right)%
+  }{%
+    #2 \left(\cos\left({#3}\right) + \iu\sin\left({#3}\right)\right)%
+  }%
+}
+
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arcsinh}{arsinh}
+\DeclareMathOperator{\arccosh}{arcosh}
+\DeclareMathOperator{\arctanh}{artanh}
+\DeclareMathOperator{\arccoth}{arcoth}
+\DeclareMathOperator{\iRe}{Re}
+\DeclareMathOperator{\iIm}{Im}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\inner}{int}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\rg}{rg}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\Vol}{vol}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\rot}{rot}
+
+\newcommand{\scalar}[2]{< #1 \, ; \, #2 >}
+\newcommand{\norma}[1]{\left\| #1 \right\|}
+\newcommand\ijk[3]{(#1) \, \uvec i + (#2) \, \uvec j + (#3) \, \uvec k}
+\newcommand\ijz[2]{(#1) \, \uvec i + (#2) \, \uvec j}
+
+\newcommand\coordv{\rvec r}
+\newcommand\arcv{\rvec r}
+\newcommand\surfv{\rvec \varrho}

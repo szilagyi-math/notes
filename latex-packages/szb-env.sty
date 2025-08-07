@@ -1,0 +1,259 @@
+% TeX format requirement
+\NeedsTeXFormat{LaTeX2e}
+
+% Package name [\usepackage{szb-env}]
+\ProvidesPackage{szb-env}
+
+% Required packages
+\RequirePackage{szb-util}
+\RequirePackage{szb-math}
+\RequirePackage{szb-graphics}
+\RequirePackage{szb-color}
+
+\PassOptionsToPackage{framemethod=TikZ}{mdframed}
+\RequirePackage{mdframed}
+\RequirePackage{etoolbox}
+\RequirePackage{xparse}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ DEFINITION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdfdefinestyle{definition}{
+  hidealllines              = true,%
+  leftline                  = true,%
+  linewidth                 = 3pt,%
+  linecolor                 = primaryColor,%
+  frametitlerule            = true,%
+  frametitlebackgroundcolor = primaryColor,%
+  backgroundcolor           = gray!10,%
+  frametitleaboveskip       = 2mm,%
+  frametitlebelowskip       = 2mm,%
+  innertopmargin            = 3mm,%
+}
+
+\newcounter{definition}[section]
+\numberwithin{definition}{section}
+
+\NewDocumentEnvironment{definition}{s o O{} +b}{%
+  \IfBooleanTF{#1}{}{\refstepcounter{definition}}%
+  \def\rule@@color{primaryColor}%
+  \begin{mdframed}[
+      style=definition,%
+      frametitle={
+        \color{white}\sffamily\bfseries%
+        Definíció\IfBooleanTF{#1}{}{~\thedefinition}%
+        \IfBlankTF{#2}{}{ : #2}%
+      },%
+      #3%
+    ]%
+  #4%
+}{\end{mdframed}}
+
+\NewDocumentEnvironment{definition*}{ o O{} +b }{%
+  \begin{definition}*[\IfNoValueTF{#1}{}{\unexpanded{#1}}][#2]#3
+}{\end{definition}}
+
+% % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% % ~~~~~~~~~~~~~~~~~~~~~ THEOREM ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdfdefinestyle{theorem}{%
+  hidealllines              = true,%
+  leftline                  = true,%
+  linewidth                 = 3pt,%
+  linecolor                 = secondaryColor,%
+  frametitlerule            = true,%
+  frametitlebackgroundcolor = secondaryColor,%
+  backgroundcolor           = gray!10,%
+  frametitleaboveskip       = 2mm,%
+  frametitlebelowskip       = 2mm,%
+  innertopmargin            = 3mm,%
+}
+
+\newcounter{theorem}[section]
+\numberwithin{theorem}{section}
+
+\NewDocumentEnvironment{theorem}{s o O{} +b}{%
+  \IfBooleanTF{#1}{}{\refstepcounter{theorem}}%
+  \def\rule@@color{secondaryColor}%
+  \begin{mdframed}[
+      style=theorem,%
+      frametitle={
+        \color{white}\sffamily\bfseries%
+        Tétel\IfBooleanTF{#1}{}{~\thetheorem}%
+        \IfBlankTF{#2}{}{ : #2}%
+      },%
+      #3%
+    ]%
+  #4%
+}{\end{mdframed}}
+
+\NewDocumentEnvironment{theorem*}{ o O{} +b }{%
+  \begin{theorem}*[\IfNoValueTF{#1}{}{\unexpanded{#1}}][#2]#3%
+}{\end{theorem}}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ BLUEBOX ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdfdefinestyle{blueBox}{%
+  % NO LINES
+  hidealllines      = true,%
+  leftline          = true,%
+  % COLORS
+  backgroundcolor   = cyan!10,%
+  linecolor         = secondaryColor,%
+  % LENGTHS
+  linewidth         = 3pt,%
+  innertopmargin    = .66em,%
+  innerbottommargin = .66em,%
+}
+
+\newcommand{\sftitle}[1]{{\bfseries\sffamily#1}}
+
+\NewDocumentEnvironment{blueBox}{ O{} +b }{%
+  \begin{mdframed}[style=blueBox,#1]#2%
+}{\end{mdframed}}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ NOTE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdfdefinestyle{note}{%
+  % NO LINES
+  hidealllines      = true,%
+  leftline          = true,%
+  % COLORS
+  backgroundcolor   = yellow!10,%
+  linecolor         = ternaryColor,%
+  % LENGTHS
+  linewidth         = 3pt,%
+  innertopmargin    = .66em,%
+  innerbottommargin = .66em,%
+}
+
+\NewDocumentEnvironment{note}{ O{} +b }{%
+  \begin{mdframed}[style=note,#1]#2%
+}{\end{mdframed}}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ STATEMENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdfdefinestyle{statement}{%
+  % NO LINES
+  hidealllines      = true,%
+  leftline          = true,%
+  % COLORS
+  backgroundcolor   = primaryColor!10,%
+  linecolor         = primaryColor,%
+  % LENGTHS
+  linewidth         = 3pt,%
+  innertopmargin    = .66em,%
+  innerbottommargin = .66em,%
+  % TIKZ
+  singleextra={
+    \path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$) node[
+      rectangle,
+      fill=primaryColor!10,
+      draw=primaryColor,
+      line width=2pt,
+      overlay,
+    ] {\color{primaryColor}\large!};
+  },%
+}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ LEARN MORE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdf@do@stringoption{learnMoreTitle=={Kitekintő}}
+\usetikzlibrary{calc,arrows,backgrounds}
+\tikzset{
+  excursus arrow/.style={%
+      line width=2pt,
+      draw=secondaryColor,
+      rounded corners=1ex,
+    },
+  excursus head/.style={
+      font=\bfseries\sffamily,
+      anchor=base west,
+      text=secondaryColor,
+      inner sep=1.5ex,
+      inner ysep=1ex,
+    },
+}
+\mdfdefinestyle{learnMore}{%
+  singleextra={%
+    % NODE LEFT BOTTOM
+    \path let \p1=(P), \p2=(O) in (\x2,\y1) coordinate (Q);
+    % BOTTOM-LEFT
+    \path let \p1=(Q), \p2=(O) in (\x1,\y2) coordinate (BL);
+    % TOP RIGHT
+    \path let \p1=(Q), \p2=(P) in (\x2,\y1) coordinate (TR);
+    % TITLE
+    \node [excursus head] (A) at ($(Q)+(2.5em,0)$) {\phantom{\mdf@digressiontitle}};
+    % ARROW
+    \path [excursus arrow, line width=2pt] ($(BL)+(1pt,0)$) |- ($(Q)+(2em,0)$);
+    \path [excursus arrow, line width=2pt, fill=gray!10, -to]
+      ($(Q)+(1em,0)$)
+      -| (A.north west)
+      -| (A.base east)
+      -- (TR)
+      ;
+    % \fill [gray!10]
+    %   ($(A.base east)+(1em,0)$)
+    %   -- ++(2em,0)
+    %   .. controls ($(TR)!0.2!(A.base east)+(0,1ex)$) .. ($(TR)+(0,2ex)$)
+    %   -- ++(0,-2ex)
+    %   -- cycle
+    % ;
+    % \path [excursus arrow, round cap-to]
+    %   ($(A.base east)+(1em,0)$)
+    %   -- ++(2em,0)
+    %   .. controls ($(TR)!0.2!(A.base east)+(0,1ex)$) .. ($(TR)+(0,2ex)$)
+    % ;
+    \node [excursus head] (A) at ($(Q)+(2.5em,0)$) {\mdf@digressiontitle};
+  },
+  backgroundcolor   = gray!10,
+  middlelinewidth   = 0,
+  hidealllines      = true,
+  topline           = true,
+  innertopmargin    = 2.5ex,
+  innerbottommargin = 1.5ex,
+  innerrightmargin  = 2ex,
+  innerleftmargin   = 2ex,
+  skipabove         = 0.5\baselineskip,
+  nobreak           = true,
+}
+
+\newenvironment{learnMore}[1][Kitekintő]{%
+  \def\mdf@digressiontitle{#1}%
+  \begin{mdframed}[style=learnMore]
+    }{%
+  \end{mdframed}
+}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ EXAMPLE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\mdfdefinestyle{example}{%
+  % NO LINES
+  hidealllines      = true, 
+  leftline          = true,
+  % COLORS
+  backgroundcolor   = magenta!10, 
+  linecolor         = magenta!60!black,
+  % LENGTHS
+  linewidth         = 3pt, 
+  innertopmargin    = .66em, 
+  innerbottommargin = .66em,
+}
+
+\NewDocumentEnvironment{example}{ O{} +b }{%
+  \begin{mdframed}[style=example,#1]#2%
+}{\end{mdframed}}
