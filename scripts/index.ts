@@ -67,7 +67,7 @@ Promise.all(
         `import { Subject, SubjectData } from '../common/types';
 import configJSON from './config.json';
 
-const data = configJSON as { [key in Subject]: SubjectData };
+const data = configJSON as unknown as { [key in Subject]: SubjectData };
 
 export { data }
 `,
