@@ -1,0 +1,96 @@
+\clearpage
+\section{Ismétlés}
+
+\begin{definition}[Vektortér]
+  Legyen $V$ nemüres halmaz, és $\circ, +$ két művelet, $\mathbb T$ test.
+  A $(V; +, \circ)$ a $\mathbb T$ test feletti vektortér, ha teljesülnek az
+  alábbiak:
+  \begin{enumerate}
+    \item $(V; +)$ Abel-csoport,
+
+    \item $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
+            (\lambda \circ \mu) \circ \rvec x
+            = \lambda \circ (\mu \circ \rvec x)$,
+
+    \item ha $\varepsilon$ a $T$-beli egységelem, akkor
+          $\forall \rvec x \in V: \varepsilon \circ \rvec x = \rvec x$,
+
+    \item teljesül a disztributivitás:
+          \begin{itemize}
+            \item $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
+                    \lambda \circ (\rvec x + \rvec y)
+                    = \lambda \circ \rvec x + \lambda \circ \rvec y$,
+
+            \item $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
+                    (\lambda + \mu) \circ \rvec x
+                    = \lambda \circ \rvec x + \mu \circ \rvec x$.
+          \end{itemize}
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}[Lineáris leképezés]
+  Legyenek $V_1$ és $V_2$ ugyanazon $\mathbb T$ test feletti vektorterek. Legyen
+  $\varphi: V_1 \rightarrow V_2$ leképezés, melyet lineáris leképezésnek
+  nevezünk, ha tetszőleges két $V_1$-beli vektor ($\forall \rvec a; \rvec b \in
+    V_1$) és $\mathbb T$-beli skalár ($\lambda \in \mathbb T$) esetén teljesülnek az
+  alábbiak:
+
+  \def\arraystretch{1.5}
+  \begin{tabular}{>{\bullet\;}l>{$\quad \sim \quad$}l}
+    $\varphi(\rvec a + \rvec b) = \varphi(\rvec a) + \varphi(\rvec b)$
+     & additív (összegre tagonként hat), \\
+    $\varphi(\lambda \rvec a) = \lambda \varphi(\rvec a)$
+     & homogén (skalár kiemelhető).
+  \end{tabular}
+\end{definition}
+
+\begin{definition}[Homomorfizmus és endomorfizmus]
+  \vspace{-1.5em}
+  $$
+    \operatorname{Hom} (V_1; V_2) := \big\{\;
+    \varphi: V_1 \to V_2 \; \big| \; \varphi \text{ lineáris}
+    \;\big\}
+    \hspace{2cm}
+    \operatorname{End} (V) := \operatorname{Hom} (V; V)
+  $$
+\end{definition}
+
+\begin{note}[Lineáris leképezések mátrixreprezentációja]
+  Legyen $V_1$ és $V_2$ ugyanazon test feletti vektorterek, $\dim(V_1) = n$ és
+  $\dim(V_2) = k$. Ekkor a $\varphi: V_1 \rightarrow V_2$ leképezést
+  reprezentáló mátrix $n \times k$ dimenziós.
+
+  $\left( \operatorname{Hom}(V_1; V_2); +; \lambda\right)$ és
+  $\left( \mathcal{M}_{k \times n}; +; \lambda\right)$
+  vektorterek izomorfok egymással.
+\end{note}
+
+\begin{minipage}{\textwidth}
+  \begin{definition}[Skaláris szorzat][nobreak]
+    Legyen $V$ egy $\Reals$ feletti vektortér, és
+    $\scalar{\;}{\;}: V \times V \rightarrow \Reals$ függvény,
+    melyet skaláris szorzatnak nevezünk, ha teljesülnek az alábbiak:
+    \begin{enumerate}
+      \item $\scalar{\rvec x}{\rvec y} = \scalar{\rvec y}{\rvec x}$
+            minden $\rvec x; \rvec y \in V$ esetén,
+            \hfill (\textbf{szimmetrikus})
+
+      \item $\scalar{\lambda \rvec x}{\rvec y} = \lambda \scalar{\rvec x}{\rvec y}$
+            minden $\rvec x; \rvec y \in V$ és $\lambda \in \Reals$ esetén,
+            \hfill (\textbf{homogén})
+
+      \item $\scalar{\rvec x_1 + \rvec x_2}{\rvec y} = \scalar{\rvec x_1}{\rvec y} + \scalar{\rvec x_2}{\rvec y}$
+            minden $\rvec x_1; \rvec x_2; \rvec y \in V$ esetén,
+            \hfill (\textbf{additív})
+
+      \item $\scalar{\rvec x}{\rvec x} \geq 0$,
+            egyenlőség akkor és csak akkor, ha $\rvec x = \nvec$.
+            \hfill (\textbf{nemnegatív})
+    \end{enumerate}
+  \end{definition}
+
+  \begin{note}
+    A skaláris szorzás szimm. billineáris forma, amely az Euklideszi térben
+    értelmezve van.
+  \end{note}
+\end{minipage}

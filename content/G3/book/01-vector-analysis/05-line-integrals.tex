@@ -1,0 +1,395 @@
+\clearpage
+\section{Vonalmenti integrál}
+
+\begin{definition}[Reguláris görbe]
+  Legyen $\curvedomain \subset \Reals$ nem feltétlenül korlátos intervallum.
+  Ekkor az $\curvesign : \curvedomain \rightarrow \curveimage \subset \Reals^3$
+  immerziót reguláris görbének nevezzük.
+\end{definition}
+
+\begin{definition}[Pályasebesség, Ívhossz]
+  A $v: \curvedomain \subset \Reals \rightarrow \Reals$,
+  $t \mapsto \|\dot{\curvesign}(t)\|$ függvényt pályasebességnek hívjuk.
+
+  A pályasebesség $\curvedomain$ feletti integrálját a görbe ívhosszának
+  nevezzük:
+  $$
+    L(\curvesign)
+    = \int_{\curvedomain} \|\dot{\curvesign}(t)\| \dd t
+    = \int_{\curvedomain} \dd \curvescalar
+    \text.
+  $$
+\end{definition}
+
+\begin{example}
+  Számítsuk ki a $\curvesign(t) = \ijz{t \cos t}{t \sin t}$, $t \in [0; 1]$
+  görbe ívhosszát!
+
+  \boxrule
+  \begin{align*}
+    L
+     & = \int_0^{1} \|\dot{\curvesign}(t)\| \dd t
+    = \int_0^{1} \sqrt{(\cos t - t \sin t)^2 + (\sin t + t \cos t)^2} \dd t
+    = \int_0^{1} \sqrt{1 + t^2} \dd t
+    \\
+     & = \int_0^{1} \cosh u \sqrt{1 + \sinh^2 u} \dd u
+    = \int_0^{1} \cosh^2 u \dd u
+    = \int_{u_1}^{u_2} \frac{1 + \cosh 2u}{2} \dd u
+    \\
+     & = \left[ \frac{u}{2} + \frac{\sinh 2u}{4} \right]_{u_1}^{u_2}
+    = \left[ \frac{\arcsinh t}{2} + \frac{t \sqrt{t^2 + 1}}{2} \right]_0^{1}
+    = \frac{\arcsinh 1 + \sqrt{2}}{2}
+    \approx 1,1478
+  \end{align*}
+\end{example}
+
+\begin{definition}[Irányított görbe]
+  Egy $\curvesign: [a;b] \rightarrow \Reals^3$ görbe irányított, ha adott egy
+  rendezés ($\leq$) a paraméterértékeken. Ekkor $t_1 < t_2$ esetén
+  $\curvesign(t_1)$ a görbe korábbi pontja, $\curvesign(t_2)$-höz képest. Ha
+  $\curvesign(a) = \curvesign(b)$, akkor a görbe zárt.
+\end{definition}
+
+\begin{note}[Irányítottság szemléltetése][nobreak]
+  \begin{minipage}[c]{.5\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=2/3, ultra thick]
+      \draw [<-] (0,0) .. controls (-1,1) and (1,2)  .. (1,3);
+      \draw [<-] (1,3) .. controls (1,4)  and (2,4)  .. (4,3);
+      \draw [<-] (4,3) .. controls (6,2)  and (4,0)  .. (3,0);
+      \draw [<-] (3,0) .. controls (2,0)  and (1,-1) .. (0,0);
+
+      % unicode-math fun :D
+      \node[primaryColor, thick, scale=3] at (2.25,1.75) {$⟲$};
+      \node[primaryColor, thick, scale=1] at (2.25,1.75) {$+$};
+    \end{tikzpicture}
+
+    \sftitle{Pozitív irányítottságú görbe}
+  \end{minipage}\begin{minipage}[c]{.5\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=2/3, ultra thick]
+      \draw [->] (0,0) .. controls (-1,1) and (1,2)  .. (2,3);
+      \draw [->] (2,3) .. controls (3,4)  and (3,4)  .. (5,3);
+      \draw [->] (5,3) .. controls (7,2)  and (4,0)  .. (3,1);
+      \draw [->] (3,1) .. controls (2,2)  and (1,-1) .. (0,0);
+
+      % unicode-math fun :D
+      \node[secondaryColor, thick, scale=3] at (3.5,2) {$⟳$};
+      \node[secondaryColor, thick, scale=1] at (3.5,2) {$-$};
+    \end{tikzpicture}
+
+    \sftitle{Negatív irányítottságú görbe}
+  \end{minipage}
+\end{note}
+
+\begin{statement}[][nobreak]
+  Ha létezik a $\displaystyle \sum_ i \|\curvesign(t_i) - \curvesign(t_{i-1})\|$
+  összeg supremuma, akkor a görbe rektifikálható.
+  \begin{center}
+    \begin{tikzpicture}[scale=1/2]
+      \draw [ultra thick] (0, 0)   .. controls (1, 0.5) and (0.5, 1) .. (2, 1.5);
+      \draw [ultra thick] (2, 1.5) .. controls (3.5, 2) and (3, 2)   .. (4, 3);
+      \draw [ultra thick] (4, 3)   .. controls (5, 4)   and (5, 3)   .. (6, 4.5);
+
+      \draw [ultra thick, ->, primaryColor]
+      (5,0) -- (2,1.5) node[midway, below left] {$\curvesign(t_{i-1})$};
+
+      \draw [ultra thick, ->, secondaryColor]
+      (5,0) -- (4,3) node[midway, right] {$\curvesign(t_i)$};
+    \end{tikzpicture}
+  \end{center}
+\end{statement}
+
+\begin{definition}[Vonalmenti integrál]
+  \begin{minipage}[c]{.35\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=3/4, ultra thick]
+      \draw(0, 0)   .. controls (.5, 0)      and (0.5, 0)     .. (1, 0.5);
+      \draw(1, 0.5) .. controls (1.5, 2)     and (2, 1)       .. (2, 2);
+      \draw(2, 2)   .. controls (2, 3)       and (3.25, 2.75) .. (3.5, 3);
+      \draw(3.5, 3) .. controls (3.75, 3.25) and (4, 3.4)     .. (4.5, 4);
+
+      \draw [->, primaryColor]
+      (5,0) -- (1,0.5) node [midway, below left] {$\curvesign(t_{i-1})$};
+
+      \draw [->, secondaryColor]
+      (5,0) -- (3.5,3) node [midway, right] {$\curvesign(t_i)$};
+
+      \draw [->, cyan!40!gray]
+      (1,0.5) -- (3.5,3) node [midway, below right] {$\Delta\curvesign_i$};
+
+      \draw [->, ternaryColor] (2, 2) -- (1,3)
+      node [midway, below left] {$\rvec v(\curvesign(\xi_i))$};
+    \end{tikzpicture}
+  \end{minipage}\hfill\begin{minipage}[c]{.63\textwidth}
+    $$
+      \text{Ha a }
+      \displaystyle\sum_i \scalar{
+        \rvec v(\curvesign(\xi_i))
+      }{
+        \curvesign(t_i) - \curvesign(t_{i-1})
+      }
+    $$
+    összegnek létezika a határértéke a görbe beosztásának
+    minden határon túli finomítására nézve, akkor azt monjuk,
+    hogy a $\rvec v : \Reals^3 \rightarrow \Reals^3$
+    vektormező integrálható az $\curvesign : \curvedomain \subseteq \Reals
+      \rightarrow \Reals^3$ görbe mentén, és ezt a $\rvec v$ vektor $\curvesign$
+    görbe menti vonalintegráljának nevezzük. Jelölése:
+    $$
+      \int_{\curveimage} \scalar{\rvec v}{\dd \curvevec}
+    $$
+  \end{minipage}
+\end{definition}
+
+\begin{note}
+  Belátható, hogy a görbe menti integrál létezéséhez elegendő, hogy a vektormező
+  csak a görbe mentén van értelmezve, és ott szakaszonként folytonos.
+\end{note}
+
+\begin{theorem}
+  Ha $\curvesign$ egy görbe, melynek paraméteres egyenlete: $\curvesign :
+    \curvedomain \subseteq \Reals \rightarrow \Reals^3$, $t \mapsto \curvesign(t)$,
+  akkor a $\rvec v: \Reals^3 \rightarrow \Reals^3$ vektormező $\curvesign$ görbén
+  vett (skalárértékű) integrálja:
+  $$
+    \int_{{\curveimage}} \scalar{\rvec v}{\dd \curvevec}
+    = \int_{I} \scalar{
+      \rvec v(\curvesign(t))
+    }{\dot{\curvesign}(t)} \dd t
+  $$
+\end{theorem}
+
+\begin{example}[][nobreak]
+  Legyen $\curvesign : [0;1] \rightarrow \Reals^3$, $t \mapsto (t; t^2; t^3)$
+  görbe, $\rvec v : \Reals^3 \rightarrow \Reals^3$, $(x,y,z) \mapsto (x+y; y+z;
+    z+x)$ vektormező. Számoljuk ki a görbe menti integrált!
+
+  \boxrule
+  \begin{align*}
+    \int_{\curveimage} \scalar{\rvec v}{\dd \curvevec}
+     & =
+    \int_0^1
+    \scalar{
+      \begin{bmatrix}
+        t + t^2   \\
+        t^2 + t^3 \\
+        t^3 + t
+      \end{bmatrix}
+    }{
+      \begin{bmatrix}
+        1  \\
+        2t \\
+        3t^2
+      \end{bmatrix}
+    }
+    \dd t
+    =
+    \int_0^1
+    (t + t^2) + 2(t^2 + t^3) + 3(t^3 + t)
+    \dd t
+    \\
+     & = \int_0^1
+    (6t + 6t^2 + 5t^3)
+    \dd t
+    = 6\left[\frac{t^2}{2} + \frac{t^3}{3} + \frac{5t^4}{4}\right]_0^1
+    = \frac{37}{2}
+  \end{align*}
+\end{example}
+
+\begin{note}
+  Ha a görbe irányítását megváltoztatjuk, akkor az integrál értéke
+  $(-1)$-szeresére változik.
+\end{note}
+
+\begin{theorem}[Gradiens-tétel]
+  Legyen $\varphi : U \subseteq \Reals^3 \rightarrow \Reals$ differenciálható
+  skalármező, $\curvesign : [a;b] \rightarrow \curveimage \subseteq U$,
+  $t \mapsto \curvesign(t)$ folytonos görbe, $\curvesign(a) = \rvec p$,
+  $\curvesign(b) = \rvec q$ pedig a görbe kezdő és végpontja. Ekkor:
+  $$
+    \int_{\curveimage} \scalar{\grad \varphi(\coordv)}{\dd \curvevec}
+    =
+    \varphi(\rvec q) - \varphi(\rvec p)
+    \text.
+  $$
+  Vagyis, ha egy vektormező valamely skalármező gradiense, akkor annak bármely
+  folytonos görbe mentén vett integrálja csak a kezdő- és végpontoktól függ.
+
+  \begin{proof}
+    \vspace{-1em}
+    $$
+      \int_{\curveimage} \scalar{\grad \varphi(\coordv)}{\dd \curvevec}
+      =
+      \int_a^b \scalar{\grad \varphi(\curvesign(t))}{\dot{\curvesign}(t)} \dd t
+      =
+      \int_a^b \odv{\varphi(\curvesign(t))}{t} \dd t
+      =
+      \varphi(\curvesign(b)) - \varphi(\curvesign(a))
+    $$
+  \end{proof}
+\end{theorem}
+
+\begin{theorem}[Gradiens-tétel megfordítása]
+  Ha $\rvec v$ egy olyan folytonosvektormező, hogy a vonalmenti integrál csak a
+  kezdő- és végponttól függ, akkor $\exists \varphi$, skalármező, hogy
+  $\grad \varphi = \rvec v$.
+\end{theorem}
+
+\begin{blueBox}[Körintegrál jelölése]
+  Ha $\curvesign$ zárt görbe, akkor a $\rvec v$ vektormező egy $\curvesign$ görbe
+  mentén vett körintegrálja a következőképpen jelölhető:
+  $$
+    \oint_{\curveimage} \scalar{\rvec v}{\dd \curvevec}
+    \text.
+  $$
+\end{blueBox}
+
+\begin{statement}[][nobreak]
+  Ha a görbe menti integrál értéke független az úttól, akkor az integrál bármely
+  zárt görbe mentén zérus.
+
+  \begin{proof}
+    Legyen $\curvesign_1$ és $\curvesign_2$ két görbe, melyek kezdő- és
+    végpontjaik megegyeznek. Ekkor:
+    $$
+      \int_{\curveimage_1} \scalar{\rvec v}{\dd \curvevec_1}
+      =
+      \int_{\curveimage_2} \scalar{\rvec v}{\dd \curvevec_2}
+      \text.
+    $$
+    Képezzük a $\curvesign = \curvesign_1 \cup (-\curvesign_2)$ zárt görbét.
+    Ekkor:
+    $$
+      \int_{\curveimage} \scalar{\rvec v}{\dd \curvevec}
+      =
+      \int_{\curveimage_1} \scalar{\rvec v}{\dd \curvevec_1}
+      -
+      \int_{\curveimage_2} \scalar{\rvec v}{\dd \curvevec_2}
+      =
+      0
+      \text.
+    $$
+  \end{proof}
+\end{statement}
+
+\begin{definition}[Skalármező görbe menti, ívhossz szerinti integrálja]
+  \begin{minipage}[c]{.45\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=4/5]
+      \draw [ultra thick] (-0.5,-1) node [left] {${\curvesign}$} .. controls (-0.5,-1) and (0.5,-0.5) .. (0,0);
+      \draw [ultra thick] (0,0) .. controls (-0.5,0.5) and (0.33,1.33) .. (0.5,1.5);
+      \draw [ultra thick] (0.5,1.5) .. controls (0.67,1.67) and (1,2.5) .. (1.5,2.5);
+      \draw [ultra thick] (1.5,2.5) .. controls (2,2.5) and (2,3) .. (2,3);
+
+      \draw [ultra thick, ->, primaryColor]
+      (3,-1) -- (0,0)
+      node [midway, below left] {$\curvesign(t_{i-1})$};
+
+      \draw [ultra thick, ->, secondaryColor]
+      (3,-1) -- (1.5,2.5)
+      node [midway, right] {$\curvesign(t_i)$};
+
+      \draw [ultra thick, ->, cyan!40!gray]
+      (0,0) -- (1.5,2.5)
+      node [midway, below right] {$\Delta\curvesign_i$};
+
+      \draw[fill=black] (0.5,1.5) node [above left] {
+        $\varphi(\xi_i; \eta_i; \zeta_i)$
+      } circle (.1);
+    \end{tikzpicture}
+  \end{minipage}\begin{minipage}[c]{.55\textwidth}
+    $$
+      \varphi: \Reals^3 \rightarrow \Reals
+      \quad
+      \curvesign: \curvedomain \rightarrow \curveimage
+    $$
+    Finomítsuk a végtelenségig a
+    $$
+      \sum_i
+      \varphi(\xi_i ;\; \eta_i ;\; \zeta_i)
+      \norma{\Delta \rvec r_i}
+    $$
+    összeget. Így a következő integrált kapjuk:
+    $$
+      \int_{\curveimage} \varphi \dd \curvescalar.
+    $$
+  \end{minipage}
+\end{definition}
+
+\begin{example}
+  Legyen $\curvesign : [0;1] \rightarrow \curveimage \subset \Reals^3$,
+  $t \mapsto (t; t^2; t^4)$. Adjuk meg a $\varphi(\coordvec) =
+    \sqrt{1 + 4x^2 + 16yz}$ skalármező $\curvesign$ görbe menti integrálját!
+
+  \boxrule
+  \begin{align*}
+    \int_\gamma \varphi(\coordvec) \dd \curvescalar
+     & = \int_0^1 \varphi(\rvec \curvesign(t)) \norma{\dot{\curvesign}(t)} \dd t
+    = \int_0^1 \sqrt{1 + 4t^2 + 16t^6} \sqrt{1^2 + (2t)^2 + (4t^3)^2} \dd t
+    \\
+     & = \int_0^1 1 + 4t^2 + 16t^6 \dd t
+    = \left[ t + \frac{4}{3} t^3 + \frac{16}{7} t^7 \right]_0^1
+    = 1 + \frac{4}{3} + \frac{16}{7}
+    = \frac{97}{21}
+  \end{align*}
+\end{example}
+
+\begin{definition}[Skalármező vektorértékű vonalintegrálja]
+  $$
+    \int \varphi(\coordvec) \dd \curvevec =
+    \begin{bmatrix}
+      \int \varphi(\rvec r) \dd x \\
+      \int \varphi(\rvec r) \dd y \\
+      \int \varphi(\rvec r) \dd z \\
+    \end{bmatrix}
+  $$
+\end{definition}
+
+\begin{definition}[Vektormező vektorértékű vonalintegrálja]
+  \begin{minipage}{.45\textwidth}
+    \begin{tikzpicture}[scale=3/4]
+      \draw [ultra thick] (0, 0) node [left] {${\curvesign}$} .. controls (.5, 0) and (0.5, 0) .. (1, 0.5);
+      \draw [ultra thick] (1, 0.5) .. controls (1.5, 2) and (2, 1) .. (2, 2);
+      \draw [ultra thick] (2, 2) .. controls (2, 3) and (3.25, 2.75) .. (3.5, 3);
+      \draw [ultra thick] (3.5, 3) .. controls (3.75, 3.25) and (4, 3.4) .. (4.5, 4);
+
+      \draw [ultra thick, ->, primaryColor]
+      (5,0) -- (1,0.5)
+      node [midway, below left] {$\curvesign(t_{i-1})$};
+
+      \draw [ultra thick, ->, secondaryColor]
+      (5,0) -- (3.5,3)
+      node [midway, right] {$\curvesign(t_i)$};
+
+      \draw [ultra thick, ->, cyan!40!gray]
+      (1,0.5) -- (3.5,3)
+      node [midway, below right] {$\Delta\curvesign_i$};
+
+      \draw [ultra thick, ->, ternaryColor]
+      (2, 2) -- (1,3)
+      node [midway, below left] {$\rvec v(\curvesign(\xi))$};
+    \end{tikzpicture}
+  \end{minipage}\begin{minipage}{.55\textwidth}
+    $$
+      \rvec v: \Reals^3 \rightarrow \Reals^3
+      \quad
+      \curvesign: \curvedomain \rightarrow \curveimage
+      \quad
+      \xi_i \in [t_{i-1}; t_i]
+    $$
+    Finomítsuk a végtelenségig a
+    $$
+      \sum_i
+      \rvec v(\curvesign(\xi_i)) \times \Delta\curvesign_i
+    $$
+    összeget. Így a következő integrált kapjuk:
+    $$
+      \int_{\curveimage}
+      \rvec v(\coordv) \times \dd \curvevec
+      =
+      \int_{\curveimage}
+      \rvec v(\curvesign(t)) \times \dot{\curvesign}(t) \dd t
+    $$
+  \end{minipage}
+\end{definition}

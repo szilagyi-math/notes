@@ -1,0 +1,266 @@
+\clearpage
+\section{Lineáris leképezések}
+
+\begin{definition}[Lineáris leképezés adjungáltja]
+  Legyen $(V; \, \scalar{\;}{\;})$ Euklideszi tér, $\varphi: V \rightarrow V$
+  lineáris leképezés. A $\varphi^* : V \rightarrow V$ lineáris leképezést
+  a $\varphi$ leképezés adjungáltjának hívjuk, ha
+  $\forall \rvec v_1; \rvec v_2 \in V$-re:
+  $$
+    \scalar{\varphi(\rvec v_1)}{\rvec v_2}
+    = \scalar{\rvec v_1}{\varphi^*(\rvec v_2)}
+  $$
+\end{definition}
+
+\begin{statement}
+  $\left( \varphi^* \right)^* = \varphi$ -- Idempotencia
+
+  \begin{proof}
+    \vspace{-2em}
+    $$
+      \scalar{\left( \varphi^* \right)^*(\rvec v_1)}{\rvec v_2}
+      = \scalar{\rvec v_1}{\varphi^*(\rvec v_2)}
+      = \scalar{\varphi(\rvec v_1)}{\rvec v_2}
+      \text.
+    $$
+  \end{proof}
+\end{statement}
+
+\begin{note}[$\varphi^*$ mátrix reprezentációja]
+  Reprezentálja $\varphi$-t $\rmat A$,
+  $\varphi^*$-ot pedig $\rmat A^*$:
+  \begin{align*}
+    \scalar{\varphi(\rvec v)}{\rvec w}
+     & =
+    \scalar{\rvec v}{\varphi^*(\rvec w)}
+    \\
+    \rmat A\rvec v \cdot \rvec w
+     & =
+    \rvec v \cdot \rmat A^* \rvec w
+    \\
+    \begin{bmatrix}
+      a_{11} & a_{12} \\
+      a_{21} & a_{22}
+    \end{bmatrix}
+    \begin{bmatrix}
+      v_1 \\
+      v_2
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+      w_1 \\
+      w_2
+    \end{bmatrix}
+     & =
+    \begin{bmatrix}
+      v_1 \\
+      v_2
+    \end{bmatrix}
+    \cdot
+    \begin{bmatrix}
+      a_{11}^* & a_{12}^* \\
+      a_{21}^* & a_{22}^*
+    \end{bmatrix}
+    \begin{bmatrix}
+      w_1 \\
+      w_2
+    \end{bmatrix}
+    \\
+    % \begin{bmatrix}
+    %   a_{11} v_1 + a_{12} v_2 \\
+    %   a_{21} v_1 + a_{22} v_2
+    % \end{bmatrix}
+    % \cdot
+    % \begin{bmatrix}
+    %   w_1 \\
+    %   w_2
+    % \end{bmatrix}
+    %  & =
+    % \begin{bmatrix}
+    %   v_1 \\
+    %   v_2
+    % \end{bmatrix}
+    % \cdot
+    % \begin{bmatrix}
+    %   a_{11}^* w_1 + a_{12}^* w_2 \\
+    %   a_{21}^* w_1 + a_{22}^* w_2
+    % \end{bmatrix}
+    % \\[2mm]
+    \scalebox{.92}{$
+        \rected{$a_{11}$}{green!40!black} v_1 w_1
+        + \rected{$a_{12}$}{primaryColor} v_2 w_1
+        + \rected{$a_{21}$}{secondaryColor} v_1 w_2
+        + \rected{$a_{22}$}{ternaryColor} v_2 w_2
+      $}
+     & = \scalebox{.92}{$
+        \rected{$a_{11}^*$}{green!40!black} w_1 v_1
+        + \rected{$a_{12}^*$}{secondaryColor} w_2 v_2
+        + \rected{$a_{21}^*$}{primaryColor} w_1 v_2
+        + \rected{$a_{22}^*$}{ternaryColor} w_2 v_2
+      $}
+  \end{align*}
+  % \begin{alignat*}{4}
+  %   \scalar{\rmat A\rvec v}{\rvec w}
+  %    & = \rected{$a_{11}$}{green!40!black} v_1 w_1
+  %    & + \rected{$a_{12}$}{primaryColor} v_2 w_1
+  %    & + \rected{$a_{21}$}{secondaryColor} v_1 w_2
+  %    & + \rected{$a_{22}$}{ternaryColor} v_2 w_2
+  %   \\
+  %   \scalar{\rmat A^*\rvec w}{\rvec v}
+  %    & = \rected{$a_{11}^*$}{green!40!black} w_1 v_1
+  %    & + \rected{$a_{12}^*$}{secondaryColor} w_2 v_2
+  %    & + \rected{$a_{21}^*$}{primaryColor} w_1 v_2
+  %    & + \rected{$a_{22}^*$}{ternaryColor} w_2 v_2
+  % \end{alignat*}
+  Megállapthatjuk, hogy $\rmat A^* = \rmat A^\T$.
+\end{note}
+
+\begin{statement}
+  Szimmetrikus leképezés adjungáltja önmaga.
+\end{statement}
+
+\begin{statement}[Leképezés felbontása][nobreak]
+  Legyen $\varphi \in \operatorname{End}(V)$, ekkor $!\exists$ olyan
+  $\mathcal A$ és $\mathcal S$ antiszimmetrikus és szimmetrikus leképezés, ahol
+  $\varphi = \mathcal A + \mathcal S$, melyek az endomorfizmusok vektorterét 2
+  diszjunkt halmazra bontják:
+  $$
+    \mathcal A := \frac{\varphi - \varphi^*}{2}
+    \qquad\text{és}\qquad
+    \mathcal S := \frac{\varphi + \varphi^*}{2}
+    \text.
+  $$
+
+  \begin{proof}[Unicitás]
+    Tegyük fel hogy $\varphi$ előáll $\mathcal A_1 + \mathcal S_1$ és
+    $\mathcal A_2 + \mathcal S_2$ összegeként is. Vonjuk ki egymásból
+    a két egyenletet, majd vegyük mindkét oldal adjungáltját!
+    \begin{align*}
+      \mathcal O
+       & = \varphi - \varphi
+      = \left( \mathcal A_1 - \mathcal A_2 \right)
+      + \left( \mathcal S_1 - \mathcal S_2 \right)
+      = \mathcal{\overline A} + \mathcal{\overline S}
+      \\
+      \mathcal O^*
+      = \mathcal O
+       & = \mathcal{\overline A^*} + \mathcal{\overline S^*}
+      = -\mathcal{\overline A} + \mathcal{\overline S}
+    \end{align*}
+    Az előző két egyenletből következik, hogy
+    $\mathcal{O = \overline A = \overline S}$. Feltevésünk hamisnak bizonyult.
+  \end{proof}
+\end{statement}
+
+\begin{note}[Reguláris mátrix felbontása]
+  Egy $\rmat M \in \mathcal M_{n \times n}$ mátrix felbontható szimmetrikus és
+  ferdeszimmetrikus (antiszimmetrikus) részekre:
+  $$
+    \rmat S = \frac{\rmat M + \rmat M^\T}{2}
+    \qquad\text{és}\qquad
+    \rmat A = \frac{\rmat M - \rmat M^\T}{2}
+    \text.
+  $$
+  Ha mátrixunk $3 \times 3$-as:
+  $$
+    \rmat M
+    = \rmat S + \rmat A
+    = \underbrace{\begin{bmatrix}
+        a & d & e \\
+        d & b & f \\
+        e & f & c
+      \end{bmatrix}}_{\text{szimmetrikus}}
+    + \underbrace{\begin{bmatrix}
+        0  & x  & y \\
+        -x & 0  & z \\
+        -y & -z & 0
+      \end{bmatrix}}_{\text{ferdeszimmetrikus}}
+    \text.
+  $$
+  Általános esetben:
+  $$
+    \dim \rmat A = \frac{n(n + 1)}{2}
+    \text,\qquad
+    \dim \rmat S = \frac{n(n - 1)}{2}
+    \text.
+  $$
+\end{note}
+
+\begin{note}
+  Az antiszimmetrikus leképezések és a
+  $V$-beli vektorok között tudunk egy-egyértelmű
+  hozzárendelést találni:
+  \begin{equation*}
+    \rmat A \in \mathcal A
+    \hspace{2.5mm} \leftrightarrow \hspace{2.5mm}
+    \rvec v \in V
+  \end{equation*}
+
+  Keressünk egy olyan $\rvec v$ vektort,
+  melyre teljesül az alábbi egyenlet:
+  \begin{align*}
+    \rmat A\rvec w
+     & = \rvec v \times \rvec w
+    \\[
+    2mm
+    ]
+    \begin{bmatrix}
+      0       & a_{12}  & a_{13} \\
+      -a_{12} & 0       & a_{23} \\
+      -a_{13} & -a_{23} & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+      w_1 \\
+      w_2 \\
+      w_3
+    \end{bmatrix}
+     & =
+    \begin{bmatrix}
+      v_1 \\
+      v_2 \\
+      v_3
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+      w_1 \\
+      w_2 \\
+      w_3
+    \end{bmatrix}
+    \\[2mm]
+    \begin{bmatrix}
+      \rected{$+a_{12}$}{primaryColor}   w_2 \rected{$+a_{13}$}{secondaryColor} w_3 \\
+      \rected{$-a_{12}$}{primaryColor}   w_1 \rected{$+a_{23}$}{ternaryColor}   w_3 \\
+      \rected{$-a_{13}$}{secondaryColor} w_1 \rected{$-a_{23}$}{ternaryColor}   w_2
+    \end{bmatrix}
+     & =
+    \begin{bmatrix}
+      \rected{$v_2$}{secondaryColor} w_3 \rected{$-v_3$}{primaryColor}    w_2 \\
+      \rected{$v_3$}{primaryColor}   w_1 \rected{$-v_1$}{ternaryColor}    w_3 \\
+      \rected{$v_1$}{ternaryColor}   w_2 \rected{$-v_2$}{secondaryColor}  w_1
+    \end{bmatrix}
+    \qquad\Rightarrow\qquad
+    \rvec v
+    =
+    \begin{bmatrix}
+      -a_{23} \\
+      a_{13}  \\
+      -a_{12} \\
+    \end{bmatrix}
+  \end{align*}
+\end{note}
+
+\begin{definition}[Vektorinvariáns]
+  Egy antiszimmetrikus lineáris transzformáció mindig leírható egy rögzített
+  vektorral való keresztszorzással. Ez a vektor a leképezés vektorinvariánsa.
+\end{definition}
+
+\begin{note}
+  Csak ortonormált, Descartes-féle bázisban számítható az előbbi módszerrel egy
+  leképezés vektorinvariánsa.
+\end{note}
+
+\begin{definition}[Lineáris transzformáció nyoma][nobreak]
+  Egy lineáris transzformáció főátlójában lévő elemek összege minden
+  koordinátarendszerben ugyanannyi, tehát a koordináta-transzformáció
+  nem befolyásolja. Ezt nevezzük a lineáris leképezés nyomának. (trace / spur)
+\end{definition}

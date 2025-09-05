@@ -1,0 +1,56 @@
+\clearpage
+\section{Szeparábilisra visszavezethető differenciálegyenletek}
+
+\begin{definition}[Szeparábilis differenciálegyenlet megoldása]
+  $$
+    y' = f(x)g(y)
+    \quad \Rightarrow \quad
+    \int \frac{\dd y}{g(y)} = \int f(x) \dd x
+  $$
+\end{definition}
+
+\begin{definition}[Homogén függvény]
+  Az $f : \Reals^2 \rightarrow \Reals$ függvényt az $x$ és $y$ változók
+  $k$-adrendű homogén függvényének mondjuk, ha $\forall x;y \in \Domain_f$,
+  $\forall t \in \Reals$-re $f \left( tx; ty \right) = t^k f(x; y)$.
+\end{definition}
+
+\begin{blueBox}[$y' = f(ax + by + c)$ típusú differenciálegyenlet megoldása]
+  Éljünk az $f(u)$ helyettesítéssel, ahol $u(x) = ax + by + c$, ennek deriváltja
+  pedig $u' = a + b y' = a + b f(u)$. Ekkor a differenciálegyenlet az alábbi
+  alakra redukálódik:
+  $$
+    \frac{\dd u}{a + b f(u)} = \dd x
+    \text,
+  $$
+  amelyet integrálással már meg tudunk oldani.
+\end{blueBox}
+
+\begin{example}[Adjuk meg az alábbi differenciálegyenlet általános megoldását:]
+  $$
+    y' = \exp(2x + 3y - 1)
+  $$
+  \boxrule
+
+  Éljünk az $u(x) = 2x + 3y - 1$ helyettesítéssel, ennek deriváltja
+  $u' = 2 + 3y' = 2 + 3e^u$. A kapott differenciálegyenlet már integrálással
+  megoldható:
+  $$
+    \int\frac{\dd u}{2 + 3e^u} = \int\dd x
+    \quad\Rightarrow\quad
+    \frac{1}{2} \ln \left( \frac{e^u}{2 + 3e^u} \right) = x + K
+    \quad\Rightarrow\quad
+    \frac{e^u}{2 + 3e^u} = C e^{2x}
+    \text.
+  $$
+  Visszahelyettesítve $u$-t:
+  $$
+    \frac{e^{2x + 3y - 1}}{2 + 3e^{2x + 3y - 1}} = C e^{2x}
+    \quad\Rightarrow\quad
+    % \frac{e^{3y} \, e^{2x - 1}}{2 + 3e^{3y} \, e^{2x - 1}} = C e^{2x}
+    % \quad\Rightarrow\quad
+    \quad\Rightarrow\quad
+    e^{3y} \, e^{2x - 1} = C e^{2x} \left( 2 + 3e^{3y} \, e^{2x - 1} \right)
+    \text.
+  $$
+\end{example}

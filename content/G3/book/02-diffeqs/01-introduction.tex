@@ -1,0 +1,325 @@
+\clearpage
+\section{Bevezetés}
+
+\begin{definition}[Differenciálegyenlet]
+  Legyen $y : \Reals \rightarrow \Reals$ $n$-szer folytonosan differenciálható
+  függvény, vagyis $y^{(0)} = y$, $y^{(1)} = y'$, $y^{(2)} = y''$, $\dots$,
+  $y^{(n)} = y^{(n)}$ folytonos függvények, $x$ független változó. Ekkor az
+  $F \left( x ; y ; y' ; \dots ; y^{(n)} \right) = 0$ egyenletet $y$-ra
+  vonatkoztatott, $n$-edrendű, közönséges differenciálegyenletnek nevezzük.
+\end{definition}
+
+\begin{note}
+  A közönséges arra utal, hogy egy független változót tartalmaz az egyenlet.
+  Ha nem közönséges, akkor parciális (többváltozós) a differenciálegyenlet.
+  A rend a legmagasabb fokú deriváltra utal.
+\end{note}
+
+\begin{example}
+  A következő egyenlet $y$-ra vonatkoztatott, másodrendű közönséges
+  differenciálegyenlet:
+  $$
+    y'' + 2y' + y = 4e^x.
+  $$
+\end{example}
+
+\begin{definition}[Lineáris differenciálegyenlet]
+  Azt a differenciálegyenletet, amelyben az ismeretlen függvény, és annak
+  deriváltjai csak elsőfokon, szorzatuk pedig egyáltalán nem fordul elő,
+  lineáris differenciálegyenletnek mondjuk. Ellenkező esetben nemlineáris.
+\end{definition}
+
+\begin{note}
+  A differenciálegyenletek megadási módja alapján:
+  \begin{itemize}
+    \item \textbf{implicit} megadás:
+          $F \left( x ; y ; y' ; \dots ; y^{(n)} \right) = 0$,
+
+    \item \textbf{explicit} megadás:
+          $y^{(n)} = f(x; y; y'; \dots; y^{(n-1)})$.
+  \end{itemize}
+\end{note}
+
+\begin{definition}[Differenciálegyenlet megoldása]
+  Az $F \left( x ; y ; y' ; \dots ; y^{(n)} \right) = 0$ differenciálegyenlet
+  megoldása a $\varphi : \Reals \rightarrow \Reals$ függvény, ha
+  $\forall x \in \Reals$-re
+  $$
+    F \left( x ; \varphi(x) ; \varphi'(x) ; \dots ; \varphi^{(n)}(x) \right) = 0
+    \text.
+  $$
+\end{definition}
+
+\begin{example}[][nobreak]
+  Az $y'' + 2y' + y = 4e^x$ differenciálegyenlet megoldása a
+  $\varphi(x) = e^x + C_1 e^{-x} + C_2 x e^{-x}$ függvény:
+  \begin{align*}
+    \varphi'(x)  & = e^x - C_1 e^{-x} + C_2 e^{-x} - C_2 x e^{-x},  \\
+    \varphi''(x) & = e^x + C_1 e^{-x} - 2C_2 e^{-x} + C_2 x e^{-x}.
+  \end{align*}
+  Behelyettesítve a $\varphi$, $\varphi'$, és $\varphi''$ kifejezéseket:
+  \begin{align*}
+    \varphi''(x) + 2\varphi'(x) + \varphi(x)
+     & = e^x + C_1 e^{-x} - 2C_2 e^{-x} + C_2 x e^{-x}
+    \\
+     & \quad + 2 \left( e^x - C_1 e^{-x} + C_2 e^{-x} - C_2 x e^{-x} \right)
+    \\
+     & \quad + e^x + C_1 e^{-x} + C_2 x e^{-x}
+    \\
+     & = 4e^x.
+  \end{align*}
+\end{example}
+
+\begin{definition}[Megoldásgörbe]
+  A közönséges differenciálegyenlet megoldásfüggvényének görbéje a
+  differenciálegyenlet integrálgörbéje/megoldásgörbéje.
+\end{definition}
+
+\begin{definition}[Általános megoldás]
+  Azt a megoldást, ami azonosan kiegészíti a differenciálegyenletet, és pontosan
+  annyi egymástól független állandót tartalmaz, ahányad rendű a
+  differenciálegyenlet, általános megoldásnak nevezzük.
+\end{definition}
+
+\begin{example}
+  Az $y'' + 2y' + y = 4e^x$ differenciálegyenlet általános megoldása:
+  $$
+    y(x) = e^x + C_1 e^{-x} + C_2 x e^{-x}
+    \text,
+  $$
+  ahol $C_1$, és $C_2$ tetszőleges valós számok.
+\end{example}
+
+\begin{definition}[Partikuláris megoldás]
+  Partikuláris megoldásnak nevezzük a differenciálegyenlet azon
+  megoldását, amely az általános megoldásból a konstansok megfelelő
+  megválasztásával kapható meg, és amely kielégíti a differenciálegyenletet.
+\end{definition}
+
+\begin{example}
+  Az $y'' + 2y' + y = 4e^x$ differenciálegyenlet partikuláris megoldása:
+  $$
+    y_p(x) = e^x
+    \text.
+  $$
+\end{example}
+
+\begin{note}
+  Általánosabban partikuláris megoldásról akkor beszélünk, ha a megoldásfüggvény
+  legalább eggyel kevesebb egymástól független konstanst tartalmaz, mint ahányad
+  rendű az egyenlet.
+\end{note}
+
+\begin{definition}[Szinguláris megoldás]
+  A szinguláris megoldás olyan megoldás, amely nem kapható meg az általános
+  megoldásból a konstansok megfelelő megválasztásával.
+\end{definition}
+
+\begin{definition}[Cauchy-feladat][nobreak]
+  Ha az $n$-ed rendű differenciálegyenlet olyan megoldását keressük, hogy
+  $$
+    y(x_0) = y_0, \quad
+    y'(x_0) = y_0', \quad
+    y''(x_0) = y_0'', \quad
+    \dots, \quad
+    y^{(n)}(x_0) = y_0^{(n)}
+  $$
+  feltételeket kiegyenlíti, akkor Cauchy-feladatról / kezdeti érték feladatról
+  beszélünk.
+\end{definition}
+
+\begin{example}
+  Határozzuk meg az $y'' + 2y' + y = 4e^x$ differenciálegyenlet azon megoldását,
+  amely kielégíti az $y(0) = 2$ és $y'(0) = 1$ kezdeti feltételeket!
+
+  \boxrule
+
+  Az általános megoldás és ennek deriváltja:
+  $$
+    \begin{aligned}
+      y(x)  & = e^x + C_1 e^{-x} + C_2 x e^{-x} \text,
+      \\
+      y'(x) & = e^x - C_1 e^{-x} + C_2 e^{-x} - C_2 x e^{-x} \text.
+    \end{aligned}
+  $$
+  Behelyettesítve a kezdeti feltételeket:
+  $$
+    \begin{aligned}
+      y(0)  & = 1 + C_1 + 0 = 2
+            & \qquad \Rightarrow \qquad C_1 = 1 \text,
+      \\
+      y'(0) & = 1 + (C_2 - 1) - 0 = 1
+            & \qquad \Rightarrow \qquad C_2 = 1 \text.
+    \end{aligned}
+  $$
+  Vagyis a keresett partikuláris megoldás:
+  $$
+    y(x) = e^x + e^{-x} + x e^{-x}
+    \text.
+  $$
+\end{example}
+
+\begin{note}[][nobreak]
+  A Cauchy-feladat megoldása a differenciálegyenlet partikuláris megoldása.
+  Elsőrendű differenciálegyenlet esetén ez azt jelenti, hogy keressük az
+  $(x_0; y_0)$ ponton átmenő integrálgörbét.
+\end{note}
+
+\begin{note}
+  Differenciálegyenlet megoldása esetén arra a kérdésre kell válaszolnunk, hogy
+  milyen feltételek mellett van az egyenletnek megoldása, egyértelmű megoldása,
+  és ezek hogyan érhetőek el.
+\end{note}
+
+\begin{definition}[Cauchy-féle egzisztencia és unicitás tétele]
+  Tegyügy fel, hogy az $f: \Reals^2 \rightarrow \Reals$
+  $\left( x_0 ; y_0 \right)$ esetén létezik olyan
+  $\left( x_0 ; y_0 \right) \in D$ tartomány, hogy
+  \begin{itemize}
+    \item $f(x; y)$ folytonos $D$-n mindkét változójában,
+    \item $\partial_y f$ létezik, és korlátos $D$-n.
+  \end{itemize}
+  Ekkor $\exists!$ megoldása az $y' = f(x; y)$, $y(x_0) = y_0$
+  kezdeti feltétellel ellátott differenciálegyenletek, azaz
+  $\exists!$ $\varphi :
+    \left( x_0 - \varepsilon; \; x_0 + \varepsilon \right)
+    \rightarrow \Reals$ folytonosan differenciálható függvény,
+  hogy $\varphi' (x) = f \left(x ; \varphi(x)\right)$
+  $\forall x \in \left( x_0 - \varepsilon; \; x_0 + \varepsilon \right)$
+  esetén teljesül, és $\varphi(x_0) = y_0$.
+\end{definition}
+
+\begin{note}
+  A $D$ tartomány minden egyes pontján egyetlen megoldásgörbe megy át.
+
+  A tételben foglaltfeltételek nem szükségesek, de elégségesek.
+\end{note}
+
+\begin{definition}[Lipschitz-feltétel][nobreak]
+  Az $f : \Reals^2 \rightarrow \Reals$ függvényre azt monjuk,
+  hogy  a $D$ tartományon az $y$ változóra nézve kielégíti a
+  Lipschitz-feltételt, ha $\exists$ olyan $M \in \Reals^+$, hogy
+  $\forall$ $\left( x; y_0 \right)$ és $\left( x; y_1 \right)$ esetén
+  $$
+    \left| f(x; y_0) - f(x; y_1) \right| \leq M \left| y_0 - y_1 \right|.
+  $$
+\end{definition}
+
+\begin{theorem}[Picard-Lindelöf-tétel][]
+  Legyen $y' = f(x, y)$ adott és $D = I_1 \times I_2$, ahol $I_1$ és $I_2$ nyílt
+  intervallumok, $\left( x_0 ; y_0 \right) \in D$. Tegyük fel hogy:
+  \begin{itemize}
+    \item $f$ mindkét változójában folytonos $D$-n,
+    \item $f$ kielégíti a Lipschitz-feltételt az $y$
+          változójára nézve.
+  \end{itemize}
+  Ekkor az $y' = f(x; y)$, $y(x_0) = y_0$ kezdeti feltétellel
+  ellátott differenciálegyenletnek $\exists!$ megoldása, azaz
+  $\exists \varepsilon > 0$, hogy $\varphi :
+    \left( x_0 - \varepsilon; \; x_0 + \varepsilon \right)
+    \rightarrow \Reals$-re teljesül, hogy $\varphi' (x)
+    = f \left(x ; \varphi(x)\right)$
+  $\forall x \in \left( x_0 - \varepsilon; \; x_0 + \varepsilon \right)$
+  esetén $\varphi(x_0) = y_0$.
+\end{theorem}
+
+\begin{theorem}[Peano-tétel][nobreak]
+  Ha az $f$ függvényről csak folytonosságot tesszük fel, akkor azt mondhatjuk,
+  hogy van legalább egy integrálgörbéje, amely átmegy az
+  $\left( x_0 ; y_0 \right)$ ponton.
+\end{theorem}
+
+\begin{note}[][nobreak]
+  Látható tehát, hogy az $f$ folytonossága minden Cauchy-feladat megoldásához
+  elégséges, de az egyértelmű megoldás létezéséhez nem.
+
+  Az egyértelmű megoldás létezéséhez az $f$ lipschitzessége a folytonossággal
+  elégséges, de nem szükséges feltétel.
+\end{note}
+
+\begin{theorem}[Szukcesszív approximáció]
+  Ha az $y' = f(x; y)$ differenciálegyenletben lévő $f$ függvényre teljesül,
+  hogy $\left| x - x_0 \right| < a \leq \infty$ és $\left| y - y_0 \right| < b
+    \leq \infty$ tartományon korlátos és folytonos, továbbá eleget tesz a
+  Lipschitz-feltételnek, akkor a
+  $$
+    y_{n + 1}
+    := \underbrace{y(x_0)}_{y_0}
+    + \int_{x_0}^x f\left(
+    t; y_{n}(t)
+    \right) \dd t
+  $$
+  függvénysorozat $n \rightarrow \infty$ esetén az $y' = f(x; y)$, $y(x_0) =
+    y_0$ differenciálegyenlet megoldásához konvergál az  $\left| x - x_0 \right|
+    < \min \left\{ a; b/M \right\}$  intervallumon.
+\end{theorem}
+
+\begin{example}
+  Oldjuk meg az $y'(x) = x + y(x)$, $y_0 = 0$ Cauchy-feladatot szukcesszív
+  approximációval!
+
+  \boxrule
+
+  Az iteráció során használt összefüggés:
+  $$
+    y_{n + 1}
+    = y_n + \int_{x_0}^x f\left( t; y_{n}(t) \right) \dd t
+    = 0 + \int_0^x \left( t + y_n(t) \right) \dd t
+    \text.
+  $$
+  Számítsuk ki az első pár iterációt:
+  \begin{align*}
+    y_0(x)  & = 0 \text,
+    \\
+    y_1(x)  & = \int_0^x \left( t + 0 \right) \dd t = \frac{x^2}{2} \text,
+    \\
+    y_2(x)  & = \int_0^x \left( t + \frac{t^2}{2} \right) \dd t
+    = \frac{x^2}{2} + \frac{x^3}{6} \text,
+    \\
+    y_3 (x) & = \int_0^x \left( t + \frac{t^3}{2} \right) \dd t
+    = \frac{x^2}{2} + \frac{x^3}{6} + \frac{x^4}{24} \text,
+    \\
+    y_4(x)  & = \int_0^x \left( t + \frac{t^4}{2} \right) \dd t
+    = \frac{x^2}{2} + \frac{x^3}{6} + \frac{x^4}{24} + \frac{x^5}{120} \text,
+    \\
+            & \vdots
+    \\
+    y_n(x)  & = -1 -x + \underbrace{1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \dots}_{\to e^x}
+    = e^x - 1 - x
+    \text.
+  \end{align*}
+\end{example}
+
+\begin{definition}[Kompakt halmaz]
+  A $H$ halmazt kompakt halmaznak mondjuk, ha $\forall$ nyílt lefedésből
+  kiválasztható véges sok nyílt halmaz, melynek uniója lefedi a $H$-t.
+\end{definition}
+
+\begin{definition}[Nyílt halmaz]
+  Ha egy halmaz tetszőleges pontjának $\exists$ olyan $\varepsilon$ sugarú
+  környezete, hogy az ebben lévő pontok mindegyike a halmaz része, akkor a
+  halmaz nyílt.
+\end{definition}
+
+\begin{definition}[Zárt halmaz]
+  Ha egy halmaz komplementere nyílt halmaz, akkor a halmaz zárt.
+\end{definition}
+
+\begin{statement}
+  $D = I_1 \times I_2 \times \dots \times I_n$, ahol
+  $I_i$, $i \in \left\{1;2;\dots;n\right\}$ zárt halmaz kompakt.
+\end{statement}
+
+\begin{theorem}[nobreak]
+  Legyen $y' = f(x; y)$, $y(x_0) = y_0$ differenciálegyenlet-rendszer, és
+  $\left( x_0; y_0 \right) \in D$, ahol $D$ zárt, kompakt tégla (halmaz)
+  $\mathbb{R}^2$-ben. Ekkor ha a $\varphi$ függvény megoldása a
+  Cauchy-feladatnak, akkor $\varphi$ biztosan elhagyja a téglát.
+\end{theorem}
+
+\begin{definition}[Iránymező és vonalelemek][nobreak]
+  A vonalelemek a megoldásgörbe adott pontbeli érintői.
+
+  Ha az iránymező állandó, vagyis a megoldásagörbe állandó meredekségű, akkor
+  izonklinákról beszélünk.
+\end{definition}

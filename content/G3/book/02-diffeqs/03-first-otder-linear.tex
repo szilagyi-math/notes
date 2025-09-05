@@ -1,0 +1,130 @@
+\clearpage
+\section{Elsőrendű lineáris differenciálegyenletek}
+
+\begin{definition}[Elsőrendű lineáris differenciálegyenlet]
+  Az $a(x) y' + b(x) y + c(x) = 0$ alakú differenciálegyenletet, ahol
+  $a;b;c : I \subset \Reals \rightarrow \Reals$, $a(x) \not \equiv 0$
+  egyváltozós, valós, folytonos függvények, elsőrendű lineáris
+  differenciálegyenletnek nevezzük.\
+
+  Gyakran a következő alakban írjuk fel őket:
+  $$
+    y' + p(x) y = q(x)
+    \text.
+  $$
+\end{definition}
+
+\begin{blueBox}[Elsőrendű lineáris differenciálegyenlet megoldása]
+  \underline{\textbf{Homogén megoldás}}: Ha $q(x) \equiv 0$, akkor a DE az
+  alábbi alakra redukálódik:
+  $$
+    \odv{y}{x} + p(x) y = 0
+    \text.
+  $$
+  Rendezzük a differenciálegyenletet, majd integráljuk az egyenlet mindkét
+  oldalát:
+  \begin{align*}
+    \frac{\dd y}{y}      & = -p(x) \dd x
+    \\
+    \int \frac{\dd y}{y} & = -\int p(x) \dd x
+    \\
+    \ln y                & = -\int p(x) \dd x + \ln C
+    \\
+    y_h                  & = C e^{-\int p(x) \dd x}
+  \end{align*}
+
+  \underline{\textbf{Partikuláris megoldás}}: Konstans variálással:
+
+  A homogén megoldásnál kiszámított $y_h$ függvényben tekintsünk a konstans
+  $C$-re $x$-től függő függvényként. Keressük a partikuláris megoldást az
+  alábbi alakban:
+  $$
+    y_p(x) = C(x) \underbrace{e^{-\int p(x) \dd x}}_{Y(x)} = C(x) Y(x)
+    \text.
+  $$
+  Számítsuk ki a $y_p$ függvény deriváltját:
+  $$
+    y_p' = C'(x) Y(x) + C(x) Y'(x)
+    \text.
+  $$
+  Helyettesítsük be a $y_p$-t és $y_p'$-t az eredeti differenciálegyenletbe:
+  \begin{gather*}
+    y' + p(x) y = q(x)
+    \\
+    C'(x) Y(x) + C(x) Y'(x) + p(x) C(x) Y(x) = q(x)
+    \\
+    C(x) \underbrace{
+      \left( Y'(x) + p(x) Y(x) \right)
+    }_{= 0\text{, homogén egyenlet}} + C'(x) Y(x) = q(x)
+  \end{gather*}
+  Ezek alapján $C(x)$ értéke:
+  $$
+    C'(x) Y(x) = q(x)
+    \quad \Rightarrow \quad
+    C(x) = \int \frac{q(x)}{Y(x)} \dd x
+    \text.
+  $$
+
+  \underline{\textbf{Általános megoldás}}: A homogén és a partikuláris megoldás
+  összege:
+  $$
+    y(x)
+    = y_h(x) + y_p(x)
+    = C e^{-\int p(x) \dd x} + \int \frac{q(x)}{Y(x)} \dd x Y(x)
+    \text.
+  $$
+\end{blueBox}
+
+\begin{example}[Oldjuk meg az alábbi elsőrendű lineáris differenciálegyenletet:][nobreak]
+  $$
+    y' - \frac{2}{x} y = x^2, \quad x > 0
+  $$
+  \boxrule
+
+  \underline{\textbf{Homogén megoldás}}:
+  $$
+    y' - \frac{2}{x} y = 0
+    \quad \Rightarrow \quad
+    \odv{y}{x} = \frac{2}{x} y
+    \quad \Rightarrow \quad
+    \int\frac{\dd y}{y} = \int\frac{2}{x} \dd x
+    \quad \Rightarrow \quad
+    \ln y = 2 \ln x + \ln C
+  $$
+  A logaritmus azonosságok felhasználásával:
+  $$
+    y_h(x) = C x^2
+    \text.
+  $$
+  \underline{\textbf{Partikuláris megoldás}}: Tekintsük $C$-t $x$-től függőnek:
+  \begin{align*}
+    y(p)  & = C(x) x^2 \text,             \\
+    y'(p) & = C'(x) x^2 + 2 C(x) x \text.
+  \end{align*}
+  Helyettesítsük be a $y(p)$-t és $y'(p)$-t az eredeti differenciálegyenletbe:
+  \begin{gather*}
+    C'(x) x^2 + 2 C(x) x - \frac{2}{x} C(x) x^2 = x^2
+    \\
+    C'(x) x^2 + 2 C(x) x - 2 C(x) x = x^2
+    \\
+    C'(x) x^2 = x^2
+    \\
+    C'(x) = 1
+    \\
+    C(x) = x + K
+  \end{gather*}
+  Vagyis a partikuláris megoldás:
+  $$
+    y_p(x) = (x + K) x^2 = x^3 + K x^2
+    \text,
+  $$
+  amelyben $K$-t tetszőlegesen megválaszthatjuk, hiszen $C$ a homogén
+  $C x^2$ a homogén megoldásban már szerepel. Legyen $K = 0$.
+
+  \underline{\textbf{Általános megoldás}}:
+  A homogén és a partikuláris megoldás összege:
+  $$
+    y(x) = C x^2 + x^3
+    \text.
+  $$
+\end{example}
