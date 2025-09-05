@@ -1,0 +1,1203 @@
+\documentclass{szb-practice}
+
+\title{Ismétlés, operátorok}
+\area{Vektoranalízis}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{1}
+
+\begin{document}
+\maketitle
+
+\vspace{-1em}
+\subsection{Elméleti Áttekintő}
+\vspace{1em}
+
+\begin{definition}[Vektortér]
+  Legyen $V$ nemüres halmaz, és $\circ, +$ két művelet, $T$ test.
+  A $(V; +, \circ)$ a $T$ test feletti vektortér, ha teljesülnek az alábbiak:
+  \begin{enumerate}[itemsep=-.33em]
+    \item $(V; +)$ Abel-csoport,
+          \begin{itemize}[itemsep=-.33em]
+            \item $\forall \rvec x; \rvec y; \rvec z \in V:
+                    (\rvec x + \rvec y) + \rvec z
+                    = \rvec x + (\rvec y + \rvec z)$,
+                  \hfill (asszociativitás)
+
+            \item $\exists \nvec \in V: \forall \rvec x \in V:
+                    \nvec + \rvec x = \rvec x + \nvec = \rvec x$,
+                  \hfill (zéruselem)
+
+            \item $\forall \rvec x \in V: \exists -\rvec x \in V:
+                    \rvec x + (-\rvec x) = (-\rvec x) + \rvec x = \nvec$,
+                  \hfill (inverzelem)
+
+            \item $\forall \rvec x; \rvec y \in V:
+                    \rvec x + \rvec y = \rvec y + \rvec x$.
+                  \hfill (kommutativitás)
+          \end{itemize}
+
+    \item $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
+            (\lambda \circ \mu) \circ \rvec x
+            = \lambda \circ (\mu \circ \rvec x)$,
+
+    \item ha $\varepsilon$ a $T$-beli egységelem, akkor
+          $\forall \rvec x \in V: \varepsilon \circ \rvec x = \rvec x$,
+
+    \item teljesül a disztributivitás:
+          \begin{itemize}[itemsep=-.33em]
+            \item $\forall \lambda \in T \; \land \; \forall \rvec x; \rvec y \in V:
+                    \lambda \circ (\rvec x + \rvec y)
+                    = \lambda \circ \rvec x + \lambda \circ \rvec y$,
+
+            \item $\forall \lambda; \mu \in T \; \land \; \forall \rvec x \in V:
+                    (\lambda + \mu) \circ \rvec x
+                    = \lambda \circ \rvec x + \mu \circ \rvec x$.
+          \end{itemize}
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  A \textbf{legfeljebb másodfokú polinomok} halmaza az összeadásra és a
+  skalárral való szorzásra nézve vektortér.
+\end{example}
+
+\begin{definition}[Lineáris függetlenség]
+  A $(V; +; \circ)$ vektortér $\rvec v_1, \rvec v_2, \ldots, \rvec v_n$
+  vektorait lineárisan függetlennek mondjuk, ha a
+  $$
+    \lambda_1 \rvec v_1
+    + \lambda_2 \rvec v_2
+    + \ldots
+    + \lambda_n \rvec v_n
+    = \nvec
+  $$
+  vektoregyenletnek \textbf{csak a triviális megoldása} létezik, azaz
+  $\lambda_1 = \lambda_2 = \cdots = \lambda_n = 0$.
+
+  Ha az egyenletnek nem csak a triviális megoldása létezik, akkor a vektorok
+  lineárisan függőek.
+\end{definition}
+
+\begin{example}[][nobreak]
+  A legfeljebb másodfokú polinomok vektorterében a
+  $$
+    \Big\{\; x^2 - x - 2 ;\; x + 1 ;\; x^2 + x \;\Big\}
+  $$
+  vektorhármas lineárisan összefüggő, hiszen:
+  $$
+    (1) \cdot (x^2 - x - 2)
+    + (2) \cdot (x + 1)
+    + (-1) \cdot (x^2 + x)
+    = 0
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Altér]
+  Legyen $(V; +; \circ)$ $\Reals$ feletti vektortér, valamint
+  $\emptyset \neq L \subset V$. $L$-t altérnek nevezzük a $V$-ben, ha
+  $(L; +; \circ)$ ugyancsak vektortér.
+\end{definition}
+
+\begin{example}
+  A legfeljebb másodfokú polinomok vektorterében az olyan polinomok halmaza,
+  melyekben a $x$-es tag együtthatója nulla, altér, hiszen a szokásos
+  műveletekre zárt.
+  \begin{enumerate}
+    \item Összeadásra zárt:
+          $$
+            (a_2 x^2 + \underline{0 x} + a_0) + (b_2 x^2 + \underline{0 x} + b_0)
+            = (a_2 + b_2) x^2 + \underline{0 x} + (a_0 + b_0)
+            \text.
+          $$
+
+    \item Skalárral való szorzásra zárt:
+          $$
+            \lambda \cdot (a_2 x^2 + \underline{0 x} + a_0)
+            = (\lambda a_2) x^2 + \underline{0 x} + (\lambda a_0)
+            \text.
+          $$
+  \end{enumerate}
+\end{example}
+
+\begin{definition}[Generátorrendszer]
+  Legyen $V$ vektortér, valamint $\emptyset \neq G \subset V$. $G$ által
+  generált altérnek nevezzük azt a legszűkebb alteret, amely tartalmazza $G$-t.
+  Jele: $\mathcal L(G)$.
+
+  $G$ generátorrendszere $V$-nek, ha $\mathcal L(G) = V$.
+\end{definition}
+
+\begin{example}
+  A legfeljebb másodfokú polinomok egy lehetséges \textbf{generátorrendszere}:
+  $$
+    \big\{
+    \;1;
+    \;1 + x;
+    \;x + x^2;
+    \;x^2
+    \;\big\}
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Bázis]
+  A $V$ vektortér egy lineárisan független generátorrendszerét a $V$
+  bázisának nevezzük.
+\end{definition}
+
+\begin{example}
+  A legfeljebb másodfokú polinomok egy lehetséges \textbf{bázisa}:
+  $$
+    \big\{
+    \;1;
+    \;x;
+    \;x^2
+    \;\big\}
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Vektortér dimenziója]
+  Végesen generált vektortér dimenzióján a bázisainak közös tagszámát értjük.
+\end{definition}
+
+\begin{example}[][nobreak]
+  A legfeljebb másodfokú polinomok vektortere \textbf{dimenziója 3}, hiszen
+  tetszőleges bázisának három eleme van. Egy másik lehetséges bázis:
+  $$
+    \big\{
+    \;1 + x + x^2;
+    \;x + x^2;
+    \;x^2
+    \;\big\}
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Lineáris leképezés]
+  Legyenek $V_1$ és $V_2$ ugyanazon $T$ test feletti vektorterek. Legyen
+  $\varphi: V_1 \rightarrow V_2$ leképezés, melyet lineáris leképezésnek
+  nevezünk, ha tetszőleges két $V_1$-beli vektor ($\forall \rvec a; \rvec b \in
+    V_1$) és $T$-beli skalár ($\lambda \in T$) esetén teljesülnek az alábbiak:
+
+  \def\arraystretch{1.5}
+  \begin{tabular}{>{\bullet\;}l>{$\quad \sim \quad$}l}
+    $\varphi(\rvec a + \rvec b) = \varphi(\rvec a) + \varphi(\rvec b)$
+     & additív (összegre tagonként hat), \\
+    $\varphi(\lambda \rvec a) = \lambda \varphi(\rvec a)$
+     & homogén (skalár kiemelhető).
+  \end{tabular}
+\end{definition}
+
+\begin{definition}[Lineáris leképezés rangja]
+  Egy lineáris leképezés rangjának nevezzük a képtér dimenzióját.
+  $\rg \varphi = \dim \varphi(V_1)$.
+\end{definition}
+
+\begin{definition}[Leképezés magtere]
+  Legyen $\varphi: V_1 \rightarrow V_2$ lineáris leképezés, ekkor a
+  $$
+    \ker \varphi := \{
+    \rvec v \; | \; \rvec v \in V_1 \land \varphi(\rvec v) = \nvec
+    \}
+  $$
+  halmazt a leképezés magterének nevezzük.
+\end{definition}
+
+\begin{definition}[Leképezés defektusa]
+  A magtér dimenzióját defektusnak nevezzük, és $\operatorname{def} \varphi$-vel
+  jelöljük.
+\end{definition}
+
+\begin{theorem}[Rang-nullitás tétele]
+  Legyen $V_1$ véges dimenziós vektortér, $\varphi: V_1 \rightarrow V_2$
+  lineáris leképezés, ekkor
+  $$
+    \rg \varphi + \operatorname{def} \varphi = \dim V_1
+    \text.
+  $$
+\end{theorem}
+
+\begin{blueBox}[Lineáris leképezés mátrixa][nobreak]
+  Legyenek $V_1$ és $V_2$ ugyanazon test feletti vektorterek, és $\dim V_1 = n$,
+  valamint $\dim V_2 = k$. Legyen $\{ \rvec a_1; \rvec a_2; \ldots; \rvec a_n \}$
+  bázis $V_1$-ben, és $\{ \rvec b_1; \rvec b_2; \ldots; \rvec b_k \}$ bázis
+  $V_2$-ben. Legyen $\varphi: V_1 \rightarrow V_2$ lineáris leképezés, ekkor
+  $$
+    \varphi(\rvec a_i)
+    = \sum_{j=1}^{k} \alpha_{ji} \rvec b_j
+    \quad\Rightarrow\quad
+    \rmat A := \begin{bmatrix}
+      \alpha_{11} & \alpha_{12} & \cdots & \alpha_{1n} \\
+      \alpha_{21} & \alpha_{22} & \cdots & \alpha_{2n} \\
+      \vdots      & \vdots      & \ddots & \vdots      \\
+      \alpha_{k1} & \alpha_{k2} & \cdots & \alpha_{kn}
+    \end{bmatrix}_{k \times n}
+    \text.
+  $$
+  Az $\rmat A$ mátrixot $\varphi$ leképezést reprezentáló mátrixnak hívjuk,
+  segítségével tetszőleges $\rvec x \in V_1$ képét meghatározhatjuk. Legyenek
+  $(\xi_1, \xi_2, \ldots, \xi_n)$ az $\rvec x$ koordinátái, ekkor a képe:
+  $$
+    \varphi(\rvec x)
+    = \sum_{i=1}^{n} \xi_i \,\varphi(\rvec a_i)
+    =
+    \begin{bmatrix}
+      \alpha_{11} & \alpha_{12} & \cdots & \alpha_{1n} \\
+      \alpha_{21} & \alpha_{22} & \cdots & \alpha_{2n} \\
+      \vdots      & \vdots      & \ddots & \vdots      \\
+      \alpha_{k1} & \alpha_{k2} & \cdots & \alpha_{kn}
+    \end{bmatrix}
+    \begin{bmatrix}
+      \xi_1  \\
+      \xi_2  \\
+      \vdots \\
+      \xi_n
+    \end{bmatrix}
+    \text.
+  $$
+\end{blueBox}
+
+\begin{statement}
+  Tetszőleges lineáris leképezés rangja megegyezik bármely bázisra vonatkozó
+  mátrixreprezentációjának rangjával. $\varphi: V_1 \rightarrow V_2$, $\dim V_1
+    = m$, $\dim V_2 = n \Rightarrow \varphi \leftrightarrow \rmat A$, $\rmat A
+    \in \mathcal M_{n \times m}$, $\rg \varphi = \rg \rmat A$.
+\end{statement}
+
+\begin{example}
+  Tekintsük a $\varphi: \mathbb R^2 \rightarrow \mathbb R^2$,
+  $(x; y) \mapsto (y + x; 2x)$ leképezést.
+
+  A leképezés lineáris, hiszen a \textbf{összegre tagonként hat}:
+  $$
+    \varphi \begin{bmatrix}
+      x_1 + x_2 \\ y_1 + y_2
+    \end{bmatrix} = \begin{bmatrix}
+      (y_1 + y_2) + (x_1 + x_2) \\ 2 (x_1 + x_2)
+    \end{bmatrix} = \begin{bmatrix}
+      y_1 + x_1 \\ 2x_1
+    \end{bmatrix} + \begin{bmatrix}
+      y_2 + x_2 \\ 2x_2
+    \end{bmatrix} = \varphi \begin{bmatrix}
+      x_1 \\ y_1
+    \end{bmatrix} + \varphi \begin{bmatrix}
+      x_2 \\ y_2
+    \end{bmatrix}
+    \text,
+  $$
+  valamint a skalárral való szorzás esetén a \textbf{skalár kiemelhető}:
+  $$
+    \varphi \begin{bmatrix}
+      \alpha x \\ \alpha y
+    \end{bmatrix} = \begin{bmatrix}
+      \alpha y + \alpha x \\ 2\alpha x
+    \end{bmatrix} = \begin{bmatrix}
+      \alpha(y + x) \\ \alpha(2x)
+    \end{bmatrix} = \alpha \begin{bmatrix}
+      y + x \\ 2x
+    \end{bmatrix} = \alpha \varphi \begin{bmatrix}
+      x \\ y
+    \end{bmatrix}
+    \text.
+  $$
+  A leképezés mátrixa a standard bázisra vonatkozóan:
+  $$
+    \varphi \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+    = \begin{bmatrix} 1 + 0 \\ 2 \cdot 1 \end{bmatrix}
+    = \begin{bmatrix} 1 \\ 2 \end{bmatrix}
+    \quad \text{és} \quad
+    \varphi \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+    = \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+    = \begin{bmatrix} 0 + 1 \\ 2 \cdot 0 \end{bmatrix}
+    \quad \Rightarrow \quad
+    \rmat A = \begin{bmatrix}
+      1 & 1 \\
+      2 & 0
+    \end{bmatrix}
+    \text.
+  $$
+  A \textbf{leképezés rangja} a mátrix rangjával egyezik meg:
+  $$
+    \rg \varphi = \rg \rmat A
+    = \rg \begin{bmatrix}
+      1 & 1 \\
+      2 & 0
+    \end{bmatrix}
+    = \rg \begin{bmatrix}
+      1 & 1 \\
+      0 & 2
+    \end{bmatrix}
+    = \rg \begin{bmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{bmatrix}
+    = 2
+    \text.
+  $$
+  A leképezés \textbf{defektusa} a rang-nullitás tétele alapján:
+  $$
+    \operatorname{def} \varphi
+    = \dim \mathbb R^2 - \rg \varphi
+    = 2 - 2
+    = 0
+    \text.
+  $$
+  A leképezés \textbf{inverzének} mátrixa:
+  $$
+    \rmat A^{-1}
+    = \frac{1}{\det \rmat A} \begin{bmatrix}
+      0  & -1 \\
+      -2 & 1
+    \end{bmatrix}
+    = -\frac{1}{2} \begin{bmatrix}
+      0  & -1 \\
+      -2 & 1
+    \end{bmatrix}
+    = \begin{bmatrix}
+      0 & 1/2  \\
+      1 & -1/2
+    \end{bmatrix}
+    \text.
+  $$
+  A $(4;2)$ vektor ősképe:
+  \vspace{-1em}
+  $$
+    \varphi^{-1} \begin{bmatrix} 4 \\ 2 \end{bmatrix}
+    = \begin{bmatrix}
+      0 & 1/2  \\
+      1 & -1/2
+    \end{bmatrix} \begin{bmatrix}
+      4 \\ 2
+    \end{bmatrix}
+    = \begin{bmatrix}
+      1 \\ 3
+    \end{bmatrix}
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Bázistranszformáció][nobreak]
+  Legyenek $\mathcal B = \{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \}$ és
+  $\hat{\mathcal B} = \{ \hat{\rvec b}_1; \hat{\rvec b}_2; \ldots;
+    \hat{\rvec b}_n \}$ bázisok $V$-ben. Ekkor a $\mathcal B \rightarrow
+    \hat{\mathcal B}$ bázistranszformáció $\rmat T$ mátrixa a következőképpen
+  írható fel:
+  $$
+    \left.\begin{array}{rl}
+      \hat{\rvec b}_1 & = t_{11} \rvec b_1 + t_{21} \rvec b_2 + \ldots + t_{n1} \rvec b_n \\
+      \hat{\rvec b}_2 & = t_{12} \rvec b_1 + t_{22} \rvec b_2 + \ldots + t_{n2} \rvec b_n \\
+                      & \vdots                                                            \\
+      \hat{\rvec b}_j & = t_{1j} \rvec b_1 + t_{2j} \rvec b_2 + \ldots + t_{nj} \rvec b_n \\
+                      & \vdots                                                            \\
+      \hat{\rvec b}_n & = t_{1n} \rvec b_1 + t_{2n} \rvec b_2 + \ldots + t_{nn} \rvec b_n
+    \end{array}\right\}
+    \quad\Rightarrow\quad
+    \rmat T = \begin{bmatrix}
+      t_{11} & t_{12} & \cdots & t_{1n} \\
+      t_{21} & t_{22} & \cdots & t_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      t_{n1} & t_{n2} & \cdots & t_{nn}
+    \end{bmatrix}
+  $$
+\end{definition}
+
+\begin{note}
+  Jelölje egy adott vektor koordinátáit a $\mathcal B$ bázisban $\rvec x$, a
+  $\hat{\mathcal B}$ bázisban pedig $\rvec x'$. Legyen továbbá $\rmat T$ a
+  $\mathcal B \rightarrow \hat{\mathcal B}$ bázistranszformációs mátrixa.
+
+  Ekkor a két koordinátarendszer közötti kapcsolatot a következő egyenletek
+  írják le:
+  $$
+    \rvec x = \rmat T \rvec x'
+    \quad\text{és}\quad
+    \rvec x' = \rmat T^{-1} \rvec x
+    \text.
+  $$
+
+  A $\rmat T$ mátrix oszlopai a $\hat{\mathcal B}$ bázisvektorok
+  $\mathcal B$ bázisra vonatkozó koordinátái.
+\end{note}
+
+\begin{example}
+  Egy vektor standard normális bázisban felírt alakja: $\rvec x(2; 1)$. Adjuk
+  meg a $\hat{\rvec b}_1(1; 0)$ és $\hat{\rvec b}_2(1; 1)$ bázisra való áttérés
+  mátrixát, valamint a vektor koordinátáit ebbern a bázisban!
+
+  A transzformációs mátrix és ennek inverze:
+  $$
+    \rmat T = \begin{bmatrix}
+      1 & 1 \\
+      0 & 1
+    \end{bmatrix}
+    \qquad \text{és} \qquad
+    \rmat T^{-1} = \begin{bmatrix}
+      1 & -1 \\
+      0 & 1
+    \end{bmatrix}
+    \text.
+  $$
+
+  A vektor koordinátái az új bázisban:
+  $$
+    \rvec x' = \rmat T^{-1} \rvec x = \begin{bmatrix}
+      1 & -1 \\
+      0 & 1
+    \end{bmatrix} \begin{bmatrix}
+      2 \\ 1
+    \end{bmatrix} = \begin{bmatrix}
+      1 \\ 1
+    \end{bmatrix}
+    \text.
+  $$
+
+  Ellenőrzés:
+  $$
+    \rvec x = \rmat T \rvec x' = \begin{bmatrix}
+      1 & 1 \\
+      0 & 1
+    \end{bmatrix} \begin{bmatrix}
+      1 \\ 1
+    \end{bmatrix} = \begin{bmatrix}
+      2 \\ 1
+    \end{bmatrix}
+    \text.
+  $$
+\end{example}
+
+\begin{theorem}[Lineáris leképezés mátrixa új bázisban]
+  Legyen $\varphi: V \rightarrow V$ lineáris leképezés,
+  $\mathcal B = \{ \rvec b_1; \rvec b_2; \ldots; \rvec b_n \}$ és
+  $\hat{\mathcal B} = \{ \hat{\rvec b}_1; \hat{\rvec b}_2; \ldots;
+    \hat{\rvec b}_n \}$ bázisok $V$-ben.
+  A $\varphi$ leképezés $\mathcal B$ bázisra vonatkozó mátrixa $\rmat A$,
+  $\hat{\mathcal B}$ bázisra vonatkozó mátrixa pedig $\hat{\rmat A}$. Jelölje
+  $\rmat T$ a $\mathcal B$ bázisról a $\hat{\mathcal B}$ bázisra való áttérés
+  mátrixát, ekkor
+  $$
+    \hat{\rmat A} = \rmat T^{-1} \rmat A \rmat T
+    \text.
+  $$
+\end{theorem}
+
+% \begin{note}
+%   A $\rmat A$ és $\hat{\rmat A}$ mátrix hasonló.
+% \end{note}
+
+\begin{note}[][nobreak]
+  Jelölje egy adott vektor koordinátáit a $\mathcal B$ bázisban $\rvec x$, a
+  $\hat{\mathcal B}$ bázisban pedig $\rvec x'$.
+
+  Legyen $\varphi$ leképezés $\mathcal B$-re vonatkoztatott mátrixa
+  $\rmat A$, $\hat{\mathcal B}$-re vonatkoztatott mátrixa $\hat{\rmat A}$.
+
+  A $\mathcal B \rightarrow \hat{\mathcal B}$ áttérés mátrixa $\rmat T$. A vektor
+  képei az adott bázisokban: $\rvec y = \varphi(\rvec x)$,
+  $\rvec y' = \varphi(\rvec x')$.
+
+  Ekkor az alábbi gondolatmenet alapján könnyebben megérthetjük, hogy melyik
+  oldalról milyen mátrixszal kell szoroznunk különböző transzformációk során:
+  \vspace{-2.5em}
+  \begin{multicols}{2}
+    \begin{align*}
+      \rvec x & = \rmat T \rvec x'
+      \\
+      \rvec y & = \rmat T \rvec y'
+      \\
+      \rvec y & = \rmat T \hat{\rmat A} \rvec x'
+      \\
+      \rvec y & = \underbrace{\rmat T \hat{\rmat A} \rmat T^{-1}}_{\rmat A} \rvec x
+    \end{align*}
+
+    \begin{align*}
+      \rvec x' & = \rmat T^{-1} \rvec x
+      \\
+      \rvec y' & = \rmat T^{-1} \rvec y
+      \\
+      \rvec y' & = \rmat T^{-1} \rmat A \rvec x
+      \\
+      \rvec y' & = \underbrace{\rmat T^{-1} \rmat A\rmat T}_{\hat{\rmat A}} \rvec x'
+    \end{align*}
+  \end{multicols}
+\end{note}
+
+\begin{example}
+  Tekintsük a $\varphi: \mathbb R^2 \rightarrow \mathbb R^2$,
+  $(x; y) \mapsto (y + x; 2x)$ leképezést. Adjuk meg a leképezés a standard
+  normális, illetve a $\hat{\rvec b}_1(1; 0)$ és $\hat{\rvec b}_2(1; 1)$ bázisra
+  vonatkoztatott mátrixát!
+
+  Korábban már minden szükséges mátrixot meghatároztunk:
+  $$
+    \rmat A = \begin{bmatrix}
+      1 & 1 \\
+      2 & 0
+    \end{bmatrix}
+    \text,\qquad
+    \rmat T = \begin{bmatrix}
+      1 & 1 \\
+      0 & 1
+    \end{bmatrix}
+    \text,\qquad
+    \rmat T^{-1} = \begin{bmatrix}
+      1 & -1 \\
+      0 & 1
+    \end{bmatrix}
+    \text.
+  $$
+  A leképezés mátrixa a $\{\hat{\rvec b}_1, \hat{\rvec b}_2\}$ bázisra
+  vonatkoztatva:
+  $$
+    \hat{\rmat A} = \rmat T^{-1} \rmat A \rmat T = \begin{bmatrix}
+      1 & -1 \\
+      0 & 1
+    \end{bmatrix} \begin{bmatrix}
+      1 & 1 \\
+      2 & 0
+    \end{bmatrix} \begin{bmatrix}
+      1 & 1 \\
+      0 & 1
+    \end{bmatrix} = \begin{bmatrix}
+      -1 & 0 \\
+      2  & 2
+    \end{bmatrix}
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Sajátértékek és sajátvektorok]
+  Legyen $V$ a $T$ test feletti vektortér, $\rvec v \in V$, $\rvec v \neq
+    \nvec$. $\rvec v$-t a $\varphi: V \rightarrow V$ lineáris leképezés
+  sajátvektorának mondjuk, ha önmaga skalárszorosába megy át a leképezés
+  során, azaz $\varphi(\rvec v) = \lambda \rvec v$,  $\lambda \in T$.
+  $\lambda$-t a $\rvec v$ sajátvektorhoz tartozó sajátértéknek mondjuk.
+\end{definition}
+
+\begin{note}
+  Ha a $\rvec v$ sajátvektora a $\varphi$-nek, akkor annak skalárszorosa is az.
+\end{note}
+
+\begin{theorem}[Sajátértékek számítása]
+  Az $\rmat A \in \mathcal M_{n \times n}$ mátrix sajátértékei a
+  karakterisztikus egyenlet gyökei:
+  $$
+    \det(\rmat A - \lambda \imat) = 0
+    \text.
+  $$
+\end{theorem}
+
+\begin{example}[][nobreak]
+  Határozzuk meg az $\rmat A$ mátrix sajátértékeit és sajátvektorait!
+
+  $$
+    \rmat A = \begin{bmatrix}
+      2  & -1 \\
+      -1 & 2
+    \end{bmatrix}
+    \qquad
+    \rmat A - \lambda \imat = \begin{bmatrix}
+      2  & -1 \\
+      -1 & 2
+    \end{bmatrix} - \lambda \begin{bmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{bmatrix} = \begin{bmatrix}
+      2 - \lambda & -1          \\
+      -1          & 2 - \lambda
+    \end{bmatrix}
+  $$
+
+  A karakterisztikus egyenlet, és ennek alapján a sajátértékek:
+  $$
+    \det(\rmat A - \lambda \imat) = (2 - \lambda)^2 - 1 = 0
+    \quad \Rightarrow \quad
+    \lambda_1 = 1 \text, \quad \lambda_2 = 3 \text.
+  $$
+
+  A sajátvektorokat az $(\rmat A - \lambda_i \imat) \rvec v_i = 0$
+  egyenlet segítségével számíthatjuk ki:
+
+  \begin{enumerate}
+    \item A $\lambda_1 = 1$ sajátértékhez tartozó sajátvektor:
+          $$
+            \begin{bmatrix}
+              1  & -1 \\
+              -1 & 1
+            \end{bmatrix} \begin{bmatrix}
+              x \\
+              y
+            \end{bmatrix} = \begin{bmatrix}
+              0 \\
+              0
+            \end{bmatrix}
+            \quad \Rightarrow \quad
+            x = y
+            \quad \Rightarrow \quad
+            \rvec v_1 = t_1 \begin{bmatrix}
+              1 \\
+              1
+            \end{bmatrix}
+          $$
+
+    \item A $\lambda_2 = 3$ sajátértékhez tartozó sajátvektor:
+          $$
+            \begin{bmatrix}
+              -1 & -1 \\
+              -1 & -1
+            \end{bmatrix} \begin{bmatrix}
+              x \\
+              y
+            \end{bmatrix} = \begin{bmatrix}
+              0 \\
+              0
+            \end{bmatrix}
+            \quad \Rightarrow \quad
+            x = -y
+            \quad \Rightarrow \quad
+            \rvec v_2 = t_2 \begin{bmatrix}
+              1 \\
+              -1
+            \end{bmatrix}
+          $$
+  \end{enumerate}
+\end{example}
+
+\begin{statement}
+  Ha $\rmat A$ háromszögmátrix, akkor a sajátértékek a főátlóbeli elemek.
+\end{statement}
+
+\begin{definition}[Diagonalizálhatóság]
+  Az $n \times n$-es $\rmat A$ mátrix diagonalizálható, ha hasonló egy
+  diagonális mátrixhoz, azaz ha létezik olyan $\rmat Λ$ diagonális mátrix és egy
+  $\rmat T$ invertálható mátrix, hogy
+  $$
+    \rmat Λ = \rmat T^{-1} \rmat A \rmat T
+    \text.
+  $$
+\end{definition}
+
+\begin{theorem}[Diagonizálhatóság szükséges és elégséges feltétele]
+  Legyen $\rmat A$ egy $n \times n$-es mátrix. Az $\rmat A$ mátrix akkor és
+  csak akkor diagonalizálható, ha létezik $n$ darab lineárisan független
+  sajátvektora. Ekkor a diagonális mátrix az $\rmat A$ sajátértékeiből, míg
+  a $\rmat T$ transzformációs mátrix $\rmat A$ sajátvektoraiból áll:
+  $$
+    \rmat Λ
+    = \rmat T^{-1} \rmat A \rmat T
+    = \begin{bmatrix}
+      \lambda_1 & 0         & \cdots & 0         \\
+      0         & \lambda_2 & \cdots & 0         \\
+      \vdots    & \vdots    & \ddots & \vdots    \\
+      0         & 0         & \cdots & \lambda_n
+    \end{bmatrix}
+    \quad \text{és} \quad
+    \rmat T = \begin{bmatrix}
+      \rvec v_1 & \rvec v_2 & \cdots & \rvec v_n
+    \end{bmatrix}
+    \text.
+  $$
+\end{theorem}
+
+\begin{blueBox}
+  \sftitle{Invariáns mennyiségek:}
+
+  Legyen $\rmat A$ egy $3 \times 3$-as mátrix, amelynek sajátértékei $\lambda_1$,
+  $\lambda_2$ és $\lambda_3$. Ekkor az alábbi mennyiségek bármely $\rmat A$-hoz
+  hasonló mátrix esetén invariánsak:
+  \begin{itemize}[itemsep=-.33em]
+    \item $
+            I_1
+            = \operatorname{tr} \rmat A
+            = \lambda_1 + \lambda_2 + \lambda_3
+          $,
+
+    \item $
+            I_2
+            = \frac{1}{2} \left(
+            (\operatorname{tr} \rmat A)^2 - \operatorname{tr} (\rmat A^2)
+            \right)
+            = \lambda_1 \lambda_2 + \lambda_2 \lambda_3 + \lambda_3 \lambda_1
+          $,
+
+    \item $
+            I_3
+            = \det \rmat A
+            = \lambda_1 \lambda_2 \lambda_3
+          $.
+  \end{itemize}
+\end{blueBox}
+
+\begin{note}
+  A karakterisztikus polinom a skalárinvariánsok segítségével:
+  $$
+    p(\lambda) = \lambda^3 - I_1 \lambda^2 + I_2 \lambda - I_3
+    \text.
+  $$
+\end{note}
+
+\begin{example}[][nobreak]
+  Diagonizáljuk az $\rmat A = \begin{bmatrix}
+      1 & 1 & 0 \\
+      0 & 2 & 1 \\
+      0 & 0 & 3
+    \end{bmatrix}$ mátrixot és adjuk a skalárinvariánsait!
+
+  Mivel a mátrix felső háromszögmátrix, sajátértékei a főátló elemei:
+  $\lambda_1 = 1$, $\lambda_2 = 2$ és $\lambda_3 = 3$. A skalárinvariánsok:
+  \begin{align*}
+    I_1 & = \lambda_1 + \lambda_2 + \lambda_3 = 1 + 2 + 3 = 6
+    \text,                                                                  \\
+    I_2 & = \lambda_1 \lambda_2 + \lambda_2 \lambda_3 + \lambda_3 \lambda_1
+    = 1 \cdot 2 + 2 \cdot 3 + 3 \cdot 1 = 11
+    \text,                                                                  \\
+    I_3 & = \lambda_1 \lambda_2 \lambda_3 = 1 \cdot 2 \cdot 3 = 6
+    \text.
+  \end{align*}
+\end{example}
+
+\begin{definition}[Szimmetrikus mátrix]
+  Egy $\rmat A \in \mathcal M_{n \times n}$ mátrix szimmetrikus, ha
+  $\rmat A = \rmat A^\T$.
+\end{definition}
+
+\begin{definition}[Antiszimmetrikus mátrix]
+  Egy $\rmat A \in \mathcal M_{n \times n}$ mátrix antiszimmetrikus, ha
+  $\rmat A = -\rmat A^\T$.
+\end{definition}
+
+\begin{blueBox}
+  \sftitle{Kvadratikus mátrix felbontása szimmetrikus és antiszimmetrikus részekre:}
+  $$
+    \rmat A =
+    \underbrace{\frac{1}{2}(\rmat A + \rmat A^\T)}_{\text{Szimmetrikus}}
+    + \underbrace{\frac{1}{2}(\rmat A - \rmat A^\T)}_{\text{Antiszimmetrikus}}
+  $$
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Függvénytípusok:}
+
+  Ha $\varphi : \Reals^n \to \Reals$, akkor $\varphi$ skalármező.
+
+  Ha $\rvec v : \Reals^n \to \Reals^k$, akkor $\rvec v$ vektormező.
+\end{blueBox}
+
+\begin{blueBox}
+  \sftitle{Koordinátavektor jelölése:}
+
+  Jelölje a $\coordvec$ koordinátavektor az $\Reals^n$-beli koordináták
+  rendezett $n$-esét!
+\end{blueBox}
+
+\begin{definition}[Gradiens]
+  Legyen $\varphi: \Reals^n \to \Reals$ differenciálható skalármező. Ekkor a
+  $\varphi$ gradiensének nevezzük a következő vektormezőt:
+  $$
+    \grad \varphi(\coordvec) = \begin{bmatrix}
+      \partial_1 \varphi(\coordvec) \\
+      \partial_2 \varphi(\coordvec) \\
+      \vdots                        \\
+      \partial_n \varphi(\coordvec)
+    \end{bmatrix}
+    \text.
+  $$
+\end{definition}
+
+\begin{note}
+  A gradiens a legnagyobb növekedés irányát mutatja meg, nagysága pedig a
+  növekedés mértékét. Mindig merőleges a szintfelületekre.
+\end{note}
+
+\begin{example}
+  Adjuk meg a $\varphi(\coordvec) = xyz$ skalármező gradiensét!
+
+  $$
+    \grad \varphi(\coordvec)
+    = \begin{bmatrix}
+      \partial_1 \varphi(\coordvec) \\
+      \partial_2 \varphi(\coordvec) \\
+      \partial_3 \varphi(\coordvec)
+    \end{bmatrix}
+    = \begin{bmatrix}
+      yz \\
+      xz \\
+      xy
+    \end{bmatrix}
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Jacobi-mátrix]
+  Legyen $\rvec v: \Reals^n \to \Reals^k$ vektormező. Ekkor a $\rvec v$
+  Jacobi-mátrixának nevezzük a következő $k \times n$-es mátrixot:
+  \def\arraystretch{1.5}%
+  $$
+    \rmat J = \DD \rvec v = \begin{bmatrix}
+      \displaystyle\pdv{v_1(\coordvec)}{x_1} & \displaystyle\pdv{v_1(\coordvec)}{x_2} & \cdots & \displaystyle\pdv{v_1(\coordvec)}{x_n} \\
+      \displaystyle\pdv{v_2(\coordvec)}{x_1} & \displaystyle\pdv{v_2(\coordvec)}{x_2} & \cdots & \displaystyle\pdv{v_2(\coordvec)}{x_n} \\
+      \vdots                                 & \vdots                                 & \ddots & \vdots                                 \\
+      \displaystyle\pdv{v_k(\coordvec)}{x_1} & \displaystyle\pdv{v_k(\coordvec)}{x_2} & \cdots & \displaystyle\pdv{v_k(\coordvec)}{x_n}
+    \end{bmatrix} = \begin{bmatrix}
+      \grad^\T v_1(\coordvec) \vphantom{\displaystyle\pdv{v_1}{x_1}} \\
+      \grad^\T v_2(\coordvec) \vphantom{\displaystyle\pdv{v_1}{x_1}} \\
+      \vdots                                                         \\
+      \grad^\T v_k(\coordvec) \vphantom{\displaystyle\pdv{v_1}{x_1}}
+    \end{bmatrix} \in \mathcal M_{k \times n}
+  $$
+\end{definition}
+
+\begin{definition}[Divergencia]
+  Legyen $\rvec v: \Reals^n \to \Reals^n$ vektormező, amelynek Jacobi-mátrixa
+  $\rmat J = \DD \rvec v(\coordvec)$. Ekkor a $\rvec v$ divergenciájának
+  nevezzük a következő skalármezőt:
+  $$
+    \Div \rvec v(\coordvec)
+    = \trace \rmat J
+    = J_{11} + J_{22} + \ldots + J_{nn}
+    % = \pdv{v_1(\coordvec)}{x_1}
+    % + \pdv{v_2(\coordvec)}{x_2}
+    % + \ldots
+    % + \pdv{v_n(\coordvec)}{x_n}
+    % \text.
+  $$
+\end{definition}
+
+\begin{note}
+  A divergencia tehát a vektormező Jacobi-mátrixának nyoma.
+\end{note}
+
+\begin{note}
+  Ahol a divergencia zérus, ott a mező forrásmentes.
+
+  Ha a divergencia pozitív, akkor a mező forrás jellegű.
+
+  Ha a divergencia negatív, akkor a mező nyelő jellegű.
+\end{note}
+
+\begin{definition}[Vektorinvariáns]
+  Legyen $\rmat S \in \mathcal M_{3 \times 3}$ ferdeszimmetrikus mátrix, azaz
+  $\rmat S = -\rmat S^\T$. Ekkor létezik egy egyértelmű $\rvec a \in \Reals^3$
+  vektor, úgy, hogy
+  $$
+    \rmat S \rvec x = \rvec a \times \rvec x
+    \text.
+  $$
+  Ekkor az $\rvec a$ vektort a $\rmat S$ mátrix vektorinvariánsának nevezzük.
+  Gyakori jelölés:
+  $$
+    \rmat S = [\rvec a]_{\times} = \begin{bmatrix}
+      0    & -a_3 & a_2  \\
+      a_3  & 0    & -a_1 \\
+      -a_2 & a_1  & 0
+    \end{bmatrix}
+    \qquad \Leftrightarrow \qquad
+    \operatorname{axl}(\rmat S) = \rvec a = \begin{bmatrix}
+      S_{32} \\
+      S_{13} \\
+      S_{21}
+    \end{bmatrix}
+    \text.
+  $$
+\end{definition}
+
+\begin{example}[][nobreak]
+  Határozzuk meg az $\rvec a(1;2;3)$ és $\rvec x(x;y;z)$ vektorok vektoriális
+  szorzatát mátrixszorzás segítségével!
+  $$
+    \rvec a \times \rvec x
+    = [\rvec a]_{\times} \rvec x
+    = \begin{bmatrix}
+      0  & -3 & 2  \\
+      3  & 0  & -1 \\
+      -2 & 1  & 0
+    \end{bmatrix} \begin{bmatrix}
+      x \\ y \\ z
+    \end{bmatrix} = \begin{bmatrix}
+      -3y + 2z \\
+      3x - z   \\
+      y - 2x
+    \end{bmatrix}
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Rotáció]
+  Legyen $\rvec v: \Reals^3 \to \Reals^3$ vektormező, melynek Jacobi-mátrixa
+  $\rmat J = \DD \rvec v(\coordvec)$. Ekkor a $\rvec v$ rotációjának nevezzük
+  a következő vektormezőt:
+  $$
+    \rot \rvec v(\coordvec)
+    = \operatorname{axl}(\rmat J - \rmat J^\T)
+    = \operatorname{axl}\left(\begin{bmatrix}
+        0               & J_{12} - J_{21} & J_{13} - J_{31} \\
+        J_{21} - J_{12} & 0               & J_{23} - J_{32} \\
+        J_{31} - J_{13} & J_{32} - J_{23} & 0
+      \end{bmatrix}\right) = \begin{bmatrix}
+      J_{32} - J_{23} \\
+      J_{13} - J_{31} \\
+      J_{21} - J_{12}
+    \end{bmatrix}
+    % = \operatorname{axl}\left(\begin{bmatrix}
+    %     0
+    %      & \partial_2 v_1 - \partial_1 v_2
+    %      & \partial_3 v_1 - \partial_1 v_3
+    %     \\
+    %     \partial_1 v_2 - \partial_2 v_1
+    %      & 0
+    %      & \partial_3 v_2 - \partial_2 v_3
+    %     \\
+    %     \partial_1 v_3 - \partial_3 v_1
+    %      & \partial_2 v_3 - \partial_3 v_2
+    %      & 0
+    %   \end{bmatrix}\right) = \begin{bmatrix}
+    %   \partial_2 v_3 - \partial_3 v_2 \\
+    %   \partial_3 v_1 - \partial_1 v_3 \\
+    %   \partial_1 v_2 - \partial_2 v_1
+    % \end{bmatrix}
+    \text.
+  $$
+\end{definition}
+
+\begin{note}
+  A rotáció tehát a vektormező Jacobi-mátrixának ferdeszimmetrikus része.
+\end{note}
+
+\begin{note}
+  Ahol a rotáció zérus, ott a mező örvénymentes.
+\end{note}
+
+\begin{example}
+  Adjuk meg a $\rvec v(\coordvec) = \ijk{yz}{xz}{xy}$ vektormező
+  divergenciáját és rotációját a Jacobi-mátrix segítségével!
+
+  A Jacobi-mátrix:
+  $$
+    \rmat J = \DD \rvec v(\coordvec)
+    = \begin{bmatrix}
+      \partial_x (yz) & \partial_y (yz) & \partial_z (yz) \\
+      \partial_x (xz) & \partial_y (xz) & \partial_z (xz) \\
+      \partial_x (xy) & \partial_y (xy) & \partial_z (xy)
+    \end{bmatrix}
+    = \begin{bmatrix}
+      0 & z & y \\
+      z & 0 & x \\
+      y & x & 0
+    \end{bmatrix}
+    \text.
+  $$
+  A divergencia:
+  $$
+    \Div \rvec v(\coordvec)
+    = \trace \rmat J
+    = J_{11} + J_{22} + J_{33}
+    = 0 + 0 + 0
+    = 0
+    \text.
+  $$
+  A rotáció:
+  $$
+    \rot \rvec v(\coordvec)
+    = \operatorname{axl}(\rmat J - \rmat J^\T)
+    = \begin{bmatrix}
+      J_{32} - J_{23} \\
+      J_{13} - J_{31} \\
+      J_{21} - J_{12}
+    \end{bmatrix}
+    = \begin{bmatrix}
+      0 - 0 \\
+      0 - 0 \\
+      0 - 0
+    \end{bmatrix}
+    = \begin{bmatrix}
+      0 \\ 0 \\ 0
+    \end{bmatrix}
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Nabla-operátor]
+  Az $\Reals^n$-beli Descartes-koordinátarendszerben, ahol $\rvec x = (x_1;
+    x_2; \dots; x_n)$ egy tetszőleges pont koordinátái, a standard bázis pedig
+  $\{ \uvec e_1; \uvec e_2; \dots; \uvec e_n \}$ a Nabla egy olyan formális
+  differenciáloperátor, melynek koordinátái a parciális derivált operátorok,
+  vagyis:
+  $$
+    \nabla = \sum_{i = 1}^n \uvec e_i \pdv{}{x_i}
+    =
+    \begin{pmatrix}
+      \displaystyle\pdv{}{x_1} &
+      \displaystyle\pdv{}{x_2} &
+      \hdots                   &
+      \displaystyle\pdv{}{x_n}
+    \end{pmatrix}^\T
+    \text,
+  $$
+\end{definition}
+
+\begin{note}[][nobreak]
+  A Nabla-operátor segítségével a gradiens, divergencia és rotáció műveletek
+  egyszerűbben felírhatók:
+  \begin{itemize}
+    \item $\grad \varphi = \nabla \varphi$,
+    \item $\Div \rvec v = \scalar{\nabla}{\rvec v}$,
+    \item $\rot \rvec v = \nabla \times \rvec v$.
+  \end{itemize}
+\end{note}
+
+\begin{example}
+  Adjuk meg a $\rvec v(\coordvec) = \ijk{yz}{xz}{xy}$ vektormező
+  divergenciáját és rotációját a Nabla-operátor segítségével!
+
+  A divergencia:
+  $$
+    \Div \rvec v
+    = \scalar{\nabla}{\rvec v}
+    = \scalar{\begin{bmatrix}
+        \partial_x \\ \partial_y \\ \partial_z
+      \end{bmatrix}}{\begin{bmatrix}
+        yz \\ xz \\ xy
+      \end{bmatrix}}
+    = \pdv{yz}{x} + \pdv{xz}{y} + \pdv{xy}{z}
+    = 0 + 0 + 0
+    = 0
+    \text.
+  $$
+  A rotáció:
+  $$
+    \rot \rvec v
+    = \nabla \times \rvec v
+    = \begin{bmatrix}
+      \partial_x \\ \partial_y \\ \partial_z
+    \end{bmatrix} \times \begin{bmatrix}
+      yz \\ xz \\ xy
+    \end{bmatrix}
+    = \begin{bmatrix}
+      \partial_y (xy) - \partial_z (xz) \\
+      \partial_z (yz) - \partial_x (xy) \\
+      \partial_x (xz) - \partial_y (yz)
+    \end{bmatrix} = \begin{bmatrix}
+      x - x \\ y - y \\ z - z
+    \end{bmatrix} = \begin{bmatrix}
+      0 \\ 0 \\ 0
+    \end{bmatrix}
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Laplace-operátor]
+  A Laplace-operátor egy másodrendű differenciáloperátor az $n$ dimenziós
+  térben. Megadja egy skalármező gradiensének divergenciáját, azaz:
+  $$
+    \Delta \varphi
+    = \scalar{\nabla}{\nabla} \varphi
+    = \Div \grad \varphi
+    \text.
+  $$
+\end{definition}
+
+\begin{example}
+  Hattassuk a Laplace-operátort a $\varphi(\coordvec) = xyz$ skalármezőre!
+  $$
+    \Delta \varphi
+    = \scalar{\nabla}{\nabla} \varphi
+    = \Div \grad \varphi
+    = \Div \begin{bmatrix}
+      yz \\ xz \\ xy
+    \end{bmatrix}
+    = \pdv{yz}{x} + \pdv{xz}{y} + \pdv{xy}{z}
+    = 0 + 0 + 0
+    = 0
+    \text.
+  $$
+\end{example}
+
+\clearpage
+\subsection{További feladatok}
+
+\begin{enumerate}
+  \item Adja meg a $\varphi : \Reals^3 \to \Reals^3$ leképezés mátrixát a
+        standard normális, illetve az $\rvec b_1(1; 0; 0)$, $\rvec b_2(1; 1; 0)$
+        és $\rvec b_3(1; 1; 1)$ vektorok alkotta bázisban. Adja meg a leképezés
+        megterének és képterének dimenzióját is!
+        $$
+          \varphi : \Reals^3 \to \Reals^3
+          \qquad
+          \begin{bmatrix}
+            x \\ y \\ z
+          \end{bmatrix}
+          \mapsto
+          \begin{bmatrix}
+            2x - y \\ y + z \\ y - z
+          \end{bmatrix}
+        $$
+
+  \item Bontsa fel az $\rmat A$ mátrixot szimmetrikus és antiszimmetrikus
+        komponensekre!
+        $$
+          \rmat A = \begin{bmatrix}
+            1 & 1 & 0 \\
+            2 & 2 & 1 \\
+            1 & 4 & 3
+          \end{bmatrix}
+        $$
+
+  \item Adja meg a $\varphi$ és $\psi$ leképezés Jacobi-mátrixát!
+        $$
+          \varphi : \Reals^3 \to \Reals^2
+          \quad
+          \begin{bmatrix}
+            x \\ y \\ z
+          \end{bmatrix}
+          \mapsto
+          \begin{bmatrix}
+            x^2 + z \\ y z^2
+          \end{bmatrix}
+          \qquad\qquad
+          \psi : \Reals^2 \to \Reals^2
+          \quad
+          \begin{bmatrix}
+            x \\ y
+          \end{bmatrix}
+          \mapsto
+          \begin{bmatrix}
+            \sin \ln x^2 y \\ \sqrt{e^{xy} + \tan y}
+          \end{bmatrix}
+        $$
+
+  \item Adja meg az alábbi leképezések gradienseit!
+        ($C \in \Reals$)
+        % \begin{multicols}{3}
+        \begin{enumerate}
+          \item $f (\coordvec) = C \cdot \coordvec^2$
+          \item $g (\coordvec) = |\coordvec|$
+          \item $h (\coordvec) = C \cdot \coordvec$
+        \end{enumerate}
+        % \end{multicols}
+
+  \item Adja meg a $\rvec v (\coordvec)$ vektormező divergenciáját és rotációját!
+        Mely halmazokon forrás-, illetve örvénymentes a mező?
+        $$
+          \rvec v(\coordvec)
+          = (x^2 - y^2) \rvec i
+          + (y^2 - z^2) \rvec j
+          + (z^2 - x^2) \rvec k
+        $$
+
+  \item Adja meg az alábbi vektormezők divergenciáját és rotációját!
+        ($C \in \Reals$, $\rvec a \in \Reals^3$)
+        % \begin{multicols}{3}
+        \begin{enumerate}
+          \item $\rvec u(\coordvec) = C \cdot \coordvec$,
+          \item $\rvec v(\coordvec) = \grad |\coordvec|$,
+          \item $\rvec w(\coordvec) = \rvec a \cdot \ln |\coordvec|$.
+        \end{enumerate}
+        % \end{multicols}
+
+  \item Hattassa a Laplace-operátort a $\rvec v (\coordvec) = |\rvec a| \coordvec +
+          \rvec a |\coordvec|$ vektormezőre! ($\rvec a \in \Reals^3$)
+\end{enumerate}
+\end{document}

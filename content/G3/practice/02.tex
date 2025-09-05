@@ -1,0 +1,212 @@
+\documentclass{szb-practice}
+
+\area{Vektoranalízis}
+\title{Operátorok}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{2}
+
+\begin{document}
+\maketitle
+
+\vspace{-1em}
+\subsection{Elméleti Áttekintő}
+\vspace{1em}
+
+\begin{definition}[Nabla-operátor]
+  Az $\Reals^n$-beli Descartes-koordinátarendszerben, ahol $\rvec x = (x_1;
+    x_2; \dots; x_n)$ egy tetszőleges pont koordinátái, a standard bázis pedig
+  $\{ \uvec e_1; \uvec e_2; \dots; \uvec e_n \}$ a Nabla egy olyan formális
+  differenciáloperátor, melynek koordinátái a parciális derivált operátorok,
+  vagyis:
+  $$
+    \nabla = \sum_{i = 1}^n \uvec e_i \pdv{}{x_i}
+    =
+    \begin{pmatrix}
+      \displaystyle\pdv{}{x_1} &
+      \displaystyle\pdv{}{x_2} &
+      \hdots                   &
+      \displaystyle\pdv{}{x_n}
+    \end{pmatrix}^\T
+    \text,
+  $$
+\end{definition}
+
+\begin{blueBox}
+  \sftitle{Differenciáloperátorok:}
+
+  Legyen $\rvec v(\coordvec) : \Reals^3 \to \Reals^3$ vektormező,
+  $\varphi(\coordvec): \Reals^3 \to \Reals$ skalármező, ahol
+  $\coordvec$ az $\Reals^3$-beli Descartes koordináta-rendszerben
+  $\coordvec = (x; y; z)$.
+  \begin{center}
+    \def\arraystretch{1.5}
+    \newenvironment{bm}{\bgroup\renewcommand*{\arraystretch}{1.1}\begin{bmatrix}}{\end{bmatrix}\egroup}
+    \newcommand{\dspl}[3]{\begin{bm}#1\\#2\\#3\end{bm}}
+    \newcommand\nablavec{\dspl{\partial_x}{\partial_y}{\partial_z}}
+
+    \begin{tabular}{*{3}{>{\centering\arraybackslash}p{3.5cm}}}
+      \def\arraystretch{1}
+      % &
+      \bfseries Rotáció
+       & \bfseries Divergencia
+       & \bfseries Gradiens
+      \\
+      \hline
+      % Jelölés & 
+      $\rot \rvec v$
+       & $\Div \rvec v$
+       & $\grad \varphi$
+      \\
+      % Operátor & 
+      $\nabla \times \rvec v$
+       & $\scalar{\nabla}{\rvec v}$
+       & $\nabla \cdot \varphi$
+      \\
+      % Számítás &
+      $\nablavec \times \dspl{v_x}{v_y}{v_z}$
+       & $\scalar{\nablavec}{\dspl{v_x}{v_y}{v_z}}$
+       & $\dspl{\partial_x \varphi}{\partial_y \varphi}{\partial_z \varphi}$
+      \\
+      % Ért. tart. & 
+      $\mathcal D_{\rvec v} = \Reals^3$
+       & $\mathcal D_{\rvec v} = \Reals^3$
+       & $\mathcal D_{\varphi} = \Reals^3$
+      \\
+      % Ért. készl. &
+      $\mathcal R_{\rvec v} = \Reals^3$
+       & $\mathcal R_{\rvec v} = \Reals^3$
+       & $\mathcal R_{\varphi} = \Reals$
+      \\
+      % Ért. készl. &
+      $\mathcal R_{\rot \rvec v} = \Reals^3$
+       & $\mathcal R_{\Div \rvec v} = \Reals$
+       & $\mathcal R_{\grad \varphi} = \Reals^3$
+      \\
+      % \hline
+    \end{tabular}
+  \end{center}
+
+  Speciális esetek:
+  \begin{itemize}
+    \item ha $\Div \rvec v = 0$, akkor a vektromező forrásmentes,
+    \item ha $\rot \rvec v = \nvec$, akkor a vektromező örvénymentes.
+  \end{itemize}
+\end{blueBox}
+
+\begin{definition}[Laplace-operátor][nobreak]
+  A Laplace-operátor egy másodrendű differenciáloperátor az $n$ dimenziós
+  térben. Megadja egy skalármező gradiensének divergenciáját, azaz:
+  $$
+    \Delta \varphi
+    = \scalar{\nabla}{\nabla} \varphi
+    = \Div \grad \varphi
+    \text.
+  $$
+\end{definition}
+
+% \begin{blueBox}[][nobreak]
+%   $! \varPhi; \varPsi : \Reals^3 \rightarrow \Reals$ skalármezők,
+%   $\rvec u; \rvec v; \rvec w : \Reals^3 \rightarrow \Reals^3$
+%   vektormezők, $\lambda; \mu \in \Reals$ pedig skalárok.
+%   \begin{itemize}
+%     \item Teljesül a linearitás:
+%           \vspace{-.5em}
+%           \begin{alignat*}{4}
+%             \grad & (\lambda \, \varPhi && + \mu \, \varPsi) && = \lambda \, \grad \varPhi && + \mu \, \grad \varPsi
+%             \\
+%             \rot  & (\lambda \, \rvec v && + \mu \, \rvec w) && = \lambda \, \rot \rvec v  && + \mu \, \rot \rvec w
+%             \\
+%             \Div  & (\lambda \, \rvec v && + \mu \, \rvec w) && = \lambda \, \Div \rvec v  && + \mu \, \Div \rvec w
+%           \end{alignat*}
+
+%     \item Zérusság:
+%           \vspace{-.5em}
+%           \begin{alignat*}{1}
+%             \rot \grad \varPhi & \equiv \nvec
+%             \\
+%             \Div \rot \rvec v  & \equiv 0
+%           \end{alignat*}
+
+%     \item Deriválási szabályokhoz hasonló:
+%           \vspace{-.5em}
+%           \begin{align*}
+%             \grad \left( \varPhi \, \varPsi \right)
+%              & = \varPhi \, \grad \varPsi
+%             + \varPsi \, \grad \varPhi
+%             \\
+%             \Div \left( \varPhi \, \rvec v \right)
+%              & = \varPhi \, \Div \rvec v \,
+%             + \scalar{\rvec v}{\grad \varPhi}
+%             \\
+%             \rot \left( \varPhi \, \rvec v \right)
+%              & = \varPhi \, \rot \rvec v
+%             - \rvec v \times \grad \varPhi
+%           \end{align*}
+
+%     \item Egyéb szabályok:
+%           \vspace{-.5em}
+%           \begin{align*}
+%             \rot \rot \rvec v
+%              & =\grad \Div \rvec v
+%             - \Delta \rvec v
+%             \\
+%             \rot \left( \rvec u \times \rvec v \right)
+%              & = \rvec u \, \Div \rvec v
+%             - \rvec v \, \Div \rvec u
+%             + (\DD \rvec u) \rvec v
+%             - (\DD \rvec v) \rvec u
+%             \\
+%             \Div \left( \rvec u \times \rvec v \right)
+%              & = \; \scalar{\rvec v}{\rot \rvec u}
+%             - \scalar{\rvec u}{\rot \rvec v}
+%             \\
+%             \grad \left( \scalar{\rvec u}{\rvec v} \right)
+%              & = (\DD \rvec u) \rvec v
+%             + (\DD \rvec v) \rvec u
+%             + \rvec v \times \rot \rvec u
+%             + \rvec u \times \rot \rvec v
+%           \end{align*}
+%   \end{itemize}
+% \end{blueBox}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item
+\end{enumerate}
+
+% \begin{enumerate}
+%   \item Adja meg a $\rvec v(\coordvec) = \coordvec \cdot |\coordvec|^3$ vektorfüggvény
+%         divergenciáját és rotációját! Hattassa a Laplace-operátort
+%         $\operatorname{div} \rvec v$-re!
+
+%   \item Határozza meg a $\rvec v(\coordvec)$ vektormező divergenciáját, illetve
+%         rotációját!
+%         $$
+%           \rvec v(\coordvec) = \begin{bmatrix}
+%             \ln(\sfrac{xy}{z}) \\
+%             \ln(\sfrac{yz}{x}) \\
+%             \ln(\sfrac{zx}{y}) \\
+%           \end{bmatrix}
+%         $$
+
+%   \item Igazolja, hogy tetszőleges Joung-tételt kielégítő vektormező
+%         rotációjának divergenciája a nullvektor, vagyis
+%         $$
+%           \nabla \cdot (\nabla \times \rvec v) \equiv \nvec
+%           \text.
+%         $$
+
+%   \item Igazolja az alábbi azonosságot, amennyiben $f$ tetszőleges skalár-,
+%         $\rvec v$ pedig tetszőleges vektormező:
+%         $$
+%           \nabla \cdot (f \cdot \rvec v)
+%           = f \cdot (\nabla \cdot \rvec v)
+%           + \nabla f \cdot \rvec v
+%           \text.
+%         $$
+% \end{enumerate}
+\end{document}

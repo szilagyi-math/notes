@@ -1,7 +1,10 @@
 \documentclass{szb-practice}
 
+\usepackage{siunitx}
+\sisetup{locale = DE} 
+
 \title{Integrálátalakító tételek}
-\area{Többváltozós analízis}
+\area{Vektoranalízis}
 \subject{Matematika G3}
 \subjectCode{BMETE94BG03}
 \date{Utoljára frissítve: \today}
@@ -18,12 +21,12 @@
 % ~~~~~~~~~~~~~~~~~~~~ Gradient-theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{theorem}[Gradiens-tétel]
-  Legyen $\varphi : U \subseteq \mathbb R^3 \rightarrow \mathbb R$
-  differenciálható skalármező, $\arcv : [a;b] \rightarrow \gamma \subseteq U$,
-  $t \mapsto \arcv(t)$ folytonos görbe, $\arcv(a) = \rvec p$, $\arcv(b) =
-    \rvec q$ pedig a görbe kezdő és végpontja. Ekkor:
+  Legyen $\varphi : U \subseteq \Reals^3 \rightarrow \Reals$ differenciálható
+  skalármező, $\curvesign : [a;b] \rightarrow \curveimage \subseteq U$,
+  $t \mapsto \curvevec(t)$ folytonos görbe, $\curvevec(a) = \rvec p$,
+  $\curvevec(b) = \rvec q$ pedig a görbe kezdő és végpontja. Ekkor:
   $$
-    \int_\gamma \scalar{\grad \varphi(\coordv)}{\dd \rvec r}
+    \int_{\curveimage} \scalar{\grad \varphi(\coordv)}{\dd \curvevec}
     =
     \varphi(\rvec q) - \varphi(\rvec p)
     \text.
@@ -35,10 +38,10 @@
 \begin{blueBox}
   \sftitle{Körintegrál jelölése:}
 
-  Ha $\gamma$ zárt görbe, akkor a $\varphi(\rvec r)$ skalármező $\gamma$ görbe
-  mentén vett körintegrálja a következőképpen jelölhető:
+  Ha $\curvesign$ zárt görbe, akkor a $\varphi(\coordv)$ skalármező egy
+  $\curvesign$ görbe mentén vett körintegrálja a következőképpen jelölhető:
   $$
-    \oint_\gamma \varphi(\rvec r) \dd s
+    \oint_{\curveimage} \, \varphi(\coordv) \dd \curvescalar
     \text.
   $$
 \end{blueBox}
@@ -49,7 +52,7 @@
 \end{note}
 
 \begin{example}
-  Integrálja a $\rvec v(\rvec r) = \ijk{y + z}{x + z}{x + y}$ vektormezőt
+  Integrálja a $\rvec v(\coordv) = \ijk{y + z}{x + z}{x + y}$ vektormezőt
   a $z = 0$ síkon lévő, origó középpontú, $r = 3$ sugárú kör mentén!
 
   Vizsgáljuk meg, hogy a vektormező skalárpotenciálos-e:
@@ -82,7 +85,7 @@
   csak a kezdő- és végpontoktól függ, melyek jelen esetben megegyeznek,
   vagyis az integrál értéke zérus:
   $$
-    \oint_\gamma \scalar{\rvec v}{\dd \arcv} = 0
+    \oint_{\curveimage} \scalar{\rvec v}{\dd \curvevec} = 0
     \text.
   $$
 \end{example}
@@ -91,14 +94,16 @@
 % ~~~~~~~~~~~~~~~~~~~~ Stokes' theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{theorem}[Stokes-tétel]
-  Legyen $S$ egy $\mathbb R^3$-beli irányított, parametrizált felület.
-  Legyen továbbá $\rvec v : \mathbb R^3 \rightarrow \mathbb R^3$ legalább
-  egyszer folytonosan differenciálható vektormező. Jelölje a $\partial S =
-    \gamma$ az $S$ peremét indukált irányítással. Ekkor:
+  Legyen $\surfsign: \surfdomain\subset\Reals^2 \to \surfimage \subset \Reals^3$
+  irányított, parametrizált, elemi felület. Legyen továbbá $\rvec v : \Reals^3
+    \to \Reals^3$ legalább egyszer folytonosan differenciálható vektormező.
+  Jelölje az $\curvesign: \curvedomain\subset\Reals \to \partial\surfimage =
+    \curveimage$ a $\surfsign$ peremét indukált, jobbézszabály szerinti
+  irányítással. Ekkor:
   $$
-    \int_S \scalar{\rot \rvec v}{\dd \rvec S}
+    \iint_{\surfimage} \scalar{\rot \rvec v}{\dd \surfvec}
     =
-    \oint_{\partial S} \scalar{\rvec v}{\dd \rvec r}
+    \oint_{\partial \surfimage} \scalar{\rvec v}{\dd \curvevec}
     \text.
   $$
 \end{theorem}
@@ -109,7 +114,7 @@
 \end{note}
 
 \begin{example}
-  Integrálja a $\rvec v(\rvec r) = \ijk{y}{x}{0}$ vektormezőt a $P_1(0;1;0)$,
+  Integrálja a $\rvec v(\coordv) = \ijk{y}{x}{0}$ vektormezőt a $P_1(0;1;0)$,
   $P_2(2;0;0)$ és $P_3(0;0;0)$ által meghatározott háromszög mentén!
 
   Határozzuk meg a $\rvec v$ vektormező rotációját:
@@ -133,9 +138,9 @@
   $$
   A Stokes-tétel alapján:
   $$
-    \oint_{\partial S} \scalar{\rvec v}{\dd \arcv}
-    = \int_S \scalar{\rot \rvec v}{\dd \rvec S}
-    = \int_S \scalar{\nvec}{\dd \rvec S}
+    \oint_{\partial \surfimage} \scalar{\rvec v}{\dd \curvevec}
+    = \int_{\surfimage} \scalar{\rot \rvec v}{\dd \surfvec}
+    = \int_{\surfimage} \scalar{\nvec}{\dd \surfvec}
     = 0
     \text.
   $$
@@ -165,13 +170,13 @@
   $$
     \begin{aligned}
       (III) & \quad \Rightarrow \quad
-      \oint_{\partial S} \scalar{\rvec E}{\dd \rvec r}
-      = -\int_S \scalar{\dot{\rvec B}}{\dd \rvec S}
+      \oint_{\partial \surfimage} \scalar{\rvec E}{\dd \curvevec}
+      = -\iint_{\surfimage} \scalar{\dot{\rvec B}}{\dd \surfvec}
       \text,
       \\
       (IV)  & \quad \Rightarrow \quad
-      \oint_{\partial S} \scalar{\rvec B}{\dd \rvec r}
-      = \int_S \scalar{\mu_0 \rvec j + \mu_0 \varepsilon_0 \dot{\rvec E}}{\dd \rvec S}
+      \oint_{\partial \surfimage} \scalar{\rvec B}{\dd \curvevec}
+      = \iint_{\surfimage} \scalar{\mu_0 \rvec j + \mu_0 \varepsilon_0 \dot{\rvec E}}{\dd \surfvec}
       \text.
     \end{aligned}
   $$
@@ -186,14 +191,15 @@
 % ~~~~~~~~~~~~~~~~~~~~ Divergence theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{theorem}[Gauss-Osztogradszkij-tétel]
-  Legyen $V$ egy $\mathbb R^3$-beli irányított, parametrizált térfogat. Legyen
-  továbbá $\rvec v : \mathbb R^3 \rightarrow \mathbb R^3$ legalább egyszer
-  folytonosan differenciálható vektormező. Jelölje $\partial V = S$ a $V$
-  peremét indukált irányítással. Ekkor:
+  Legyen $\volsign: \voldomain \subset \Reals^3 \rightarrow \volimage \subset
+    \Reals^3$, irányított,parametrizált tértartomány. Legyen továbbá $\rvec v:
+    \Reals^3 \rightarrow \Reals^3$ legalább egyszer folytonosan
+  differenciálható vektormező. Jelölje a $\partial \volimage =
+    \surfimage$ az $\volsign$ peremét indukált irányítással. Ekkor:
   $$
-    \int_V \Div \rvec v \, \dd V
+    \iiint_{\volimage} \Div \rvec v \dd \volscalar
     =
-    \oint_{\partial V} \scalar{\rvec v}{\dd \rvec S}
+    \oiint_{\partial \volimage} \scalar{\rvec v}{\dd \surfvec}
     \text.
   $$
 \end{theorem}
@@ -218,8 +224,8 @@
 
   A Gauss-Osztogradszkij-tétel alapján:
   $$
-    \oint_{\partial V} \scalar{\rvec v}{\dd \rvec S}
-    = \int_V \Div \rvec v \dd V
+    \oiint_{\partial \volimage} \scalar{\rvec v}{\dd \surfvec}
+    = \iiint_{\volimage} \Div \rvec v \dd \volscalar
     = \int_0^1 \int_0^1 \int_0^1 8 x y z \dd z \dd y \dd x
     = 1
     \text.
@@ -249,14 +255,14 @@
   $$
     \begin{aligned}
       (I)  & \quad \Rightarrow \quad
-      \oint_{\partial V} \scalar{\rvec E}{\dd \rvec S}
-      = \int_V \Div \rvec E \dd V
-      = \int_V \frac{\rho}{\varepsilon_0} \dd V
+      \oiint_{\partial \volimage} \scalar{\rvec E}{\dd \surfvec}
+      = \iiint_{\volimage} \Div \rvec E \dd \volscalar
+      = \iiint_{\volimage} \frac{\rho}{\varepsilon_0} \dd \volscalar
       \text,
       \\
       (II) & \quad \Rightarrow \quad
-      \oint_{\partial V} \scalar{\rvec B}{\dd \rvec S}
-      = \int_V \Div \rvec B \dd V
+      \oiint_{\partial \volimage} \scalar{\rvec B}{\dd \surfvec}
+      = \iiint_{\volimage} \Div \rvec B \dd \volscalar
       = 0
       \text.
     \end{aligned}
@@ -272,25 +278,26 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{theorem}[Green-tétel asszimetrikus alakja]
   Legyenek $\varphi; \psi: \mathbb R^3 \rightarrow \mathbb R$ kétszeresen
-  folytonos skalármezők, $V \subset \mathbb R^3$ parametrizált, irányított
-  tértartomány, $\partial V = S$ perem indukált irányítással. Ekkor:
-  \[
-    \int_V
+  folytonos skalármezők, $\volimage \subset \mathbb R^3$ parametrizált,
+  irányított tértartomány, $\partial \volimage = \surfimage$ perem indukált
+  irányítással. Ekkor:
+  $$
+    \iiint_{\volimage}
     \psi \, \Delta \varphi +
     \scalar{\grad \psi}{\grad \varphi}
-    \dd V
+    \dd \volscalar
     =
-    \oint_{\partial V} \scalar{\psi \grad \varphi}{\dd \rvec S}
+    \oiint_{\partial \volimage} \scalar{\psi \grad \varphi}{\dd \surfvec}
     \text.
-  \]
+  $$
 \end{theorem}
 
 \begin{note}
   $\psi = 1$ választásával visszanyerjük a Gauss-Osztogradszkij-tételt:
   $$
-    \int_V \Delta \varphi \dd V
-    = \int_V \Div \underbrace{\grad \varphi}_{\rvec v} \dd V
-    = \oint_{\partial V} \scalar{\underbrace{\grad \varphi}_{\rvec v}}{\dd \rvec S}
+    \iiint_{\volimage} \Delta \varphi \dd \volscalar
+    = \iiint_{\volimage} \Div \underbrace{\grad \varphi}_{\rvec v} \dd \volscalar
+    = \oiint_{\partial \volimage} \scalar{\underbrace{\grad \varphi}_{\rvec v}}{\dd \surfvec}
     \text.
   $$
 \end{note}
@@ -298,21 +305,22 @@
 \begin{example}
   Tekintsünk egy $R = 1\,\text{m}$ sugarú tömör alumínium gömböt, amelynek
   stacionárius hőmér\-sék\-let-eloszlása $\varphi(\coordv) = T_0 (1 - \rvec r^2)$
-  függvény írja le, ahol $T_0 = 10\,\text{K}$ a gömb belső hőmérséklete.
+  függvény írja le, ahol $T_0 = \SI{10}{\kelvin}$ a gömb belső hőmérséklete.
   Határozza meg a gömb felületén kifelé irányuló összes  $\dot Q$ hőáramot,
   ha a hőfluxus sűrűsége $\rvec q = -\lambda \grad \varphi$, ahol
-  $\lambda = 205\,\text{W/(m·K)}$ az alumínium hővezetési tényezője, és
+  $\lambda = \SI[per-mode=symbol]{205}{\watt\per\meter\per\kelvin}$ az
+  alumínium hővezetési tényezője, és
   $$
-    \dot Q = \oint_{\partial V} \scalar{\rvec q}{\dd \rvec S}
+    \dot Q = \oiint_{\partial \volimage} \scalar{\rvec q}{\dd \surfvec}
     \text.
   $$
   Használjuk a Green-tétel asszimetrikus alakját $\psi = -\lambda$ állandó
   választással:
   $$
     \dot Q
-    = \oint_{\partial V} \scalar{-\lambda \grad \varphi}{\dd \rvec S}
-    = - \int_V \psi \, \Delta \varphi + \scalar{\underbrace{\grad \lambda}_{= \nvec}}{\grad \varphi} \dd V
-    = -\lambda \int_V \Delta \varphi \, \dd V
+    = \oiint_{\partial \volimage} \scalar{-\lambda \grad \varphi}{\dd \surfvec}
+    = - \iiint_{\volimage} \psi \, \Delta \varphi + \scalar{\underbrace{\grad \lambda}_{= \nvec}}{\grad \varphi} \dd \volscalar
+    = -\lambda \iiint_{\volimage} \Delta \varphi \dd \volscalar
     \text.
   $$
   Számítsuk ki a térfogat belsejében a $\Delta \varphi$ értékét:
@@ -324,26 +332,27 @@
   $$
   A hőáram összesen:
   $$
-    \dot Q = \int_V \underbrace{-\lambda (-6 T_0)}_{=\text{const}} \dd V
+    \dot Q = \iiint_{\volimage} \underbrace{-\lambda (-6 T_0)}_{=\text{const}} \dd \volscalar
     = -\lambda (-6 T_0) \frac{4\pi R^3}{3}
     = 8 \pi \lambda T_0 R^3
-    \approx 5,15 \times 10^{4}\,\text{W}
+    \approx \SI{5,15e4}{\watt}
     \text.
   $$
 \end{example}
 
 \begin{theorem}[Green-tétel szimmetrikus alakja]
   Legyenek $\varphi; \psi: \mathbb R^3 \rightarrow \mathbb R$ kétszeresen
-  folytonos skalármezők, $V \subset \mathbb R^3$ parametrizált, irányított
-  tértartomány, $\partial V = S$ perem indukált irányítással. Ekkor:
-  \[
-    \int_V
+  folytonos skalármezők, $\volimage \subset \mathbb R^3$ parametrizált,
+  irányított tértartomány, $\partial \volimage = \surfimage$ perem indukált
+  irányítással. Ekkor:
+  $$
+    \iiint_{\volimage}
     \psi \, \Delta \varphi + \varphi \, \Delta \psi
-    \; \dd V
+    \; \dd \volscalar
     =
-    \oint_{\partial V}
-    \scalar{\psi \grad \varphi - \varphi \grad \psi}{\dd \rvec S}
-  \]
+    \oiint_{\partial \volimage}
+    \scalar{\psi \grad \varphi - \varphi \grad \psi}{\dd \surfvec}
+  $$
 \end{theorem}
 
 \clearpage
@@ -357,8 +366,8 @@
           \varphi(\coordv) = 2x^2 y + 3yz
           \text.
         $$
-        A csípőkaron lévő, $Q = 1\,\text{C}$ ekvivalens töltéssel modellezett
-        végfogót a vezérlőnek az
+        A csípőkaron lévő, $Q = \SI{1}{\coulomb}$ ekvivalens töltéssel
+        modellezett végfogót a vezérlőnek az
         $$
           A(0;0;0) \rightarrow B(2;1;3)
         $$
@@ -366,13 +375,16 @@
         végfogón, és miért nem kell törődnünk az útvonal pontos alakjával?
         ($\rvec F = -Q \grad \varphi$, a munka az erő pálya menti integrálja)
 
-  \item Egy elektromágneses rendszer mágneses térerősségét a
+  \item Egy mágneses rendszer vezérlője egy
         $$
           \rvec B(\coordv) = \ijk{y \, \sin x}{z^2 \, \cos y - \cos x}{b_3}
         $$
-        vektormező írja le. Határozza meg $b_3$ értékét, ha tudjuk, hogy
-        a vektormező bármely zárt görbe mentén vett integrálja zérus!
-        (Vagyis mikor lesz $\rot \rvec B = \nvec$)
+        vektormezővel modellezett mágneses teret hoz létre. Határozza meg
+        $b_3$ értékét, ha
+        \begin{enumerate}
+          \item $\rvec B$ bármely zárt görbe menti cirkulációja zérus,
+          \item $\rvec B$ bármely zárt felület menti fluxusa zérus.
+        \end{enumerate}
 
   \item Egy $R = 1$ sugarú, kör keresztmetszetű, $z$ tengellyel egybeeső
         szimmetriavonalú hengerben áramló folyadék sebességét a
@@ -383,12 +395,17 @@
         menti cirkulációt!
         (A cirkuláció a vektormező zárt görbe menti integrálja.)
 
+  \item Jelölje $\surfimage$ az $x^2 + y^2 - z^2 = 1$ egyenlezű
+        forgáshiperboloid $z = -1$ és $z = 1$ síkok közötti részét.
+        Határozza meg a $\rvec v(\coordvec) = \ijk{x^2}{y^3}{z^4}$
+        vektormező $\surfimage$ peremén vett integrálját!
+
   \item Egy fotonikus chipeket hordozó wafer-darabot egy ellipszoid alakú
         Faraday-kalitkába rögzítenek. A kalitka belsejében lineáris
         feszültségelosztással ($\rvec E(\coordv) = \coordv$) térerőt állítanak
         elő. Számolja ki a Faraday-kalitka belsejében lévő nettó töltést, ha
-        $\varepsilon_0 = 8,85 \times 10^{-12} \, \text{F/m}$, az ellipszoid
-        egyenlete pedig:
+        $\varepsilon_0 = \SI[per-mode=symbol]{8,85e-12}{\farad\per\meter}$,
+        az ellipszoid egyenlete pedig:
         $$
           \frac{(x - 2)^2}{5} + \frac{(y + 3)^2}{19} + \frac{(z - 1)^2}{4} = 1
           \text.
@@ -400,17 +417,32 @@
         $$
           \varphi(\coordv) = T_c - \alpha \rvec r^2
           \text, \quad
-          \alpha = 1,3 \times 10^5 \,\text{K/m}^2
+          \alpha = \SI[per-mode=symbol]{1,3e5}{\kelvin\per\meter\squared}
           \text.
         $$
         Becsülje meg, mekkora teljes hőáram távozik a burkolaton át, ha
         $$
           q_{\text{hő}}
-          = -\lambda \oint_{\partial V} \scalar{\grad \varphi}{\dd \rvec S}
+          = -\lambda \oiint_{\partial \volimage} \scalar{\grad \varphi}{\dd \surfvec}
           \text,\quad
-          \lambda = 0,2 \, \text{W/(m K)}
+          \lambda = \SI[per-mode=symbol]{0,2}{\watt\per\meter\per\kelvin}
           \text.
         $$
+\end{enumerate}
+
+\vfill
+\subsection{Megoldások}
+
+\begin{enumerate}
+  \item $W = \SI{-17}{J}$
+  \item \begin{enumerate}
+          \item $b_3 = 2 z \sin y + C$
+          \item $b_3 = \dfrac{z^3 \sin y}{3} - y z \cos x + C$
+        \end{enumerate}
+  \item $\text{cirkuláció} = 0$
+  \item $0$
+  \item $Q = 8\pi\varepsilon_0\sqrt{95} \approx \SI{2,17}{nC}$
+  \item $q_\text{hő} = 8\pi\lambda\alpha R^3 = \SI{5,23}{W}$
 \end{enumerate}
 
 \end{document}
