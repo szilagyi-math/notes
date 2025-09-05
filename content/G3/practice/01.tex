@@ -963,7 +963,8 @@
 \end{definition}
 
 \begin{note}
-  A rotáció tehát a vektormező Jacobi-mátrixának ferdeszimmetrikus része.
+  A rotáció tehát a vektormező Jacobi-mátrixának ferdeszimmetrikus részéből
+  származtatható.
 \end{note}
 
 \begin{note}
@@ -1008,9 +1009,9 @@
       J_{21} - J_{12}
     \end{bmatrix}
     = \begin{bmatrix}
-      0 - 0 \\
-      0 - 0 \\
-      0 - 0
+      z - z \\
+      y - y \\
+      x - x
     \end{bmatrix}
     = \begin{bmatrix}
       0 \\ 0 \\ 0
@@ -1122,7 +1123,7 @@
   \item Adja meg a $\varphi : \Reals^3 \to \Reals^3$ leképezés mátrixát a
         standard normális, illetve az $\rvec b_1(1; 0; 0)$, $\rvec b_2(1; 1; 0)$
         és $\rvec b_3(1; 1; 1)$ vektorok alkotta bázisban. Adja meg a leképezés
-        megterének és képterének dimenzióját is!
+        magterének és képterének dimenzióját is!
         $$
           \varphi : \Reals^3 \to \Reals^3
           \qquad
@@ -1145,7 +1146,7 @@
           \end{bmatrix}
         $$
 
-  \item Adja meg a $\varphi$ és $\psi$ leképezés Jacobi-mátrixát!
+  \item Adja meg a $\varphi$ és $\psi$ leképezések Jacobi-mátrixát!
         $$
           \varphi : \Reals^3 \to \Reals^2
           \quad
@@ -1164,40 +1165,34 @@
           \end{bmatrix}
           \mapsto
           \begin{bmatrix}
-            \sin \ln x^2 y \\ \sqrt{e^{xy} + \tan y}
+            \sin \ln (x y^2) \\ \sqrt{e^{xy} + \tan y}
           \end{bmatrix}
         $$
 
   \item Adja meg az alábbi leképezések gradienseit!
-        ($C \in \Reals$)
+        ($C \in \Reals, \rvec a \in \Reals^3$)
         % \begin{multicols}{3}
         \begin{enumerate}
           \item $f (\coordvec) = C \cdot \coordvec^2$
           \item $g (\coordvec) = |\coordvec|$
-          \item $h (\coordvec) = C \cdot \coordvec$
+          \item $h (\coordvec) = \scalar{\rvec a}{\coordvec}$
         \end{enumerate}
         % \end{multicols}
 
   \item Adja meg a $\rvec v (\coordvec)$ vektormező divergenciáját és rotációját!
         Mely halmazokon forrás-, illetve örvénymentes a mező?
         $$
-          \rvec v(\coordvec)
-          = (x^2 - y^2) \rvec i
-          + (y^2 - z^2) \rvec j
-          + (z^2 - x^2) \rvec k
+          \rvec v(\coordvec) = \ijk{x^2 - y^2}{y^2 - z^2}{z^2 - x^2}
         $$
 
   \item Adja meg az alábbi vektormezők divergenciáját és rotációját!
         ($C \in \Reals$, $\rvec a \in \Reals^3$)
         % \begin{multicols}{3}
         \begin{enumerate}
-          \item $\rvec u(\coordvec) = C \cdot \coordvec$,
-          \item $\rvec v(\coordvec) = \grad |\coordvec|$,
-          \item $\rvec w(\coordvec) = \rvec a \cdot \ln |\coordvec|$.
+          \item $\rvec u(\coordvec) = C \cdot \coordvec$
+          \item $\rvec v(\coordvec) = \grad |\coordvec|$
+          \item $\rvec w(\coordvec) = \rvec a \cdot \ln |\coordvec|$
         \end{enumerate}
         % \end{multicols}
-
-  \item Hattassa a Laplace-operátort a $\rvec v (\coordvec) = |\rvec a| \coordvec +
-          \rvec a |\coordvec|$ vektormezőre! ($\rvec a \in \Reals^3$)
 \end{enumerate}
 \end{document}
