@@ -1,0 +1,588 @@
+\documentclass{szb-solution}
+
+\area{Vektoranalízis}
+\title{Operátorok, Potenciálosság}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{2}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Skalármezők gradiense és Laplace}
+
+\begin{enumerate}[a)]
+  \item $\varphi(\coordvec) = 6x^y + \sin e^z$
+        $$
+          \grad \varphi
+          =
+          \nabla \varphi
+          =
+          \left(
+          \pdv{\varphi}{x}; \pdv{\varphi}{y}; \pdv{\varphi}{z}
+          \right)^\T
+          = \begin{bmatrix}
+            6 y x^{y - 1} \\
+            6 x^y \ln x   \\
+            e^z \cos e^z
+          \end{bmatrix}
+        $$
+        \begin{align*}
+          \Delta \varphi
+           & =
+          \Div \grad \varphi
+          =
+          \pdv{6 y x^{y - 1}}{x} +
+          \pdv{6 x^y \ln x}{y} +
+          \pdv{e^z \cos e^z}{z}
+          \\
+           & =
+          6 y (y - 1) x^{y - 2} + 6 x^y \ln^2 x + e^z \cos e^z - e^{2z} \sin e^z
+        \end{align*}
+
+  \item $\psi(\coordvec) = \coordvec^2 / 2 = (x^2 + y^2 + z^2) / 2$
+        $$
+          \grad \psi
+          =
+          \nabla \psi
+          =
+          \left(
+          \pdv{\psi}{x}; \pdv{\psi}{y}; \pdv{\psi}{z}
+          \right)^\T
+          =
+          \begin{bmatrix}
+            x \\ y \\ z
+          \end{bmatrix}
+          =
+          \coordvec
+        $$
+        $$
+          \Delta \psi
+          =
+          \Div \grad \psi
+          =
+          \pdv{x}{x} + \pdv{y}{y} + \pdv{z}{z}
+          =
+          3
+        $$
+
+  \item $\chi(\coordvec) = xy + xz + yz$
+        $$
+          \grad \chi
+          =
+          \nabla \chi
+          =
+          \left(
+          \pdv{\chi}{x}; \pdv{\chi}{y}; \pdv{\chi}{z}
+          \right)^\T
+          =
+          \begin{bmatrix}
+            y + z \\ x + z \\ x + y
+          \end{bmatrix}
+        $$
+        $$
+          \Delta \chi
+          =
+          \Div \grad \chi
+          =
+          \pdv{(y + z)}{x} + \pdv{(x + z)}{y} + \pdv{(x + y)}{z}
+          =
+          0
+        $$
+
+  \item $\omega(\coordvec) = 2 x^2 y + x z^2 + 6 y$
+        $$
+          \grad \omega
+          =
+          \nabla \omega
+          =
+          \left(
+          \pdv{\omega}{x}; \pdv{\omega}{y}; \pdv{\omega}{z}
+          \right)^\T
+          =
+          \begin{bmatrix}
+            4 x y + z^2 \\
+            2 x^2 + 6   \\
+            2 x z
+          \end{bmatrix}
+        $$
+        $$
+          \Delta \omega
+          =
+          \Div \grad \omega
+          =
+          \pdv{4 x y + z^2}{x} + \pdv{2 x^2 + 6}{y} + \pdv{2 x z}{z}
+          =
+          4 y + 2 x
+        $$
+\end{enumerate}
+
+\clearpage
+\subsection{Vektormezők rotációja és divergenciája}
+
+\begin{enumerate}[a)]
+  \item $\rvec v(\coordvec) = \coordvec = \ijk{x}{y}{z}$
+        \begin{align*}
+          \Div \rvec v
+           & = \scalar{\nabla}{\rvec v}
+          = \pdv{x}{x} + \pdv{y}{y} + \pdv{z}{z}
+          = 1 + 1 + 1 = 3
+          \\
+          \rot \rvec v
+           & = \nabla \times \rvec v
+          = \begin{bmatrix}
+              \partial_x \\ \partial_y \\ \partial_z
+            \end{bmatrix} \times \begin{bmatrix}
+                                   x \\ y \\ z
+                                 \end{bmatrix} = \begin{bmatrix}
+                                                   0 - 0 \\ 0 - 0 \\ 0 - 0
+                                                 \end{bmatrix} = \begin{bmatrix}
+                                                                   0 \\ 0 \\ 0
+                                                                 \end{bmatrix}
+        \end{align*}
+        A vektormező sehol sem forrásmentes, de örvénymentes az egész
+        értelmezési tartományán.
+
+  \item $\rvec w(\coordvec) = (3xy + z^2) \,\uvec i + (6 e^z) \,\uvec j + (-5x^y) \,\uvec k$
+        \begin{align*}
+          \Div \rvec w
+           & = \scalar{\nabla}{\rvec w}
+          = \pdv{(3xy + z^2)}{x} + \pdv{(6 e^z)}{y} + \pdv{(-5x^y)}{z}
+          = 3y + 0 + 0
+          = 3y
+          \\
+          \rot \rvec w
+           & = \nabla \times \rvec w
+          = \begin{bmatrix}
+              \partial_x \\ \partial_y \\ \partial_z
+            \end{bmatrix} \times \begin{bmatrix}
+                                   3xy + z^2 \\ 6e^z \\ -5x^y
+                                 \end{bmatrix} = \begin{bmatrix}
+                                                   -5 x^y \ln x - 6 e^z \\
+                                                   2z + 5 y x^{y-1}     \\
+                                                   -3x
+                                                 \end{bmatrix}
+        \end{align*}
+        A vektormező forrásmentes az $y = 0$ síkon, de sehol sem
+        örvénymentes. ($z$ koordináta: $x = 0$, $x$ koordináta: $x \neq 0$,
+        ez ellentmondás.)
+
+  \item $\rvec u(\coordvec) = \ijk{\ln(xy / z)}{\ln(yz / x)}{\ln(zx / y)}$
+        \begin{align*}
+          \Div \rvec u
+           & = \scalar{\nabla}{\rvec u}
+          = \pdv{\ln(xy / z)}{x} + \pdv{\ln(yz / x)}{y} + \pdv{\ln(zx / y)}{z}
+          =
+          \\
+           & \phantom{= \scalar{\nabla}{\rvec u}}
+          = \frac{z}{xy} \cdot \frac{y}{z} + \frac{x}{yz} \cdot \frac{z}{x} + \frac{y}{zx} \cdot \frac{x}{y}
+          = \frac{1}{x} + \frac{1}{y} - \frac{1}{z}
+          \\[2mm]
+          \rot \rvec u
+           & = \nabla \times \rvec u
+          = \begin{bmatrix}
+              \partial_x \\ \partial_y \\ \partial_z
+            \end{bmatrix} \times \begin{bmatrix}
+                                   \ln(xy / z) \\ \ln(yz / x) \\ \ln(zx / y)
+                                 \end{bmatrix} = \begin{bmatrix}
+                                                   \dfrac{y}{xz} \left(\dfrac{-zx}{y^2}\right)
+                                                   - \dfrac{x}{yz} \left(\dfrac{y}{x}\right)
+                                                   \\[5mm]
+                                                   \dfrac{z}{xy} \left(\dfrac{-xy}{z^2}\right)
+                                                   - \dfrac{y}{xz} \left(\dfrac{z}{y}\right)
+                                                   \\[5mm]
+                                                   \dfrac{x}{yz} \left(\dfrac{-yz}{x^2}\right)
+                                                   - \dfrac{z}{xy} \left(\dfrac{x}{z}\right)
+                                                 \end{bmatrix} =\begin{bmatrix}
+                                                                  -\dfrac{1}{y} - \dfrac{1}{z} \\[5mm]
+                                                                  -\dfrac{1}{z} - \dfrac{1}{x} \\[5mm]
+                                                                  -\dfrac{1}{x} - \dfrac{1}{y}
+                                                                \end{bmatrix}
+        \end{align*}
+
+  \item $\rvec s(\coordvec) = \rvec a \| \coordvec \| + \| \rvec a \| \coordvec$
+        \hfill ($\rvec a \in \Reals^3$)
+        \begin{align*}
+          \Div \rvec s
+           & = \scalar{\nabla}{\rvec s}
+          = \scalar{\nabla}{\rvec a \| \coordvec \|} + \scalar{\nabla}{\| \rvec a \| \coordvec}
+          = \scalar{\rvec a}{\nabla \| \coordvec \|} + \| \rvec a \| \scalar{\nabla}{\coordvec}
+          =
+          \\
+           & \phantom{= \scalar{\nabla}{\rvec s}}
+          = \scalar{\rvec a}{\frac{1}{2 \|\coordvec\|} \cdot 2 \coordvec} + \| \rvec a \| \cdot 3
+          = \frac{\scalar{\rvec a}{\coordvec}}{\|\coordvec\|} + 3 \| \rvec a \|
+          \\[2mm]
+          \rot \rvec s
+           & = \nabla \times \rvec s
+          = \nabla \times (\rvec a \| \coordvec \|) + \nabla \times (\| \rvec a \| \coordvec)
+          = \nabla \| \coordvec \| \times \rvec a + \| \rvec a \| \nabla \times \coordvec
+          =
+          \\
+           & \phantom{= \nabla \times \rvec s}
+          = \frac{\coordvec}{\|\coordvec\|} \times \rvec a + \| \rvec a \| \cdot \nvec
+          = \frac{\coordvec \times \rvec a}{\|\coordvec\|}
+        \end{align*}
+
+        Egyszerűsítések során felhasznált képletek:
+        $$
+          \grad \coordvec = \frac{\coordvec}{\|\coordvec\|}, \quad
+          \Div \coordvec = 3, \quad
+          \rot \coordvec = \nvec
+          \text.
+        $$
+\end{enumerate}
+
+\clearpage
+\subsection{Azonosságok bizonyítása}
+
+\begin{enumerate}[a)]
+  \item $\rot \grad \varPhi \equiv \nvec$
+        $$
+          \rot \grad \varPhi
+          = \begin{bmatrix}
+            \partial_x \\ \partial_y \\ \partial_z
+          \end{bmatrix} \times \begin{bmatrix}
+            \partial_x \varPhi \\ \partial_y \varPhi \\ \partial_z \varPhi
+          \end{bmatrix} = \begin{bmatrix}
+            \partial_y \partial_z \varPhi - \partial_z \partial_y \varPhi \\
+            \partial_z \partial_x \varPhi - \partial_x \partial_z \varPhi \\
+            \partial_x \partial_y \varPhi - \partial_y \partial_x \varPhi
+          \end{bmatrix} = \begin{bmatrix}
+            0 \\ 0 \\ 0
+          \end{bmatrix} = \nvec
+        $$
+
+  \item $\Div \rot \rvec v \equiv 0$
+        \begin{align*}
+          \Div \rot \rvec v
+           & = \scalar{\begin{bmatrix}
+                           \partial_x \\ \partial_y \\ \partial_z
+                         \end{bmatrix}}{\begin{bmatrix}
+                                          \partial_y v_z - \partial_z v_y \\
+                                          \partial_z v_x - \partial_x v_z \\
+                                          \partial_x v_y - \partial_y v_x
+                                        \end{bmatrix}}
+          =
+          \\
+           & = \pdv{v_z}{x, y} - \pdv{v_y}{x, z}
+          + \pdv{v_x}{y, z} - \pdv{v_z}{y, x}
+          + \pdv{v_y}{z, x} - \pdv{v_x}{z, y}
+          =
+          \\
+           & = \pdv{v_x}{y, z} - \pdv{v_x}{z, y}
+          + \pdv{v_y}{z, x} - \pdv{v_y}{x, z}
+          + \pdv{v_z}{x, y} - \pdv{v_z}{y, x}
+          = 0
+        \end{align*}
+
+  \item $\grad (\varPhi \varPsi) = \varPhi \grad \varPsi + \varPsi \grad \varPhi$
+        $$
+          \bigl(\grad(\varPhi\varPsi)\bigr)_i
+          = \partial_i(\varPhi\varPsi)
+          = \varPhi\,\partial_i\varPsi+\varPsi\,\partial_i\varPhi
+          = \bigl(\varPhi\grad\varPsi+\varPsi\grad\varPhi\bigr)_i
+        $$
+
+  \item $\Delta (\varPhi \varPsi) = (\Delta \varPhi) \varPsi + 2 \scalar{\grad \varPhi}{\grad \varPsi} + \varPsi (\Delta \varPhi)$
+        \begin{align*}
+          \hspace{-17.5pt}
+          \Delta (\varPhi \varPsi)
+           & = \sum_{i = 1}^3\partial_i^2 (\varPhi \varPsi)
+          = \sum_{i = 1}^3 \partial_i \left( \varPhi \, \partial_i \varPsi + \varPsi \, \partial_i \varPhi \right)
+          = \sum_{i = 1}^3 \left( \varPhi \, \partial_i^2 \varPsi + 2 (\partial_i \varPhi) (\partial_i \varPsi) + \varPsi \, \partial_i^2 \varPhi \right)
+          =
+          \\
+           & = \varPhi \sum_{i = 1}^3 \partial_i^2 \varPsi + 2 \sum_{i = 1}^3 (\partial_i \varPhi) (\partial_i \varPsi) + \varPsi \sum_{i = 1}^3 \partial_i^2 \varPhi
+          = \varPhi (\Delta \varPsi) + 2 \scalar{\grad \varPhi}{\grad \varPsi} + \varPsi (\Delta \varPhi)
+        \end{align*}
+
+  \item $\Div (\varPhi \rvec v) = \scalar{\grad \varPhi}{\rvec v} + \varPhi \Div \rvec v$
+        $$
+          \Div (\varPhi \rvec v)
+          = \sum_{i = 1}^3 \partial_i (\varPhi v_i)
+          = \sum_{i = 1}^3 \left( (\partial_i \varPhi) v_i + \varPhi (\partial_i v_i) \right)
+          = \scalar{\grad \varPhi}{\rvec v} + \varPhi \Div \rvec v
+        $$
+
+  \item $\Div (\rvec v \times \rvec w) = \scalar{\rot \rvec v}{\rvec w} - \scalar{\rvec v}{\rot \rvec w}$
+        \begin{align*}
+          \Div (\rvec v \times \rvec w)
+           & = \pdv{(v_y w_z - v_z w_y)}{x}
+          + \pdv{(v_z w_x - v_x w_z)}{y}
+          + \pdv{(v_x w_y - v_y w_x)}{z}
+          \\
+           & = \pdv{v_y}{x} w_z  - \pdv{v_z}{x} w_y
+          + \pdv{v_z}{y} w_x  - \pdv{v_x}{y} w_z
+          + \pdv{v_x}{z} w_y  - \pdv{v_y}{z} w_x
+          \\
+           & \phantom{=} + \pdv{w_z}{x} v_y - \pdv{w_y}{x} v_z
+          + \pdv{w_x}{y} v_z - \pdv{w_z}{y} v_x
+          + \pdv{w_y}{z} v_x - \pdv{w_x}{z} v_y
+          \\
+           & = \left( \pdv{v_z}{y} - \pdv{v_y}{z} \right) w_x
+          + \left( \pdv{v_x}{z} - \pdv{v_z}{x} \right) w_y
+          + \left( \pdv{v_y}{x} - \pdv{v_x}{y} \right) w_z
+          \\
+           & \phantom{=} - \left( \pdv{w_z}{y} - \pdv{w_y}{z} \right) v_x
+          - \left( \pdv{w_x}{z} - \pdv{w_z}{x} \right) v_y
+          - \left( \pdv{w_y}{x} - \pdv{w_x}{y} \right) v_z
+          \\
+           & = \scalar{\rot \rvec v}{\rvec w} - \scalar{\rvec v}{\rot \rvec w}
+        \end{align*}
+\end{enumerate}
+
+\clearpage
+\subsection{Potenciálfüggvények}
+
+\begin{enumerate}[a)]
+  \item $\rvec v(\coordvec) = \ijk{y + z}{x + z}{x + y}$
+        \begin{itemize}
+          \item A vektormező skalárpotenciálos, ha rotációja zérus:
+                $$
+                  \rot \rvec v
+                  =
+                  \begin{bmatrix}
+                    \partial_x \\ \partial_y \\ \partial_z
+                  \end{bmatrix}
+                  \times
+                  \begin{bmatrix}
+                    y + z \\ x + z \\ x + y
+                  \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                    \partial_y (x + y) - \partial_z (x + z) \\
+                    \partial_z (y + z) - \partial_x (x + y) \\
+                    \partial_x (x + z) - \partial_y (y + z)
+                  \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                    1 - 1 \\
+                    1 - 1 \\
+                    1 - 1
+                  \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                    0 \\ 0 \\ 0
+                  \end{bmatrix}
+                $$
+
+                A potenciálfüggvény:
+                \begin{align*}
+                  \varphi(\coordvec)
+                   & =
+                  \int_0^x v_x(\xi; y; z) \dd \xi +
+                  \int_0^y v_y(0; \eta; z) \dd \eta +
+                  \int_0^z v_z(0; 0; \zeta) \dd \zeta
+                  \\
+                   & =
+                  \int_0^x (y + z) \dd \xi +
+                  \int_0^y (0 + z) \dd \eta +
+                  \int_0^z (0 + 0) \dd \zeta
+                  \\
+                   & =
+                  xy + xz + yz + C
+                  \text.
+                \end{align*}
+
+                A kereseett potenciálfüggvény:
+                $$
+                  \varPhi (\coordvec)
+                  =
+                  xy + xz + yz
+                  \text.
+                $$
+
+          \item A vektormező vektorpotenciálos, ha divergenciája zérus:
+                $$
+                  \Div \rvec v
+                  =
+                  \pdv{\rvec v}{x} + \pdv{\rvec v}{y} + \pdv{\rvec v}{z}
+                  =
+                  0 + 0 + 0
+                  =
+                  0
+                  \text.
+                $$
+
+                A potenciálfüggvény:
+                \begin{align*}
+                  V_x(\coordvec)
+                   & =
+                  \int_0^z v_y(x; y; \zeta) \dd \zeta
+                  =
+                  \int_0^z (x + \zeta) \dd \zeta
+                  =
+                  xz + \frac{z^2}{2} + C_x
+                  \text,
+                  \\
+                  V_y(\coordvec)
+                   & =
+                  \int_0^x v_z(\xi; y; 0) \dd \xi -
+                  \int_0^z v_x(x; y; \zeta) \dd \zeta
+                  \\
+                   & =
+                  \int_0^x (\xi + y) \dd \xi -
+                  \int_0^z (y + \zeta) \dd \zeta
+                  \\
+                   & =
+                  \frac{x^2}{2} + xy -
+                  \frac{z^2}{2} - yz + C_y
+                \end{align*}
+
+                A keresett vektorpotenciál:
+                $$
+                  \rvec V(\coordvec)
+                  =
+                  \ijk{xz + \frac{z^2}{2}}
+                  {\frac{x^2}{2} + xy - \frac{z^2}{2} - yz}
+                  {0}
+                  \text.
+                $$
+        \end{itemize}
+
+  \item $\rvec w(\coordvec) = \ijk{e^{x + \sin y}}{e^{x + \sin y} \cos y}{0}$
+        \begin{itemize}
+          \item Egy vektormező skalárpotenciálos, ha rotációja zérus:
+                $$
+                  \rot \rvec w
+                  =
+                  \begin{bmatrix}
+                    \partial_x \\ \partial_y \\ \partial_z
+                  \end{bmatrix}
+                  \times
+                  \begin{bmatrix}
+                    e^{x + \sin y} \\ e^{x + \sin y} \cos y \\ 0
+                  \end{bmatrix}
+                  % =
+                  % \begin{bmatrix}
+                  %   \partial_y 0 - \partial_z e^{x + \sin y} \cos y \\
+                  %   \partial_z e^{x + \sin y} - \partial_x 0        \\
+                  %   \partial_x e^{x + \sin y} \cos y - \partial_y e^{x + \sin y}
+                  % \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                    0 - 0 \\ 0 - 0 \\ e^{x + \sin y} \cos y - e^{x + \sin y} \cos y
+                  \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                    0 \\ 0 \\ 0
+                  \end{bmatrix}
+                  \text.
+                $$
+
+                A potenciálfüggvény:
+                \begin{align*}
+                  \psi(\coordvec)
+                   & =
+                  \int_0^x w_x(\xi; y; z) \dd \xi +
+                  \int_0^y w_y(0; \eta; z) \dd \eta +
+                  \int_0^z w_z(0; 0; \zeta) \dd \zeta
+                  \\
+                   & =
+                  \int_0^x e^{\xi + \sin y} \dd \xi +
+                  \int_0^y e^{\sin \eta} \cos \eta \dd \eta +
+                  \int_0^z 0 \dd \zeta
+                  \\
+                   & =
+                  (e^x - 1) e^{\sin y} + e^{\sin y} - 1 + 0 + C
+                  \text.
+                \end{align*}
+
+                A keresett potenciálfüggvény:
+                $$
+                  \varPsi(\coordvec)
+                  =
+                  e^{x + \sin y}
+                  \text.
+                $$
+
+                Egy vektormező vektorpotenciálos, ha divergenciája zérus:
+                $$
+                  \Div \rvec w
+                  =
+                  \pdv{\rvec w}{x} + \pdv{\rvec w}{y} + \pdv{\rvec w}{z}
+                  =
+                  e^{x + \sin y} + e^{x + \sin y}(\cos^2 y - \sin y)
+                  \neq 0
+                  \text.
+                $$
+
+                Mivel $\Div \rvec w \neq 0$, ezért nem létezik $\rvec w$-nek
+                vektorpotenciálja.
+        \end{itemize}
+
+  \item $\rvec u(\coordvec) = \ijk{2zx^3}{3z}{-3x^2z^2}$
+        \begin{itemize}
+          \item Egy vektormező skalárpotenciálos, ha rotációja zérus.
+                $$
+                  \rot \rvec u
+                  =
+                  \begin{bmatrix}
+                    \partial_x \\ \partial_y \\ \partial_z
+                  \end{bmatrix}
+                  \times
+                  \begin{bmatrix}
+                    2zx^3 \\ 3z \\ -3x^2z^2
+                  \end{bmatrix}
+                  =
+                  \begin{bmatrix}
+                    0 - 3           \\
+                    2 x^3 + 6 x z^2 \\
+                    0 - 0
+                  \end{bmatrix}
+                  \neq
+                  \nvec
+                $$
+
+                Mivel $\rot \rvec u \neq \nvec$, ezért $\rvec u$-nak nem
+                létezik skalárpotenciálja.
+
+          \item Egy vektormező vektorpotenciálos, ha divergenciája zérus.
+                $$
+                  \Div \rvec u
+                  =
+                  \pdv{\rvec u}{x} + \pdv{\rvec u}{y} + \pdv{\rvec u}{z}
+                  =
+                  6 x^2 z + 0 -6 x^2 z
+                  =
+                  0
+                  \text.
+                $$
+
+                A potenciálfüggvény:
+                \begin{align*}
+                  U_x(\coordvec)
+                   & =
+                  \int_0^z u_y(x; y; \zeta) \dd \zeta
+                  =
+                  \int_0^z  (3 \zeta) \dd \zeta
+                  =
+                  \frac{3 z^2}{2} + C_x
+                  \text,
+                  \\
+                  U_y(\coordvec)
+                   & =
+                  \int_0^x u_z(\xi; y; 0) \dd \xi -
+                  \int_0^z u_x(x; y; \zeta) \dd \zeta
+                  \\
+                   & =
+                  \int_0^x (0) \dd \xi -
+                  \int_0^z (2 \zeta x^3)  \dd \zeta
+                  =
+                  0 - x^3 z^2 + C_y
+                  \text.
+                \end{align*}
+
+                A keresett vektorpotenciál:
+                $$
+                  \rvec U(\coordvec)
+                  = \ijk{\frac{3z^2}{2}}{-x^3 z^2}{0}
+                  \text.
+                $$
+        \end{itemize}
+\end{enumerate}
+
+\end{document}

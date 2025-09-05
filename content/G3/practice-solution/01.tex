@@ -1,0 +1,411 @@
+\documentclass{szb-solution}
+
+\title{Ismétlés, operátorok}
+\area{Vektoranalízis}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{1}
+
+\begin{document}
+\maketitle
+
+\subsection{Leképezés vizsgálata}
+
+Adja meg a $\varphi : \Reals^3 \to \Reals^3$ leképezés mátrixát a
+standard normális, illetve az $\rvec b_1(1; 0; 0)$, $\rvec b_2(1; 1; 0)$
+és $\rvec b_3(1; 1; 1)$ vektorok alkotta bázisban. Adja meg a leképezés
+magterének és képterének dimenzióját is!
+$$
+  \varphi : \Reals^3 \to \Reals^3
+  \qquad
+  \begin{bmatrix}
+    x \\ y \\ z
+  \end{bmatrix}
+  \mapsto
+  \begin{bmatrix}
+    2x - y \\ y + z \\ y - z
+  \end{bmatrix}
+$$
+
+A leképezés mátrixa a standard bázisban:
+$$
+  \varphi \begin{bmatrix}
+    1 \\ 0 \\ 0
+  \end{bmatrix} = \begin{bmatrix}
+    2 \\ 0 \\ 0
+  \end{bmatrix}
+  \text,\quad
+  \varphi \begin{bmatrix}
+    0 \\ 1 \\ 0
+  \end{bmatrix} = \begin{bmatrix}
+    -1 \\ 1 \\ 1
+  \end{bmatrix}
+  \text,\quad
+  \varphi \begin{bmatrix}
+    0 \\ 0 \\ 1
+  \end{bmatrix} = \begin{bmatrix}
+    0 \\ 1 \\ -1
+  \end{bmatrix}
+  \quad\Rightarrow\quad
+  \rmat A = \begin{bmatrix}
+    2 & -1 & 0  \\
+    0 & 1  & 1  \\
+    0 & 1  & -1
+  \end{bmatrix}
+  \text.
+$$
+
+A bázistranszformáció mátrixa, illetve annak inverze:
+$$
+  \rmat T = \begin{bmatrix}
+    \rvec b_1 & \rvec b_2 & \rvec b_3
+  \end{bmatrix} = \begin{bmatrix}
+    1 & 1 & 1 \\
+    0 & 1 & 1 \\
+    0 & 0 & 1
+  \end{bmatrix}
+  \text,\qquad
+  \rmat T^{-1} = \begin{bmatrix}
+    1 & -1 & 0  \\
+    0 & 1  & -1 \\
+    0 & 0  & 1
+  \end{bmatrix}
+  \text.
+$$
+
+A leképezés mátrixa az új bázisban:
+$$
+  \hat{\rmat A} = \rmat T^{-1} \rmat A \rmat T
+  = \begin{bmatrix}
+    1 & -1 & 0  \\
+    0 & 1  & -1 \\
+    0 & 0  & 1
+  \end{bmatrix} \begin{bmatrix}
+    2 & -1 & 0  \\
+    0 & 1  & 1  \\
+    0 & 1  & -1
+  \end{bmatrix} \begin{bmatrix}
+    1 & 1 & 1 \\
+    0 & 1 & 1 \\
+    0 & 0 & 1
+  \end{bmatrix} = \begin{bmatrix}
+    2 & 0 & -1 \\
+    0 & 0 & 2  \\
+    0 & 1 & 0
+  \end{bmatrix}
+  \text.
+$$
+
+A leképezés mátrixának rangja maximális ($\rg \varphi = 3$), hiszen
+$$
+  \det \rmat A = 2 \cdot \begin{vmatrix}
+    1 & 1  \\
+    1 & -1
+  \end{vmatrix} - (-1) \cdot \begin{vmatrix}
+    0 & 1  \\
+    0 & -1
+  \end{vmatrix} + 0 \cdot \begin{vmatrix}
+    0 & 1 \\
+    0 & 1
+  \end{vmatrix} = 2 \cdot (-1 -1) + 1 \cdot (0) + 0 = -4 \neq 0
+  \text.
+$$
+
+A magtér dimenziója a rang-nullitás tétel alapján:
+$$
+  \dim \ker \varphi = \dim \Reals^3 - \rg \varphi = 3 - 3 = 0
+  \text.
+$$
+
+\subsection{Mátrix felbontása}
+
+Bontsa fel az $\rmat A$ mátrixot szimmetrikus és antiszimmetrikus komponensekre!
+$$
+  \rmat A = \begin{bmatrix}
+    1 & 1 & 0 \\
+    2 & 2 & 1 \\
+    1 & 4 & 3
+  \end{bmatrix}
+  \qquad\Rightarrow\qquad
+  \rmat A^\T = \begin{bmatrix}
+    1 & 2 & 1 \\
+    1 & 2 & 4 \\
+    0 & 1 & 3
+  \end{bmatrix}
+$$
+A szimmetrikus komponens:
+$$
+  \rmat A_\text{s} = \frac{\rmat A + \rmat A^\T}{2} = \frac{1}{2} \begin{bmatrix}
+    2 & 3 & 1 \\
+    3 & 4 & 5 \\
+    1 & 5 & 6
+  \end{bmatrix} = \begin{bmatrix}
+    1   & 3/2 & 1/2 \\
+    3/2 & 2   & 5/2 \\
+    1/2 & 5/2 & 3
+  \end{bmatrix}
+  \text.
+$$
+Az antiszimmetrikus komponens:
+$$
+  \rmat A_\text{as} = \frac{\rmat A - \rmat A^\T}{2} = \frac{1}{2} \begin{bmatrix}
+    0 & -1 & -1 \\
+    1 & 0  & -3 \\
+    1 & 3  & 0
+  \end{bmatrix} = \begin{bmatrix}
+    0   & -1/2 & -1/2 \\
+    1/2 & 0    & -3/2 \\
+    1/2 & 3/2  & 0
+  \end{bmatrix}
+  \text.
+$$
+
+\subsection{Jacobi-mátrix}
+
+Adja meg a $\varphi$ és $\psi$ leképezések Jacobi-mátrixát!
+
+\begin{alignat*}{9}
+  \varphi         & : \Reals^3 \to \Reals^2
+  \quad
+  \begin{bmatrix}
+    x \\ y \\ z
+  \end{bmatrix}
+  \mapsto
+  \begin{bmatrix}
+    x^2 + z \\ y z^2
+  \end{bmatrix}
+  \qquad\qquad
+                  &
+  \psi            & : \Reals^2 \to \Reals^2
+  \quad
+  \begin{bmatrix}
+    x \\ y
+  \end{bmatrix}
+  \mapsto
+  \begin{bmatrix}
+    \sin \ln (x y^2) \\ \sqrt{e^{xy} + \tan y}
+  \end{bmatrix}
+  \\
+  \rmat J_\varphi & = \begin{bmatrix}
+                        2x & 0   & 1   \\
+                        0  & z^2 & 2yz
+                      \end{bmatrix}
+                  &
+  \rmat J_\psi    & = \begin{bmatrix}
+                        \dfrac{\cos \ln (x y^2)}{x}              &
+                        \dfrac{2 \cos \ln (x y^2)}{y}              \\[5mm]
+                        \dfrac{y\,e^{xy}}{2\sqrt{e^{xy}+\tan y}} &
+                        \dfrac{x\,e^{xy}+1 / \cos^2 y}{2\sqrt{e^{xy}+\tan y}}
+                      \end{bmatrix}
+\end{alignat*}
+
+\subsection{Gradiens}
+
+Adja meg az alábbi leképezések gradienseit!
+($C \in \Reals, \rvec a \in \Reals^3$)
+\begin{enumerate}[a)]
+  \item $f (\coordvec) = C \cdot \coordvec^2$
+        $$
+          \grad f
+          = C \cdot \grad \scalar{\coordvec}{\coordvec}
+          = C \cdot \grad (x^2 + y^2 + z^2)
+          = C \cdot \begin{bmatrix}
+            2x \\ 2y \\ 2z
+          \end{bmatrix}
+          = 2C \cdot \coordvec
+        $$
+
+  \item $g (\coordvec) = |\coordvec|$
+        $$
+          \grad g
+          = \grad \sqrt{x^2 + y^2 + z^2}
+          = \frac{1}{2\sqrt{x^2 + y^2 + z^2}} \cdot \begin{bmatrix}
+            2x \\ 2y \\ 2z
+          \end{bmatrix} = \frac{1}{\sqrt{x^2 + y^2 + z^2}} \cdot \begin{bmatrix}
+            x \\ y \\ z
+          \end{bmatrix} = \frac{\coordvec}{|\coordvec|}
+        $$
+
+  \item $h (\coordvec) = \scalar{\rvec a}{\coordvec}$
+        $$
+          \grad h
+          = \grad (a_1 x + a_2 y + a_3 z)
+          = \begin{bmatrix}
+            a_1 \\ a_2 \\ a_3
+          \end{bmatrix}
+          = \rvec a
+        $$
+\end{enumerate}
+
+\subsection{Divergencia és rotáció Jacobi-mátrix alapján}
+
+Adja meg a $\rvec v (\coordvec)$ vektormező divergenciáját és rotációját!
+Mely halmazokon forrás-, illetve örvénymentes a mező?
+$$
+  \rvec v(\coordvec) = \ijk{x^2 - y^2}{y^2 - z^2}{z^2 - x^2}
+$$
+
+A vektormező Javobi-mátrixa:
+$$
+  \rmat J = \begin{bmatrix}
+    2x  & -2y & 0   \\
+    0   & 2y  & -2z \\
+    -2x & 0   & 2z
+  \end{bmatrix}
+$$
+
+A divergencia:
+$$
+  \Div \rvec v = \operatorname{tr} \rmat J = 2x + 2y + 2z
+  \text.
+$$
+A vektormező a $2x + 2y + 2z = 0$ síkon forrásmentes, hiszen itt a divergencia
+nulla.
+
+A rotáció:
+$$
+  \rot \rvec v = \operatorname{axl}(\rmat J - \rmat J^\T) = \begin{bmatrix}
+    J_{32} - J_{23} \\
+    J_{13} - J_{31} \\
+    J_{21} - J_{12}
+  \end{bmatrix} = \begin{bmatrix}
+    0 - (-2z) \\
+    0 - (-2x) \\
+    0 - (-2y)
+  \end{bmatrix} = \begin{bmatrix}
+    2z \\ 2x \\ 2y
+  \end{bmatrix}
+  \text.
+$$
+A vektormező csak az origóban örvénymentes, hiszen itt a rotáció nullvektor.
+
+\subsection{Divergencia és rotáció a Nabla-operator segítségével}
+
+Adja meg az alábbi vektormezők divergenciáját és rotációját!
+($C \in \Reals$, $\rvec a \in \Reals^3$)
+\begin{enumerate}
+  \item $\rvec u(\coordvec) = C \cdot \coordvec$
+        \begin{align*}
+          \Div \rvec u
+           & = \scalar{
+            \begin{bmatrix}
+              \partial_x \\ \partial_y \\ \partial_z
+            \end{bmatrix}
+          }{
+            \begin{bmatrix}
+              Cx \\ Cy \\ Cz
+            \end{bmatrix}
+          } = C + C + C = 3C
+          \\
+          \rot \rvec u
+           & =
+          \begin{bmatrix}
+            \partial_x \\ \partial_y \\ \partial_z
+          \end{bmatrix}
+          \times
+          \begin{bmatrix}
+            Cx \\ Cy \\ Cz
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            \partial_y Cz - \partial_z Cy \\
+            \partial_z Cx - \partial_x Cz \\
+            \partial_x Cy - \partial_y Cx
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            0 \\ 0 \\ 0
+          \end{bmatrix}
+        \end{align*}
+        Az $\rvec u(\coordvec)$ vektormező sehol sem forrásmentes, viszont
+        mindenhol örvénymentes.
+
+  \item $\rvec v(\coordvec) = \grad \|\coordvec\|$
+        \begin{align*}
+          \Div \rvec v
+           & = \scalar{
+            \begin{bmatrix}
+              \partial_x \\ \partial_y \\ \partial_z
+            \end{bmatrix}
+          }{
+            \frac{1}{\sqrt{x^2 + y^2 + z^2}}
+            \cdot
+            \begin{bmatrix}
+              x \\ y \\ z
+            \end{bmatrix}
+          }
+          = \frac{3}{\sqrt{x^2 + y^2 + z^2}}
+          + \left( -\frac{1}{2} \right) \cdot \frac{
+            2x^2 + 2y^2 + 2z^2
+          }{
+            (x^2 + y^2 + z^2)^{3/2}
+          }
+          \\
+           & = \frac{3}{\sqrt{x^2 + y^2 + z^2}}
+          - \frac{x^2 + y^2 + z^2}{(x^2 + y^2 + z^2)^{3/2}}
+          = \frac{3}{\|\coordvec\|} - \frac{\|\coordvec\|}{\|\coordvec\|^{3/2}}
+          = \frac{3}{\|\coordvec\|} - \frac{1}{\|\coordvec\|}
+          = \frac{2}{\|\coordvec\|}
+          \\[2mm]
+          \rot \rvec v
+           & =
+          \begin{bmatrix}
+            \partial_x \\ \partial_y \\ \partial_z
+          \end{bmatrix}
+          \times \left(
+          \frac{1}{\sqrt{x^2 + y^2 + z^2}} \cdot
+          \begin{bmatrix}
+            x \\ y \\ z
+          \end{bmatrix}
+          \right)
+          = \frac{1}{(x^2 + y^2 + z^2)^{3/2}} \cdot
+          \begin{bmatrix}
+            -yz + zy \\
+            xz - zx  \\
+            -xy + yx
+          \end{bmatrix} = \begin{bmatrix}
+                            0 \\ 0 \\ 0
+                          \end{bmatrix}
+        \end{align*}
+        Az $\rvec v(\coordvec)$ sehol sem forrásmentes, viszont mindenhol
+        örvénymentes. A divergencia az origóban nincs értelmezve.
+
+  \item $\rvec w(\coordvec) = \rvec a \cdot \ln |\coordvec|$
+        \begin{align*}
+          \Div \rvec w
+           & = \scalar{
+            \begin{bmatrix}
+              \partial_x \\ \partial_y \\ \partial_z
+            \end{bmatrix}
+          }{
+            \rvec a \cdot \ln \sqrt{x^2 + y^2 + z^2}
+          }
+          = \frac{1}{x^2 + y^2 + z^2} \cdot \left(
+          a_1 x + a_2 y + a_3 z
+          \right) = \frac{\scalar{\rvec a}{\coordvec}}{|\coordvec|^2}
+          \\[2mm]
+          \rot \rvec w
+           & =
+          \begin{bmatrix}
+            \partial_x \\ \partial_y \\ \partial_z
+          \end{bmatrix}
+          \times
+          \left(
+          \rvec a \cdot \ln \sqrt{x^2 + y^2 + z^2}
+          \right)
+          = \frac{1}{x^2 + y^2 + z^2} \cdot
+          \begin{bmatrix}
+            a_3 y - a_2 z \\
+            a_1 z - a_3 x \\
+            a_2 x - a_1 y
+          \end{bmatrix}
+          = \frac{\coordvec \times \rvec a}{|\coordvec|^2}
+        \end{align*}
+        A $\rvec w(\coordvec)$ vektormező az $\scalar{\rvec a}{\coordvec} = 0$
+        síkon forrásmentes, az $\coordvec = t \cdot \rvec a$ egyenesen
+        örvénymentes ($t \in \Reals$). $\rvec w(\coordvec)$ az origóban
+        nincs értelmezve.
+\end{enumerate}
+
+\end{document}
