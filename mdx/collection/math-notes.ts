@@ -11,6 +11,7 @@ const mathNotes = defineCollection({
     //
     'G1/notes/**/*.md',
     'G2/notes/**/*.md',
+    'G3/notes/**/*.md',
   ],
   schema: s
     .object({

@@ -1,5 +1,5 @@
 // Document types
-export type Subject = 'G1' | 'G2'; // | 'G3';
+export type Subject = 'G1' | 'G2' | 'G3';
 export type DocumentType = 'book' | 'practice';
 
 // For velite

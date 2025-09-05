@@ -1,0 +1,93 @@
+name: Matematika G3
+code: BMETE94BG03
+lecturer: Dr. Szilágyi Brigitta
+breakdown:
+  credits: 4
+  lectures: 2
+  practicals: 2
+  labs: 0
+  is_exam: true
+book:
+  dir: book
+  source: main.tex
+  target: G3-tankonyv
+  display_name: G3 előadás jegyzet
+online_notes: null
+hide_edubase: true
+practice_material:
+  dir: practice
+  solutionsDir: practice-solutions
+  files:
+    - source: 01.tex
+      target: G3-gyak-01
+      display_name: G3 1. gyakorlat
+      description: Vektoranalízis – Ismétlés, operátorok
+      week: 1
+hide_lectures: true
+lectures:
+  - room: CHFMAX
+    day: 5 # Friday
+    start: [8, 15]
+    end: [10, 00]
+hide_practicals: true
+practicals:
+  - group: H1
+    room: R501
+    day: 2 # Tuesday
+    start: [16, 15]
+    end: [18, 0]
+    staff: []
+  - group: H2
+    room: R513
+    day: 2 # Tuesday
+    start: [16, 15]
+    end: [18, 0]
+    staff: []
+  - group: H3
+    room: R510
+    day: 2 # Tuesday
+    start: [16, 15]
+    end: [18, 0]
+    staff: []
+  - group: H4
+    room: R510
+    day: 3 # Wednesday
+    start: [8, 15]
+    end: [10, 0]
+    staff: []
+  - group: H5
+    room: R510
+    day: 3 # Wednesday
+    start: [10, 15]
+    end: [12, 0]
+    staff: []
+  - group: H6
+    room: R517
+    day: 3 # Wednesday
+    start: [14, 15]
+    end: [16, 0]
+    staff: []
+  - group: H7
+    room: R501
+    day: 3 # Wednesday
+    start: [16, 15]
+    end: [18, 0]
+    staff: []
+  - group: H8
+    room: R515
+    day: 4 # Thursday
+    start: [16, 15]
+    end: [18, 0]
+    staff: []
+  - group: H9
+    room: R501
+    day: 1 # Monday
+    start: [12, 15]
+    end: [14, 0]
+    staff: []
+  - group: H10
+    room: R514
+    day: 2 # Tuesday
+    start: [8, 15]
+    end: [10, 0]
+    staff: []

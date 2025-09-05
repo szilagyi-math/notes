@@ -18,6 +18,7 @@ const SUBJECT_DIRS: Array<[Subject, string]> = [
   // Add more subjects here
   ['G1', 'G1'],
   ['G2', 'G2'],
+  ['G3', 'G3'],
 ];
 
 const SHEBANG = '#!/bin/bash';
