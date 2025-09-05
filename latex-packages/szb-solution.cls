@@ -42,6 +42,7 @@
 \cfoot{\thepage\ / \pageref{LastPage}}
 \ihead{\@subject (\@subjectCode)}
 \ohead{\@area\ -- \@title}
+\chead{}
 
 % Length declarations and page layout
 \setlength\parindent{0pt}
