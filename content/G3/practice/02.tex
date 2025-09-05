@@ -1,7 +1,7 @@
 \documentclass{szb-practice}
 
 \area{Vektoranalízis}
-\title{Operátorok}
+\title{Operátorok, Potenciálosság}
 \subject{Matematika G3}
 \subjectCode{BMETE94BG03}
 \date{Utoljára frissítve: \today}
@@ -106,107 +106,182 @@
   $$
 \end{definition}
 
-% \begin{blueBox}[][nobreak]
-%   $! \varPhi; \varPsi : \Reals^3 \rightarrow \Reals$ skalármezők,
-%   $\rvec u; \rvec v; \rvec w : \Reals^3 \rightarrow \Reals^3$
-%   vektormezők, $\lambda; \mu \in \Reals$ pedig skalárok.
-%   \begin{itemize}
-%     \item Teljesül a linearitás:
-%           \vspace{-.5em}
-%           \begin{alignat*}{4}
-%             \grad & (\lambda \, \varPhi && + \mu \, \varPsi) && = \lambda \, \grad \varPhi && + \mu \, \grad \varPsi
-%             \\
-%             \rot  & (\lambda \, \rvec v && + \mu \, \rvec w) && = \lambda \, \rot \rvec v  && + \mu \, \rot \rvec w
-%             \\
-%             \Div  & (\lambda \, \rvec v && + \mu \, \rvec w) && = \lambda \, \Div \rvec v  && + \mu \, \Div \rvec w
-%           \end{alignat*}
+\begin{blueBox}[][nobreak]
+  $! \varPhi; \varPsi : \Reals^3 \rightarrow \Reals$ skalármezők,
+  $\rvec u; \rvec v; \rvec w : \Reals^3 \rightarrow \Reals^3$
+  vektormezők, $\lambda; \mu \in \Reals$ pedig skalárok.
+  \begin{itemize}
+    \item Teljesül a linearitás:
+          \vspace{-.5em}
+          \begin{alignat*}{4}
+            \grad & (\lambda \, \varPhi && + \mu \, \varPsi) && = \lambda \, \grad \varPhi && + \mu \, \grad \varPsi
+            \\
+            \rot  & (\lambda \, \rvec v && + \mu \, \rvec w) && = \lambda \, \rot \rvec v  && + \mu \, \rot \rvec w
+            \\
+            \Div  & (\lambda \, \rvec v && + \mu \, \rvec w) && = \lambda \, \Div \rvec v  && + \mu \, \Div \rvec w
+          \end{alignat*}
 
-%     \item Zérusság:
-%           \vspace{-.5em}
-%           \begin{alignat*}{1}
-%             \rot \grad \varPhi & \equiv \nvec
-%             \\
-%             \Div \rot \rvec v  & \equiv 0
-%           \end{alignat*}
+    \item Zérusság:
+          \vspace{-.5em}
+          \begin{alignat*}{1}
+            \rot \grad \varPhi & \equiv \nvec
+            \\
+            \Div \rot \rvec v  & \equiv 0
+          \end{alignat*}
 
-%     \item Deriválási szabályokhoz hasonló:
-%           \vspace{-.5em}
-%           \begin{align*}
-%             \grad \left( \varPhi \, \varPsi \right)
-%              & = \varPhi \, \grad \varPsi
-%             + \varPsi \, \grad \varPhi
-%             \\
-%             \Div \left( \varPhi \, \rvec v \right)
-%              & = \varPhi \, \Div \rvec v \,
-%             + \scalar{\rvec v}{\grad \varPhi}
-%             \\
-%             \rot \left( \varPhi \, \rvec v \right)
-%              & = \varPhi \, \rot \rvec v
-%             - \rvec v \times \grad \varPhi
-%           \end{align*}
+    \item Deriválási szabályokhoz hasonló:
+          \vspace{-.5em}
+          \begin{align*}
+            \grad \left( \varPhi \, \varPsi \right)
+             & = \varPhi \, \grad \varPsi
+            + \varPsi \, \grad \varPhi
+            \\
+            \Div \left( \varPhi \, \rvec v \right)
+             & = \varPhi \, \Div \rvec v \,
+            + \scalar{\rvec v}{\grad \varPhi}
+            \\
+            \rot \left( \varPhi \, \rvec v \right)
+             & = \varPhi \, \rot \rvec v
+            - \rvec v \times \grad \varPhi
+          \end{align*}
 
-%     \item Egyéb szabályok:
-%           \vspace{-.5em}
-%           \begin{align*}
-%             \rot \rot \rvec v
-%              & =\grad \Div \rvec v
-%             - \Delta \rvec v
-%             \\
-%             \rot \left( \rvec u \times \rvec v \right)
-%              & = \rvec u \, \Div \rvec v
-%             - \rvec v \, \Div \rvec u
-%             + (\DD \rvec u) \rvec v
-%             - (\DD \rvec v) \rvec u
-%             \\
-%             \Div \left( \rvec u \times \rvec v \right)
-%              & = \; \scalar{\rvec v}{\rot \rvec u}
-%             - \scalar{\rvec u}{\rot \rvec v}
-%             \\
-%             \grad \left( \scalar{\rvec u}{\rvec v} \right)
-%              & = (\DD \rvec u) \rvec v
-%             + (\DD \rvec v) \rvec u
-%             + \rvec v \times \rot \rvec u
-%             + \rvec u \times \rot \rvec v
-%           \end{align*}
-%   \end{itemize}
-% \end{blueBox}
+    \item Egyéb szabályok:
+          \vspace{-.5em}
+          \begin{align*}
+            \rot \rot \rvec v
+             & =\grad \Div \rvec v
+            - \Delta \rvec v
+            \\
+            \rot \left( \rvec u \times \rvec v \right)
+             & = \rvec u \, \Div \rvec v
+            - \rvec v \, \Div \rvec u
+            + (\DD \rvec u) \rvec v
+            - (\DD \rvec v) \rvec u
+            \\
+            \Div \left( \rvec u \times \rvec v \right)
+             & = \; \scalar{\rvec v}{\rot \rvec u}
+            - \scalar{\rvec u}{\rot \rvec v}
+            \\
+            \grad \left( \scalar{\rvec u}{\rvec v} \right)
+             & = (\DD \rvec u) \rvec v
+            + (\DD \rvec v) \rvec u
+            + \rvec v \times \rot \rvec u
+            + \rvec u \times \rot \rvec v
+          \end{align*}
+  \end{itemize}
+\end{blueBox}
+
+\clearpage
+\begin{definition}[Skalárpotenciálosság]
+  Egy $\rvec v: V \rightarrow V$ vektormező skalárpotenciálos, ha létezik olyan
+  $\varphi: V \rightarrow \mathbb R$ skalármező, hogy $\rvec v = \grad \varphi$.
+\end{definition}
+
+\begin{definition}[Vektorpotenciálosság]
+  Egy $\rvec v: V \rightarrow V$ vektormező vektorpotenciálos, ha létezik olyan
+  $\rvec u: V \rightarrow V$ vektormező, hogy $\rvec v = \rot \rvec u$.
+\end{definition}
+
+\begin{theorem}[Örvény- és forrásmentesség]
+  Legyen $\rvec v: V \rightarrow V$ mindenhol értelmezett, legalább egyszer
+  differenciálható vektormező. Ekkor:
+  \begin{itemize}
+    \item $\rvec v$ skalárpotenciálos
+          $\;\Leftrightarrow\;$
+          $\rot \rvec v = \nvec$,
+          hiszen $\rot \grad \varphi \equiv \nvec$,
+          \hfill (\textbf{örvénymentes})
+    \item $\rvec v$ vektorpotenciálos
+          $\;\Leftrightarrow\;$
+          $\Div \rvec v = 0$,
+          hiszen $\Div \rot \rvec u \equiv 0$.
+          \hfill (\textbf{forrásmentes})
+  \end{itemize}
+\end{theorem}
+
+\begin{blueBox}[][nobreak]
+  \sftitle{Potenciálfüggvények számítása:}
+
+  Legyen $\varphi$ skalármező $\rvec v$ vektormező skalárpotenciálja. Ebben
+  az esetben tudjuk, hogy $\rvec v = \grad \varphi$, vagyis
+  $$
+    \rvec v = \left(
+    \pdv{\varphi}{x_1};
+    \pdv{\varphi}{x_2};
+    \dots;
+    \pdv{\varphi}{x_n}
+    \right)^\T
+    \text.
+  $$
+  Ilyen esetben a potenciálfüggvény az alábbi módon számítható:
+  $$
+    \varphi (\coordvec)
+    = \int_0^{x_1} \rvec v(\xi; x_2; \dots; x_n) \dd \xi
+    + \int_0^{x_2} \rvec v(0; \xi; \dots; x_n) \dd \xi
+    + \dots
+    + \int_0^{x_n} \rvec v(0; 0; \dots; \xi) \dd \xi
+    \text.
+  $$
+  Legyen $\rvec u$ vektormező $\rvec v$ vektormező vektorpotenciálja.
+  A potenciál számtalan alakban előállhat, ezért keressük ezt az alábbi alakban:
+  $$
+    \rvec u = \left( u_x; u_y; 0 \right)^\T
+  $$
+  A potenciál komponensei az alábbi módon számíthatóak:
+  $$
+    u_x = \int_0^z v_y(x; y; \zeta) \dd \zeta
+    \text,
+    \qquad
+    u_y = \int_0^x v_z(\xi; y; 0) \dd \xi
+    - \int_0^z v_x(x; y; \zeta) \dd \zeta
+    \text.
+  $$
+\end{blueBox}
 
 \clearpage
 \subsection{Feladatok}
 
 \begin{enumerate}
-  \item
+  \item Számítsa ki az alábbi skalármezők gradiensét! Hattassa a függvényekre a
+        Laplace-operátort is!
+        \begin{enumerate}
+          \item $\varphi(\coordvec) = 6x^y + \sin e^z$
+          \item $\psi(\coordvec) = \coordvec^2 / 2$
+          \item $\chi(\coordvec) = xy + xz + yz$
+          \item $\omega(\coordvec) = 2 x^2 y + x z^2 + 6 y$
+        \end{enumerate}
+
+  \item Számítsa ki az alábbi vektormezők divergenciáját és rotációját!
+        Hol lesznek forrás- mentesek, illetve örvénymentesek?
+        \begin{enumerate}
+          \item $\rvec v(\coordvec) = \coordvec$
+          \item $\rvec w(\coordvec) = \ijk{3xy + z^2}{6 e^z}{-5 x^y}$
+          \item $\rvec u(\coordvec) = \ijk{\ln(xy / z)}{\ln(yz / x)}{\ln(zx / y)}$
+          \item $\rvec s(\coordvec) = \rvec a \| \coordvec \| + \| \rvec a \| \coordvec$
+                \hfill ($\rvec a \in \Reals^3$)
+        \end{enumerate}
+
+  \item Bizonyítsa be a következő azonosságokat, amennyiben $\varphi, \psi$
+        skalármezők, $\rvec v, \rvec w$ pedig vektormezők!
+        \begin{enumerate}
+          \item $\rot \grad \varPhi \equiv \nvec$
+          \item $\Div \rot \rvec v \equiv 0$
+          \item $\grad (\varPhi \varPsi) = \varPhi \grad \varPsi + \varPsi \grad \varPhi$
+          \item $\Delta (\varPhi \varPsi) = (\Delta \varPhi) \varPsi + 2 \scalar{\grad \varPhi}{\grad \varPsi} + \varPsi (\Delta \varPhi)$
+          \item $\Div (\varPhi \rvec v) = \scalar{\grad \varPhi}{\rvec v} + \varPhi \Div \rvec v$
+          \item $\Div (\rvec v \times \rvec w) = \scalar{\rot \rvec v}{\rvec w} - \scalar{\rvec v}{\rot \rvec w}$
+        \end{enumerate}
+
+  \item Vizsgálja meg, hogy az alábbi vektormezők skalár- illetve
+        vektorpotenciálisak-e! Ha igen, adja meg a potenciálfüggvényeket!
+        A valós konsztansokat legyenek zérusak, valamint a vektorpotenciált --
+        amennyiben létezik -- olyan módon adja meg, hogy a harmadik komponense
+        zérus legyen.
+        \begin{enumerate}
+          \item $\rvec v(\coordvec) = \ijk{y + z}{x + z}{x + y}$
+          \item $\rvec w(\coordvec) = \ijk{e^{x + \sin y}}{e^{x + \sin y} \cos y}{0}$
+          \item $\rvec u(\coordvec) = \ijk{2zx^3}{3z}{-3x^2z^2}$
+        \end{enumerate}
 \end{enumerate}
 
-% \begin{enumerate}
-%   \item Adja meg a $\rvec v(\coordvec) = \coordvec \cdot |\coordvec|^3$ vektorfüggvény
-%         divergenciáját és rotációját! Hattassa a Laplace-operátort
-%         $\operatorname{div} \rvec v$-re!
-
-%   \item Határozza meg a $\rvec v(\coordvec)$ vektormező divergenciáját, illetve
-%         rotációját!
-%         $$
-%           \rvec v(\coordvec) = \begin{bmatrix}
-%             \ln(\sfrac{xy}{z}) \\
-%             \ln(\sfrac{yz}{x}) \\
-%             \ln(\sfrac{zx}{y}) \\
-%           \end{bmatrix}
-%         $$
-
-%   \item Igazolja, hogy tetszőleges Joung-tételt kielégítő vektormező
-%         rotációjának divergenciája a nullvektor, vagyis
-%         $$
-%           \nabla \cdot (\nabla \times \rvec v) \equiv \nvec
-%           \text.
-%         $$
-
-%   \item Igazolja az alábbi azonosságot, amennyiben $f$ tetszőleges skalár-,
-%         $\rvec v$ pedig tetszőleges vektormező:
-%         $$
-%           \nabla \cdot (f \cdot \rvec v)
-%           = f \cdot (\nabla \cdot \rvec v)
-%           + \nabla f \cdot \rvec v
-%           \text.
-%         $$
-% \end{enumerate}
 \end{document}
