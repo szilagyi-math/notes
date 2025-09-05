@@ -21,6 +21,9 @@ export const generateStaticParams = async () => {
     {
       subjectCode: 'G2',
     },
+    {
+      subjectCode: 'G3',
+    },
   ];
 };
 
