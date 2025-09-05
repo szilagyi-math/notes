@@ -1,0 +1,397 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+
+\title{Görbementi integrálok}
+\area{Többváltozós analízis}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{4}
+
+\begin{document}
+\allowdisplaybreaks
+
+\maketitle
+
+\subsection{Elméleti áttekintő}
+
+\begin{definition}[Reguláris görbe]
+  Legyen $I \subset \mathbb R$ nem feltétlenül korlátos intervallum. Ekkor az
+  $\rvec r : I \rightarrow \mathbb R^3$ immerziót reguláris görbének nevezzük.
+\end{definition}
+
+\begin{definition}[Pályasebesség, Ívhossz]
+  A $v: I \rightarrow \mathbb R$, $t \mapsto \norma{\dot{\rvec r}(t)}$
+  függvényt pályasebességnek hívjuk.
+
+  A pályasebesség $I$ feletti integrálját a görbe ívhosszának nevezzük:
+  $$
+    L(\rvec r) = \int_I \norma{\dot{\rvec r}(t)} \dd t
+    \text.
+  $$
+\end{definition}
+
+\begin{definition}[Irányított görbe]
+  Egy $\rvec r: [a;b] \rightarrow \mathbb R^3$ görbe irányított, ha adott egy
+  rendezés ($\leq$) a paraméterértékeken. Ekkor $t_1 < t_2$ esetén
+  $\rvec r(t_1)$ a görbe korábbi pontja, $\rvec r(t_2)$-höz képest. Ha
+  $\rvec r(a) = \rvec r(b)$, akkor a görbe zárt.
+\end{definition}
+
+\begin{definition}[Skalármező görbe menti skalárértékű integrálja]
+  Legyen $\varphi: U \subseteq \mathbb R^3 \rightarrow \mathbb R$ leképezés,
+  $\rvec r: [a;b] \rightarrow \gamma \subset U, t \mapsto \rvec r(t)$ pedig a
+  $\gamma$ görbe parametrizált egyenlete. Ekkor az $\varphi$ skalármező $\gamma$
+  görbe menti skalárértékű integrálja:
+  $$
+    \int_\gamma \varphi(\rvec r) \dd s =
+    \int_a^b \varphi(\rvec r(t)) \norma{\dot{\rvec r}(t)} \dd t
+    \text.
+  $$
+\end{definition}
+
+\begin{definition}[Vektormező görbe menti skalár- és vektorértékű integrálja]
+  Legyen $\rvec v: U \subseteq \mathbb R^3 \rightarrow \mathbb R^3$ vektormező,
+  $\rvec r: [a;b] \rightarrow \gamma \subset U, t \mapsto \rvec r(t)$ pedig a
+  $\gamma$ görbe parametrizált egyenlete. Ekkor az $\rvec v$ vektormező $\gamma$
+  görbe menti
+  \begin{itemize}
+    \item skalárértékű integrálja:
+          $\displaystyle
+            \int_\gamma \scalar{\rvec v(\rvec r)}{\dd \rvec r} =
+            \int_a^b \scalar{\rvec v(\rvec r(t))}{\dot{\rvec r}(t)} \dd t
+            \text,
+          $
+    \item vektorértékű integrálja:
+          $\displaystyle
+            \int_\gamma \rvec v(\rvec r) \times \dd \rvec r =
+            \int_a^b \rvec v(\rvec r(t)) \times \dot{\rvec r}(t) \dd t
+            \text.
+          $
+  \end{itemize}
+\end{definition}
+
+\clearpage
+\subsection{Feladatok}
+
+\clearpage
+\subsection{Segédlet}
+
+\subsubsection{Görbék paraméterezése}
+
+\begin{tabular}{
+  >{\bullet\;\bfseries}p{2.5cm}<{:}
+  p{5cm}
+  p{2.75cm}
+  >{\centering\arraybackslash}m{4cm}
+  }
+  Egyenes
+   & $\rvec r(t) = \rvec r_0 + t \rvec v$
+   & $t \in \mathbb R$
+   & \begin{tikzpicture}[
+         3d view={110}{20},
+         baseline,
+       ]
+       % Origin coordinate
+       \coordinate (O) at (0,0,0);
+
+       % Coordinate system
+       \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south] {$x$};
+       \draw[-to] (O) -- ++(0,1.75,0) node[anchor=north east] {$y$};
+       \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north west] {$z$};
+
+       % Line
+       \draw[to-to, thick, primaryColor]
+       (2,-0.75,1.25) -- ++(-1,3,0.75)
+       coordinate[pos=.2] (A)
+       coordinate[pos=.8] (B)
+       ;
+
+       % v vector
+       \draw[-to, draw=ternaryColor, ultra thick]
+       (A) -- (B)
+       node[anchor=north east] {$\rvec v$}
+       ;
+
+       % r_0 vector
+       \draw[-to, draw=secondaryColor, ultra thick]
+       (O) -- (A)
+       node[anchor=south] {$\rvec r_0$}
+       ;
+     \end{tikzpicture}
+  \\[14mm]
+  Szakasz
+   & $\rvec r(t) = \rvec r_0 + t (\rvec r_1 - \rvec r_0)$
+   & $t \in [0;1]$
+   & \begin{tikzpicture}[
+         3d view={110}{20},
+         baseline,
+       ]
+       % Origin coordinate
+       \coordinate (O) at (0,0,0);
+
+       % Coordinate system
+       \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south] {$x$};
+       \draw[-to] (O) -- ++(0,1.75,0) node[anchor=north east] {$y$};
+       \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north west] {$z$};
+
+       % Line segment
+       \draw[|-|, thick, red-base]
+       (2,-0.75,1.25) coordinate (A) -- ++(-1,3,0.75) coordinate (B)
+       ;
+
+       % r_0 vector
+       \draw[-to, draw=yellow-base, ultra thick]
+       (O) -- (A)
+       node[anchor=south west] {$\rvec r_0$}
+       ;
+
+       % r_1 vector
+       \draw[-to, draw=blue-base, ultra thick]
+       (O) -- (B)
+       node[anchor=south east] {$\rvec r_1$}
+       ;
+     \end{tikzpicture}
+
+  \\[14mm]
+  Körvonal
+   & $\rvec r(t) = \begin{bmatrix} r \cos t \\ r \sin t \\ 0 \end{bmatrix}$
+   & $t \in [0;2\pi]$
+   & \begin{tikzpicture}[
+         3d view={110}{20},
+         baseline,
+       ]
+       % Origin coordinate
+       \coordinate (O) at (0,0,0);
+
+       % Circle
+       \draw[draw=red-base, thick] (O) circle (1);
+
+       % Coordinate system
+       \draw[-to] (O) -- ++(1.75,0,0) node[anchor=west] {$x$};
+       \draw[-to] (O) -- ++(0,1.75,0) node[anchor=south east] {$y$};
+       \draw[-to] (O) -- ++(0,0,1.25) node[anchor=north east] {$z$};
+
+       % Radius
+       \draw[-to, thick, draw=blue-base]
+       (O) -- (0.6*1.75,0.8*1.75,0) -- (0.6,0.8,0)
+       node[midway, anchor=north east, inner sep=.5mm, font=\scriptsize] {$r$};
+     \end{tikzpicture}
+  \\[14mm]
+  Ellipszis
+   & $\rvec r(t) = \begin{bmatrix} a \cos t \\ b \sin t \\ 0 \end{bmatrix}$
+   & $t \in [0;2\pi]$
+   & \begin{tikzpicture}[
+         3d view={110}{20},
+         baseline,
+       ]
+       % Origin coordinate
+       \coordinate (O) at (0,0,0);
+
+       % Ellipsis
+       \draw[draw=red-base, thick] (O) ellipse (1.4 and .8);
+
+       % Coordinate system
+       \draw[-to] (O) -- ++(2.20,0,0) node[anchor=west] {$x$};
+       \draw[-to] (O) -- ++(0,1.50,0) node[anchor=south east] {$y$};
+       \draw[-to] (O) -- ++(0,0,1.25) node[anchor=north east] {$z$};
+
+       % Half axes
+       \begin{scope}[font=\scriptsize]
+      \node at (0.7,0,0) [anchor=south east, inner sep=.5mm] {$a$};
+      \node at (0,0.4,0) [anchor=south, inner sep=.5mm] {$b$};
+    \end{scope}
+
+       \draw[to-to, thick, draw=blue-base] (O) -- (1.4,0,0);
+       \draw[to-to, thick, draw=blue-base] (O) -- (0,0.8,0);
+     \end{tikzpicture}
+  \\[14mm]
+  Spirál
+   & $\rvec r(t) = \begin{bmatrix} a \cos t \\ a \sin t \\ bt \end{bmatrix}$
+   & $t \in \mathbb R$
+   & \begin{tikzpicture}[
+         3d view={110}{20},
+         baseline,
+       ]
+       % Origin coordinate
+       \coordinate (O) at (0,0,0);
+
+       % Coordinate system
+       \draw[-to] (O) -- ++(1.75,0,0) node[anchor=west] {$x$};
+       \draw[-to] (O) -- ++(0,1.75,0) node[anchor=south east] {$y$};
+       \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north east] {$z$};
+
+       \draw[%
+         domain=0:866,% 2.5 revolutions
+         samples=100, % More samples -> smoother curve
+         smooth,      % Nicer curve
+         variable=\t, % Use \t because of convention
+         thick,
+         red-base,
+       ] plot (
+       {cos(\t)},
+       {sin(\t)},
+       {\t/900}
+       );
+
+       \begin{scope}[font=\scriptsize]
+      \draw[thick, draw=blue-base, inner sep=1mm]
+      (O) -- (1,0,0)
+      node[anchor=west, pos=.6] {$a$};
+
+      \draw[thick, draw=blue-base, inner sep=0.5mm]
+      (1,0,0) -- ++(0,0,1/2.5)
+      node[anchor=east, pos=.5] {$b$};
+    \end{scope}
+     \end{tikzpicture}
+\end{tabular}
+
+\subsubsection{Koordináta-transzformációk}
+
+\def\arraystretch{1.1}
+\begin{tabular}{
+  >{\bullet\;}
+  m{2.15cm}
+  m{3.15cm}
+  m{2.25cm}
+  m{2.25cm}
+  >{\centering\arraybackslash}m{4cm}
+  }
+  \textbf{Polár:}
+   & $x = r \cos \varphi$ \newline
+  $y = r \sin \varphi$
+   & $r \in [0; R]$ \newline
+  $\varphi \in [0; 2\pi)$
+   & $|\rmat J| = r$
+   & \begin{tikzpicture}
+           % Coordinate system
+           \draw[-to] (-1.2,0) -- (1.5,0) node[anchor=north east] {$x$};
+           \draw[-to] (0,-0.5) -- (0,1.4) node[anchor=north west] {$y$};
+
+           % Radius
+           \draw[-to, thick, draw=red-base]
+           (0,0) -- (125:1.5) coordinate(c)
+           node[anchor=north east, midway, inner sep=2pt] {$r$}
+           ;
+
+           % Radius
+           % \draw [decorate, decoration={brace}, draw=blue-base, thick]
+           % (-.75mm,-.75mm) -- ++(c)
+           % node[below left, midway] {$r$};
+
+           % Angle helpers
+           \coordinate (a) at (1,0);
+           \coordinate (b) at (0,0);
+
+           % Angle
+           \draw pic[
+                 "$\varphi$",
+                 draw=yellow-base,
+                 angle eccentricity=.5,
+                 angle radius=7mm,
+                 thick,
+                 ->,
+               ] {angle=a--b--c};
+         \end{tikzpicture}
+  \\[12mm]
+    \textbf{Henger:}
+   & $x = r \cos \varphi$ \newline
+  $y = r \sin \varphi$ \newline
+  $z = z$
+   & $r \in [0; R]$ \newline
+  $\varphi \in [0; 2\pi]$ \newline
+  $z \in \mathbb R$
+   & $|\rmat J| = r$
+   & \tdplotsetmaincoords{70}{110}
+    \begin{tikzpicture}[
+        % 3d view={110}{20},
+        baseline,
+        tdplot_main_coords,
+      ]
+      % Origin coordinate
+      \coordinate (O) at (0,0,0);
+
+      % Coordinate system
+      \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south] {$x$};
+      \draw[-to] (O) -- ++(0,1.75,0) node[anchor=north east] {$y$};
+      \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north west] {$z$};
+
+      % Helper coordinates
+      \coordinate (T) at (0.8,1.2,0);
+
+      % r and z
+      \draw[-to, thick, draw=blue-base]
+      (T) -- ++(0,0,1)
+      node[anchor=north west] {$z$};
+      \draw[-to, thick, draw=red-base]
+      (O) -- (T)
+      node[anchor=south west, pos=.4, fill=white, inner sep=2pt] {$r$};
+
+      \tdplotdrawarc[yellow-base, thick, -to]
+      {(O)}{1.2}{0}{56}
+      {anchor=south east,font=\scriptsize, inner sep=2pt, black}{$\varphi$};
+    \end{tikzpicture}
+  \\[12mm]
+    \textbf{Gömb:}
+   & $x = r \sin \varphi \cos \vartheta $ \newline
+  $y = r \sin \varphi \sin \vartheta $ \newline
+  $z = r \cos \varphi$
+   & $r \in [0; R]$ \newline
+  $\varphi \in [0; \pi]$ \newline
+  $\vartheta \in [0; 2\pi]$
+   & $|\rmat J| = r^2 \sin \varphi$
+   & \tdplotsetmaincoords{55}{110}
+  \begin{tikzpicture}[
+      % 3d view={130}{35.26},
+      baseline,
+      tdplot_main_coords,
+    ]
+    % Origin coordinate
+    \coordinate (O) at (0,0,0);
+    \def\s{1.25}
+
+    % Coordinate system
+    \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south] {$x$};
+    \draw[-to] (O) -- ++(0,1.75,0) node[anchor=south] {$y$};
+    \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north west] {$z$};
+
+    % Helper square
+    \draw[gray,dashed]
+    (\s,\s,0) coordinate(A) --
+    (0,\s,0) coordinate(B) --
+    (0,\s,\s) coordinate(C) --
+    (\s,\s,\s) coordinate(c) --
+    cycle
+    ;
+
+    % Helper lines
+    \draw[gray]
+    (O) -- (C)
+    (O) -- (A)
+    ;
+
+    % r
+    \draw[thick,draw=red-base,-to]
+    (O) -- ++(\s,\s,\s)
+    node[pos=.5, anchor=south west, font=\scriptsize, inner sep=2pt]{$r$};
+
+    % phi
+    \tdplotgetpolarcoords{0.001}{1}{1}
+    \tdplotsetthetaplanecoords{\tdplotresphi}
+
+    \tdplotdrawarc[tdplot_rotated_coords, blue-base, thick, -to]
+    {(O)}{1}{0}{45}
+    {anchor=north east,font=\scriptsize, inner sep=2pt, black}{$\varphi$}
+
+    % theta
+    \tdplotdrawarc[yellow-base, thick, -to]
+    {(O)}{1}{0}{45}
+    {anchor=south,font=\scriptsize, inner sep=2pt, black}{$\vartheta$};
+  \end{tikzpicture}
+  \\
+\end{tabular}
+
+
+\end{document}
+

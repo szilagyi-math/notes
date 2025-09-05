@@ -1,0 +1,208 @@
+
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage{math-practice}
+
+\area{Vektoranalízis}
+\title{Operátorok}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{1}
+
+\begin{document}
+\maketitle
+
+\subsection{Elméleti Áttekintő}
+
+\begin{definition}[Nabla -- operátor]
+  Az $\mathbb R^n$-beli Descartes koordináta-rendszerben, ahol $\rvec x = (x_1;
+    x_2; \dots; x_n)$ egy tetszőleges pont koordinátái, a standard bázis pedig
+  $\{ \uvec e_1; \uvec e_2; \dots; \uvec e_n \}$ a Nabla egy olyan formális
+  differenciáloperátor, melynek koordinátái a parciális derivált operátorok,
+  vagyis:
+  $$
+    \nabla = \sum_{i = 1}^n \uvec e_i \pdv{}{x_i}
+    =
+    \begin{pmatrix}
+      \displaystyle\pdv{}{x_1} &
+      \displaystyle\pdv{}{x_2} &
+      \hdots                   &
+      \displaystyle\pdv{}{x_n}
+    \end{pmatrix}^\T
+    \text.
+  $$
+  % A három dimenziós térben az operátor az alábbi alakot veszi fel:
+  % $$
+  %   \nabla = \begin{pmatrix}
+  %     \displaystyle\pdv{}{x} &
+  %     \displaystyle\pdv{}{y} &
+  %     \displaystyle\pdv{}{z}
+  %   \end{pmatrix}^\T
+  %   \text.
+  % $$
+\end{definition}
+
+\begin{blueBox}
+  \sftitle{Differenciáloperátorok:}
+
+  Legyen $\rvec v(\rvec r) : \mathbb R^3 \to \mathbb R^3$ vektormező,
+  $\varphi(\rvec r): \mathbb R^3 \to \mathbb R$ skalármező, ahol
+  $\rvec r$ az $\mathbb R^3$-beli Descartes koordináta-rendszerben
+  $\rvec r = (x; y; z)$.
+  \begin{center}
+    \def\arraystretch{1.5}
+    \newenvironment{bm}{\bgroup\renewcommand*{\arraystretch}{1.1}\begin{bmatrix}}{\end{bmatrix}\egroup}
+    \newcommand{\dspl}[3]{\begin{bm}#1\\#2\\#3\end{bm}}
+    \newcommand\nablavec{\dspl{\partial_x}{\partial_y}{\partial_z}}
+
+    \begin{tabular}{*{3}{>{\centering\arraybackslash}p{3.5cm}}}
+      \def\arraystretch{1}
+      % &
+      \bfseries Rotáció
+       & \bfseries Divergencia
+       & \bfseries Gradiens
+      \\
+      \hline
+      % Jelölés & 
+      $\rot \rvec v$
+       & $\Div \rvec v$
+       & $\grad \varphi$
+      \\
+      % Operátor & 
+      $\nabla \times \rvec v$
+       & $\scalar{\nabla}{\rvec v}$
+       & $\nabla \cdot \varphi$
+      \\
+      % Számítás &
+      $\nablavec \times \dspl{v_x}{v_y}{v_z}$
+       & $\scalar{\nablavec}{\dspl{v_x}{v_y}{v_z}}$
+       & $\dspl{\partial_x \varphi}{\partial_y \varphi}{\partial_z \varphi}$
+      \\
+      % Ért. tart. & 
+      $\mathcal D_{\rvec v} = \mathbb R^3$
+       & $\mathcal D_{\rvec v} = \mathbb R^3$
+       & $\mathcal D_{\varphi} = \mathbb R^3$
+      \\
+      % Ért. készl. &
+      $\mathcal R_{\rvec v} = \mathbb R^3$
+       & $\mathcal R_{\rvec v} = \mathbb R^3$
+       & $\mathcal R_{\varphi} = \mathbb R$
+      \\
+      % Ért. készl. &
+      $\mathcal R_{\rot \rvec v} = \mathbb R^3$
+       & $\mathcal R_{\Div \rvec v} = \mathbb R$
+       & $\mathcal R_{\grad \varphi} = \mathbb R^3$
+      \\
+      % \hline
+    \end{tabular}
+  \end{center}
+\end{blueBox}
+
+\begin{note}
+  Speciális esetek:
+  \begin{itemize}
+    \item ha $\Div \rvec v = 0$, akkor a vektromező forrásmentes,
+    \item ha $\rot \rvec v = \nvec$, akkor a vektromező örvénymentes.
+  \end{itemize}
+\end{note}
+
+\begin{definition}[Laplace -- operátor]
+  A Laplace-operátor egy másodrendű differenciáloperátor az $n$ dimenziós
+  térben. Megadja egy skalármező gradiensének divergenciáját, azaz:
+  \[
+    \triangle \varphi
+    =
+    \scalar{\nabla}{\nabla} \varphi
+    =
+    \Div \grad \varphi
+    \text.
+  \]
+\end{definition}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item Adja meg a $\varphi : \Reals^3 \to \Reals^3$ leképezés mátrixát a
+        standard normális, illetve az $\rvec b_1(1; 0; 0)$, $\rvec b_2(1; 1; 0)$
+        és $\rvec b_3(1; 1; 1)$ vektorok alkotta bázisban. Adja meg a leképezés
+        megterének és képterének dimenzióját is!
+        $$
+          \varphi : \Reals^3 \to \Reals^3
+          \qquad
+          \begin{bmatrix}
+            x \\ y \\ z
+          \end{bmatrix}
+          \mapsto
+          \begin{bmatrix}
+            2x - y \\ y + z \\ y - z
+          \end{bmatrix}
+        $$
+
+  \item Bontsa fel az $\rmat A$ mátrixot szimmetrikus és antiszimmetrikus
+        komponensekre!
+        $$
+          \rmat A = \begin{bmatrix}
+            1 & 1 & 0 \\
+            2 & 2 & 1 \\
+            1 & 4 & 3
+          \end{bmatrix}
+        $$
+
+  \item Adja meg a $\varphi$ és $\psi$ leképezés Jacobi-mátrixát!
+        $$
+          \varphi : \Reals^3 \to \Reals^2
+          \quad
+          \begin{bmatrix}
+            x \\ y \\ z
+          \end{bmatrix}
+          \mapsto
+          \begin{bmatrix}
+            x^2 + z \\ y z^2
+          \end{bmatrix}
+          \qquad\qquad
+          \psi : \Reals^2 \to \Reals^2
+          \quad
+          \begin{bmatrix}
+            x \\ y
+          \end{bmatrix}
+          \mapsto
+          \begin{bmatrix}
+            \sin \ln x^2 y \\ \sqrt{e^{xy} + \tan y}
+          \end{bmatrix}
+        $$
+
+  \item Adja meg az alábbi leképezések gradienseit!
+        ($C \in \Reals$)
+        \begin{multicols}{3}
+          \begin{enumerate}
+            \item $f (\rvec r) = C \cdot \rvec r^2$,
+            \item $g (\rvec r) = |\rvec r|$
+            \item $h (\rvec r) = C \cdot \rvec r$
+          \end{enumerate}
+        \end{multicols}
+
+  \item Adja meg a $\rvec v (\rvec r)$ vektormező divergenciáját és rotációját!
+        Mely halmazokon forrás-, illetve örvénymentes a mező?
+        $$
+          \rvec v(\rvec r)
+          = (x^2 - y^2) \rvec i
+          + (y^2 - z^2) \rvec j
+          + (z^2 - x^2) \rvec k
+        $$
+
+  \item Adja meg az alábbi vektormezők divergenciáját és rotációját!
+        ($C \in \Reals$, $\rvec a \in \Reals^3$)
+        \begin{multicols}{3}
+          \begin{enumerate}
+            \item $\rvec v_1(\rvec r) = C \cdot \rvec r$,
+            \item $\rvec v_2(\rvec r) = \grad |\rvec r|$,
+            \item $\rvec a \cdot \ln |\rvec r|$.
+          \end{enumerate}
+        \end{multicols}
+
+  \item Hattassa a Laplace-operátort a $\rvec v (\rvec r) = |\rvec a| \rvec r +
+          \rvec a |\rvec r|$ vektormezőre! ($\rvec a \in \Reals^3$)
+\end{enumerate}
+\end{document}

@@ -9,7 +9,24 @@ import type { ChangeEvent } from 'react';
 
 interface SubjectsPageProps {}
 
-const items = [
+const items: {
+  title: string;
+  value: string;
+  subjects: (
+    | {
+        name: string;
+        code: string;
+        semester: number;
+        href: string;
+      }
+    | {
+        name: string;
+        code: string;
+        semester: number;
+        href?: undefined;
+      }
+  )[];
+}[] = [
   {
     title: 'Kötelező tárgyak',
     value: 'mandatory',
@@ -30,6 +47,7 @@ const items = [
         name: 'Matematika G3',
         code: 'BMETE94BG03',
         semester: 3,
+        href: '/subjects/G3',
       },
     ],
   },

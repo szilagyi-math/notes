@@ -1,0 +1,290 @@
+\clearpage
+\section{Felületmenti integrál}
+
+\begin{definition}[Reguláris felület]
+  Legyen $\surfimage \subseteq \Reals^3$. Azt mondjuk, hogy az $\surfsign$
+  reguláris felület, ha $\forall \rvec p \in \surfimage$ ponthoz megadható
+  olyan $\rvec p$-t tartalmazó $V \subset \Reals^3$ nyílt halmaz és
+  $\surfsign : \surfdomain \subseteq \Reals^2 \rightarrow \surfimage \cap V$
+  leképezés, melyre teljesülnek az alábbiak:
+  \begin{itemize}
+    \item $\surfsign$ differenciálható homeomorfizmus,
+
+    \item $\surfsign$ immerzió (derivált leképezése injektív).
+  \end{itemize}
+  Ha ezek teljesülnek, akkor $\surfsign$-t parametrációnak,
+  $V \cap \surfimage$-t koordinátakörnyezetnek nevezzük.
+\end{definition}
+
+\begin{definition}[Elemi felület]
+  A $\surfsign: \surfdomain \subseteq \Reals^2 \rightarrow \surfimage \subseteq
+    \Reals^3$ elemi felület, ha $\surfsign$ legalább egyszer differenciálható és
+  injektív.
+\end{definition}
+
+\begin{note}
+  $\partial(\; [a; b] \times [a; b] \;)$ a paramétertartomány pereme.
+
+  A felület irányítható, ha megadható rajta egy differenciálható
+  egységvektormező.
+
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \begin{tikzpicture}[
+        scale=2/3,
+        every pin/.style={
+            fill=yellow!50!white,
+            rectangle,
+            rounded corners=3pt,
+          },
+        small dot/.style={
+            fill=red!60!black,
+            circle,
+            scale=0.4
+          },
+      ]
+      \begin{axis}[
+          view={-45}{45}
+        ]
+        \addplot3[
+          opacity = 0.8,
+          surf,
+          colorbar,
+          colormap/PuBu,
+          shader=interp,
+          domain=-1:1,
+          domain y=-1.3:1.3,
+          samples=10
+        ]{exp(-x^2-y^2)};
+
+        \draw[-to, ultra thick, green!40!magenta] (0,0,1) -- (0,0,1.5);
+        \draw[-to, ultra thick, green!80!magenta] (0,0,1) -- (0,0,0.5);
+
+        \draw[-to, ultra thick, green!40!magenta] (-.25,.25,.88) -- (-.5,0.25,1.4);
+        \draw[-to, ultra thick, green!80!magenta] (-.25,.25,.88) -- (0,0.25,.36);
+
+        \draw[-to, ultra thick, green!40!magenta] (.25,-.25,.88) -- (.5,-.25,1.2);
+        \draw[-to, ultra thick, green!80!magenta] (.25,-.25,.88) -- (0 ,-.25,.56);
+
+        \node [small dot,pin=210:{Belső pont}] at (-0.5, -0.5, 0.6 )  {};
+        \node [small dot,pin=90:{Perempont}]   at (0   , -1.3, 0.18)  {};
+      \end{axis}
+    \end{tikzpicture}
+
+    \sftitle{Irányítás szemléltetése}
+  \end{minipage}\begin{minipage}{.5\textwidth}
+    \centering
+    \begin{tikzpicture}[
+        declare function={f(\x,\y)=exp(-\x^2-\y^2);},
+        scale=2/3,
+      ]
+      \begin{axis}[
+          view={135}{45},
+        ]
+        \addplot3[
+          opacity = 1,
+          surf,
+          colorbar,
+          colormap/PuBu,
+          % shader=interp,
+          domain=-1:1,
+          domain y=-1.3:1.3,
+          samples=14
+        ]{f(x,y)};
+
+        \draw[-to, ultra thick, primaryColor]   (0,0,1) -- (-1,0,.9)
+        node[
+          midway,
+          above left=.2cm and -0.1cm,
+          black,fill=yellow!50!white,
+          rectangle,
+          rounded corners=3pt
+        ] {$\displaystyle\pdv{\surfvec}{s}$};
+
+        \draw[-to, ultra thick, secondaryColor] (0,0,1) -- (0,1,1.1)
+        node[
+          midway,
+          below=.2cm,
+          black,fill=yellow!50!white,
+          rectangle,
+          rounded corners=3pt
+        ] {$\displaystyle\pdv{\surfvec}{t}$};
+        s
+
+        \draw[dotted, ultra thick, primaryColor] (0,1,1.1) -- (-1,1,1);
+        \draw[dotted, ultra thick, yellow!40!magenta] (-1,0,.9) -- (-1,1,1);
+
+        \draw[fill=white!90!yellow,fill opacity=0.6]
+        (0,0,1) -- (-1,0,.9) -- (-1,1,1) -- (0,1,1.1) -- cycle
+        node [above right=-0.2cm and 1.2cm, opacity=1] {$A$};
+      \end{axis}
+    \end{tikzpicture}
+
+    \sftitle{Elemi felület}
+  \end{minipage}
+\end{note}
+
+\begin{definition}[Skalármező skalárértékű felületmenti integrálja][nobreak]
+  Legyen $\varphi: \Reals^3 \rightarrow \Reals$ skalármező, $\surfsign:
+    \surfdomain \subseteq \Reals^2 \rightarrow \surfimage \subseteq \Reals^3$.
+  Ekkor finomítsuk minden határon túl a
+  $$
+    \sum_i \varphi \left( \xi_i; \eta_i; \zeta_i \right) \Delta \surfscalar_i
+  $$
+  összeget:
+  $$
+    \int_{\surfimage} \varphi(\coordvec) \dd \surfscalar
+    \text.
+  $$
+  Számítása:
+  \begin{gather*}
+    \iint_{\surfdomain} \varphi(\surfsign(s; t)) \norma{
+      \pdv{\surfsign}{s}
+      \times
+      \pdv{\surfsign}{t}
+    } \dd s \dd t
+    \quad \rightarrow \quad
+    \text{ha a felület paraméterezve van,}
+    \\
+    \iint_{\surfdomain} \varphi(x; y; \varPhi(x; y)) \sqrt{
+      1
+      + \left( \partial_x \varPhi \right)^2
+      + \left( \partial_y \varPhi \right)^2
+    } \dd x \dd y
+    \quad \rightarrow \quad
+    \text{ha } z=\varPhi(x; y) \text{ alakban van.}
+  \end{gather*}
+\end{definition}
+
+\begin{example}
+  Integráljuk a $\varphi(\coordvec) = x^2 + y^2$ skalármezőt az egységgömb
+  $z > 0$ részén!
+
+  \boxrule
+
+  Az egységgömb paraméterezése:
+  $$
+    \surfsign(s;t) = \begin{bmatrix}
+      \sin s \cos t \\
+      \sin s \sin t \\
+      \cos s
+    \end{bmatrix}
+    \text,
+    \qquad
+    s \in \left[0; \pi/2\right]
+    \text,
+    \qquad
+    t \in [0; 2\pi]
+    \text,
+    \qquad
+    \rvec n = \norma{\pdv{\surfsign}{s} \times \pdv{\surfsign}{t}} = \sin s
+    \text.
+  $$
+  A skalármező átparaméterezése:
+  $$
+    \varphi(\surfsign(s; t)) = \sin^2 s \cos^2 t + \sin^2 s \sin^2 t = \sin^2 s
+    \text.
+  $$
+  Az integrál kiszámítása:
+  \begin{align*}
+    \int_{\surfimage} \varphi \dd \surfscalar
+     & = \int_0^{\pi/2} \int_0^{2\pi} \sin^2 s \sin s \dd t \dd s
+    = 2\pi \int_0^{\pi/2} (1 - \cos^2 s) \sin s \dd s
+    \\
+     & = 2\pi \int_{0}^{1} (1 - u^2) \dd u
+    = 2\pi \left[ u - \frac{u^3}{3} \right]_{0}^{1}
+    = \frac{4\pi}{3}
+    \text.
+  \end{align*}
+\end{example}
+
+\begin{definition}[Skalármező vektorértékű felületmenti integrálja]
+  Felület implicit megadása esetén $\left( z = \varPhi(x; y) \right)$:
+  $$
+    \int_{\surfimage} \varphi(\coordvec) \dd \surfvec
+    =
+    \iint \varphi(x; y; \varPhi(x; y))
+    \begin{bmatrix}
+      \pm \partial_x \varPhi \\
+      \pm \partial_y \varPhi \\
+      \mp 1
+    \end{bmatrix}
+    \dd x \dd y
+  $$
+\end{definition}
+
+\begin{definition}[Vektormező skalárértékű felületmenti integrálja]
+  \begin{minipage}{.375\textwidth}
+    \centering
+    \begin{tikzpicture}[
+        declare function={f(\x,\y)=exp(-\x^2-\y^2);},
+        scale=4/7,
+      ]
+      \begin{axis}[
+          view={100}{45},
+          axis lines=none,
+        ]
+        \addplot3[
+          opacity = 1,
+          surf,
+          colorbar,
+          colormap/PuBu,
+          % shader=interp,
+          domain=-1:1,
+          domain y=-1.3:1.3,
+          samples=12
+        ]{f(x,y)};
+
+        \draw[-to, ultra thick, green!40!magenta]   (0,0,1) -- (0,0,1.6)
+        node[
+          midway,
+          left=.2cm,
+          black,fill=yellow!50!white,
+          rectangle,
+          rounded corners=3pt
+        ] {$\rvec n_i$};
+
+        \draw[-to, ultra thick, yellow!40!magenta] (0,0,1) -- (-.33,1.33,1.2)
+        node[
+          midway,
+          below=.2cm,
+          black,fill=yellow!50!white,
+          rectangle,
+          rounded corners=3pt
+        ] {$\rvec v_i$};
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}\begin{minipage}{.625\textwidth}
+    $$
+      \rvec v: \Reals^3 \rightarrow \Reals^3
+      \quad
+      \surfsign: \surfdomain \subset \Reals^2 \rightarrow \surfimage \subset \Reals^3
+    $$
+    Finomítsuk minden határon túl a
+    $
+      \sum_i \scalar{\rvec v_i}{\rvec n_i}
+    $
+    összeget:
+    $$
+      \int_{\surfimage} \scalar{\rvec v(\coordvec)}{\dd \rvec S}
+      =
+      \iint_{\surfdomain} \scalar{
+        \rvec v(\surfsign(s; t))
+      }{
+        \norma{\pdv{\surfsign}{s} \times \pdv{\surfsign}{t}}
+      }
+      \text,
+    $$
+    ahol $\dd \surfvec = \uvec n \dd \surfscalar$.
+  \end{minipage}
+\end{definition}
+
+\begin{definition}[Vektormező vektorértékű felületmenti integrálja]
+  $$
+    \int_{\surfimage} \rvec v(\coordvec) \times \dd \rvec S
+    =
+    \iint_{\surfdomain} \rvec v(\surfsign(s; t)) \times \left(
+    \pdv{\surfsign}{s} \times \pdv{\surfsign}{t}
+    \right) \dd s \dd t
+  $$
+\end{definition}

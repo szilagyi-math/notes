@@ -1,0 +1,126 @@
+\clearpage
+\section{Integrálátalakító tételek}
+
+\begin{theorem}[Stokes-tétel]
+  Legyen $\surfsign: \surfdomain\subset\Reals^2 \to \surfimage \subset \Reals^3$
+  irányított, parametrizált, elemi felület. Legyen továbbá $\rvec v : \Reals^3
+    \to \Reals^3$ legalább egyszer folytonosan differenciálható vektormező.
+  Jelölje az $\curvesign: \curvedomain\subset\Reals \to \partial\surfimage =
+    \curveimage$ a $\surfsign$ peremét indukált, jobbézszabály szerinti
+  irányítással. Ekkor:
+  $$
+    \iint_{\surfimage} \scalar{\rot \rvec v}{\dd \surfvec}
+    =
+    \oint_{\partial \surfimage} \scalar{\rvec v}{\dd \curvevec}
+    \text.
+  $$
+\end{theorem}
+
+\begin{note}
+  Ha $\rvec v$ skalárpotenciálos, akkor az integrál értéke zérus, hiszen
+  $\rot \rvec v = \rot \grad \varphi = \rvec 0$.
+\end{note}
+
+\begin{definition}[Elemi tértartomány]
+  $\volsign: \voldomain \subset \Reals^3 \rightarrow \volimage \subset \Reals^3$
+  elemi tértartomány, ha legalább egyszer folytonosan differenciálható
+  leképezés. Ekkor
+  $$
+    \det \left( \DD \volsign(r; s; t) \right)
+    = \norma{
+      \frac{\partial \volsign(r; s; t)}{\partial r \, \partial s \, \partial t}
+    } \neq 0
+    \text.
+  $$
+\end{definition}
+
+\begin{definition}[Térfogat]
+  Készítsünk egy olyan beleírt ($c_i$) és körülírt ($C_i$) kockarendszert,
+  melyekre igaz, hogy $c_i \cap c_j$ csak lap, él, vagy csúcs lehet. Ekkor
+  fennáll, hogy:
+  $$
+    \bigcup_i c_i
+    \subset \volimage \subset
+    \bigcup_j C_j
+    \text.
+  $$
+  Finomítsuk minden határon túl ezeket a kockarendszereket. Ha ezek közös
+  határértékhez tartanak, akkor:
+  $$
+    \operatorname{Vol} \volimage
+    = \iiint_{\volimage} \dd \volscalar
+    = \iiint_{\volimage} \left|
+    \det \left( \DD \volsign(r; s; t) \right)
+    \right|
+    \dd r \dd s \dd t
+    \text.
+  $$
+\end{definition}
+
+\begin{note}
+  Pozitív az irányítás, ha $\det \DD \volimage > 0$.
+\end{note}
+
+\begin{definition}[Skalármező térfogaton vett skalárértékű integrálja][nobreak]
+  Legyen $\volsign: \voldomain \subset \Reals^3 \rightarrow \volimage \subset
+    \Reals^3$ irányított, parametrizált, elemi tértartomány. Legyen továbbá
+  $\varphi : \Reals^3 \rightarrow \Reals$ folytonos skalármező.
+  Ekkor a $\varphi$ térfogaton vett integrálja:
+  $$
+    \iiint_{\volimage} \varphi \dd \volscalar
+    = \iiint_{\voldomain} \varphi \left( \volsign(r; s; t) \right)
+    \det \left( \DD \volsign(r; s; t) \right)
+    \dd r \dd s \dd t
+    \text.
+  $$
+\end{definition}
+
+\begin{theorem}[Gauss-Osztogradszkij-tétel]
+  Legyen $\volsign: \voldomain \subset \Reals^3 \rightarrow \volimage \subset
+    \Reals^3$, irányított,parametrizált tértartomány. Legyen továbbá $\rvec v:
+    \Reals^3 \rightarrow \Reals^3$ legalább egyszer folytonosan
+  differenciálható vektormező. Jelölje a $\partial \volimage =
+    \surfimage$ az $\volsign$ peremét indukált irányítással. Ekkor:
+  $$
+    \iiint_{\volimage} \Div \rvec v \dd \volscalar
+    =
+    \oiint_{\partial \volimage} \scalar{\rvec v}{\dd \surfvec}
+    \text.
+  $$
+\end{theorem}
+
+\begin{note}
+  Ha $\rvec v$ vektorpotenciálos, akkor az integrál értéke zérus, hiszen
+  $\Div \rvec v = \Div \rot \rvec u = 0$.
+\end{note}
+
+\begin{theorem}[Green-tétel asszimetrikus alakja]
+  Legyenek $\varphi; \psi: \mathbb R^3 \rightarrow \mathbb R$ kétszeresen
+  folytonos skalármezők, $\volimage \subset \mathbb R^3$ parametrizált,
+  irányított tértartomány, $\partial \volimage = \surfimage$ perem indukált
+  irányítással. Ekkor:
+  $$
+    \iiint_{\volimage}
+    \psi \, \Delta \varphi +
+    \scalar{\grad \psi}{\grad \varphi}
+    \dd \volscalar
+    =
+    \oiint_{\partial \volimage} \scalar{\psi \grad \varphi}{\dd \surfvec}
+    \text.
+  $$
+\end{theorem}
+
+\begin{theorem}[Green-tétel szimmetrikus alakja]
+  Legyenek $\varphi; \psi: \mathbb R^3 \rightarrow \mathbb R$ kétszeresen
+  folytonos skalármezők, $\volimage \subset \mathbb R^3$ parametrizált,
+  irányított tértartomány, $\partial \volimage = \surfimage$ perem indukált
+  irányítással. Ekkor:
+  $$
+    \iiint_{\volimage}
+    \psi \, \Delta \varphi + \varphi \, \Delta \psi
+    \; \dd \volscalar
+    =
+    \oiint_{\partial \volimage}
+    \scalar{\psi \grad \varphi - \varphi \grad \psi}{\dd \surfvec}
+  $$
+\end{theorem}

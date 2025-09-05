@@ -1,0 +1,60 @@
+\documentclass{szb-book}
+
+\includeonly{
+  % Frontmatter
+  % 00-frontmatter/00-title,%
+  % Mainmatter
+  01-vector-analysis/00-title,%
+  01-vector-analysis/01-repeat,%
+  01-vector-analysis/02-basics,%
+  01-vector-analysis/03-linear-maps,%
+  01-vector-analysis/04-operators,%
+  01-vector-analysis/05-line-integrals,%
+  01-vector-analysis/06-surface-integrals,%
+  01-vector-analysis/07-integral-theorems,%
+  % 02-diffeqs/00-title,%
+  % 02-diffeqs/01-introduction,%
+  % 02-diffeqs/02-separable,%
+  % 02-diffeqs/04-first-otder-linear,%
+  % 02-diffeqs/05-bernoulli,%
+  % 02-diffeqs/06-ricatti,%
+  % 02-diffeqs/07-exact,%
+}
+
+\newcommand{\circled}[2]{\tikz[baseline=(char.base)]{
+  \node[shape=circle,draw,inner sep=1pt, thick, #2]
+  (char) {#1};
+}}
+\newcommand{\rected}[2]{\tikz[baseline=(char.base)]{
+  \node[shape=rectangle,draw,inner sep=2pt, thick, #2]
+  (char) {{\color{black}#1}};
+}}
+
+\begin{document}
+
+\allowdisplaybreaks
+
+\frontmatter
+
+\include{00-frontmatter/00-title}
+
+\mainmatter
+
+\include{01-vector-analysis/00-title}
+\include{01-vector-analysis/01-repeat}
+\include{01-vector-analysis/02-basics}
+\include{01-vector-analysis/03-linear-maps}
+\include{01-vector-analysis/04-operators}
+\include{01-vector-analysis/05-line-integrals}
+\include{01-vector-analysis/06-surface-integrals}
+\include{01-vector-analysis/07-integral-theorems}
+
+\include{02-diffeqs/00-title}
+\include{02-diffeqs/01-introduction}
+\include{02-diffeqs/02-separable}
+\include{02-diffeqs/03-first-otder-linear}
+\include{02-diffeqs/04-bernoulli}
+\include{02-diffeqs/05-ricatti}
+\include{02-diffeqs/06-exact}
+
+\end{document}

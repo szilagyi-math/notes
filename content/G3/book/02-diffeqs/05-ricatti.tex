@@ -1,0 +1,167 @@
+\clearpage
+\section{Ricatti-féle differenciálegyenletek}
+
+\begin{definition}[Ricatti-féle differenciálegyenletek]
+  A Ricatti-típusú diffegyenletek elsőrendű, másodfokú, nemlineáris egyenletek,
+  amelyek az alábbi alakban írhatóak fel:
+  $$
+    y'(x) + p(x)y(x) = q(x)y^2(x) + h(x)
+    \text.
+  $$
+\end{definition}
+
+\begin{note}
+  Ha $q(x) = 0$, akkor a Ricatti-egyenlet lineáris.
+
+  Ha $h(x) = 0$, akkor Bernoulli-típusú egyenletet kapunk.
+\end{note}
+
+\begin{blueBox}[Ricatti-féle differenciálegyenlet megoldása][nobreak]
+  Egy Ricatti-egyenlet általában nem oldható meg integrálással. A standard
+  módszer akkor működik közvetlenül, ha ismerjük az egyenlet $y_p$ partikuláris
+  megoldását.
+
+  \underline{\textbf{Bernoulli-típusra redukálás, majd linearizálás}}
+
+  Alkalmazzuk az alábbi eltolást:
+  $$
+    y = y_p + z
+    \text.
+  $$
+  Ekkor, felhasználva hogy
+  $$
+    y_p' + p y_p = q y_p^2 + h
+    \text,
+  $$
+  az egyenlet $z$-re:
+  $$
+    z' + p z = 2q y_p z + q z^2
+    \quad\Leftrightarrow\quad
+    z' = (2qy_p - p) z + q z^2
+    \text.
+  $$
+  Az egyenlet már Bernoulli-típusú, használhatjuk a korábban tanult
+  helyettesítést:
+  $$
+    z = \frac{1}{u}
+    \quad\Rightarrow\quad
+    z' = -\frac{u'}{u^2}
+  $$
+  Behelyettesítve:
+  $$
+    -\frac{u'}{u^2} = (2qy_p - p)\frac{1}{u} + q\frac{1}{u^2}
+    \quad\Rightarrow\quad
+    -u' = (2qy_p - p)u + q
+    \text.
+  $$
+  Az egyenlet már lineáris, megoldható a korábban tanult módszerekkel:
+  $$
+    u' + \alpha\,u = \beta,
+    \qquad
+    \text{, ahol}
+    \begin{cases}
+      \;\;\alpha := 2q\,y_p - p,
+      \\
+      \;\;\beta := -q
+    \end{cases}
+  $$
+
+  \underline{\textbf{Egylépéses linearizálás}}
+
+  Alkalmazzuk az alábbi helyettesítést:
+  $$
+    y = \frac{1}{u} + y_p
+    \quad\Rightarrow\quad
+    y' = -\frac{u'}{u^2} + y_p'
+    \text.
+  $$
+  Ezt visszahelyettesítve ugyanarra az alakra jutnánk, mint az előző módszer
+  során.
+\end{blueBox}
+
+\clearpage
+\begin{example}[Oldjuk meg az alábbi Ricatti-féle differenciálegyenletet:][nobreak]
+  $$
+    y' + e^x \, y = e^{2x} \, y^2 - e^{-x}
+    \text,\qquad
+    y_p = e^{-x}
+  $$
+
+  \boxrule
+
+  \underline{\textbf{Bernoulli-típusra redukálás, majd linearizálás}}
+
+  Eltolás a partikuláris megoldással:
+  $$
+    y = y_p + z = e^{-x} + z,
+    \qquad
+    y' = -e^{-x} + z'
+    \text.
+  $$
+  Behelyettesítve az egyenletbe:
+  $$
+    -e^{-x} + z' + e^x(e^{-x} + z) = e^{2x}(e^{-x} + z)^2 - e^{-x}
+    \text.
+  $$
+  Az egyszerűsítés után:
+  $$
+    z' = e^x z + e^{2x} z^2
+    \text.
+  $$
+  Most linearizáljuk az egyenletet $u = 1 / z$ helyettesítéssel:
+  $$
+    \left(\frac1z\right)' = \frac{e^x}{u} + \frac{e^{2x}}{u^2}
+    \quad\Rightarrow\quad
+    -\frac{u'}{u^2} = \frac{e^x}{u} + \frac{e^{2x}}{u^2}
+    \quad\Rightarrow\quad
+    u' + e^x u = - e^{2x}
+    \text.
+  $$
+  A linearizált egyenlet homogén megoldása:
+  $$
+    u_p(x)
+    = C e^{-\int e^x \dd x}
+    = C \underbrace{e^{-e^x}}_{U(x)}
+    \text.
+  $$
+  Az általános megoldás az eddigiekhez képest egy más módszerrel is megkapható.
+  Osz\-szuk el az egyenlet mindkét oldalát $U(x)$-szel:
+  $$
+    e^{e^x} u' + e^x e^{e^x} u = -e^{2x} e^{e^x}
+    \text.
+  $$
+  Az egyenlet bal oldalán $U(x) \cdot u'(x)$ szorzatfüggvény deriváltja
+  található, vagyis:
+  $$
+    \left(e^{e^x} u\right)' = -e^{2x} e^{e^x}
+    \quad\Rightarrow\quad
+    e^{e^x} u
+    = -\int e^{2x} e^{e^x} \dd x
+    = -\int e^{e^x + 2x} \dd x
+  $$
+  Éljünk a $t = e^{e^x}$ helyettesítéssel, ekkor $x = \ln \ln t$, $e^x = \ln t$,
+  $\dd t = e^{e^x} \cdot e^x \dd x = e^{e^x + 1}$.
+  $$
+    e^{e^x} u
+    = -\int e^{2x} e^{e^x} \frac{\dd t}{e^{e^x + 1}}
+    = -\int e^x \dd t
+    = -\int \ln t \dd t
+    = -t \ln t + t
+    = -e^{e^x} e^x + e^{e^x} + C
+  $$
+  Az általános megoldás $u$-ra:
+  $$
+    u = e^{-e^x} \cdot \left[e^{e^x}(1 - e^x) + C\right]
+    = 1 - e^x + C e^{-e^x}
+    \text.
+  $$
+  Visszahelyettesítve $z$-re, majd $y$-ra:
+  $$
+    z = \frac1u
+    = \frac{1}{u} = \frac{1}{1 - e^x + C e^{-e^x}}
+    \quad\Rightarrow\quad
+    y = e^{-x} + z
+    = e^{-x} + \frac{1}{1 - e^x + C e^{-e^x}}
+    \text.
+  $$
+\end{example}

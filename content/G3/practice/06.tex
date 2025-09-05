@@ -1,0 +1,448 @@
+\documentclass{szb-practice}
+
+\usepackage{siunitx}
+\sisetup{locale = DE} 
+
+\title{Integrálátalakító tételek}
+\area{Vektoranalízis}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{6}
+
+\usepackage{lipsum}
+
+\begin{document}
+\maketitle
+
+\subsection{Elméleti áttekintő}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~ Gradient-theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{theorem}[Gradiens-tétel]
+  Legyen $\varphi : U \subseteq \Reals^3 \rightarrow \Reals$ differenciálható
+  skalármező, $\curvesign : [a;b] \rightarrow \curveimage \subseteq U$,
+  $t \mapsto \curvevec(t)$ folytonos görbe, $\curvevec(a) = \rvec p$,
+  $\curvevec(b) = \rvec q$ pedig a görbe kezdő és végpontja. Ekkor:
+  $$
+    \int_{\curveimage} \scalar{\grad \varphi(\coordv)}{\dd \curvevec}
+    =
+    \varphi(\rvec q) - \varphi(\rvec p)
+    \text.
+  $$
+  Vagyis, ha egy vektormező valamely skalármező gradiense, akkor annak bármely
+  folytonos görbe mentén vett integrálja csak a kezdő- és végpontoktól függ.
+\end{theorem}
+
+\begin{blueBox}
+  \sftitle{Körintegrál jelölése:}
+
+  Ha $\curvesign$ zárt görbe, akkor a $\varphi(\coordv)$ skalármező egy
+  $\curvesign$ görbe mentén vett körintegrálja a következőképpen jelölhető:
+  $$
+    \oint_{\curveimage} \, \varphi(\coordv) \dd \curvescalar
+    \text.
+  $$
+\end{blueBox}
+
+\begin{note}
+  A Gradiens-tételből következik, hogy skalárpotenciálos vektormező zárt görbe
+  mentén vett körintegrálja zérus.
+\end{note}
+
+\begin{example}
+  Integrálja a $\rvec v(\coordv) = \ijk{y + z}{x + z}{x + y}$ vektormezőt
+  a $z = 0$ síkon lévő, origó középpontú, $r = 3$ sugárú kör mentén!
+
+  Vizsgáljuk meg, hogy a vektormező skalárpotenciálos-e:
+  $$
+    \rot \rvec v
+    =
+    \begin{bmatrix}
+      \partial_x \\ \partial_y \\ \partial_z
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+      y + z \\ x + z \\ x + y
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \partial_x (x + z) - \partial_y (y + z) \\
+      \partial_y (x + y) - \partial_z (x + z) \\
+      \partial_z (y + z) - \partial_x (x + y)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 - 1 \\ 1 - 1 \\ 1 - 1
+    \end{bmatrix}
+    =
+    \nvec
+    \text.
+  $$
+  Mivel a vektormező skalárpotenciálos, ezért létezik olyan skalármező,
+  melynek gradiense maga a $\rvec v$ vektormező. Az integrál értéke tehát
+  csak a kezdő- és végpontoktól függ, melyek jelen esetben megegyeznek,
+  vagyis az integrál értéke zérus:
+  $$
+    \oint_{\curveimage} \scalar{\rvec v}{\dd \curvevec} = 0
+    \text.
+  $$
+\end{example}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~ Stokes' theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{theorem}[Stokes-tétel]
+  Legyen $\surfsign: \surfdomain\subset\Reals^2 \to \surfimage \subset \Reals^3$
+  irányított, parametrizált, elemi felület. Legyen továbbá $\rvec v : \Reals^3
+    \to \Reals^3$ legalább egyszer folytonosan differenciálható vektormező.
+  Jelölje az $\curvesign: \curvedomain\subset\Reals \to \partial\surfimage =
+    \curveimage$ a $\surfsign$ peremét indukált, jobbézszabály szerinti
+  irányítással. Ekkor:
+  $$
+    \iint_{\surfimage} \scalar{\rot \rvec v}{\dd \surfvec}
+    =
+    \oint_{\partial \surfimage} \scalar{\rvec v}{\dd \curvevec}
+    \text.
+  $$
+\end{theorem}
+
+\begin{note}
+  Ha $\rvec v$ skalárpotenciálos, akkor az integrál értéke zérus, hiszen
+  $\rot \rvec v = \rot \grad \varphi = \rvec 0$.
+\end{note}
+
+\begin{example}
+  Integrálja a $\rvec v(\coordv) = \ijk{y}{x}{0}$ vektormezőt a $P_1(0;1;0)$,
+  $P_2(2;0;0)$ és $P_3(0;0;0)$ által meghatározott háromszög mentén!
+
+  Határozzuk meg a $\rvec v$ vektormező rotációját:
+  $$
+    \rot \rvec v
+    =
+    \begin{bmatrix}
+      \partial_x \\ \partial_y \\ \partial_z
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+      y \\ x \\ 0
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      0 \\ 0 \\ 1 - 1
+    \end{bmatrix}
+    =
+    \nvec
+    \text.
+  $$
+  A Stokes-tétel alapján:
+  $$
+    \oint_{\partial \surfimage} \scalar{\rvec v}{\dd \curvevec}
+    = \int_{\surfimage} \scalar{\rot \rvec v}{\dd \surfvec}
+    = \int_{\surfimage} \scalar{\nvec}{\dd \surfvec}
+    = 0
+    \text.
+  $$
+\end{example}
+
+\begin{learnMore}[Stokes-tétel Maxwell III. és IV. egyenletében]
+  A Stokes-tétel a Maxwell-egyenletekben is fontos szerepet játszik. A harmadik
+  és negyedik egyenlet a mágneses tér és az elektromos tér közötti
+  kapcsolatot írja le:
+  $$
+    \begin{aligned}
+      (III) & \quad \Rightarrow \quad \rot \rvec E = -\dot{\rvec B}
+            &
+            & \quad \Rightarrow \quad \text{elektromos tér -- mágneses tér változása,}
+      \\
+      (IV)  & \quad \Rightarrow \quad \rot \rvec B = \mu_0 \rvec j + \mu_0
+      \varepsilon_0 \dot{\rvec E}
+            &
+            & \quad \Rightarrow \quad \text{mágneses tér -- elektromos tér változása,}
+    \end{aligned}
+  $$
+  ahol $\rvec E$ az elektromos tér, $\rvec B$ a mágneses tér, $\rvec j$ az áram
+  sűrűség, $\mu_0$ a mágneses permeabilitás és $\varepsilon_0$ az elektromos
+  permittivitás.
+
+  Az egyenletek közötti kapcsolatot a Stokes-tétel segítségével:
+  $$
+    \begin{aligned}
+      (III) & \quad \Rightarrow \quad
+      \oint_{\partial \surfimage} \scalar{\rvec E}{\dd \curvevec}
+      = -\iint_{\surfimage} \scalar{\dot{\rvec B}}{\dd \surfvec}
+      \text,
+      \\
+      (IV)  & \quad \Rightarrow \quad
+      \oint_{\partial \surfimage} \scalar{\rvec B}{\dd \curvevec}
+      = \iint_{\surfimage} \scalar{\mu_0 \rvec j + \mu_0 \varepsilon_0 \dot{\rvec E}}{\dd \surfvec}
+      \text.
+    \end{aligned}
+  $$
+
+  A III. egyenlet azt mondja ki, hogy változó mágneses tér maga körül
+  balkézszabály szerint elektormos teret indukál, míg a IV. egyenlet azt
+  jelenti, hogy az elektromos tér változása jobbkézszabály szerint
+  mágneses teret indukál.
+\end{learnMore}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~ Divergence theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{theorem}[Gauss-Osztogradszkij-tétel]
+  Legyen $\volsign: \voldomain \subset \Reals^3 \rightarrow \volimage \subset
+    \Reals^3$, irányított,parametrizált tértartomány. Legyen továbbá $\rvec v:
+    \Reals^3 \rightarrow \Reals^3$ legalább egyszer folytonosan
+  differenciálható vektormező. Jelölje a $\partial \volimage =
+    \surfimage$ az $\volsign$ peremét indukált irányítással. Ekkor:
+  $$
+    \iiint_{\volimage} \Div \rvec v \dd \volscalar
+    =
+    \oiint_{\partial \volimage} \scalar{\rvec v}{\dd \surfvec}
+    \text.
+  $$
+\end{theorem}
+
+\begin{note}
+  Ha $\rvec v$ vektorpotenciálos, akkor az integrál értéke zérus, hiszen
+  $\Div \rvec v = \Div \rot \rvec u = 0$.
+\end{note}
+
+\begin{example}
+  Integrálja a $\rvec v(\coordv) = \ijk{x^2 y z}{x y^2 z}{2 x y z^2}$
+  vektormezőt az első térnyolcadban lévő egységkocka felületén kifele mutató
+  irányítással!
+
+  Határozzuk meg a $\rvec v$ vektormező divergenciáját:
+  $$
+    \Div \rvec v
+    = \pdv{x^2 y z}{x} + \pdv{x y^2 z}{y} + \pdv{2 x y z^2}{z}
+    = 8 x y z
+    \text.
+  $$
+
+  A Gauss-Osztogradszkij-tétel alapján:
+  $$
+    \oiint_{\partial \volimage} \scalar{\rvec v}{\dd \surfvec}
+    = \iiint_{\volimage} \Div \rvec v \dd \volscalar
+    = \int_0^1 \int_0^1 \int_0^1 8 x y z \dd z \dd y \dd x
+    = 1
+    \text.
+  $$
+\end{example}
+
+\begin{learnMore}[Gauss-Osztogradszkij-tétel Maxwell I. és II. egyenletében]
+  A Gauss-Osztogradszkij-tétel a Maxwell-egyenletekben is fontos szerepet
+  játszik. Az első két egyenlet az elektromos és mágneses tér forrásosságát
+  írja le:
+  $$
+    \begin{aligned}
+      (I)  & \quad \Rightarrow \quad \Div \rvec E = \frac{\rho}{\varepsilon_0}
+           &
+           & \quad \Rightarrow \quad \text{elektromos tér forrásos,}
+      \\
+      (II) & \quad \Rightarrow \quad \Div \rvec B = 0
+           &
+           & \quad \Rightarrow \quad \text{mágneses tér forrásmentes,}
+    \end{aligned}
+  $$
+  ahol $\rvec E$ az elektromos tér, $\rvec B$ a mágneses tér,
+  $\rho$ az elektromos töltéssűrűség, $\varepsilon_0$ az elektromos
+  permittivitás.
+
+  Az egyenletek közötti kapcsolatot a Gauss-Osztogradszkij-tétel segítségével:
+  $$
+    \begin{aligned}
+      (I)  & \quad \Rightarrow \quad
+      \oiint_{\partial \volimage} \scalar{\rvec E}{\dd \surfvec}
+      = \iiint_{\volimage} \Div \rvec E \dd \volscalar
+      = \iiint_{\volimage} \frac{\rho}{\varepsilon_0} \dd \volscalar
+      \text,
+      \\
+      (II) & \quad \Rightarrow \quad
+      \oiint_{\partial \volimage} \scalar{\rvec B}{\dd \surfvec}
+      = \iiint_{\volimage} \Div \rvec B \dd \volscalar
+      = 0
+      \text.
+    \end{aligned}
+  $$
+  Az első egyenlet azt mondja ki, hogy zárt felületen áthaladő elektromos
+  tér fluxusa arányos az elektromos töltéssűrűség térfogati integráljával.
+  A második egyenlet pedig azt jelenti, hogy a mágneses tér fluxusa zárt
+  felületen zérus, a mágneses tér forrásmentes.
+\end{learnMore}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~ Green's theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{theorem}[Green-tétel asszimetrikus alakja]
+  Legyenek $\varphi; \psi: \mathbb R^3 \rightarrow \mathbb R$ kétszeresen
+  folytonos skalármezők, $\volimage \subset \mathbb R^3$ parametrizált,
+  irányított tértartomány, $\partial \volimage = \surfimage$ perem indukált
+  irányítással. Ekkor:
+  $$
+    \iiint_{\volimage}
+    \psi \, \Delta \varphi +
+    \scalar{\grad \psi}{\grad \varphi}
+    \dd \volscalar
+    =
+    \oiint_{\partial \volimage} \scalar{\psi \grad \varphi}{\dd \surfvec}
+    \text.
+  $$
+\end{theorem}
+
+\begin{note}
+  $\psi = 1$ választásával visszanyerjük a Gauss-Osztogradszkij-tételt:
+  $$
+    \iiint_{\volimage} \Delta \varphi \dd \volscalar
+    = \iiint_{\volimage} \Div \underbrace{\grad \varphi}_{\rvec v} \dd \volscalar
+    = \oiint_{\partial \volimage} \scalar{\underbrace{\grad \varphi}_{\rvec v}}{\dd \surfvec}
+    \text.
+  $$
+\end{note}
+
+\begin{example}
+  Tekintsünk egy $R = 1\,\text{m}$ sugarú tömör alumínium gömböt, amelynek
+  stacionárius hőmér\-sék\-let-eloszlása $\varphi(\coordv) = T_0 (1 - \rvec r^2)$
+  függvény írja le, ahol $T_0 = \SI{10}{\kelvin}$ a gömb belső hőmérséklete.
+  Határozza meg a gömb felületén kifelé irányuló összes  $\dot Q$ hőáramot,
+  ha a hőfluxus sűrűsége $\rvec q = -\lambda \grad \varphi$, ahol
+  $\lambda = \SI[per-mode=symbol]{205}{\watt\per\meter\per\kelvin}$ az
+  alumínium hővezetési tényezője, és
+  $$
+    \dot Q = \oiint_{\partial \volimage} \scalar{\rvec q}{\dd \surfvec}
+    \text.
+  $$
+  Használjuk a Green-tétel asszimetrikus alakját $\psi = -\lambda$ állandó
+  választással:
+  $$
+    \dot Q
+    = \oiint_{\partial \volimage} \scalar{-\lambda \grad \varphi}{\dd \surfvec}
+    = - \iiint_{\volimage} \psi \, \Delta \varphi + \scalar{\underbrace{\grad \lambda}_{= \nvec}}{\grad \varphi} \dd \volscalar
+    = -\lambda \iiint_{\volimage} \Delta \varphi \dd \volscalar
+    \text.
+  $$
+  Számítsuk ki a térfogat belsejében a $\Delta \varphi$ értékét:
+  $$
+    \Delta \varphi
+    =\pdv[order=2]{\varphi}{x} + \pdv[order=2]{\varphi}{y} + \pdv[order=2]{\varphi}{z}
+    = -6 T_0
+    \text.
+  $$
+  A hőáram összesen:
+  $$
+    \dot Q = \iiint_{\volimage} \underbrace{-\lambda (-6 T_0)}_{=\text{const}} \dd \volscalar
+    = -\lambda (-6 T_0) \frac{4\pi R^3}{3}
+    = 8 \pi \lambda T_0 R^3
+    \approx \SI{5,15e4}{\watt}
+    \text.
+  $$
+\end{example}
+
+\begin{theorem}[Green-tétel szimmetrikus alakja]
+  Legyenek $\varphi; \psi: \mathbb R^3 \rightarrow \mathbb R$ kétszeresen
+  folytonos skalármezők, $\volimage \subset \mathbb R^3$ parametrizált,
+  irányított tértartomány, $\partial \volimage = \surfimage$ perem indukált
+  irányítással. Ekkor:
+  $$
+    \iiint_{\volimage}
+    \psi \, \Delta \varphi + \varphi \, \Delta \psi
+    \; \dd \volscalar
+    =
+    \oiint_{\partial \volimage}
+    \scalar{\psi \grad \varphi - \varphi \grad \psi}{\dd \surfvec}
+  $$
+\end{theorem}
+
+\clearpage
+\subsection{Feladatok}
+
+\begin{enumerate}
+  \item Egy automata raktárrendszer ferromágneses manipulátora egy előre
+        számított mágneses potenciálmezőben mozog. A számított Joule-potenciál a
+        munkatérben
+        $$
+          \varphi(\coordv) = 2x^2 y + 3yz
+          \text.
+        $$
+        A csípőkaron lévő, $Q = \SI{1}{\coulomb}$ ekvivalens töltéssel
+        modellezett végfogót a vezérlőnek az
+        $$
+          A(0;0;0) \rightarrow B(2;1;3)
+        $$
+        pontok között kell mozgatnia. Mennyi munkát végez a mágneses tér a
+        végfogón, és miért nem kell törődnünk az útvonal pontos alakjával?
+        ($\rvec F = -Q \grad \varphi$, a munka az erő pálya menti integrálja)
+
+  \item Egy mágneses rendszer vezérlője egy
+        $$
+          \rvec B(\coordv) = \ijk{y \, \sin x}{z^2 \, \cos y - \cos x}{b_3}
+        $$
+        vektormezővel modellezett mágneses teret hoz létre. Határozza meg
+        $b_3$ értékét, ha
+        \begin{enumerate}
+          \item $\rvec B$ bármely zárt görbe menti cirkulációja zérus,
+          \item $\rvec B$ bármely zárt felület menti fluxusa zérus.
+        \end{enumerate}
+
+  \item Egy $R = 1$ sugarú, kör keresztmetszetű, $z$ tengellyel egybeeső
+        szimmetriavonalú hengerben áramló folyadék sebességét a
+        $$
+          \rvec v(\coordv) = \ijk{2xy + z}{x^2 + z}{y - x}
+        $$
+        vektormező írja le. Adja meg a $z = 1$ síkban lévő keresztmetszet
+        menti cirkulációt!
+        (A cirkuláció a vektormező zárt görbe menti integrálja.)
+
+  \item Jelölje $\surfimage$ az $x^2 + y^2 - z^2 = 1$ egyenlezű
+        forgáshiperboloid $z = -1$ és $z = 1$ síkok közötti részét.
+        Határozza meg a $\rvec v(\coordvec) = \ijk{x^2}{y^3}{z^4}$
+        vektormező $\surfimage$ peremén vett integrálját!
+
+  \item Egy fotonikus chipeket hordozó wafer-darabot egy ellipszoid alakú
+        Faraday-kalitkába rögzítenek. A kalitka belsejében lineáris
+        feszültségelosztással ($\rvec E(\coordv) = \coordv$) térerőt állítanak
+        elő. Számolja ki a Faraday-kalitka belsejében lévő nettó töltést, ha
+        $\varepsilon_0 = \SI[per-mode=symbol]{8,85e-12}{\farad\per\meter}$,
+        az ellipszoid egyenlete pedig:
+        $$
+          \frac{(x - 2)^2}{5} + \frac{(y + 3)^2}{19} + \frac{(z - 1)^2}{4} = 1
+          \text.
+        $$
+
+  \item Egy drón IMU-modulját teljes egészében kitöltő, hővezető műgyanta gömb
+        alakú, sugara $R = 0,02 \, \text{m}$, A vezérlő egység folyamatosan
+        hőt disszipál, az állandósult hő\-mér\-sék\-let-mező jó közelítéssel
+        $$
+          \varphi(\coordv) = T_c - \alpha \rvec r^2
+          \text, \quad
+          \alpha = \SI[per-mode=symbol]{1,3e5}{\kelvin\per\meter\squared}
+          \text.
+        $$
+        Becsülje meg, mekkora teljes hőáram távozik a burkolaton át, ha
+        $$
+          q_{\text{hő}}
+          = -\lambda \oiint_{\partial \volimage} \scalar{\grad \varphi}{\dd \surfvec}
+          \text,\quad
+          \lambda = \SI[per-mode=symbol]{0,2}{\watt\per\meter\per\kelvin}
+          \text.
+        $$
+\end{enumerate}
+
+\vfill
+\subsection{Megoldások}
+
+\begin{enumerate}
+  \item $W = \SI{-17}{J}$
+  \item \begin{enumerate}
+          \item $b_3 = 2 z \sin y + C$
+          \item $b_3 = \dfrac{z^3 \sin y}{3} - y z \cos x + C$
+        \end{enumerate}
+  \item $\text{cirkuláció} = 0$
+  \item $0$
+  \item $Q = 8\pi\varepsilon_0\sqrt{95} \approx \SI{2,17}{nC}$
+  \item $q_\text{hő} = 8\pi\lambda\alpha R^3 = \SI{5,23}{W}$
+\end{enumerate}
+
+\end{document}

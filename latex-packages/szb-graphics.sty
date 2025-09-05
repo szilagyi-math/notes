@@ -1,0 +1,27 @@
+% TeX format requirement
+\NeedsTeXFormat{LaTeX2e}
+
+% Package name [\usepackage{szb-graphics}]
+\ProvidesPackage{szb-graphics}
+
+% Required packages
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{circuitikz}
+\RequirePackage{tikzpagenodes}
+\RequirePackage{tikz-3dplot}
+\RequirePackage{tkz-euclide}
+\pgfplotsset{compat=1.18}
+\pgfkeys{/pgf/plot/gnuplot call={cd build && gnuplot}}
+\usetikzlibrary{calc, arrows.meta}
+\usetikzlibrary{intersections, pgfplots.fillbetween, patterns, fadings, calc}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{angles, quotes, 3d, perspective}
+\usetikzlibrary{calc,decorations.pathreplacing,quotes,angles,perspective,3d,intersections,backgrounds}
+\usetikzlibrary{pgfplots.colorbrewer}
+
+% Provided document commands
+\pgfdeclarelayer{ft}
+\pgfdeclarelayer{bg}
+\pgfsetlayers{bg,main,ft}

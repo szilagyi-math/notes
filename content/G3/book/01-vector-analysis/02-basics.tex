@@ -1,0 +1,238 @@
+% \\([\w]+)\{(\w)\} -> \\$1 $2
+\clearpage
+\section{Alapfogalmak}
+
+\begin{definition}[Konvektor]
+  Legyen $V$ egy $\Reals$ feletti vektortér. $V^* := \operatorname{Hom}
+    (V; \Reals)$ elemeit ($\alpha: V \rightarrow \Reals$) lineáris
+  funkcionáloknak, lineáris formáknak, vagy 1-formáknak nevezzük.
+  Mivel $\alpha$ lineáris leképezés, ezért
+  $$
+    \alpha(a \rvec v + b \rvec w)
+    = a \, \alpha(\rvec v) + b \, \alpha(\rvec w)
+    \text{ teljesül.}
+  $$
+\end{definition}
+
+\begin{definition}[Duális tér]
+  Legyen $\alpha; \beta \in V^*$, $\rvec v \in V$, $a \in \Reals$. A fenti
+  módon teljesülnek az alábbiak:
+  \begin{itemize}
+    \item $(\alpha + \beta)(\rvec v) := \alpha(\rvec v) + \beta(\rvec v)$,
+    \item $(a \, \alpha)(\rvec v) := a \, \alpha(\rvec v)$.
+  \end{itemize}
+  Ekkor $V^*$ vektortérré tehető, $V$ vektortér duális terének nevezzük.
+\end{definition}
+
+\begin{note}[Bázis jelölése]
+  \bullet \;\; ${\left\{ \uvec e_1; \uvec e_2; \dots; \uvec e_n \right\}}$
+  -- ortonormált / standard bázis
+
+  \bullet \;\; ${\left\{ \rvec b_1; \rvec b_2; \dots \rvec b_n \right\}}$
+  -- tetszőleges bázis
+\end{note}
+
+\begin{note}[Einstein-féle konvenció]
+  $!\exists \left( r^1; r^2; \dots; r^n \right)$,
+  melyre teljesül, hogy
+  $$
+    \rvec v
+    = r^1 \rvec b_1
+    + r^2 \rvec b_2
+    + \dots
+    + r^n \rvec b_n
+    = \sum_{j=1}^n r^j \rvec b_j
+    = {r^j \rvec b_j}
+  $$
+  Vezessük be a következő 1-formát:
+  $\omega^i: V \rightarrow \Reals$,
+  $\; \forall \, \rvec v \in V: \omega^i(\rvec v) = r^i$
+  Ekkor $\rvec v$ felírható az alábbi alakban:
+  $$
+    \rvec v
+    = \underbrace{\omega^1(\rvec v)}_{r^1} \rvec b_1
+    + \underbrace{\omega^2(\rvec v)}_{r^2} \rvec b_2
+    + \dots
+    + \underbrace{\omega^n(\rvec v)}_{r^n} \rvec b_2
+  $$
+\end{note}
+
+\begin{statement}
+  A fent definiált $\omega^i: V \rightarrow \Reals$ 1-formák
+  ($i \in {1;\; 2;\; \dots;\; n}$) bázist alkotnak $V^*$-ban.
+
+  \begin{minipage}{\textwidth}
+    \begin{proof}[Egzisztencia]
+      Legyen $\alpha: V \rightarrow \Reals$ 1-forma:
+      \begin{gather*}
+        \alpha \left(
+        \omega^1(\rvec v) \, \rvec{b_1}
+        + \dots
+        + \omega^n(\rvec v) \, \rvec{b_n}
+        \right)
+        = \omega^1(\rvec v) \, \alpha(\rvec b_1)
+        + \dots
+        + \omega^n(\rvec v) \, \alpha(\rvec b_n)
+        \\
+        \alpha(\rvec v)
+        = \sum_{j=1}^n \omega^j(\rvec v) \, \alpha(\rvec b_j)
+        \\
+        \alpha
+        = \underbrace{\alpha(\rvec b_1)}_{r_1} \, \omega^1
+        + \dots
+        + \underbrace{\alpha(\rvec b_n)}_{r_n} \, \omega^n
+        = \sum_{j=1}^n r_j \, \omega^j
+      \end{gather*}
+
+      $r_i$ nem speciális, tetszőleges 1-forma felírható így.
+    \end{proof}
+  \end{minipage}
+
+  \begin{proof}[Unicitás]
+    Tegyük fel, hogy:
+    \vspace{-1em}
+    \begin{alignat*}{9}
+      \alpha & = r_1 \, \omega^1 & \;+\;
+             & r_2 \, \omega^2   & \;+\;
+             & \dots             & \;+\;
+             & r_n \, \omega^n
+      \text,                             \\
+      \alpha & = s_1 \, \omega^1 & \;+\;
+             & s_2 \, \omega^2   & \;+\;
+             & \dots             & \;+\;
+             & s_n \, \omega^n
+      \text.
+    \end{alignat*}
+    Vonjuk ki egymásból a 2 egyenletet:
+    $$
+      \mathcal O
+      = (r_1 - s_1) \omega^1
+      + (r_2 - s_2) \omega^2
+      + \dots
+      + (r_n - s_n) \omega^n
+    $$
+    Ekkor $\mathcal O$ egy 1-forma, melynek bármely vektort a nullvektorba
+    visz, azaz
+    $$
+      \mathcal O: V \rightarrow \Reals
+      \quad
+      \mathcal O(\rvec v) = 0
+      \quad
+      \forall \rvec v \in V
+      \qquad \Leftrightarrow \qquad
+      r_i = s_i \hspace{5mm} \forall \; i \text{-re}
+      \text.
+    $$
+    Ezzel ellentmondásra jutottunk, tehát nem igaz a feltevés.
+  \end{proof}
+\end{statement}
+
+\begin{note}[Kovariáns és kontravariáns koordináták]
+  \begin{minipage}{.5\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[ultra thick, scale=2/3]
+        % grid lines
+        \draw[dashed,secondaryColor!50, thick]
+        (-0.25,-0.5) -- (1.75, 3.5)
+        ( 2.25,-0.5) -- (4.25, 3.5)
+        (-0.5,  0  ) -- (3.5 , 0  )
+        ( 0.5,  3  ) -- (5   , 3  )
+        ;
+
+        % scaled basis vectors r¹b₁ and r²b₂
+        \draw[-to,draw=ternaryColor]
+        (0,0) -- (1.5,3)   node[above left]  {$r^1\rvec b_1$};
+        \draw[-to,draw=ternaryColor]
+        (0,0) -- (2.5,0)   node[below right] {$r^2\rvec b_2$};
+
+        % basis vectors b₁ and b₂
+        \draw[-to,draw=secondaryColor]
+        (0,0) -- (.75,1.5) node[left]        {$\rvec b_1$};
+        \draw[-to,draw=secondaryColor]
+        (0,0) -- (1.5,0)   node[below left]  {$\rvec b_2$};
+
+        % main vector v
+        \draw[-to,draw=primaryColor]
+        (0,0) -- (4,3)     node[above right] {$\rvec v$};
+      \end{tikzpicture}
+
+      \textbf{Kovariáns koordináták}
+    \end{center}
+  \end{minipage}\begin{minipage}{.5\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[ultra thick, scale=2/3]
+        % O - origin, AB - coordinates, E - endpoint of v
+        \tkzDefPoints{0/0/O/, 4/2/E, 1/2/A, 1.5/0/B}
+
+        % right angle
+        \tkzDefPointBy[projection = onto O--A](E) \tkzGetPoint{P}
+        \tkzDefPointBy[projection = onto O--B](E) \tkzGetPoint{Q}
+
+        % grid lines
+        \tkzDrawLines[add=.15 and .15, dashed, secondaryColor!50, thick](O,P E,P O,Q E,Q)
+
+        % scaled basis vectors r₁b₁ and r₂b₂
+        \draw [-to, ultra thick, draw=ternaryColor]
+        (O) -- (P) node[left, black]        {$r_1 \rvec b_1$};
+        \draw [-to, ultra thick, draw=ternaryColor]
+        (O) -- (Q) node[below right, black] {$r_2 \rvec b_2$};
+
+        \draw [-to, draw=secondaryColor]
+        (O) -- (A) node[left, black]        {$\rvec b_1$};
+        \draw [-to, draw=secondaryColor]
+        (O) -- (B) node[below left, black]  {$\rvec b_2$};
+
+        \draw [-to, draw=primaryColor]
+        (O) -- (E) node[above right, black] {$\rvec v$};
+      \end{tikzpicture}
+
+
+      \textbf{Kontravariáns koordináták}
+    \end{center}
+  \end{minipage}
+
+  \vspace{2em}
+
+  $\rvec v = r^1 \rvec b_1 + r^2 \rvec b_2$, ahol $(r^1 ; \; r^2)$ a $\rvec v$
+  vektor kontravariáns koordinátái a $\left\{ \rvec b_1 ; \; \rvec b_2 \right\}$
+  bázisban.
+
+  $r_1$ és $r_2$ pedig $\rvec v$ kovariáns koordinátái, melyek a következőképpen
+  számíthatóak:
+  $$
+    r_i = \frac{\scalar{\rvec v}{\rvec b_i}}{\norma{\rvec b_i}}
+    \cdot \frac{\rvec b_i}{\norma{\rvec b_i}}
+    = \underbrace{
+      \frac{\scalar{\rvec v}{\rvec b_i}}{\scalar{\rvec b_i}{\rvec b_i}}
+    }_{r_i}
+    \cdot \rvec b_i
+  $$
+\end{note}
+
+\begin{statement}[][nobreak]
+  Kovariáns és kontravariáns koordináták ortonormált
+  $\left\{ \uvec e_1; \uvec e_2 ; \dots; \uvec e_n \right\}$
+  bázisban megegyeznek.
+
+  \begin{proof}
+    % $$
+    %   \rvec v = \sum_{j=1}^n r^j \uvec e_j
+    %   \quad \Rightarrow \quad
+    %   \begin{array}{l}
+    %     r^j = \dfrac{
+    %       \scalar{\rvec v}{\uvec e_j}
+    %     }{
+    %       \scalar{\uvec e_j}{\uvec e_j}
+    %     } = \scalar{\rvec v}{\uvec e_j}
+    %     \\[3mm]
+    %     r_j = \scalar{
+    %       \displaystyle\sum_{i=1}^n r^i \, \uvec e_i
+    %     }{\uvec e_j} \; = \displaystyle\sum_{i=1}^n r^i
+    %     \scalar{\uvec e_i}{\uvec e_j}
+    %     = r^j
+    %   \end{array}
+    % $$
+  \end{proof}
+  \vspace*{9em}
+  % LOOKS CRAP, SO COMMENTED OUT XD
+\end{statement}

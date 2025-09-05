@@ -1,0 +1,368 @@
+\clearpage
+\section{Differenciáloperátorok}
+
+\begin{blueBox}
+  Legyen $\vfunc f: V \rightarrow V$ függvény ($\dim V = n$), melynek vegyük a
+  deriváltját:
+  \begin{gather*}
+    \vfunc f \left( x_1; x_2; \dots ; x_n \right)
+    =
+    \begin{bmatrix}
+      f_1 \left( x_1; x_2; \dots ; x_n \right) \\
+      f_2 \left( x_1; x_2; \dots ; x_n \right) \\
+      \vdots                                   \\
+      f_n \left( x_1; x_2; \dots ; x_n \right) \\
+    \end{bmatrix}
+    \text,
+    \\
+    \DD f
+    =
+    \begin{bmatrix}
+      \partial_1 f_1 & \partial_2 f_1 & \dots  & \partial_n f_1 \\
+      \partial_1 f_2 & \partial_2 f_2 & \dots  & \partial_n f_2 \\
+      \vdots         & \vdots         & \ddots & \vdots         \\
+      \partial_1 f_n & \partial_2 f_n & \dots  & \partial_n f_n
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \grad^\T f_1 \\
+      \grad^\T f_2 \\
+      \vdots       \\
+      \grad^\T f_n \\
+    \end{bmatrix}
+    \in
+    \mathcal M_{n \times n}
+  \end{gather*}
+  Definiáljuk az alábbi fogalmakat:
+  \begin{itemize}
+    \item $\rot \vfunc f := \DD f - \DD f^*$
+          -- rotáció,
+
+    \item $\Div \vfunc f := \operatorname{tr} \left( \DD f \right)$
+          -- divergencia.
+  \end{itemize}
+  $V = \Reals^3$ esetén:
+  $$
+    \rot \vfunc f
+    =
+    \begin{bmatrix}
+      0                               &
+      \partial_2 f_1 - \partial_1 f_2 &
+      \partial_3 f_1 - \partial_1 f_3
+      \\
+      \partial_1 f_2 - \partial_2 f_1 &
+      0                               &
+      \partial_3 f_2 - \partial_2 f_3
+      \\
+      \partial_1 f_3 - \partial_3 f_1 &
+      \partial_2 f_3 - \partial_3 f_2 &
+      0
+    \end{bmatrix}
+    \text.
+  $$
+  A mátrix vektorinvariánsa:
+  \begin{equation*}
+    \rvec v
+    =
+    \begin{bmatrix}
+      \partial_2 f_3 - \partial_3 f_2 \\
+      \partial_3 f_1 - \partial_1 f_3 \\
+      \partial_1 f_2 - \partial_2 f_1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \partial_1 \\
+      \partial_2 \\
+      \partial_3
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+      f_1 \\
+      f_2 \\
+      f_3
+    \end{bmatrix}
+    =
+    \nabla \times f
+    \text.
+  \end{equation*}
+
+  $\nabla$ - Nabla operátor (formális differenciáloperátor)
+  -- nem vektor, de aként viselkedik.
+\end{blueBox}
+
+\begin{note}[Gradiens, divergencia és rotáció számítása]
+  \vspace{-1.5em}
+  \begin{align*}
+    \grad \varphi & = \nabla \varphi
+    \\
+    \Div \rvec v  & = \scalar{\nabla}{\rvec v}
+    \\
+    \rot \rvec v  & = \nabla \times \rvec v
+  \end{align*}
+\end{note}
+
+\begin{note}[Differenciáloperátorok kompbinálása][nobreak]
+  Nem értelmezhető:
+  \vspace{-.5em}
+  $$
+    \grad \grad \text, \quad
+    \grad \rot \text, \quad
+    \Div \Div \text, \quad
+    \rot \Div \text.
+  $$
+  Laplace-operátor:
+  $$
+    \Div \grad \varphi = \nabla^2 \varphi = \Delta \varphi
+  $$
+  Tetszőleges $\rvec v$ vektormező és $\varphi$ skalármező esetén:
+  \vspace{-.5em}
+  \begin{align*}
+    \Div \rot \rvec v  & \equiv 0 \text,     \\
+    \rot \grad \varphi & \equiv \nvec \text.
+  \end{align*}
+  \vspace{-2em}
+\end{note}
+
+\begin{definition}[Skalárpotenciálosság]
+  Egy $\rvec v: V \rightarrow V$ vektormező skalárpotenciálos, ha létezik olyan
+  $\varphi: V \rightarrow \Reals$ skalármező, hogy $\rvec v = \grad \varphi$.
+\end{definition}
+
+\begin{definition}[Vektorpotenciálosság]
+  Egy $\rvec v: V \rightarrow V$ vektormező vektorpotenciálos, ha létezik olyan
+  $\rvec u: V \rightarrow V$ vektormező, hogy $\rvec v = \rot \rvec u$.
+\end{definition}
+
+\begin{theorem}
+  Legyen $\rvec v: V \rightarrow V$ mindenhol értelmezett, legalább egyszer
+  differenciálható vektormező. Ekkor:
+  \begin{itemize}
+    \item $\rvec v$ skalárpotenciálos
+          $\;\Leftrightarrow\;$
+          $\rot \rvec v = \nvec$,
+          hiszen $\rot \grad \varphi \equiv \nvec$,
+    \item $\rvec v$ vektorpotenciálos
+          $\;\Leftrightarrow\;$
+          $\Div \rvec v = 0$,
+          hiszen $\Div \rot \rvec u \equiv 0$.
+  \end{itemize}
+
+  \begin{proof}[$\Rightarrow$ könnyű, $\Leftarrow$ nehéz]
+    Ha $\rvec v$ skalárpotenciálos $\;\Rightarrow\;$
+    $\exists \varphi : V \rightarrow \Reals$,
+    hogy $\rvec v = \grad \varphi$, ekkor
+    $\rot \rvec v = \rot \grad \varphi \equiv \nvec$
+
+    Ha $\rvec v$ vektorpotenciálos $\;\Rightarrow\;$
+    $\exists \rvec u : V \rightarrow V$,
+    hogy $\rvec v = \rot \rvec u$, ekkor
+    $\Div \rvec v = \Div \rot \rvec u \equiv 0$
+  \end{proof}
+\end{theorem}
+
+\begin{blueBox}[][nobreak]
+  $! \varPhi; \varPsi : \Reals^3 \rightarrow \Reals$ skalármezők,
+  $\rvec u; \rvec v; \rvec w : \Reals^3 \rightarrow \Reals^3$
+  vektormezők, $\lambda; \mu \in \Reals$ pedig skalárok.
+  \begin{itemize}
+    \item Teljesül a linearitás:
+          \vspace{-.5em}
+          \begin{alignat*}{4}
+            \grad & (\lambda \, \varPhi && + \mu \, \varPsi) && = \lambda \, \grad \varPhi && + \mu \, \grad \varPsi
+            \\
+            \rot  & (\lambda \, \rvec v && + \mu \, \rvec w) && = \lambda \, \rot \rvec v  && + \mu \, \rot \rvec w
+            \\
+            \Div  & (\lambda \, \rvec v && + \mu \, \rvec w) && = \lambda \, \Div \rvec v  && + \mu \, \Div \rvec w
+          \end{alignat*}
+
+    \item Zérusság:
+          \vspace{-.5em}
+          \begin{alignat*}{1}
+            \rot \grad \varPhi & \equiv \nvec
+            \\
+            \Div \rot \rvec v  & \equiv 0
+          \end{alignat*}
+
+    \item Deriválási szabályokhoz hasonló:
+          \vspace{-.5em}
+          \begin{align*}
+            \grad \left( \varPhi \, \varPsi \right)
+             & = \varPhi \, \grad \varPsi
+            + \varPsi \, \grad \varPhi
+            \\
+            \Div \left( \varPhi \, \rvec v \right)
+             & = \varPhi \, \Div \rvec v \,
+            + \scalar{\rvec v}{\grad \varPhi}
+            \\
+            \rot \left( \varPhi \, \rvec v \right)
+             & = \varPhi \, \rot \rvec v
+            - \rvec v \times \grad \varPhi
+          \end{align*}
+
+    \item Egyéb szabályok:
+          \vspace{-.5em}
+          \begin{align*}
+            \rot \rot \rvec v
+             & =\grad \Div \rvec v
+            - \Delta \rvec v
+            \\
+            \rot \left( \rvec u \times \rvec v \right)
+             & = \rvec u \, \Div \rvec v
+            - \rvec v \, \Div \rvec u
+            + (\DD \rvec u) \rvec v
+            - (\DD \rvec v) \rvec u
+            \\
+            \Div \left( \rvec u \times \rvec v \right)
+             & = \; \scalar{\rvec v}{\rot \rvec u}
+            - \scalar{\rvec u}{\rot \rvec v}
+            \\
+            \grad \left( \scalar{\rvec u}{\rvec v} \right)
+             & = (\DD \rvec u) \rvec v
+            + (\DD \rvec v) \rvec u
+            + \rvec v \times \rot \rvec u
+            + \rvec u \times \rot \rvec v
+          \end{align*}
+  \end{itemize}
+\end{blueBox}
+
+\begin{note}[3-dimenziós Levi--Civita-szimbólum]
+  $$
+    \varepsilon_{ijk} =
+    \begin{cases}
+      +1         & \text{ha } (i;j;k) \text{ az } (1;2;3) \text{ páros permutációja}    \\
+      -1         & \text{ha } (i;j;k) \text{ az } (1;2;3) \text{ páratlan permutációja} \\
+      \phantom-0 & \text{ha } i = j \text{, vagy } j = k \text{, vagy } k = i
+    \end{cases}
+    \text.
+  $$
+  Vektoriális szorzat esetében
+  $$
+    \bigl(\rvec v\bigr)_i
+    = \bigl(\rvec x \times \rvec y\bigr)_i
+    = \sum_{j=1}^3 \sum_{k=1}^3 \varepsilon_{ijk} x_j y_k
+    = \begin{bmatrix}
+      \varepsilon_{123} x_2 y_3 + \varepsilon_{132} x_3 y_2 \\
+      \varepsilon_{231} x_3 y_1 + \varepsilon_{213} x_1 y_3 \\
+      \varepsilon_{312} x_1 y_2 + \varepsilon_{321} x_2 y_1
+    \end{bmatrix} = \begin{bmatrix}
+      x_2 y_3 - x_3 y_2 \\
+      x_3 y_1 - x_1 y_3 \\
+      x_1 y_2 - x_2 y_1
+    \end{bmatrix}
+    \text.
+  $$
+  Minden koordinátában hat tag szerepelne, viszont:
+  \begin{enumerate}
+    \item $\varepsilon_{223} = \varepsilon_{232} = \varepsilon_{323} = \varepsilon_{332} = 0$,
+    \item $\varepsilon_{113} = \varepsilon_{131} = \varepsilon_{311} = \varepsilon_{311} = 0$,
+    \item $\varepsilon_{112} = \varepsilon_{121} = \varepsilon_{211} = \varepsilon_{221} = 0$.
+  \end{enumerate}
+  A nemzérus tagok pedig:
+  \begin{enumerate}
+    \item $\varepsilon_{123} = +1$, $\varepsilon_{132} = -1$,
+    \item $\varepsilon_{231} = +1$, $\varepsilon_{213} = -1$,
+    \item $\varepsilon_{312} = +1$, $\varepsilon_{321} = -1$.
+  \end{enumerate}
+\end{note}
+
+\begin{example}[Linearitásos azonosságok bizonyítása]
+  \begin{enumerate}
+    \item \underline{
+            $\grad(\lambda\varPhi+\mu\varPsi)=\lambda\grad\varPhi+\mu\grad\varPsi$
+          }
+          $$
+            \bigl(\grad(\lambda\varPhi+\mu\varPsi)\bigr)_i
+            = \partial_i(\lambda\varPhi+\mu\varPsi)
+            = \lambda\,\partial_i\varPhi+\mu\,\partial_i\varPsi
+            = \bigl(\lambda\grad\varPhi+\mu\grad\varPsi\bigr)_i
+            \text.
+          $$
+
+    \item \underline{
+            $\rot(\lambda\rvec v+\mu\rvec w)=\lambda\rot\rvec v+\mu\rot\rvec w$
+          }
+          $$
+            \bigl(\rot(\lambda\rvec v+\mu\rvec w)\bigr)_i
+            = \varepsilon_{ijk}\partial_j(\lambda v_k+\mu w_k)
+            = \lambda\,\varepsilon_{ijk}\partial_jv_k+\mu\,\varepsilon_{ijk}\partial_jw_k
+            = \bigl(\lambda\rot\rvec v+\mu\rot\rvec w\bigr)_i
+            \text.
+          $$
+
+    \item \underline{
+            $\Div(\lambda\rvec v+\mu\rvec w)=\lambda\Div\rvec v+\mu\Div\rvec w$
+          }
+          $$
+            \bigl(\Div(\lambda\rvec v+\mu\rvec w)\bigr)_i
+            = \partial_i(\lambda v_i+\mu w_i)
+            = \lambda\,\partial_iv_i+\mu\,\partial_iw_i
+            = \bigl(\lambda\Div\rvec v+\mu\Div\rvec w\bigr)_i
+            \text.
+          $$
+  \end{enumerate}
+\end{example}
+
+\begin{example}[Zérusságos azonosságok bizonyítása][nobreak]
+  \begin{enumerate}
+    \item \underline{$\rot\grad\varPhi\equiv\nvec$}
+          $$
+            \bigl(\rot\grad\varPhi\bigr)_i=\varepsilon_{ijk}\partial_j\partial_k\varPhi
+            = -\varepsilon_{ijk}\partial_k\partial_j\varPhi=0,
+          $$
+          mert $\partial_j\partial_k$ szimmetrikus, $\varepsilon_{ijk}$ pedig
+          antiszimmetrikus $j,k$ indexekre.
+
+    \item \underline{$\Div\rot\rvec v\equiv0$}
+          $$
+            \bigl(\Div\rot\rvec v\bigr)_i=\partial_i\varepsilon_{ijk}\partial_jv_k
+            = \varepsilon_{ijk}\partial_i\partial_jv_k
+            = -\varepsilon_{ijk}\partial_j\partial_iv_k=0,
+          $$
+          mert $\partial_i\partial_j$ szimmetrikus, $\varepsilon_{ijk}$ pedig
+          antiszimmetrikus $i,j$ indexekre.
+  \end{enumerate}
+\end{example}
+
+\begin{example}[Deriválási szabályokhoz hasonló azonosságok bizonyítása]
+  \begin{enumerate}
+    \item \underline{$\grad(\varPhi\varPsi)=\varPhi\grad\varPsi+\varPsi\grad\varPhi$}
+          $$
+            \bigl(\grad(\varPhi\varPsi)\bigr)_i
+            = \partial_i(\varPhi\varPsi)
+            = \varPhi\,\partial_i\varPsi+\varPsi\,\partial_i\varPhi
+            = \bigl(\varPhi\grad\varPsi+\varPsi\grad\varPhi\bigr)_i
+            \text.
+          $$
+
+    \item \underline{$\Div(\varPhi\rvec v)=\varPhi\Div\rvec v+\scalar{\rvec v}{\grad\varPhi}$}
+          $$
+            \bigl(\Div(\varPhi\rvec v)\bigr)_i
+            = \partial_i(\varPhi v_i)
+            = \varPhi\,\partial_iv_i+\scalar{\rvec v}{\partial_i\grad\varPhi}
+            = \bigl(\varPhi\Div\rvec v+\scalar{\rvec v}{\grad\varPhi}\bigr)_i
+            \text.
+          $$
+
+    \item \underline{$\rot(\varPhi\rvec v)=\varPhi\rot\rvec v-\rvec v\times\grad\varPhi$}
+          $$
+            \begin{aligned}
+              \bigl(\rot(\varPhi\rvec v)\bigr)_i
+               & = \varepsilon_{ijk}\partial_j(\varPhi v_k)
+              \\
+               & = \varepsilon_{ijk}(\varPhi\,\partial_jv_k+v_k\,\partial_j\varPhi)
+              \\
+               & = \varPhi\,\varepsilon_{ijk}\partial_jv_k+\varepsilon_{ijk}v_k\,\partial_j\varPhi
+              \\
+               & = \varPhi\,\varepsilon_{ijk}\partial_jv_k-\varepsilon_{ijk}v_j\,\partial_k\varPhi
+              = \bigl(\varPhi\rot\rvec v-\rvec v\times\grad\varPhi\bigr)_i
+              \text.
+            \end{aligned}
+          $$
+  \end{enumerate}
+\end{example}
+
+\begin{example}[Egyéb szabályok bizonyítása][nobreak]
+  \vspace{10.5cm}
+  % TOO COMPLICATED TO FIT INTO THIS PAGE, BUT ISN'T COMPLICATED ENOUGH TO FILL
+  % THE NEXT PAGE AS WELL.
+\end{example}
