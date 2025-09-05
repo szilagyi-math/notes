@@ -171,7 +171,6 @@
   \end{itemize}
 \end{blueBox}
 
-\clearpage
 \begin{definition}[Skalárpotenciálosság]
   Egy $\rvec v: V \rightarrow V$ vektormező skalárpotenciálos, ha létezik olyan
   $\varphi: V \rightarrow \mathbb R$ skalármező, hogy $\rvec v = \grad \varphi$.
@@ -199,6 +198,7 @@
   \end{itemize}
 \end{theorem}
 
+\clearpage
 \begin{blueBox}[][nobreak]
   \sftitle{Potenciálfüggvények számítása:}
 
@@ -215,7 +215,7 @@
   $$
   Ilyen esetben a potenciálfüggvény az alábbi módon számítható:
   $$
-    \varphi (\coordvec)
+    V(\coordvec)
     = \int_0^{x_1} \rvec v(\xi; x_2; \dots; x_n) \dd \xi
     + \int_0^{x_2} \rvec v(0; \xi; \dots; x_n) \dd \xi
     + \dots
@@ -237,6 +237,62 @@
     \text.
   $$
 \end{blueBox}
+
+\begin{example}[][nobreak]
+  Határozzuk meg a $\rvec v(\coordvec) = \ijk{yz}{zx}{xy}$ vektormező skalár- és
+  vektorpotenciálját!
+
+  \boxrule%
+
+  A vektormező rotáciája $\rot \rvec v = \nvec$, vagyis
+  $\exists V(\coordvec): \rvec v = \grad V$,
+  ahol $V$ a vektormező skalárpotenciálja.
+  \begin{align*}
+    V(\coordvec)
+     & = \int_0^x v_x(\xi; y; z) \dd \xi
+    + \int_0^y v_y(0; \xi; z) \dd \xi
+    + \int_0^z v_z(0; 0; \xi) \dd \xi
+    \\
+     & = \int_0^x y z \dd \xi
+    + \int_0^y 0 \cdot z \dd \xi
+    + \int_0^z 0 \cdot 0 \dd \xi
+    = x y z
+    \text.
+  \end{align*}
+
+  A vektormező divergenciája $\Div \rvec v = 0$, vagyis
+  $\exists \rvec u(\coordvec): \rvec v = \rot \rvec u$,
+  ahol $\rvec u$ a vektormező vektorpotenciálja.
+
+  Keressük a potenciált $\rvec u = \ijk{u_x}{u_y}{0}$ alakban! Ekkor:
+  \begin{align*}
+    u_x & = \int_0^z v_y(x; y; \zeta) \dd \zeta
+    = \int_0^z x \zeta \dd \zeta
+    = \frac{1}{2} x z^2
+    \text,
+    \\
+    u_y & = \int_0^x v_z(\xi; y; 0) \dd \xi
+    - \int_0^z v_x(x; y; \zeta) \dd \zeta
+    = \int_0^x \xi y \dd \xi - \int_0^z y \zeta \dd \zeta
+    = \frac{1}{2} x^2 y - \frac{1}{2} y z^2
+    \text.
+  \end{align*}
+  A potenciálok tehát:
+  \vspace{-1.5em}
+  $$
+    V(\coordvec) = x y z
+    \text,
+    \qquad
+    \rvec u(\coordvec) = \frac12\begin{bmatrix}
+      x z^2         \\
+      x^2 y - y z^2 \\
+      0
+    \end{bmatrix}
+    \text.
+  $$
+\end{example}
+
+
 
 \clearpage
 \subsection{Feladatok}
