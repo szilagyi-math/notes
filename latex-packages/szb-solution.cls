@@ -1,8 +1,8 @@
 % TeX format requirement
 \NeedsTeXFormat{LaTeX2e}
 
-% Package name [\documentclass{szb-practice}]
-\ProvidesClass{szb-practice}
+% Package name [\documentclass{szb-solution}]
+\ProvidesClass{szb-solution}
 
 % Base
 \PassOptionsToClass{a4paper, 12pt}{scrartcl}
@@ -40,7 +40,6 @@
 \setkomafont{pageheadfoot}{\sffamily\color{gray}}
 \ModifyLayer[addvoffset=-2mm]{scrheadings.foot.above.line}
 \cfoot{\thepage\ / \pageref{LastPage}}
-\chead{}
 \ihead{\@subject (\@subjectCode)}
 \ohead{\@area\ -- \@title}
 
@@ -60,7 +59,8 @@
   \hspace*{.33em}
   \begin{tikzpicture}
     \node[fill=primaryColor, text=white, rounded corners=2mm, inner sep=3mm, scale=1.2, align=center] (docno) {%
-      \Huge\bfseries\@docno\\[5mm]%
+      \Huge\bfseries\@docno\\%
+      MO\\[2mm]%
     };
     \node[text=primaryColor, anchor=north west, inner sep=3mm, scale=1.2, align=left] at ($(docno.north east)+(5mm,0)$) (title) {%
       \hspace*{-3mm}\huge\bfseries\@title\hspace*{-3mm}\\[-1.05em]%

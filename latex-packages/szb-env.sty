@@ -4,6 +4,19 @@
 % Package name [\usepackage{szb-env}]
 \ProvidesPackage{szb-env}
 
+\RequirePackage{kvoptions}
+\RequirePackage{etoolbox}
+
+\SetupKeyvalOptions{%
+  family=szbenv,%
+  prefix=szbenv@@%
+}
+
+\DeclareBoolOption[false]{etoc}
+
+\ProcessKeyvalOptions*
+
+
 % Required packages
 \RequirePackage{szb-util}
 \RequirePackage{szb-math}
@@ -14,6 +27,21 @@
 \RequirePackage{mdframed}
 \RequirePackage{etoolbox}
 \RequirePackage{xparse}
+
+\ifszbenv@@etoc
+  \RequirePackage{etoc}
+
+  \addtotoclist{def}
+  \newcommand{\listdefinitionsname}{Definíciók jegyzéke}
+  \newcommand\listofdefinitions{\listoftoc[Definíciók jegyzéke]{def}}
+  \setuptoc{def}{chapteratlist,leveldown}
+
+  \addtotoclist{the}
+  \newcommand{\listoftheoremsname}{Tételek jegyzéke}
+  \newcommand\listoftheorems{\listoftoc[Tételek jegyzéke]{the}}
+  \setuptoc{the}{chapteratlist,leveldown}
+\fi
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ~~~~~~~~~~~~~~~~~~~~~ DEFINITION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -35,14 +63,18 @@
 \numberwithin{definition}{section}
 
 \NewDocumentEnvironment{definition}{s o O{} +b}{%
-  \IfBooleanTF{#1}{}{\refstepcounter{definition}}%
+  \IfBooleanTF{#1}{}{%
+    \refstepcounter{definition}%
+    % \label{def:\thedefinition}%
+    \IfBlankTF{#2}{}{\addcontentsline{def}{section}{\protect\numberline{\thedefinition}#2}}
+  }%
   \def\rule@@color{primaryColor}%
   \begin{mdframed}[
       style=definition,%
       frametitle={
         \color{white}\sffamily\bfseries%
         Definíció\IfBooleanTF{#1}{}{~\thedefinition}%
-        \IfBlankTF{#2}{}{ : #2}%
+        \IfBlankTF{#2}{}{\IfNoValueTF{#2}{}{ : #2}}%
       },%
       #3%
     ]%
@@ -50,7 +82,7 @@
 }{\end{mdframed}}
 
 \NewDocumentEnvironment{definition*}{ o O{} +b }{%
-  \begin{definition}*[\IfNoValueTF{#1}{}{\unexpanded{#1}}][#2]#3
+  \begin{definition}*[\IfNoValueTF{#1}{}{\IfBlankTF{#2}{}{\unexpanded{#1}}}][#2]#3%
 }{\end{definition}}
 
 % % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -73,14 +105,18 @@
 \numberwithin{theorem}{section}
 
 \NewDocumentEnvironment{theorem}{s o O{} +b}{%
-  \IfBooleanTF{#1}{}{\refstepcounter{theorem}}%
+  \IfBooleanTF{#1}{}{%
+    \refstepcounter{theorem}%
+    % \label{the:\thetheorem}%
+    \IfBlankTF{#2}{}{\addcontentsline{the}{section}{\protect\numberline{\thetheorem}#2}}
+  }%
   \def\rule@@color{secondaryColor}%
   \begin{mdframed}[
       style=theorem,%
       frametitle={
         \color{white}\sffamily\bfseries%
         Tétel\IfBooleanTF{#1}{}{~\thetheorem}%
-        \IfBlankTF{#2}{}{ : #2}%
+        \IfBlankTF{#2}{}{\IfNoValueTF{#2}{}{ : #2}}%
       },%
       #3%
     ]%
@@ -88,7 +124,7 @@
 }{\end{mdframed}}
 
 \NewDocumentEnvironment{theorem*}{ o O{} +b }{%
-  \begin{theorem}*[\IfNoValueTF{#1}{}{\unexpanded{#1}}][#2]#3%
+  \begin{theorem}*[\IfNoValueTF{#1}{}{\IfBlankTF{#2}{}{\unexpanded{#1}}}][#2]#3%
 }{\end{theorem}}
 
 
@@ -110,8 +146,28 @@
 
 \newcommand{\sftitle}[1]{{\bfseries\sffamily#1}}
 
-\NewDocumentEnvironment{blueBox}{ O{} +b }{%
-  \begin{mdframed}[style=blueBox,#1]#2%
+\NewDocumentEnvironment{blueBox}{ o O{} +b }{%
+  \def\rule@@color{secondaryColor}%
+  \newif\ifszbenv@@blueboxtitle%
+  \szbenv@@blueboxtitletrue%
+  \IfNoValueTF{#1}{\szbenv@@blueboxtitlefalse}{}%
+  \IfBlankTF{#1}{\szbenv@@blueboxtitlefalse}{}%
+  %
+  \ifszbenv@@blueboxtitle%
+    \begin{mdframed}[%
+      style=blueBox,%
+      frametitle={
+        \sffamily\bfseries%
+        #1%
+      },%
+      #2%
+    ]#3%
+  \else%
+    \begin{mdframed}[%
+      style=blueBox,%
+      #2%
+    ]#3%
+  \fi%
 }{\end{mdframed}}
 
 
@@ -132,8 +188,30 @@
   innerbottommargin = .66em,%
 }
 
-\NewDocumentEnvironment{note}{ O{} +b }{%
-  \begin{mdframed}[style=note,#1]#2%
+\NewDocumentEnvironment{note}{ o O{} +b }{%
+  \def\rule@@color{ternaryColor}%
+  \newif\ifszbenv@@notetitle%
+  \szbenv@@notetitletrue%
+  \IfNoValueTF{#1}{\szbenv@@notetitlefalse}{}%
+  \IfBlankTF{#1}{\szbenv@@notetitlefalse}{}%
+  %
+  \ifszbenv@@notetitle%
+    \begin{mdframed}[%
+      style=note,%
+      frametitlerule=true,%
+      frametitlebackgroundcolor=ternaryColor,%
+      frametitle={
+        \color{white}\sffamily\bfseries%
+        #1%
+      },%
+      #2%
+    ]#3%
+  \else%
+    \begin{mdframed}[%
+      style=note,%
+      #2%
+    ]#3%
+  \fi%
 }{\end{mdframed}}
 
 
@@ -162,7 +240,47 @@
       overlay,
     ] {\color{primaryColor}\large!};
   },%
+  firstextra={
+    \path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$) node[
+      rectangle,
+      fill=primaryColor!10,
+      draw=primaryColor,
+      line width=2pt,
+      overlay,
+    ] {\color{primaryColor}\large!};
+  },
+  secondextra={
+    \path let \p1=(P), \p2=(O) in ($(\x2,0)+0.5*(0,\y1)$) node[
+      rectangle,
+      fill=primaryColor!10,
+      draw=primaryColor,
+      line width=2pt,
+      overlay,
+    ] {\color{primaryColor}\large!};
+  },
 }
+
+
+\NewDocumentEnvironment{statement}{ o O{} +b }{%
+  \newif\ifszbenv@@statementtitle%
+  \szbenv@@statementtitletrue%
+  \IfNoValueTF{#1}{\szbenv@@statementtitlefalse}{}%
+  \IfBlankTF{#1}{\szbenv@@statementtitlefalse}{}%
+  \def\rule@@color{primaryColor}%
+  %
+  \ifszbenv@@statementtitle%
+    \begin{mdframed}[
+      style=statement,%
+      frametitle={
+        \sffamily\bfseries%
+        #1%
+      },%
+      #2%
+    ]#3%
+  \else%
+    \begin{mdframed}[style=statement,#2]#3%
+  \fi
+}{\end{mdframed}}
 
 
 
@@ -254,6 +372,46 @@
   innerbottommargin = .66em,
 }
 
-\NewDocumentEnvironment{example}{ O{} +b }{%
-  \begin{mdframed}[style=example,#1]#2%
+\NewDocumentEnvironment{example}{ o O{} +b }{%
+  \def\rule@@color{magenta!60!black}%
+  \newif\ifszbenv@@exampletitle%
+  \szbenv@@exampletitletrue%
+  \IfNoValueTF{#1}{\szbenv@@exampletitlefalse}{}%
+  \IfBlankTF{#1}{\szbenv@@exampletitlefalse}{}%
+  %
+  \ifszbenv@@exampletitle%
+    \begin{mdframed}[%
+      style=example,%
+      frametitle={
+        \sffamily\bfseries%
+        #1%
+      },%
+      #2%
+    ]#3%
+  \else%
+    \begin{mdframed}[style=example,#2]#3%
+  \fi%
 }{\end{mdframed}}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~ PROOF ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\RequirePackage{dashrule}
+\newenvironment{proof}[1][\@nil]{%
+  \def\tmp{#1}%
+  % HORIZONTAL DASHED RULE WITH rule@@color
+  {\color{\rule@@color}\hdashrule[.8ex][x]{\dimexpr\textwidth}{1pt}{2mm 3pt}}
+  % PROOF TITLE
+  {%
+    \sffamily\textbf{Bizonyítás}%
+    \ifx\tmp\@nnil
+      :%
+    \else%
+      \ (#1):%
+    \fi
+  }\par
+}{%
+}
+\newcommand\boxrule{{\color{\rule@@color}\hdashrule[.8ex][x]{\dimexpr\textwidth}{1pt}{2mm 3pt}}}

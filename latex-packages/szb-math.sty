@@ -17,20 +17,45 @@
 % Provided document commands
 \newcommand{\Reals}{\mathbb{R}}
 \newcommand*{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand*{\DD}{\mathop{}\!\mathbf{D}}
 \newcommand*{\iu}{{i\mkern1mu}}
 \newcommand*{\Domain}{\mathcal{D}}
 \newcommand*{\Range}{\mathcal{R}}
+
 \newcommand{\rvec}[1]{\mathbfit{#1}}
+\newcommand{\vfunc}[1]{\mathbfit{#1}}
 \newcommand{\uvec}[1]{\hat{\mathbfit{#1}}}
 \newcommand{\nvec}{\text{\textbf{\textit{0}}}}
+
+\newcommand\ibase{\hat{\mathbfit{\imath}}}
+\newcommand\jbase{\hat{\mathbfit{\jmath}}}
+\newcommand\kbase{\hat{k}}
+
 \newcommand{\rmat}[1]{\mathbf{#1}}
 \newcommand{\imat}{\mathbb{E}}
 \newcommand{\nmat}{\mathbb{0}}
 \newcommand*{\T}{\top}
 
-\newcommand\ibase{\hat{\mathbfit{\imath}}}
-\newcommand\jbase{\hat{\mathbfit{\jmath}}}
-\newcommand\kbase{\hat{k}}
+\newcommand{\coordv}{\rvec{r}}
+\newcommand{\coordvec}{\rvec{r}}
+
+\newcommand{\curvescalar}{s}
+\newcommand{\curvevec}{\symbf{r}}
+\newcommand{\curvesign}{\symbf{γ}}
+\newcommand{\curvedomain}{I}
+\newcommand{\curveimage}{\mathcal{C}}
+
+\newcommand{\surfscalar}{S}
+\newcommand{\surfvec}{\symbf{S}}
+\newcommand{\surfsign}{\symbf{𝝔}}
+\newcommand{\surfdomain}{U}
+\newcommand{\surfimage}{\mathcal{S}}
+
+\newcommand{\volscalar}{V}
+\newcommand{\volvec}{\rvec{V}}
+\newcommand{\volsign}{\symbf{Ω}}
+\newcommand{\voldomain}{D}
+\newcommand{\volimage}{\mathcal{V}}
 
 \NewDocumentCommand{\cisdeg}{s m}{%
   \IfBooleanTF{#1}{%
@@ -80,11 +105,7 @@
 \DeclareMathOperator{\Div}{div}
 \DeclareMathOperator{\rot}{rot}
 
-\newcommand{\scalar}[2]{< #1 \, ; \, #2 >}
+\newcommand{\scalar}[2]{\left\langle#1;#2\right\rangle}
 \newcommand{\norma}[1]{\left\| #1 \right\|}
 \newcommand\ijk[3]{(#1) \, \uvec i + (#2) \, \uvec j + (#3) \, \uvec k}
 \newcommand\ijz[2]{(#1) \, \uvec i + (#2) \, \uvec j}
-
-\newcommand\coordv{\rvec r}
-\newcommand\arcv{\rvec r}
-\newcommand\surfv{\rvec \varrho}
