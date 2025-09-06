@@ -8,8 +8,8 @@ export function movePdfSolutions(subject: SubjectData) {
     return null;
   }
 
-  const solutionsDir = `${subject.absoluteDir}/${subject.practiceMaterial.pdfSolutionsDir}`;
-  const targetDir = subject.absoluteTargetDir;
+  const solutionsDir = `$CWD/content/${subject.dir}/${subject.practiceMaterial.pdfSolutionsDir}`;
+  const targetDir = `$CWD/latex-docs`;
 
   const filenames = subject.practiceMaterial.files
     .filter(f => f.pdfSolutionSource)

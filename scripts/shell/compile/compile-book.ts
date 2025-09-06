@@ -7,16 +7,18 @@ export function createBookCompilationScript(subject: SubjectData) {
     return null;
   }
 
+  const docsDir = 'latex-docs';
+
   const script = `echo "Now compiling book in ${subject.dir}"
 
-cd ${subject.absoluteDir}/${subject.book.dir}
+cd $CWD/content/${subject.dir}/${subject.book.dir}
 
-latexmk -r ${subject.rcFile} ${subject.book.source}
+latexmk -r $CWD/.latexmkrc.prod ${subject.book.source}
   
 cp ${subject.buildDir}/${fn(
     subject.book.source,
-  )} ${subject.absoluteTargetDir}/${subject.book.target}.pdf
-  `;
+  )} $CWD/${docsDir}/${subject.book.target}.pdf
+`;
 
   return script;
 }

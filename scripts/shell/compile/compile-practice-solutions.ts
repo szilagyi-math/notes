@@ -11,19 +11,21 @@ export function createPracticeSolutionsCompilationScript(subject: SubjectData) {
     return null;
   }
 
+  const docsDir = 'latex-docs';
+
   const script = `echo "Now compiling practice solutions in ${subject.dir}"
 
-cd ${subject.absoluteDir}/${subject.practiceMaterial.latexSolutionsDir}
-  
+cd $CWD/content/${subject.dir}/${subject.practiceMaterial.latexSolutionsDir}
+
 ${subject.practiceMaterial.files
   .filter(file => file.latexSolutionSource && file.latexSolutionTarget)
   .map(file => {
     if (file.displayName) {
-      return `latexmk -r ${subject.rcFile} ${file.latexSolutionSource}
+      return `latexmk -r $CWD/.latexmkrc.prod ${file.latexSolutionSource}
 
 cp ${subject.buildDir}/${fn(
         file.latexSolutionSource!,
-      )} ${subject.absoluteTargetDir}/${file.latexSolutionTarget}.pdf`;
+      )} $CWD/${docsDir}/${file.latexSolutionTarget}.pdf`;
     } else {
       return `echo 'Skipping ${file.description}'`;
     }

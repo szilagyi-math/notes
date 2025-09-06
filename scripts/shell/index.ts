@@ -7,10 +7,15 @@ import type { Subject, SubjectData } from 'common/types';
 export function configToBash(mergedConfig: {
   [key in Subject]: SubjectData;
 }) {
-  const practiceDirs = Object.values(mergedConfig).flatMap(
-    ({ absoluteDir, practiceMaterial: { dir, latexSolutionsDir } }) => [
-      `${absoluteDir}/${dir}`,
-      ...(latexSolutionsDir ? [`${absoluteDir}/${latexSolutionsDir}`] : []),
+  const practiceDirs = Object.entries(mergedConfig).flatMap(
+    ([
+      subject,
+      {
+        practiceMaterial: { dir, latexSolutionsDir },
+      },
+    ]) => [
+      `content/${subject}/${dir}`,
+      ...(latexSolutionsDir ? [`content/${subject}/${latexSolutionsDir}`] : []),
     ],
   );
 

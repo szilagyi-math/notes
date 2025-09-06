@@ -7,18 +7,18 @@ export function createPracticeCompilationScript(subject: SubjectData) {
     return null;
   }
 
+  const docsDir = 'latex-docs';
+
   const script = `echo "Now compiling practice material in ${subject.dir}"
 
-cd ${subject.absoluteDir}/${subject.practiceMaterial.dir}
+cd $CWD/content/${subject.dir}/${subject.practiceMaterial.dir}
   
 ${subject.practiceMaterial.files
   .map(file => {
     if (file.displayName && file.source && file.target) {
-      return `latexmk -r ${subject.rcFile} ${file.source}
+      return `latexmk -r $CWD/.latexmkrc.prod ${file.source}
     
-cp ${subject.buildDir}/${fn(
-        file.source,
-      )} ${subject.absoluteTargetDir}/${file.target}.pdf`;
+cp ${subject.buildDir}/${fn(file.source)} $CWD/${docsDir}/${file.target}.pdf`;
     } else {
       return `echo 'Skipping ${file.description}'`;
     }
