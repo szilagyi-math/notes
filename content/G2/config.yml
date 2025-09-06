@@ -16,18 +16,18 @@ online_notes: /subjects/G2/notes/01-linear-algebra
 hide_edubase: true
 practice_material:
   dir: practice
-  solutionsDir: practice-solutions
+  pdf_solutions_dir: practice-solutions
   files:
     - source: 01.tex
       target: G2-gyak-01
-      solution: G2-gyak-01-megoldas.pdf
+      pdf_solution_source: G2-gyak-01-megoldas.pdf
       display_name: G2 1. gyakorlat
       description: Lineáris algebra – Mátrixok I
       video_link: https://youtu.be/vXfezEYGyOY
       week: 1
     - source: 02.tex
       target: G2-gyak-02
-      solution: G2-gyak-02-megoldas.pdf
+      pdf_solution_source: G2-gyak-02-megoldas.pdf
       display_name: G2 2. gyakorlat
       description: Lineáris algebra – Mátrixok II
       video_link: https://youtu.be/5WS2ScaDUOU
@@ -40,14 +40,14 @@ practice_material:
       week: 2
     - source: 03.tex
       target: G2-gyak-03
-      solution: G2-gyak-03-megoldas.pdf
+      pdf_solution_source: G2-gyak-03-megoldas.pdf
       display_name: G2 3. gyakorlat
       description: Lineáris algebra – Lineáris egyenletrendszerek
       video_link: https://youtu.be/qpWTmZljiMA
       week: 3
     - source: 04.tex
       target: G2-gyak-04
-      solution: G2-gyak-04-megoldas.pdf
+      pdf_solution_source: G2-gyak-04-megoldas.pdf
       display_name: G2 4. gyakorlat
       description: Lineáris algebra – Lineáris leképezések I
       video_link: https://youtu.be/kD8Rpx6ljAU
@@ -59,7 +59,7 @@ practice_material:
       week: 4
     - source: 05.tex
       target: G2-gyak-05
-      solution: G2-gyak-05-megoldas.pdf
+      pdf_solution_source: G2-gyak-05-megoldas.pdf
       display_name: G2 5. gyakorlat
       description: Lineáris algebra – Lineáris leképezések II
       video_link: https://youtu.be/ZjV1wFAH1Cw
@@ -68,7 +68,7 @@ practice_material:
       week: 5
     - source: 06.tex
       target: G2-gyak-06
-      solution: G2-gyak-06-megoldas.pdf
+      pdf_solution_source: G2-gyak-06-megoldas.pdf
       display_name: G2 6. gyakorlat
       description: Függvénysorozatok
       video_link: https://youtu.be/L5PvkUyLrKM
@@ -86,7 +86,7 @@ practice_material:
       week: 6
     - source: 07.tex
       target: G2-gyak-07
-      solution: G2-gyak-07-megoldas.pdf
+      pdf_solution_source: G2-gyak-07-megoldas.pdf
       display_name: G2 7. gyakorlat
       description: Függvény- és hatványsorok
       video_link: https://youtu.be/GdnWFPA0vf4
@@ -102,7 +102,7 @@ practice_material:
       week: 7
     - source: 08.tex
       target: G2-gyak-08
-      solution: G2-gyak-08-megoldas.pdf
+      pdf_solution_source: G2-gyak-08-megoldas.pdf
       display_name: G2 8. gyakorlat
       description: Taylor-sorok
       video_link: https://www.youtube.com/watch?v=5aigfYrjc4Q
@@ -120,7 +120,7 @@ practice_material:
       week: 8
     - source: 09.tex
       target: G2-gyak-09
-      solution: G2-gyak-09-megoldas.pdf
+      pdf_solution_source: G2-gyak-09-megoldas.pdf
       display_name: G2 9. gyakorlat
       description: Fourier-sorok
       video_link: https://youtu.be/5kPqVB2qIYY
@@ -140,7 +140,7 @@ practice_material:
       week: 9
     - source: 10.tex
       target: G2-gyak-10
-      solution: G2-gyak-10-megoldas.pdf
+      pdf_solution_source: G2-gyak-10-megoldas.pdf
       display_name: G2 10. gyakorlat
       description: Többváltozós analízis – Többváltozós függvények
       video_link: https://youtu.be/-RfHLk4HTho
@@ -149,14 +149,14 @@ practice_material:
       week: 10
     - source: 11.tex
       target: G2-gyak-11
-      solution: G2-gyak-11-megoldas.pdf
+      pdf_solution_source: G2-gyak-11-megoldas.pdf
       display_name: G2 11. gyakorlat
       description: Többváltozós analízis – Differenciálás I
       video_link: https://youtu.be/69GI6iN4HhA
       week: 11
     - source: 12.tex
       target: G2-gyak-12
-      solution: G2-gyak-12-megoldas.pdf
+      pdf_solution_source: G2-gyak-12-megoldas.pdf
       display_name: G2 12. gyakrolat
       description: Többváltozós analízis – Differenciálás II
       video_link: https://youtu.be/kdqcBt54fNo
@@ -182,7 +182,7 @@ practice_material:
       week: 13
     - source: 14.tex
       target: G2-gyak-14
-      solution: G2-gyak-14-megoldas.pdf
+      pdf_solution_source: G2-gyak-14-megoldas.pdf
       display_name: G2 14. gyakorlat
       description: Többváltozós analízis – Integrálás II
       video_link: https://youtu.be/l1nMNaeko6E

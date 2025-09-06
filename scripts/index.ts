@@ -2,10 +2,10 @@ import { join } from 'path';
 import { cwd } from 'process';
 import { existsSync, mkdirSync } from 'fs';
 import { parseConfig } from './parser';
-
-import type { Subject, SubjectData } from 'common/types';
 import { configToBash } from './shell';
 import { writeFile } from 'fs/promises';
+
+import type { Subject, SubjectData } from 'common/types';
 
 const CONFIG_NAME = 'config.yml';
 const RC_FILE = '.latexmkrc.prod';
@@ -13,7 +13,7 @@ const RC_FILE = '.latexmkrc.prod';
 const CWD = cwd();
 const BASE_DIR = join(CWD, 'content');
 const GENERATE_DIR = join(CWD, 'generate');
-const DOCS_DIR = join(CWD, 'latex-docs');
+const TARGET_DIR = join(CWD, 'latex-docs');
 const SUBJECT_DIRS: Array<[Subject, string]> = [
   // Add more subjects here
   ['G1', 'G1'],
@@ -26,27 +26,30 @@ const SHEBANG = '#!/bin/bash';
 if (!existsSync(GENERATE_DIR)) {
   mkdirSync(GENERATE_DIR, { recursive: true });
 }
-if (!existsSync(DOCS_DIR)) {
-  mkdirSync(DOCS_DIR, { recursive: true });
+if (!existsSync(TARGET_DIR)) {
+  mkdirSync(TARGET_DIR, { recursive: true });
 }
 
 Promise.all(
-  SUBJECT_DIRS.map(s => {
-    return parseConfig(BASE_DIR, s, CONFIG_NAME, join(CWD, RC_FILE), 'build');
+  SUBJECT_DIRS.map(([s, dir]) => {
+    return parseConfig(
+      s,
+      BASE_DIR,
+      dir,
+      CONFIG_NAME,
+      join(CWD, RC_FILE),
+      'build',
+      TARGET_DIR,
+    );
   }),
 )
   .then(arr => {
-    const obj = arr.reduce(
-      (acc, val) => {
-        return {
-          ...acc,
-          ...val,
-        };
-      },
-      {} as {
-        [key in Subject]: SubjectData;
-      },
-    );
+    const obj = arr.reduce((acc, val) => {
+      return {
+        ...acc,
+        ...val,
+      };
+    }, {});
 
     return obj as { [key in Subject]: SubjectData };
   })

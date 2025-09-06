@@ -1,3 +1,7 @@
+// Helper types
+type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+type XOR<A, B> = (Without<A, B> & B) | (Without<B, A> & A);
+
 // Document types
 export type Subject = 'G1' | 'G2' | 'G3';
 export type DocumentType = 'book' | 'practice';
@@ -16,6 +20,7 @@ export type SubjectData = {
   // Directory
   dir: string;
   absoluteDir: string;
+  absoluteTargetDir: string;
   rcFile: string;
   buildDir: string;
 
@@ -42,18 +47,31 @@ export type SubjectData = {
   // Practice material
   practiceMaterial: {
     dir: string;
-    solutionsDir: string;
-    files: {
-      // Only needed if downloadable
-      source?: string;
-      target?: string;
-      displayName?: string;
-      solution?: string;
-      videoLink?: string;
-      // Required for all
+    pdfSolutionsDir?: string;
+    latexSolutionsDir?: string;
+    hideSolutions?: false | 'no-copy' | 'no-link';
+    files: ({
+      // Schedule
       description: string;
       week: number;
-    }[];
+      // Compilation
+      source?: string;
+      target?: string;
+      // Solutions
+      hideSolution?: false | 'no-copy' | 'no-link';
+      // Other
+      displayName?: string;
+      videoLink?: string;
+    } & XOR<
+      {
+        pdfSolutionSource: string;
+        pdfSolutionTarget?: string;
+      },
+      {
+        latexSolutionSource: string;
+        latexSolutionTarget: string;
+      }
+    >)[];
   };
 
   // Lecture schedule
@@ -74,7 +92,7 @@ export type SubjectData = {
     day: number;
     start: [number, number];
     end: [number, number];
-    edubase: string;
+    edubase?: string;
     staff: {
       name: string;
     }[];

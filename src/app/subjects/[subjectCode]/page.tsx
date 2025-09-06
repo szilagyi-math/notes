@@ -1,6 +1,7 @@
 import { LectureTable, Main } from '@/components';
 import { Subject } from 'common/types';
 import { data } from 'latex-docs';
+import { getHuDay, formatTimeRange } from '@/utils';
 import Link from 'next/link';
 
 import type { Metadata, NextPage, ResolvingMetadata } from 'next';
@@ -139,16 +140,9 @@ const SubjectsPage: NextPage<SubjectsPageProps> = async props => {
                 <td className='border px-4 py-2'>{practice.room}</td>
                 <td className='border px-4 py-2'>
                   {/* TODO: Do it nicer */}
-                  {practice.day === 1 && 'Hétfő'}
-                  {practice.day === 2 && 'Kedd'}
-                  {practice.day === 3 && 'Szerda'}
-                  {practice.day === 4 && 'Csütörtök'}
-                  {practice.day === 5 && 'Péntek'}
+                  {getHuDay(practice.day)}
                   {', '}
-                  {practice.start[0].toString().padStart(2, '0')}:
-                  {practice.start[1].toString().padStart(2, '0')} -{' '}
-                  {practice.end[0].toString().padStart(2, '0')}:
-                  {practice.end[1].toString().padStart(2, '0')}
+                  {formatTimeRange(practice.start, practice.end)}
                 </td>
                 <td className='border px-4 py-2'>
                   {practice.staff.map((staff, index) => (

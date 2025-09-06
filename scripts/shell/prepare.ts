@@ -42,7 +42,7 @@ function loop(dir: string): string {
 `;
 }
 
-export function createPrepareScript(dirs: string[]): string {
+export function createPreparationScript(...dirs: string[]): string {
   const docsDir = `latex-docs`;
 
   return `# This script prepares the environment for the compilation of latex files

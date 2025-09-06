@@ -16,17 +16,22 @@ online_notes: null
 hide_edubase: true
 practice_material:
   dir: practice
-  solutionsDir: practice-solutions
+  latex_solutions_dir: practice-latex-solution
   files:
     - source: 01.tex
       target: G3-gyak-01
+      latex_solution_source: 01.tex
+      latex_solution_target: G3-gyak-01-megoldas
       display_name: G3 1. gyakorlat
       description: Vektoranalízis – Ismétlés, operátorok
       week: 1
     - source: 02.tex
       target: G3-gyak-02
+      latex_solution_source: 02.tex
+      latex_solution_target: G3-gyak-02-megoldas
       display_name: G3 2. gyakorlat
       description: Vektoranalízis – Operátorok, potenciálosság
+      week: 2
 hide_lectures: true
 lectures:
   - room: CHFMAX

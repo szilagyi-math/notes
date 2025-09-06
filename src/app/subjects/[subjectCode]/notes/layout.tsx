@@ -3,22 +3,18 @@ import {
   SideNavigation,
   SideNavigationBackdrop,
 } from '@/components';
+import { isSubject } from '@/utils';
 import toc from '@/lib/toc/math-notes';
 
-import type { Subject } from 'common/types';
-
-interface NotesLayoutParams {
-  subjectCode: Subject;
-}
-
-interface NotesLayoutProps {
-  children: React.ReactNode;
-  params: Promise<NotesLayoutParams>;
-}
-
-const NotesLayout = async (props: NotesLayoutProps) => {
+const NotesLayout = async (
+  props: LayoutProps<'/subjects/[subjectCode]/notes'>,
+) => {
   const { children } = props;
   const { subjectCode } = await props.params;
+
+  if (!isSubject(subjectCode)) {
+    throw new Error('Invalid subject code');
+  }
 
   return (
     <div className='max-w-content-width mx-auto my-0 flex'>

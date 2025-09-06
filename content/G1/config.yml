@@ -16,11 +16,11 @@ online_notes: null
 hide_edubase: true
 practice_material:
   dir: practice
-  solutionsDir: practice-solutions
+  pdf_solutions_dir: practice-solutions
   files:
     - source: 01.tex
       target: G1-gyak-01
-      solution: G1-gyak-01-megoldas.pdf
+      pdf_solution_source: G1-gyak-01-megoldas.pdf
       video_link: https://youtu.be/xIiAnpM3uSI
       video_mistakes:
         - '44:10 -> Ha két vektor skaláris szorzata 0, ÉS EGYIK VEKTOR SEM
@@ -43,7 +43,7 @@ practice_material:
       week: 1
     - source: 02.tex
       target: G1-gyak-02
-      solution: G1-gyak-02-megoldas.pdf
+      pdf_solution_source: G1-gyak-02-megoldas.pdf
       video_link: https://youtu.be/qOatMC5SSCU
       video_mistakes:
         - '32:43 - irányvektorok és nem egységvektorok'
@@ -52,7 +52,7 @@ practice_material:
       week: 2
     - source: 03.tex
       target: G1-gyak-03
-      solution: G1-gyak-03-megoldas.pdf
+      pdf_solution_source: G1-gyak-03-megoldas.pdf
       video_link: https://youtu.be/R7WRV5dkUVQ
       video_mistakes:
         - '1:20:48-nál egy elírás látható: nem parabola hanem ELLIPSZIS
@@ -64,13 +64,13 @@ practice_material:
     - source: 04.tex
       target: G1-gyak-04
       display_name: G1 4. gyakorlat
-      solution: G1-gyak-04-megoldas.pdf
+      pdf_solution_source: G1-gyak-04-megoldas.pdf
       video_link: https://youtu.be/Q7re319JuNo5
       description: Numerikus sorozatok I
       week: 4
     - source: 05.tex
       target: G1-gyak-05
-      solution: G1-gyak-05-megoldas.pdf
+      pdf_solution_source: G1-gyak-05-megoldas.pdf
       video_link: https://youtu.be/2EL1Qg0bEnU
       video_mistakes:
         - '27:00 → Mivel n tart a végtelenbe, így a számláló negatív lesz
@@ -88,7 +88,7 @@ practice_material:
     - source: 06.tex
       target: G1-gyak-06
       display_name: G1 6. gyakorlat
-      solution: G1-gyak-06-megoldas.pdf
+      pdf_solution_source: G1-gyak-06-megoldas.pdf
       video_link: https://youtu.be/VJoVvFfEagc
       video_mistakes:
         - '58:36 -> A konstans megfogalmazás a számlálóra nem megfelelő. A
@@ -102,28 +102,28 @@ practice_material:
     - source: 07.tex
       target: G1-gyak-07
       display_name: G1 7. gyakorlat
-      solution: G1-gyak-07-megoldas.pdf
+      pdf_solution_source: G1-gyak-07-megoldas.pdf
       video_link: https://youtu.be/qzTEZYRykUA
       description: Differenciálszámítás I
       week: 7
     - source: 08.tex
       target: G1-gyak-08
       display_name: G1 8. gyakorlat
-      solution: G1-gyak-08-megoldas.pdf
+      pdf_solution_source: G1-gyak-08-megoldas.pdf
       description: Differenciálszámítás II
       video_link: https://youtu.be/t_ZtR2x0eFA
       week: 8
     - source: 09.tex
       target: G1-gyak-09
       display_name: G1 9. gyakorlat
-      solution: G1-gyak-09-megoldas.pdf
+      pdf_solution_source: G1-gyak-09-megoldas.pdf
       description: Differenciálszámítás III
       video_link: https://youtu.be/wImfxPqRqNk
       week: 9
     - source: 10.tex
       target: G1-gyak-10
       display_name: G1 10. gyakorlat
-      solution: G1-gyak-10-megoldas.pdf
+      pdf_solution_source: G1-gyak-10-megoldas.pdf
       description: Integrálszámítás I
       video_link: https://youtu.be/2YKb0qVEljo
       week: 10
@@ -138,7 +138,7 @@ practice_material:
     - source: 12.tex
       target: G1-gyak-12
       display_name: G1 12. gyakorlat
-      solution: G1-gyak-12-megoldas.pdf
+      pdf_solution_source: G1-gyak-12-megoldas.pdf
       description: Integrálszámítás III
       video_link: https://youtu.be/mU497mbNvyg
       video_mistakes:
