@@ -23,6 +23,10 @@ practice_material:
       display_name: G3 1. gyakorlat
       description: Vektoranalízis – Ismétlés, operátorok
       week: 1
+    - source: 02.tex
+      target: G3-gyak-02
+      display_name: G3 2. gyakorlat
+      description: Vektoranalízis – Operátorok, potenciálosság
 hide_lectures: true
 lectures:
   - room: CHFMAX
