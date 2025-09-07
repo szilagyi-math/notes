@@ -1,11 +1,11 @@
 \documentclass{szb-practice}
 
-\title{Görbementi integrálok}
+\title{Felületek, felületi integrál}
 \area{Vektoranalízis}
 \subject{Matematika G3}
 \subjectCode{BMETE94BG03}
 \date{Utoljára frissítve: \today}
-\docno{4}
+\docno{5}
 
 \begin{document}
 \allowdisplaybreaks
@@ -16,69 +16,92 @@
 \subsection{Elméleti áttekintő}
 \vspace{1em}
 
-\begin{definition}[Reguláris görbe]
-  Legyen $\curvedomain \subset \Reals$ nem feltétlenül korlátos intervallum.
-  Ekkor az $\curvesign : \curvedomain \rightarrow \curveimage \subset \Reals^3$
-  immerziót reguláris görbének nevezzük.
+\begin{definition}[Reguláris felület]
+  Legyen $\surfimage \subseteq \Reals^3$. Azt mondjuk, hogy az $\surfsign$
+  reguláris felület, ha $\forall \rvec p \in \surfimage$ ponthoz megadható
+  olyan $\rvec p$-t tartalmazó $V \subset \Reals^3$ nyílt halmaz és
+  $\surfsign : \surfdomain \subseteq \Reals^2 \rightarrow \surfimage \cap V$
+  leképezés, melyre teljesülnek az alábbiak:
+  \begin{itemize}
+    \item $\surfsign$ differenciálható homeomorfizmus,
+
+    \item $\surfsign$ immerzió (derivált leképezése injektív).
+  \end{itemize}
+  Ha ezek teljesülnek, akkor $\surfsign$-t parametrációnak,
+  $V \cap \surfimage$-t koordinátakörnyezetnek nevezzük.
 \end{definition}
 
 \vfill
 
-\begin{definition}[Pályasebesség, Ívhossz]
-  A $v: \curvedomain \subset \Reals \rightarrow \Reals$,
-  $t \mapsto \|\dot{\curvesign}(t)\|$ függvényt pályasebességnek hívjuk.
+\begin{definition}[Elemi felület]
+  A $\surfsign: \surfdomain \subseteq \Reals^2 \rightarrow \surfimage \subseteq
+    \Reals^3$ elemi felület, ha $\surfsign$ legalább egyszer differenciálható és
+  injektív.
+\end{definition}
 
-  A pályasebesség $\curvedomain$ feletti integrálját a görbe ívhosszának
-  nevezzük:
+\vfill
+
+\begin{definition}[Skalármező skalárérékű felületmenti integrálja]
+  Legyen $\varphi: D \subseteq \Reals^3 \rightarrow \Reals$ skalármező,
+  $\surfsign: \surfdomain \subseteq \Reals^2 \rightarrow \surfimage
+    \subset D$, $t \mapsto \surfsign(t)$ pedig a felület parametrizált
+  egyenlete. Ekkor a $\varphi$ skalármező $\surfimage$ felület menti
+  skalárértékű integrálja:
   $$
-    L(\curvesign)
-    = \int_{\curvedomain} \|\dot{\curvesign}(t)\| \dd t
-    = \int_{\curvedomain} \dd \curvescalar
+    \iint_{\surfimage} \varphi(\coordvec) \dd \surfvec =
+    \iint_{\surfdomain}
+    \varphi(\surfsign(s; t))
+    \norma{
+      \pdv{\surfsign}{s}
+      \times
+      \pdv{\surfsign}{t}
+    }
+    \dd s \dd t
+    \text.
+  $$
+  Amennyiben a fekület $z = \Phi(x; y)$ alakban van megadva, akkor:
+  $$
+    \iint_{\surfimage} \varphi(\coordvec) \dd \surfvec =
+    \iint_{\surfdomain}
+    \varphi(x; y; \Phi(x; y))
+    \sqrt{1 + (\partial_x \varPhi)^2 + (\partial_y \varPhi)^2}
+    \dd x \dd y
     \text.
   $$
 \end{definition}
 
 \vfill
 
-\begin{definition}[Irányított görbe]
-  Egy $\curvesign: [a;b] \rightarrow \Reals^3$ görbe irányított, ha adott egy
-  rendezés ($\leq$) a paraméterértékeken. Ekkor $t_1 < t_2$ esetén
-  $\curvesign(t_1)$ a görbe korábbi pontja, $\curvesign(t_2)$-höz képest. Ha
-  $\curvesign(a) = \curvesign(b)$, akkor a görbe zárt.
-\end{definition}
-
-\vfill
-
-\begin{definition}[Skalármező görbe menti skalárértékű integrálja]
-  Legyen $\varphi: U \subseteq \Reals^3 \rightarrow \Reals$ skalármező,
-  $\curvesign: \curvedomain \rightarrow \curveimage \subset U$,
-  $t \mapsto \curvesign(t)$ pedig a görbe parametrizált egyenlete. Ekkor a
-  $\varphi$ skalármező $\curveimage$ görbe menti skalárértékű integrálja:
-  $$
-    \int_{\curveimage} \varphi(\coordvec) \dd \curvescalar =
-    \int_{\curvedomain} \varphi(\curvesign(t)) \norma{\dot{\curvesign}(t)} \dd t
-    \text.
-  $$
-\end{definition}
-
-\vfill
-
-\begin{definition}[Vektormező görbe menti skalár- és vektorértékű integrálja][nobreak]
-  Legyen $\rvec v: U \subseteq \Reals^3 \rightarrow \Reals^3$ vektormező,
-  $\curvesign: \curvedomain \rightarrow \curveimage \subset U$,
-  $t \mapsto \curvesign(t)$ pedig a görbe parametrizált egyenlete. Ekkor az
-  $\rvec v$ vektormező $\curveimage$ görbe menti
+\begin{definition}[Vektormező skalár- és vektorértékű felületmenti integrálja][nobreak]
+  Legyen $\rvec v: D \subseteq \Reals^3 \rightarrow \Reals^3$ vektormező,
+  $\surfsign: \surfdomain \subseteq \Reals^2 \rightarrow \surfimage
+    \subset D$, $t \mapsto \surfsign(t)$ pedig a felület parametrizált
+  egyenlete. Ekkor a $\rvec v$ vektormező $\surfimage$ felület menti
   \begin{itemize}
     \item skalárértékű integrálja:
           $\displaystyle
-            \int_{\curveimage} \scalar{\rvec v(\coordvec)}{\dd \curvescalar} =
-            \int_{\curvedomain} \scalar{\rvec v(\curvesign(t))}{\dot{\curvesign}(t)} \dd t
+            \iint_{\surfimage} \scalar{\rvec v(\coordvec)}{\dd \surfvec} =
+            \iint_{\surfdomain}
+            \scalar{\rvec v(\surfsign(s; t))}{
+              \pdv{\surfsign}{s}
+              \times
+              \pdv{\surfsign}{t}
+            }
+            \dd s \dd t
             \text,
           $
+
     \item vektorértékű integrálja:
           $\displaystyle
-            \int_{\curveimage} \rvec v(\coordvec) \times \dd \curvescalar =
-            \int_{\curvedomain} \rvec v(\curvesign(t)) \times \dot{\curvesign}(t) \dd t
+            \iint_{\surfimage} \rvec v(\coordvec) \times \dd \surfvec =
+            \iint_{\surfdomain}
+            \rvec v(\surfsign(s; t)) \times
+            \left(
+            \pdv{\surfsign}{s}
+            \times
+            \pdv{\surfsign}{t}
+            \right)
+            \dd s \dd t
             \text.
           $
   \end{itemize}
@@ -89,91 +112,51 @@
 
 \begin{enumerate}
   \item
+        % \item Számítsuk ki a megadott felületek felszínét!
+        %       \begin{enumerate}
+        %         \item $z = x^2 + y^2$ forgásparaboloid $z = 1$ és $z = 4$ síkok közé
+        %               eső része,
+
+        %         \item $\surfvec(s;t) = \ijk{e^s \cos t}{e^s \sin t}{s}$,
+        %               $s \in (-\infty; 0]$, $t \in [0; 2\pi]$.
+        %       \end{enumerate}
+
+        % \item Integrálja a skalármezőket a megadott felületeken!
+        %       \begin{enumerate}
+        %         \item $f(\coordvec) = x^2 + y^2$, az egységgömb $z > 0$ részén,
+
+        %         \item $g(\coordvec) = x + y + z, $ az $x + 2y + 4z = 4$ sík
+        %               első térnyolcadba tartozó részén.
+        %       \end{enumerate}
+
+        % \item Integrálja a vektormezőket a megadott felületeken!
+        %       A normális kifele mutató legyen!
+        %       \begin{itemize}
+        %         \item $\rvec u(\coordvec) = \ijk{x + y}{x - y}{z^2}$,\\
+        %               $\surfvec (s;t) = \ijk{s + t}{s - t}{s^2 - t^2}$,
+        %               $(s;t) \in [0;1]^2$,
+
+        %         \item $\rvec v(\coordvec) = \ijk{y^2 + z^2}{x^2 + z^2}{x^2 + y^2}$,\\
+        %               $r = 2$ sugarú, $x = 2$ síkon lévő körön.
+        %       \end{itemize}
 \end{enumerate}
 
 \clearpage
 \subsection{Segédlet}
 
-\subsubsection{Görbék paraméterezése}
+\subsubsection{Felületek paraméterezése}
 
+\bgroup
+\def\tskip{15mm}
 \begin{tabular}{
-  >{\bullet\;\bfseries}p{2.5cm}<{:}
+  >{\bullet\;}p{3.25cm}
   p{5cm}
-  p{2.75cm}
-  >{\centering\arraybackslash}m{4cm}
+  m{2.5cm}
+  m{3.5cm}
   }
-  Egyenes
-   & $\curvesign = \rvec r_0 + t \rvec v$
-   & $t \in \Reals$
-   & \begin{tikzpicture}[
-         3d view={110}{20},
-         baseline,
-       ]
-       % Origin coordinate
-       \coordinate (O) at (0,0,0);
-
-       % Coordinate system
-       \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south] {$x$};
-       \draw[-to] (O) -- ++(0,1.75,0) node[anchor=north east] {$y$};
-       \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north west] {$z$};
-
-       % Line
-       \draw[to-to, thick, primaryColor]
-       (2,-0.75,1.25) -- ++(-1,3,0.75)
-       coordinate[pos=.2] (A)
-       coordinate[pos=.8] (B)
-       ;
-
-       % v vector
-       \draw[-to, draw=ternaryColor, ultra thick]
-       (A) -- (B)
-       node[anchor=north east] {$\rvec v$}
-       ;
-
-       % r_0 vector
-       \draw[-to, draw=secondaryColor, ultra thick]
-       (O) -- (A)
-       node[anchor=south] {$\rvec r_0$}
-       ;
-     \end{tikzpicture}
-  \\[14mm]
-  Szakasz
-   & $\curvesign = \rvec r_0 + t (\rvec r_1 - \rvec r_0)$
-   & $t \in [0;1]$
-   & \begin{tikzpicture}[
-         3d view={110}{20},
-         baseline,
-       ]
-       % Origin coordinate
-       \coordinate (O) at (0,0,0);
-
-       % Coordinate system
-       \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south] {$x$};
-       \draw[-to] (O) -- ++(0,1.75,0) node[anchor=north east] {$y$};
-       \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north west] {$z$};
-
-       % Line segment
-       \draw[|-|, thick, red-base]
-       (2,-0.75,1.25) coordinate (A) -- ++(-1,3,0.75) coordinate (B)
-       ;
-
-       % r_0 vector
-       \draw[-to, draw=yellow-base, ultra thick]
-       (O) -- (A)
-       node[anchor=south west] {$\rvec r_0$}
-       ;
-
-       % r_1 vector
-       \draw[-to, draw=blue-base, ultra thick]
-       (O) -- (B)
-       node[anchor=south east] {$\rvec r_1$}
-       ;
-     \end{tikzpicture}
-
-  \\[14mm]
-  Körvonal
-   & $\curvesign = \begin{bmatrix} r \cos t \\ r \sin t \\ 0 \end{bmatrix}$
-   & $t \in [0;2\pi]$
+  \textbf{Körlap:} \newline \phantom{1} ($xy$ sík)
+   & $\surfsign (s;t) = \begin{bmatrix} s \cos t \\ s \sin t \\ 0 \end{bmatrix}$
+   & $s \in [0;r]$ \newline $t \in [0, 2\pi]$
    & \begin{tikzpicture}[
          3d view={110}{20},
          baseline,
@@ -182,7 +165,7 @@
        \coordinate (O) at (0,0,0);
 
        % Circle
-       \draw[draw=red-base, thick] (O) circle (1);
+       \draw[fill=red-base!50!white, fill opacity=.75] (O) circle (1);
 
        % Coordinate system
        \draw[-to] (O) -- ++(1.75,0,0) node[anchor=west] {$x$};
@@ -194,10 +177,10 @@
        (O) -- (0.6*1.75,0.8*1.75,0) -- (0.6,0.8,0)
        node[midway, anchor=north east, inner sep=.5mm, font=\scriptsize] {$r$};
      \end{tikzpicture}
-  \\[14mm]
-  Ellipszis
-   & $\curvesign = \begin{bmatrix} a \cos t \\ b \sin t \\ 0 \end{bmatrix}$
-   & $t \in [0;2\pi]$
+  \\[\tskip]
+  \textbf{Ellipszislap:} \newline \phantom{1} ($xy$ sík)
+   & $\surfsign (s;t) = \begin{bmatrix} a \, s \cos t \\ b \, s \sin t \\ 0 \end{bmatrix}$
+   & $s \in [0;1]$ \newline $t \in [0, 2\pi]$
    & \begin{tikzpicture}[
          3d view={110}{20},
          baseline,
@@ -206,7 +189,7 @@
        \coordinate (O) at (0,0,0);
 
        % Ellipsis
-       \draw[draw=red-base, thick] (O) ellipse (1.4 and .8);
+       \draw[fill=red-base!50!white, fill opacity=.75] (O) ellipse (1.4 and .8);
 
        % Coordinate system
        \draw[-to] (O) -- ++(2.20,0,0) node[anchor=west] {$x$};
@@ -222,10 +205,49 @@
        \draw[to-to, thick, draw=blue-base] (O) -- (1.4,0,0);
        \draw[to-to, thick, draw=blue-base] (O) -- (0,0.8,0);
      \end{tikzpicture}
-  \\[14mm]
-  Spirál
-   & $\curvesign = \begin{bmatrix} a \cos t \\ a \sin t \\ bt \end{bmatrix}$
-   & $t \in \Reals$
+  \\[\tskip]
+  \textbf{Hengerfelület:}
+   & $\surfsign (s;t) = \rvec r_0(s) + t \rvec n$
+   & $s \in \mathcal D_{\rvec r_0}$ \newline $t \in [0, T]$
+   & \begin{tikzpicture}[
+         baseline,
+       ]
+       % Random potato coordinates
+       \coordinate (A) at (0,-.15);
+       \coordinate (B) at (.6,-.2);
+       \coordinate (C) at (.5,.5);
+       \coordinate (D) at (0,.35);
+       \coordinate (E) at (-.66,.45);
+       \coordinate (F) at (-.75,-.35);
+
+       % + is in the foreground, - is in the background
+       \foreach \c in {A,B,C,D,E,F} {
+           \coordinate (\c-) at ($(\c) + (.5,.5)$);
+           \coordinate (\c+) at ($(\c) - (.375,.375)$);
+
+           % Connect + and - with a line
+           \draw[opacity=0.25,red-base] (\c-) -- (\c+) coordinate[pos=.25] (\c75);
+         }
+
+
+       % Connect the dots
+       \draw[smooth cycle, thick, red-base, fill=white] plot coordinates {
+           (A+) (B+) (C+) (D+) (E+) (F+)
+         };
+       \draw[smooth cycle, thick, yellow-base, opacity=.25] plot[xshift=1cm] coordinates {
+           (A-) (B-) (C-) (D-) (E-) (F-)
+         };
+
+       % Draw the normal vector
+       \draw[-to, draw=blue-base, thick] (E+) -- (E75) node[below left, xshift=-3mm] {\scriptsize$\rvec n$};
+
+       % Label the curve
+       \node[above left=-1mm] at (A+) {\scriptsize$\rvec r_0(s)$};
+     \end{tikzpicture}
+  \\[\tskip]
+  \textbf{Forgásfelület:} \newline \phantom{1} ($z$ tengely körül) \newline \phantom{1} ($z = f(x)$)
+   & $\surfsign (s;t) = \begin{bmatrix} s \cos t \\ s \sin t \\ f(s) \end{bmatrix}$
+   & $s \in [0;2\pi]$ \newline $t \in \mathcal D_f$
    & \begin{tikzpicture}[
          3d view={110}{20},
          baseline,
@@ -233,181 +255,216 @@
        % Origin coordinate
        \coordinate (O) at (0,0,0);
 
+       % Helper coordinates
+       \foreach \a in {0,30,...,330} {
+           \foreach \loc in {0,2,...,10} {
+               \coordinate (\a-\loc) at
+               ({\loc*cos(\a)/10},{\loc*sin(\a)/10},1.4*\loc*\loc/100 - 0.6*\loc*\loc*\loc*\loc/10000);
+             }
+         }
+
+       % Draw surface in bg
+       \foreach \x\y in {150/180,180/210,210/240,240/270,270/300,300/330} {
+           \foreach \i/\j in {0/2,2/4,4/6,6/8,8/10} {
+               \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+             }
+         }
+
        % Coordinate system
-       \draw[-to] (O) -- ++(1.75,0,0) node[anchor=west] {$x$};
+       \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south east] {$x$};
        \draw[-to] (O) -- ++(0,1.75,0) node[anchor=south east] {$y$};
        \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north east] {$z$};
 
-       \draw[%
-         domain=0:866,% 2.5 revolutions
-         samples=100, % More samples -> smoother curve
-         smooth,      % Nicer curve
-         variable=\t, % Use \t because of convention
-         thick,
-         red-base,
-       ] plot (
-       {cos(\t)},
-       {sin(\t)},
-       {\t/900}
-       );
+       % Draw surface in fg
+       \foreach \x/\y in {120/150,90/120,330/0,0/30,30/60,60/90} {
+           \foreach \i/\j in {0/2,2/4,4/6,6/8,8/10} {
+               \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+             }
+         }
+     \end{tikzpicture}
+  \\[\tskip]
+  \textbf{Gömbfelület:}
+   & $\surfsign (s;t) = \begin{bmatrix} R \sin s \cos t \\ R \sin s \sin t \\ R \cos s \end{bmatrix}$
+   & $s \in [0;\pi]$ \newline $t \in [0, 2\pi]$
+   & \begin{tikzpicture}[
+         3d view={135}{35.26},
+         % 3d view={110}{20},
+         baseline,
+       ]
+       % Origin coordinate
+       \coordinate (O) at (0,0,0);
 
-       \begin{scope}[font=\scriptsize]
-      \draw[thick, draw=blue-base, inner sep=1mm]
-      (O) -- (1,0,0)
-      node[anchor=west, pos=.6] {$a$};
+       % Helper coordinates
+       \foreach \s in {0,30,...,360} {
+           \foreach \t in {0,30,...,330} {
+               \coordinate (\s-\t) at
+               (
+               {sin(\s/2)*cos(\t)},
+               {sin(\s/2)*sin(\t)},
+               {cos(\s/2)}
+               );
+             }
+         }
 
-      \draw[thick, draw=blue-base, inner sep=0.5mm]
-      (1,0,0) -- ++(0,0,1/2.5)
-      node[anchor=east, pos=.5] {$b$};
+       % Draw surface in bg
+       \foreach \x/\y in {330/360,300/330,270/300,240/270,210/240,180/210,150/180,120/150,90/120,60/90,30/60,0/30} {
+           \foreach \i/\j in {150/180,180/210,210/240,240/270,270/300,300/330,330/0,120/150,90/120}{
+               \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+             }
+         }
+
+       % Coordinate system
+       \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south east] {$x$};
+       \draw[-to] (O) -- ++(0,1.75,0) node[anchor=south west] {$y$};
+       \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north east] {$z$};
+
+       % Draw surface in fg
+       \foreach \x/\y in {330/360,300/330,270/300,240/270,210/240,180/210,150/180,120/150,90/120,60/90,30/60,0/30} {
+           \foreach \i/\j in {0/30,30/60,60/90} {
+               \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+             }
+         }
+     \end{tikzpicture}
+  \\[\tskip]
+  \textbf{Ellipszoid:}
+   & $\surfsign (s;t) = \begin{bmatrix} a \sin s \cos t \\ b \sin s \sin t \\ c \cos s \end{bmatrix}$
+   & $s \in [0;\pi]$ \newline $t \in [0, 2\pi]$
+   & \begin{tikzpicture}[
+         3d view={110}{20},
+         baseline,
+       ]
+       % Origin coordinate
+       \coordinate (O) at (0,0,0);
+
+       % Helper coordinates
+       \foreach \s in {0,30,...,360} {
+           \foreach \t in {0,30,...,330} {
+               \coordinate (\s-\t) at
+               (
+               {0.8*sin(\s/2)*cos(\t)},
+               {1.4*sin(\s/2)*sin(\t)},
+               {0.6*cos(\s/2)}
+               );
+             }
+         }
+
+       % Draw surface in bg
+       \foreach \x/\y in {330/360,300/330,270/300,240/270,210/240,180/210,150/180,120/150,90/120,60/90,30/60,0/30} {
+           \foreach \i/\j in {150/180,180/210,210/240,240/270,270/300,300/330,330/0,120/150,90/120}{
+               \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+             }
+         }
+
+       % Coordinate system
+       \draw[-to] (O) -- ++(2.25,0,0) node[anchor=east] {$x$};
+       \draw[-to] (O) -- ++(0,2.00,0) node[anchor=south] {$y$};
+       \draw[-to] (O) -- ++(0,0,1.25) node[anchor=north east] {$z$};
+
+       % Draw surface in fg
+       \foreach \x/\y in {330/360,300/330,270/300,240/270,210/240,180/210,150/180,120/150,90/120,60/90,30/60,0/30} {
+           \foreach \i/\j in {0/30,30/60,60/90} {
+               \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+             }
+         }
+     \end{tikzpicture}
+  \\[\tskip]
+  \textbf{Тórusz:}
+   & $\surfsign (s;t) = \begin{bmatrix} (R + r \cos s) \cos t \\ (R + r \cos s) \sin t \\ r \sin s \end{bmatrix}$
+   & $s \in [0;2\pi]$ \newline $t \in [0, 2\pi]$
+   & \begin{tikzpicture}
+       \begin{axis}[
+        axis equal image,
+        hide axis,
+        % z buffer = sort,
+        view={110}{20},
+        xmax=2.5,
+        ymax=2.5,
+        zmax=2.25,
+        scale=.75,
+      ]
+
+      \draw[-to] (axis cs:0,0,0) -- (axis cs:1.25,0,0);
+      \draw[-to] (axis cs:0,0,0) -- (axis cs:0,1.25,0);
+
+      \addplot3[
+        surf,
+        faceted color=red-base,
+        fill=red-base!20,
+        ultra thin,
+        samples=15,
+        samples y=48,
+        domain=0:2*pi,
+        domain y=0:2*pi,
+        z buffer=sort,
+      ](
+      {(1.25+0.25*sin(deg(\x)))*cos(deg(\y))},
+      {(1.25+0.25*sin(deg(\x)))*sin(deg(\y))},
+      {0.25*cos(deg(\x))}
+      );
+
+      \draw[-to] (axis cs:0,0,0) -- (axis cs:0,0,2) node[anchor=north east] {$z$};
+
+      \draw[-to] (axis cs:1.5,0,0) -- (axis cs:2.25,0,0) node[anchor=north] {$x$};
+      \draw[-to] (axis cs:0,1.5,0) -- (axis cs:0,1.75,0) node[anchor=north] {$y$};
+
+      \coordinate (C) at (axis cs:0,1.25,1.25);
+      \coordinate (T) at (axis cs:0,1.25,1.65);
+      \coordinate (T+) at (axis cs:0,1.25,1.75);
+      \coordinate (Z) at (axis cs:0,0,1.65);
+    \end{axis}
+
+       \begin{scope}[3d view={110}{20},canvas is yz plane at x=0]
+      \draw[red-base, fill=red-base!20] (C) circle (0.33);
+      \draw[red-base, fill=red-base, ultra thick] (C) circle (0.02);
+
+      \draw[gray] (C) -- (T+);
+      \draw[to-to, thick, draw=blue-base]
+      (Z) -- (T)
+      node[midway, anchor=north] {\scriptsize$R$};
+      \draw[-to, thick, draw=blue-base]
+      (C) -- ++(0.75*0.8,0.75*0.6) -- ($(C)+(0.33*0.8,0.33*0.6)$)
+      node[midway, anchor=south, inner sep=.5mm, font=\scriptsize] {$r$};
     \end{scope}
      \end{tikzpicture}
+  \\[\tskip]
+  \textbf{Kúp:}
+   & $\surfsign (s;t) = \begin{bmatrix} s \cos t \\ s \sin t \\ s \end{bmatrix}$
+   & $s \in [0;U]$ \newline $t \in [0, 2\pi]$
+   & \begin{tikzpicture}[
+         3d view={110}{20},
+         baseline,
+       ]
+       % Origin coordinate
+       \coordinate (O) at (0,0,0);
+
+       % Helper coordinates
+       \foreach \a in {0,15,...,345} {
+           \foreach \loc in {0,10} {
+               \coordinate (\a-\loc) at
+               ({\loc*cos(\a)/10},{\loc*sin(\a)/10},1.4*\loc*\loc/100 - 0.6*\loc*\loc*\loc*\loc/10000);
+             }
+         }
+
+       % Draw surface in bg
+       \foreach \x\y in {120/135,135/150,150/165,165/180,180/195,195/210,210/225,225/240,240/255,255/270,270/285,285/300,300/315,315/330} {
+           \foreach \i/\j in {0/10} {
+               \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+             }
+         }
+
+       % Coordinate system
+       \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south east] {$x$};
+       \draw[-to] (O) -- ++(0,1.75,0) node[anchor=south east] {$y$};
+       \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north east] {$z$};
+
+       % Draw surface in fg
+       \foreach \x/\y in {330/345,345/0,0/15,15/30,75/90,90/105,105/120,45/60,30/45,60/75} {
+           \foreach \i/\j in {0/10} {
+               \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+             }
+         }
+     \end{tikzpicture}
 \end{tabular}
-
-\subsubsection{Koordináta-transzformációk}
-
-\def\arraystretch{1.1}
-\begin{tabular}{
-  >{\bullet\;}
-  m{2.15cm}
-  m{3.15cm}
-  m{2.25cm}
-  m{2.25cm}
-  >{\centering\arraybackslash}m{4cm}
-  }
-  \textbf{Polár:}
-   & $x = r \cos \varphi$ \newline
-  $y = r \sin \varphi$
-   & $r \in [0; R]$ \newline
-  $\varphi \in [0; 2\pi)$
-   & $|\rmat J| = r$
-   & \begin{tikzpicture}
-           % Coordinate system
-           \draw[-to] (-1.2,0) -- (1.5,0) node[anchor=north east] {$x$};
-           \draw[-to] (0,-0.5) -- (0,1.4) node[anchor=north west] {$y$};
-
-           % Radius
-           \draw[-to, thick, draw=red-base]
-           (0,0) -- (125:1.5) coordinate(c)
-           node[anchor=north east, midway, inner sep=2pt] {$r$}
-           ;
-
-           % Radius
-           % \draw [decorate, decoration={brace}, draw=blue-base, thick]
-           % (-.75mm,-.75mm) -- ++(c)
-           % node[below left, midway] {$r$};
-
-           % Angle helpers
-           \coordinate (a) at (1,0);
-           \coordinate (b) at (0,0);
-
-           % Angle
-           \draw pic[
-                 "$\varphi$",
-                 draw=yellow-base,
-                 angle eccentricity=.5,
-                 angle radius=7mm,
-                 thick,
-                 ->,
-               ] {angle=a--b--c};
-         \end{tikzpicture}
-  \\[12mm]
-    \textbf{Henger:}
-   & $x = r \cos \varphi$ \newline
-  $y = r \sin \varphi$ \newline
-  $z = z$
-   & $r \in [0; R]$ \newline
-  $\varphi \in [0; 2\pi]$ \newline
-  $z \in \Reals$
-   & $|\rmat J| = r$
-   & \tdplotsetmaincoords{70}{110}
-    \begin{tikzpicture}[
-        % 3d view={110}{20},
-        baseline,
-        tdplot_main_coords,
-      ]
-      % Origin coordinate
-      \coordinate (O) at (0,0,0);
-
-      % Coordinate system
-      \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south] {$x$};
-      \draw[-to] (O) -- ++(0,1.75,0) node[anchor=north east] {$y$};
-      \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north west] {$z$};
-
-      % Helper coordinates
-      \coordinate (T) at (0.8,1.2,0);
-
-      % r and z
-      \draw[-to, thick, draw=blue-base]
-      (T) -- ++(0,0,1)
-      node[anchor=north west] {$z$};
-      \draw[-to, thick, draw=red-base]
-      (O) -- (T)
-      node[anchor=south west, pos=.4, fill=white, inner sep=2pt] {$r$};
-
-      \tdplotdrawarc[yellow-base, thick, -to]
-      {(O)}{1.2}{0}{56}
-      {anchor=south east,font=\scriptsize, inner sep=2pt, black}{$\varphi$};
-    \end{tikzpicture}
-  \\[12mm]
-    \textbf{Gömb:}
-   & $x = r \sin \varphi \cos \vartheta $ \newline
-  $y = r \sin \varphi \sin \vartheta $ \newline
-  $z = r \cos \varphi$
-   & $r \in [0; R]$ \newline
-  $\varphi \in [0; \pi]$ \newline
-  $\vartheta \in [0; 2\pi]$
-   & $|\rmat J| = r^2 \sin \varphi$
-   & \tdplotsetmaincoords{55}{110}
-  \begin{tikzpicture}[
-      % 3d view={130}{35.26},
-      baseline,
-      tdplot_main_coords,
-    ]
-    % Origin coordinate
-    \coordinate (O) at (0,0,0);
-    \def\s{1.25}
-
-    % Coordinate system
-    \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south] {$x$};
-    \draw[-to] (O) -- ++(0,1.75,0) node[anchor=south] {$y$};
-    \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north west] {$z$};
-
-    % Helper square
-    \draw[gray,dashed]
-    (\s,\s,0) coordinate(A) --
-    (0,\s,0) coordinate(B) --
-    (0,\s,\s) coordinate(C) --
-    (\s,\s,\s) coordinate(c) --
-    cycle
-    ;
-
-    % Helper lines
-    \draw[gray]
-    (O) -- (C)
-    (O) -- (A)
-    ;
-
-    % r
-    \draw[thick,draw=red-base,-to]
-    (O) -- ++(\s,\s,\s)
-    node[pos=.5, anchor=south west, font=\scriptsize, inner sep=2pt]{$r$};
-
-    % phi
-    \tdplotgetpolarcoords{0.001}{1}{1}
-    \tdplotsetthetaplanecoords{\tdplotresphi}
-
-    \tdplotdrawarc[tdplot_rotated_coords, blue-base, thick, -to]
-    {(O)}{1}{0}{45}
-    {anchor=north east,font=\scriptsize, inner sep=2pt, black}{$\varphi$}
-
-    % theta
-    \tdplotdrawarc[yellow-base, thick, -to]
-    {(O)}{1}{0}{45}
-    {anchor=south,font=\scriptsize, inner sep=2pt, black}{$\vartheta$};
-  \end{tikzpicture}
-  \\
-\end{tabular}
-
+\egroup
 
 \end{document}
-

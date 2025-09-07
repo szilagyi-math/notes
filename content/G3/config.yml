@@ -6,7 +6,7 @@ breakdown:
   lectures: 2
   practicals: 2
   labs: 0
-  is_exam: true
+  is_exam: false
 book:
   dir: book
   source: main.tex
@@ -45,6 +45,21 @@ practice_material:
       week: 6
     - description: Vektoranalízis – Gyakorlás
       week: 7
+    - description: Differenciálegyenletek bevezetés
+      week: 8
+    - description: Elsőrendű és szétválasztható differenciálegyenletek
+      week: 9
+    - description:
+        Elsőrendű lineáris és másodrendű hiányos differenciálegyenletek
+      week: 10
+    - description: Egzakt és speciális differenciálegyenletek
+      week: 11
+    - description: Állandó együtthatós differenciálegyenletek
+      week: 12
+    - description: Differenciálegyenlet-rendszerek I
+      week: 13
+    - description: Differenciálegyenlet-rendszerek II
+      week: 14
 hide_lectures: true
 lectures:
   - room: CHFMAX
