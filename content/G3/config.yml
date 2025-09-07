@@ -32,6 +32,19 @@ practice_material:
       display_name: G3 2. gyakorlat
       description: Vektoranalízis – Operátorok, potenciálosság
       week: 2
+    - description: Vektoranalízis – Görbék, görbementi integrál
+      week: 3
+    - description: Vektoranalízis – Felületek, felületi integrál
+      week: 4
+    - description: Vektoranalízis – Térfogati integrál, szöveges feladatok
+      week: 5
+    - source: 06.tex
+      target: G3-gyak-06
+      display_name: G3 6. gyakorlat
+      description: Vektoranalízis – Integrálátalakító tételek
+      week: 6
+    - description: Vektoranalízis – Gyakorlás
+      week: 7
 hide_lectures: true
 lectures:
   - room: CHFMAX
