@@ -34,6 +34,8 @@ practice_material:
       week: 2
     - source: 03.tex
       target: G3-gyak-03
+      latex_solution_source: 03.tex
+      latex_solution_target: G3-gyak-03-megoldas
       display_name: G3 3. gyakorlat
       description: Vektoranalízis – Görbék, görbementi integrál
       week: 3

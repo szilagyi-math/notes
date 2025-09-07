@@ -1,0 +1,410 @@
+\documentclass[fleqn]{szb-solution}
+
+\title{Görbék, görbementi integrál}
+\area{Vektoranalízis}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{3}
+
+\begin{document}
+
+\maketitle
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 111111111111111111111111111111111111111111111111111111111111111111111111111111
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Görbék ívhossza}
+
+\begin{enumerate}[a)]
+  \item $\curvesign_1(t) = \ijk{t}{\sqrt{6} t^2 / 2}{t^3}, \quad t \in [0; 2]$
+        \begin{align*}
+          L
+           & = \int_0^2 \norma{\dot{\curvesign_1}(t)} \dd t
+          = \int_0^2 \sqrt{1^2 + (\sqrt 6 t)^2 + (3t)^2} \dd t
+          = \int_0^2 \sqrt{1 + 6t^2 + 9t^4} \dd t
+          \\
+           & = \int_0^2 1 + 3t^2 \dd t
+          = \left[ t + t^3 \right]_0^2
+          = 10
+        \end{align*}
+
+  \item $\curvesign_2(t) = \ijz{t \cos t}{t \sin t}, \quad t \in [0; 1]$
+        \begin{align*}
+          L
+           & = \int_0^{1} \norma{\dot{\curvesign_2}(t)} \dd t
+          = \int_0^{1} \sqrt{(\cos t - t \sin t)^2 + (\sin t + t \cos t)^2} \dd t
+          \\
+           & = \int_0^{1} \sqrt{1 + t^2} \dd t
+          = \int_0^{1} \cosh u \sqrt{1 + \sinh^2 u} \dd u
+          = \int_0^{1} \cosh^2 u \dd u
+          \\
+           & = \int_{u_1}^{u_2} \frac{1 + \cosh 2u}{2} \dd u
+          = \left[ \frac{u}{2} + \frac{\sinh 2u}{4} \right]_{u_1}^{u_2}
+          = \left[ \frac{\arcsinh t}{2} + \frac{t \sqrt{t^2 + 1}}{2} \right]_0^{1}
+          \\
+           & = \frac{\arcsinh 1 + \sqrt{2}}{2}
+          \approx 1,1478
+        \end{align*}
+
+  \item $\curvesign_3(t) = \ijk{e^t \cos t}{e^t \sin t}{e^t}, \quad t \in [0; 2\pi]$
+        \begin{align*}
+          L
+           & = \int_0^{2\pi} \norma{\dot{\curvesign_3}(t)} \dd t
+          = \int_0^{2\pi} \sqrt{e^{2t} (\cos t - \sin t) + e^{2t} (\sin t + \cos t) + e^{4t}} \dd t
+          \\
+           & = \int_0^{2\pi} \sqrt{3} e^t \dd t
+          = \left[ \sqrt{3} e^t \right]_0^{2\pi}
+          = \sqrt{3} (e^{2\pi} - 1)
+          \approx 925,7667
+        \end{align*}
+
+  \item $\curvesign_4(t) = \ijz{t - \sin t}{1 - \cos t}, \quad t \in [0; 2\pi]$
+        \begin{align*}
+          L
+           & = \int_0^{2\pi} \norma{\dot{\curvesign_4}(t)} \dd t
+          = \int_0^{2\pi} \sqrt{(1 - \cos t)^2 + \sin^2 t} \dd t
+          \\
+           & = \int_0^{2\pi} \sqrt{1 - 2\cos t + \cos^2 t + \sin^2 t} \dd t
+          = \int_0^{2\pi} \sqrt{2 - 2\cos t} \dd t
+          \\
+           & = \int_0^{2\pi} \sqrt{4 \sin^2 \frac{t}{2}} \dd t
+          = 2 \int_0^{2\pi} \sin \frac{t}{2} \dd t
+          = \left[ -4 \cos \frac{t}{2} \right]_0^{2\pi}
+          = 8
+        \end{align*}
+\end{enumerate}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 222222222222222222222222222222222222222222222222222222222222222222222222222222
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Ívhossz szerinti paraméterezés}
+
+Adja meg a $\curvesign(t) = \ijk{t+3}{t^2 / 2}{(2\sqrt{2}/3)t^{\sfrac32}}$ görbe
+egységsebességű paraméterezését!
+
+A görbe sebességvektora, és ennek abszolóz értéke:
+$$
+  \dot{\curvesign}(t) = \begin{bmatrix}
+    1 \\
+    t \\
+    \sqrt{2t}
+  \end{bmatrix}
+  \quad \Rightarrow \quad
+  \norma{\dot{\curvesign}(t)} = \sqrt{1 + 2t + t^2} = |1 + t|
+  \text.
+$$
+Az ívhossz szerinti integrál:
+$$
+  L(t)
+  = \int_0^t |1 + \tau| \dd \tau
+  = \int_0^t (1 + \tau) \dd \tau
+  = t + \frac{t^2}{2}
+  \text.
+$$
+Ennek inverze:
+$$
+  t(L) = -1 + \sqrt{1 + 2L}
+  \text.
+$$
+Az egységsebességű paraméterezés:
+$$
+  \curvesign_s(L) = \begin{bmatrix}
+    -1 + \sqrt{1 + 2L} + 3     \\
+    (-1 + \sqrt{1 + 2L})^2 / 2 \\
+    (2\sqrt{2}/3)(-1 + \sqrt{1 + 2L})^{\sfrac32}
+  \end{bmatrix}
+$$
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 333333333333333333333333333333333333333333333333333333333333333333333333333333
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Skalármezők görbe menti skalárértékű integrálja}
+
+\begin{enumerate}[a)]
+  \item $\varphi(\coordvec) = \sqrt{1 + 4x^2 + 16yz}, \quad \curvesign(t) = \ijk{t}{t^2}{t^4}, \quad t \in [0; 1]$
+        \begin{align*}
+          \int_\gamma \varphi(\coordvec) \dd \curvescalar
+           & = \int_0^1 \varphi(\curvesign(t)) \norma{\dot{\curvesign}(t)} \dd t
+          = \int_0^1 \sqrt{1 + 4t^2 + 16t^6} \sqrt{1^2 + (2t)^2 + (4t^3)^2} \dd t
+          \\
+           & = \int_0^1 1 + 4t^2 + 16t^6 \dd t
+          = \left[ t + \frac{4}{3} t^3 + \frac{16}{7} t^7 \right]_0^1
+          = 1 + \frac{4}{3} + \frac{16}{7}
+          = \frac{97}{21}
+        \end{align*}
+
+  \item $\psi(\coordvec) = 2x, \quad$ a $(3;0)$ és $(0;4)$ pontokat összekötő
+        szakasz mentén
+
+        A szakasz paraméteres egyenlete és annak deriváltja:
+        $$
+          \curvesign (t) = \begin{bmatrix}
+            3 \\ 0
+          \end{bmatrix} + t \begin{bmatrix}
+            0 - 3 \\ 4 - 0
+          \end{bmatrix} = \begin{bmatrix}
+            3 - 3t \\ 4t
+          \end{bmatrix}
+          \text, \quad
+          t \in [0,1]
+          \text, \quad
+          \dot{\curvesign} (t) = \begin{bmatrix}
+            -3 \\ 4
+          \end{bmatrix}
+          \text, \quad
+          \norma{\dot{\curvesign}(t)}
+          = 5
+          \text.
+        $$
+        Végezzük el az integrálást:
+        $$
+          \int_\gamma \psi(\coordvec) \dd \curvescalar
+          = \int_0^1 \psi(\curvesign(t)) \norma{\curvesign} \dd t
+          = \int_0^1 2 (3 - 3t) \cdot 5 \dd t
+          % = 30 \int_0^1 (1 - t) \dd t
+          = 30 \left[ t - \frac{t^2}{2} \right]_0^1
+          = 15
+          \text.
+        $$
+
+  \item $\chi(\coordvec) = x^2 + y^2, \quad$ első síknegyedbeli egységköríven,
+        pozitív irányítással
+
+        A görbe paraméteres egyenlete és annak deriváltja:
+        $$
+          \curvesign(t) = \begin{bmatrix}
+            \cos t \\ \sin t
+          \end{bmatrix}
+          \text, \quad
+          t \in [0, \pi/2]
+          \text, \quad
+          \dot{\curvesign}(t) = \begin{bmatrix}
+            -\sin t \\ \cos t
+          \end{bmatrix}
+          \text, \quad
+          \norma{\dot{\curvesign}(t)}
+          = 1
+          \text.
+        $$
+        Végezzük el az integrálást:
+        $$
+          \int_\gamma \chi(\coordvec) \dd \curvescalar
+          = \int_0^{\pi/2} \chi(\curvesign (t)) \norma{\dot{\curvesign}(t)} \dd t
+          = \int_0^{\pi/2} (\cos^2 t + \sin^2 t) \dd t
+          = \int_0^{\pi/2} \dd t
+          % = \left[ t \right]_0^{\pi/2}
+          = \frac{\pi}{2}
+          \text.
+        $$
+
+  \item $\omega(\coordvec) = x^2 + y^2, \quad$ $r = 2$ sugarú, origó középpontú,
+        pozitív irányítású körön
+
+        A görbe paraméteres egyenlete és annak deriváltja:
+        $$
+          \curvesign(t) = \begin{bmatrix}
+            2 \cos t \\ 2 sin t
+          \end{bmatrix}
+          \text, \quad
+          t \in [0, 2 \pi]
+          \text, \quad
+          \dot{\curvesign}(t) = \begin{bmatrix}
+            -2 \sin t \\ 2 \cos t
+          \end{bmatrix}
+          \text, \quad
+          \norma{\dot{\curvesign}(t)}
+          = 2
+          \text.
+        $$
+        Végezzük el az integrálást:
+        $$
+          \int_\gamma \omega(\coordvec) \dd \curvescalar
+          = \int_0^{2\pi} \omega(\curvesign(t)) \norma{\dot{\curvesign}(t)} \dd t
+          = \int_0^{2\pi} (4 \cos^2 t + 4 \sin^2 t) \cdot 2 \dd t
+          = \int_0^{2\pi} 8 \dd t
+          % = \left[ t \right]_0^{\pi/2}
+          = 16 \pi
+          \text.
+        $$
+\end{enumerate}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 444444444444444444444444444444444444444444444444444444444444444444444444444444
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Vektormezők görbe menti skalárértékű integrálja}
+
+\begin{enumerate}[a)]
+  \item $\rvec u(\coordvec) = \ijk{y + z}{x + z}{x + y}, \;\; \curvesign(t) = \ijk{t}{t^2}{t^3}, \;\; t \in [0; 1]$
+        \begin{align*}
+          \int_\gamma \scalar{\rvec u(\coordvec)}{\dd \curvevec}
+           & = \int_0^1 \scalar{\rvec u(\curvesign (t))}{\dot{\curvesign}(t)} \dd t
+          = \int_0^1
+          \begin{bmatrix}
+            t^2 + t^3 \\
+            t + t^3   \\
+            t + t^2
+          \end{bmatrix}^\T
+          \begin{bmatrix}
+            1  \\
+            2t \\
+            3t^2
+          \end{bmatrix} \dd t
+          \\
+           & = \int_0^1 (t^2 + t^3 + 2t^2 + 2t^4 + 3t^3 + 3t^4) \dd t
+          \\
+           & = \int_0^1 (3t^2 + 4t^3 + 5t^4) \dd t
+          = \left[ t^3 + t^4 + t^5 \right]_0^1
+          = 3
+        \end{align*}
+
+
+  \item $\rvec v(\coordvec) = \ijk{-yz}{xz}{x^2 + y^2}, \;\; \curvesign(t) = \ijk{\cos t}{\sin t}{2t}, \;\; t \in [0; 2]$
+        \begin{align*}
+          \int_\gamma \scalar{\rvec v(\coordvec)}{\dd \curvevec}
+           & = \int_0^2 \scalar{\rvec v(\curvesign (t))}{\dot{\curvesign}(t)} \dd t
+          = \int_0^2
+          \begin{bmatrix}
+            -2t \sin t \\
+            2t \cos t  \\
+            \cos^2 t + \sin^2 t
+          \end{bmatrix}^\T
+          \begin{bmatrix}
+            - \sin t \\
+            \cos t   \\
+            2
+          \end{bmatrix} \dd t
+          \\
+           & = \int_0^2 2t ( \sin^2 t + \cos^2 t ) + 2 ( \cos^2 t + \sin^2 t ) \dd t
+          \\
+           & = \int_0^2 2t + 2 \dd t
+          = \left[ t^2 + 2t \right]_0^2
+          = 8
+        \end{align*}
+
+
+  \item $\rvec w(\coordvec) = \ijz{y}{x}, \;\;$ az $(1;0)$ pontból a $(0;2)$ pontba
+        \begin{itemize}
+          \item Az egyenes szakasz mentén:
+                $$
+                  \curvesign(t) = \begin{bmatrix}
+                    1 \\ 0
+                  \end{bmatrix} + t \begin{bmatrix}
+                    0 - 1 \\ 2 - 0
+                  \end{bmatrix} = \begin{bmatrix}
+                    1 - t \\ 2t
+                  \end{bmatrix}
+                  \text, \quad
+                  t \in [0;1]
+                  \text, \quad
+                  \dot{\curvesign}(t) = \begin{bmatrix}
+                    -1 \\ 2
+                  \end{bmatrix}
+                $$
+                $$
+                  \int_0^1 \begin{bmatrix}
+                    2t \\ 1 - t
+                  \end{bmatrix}^\T
+                  \begin{bmatrix}
+                    -1 \\ 2
+                  \end{bmatrix}
+                  \dd t
+                  = \int_0^1 (-2t + 2 - 2t) \dd t
+                  = \int_0^1 2 - 4t \dd t
+                  = \left[ 2t - 2t^2 \right]_0^1
+                  = 0
+                $$
+
+          \item Az ellipszis mentén:
+                $$
+                  \curvesign (t) = \begin{bmatrix}
+                    \cos t \\ 2 \sin t
+                  \end{bmatrix}
+                  \text,\quad
+                  t \in [0; \pi/2]
+                  \text,\quad
+                  \dot{\curvesign r}(t) = \begin{bmatrix}
+                    - \sin t \\ 2 \cos t
+                  \end{bmatrix}
+                $$
+                $$
+                  \hspace{-2.3cm}
+                  \int_0^{\pi / 2} \begin{bmatrix}
+                    2 \sin t \\ \cos t
+                  \end{bmatrix}^\T
+                  \begin{bmatrix}
+                    - \sin t \\ 2 \cos t
+                  \end{bmatrix}
+                  \dd t
+                  = 2 \int_0^{\pi / 2} (\cos^2 t - \sin^2 t) \dd t
+                  = 2 \int_0^{\pi / 2} \cos 2t \dd t
+                  = 2 \left[ \frac{\sin 2t}{2} \right]_0^{\pi / 2}
+                  = 0
+                $$
+
+          \item A gradiens-tételt felhasználva: a $\rvec w(\coordvec)$
+                vektormező potenciálfüggvénye:
+                $$
+                  \varphi(\coordvec) = xy
+                  \text, \quad
+                  \grad \varphi(\coordvec) = \rvec w(\coordvec)
+                  \text.
+                $$
+                A gradiens-tétel szerint a görbementi integrál értéke csak a
+                kezdő- és végponttól függ, ezért a két pontot összekötő
+                tetszőleges görbe mentén az integrál értéke:
+                $$
+                  \int_\gamma \scalar{\rvec w(\coordvec)}{\dd \curvevec}
+                  = \varphi(0;2) - \varphi(1;0)
+                  = 0 - 0
+                  = 0
+                  \text.
+                $$
+        \end{itemize}
+
+
+
+\end{enumerate}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 555555555555555555555555555555555555555555555555555555555555555555555555555555
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Vektormező görbementi vektorértékű integrálja}
+
+Adja meg a $\rvec v(\coordvec) = \ijk{y^2 - x^2}{2 y z}{-x^2}$
+vektormező $\curvesign(t) = \ijk{t}{t^2}{t^3}$, $t \in [0; 1]$
+görbe menti vektorértékű integrálját!
+\begin{align*}
+  \int_{\curveimage} \rvec v(\coordvec) \times \dd \curvevec
+   & = \int_0^1 \rvec v(\curvesign(t)) \times \dot{\curvesign}(t) \dd t
+  = \int_0^1
+  \begin{bmatrix}
+    t^4 - t^2 \\
+    2 t^5     \\
+    -t^2
+  \end{bmatrix}
+  \times
+  \begin{bmatrix}
+    1 \\ 2t \\ 3t^2
+  \end{bmatrix} \dd t
+  \\
+   & =
+  \int_0^1
+  \begin{bmatrix}
+    6t^7 + 2t^3        \\
+    -t^2 - 3t^6 + 3t^4 \\
+    2t^3
+  \end{bmatrix} \dd t
+  =
+  \dots
+  =
+  \begin{bmatrix}
+    5/4     \\
+    -17/105 \\
+    -1/2
+  \end{bmatrix}
+\end{align*}
+
+\end{document}
