@@ -32,7 +32,10 @@ practice_material:
       display_name: G3 2. gyakorlat
       description: Vektoranalízis – Operátorok, potenciálosság
       week: 2
-    - description: Vektoranalízis – Görbék, görbementi integrál
+    - source: 03.tex
+      target: G3-gyak-03
+      display_name: G3 3. gyakorlat
+      description: Vektoranalízis – Görbék, görbementi integrál
       week: 3
     - description: Vektoranalízis – Felületek, felületi integrál
       week: 4
