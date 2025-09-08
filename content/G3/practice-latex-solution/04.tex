@@ -1,0 +1,388 @@
+\documentclass{szb-solution}
+
+\title{Felületek, felületi integrál}
+\area{Vektoranalízis}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{4}
+
+\begin{document}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 111111111111111111111111111111111111111111111111111111111111111111111111111111
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Felszín}
+
+\begin{enumerate}[a)]
+  \item $z = x^2 + y^2$ forgásparaboloid $z = 1$ és $z = 4$ síkok közé
+        eső része
+
+        A megadott forásparaboloid az $z = f(x) = x^2$ függvény $z$ tengely
+        körüli forgatásával kapott felület, paraméterezése tehát:
+        \[
+          \surfsign(s; t) = \begin{bmatrix}
+            s \cos t \\
+            s \sin t \\
+            s^2
+          \end{bmatrix}
+          \text,\qquad
+          s \in [1; 2]
+          \text,\qquad
+          t \in [0; 2\pi]
+          \text.
+        \]
+
+        A parciális deriváltak, és a felületi normális:
+        \[
+          \pdv{\surfsign}{s} = \begin{bmatrix}
+            \cos t \\
+            \sin t \\
+            2 s
+          \end{bmatrix}
+          \text,\qquad
+          \pdv{\surfsign}{t} = \begin{bmatrix}
+            -s \sin t \\
+            s \cos t  \\
+            0
+          \end{bmatrix}
+          \text,\qquad
+          \rvec n = \pdv{\surfsign}{s} \times \pdv{\surfsign}{t} = \begin{bmatrix}
+            -2 s^2 \cos t \\
+            -2 s^2 \sin t \\
+            s
+          \end{bmatrix}
+          \text.
+        \]
+
+        A keresett felszín:
+        \begin{align*}
+          A
+           & = \int_{\surfimage} \dd \surfscalar
+          = \int_1^2 \int_0^{2\pi}  \norma{\rvec n} \dd t \dd s
+          = \int_1^2 \int_0^{2\pi}  \sqrt{4 s^4 + s^2} \dd t \dd s
+          \\
+           & = 2\pi \int_1^2 \sqrt{4 s^4 + s^2} \dd s
+          = 2\pi \int_1^2 s \, \sqrt{4 s^2 + 1} \dd s
+          = 2\pi \int_{u_1}^{u_2} \frac{1}{8} \, \sqrt{u} \dd u
+          \\
+           & = \frac{\pi}{4} \left[ \frac{2}{3} u^{3/2} \right]_{u_1}^{u_2}
+          = \left[ \frac{\pi (4s^2 + 1)^{3/2}}{6} \right]_{1}^{2}
+          = \frac{\pi}{6} \cdot (17^{3/2} - 5^{3/2}) \approx 4,9094
+        \end{align*}
+
+  \item $\surfsign(s;t) = \ijk{e^s \cos t}{e^s \sin t}{s}$,
+        $s \in (-\infty; 0]$, $t \in [0; 2\pi]$
+
+        A parcális deriváltak, és a felületi normális:
+        \[
+          \pdv{\surfsign}{s} = \begin{bmatrix}
+            e^s \cos t \\
+            e^s \sin t \\
+            1
+          \end{bmatrix}
+          \text,\qquad
+          \pdv{\surfsign}{t} = \begin{bmatrix}
+            -e^s \sin t \\
+            e^s \cos t  \\
+            0
+          \end{bmatrix}
+          \text,\qquad
+          \rvec n = \pdv{\surfsign}{s} \times \pdv{\surfsign}{t} = \begin{bmatrix}
+            -e^{s} \cos t \\
+            -e^{s} \sin t \\
+            e^{2s}
+          \end{bmatrix}
+        \]
+        A keresett felszín:
+        \begin{align*}
+          A
+           & = \int_{\surfimage} \dd \surfscalar
+          % = \int_{-\infty}^{0} \int_0^{2\pi}  \norma{\rvec n} \dd t \dd s
+          = \int_{-\infty}^{0} \int_0^{2\pi} \sqrt{e^{2s} + e^{4s}} \dd t \dd s
+          = 2\pi \int_{-\infty}^{0} e^s \sqrt{1 + e^{2s}} \dd s
+          \\
+           & = 2\pi \int_{0}^{1} \sqrt{1 + u^2} \dd u
+          % = 2\pi \int_{0}^{\arcsinh 1} \cosh v \sqrt{1 + \sinh^2 v} \dd v
+          = 2\pi \int_{0}^{\arcsinh 1} \cosh^2 v \dd v
+          = 2\pi \int_{0}^{\arcsinh 1} \frac{1 + \cosh 2v}{2} \dd v
+          \\
+           & = 2\pi \left[ \frac{v}{2} + \frac{\sinh 2v}{4} \right]_{0}^{\arcsinh 1}
+          = \pi \arcsinh 1 + \sqrt 2 \pi
+          \approx 7,2118
+          \hspace{3cm}
+        \end{align*}
+\end{enumerate}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 222222222222222222222222222222222222222222222222222222222222222222222222222222
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Skalármező felületi integrálja}
+
+\begin{enumerate}[a)]
+  \item $\varphi(\coordvec) = x^2 + y^2$, az egységgömb $z > 0$ részén
+
+        Az egységgömb paraméterezése:
+        $$
+          \surfsign(s;t) = \begin{bmatrix}
+            \sin s \cos t \\
+            \sin s \sin t \\
+            \cos s
+          \end{bmatrix}
+          \text,
+          \qquad
+          s \in \left[0; \pi/2\right]
+          \text,
+          \qquad
+          t \in [0; 2\pi]
+          \text,
+          \qquad
+          \rvec n = \norma{\pdv{\surfsign}{s} \times \pdv{\surfsign}{t}} = \sin s
+          \text.
+        $$
+        A függvény átparaméterezése:
+        $$
+          \varphi(s; t) = (\sin s \cos t)^2 + (\sin s \sin t)^2 = \sin^2 s \; (\cos^2 t + \sin^2 t) = \sin^2 s
+        $$
+        Az integrál:
+        \begin{align*}
+          \int_{\surfimage} \varphi(\coordvec) \dd \surfscalar
+           & = \int_0^{\pi/2} \int_0^{2\pi} \sin^2 s \sin s \dd t \dd s
+          = 2\pi \int_0^{\pi/2} (1 - \cos^2 s) \sin s \dd s
+          \\
+           & = 2\pi \int_{0}^{1} (1 - u^2) \dd u
+          = 2\pi \left[ u - \frac{u^3}{3} \right]_{0}^{1}
+          = \frac{4\pi}{3}
+        \end{align*}
+
+  \item $\psi(\coordvec) = x + y + z, $ az $x + 2y + 4z = 4$ sík
+        első térnyolcadba tartozó részén
+
+        Rendezzük a sír egyenletét $z = 4 - 2x - 2y$ alakra.
+
+        A felületi normális nagysága:
+        \[
+          \norma{\rvec n} = \sqrt{1 + (\partial_x z)^2 + (\partial_y z)^2} = \sqrt{1 + 4 + 4} = 3
+        \]
+
+        A függvény átparaméterezése:
+        \[
+          f(x; y; z(x;y)) = x + y + 4 - 2x - 2y = 4 - x - y
+        \]
+
+        A tartomány paraméterezése:
+        \begin{center}
+          \begin{tikzpicture}
+            % Origin coordinate
+            \coordinate (O) at (0,0,0);
+
+            \begin{scope}[3d view={110}{40}]
+              % Coordinate system
+              \draw[-to] (O) -- ++(1.5,0,0) node[anchor=south, inner sep=2mm] {$x$};
+              \draw[-to] (O) -- ++(0,1.5,0) node[anchor=north east] {$y$};
+              \draw[-to] (O) -- ++(0,0,2.5) node[anchor=north west] {$z$};
+
+              % Plane
+              \draw[fill=red-base, fill opacity=.2, thick, draw opacity=1, draw=primaryColor]
+              (0,0,2) -- (0,1,0) -- (1,0,0) -- cycle;
+
+              \draw[font=\scriptsize]
+              (0,0,2) node[anchor=east] {$4$}
+              (0,1,0) node[anchor=south west] {$2$}
+              (1,0,0) node[anchor=north west] {$2$};
+            \end{scope}
+
+            \node[anchor=west] at (3.25,1.00) {$y \in [0;2]$};
+            \node[anchor=west] at (3.25,0.25) {$x \in [0;y-2]$};
+          \end{tikzpicture}
+        \end{center}
+
+        Az integrál:
+        \begin{align*}
+          \int_S g \dd \surfscalar
+           & = \int_0^2 \int_0^{y-2} 3 (4 - x - y) \dd x \dd y
+          = 3 \int_0^2 \left[ 4x - \frac{x^2}{2} - xy \right]_0^{y-2} \dd y
+          \\
+           & = 3 \int_0^2 \left( 4(y - 2) - \frac{(y-2)^2}{2} - y (y - 2) \right) \dd y
+          = \int_0^2 \left( \frac{-9y^2}{2} + 24y - 30 \right) \dd y
+          \\
+           & = \left[ \frac{-3y^3}{2} + 12y^2 - 30y \right]_0^2
+          = -12 + 48 - 60
+          = -24
+        \end{align*}
+\end{enumerate}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 333333333333333333333333333333333333333333333333333333333333333333333333333333
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Vektormező skalárértékű felületi integrálja}
+
+\begin{enumerate}[a)]
+  \item $\rvec u(\coordvec) = \ijk{x + y}{x - y}{z^2}$,
+        $\surfsign (s;t) = \ijk{s + t}{s - t}{s^2 - t^2}$,
+        $(s;t) \in [0;1]^2$
+
+        A parciális deriváltak és a felületi normális:
+        $$
+          \pdv{\surfsign}{s}
+          =
+          \begin{bmatrix}
+            1 \\ 1 \\ 2s
+          \end{bmatrix}
+          \text,
+          \qquad
+          \pdv{\surfsign}{t}
+          =
+          \begin{bmatrix}
+            1 \\ -1\\ -2t
+          \end{bmatrix}
+          \text,
+          \qquad
+          \rvec n
+          =
+          \pdv{\surfsign}{s} \times \pdv{\surfsign}{t}
+          =
+          \begin{bmatrix}
+            2(s - t) \\ 2(s + t) \\ - 2
+          \end{bmatrix}
+          \text.
+        $$
+        A függvény átparaméterezése:
+        $$
+          \rvec u (\surfsign (s;t))
+          =
+          \begin{bmatrix}
+            2\,s \\ 2\,t \\ (s^2 - t^2)^2
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            2\,s \\ 2\,t \\ s^4 - 2\,s^2\,t^2 + t^4
+          \end{bmatrix}
+          \text.
+        $$
+        Az integrál:
+        \begin{align*}
+          \int_{\surfimage} \scalar{\rvec u(\coordvec)}{\dd \surfvec}
+           & =
+          \int_0^1\int_0^1
+          \begin{bmatrix}
+            2\,s \\ 2\,t \\ s^4 - 2\,s^2\,t^2 + t^4
+          \end{bmatrix}^\T
+          \begin{bmatrix}
+            2 (s - t) \\ 2 (s + t) \\ -2
+          \end{bmatrix}
+          \dd s \dd t
+          \\
+           & =
+          \int_0^1\int_0^1
+          4 s^2  + 4 t^2  - 2 s^4 + 4 s^2 t^2 - 2 t^4
+          \dd s \dd t
+          \\
+           & =
+          \frac43 + \frac43 - \frac25 + \frac49 - \frac25
+          =
+          \frac{104}{45}
+          \approx
+          2,3111
+        \end{align*}
+
+  \item $\rvec v(\coordvec) = \ijk{y^2 + z^2}{x^2 + z^2}{x^2 + y^2}$,
+        $r = 2$ sugarú, $x = 2$ síkon lévő körön
+
+        A felület paraméterezése és a felületi normális:
+        $$
+          \surfsign(s;t)
+          =
+          \begin{bmatrix}
+            2 \\ s \cos t \\ s \sin t
+          \end{bmatrix}
+          \text,
+          \qquad
+          \begin{matrix}
+            s \in [0;2] \text, \\
+            t \in [0;2\pi] \text,
+          \end{matrix}
+          \qquad
+          \rvec n
+          =
+          \pdv{\surfsign}{s} \times \pdv{\surfsign}{t}
+          =
+          \begin{bmatrix}
+            0 \\ \cos t \\ \sin t
+          \end{bmatrix}
+          \times
+          \begin{bmatrix}
+            0 \\ - s \sin t \\ s \cos t
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            s \\ 0 \\ 0
+          \end{bmatrix}
+          \text.
+        $$
+
+        A függvény átparaméterezése:
+        $$
+          \rvec v (\surfsign (s;t))
+          =
+          \begin{bmatrix}
+            s^2 \cos^2 t + s^2 \sin^2 t \\
+            4 + s^2 \cos^2 t            \\
+            4 + s^2 \sin^2 t
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            s^2              \\
+            4 + s^2 \cos^2 t \\
+            4 + s^2 \sin^2 t
+          \end{bmatrix}
+          \text.
+        $$
+
+        Az integrál:
+        \begin{align*}
+          \int_{\surfimage} \scalar{\rvec v(\coordvec)}{\dd \surfvec}
+           & =
+          \int_0^{2\pi}\int_0^2
+          \begin{bmatrix}
+            s^2              \\
+            4 + s^2 \cos^2 t \\
+            4 + s^2 \sin^2 t
+          \end{bmatrix}^\T
+          \begin{bmatrix}
+            s \\ 0 \\ 0
+          \end{bmatrix}
+          \dd s \dd t
+          \\
+           & =
+          \int_0^{2\pi}\int_0^2
+          s^3
+          \dd s \dd t
+          =
+          \int_0^{2\pi}
+          \frac12 \cdot 2^4
+          \dd t
+          \\
+           & =
+          16 \pi
+          \approx
+          50,2655
+        \end{align*}
+\end{enumerate}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 444444444444444444444444444444444444444444444444444444444444444444444444444444
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Vektormező vektorértékű felületi integrálja}
+
+Adja meg a $\rvec r(\coordvec) = \ijk{x}{-y}{z}$ vektormező
+$\surfsign(s; t)= \ijk{s + 2t}{t}{s - t}$, $s \in [0;3]$, $t \in [0;1]$
+felületen vett vektorértékű integrálját! A normális irányítottsága
+legyen kifelé mutató!
+
+TODO
+
+
+\end{document}

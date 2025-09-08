@@ -27,19 +27,23 @@ practice_material:
       week: 1
     - source: 02.tex
       target: G3-gyak-02
-      latex_solution_source: 02.tex
-      latex_solution_target: G3-gyak-02-megoldas
+      # latex_solution_source: 02.tex
+      # latex_solution_target: G3-gyak-02-megoldas
       display_name: G3 2. gyakorlat
       description: Vektoranalízis – Operátorok, potenciálosság
       week: 2
     - source: 03.tex
       target: G3-gyak-03
-      latex_solution_source: 03.tex
-      latex_solution_target: G3-gyak-03-megoldas
+      # latex_solution_source: 03.tex
+      # latex_solution_target: G3-gyak-03-megoldas
       display_name: G3 3. gyakorlat
       description: Vektoranalízis – Görbék, görbementi integrál
       week: 3
-    - description: Vektoranalízis – Felületek, felületi integrál
+    - source: 04.tex
+      target: G3-gyak-04
+      # latex_solution_source: 04.tex
+      # latex_solution_target: G3-gyak-04-megoldas
+      description: Vektoranalízis – Felületek, felületi integrál
       week: 4
     - description: Vektoranalízis – Térfogati integrál, szöveges feladatok
       week: 5
