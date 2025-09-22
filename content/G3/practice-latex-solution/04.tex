@@ -377,12 +377,76 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Vektormező vektorértékű felületi integrálja}
 
-Adja meg a $\rvec r(\coordvec) = \ijk{x}{-y}{z}$ vektormező
+Adja meg a $\rvec v(\coordvec) = \ijk{x}{-y}{z}$ vektormező
 $\surfsign(s; t)= \ijk{s + 2t}{t}{s - t}$, $s \in [0;3]$, $t \in [0;1]$
 felületen vett vektorértékű integrálját! A normális irányítottsága
 legyen kifelé mutató!
 
-TODO
+A parciális deriváltak és a felületi normális:
+$$
+  \pdv{\surfsign}{s}
+  =
+  \begin{bmatrix}
+    1 \\ 0 \\ 1
+  \end{bmatrix}
+  \text,
+  \qquad
+  \pdv{\surfsign}{t}
+  =
+  \begin{bmatrix}
+    2 \\ 1 \\ -1
+  \end{bmatrix}
+  \text,
+  \qquad
+  \rvec n
+  =
+  \pdv{\surfsign}{s} \times \pdv{\surfsign}{t}
+  =
+  \begin{bmatrix}
+    -1 \\ 3 \\ 1
+  \end{bmatrix}
+  \text.
+$$
 
+A függvény átparaméterezése:
+$$
+  \rvec v (\surfsign (s;t))
+  =
+  \begin{bmatrix}
+    s + 2t \\ -t \\ s - t
+  \end{bmatrix}
+  \text.
+$$
+
+Az integrál:
+\begin{align*}
+  \int_{\surfimage} \rvec v(\coordvec) \times \dd \surfvec
+   & =
+  \int_0^1\int_0^3
+  \begin{bmatrix}
+    s + 2t \\ -t \\ s - t
+  \end{bmatrix}
+  \times
+  \begin{bmatrix}
+    -1 \\ 3 \\ 1
+  \end{bmatrix}
+  \dd s \dd t
+  =
+  \int_0^1\int_0^3
+  \begin{bmatrix}
+    2t - 3s \\ -t - 2s \\ 5t + 3s
+  \end{bmatrix}
+  \dd s \dd t
+  \\
+   & =
+  \begin{bmatrix}
+    2(1/2)3 - 3(9/2) \\ -(1/2)3 - 2(9/2) \\ 5(1/2)3 + 3(9/2)
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    -21/2 \\ -21/2 \\ 21
+  \end{bmatrix}
+  \text.
+\end{align*}
 
 \end{document}

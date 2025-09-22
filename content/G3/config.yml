@@ -41,8 +41,8 @@ practice_material:
       week: 3
     - source: 04.tex
       target: G3-gyak-04
-      # latex_solution_source: 04.tex
-      # latex_solution_target: G3-gyak-04-megoldas
+      latex_solution_source: 04.tex
+      latex_solution_target: G3-gyak-04-megoldas
       display_name: G3 4. gyakorlat
       description: Vektoranalízis – Felületek, felületi integrál
       week: 4
