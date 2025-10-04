@@ -1,6 +1,9 @@
 \documentclass{szb-practice}
 
-\title{Térfogati integrál, szöveges feladatok}
+\usepackage{siunitx}
+\sisetup{locale = DE} 
+
+\title{Integrálátalakító tételek, mérnöki példák}
 \area{Vektoranalízis}
 \subject{Matematika G3}
 \subjectCode{BMETE94BG03}
@@ -12,11 +15,244 @@
 
 \maketitle
 
-\vspace{-1em}
 \subsection{Elméleti áttekintő}
-\vspace{1em}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~ Gradient-theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{theorem}[Gradiens-tétel]
+  Legyen $\varphi : U \subseteq \Reals^3 \rightarrow \Reals$ differenciálható
+  skalármező, $\curvesign : [a;b] \rightarrow \curveimage \subseteq U$,
+  $t \mapsto \curvesign(t)$ folytonos görbe, $\curvesign(a) = \rvec p$,
+  $\curvesign(b) = \rvec q$ pedig a görbe kezdő és végpontja. Ekkor:
+  $$
+    \int_{\curveimage} \scalar{\grad \varphi(\coordv)}{\dd \curvevec}
+    =
+    \varphi(\rvec q) - \varphi(\rvec p)
+    \text.
+  $$
+  Vagyis, ha egy vektormező valamely skalármező gradiense, akkor annak bármely
+  folytonos görbe mentén vett integrálja csak a kezdő- és végpontoktól függ.
+\end{theorem}
+
+\begin{blueBox}
+  \sftitle{Körintegrál jelölése:}
+
+  Ha $\curvesign$ zárt görbe, akkor a $\varphi(\coordv)$ skalármező egy
+  $\curvesign$ görbe mentén vett körintegrálja a következőképpen jelölhető:
+  $$
+    \oint_{\curveimage} \, \varphi(\coordv) \dd \curvescalar
+    \text.
+  $$
+\end{blueBox}
+
+\begin{note}
+  A Gradiens-tételből következik, hogy skalárpotenciálos vektormező zárt görbe
+  mentén vett körintegrálja zérus.
+\end{note}
+
+\begin{example}
+  Integrálja a $\rvec v(\coordv) = \ijk{y + z}{x + z}{x + y}$ vektormezőt
+  a $z = 0$ síkon lévő, origó középpontú, $r = 3$ sugárú kör mentén!
+
+  Vizsgáljuk meg, hogy a vektormező skalárpotenciálos-e:
+  $$
+    \rot \rvec v
+    =
+    \begin{bmatrix}
+      \partial_x \\ \partial_y \\ \partial_z
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+      y + z \\ x + z \\ x + y
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      \partial_x (x + z) - \partial_y (y + z) \\
+      \partial_y (x + y) - \partial_z (x + z) \\
+      \partial_z (y + z) - \partial_x (x + y)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      1 - 1 \\ 1 - 1 \\ 1 - 1
+    \end{bmatrix}
+    =
+    \nvec
+    \text.
+  $$
+  Mivel a vektormező skalárpotenciálos, ezért létezik olyan skalármező,
+  melynek gradiense maga a $\rvec v$ vektormező. Az integrál értéke tehát
+  csak a kezdő- és végpontoktól függ, melyek jelen esetben megegyeznek,
+  vagyis az integrál értéke zérus:
+  $$
+    \oint_{\curveimage} \scalar{\rvec v}{\dd \curvevec} = 0
+    \text.
+  $$
+\end{example}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~ Stokes' theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{theorem}[Stokes-tétel]
+  Legyen $\surfsign: \surfdomain\subset\Reals^2 \to \surfimage \subset \Reals^3$
+  irányított, parametrizált, elemi felület. Legyen továbbá $\rvec v : \Reals^3
+    \to \Reals^3$ legalább egyszer folytonosan differenciálható vektormező.
+  Jelölje az $\curvesign: \curvedomain\subset\Reals \to \partial\surfimage =
+    \curveimage$ a $\surfsign$ peremét indukált, jobbézszabály szerinti
+  irányítással. Ekkor:
+  $$
+    \iint_{\surfimage} \scalar{\rot \rvec v}{\dd \surfvec}
+    =
+    \oint_{\partial \surfimage} \scalar{\rvec v}{\dd \curvevec}
+    \text.
+  $$
+\end{theorem}
+
+\begin{note}
+  Ha $\rvec v$ skalárpotenciálos, akkor az integrál értéke zérus, hiszen
+  $\rot \rvec v = \rot \grad \varphi = \rvec 0$.
+\end{note}
+
+\begin{example}
+  Integrálja a $\rvec v(\coordv) = \ijk{y}{x}{0}$ vektormezőt a $P_1(0;1;0)$,
+  $P_2(2;0;0)$ és $P_3(0;0;0)$ által meghatározott háromszög mentén!
+
+  Határozzuk meg a $\rvec v$ vektormező rotációját:
+  $$
+    \rot \rvec v
+    =
+    \begin{bmatrix}
+      \partial_x \\ \partial_y \\ \partial_z
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+      y \\ x \\ 0
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      0 \\ 0 \\ 1 - 1
+    \end{bmatrix}
+    =
+    \nvec
+    \text.
+  $$
+  A Stokes-tétel alapján:
+  $$
+    \oint_{\partial \surfimage} \scalar{\rvec v}{\dd \curvevec}
+    = \int_{\surfimage} \scalar{\rot \rvec v}{\dd \surfvec}
+    = \int_{\surfimage} \scalar{\nvec}{\dd \surfvec}
+    = 0
+    \text.
+  $$
+\end{example}
+
+\begin{learnMore}[Stokes-tétel Maxwell III. és IV. egyenletében]
+  A Stokes-tétel a Maxwell-egyenletekben is fontos szerepet játszik. A harmadik
+  és negyedik egyenlet a mágneses tér és az elektromos tér közötti
+  kapcsolatot írja le:
+  $$
+    \begin{aligned}
+      (III) & \quad \Rightarrow \quad \rot \rvec E = -\dot{\rvec B}
+            &
+            & \quad \Rightarrow \quad \text{elektromos tér -- mágneses tér változása,}
+      \\
+      (IV)  & \quad \Rightarrow \quad \rot \rvec B = \mu_0 \rvec j + \mu_0
+      \varepsilon_0 \dot{\rvec E}
+            &
+            & \quad \Rightarrow \quad \text{mágneses tér -- elektromos tér változása,}
+    \end{aligned}
+  $$
+  ahol $\rvec E$ az elektromos tér, $\rvec B$ a mágneses tér, $\rvec j$ az áram
+  sűrűség, $\mu_0$ a mágneses permeabilitás és $\varepsilon_0$ az elektromos
+  permittivitás.
+
+  Az egyenletek közötti kapcsolatot a Stokes-tétel segítségével:
+  $$
+    \begin{aligned}
+      (III) & \quad \Rightarrow \quad
+      \oint_{\partial \surfimage} \scalar{\rvec E}{\dd \curvevec}
+      = -\iint_{\surfimage} \scalar{\dot{\rvec B}}{\dd \surfvec}
+      \text,
+      \\
+      (IV)  & \quad \Rightarrow \quad
+      \oint_{\partial \surfimage} \scalar{\rvec B}{\dd \curvevec}
+      = \iint_{\surfimage} \scalar{\mu_0 \rvec j + \mu_0 \varepsilon_0 \dot{\rvec E}}{\dd \surfvec}
+      \text.
+    \end{aligned}
+  $$
+
+  A III. egyenlet azt mondja ki, hogy változó mágneses tér maga körül
+  balkézszabály szerint elektormos teret indukál, míg a IV. egyenlet azt
+  jelenti, hogy az elektromos tér változása jobbkézszabály szerint
+  mágneses teret indukál.
+\end{learnMore}
 
 \clearpage
 \subsection{Feladatok}
+
+\begin{enumerate}
+  \item Adott egy $\rvec F(x; y) = \ijz{2xy}{x^2 + 2y}$ erőtér. Vizsgálja meg,
+        hogy az $\rvec F$ erőtér konzervatív-e! Amennyiben igen, adja meg egy
+        olyan potenciálfüggvényt, melyre $\varphi(0;0) = 0$. Számítsa ki a
+        $P_1(0; 0)$ és $P_2(1; 1)$ pontok közötti egyenes szakaszon végzett
+        munkát!
+
+  \item Egy $Q = \num{8.85}\pi\,\si{\milli\coulomb}$ nagyságú ponttöltés
+        közelében az elektrosztatikus térerősséget az
+        $$
+          \rvec E(\coordvec) = \frac{Q}{4\pi \varepsilon_0}
+          \frac{\coordvec}{|\coordvec|^3}
+          \qquad
+          \coordvec \neq \nvec
+          \qquad \varepsilon_0 = \SI[per-mode=symbol]{8,85e-12}{\farad\per\meter}
+        $$
+        vektormező írja le. Mutassa meg, hogy az $\rvec E$ vektormező
+        konzervatív, és vezesse le a potenciálfüggvényt $\varphi(\infty) = 0$
+        határfeltétel mellett! Számítsa ki a $q = \SI{1}{\micro\coulomb}$
+        próbatöltés által a $P_1(1; 0; 0)$ és $P_2(2; 0; 0)$ pontok között
+        végzett munkát, ha $\rvec F = q \rvec E$.
+
+  \item Egy nagyon hosszú, áramjárta vezető belsejében a mágneses indukció
+        jó közelítéssel lineárisan változik a keresztmetszetben:
+        $$
+          \rvec B(\coordv) = \ijk{ky}{-kx}{0}
+        $$
+        Igazolja, hogy a $\rvec B$ vektormező forrásmentes, majd adja meg
+        a $\rvec B$ vektormező vektorpotenciálját $\rvec A = (A_x; A_y; 0)$
+        alakban, melyre $\rvec A(\nvec) = \nvec$ teljesül. Mi $k$ mértékegysége?
+
+  \item Egy $R = 1$ sugarú, kör keresztmetszetű, $z$ tengellyel egybeeső
+        szimmetriavonalú hengerben áramló folyadék sebességét a
+        $$
+          \rvec v(\coordv) = \ijk{2xy + z}{x^2 + z}{y - x}
+        $$
+        vektormező írja le. Adja meg a $z = 1$ síkban lévő keresztmetszet
+        menti cirkulációt!
+        (A cirkuláció a vektormező zárt görbe menti integrálja.)
+
+  \item Jelölje $\surfimage$ az $x^2 + y^2 - z^2 = 1$ egyenletű
+        forgáshiperboloid $z = -1$ és $z = 1$ síkok közötti részét.
+        Határozza meg a $\rvec v(\coordvec) = \ijk{x^2}{y^3}{z^4}$
+        vektormező $\surfimage$ peremén vett integrálját!
+
+  \item Integrálja a $\rvec v(\coordvec) = \ijk{y^2}{z^2}{x^2}$
+        vektormezőt az $A(1;0;0)$, $B(0;1;0)$ és $C(0;0;1)$ csúcsokkal
+        meghatározott háromszögvonal mentén!
+\end{enumerate}
+
+% \vfill
+% \subsection{Megoldások}
+
+% \begin{enumerate}
+%   \item $W = \SI{-17}{J}$
+%   \item \begin{enumerate}
+%           \item $b_3 = 2 z \sin y + C$
+%           \item $b_3 = \dfrac{z^3 \sin y}{3} - y z \cos x + C$
+%         \end{enumerate}
+%   \item $\text{cirkuláció} = 0$
+%   \item $0$
+%   \item $Q = 8\pi\varepsilon_0\sqrt{95} \approx \SI{2,17}{nC}$
+%   \item $q_\text{hő} = 8\pi\lambda\alpha R^3 = \SI{5,23}{W}$
+% \end{enumerate}
 
 \end{document}

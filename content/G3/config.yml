@@ -46,7 +46,12 @@ practice_material:
       display_name: G3 4. gyakorlat
       description: Vektoranalízis – Felületek, felületi integrál
       week: 4
-    - description: Vektoranalízis – Térfogati integrál, szöveges feladatok
+    - source: 05.tex
+      target: G3-gyak-05
+      latex_solution_source: 05.tex
+      latex_solution_target: G3-gyak-05-megoldas
+      display_name: G3 5. gyakorlat
+      description: Vektoranalízis – Integrálátalakító tételek, mérnöki példák
       week: 5
     - source: 06.tex
       target: G3-gyak-06

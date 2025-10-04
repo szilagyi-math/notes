@@ -64,7 +64,7 @@
       MO\\[2mm]%
     };
     \node[text=primaryColor, anchor=north west, inner sep=3mm, scale=1.2, align=left] at ($(docno.north east)+(5mm,0)$) (title) {%
-      \hspace*{-3mm}\huge\bfseries\@title\hspace*{-3mm}\\[-1.05em]%
+      \hspace*{-3mm}\Large\bfseries\@title\hspace*{-3mm}\\[-1.05em]%
     };
     \node[text=gray, anchor=south west, inner sep=0, align=left] at ($(docno.south east)+(5mm,1.5mm)$) (rest) {%
       \bfseries\@subject\ -- \@area\\[1mm]
