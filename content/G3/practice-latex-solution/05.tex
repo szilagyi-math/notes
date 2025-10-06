@@ -166,7 +166,7 @@ Ekkor:
 \begin{align*}
   A_x & = \int_0^z B_y(x; y; \zeta) \dd \zeta = \int_0^z -kx \dd \zeta = -kxz
   \text,                                                                         \\
-  A_y & = -\int_0^z B_x(x; y; \zeta) \dd \zeta + \int_0^x B_z(\xi; 0; 0) \dd \xi
+  A_y & = -\int_0^z B_x(x; y; \zeta) \dd \zeta + \int_0^x B_z(\xi; y; 0) \dd \xi
   = -\int_0^z ky \dd \zeta + 0 = -kyz
   \text.
 \end{align*}
@@ -188,7 +188,7 @@ vektormező írja le. A $z = 1$ síkban lévő keresztmetszet menti cirkuláció
 kiszámításához alkalmazzuk a Stokes-tételt:
 $$
   \oint_{\partial \surfimage} \scalar{\rvec v}{\dd \curvevec}
-  = \iint_{\surfimage} \scalar{\rot \rvec v}{\nvec} \dd \surfvec
+  = \iint_{\surfimage} \scalar{\rot \rvec v}{\dd \surfvec}
   \text.
 $$
 A sebességmező rotációja:
