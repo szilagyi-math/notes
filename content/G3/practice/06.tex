@@ -1,191 +1,212 @@
 \documentclass{szb-practice}
 
 \usepackage{siunitx}
-\sisetup{locale = DE} 
+\sisetup{locale = DE}
 
-\title{Integrálátalakító tételek}
+\title{Integrálátalakító tételek II}
 \area{Vektoranalízis}
 \subject{Matematika G3}
 \subjectCode{BMETE94BG03}
 \date{Utoljára frissítve: \today}
 \docno{6}
 
-\usepackage{lipsum}
-
 \begin{document}
+\allowdisplaybreaks
+
 \maketitle
 
+\vspace{-1em}
 \subsection{Elméleti áttekintő}
+\vspace{1em}
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% ~~~~~~~~~~~~~~~~~~~~ Gradient-theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\begin{theorem}[Gradiens-tétel]
-  Legyen $\varphi : U \subseteq \Reals^3 \rightarrow \Reals$ differenciálható
-  skalármező, $\curvesign : [a;b] \rightarrow \curveimage \subseteq U$,
-  $t \mapsto \curvevec(t)$ folytonos görbe, $\curvevec(a) = \rvec p$,
-  $\curvevec(b) = \rvec q$ pedig a görbe kezdő és végpontja. Ekkor:
+\begin{definition}[Térfogat]
+  Legyen $\volsign: \voldomain \rightarrow \volimage$ paraméterezett
+  tértartomány, ahol $r; s; t \in \voldomain$ a tértartomány paraméterezése,
+  $\volsign(\voldomain) = \volimage$ a tértartomány képe,
+  $\dd \volscalar = \det(\DD \volsign(r; s; t)) \dd r \dd s \dd t$.
+  Ekkor a térfogat:
   $$
-    \int_{\curveimage} \scalar{\grad \varphi(\coordv)}{\dd \curvevec}
-    =
-    \varphi(\rvec q) - \varphi(\rvec p)
+    \operatorname{Vol} \volimage
+    = \iiint_{\volimage} \dd \volscalar
+    = \iiint_{\volimage} \left|
+    \det \left( \DD \volsign(r; s; t) \right)
+    \right|
+    \dd r \dd s \dd t
     \text.
   $$
-  Vagyis, ha egy vektormező valamely skalármező gradiense, akkor annak bármely
-  folytonos görbe mentén vett integrálja csak a kezdő- és végpontoktól függ.
-\end{theorem}
+\end{definition}
 
-\begin{blueBox}
-  \sftitle{Körintegrál jelölése:}
-
-  Ha $\curvesign$ zárt görbe, akkor a $\varphi(\coordv)$ skalármező egy
-  $\curvesign$ görbe mentén vett körintegrálja a következőképpen jelölhető:
-  $$
-    \oint_{\curveimage} \, \varphi(\coordv) \dd \curvescalar
+\begin{definition}[Térfogati integrál]
+  Legyen $\varphi(\coordvec): \Reals^3 \to \Reals$ skalármező,
+  $\volsign: \voldomain \rightarrow \volimage$ paraméterezett tértartomány, ahol
+  $r; s; t \in \voldomain$ a tértartomány paraméterezése,
+  $\volsign(\voldomain) = \volimage$ a tértartomány képe,
+  $\dd \volscalar = \det(\DD \volsign(r; s; t)) \dd r \dd s \dd t$. Ekkor
+  a $\varphi$ skalármező térfogaton vett integrálja:
+  \begin{equation*}
+    \iiint_{\volimage} \varphi(\coordvec) \dd \volscalar
+    = \iiint_{\voldomain} \varphi \left( \volsign(r; s; t) \right)
+    \det \left( \DD \volsign(r; s; t) \right)
+    \dd r \dd s \dd t
     \text.
-  $$
+  \end{equation*}
+\end{definition}
+
+\begin{blueBox}[\underline{Tértartományok paraméterezése}][nobreak]
+  \def\tskip{14mm}
+  \begin{tabular}{
+    >{\hspace{-.5em}\bullet\;}p{2.25cm}
+    p{5.5cm}
+    m{2.5cm}
+    >{\centering\arraybackslash}m{3.25cm}
+    }
+    \textbf{Gömb:}
+     & $\volsign (r; s; t) = \begin{bmatrix} r \sin s \cos t \\ r \sin s \sin t \\ r \cos s \end{bmatrix}$
+     & $r \in [0; R]$ \newline $s \in [0;\pi]$ \newline $t \in [0, 2\pi]$
+     & \begin{tikzpicture}[
+           3d view={135}{35.26},
+           % 3d view={110}{20},
+           baseline,
+           scale=.75,
+         ]
+         % Origin coordinate
+         \coordinate (O) at (0,0,0);
+
+         % Helper coordinates
+         \foreach \s in {0,30,...,360} {
+             \foreach \t in {0,30,...,330} {
+                 \coordinate (\s-\t) at
+                 (
+                 {sin(\s/2)*cos(\t)},
+                 {sin(\s/2)*sin(\t)},
+                 {cos(\s/2)}
+                 );
+               }
+           }
+
+         % Draw surface in bg
+         \foreach \x/\y in {330/360,300/330,270/300,240/270,210/240,180/210,150/180,120/150,90/120,60/90,30/60,0/30} {
+             \foreach \i/\j in {150/180,180/210,210/240,240/270,270/300,300/330,330/0,120/150,90/120}{
+                 \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+               }
+           }
+
+         % Coordinate system
+         \draw[-to] (O) -- ++(1.75,0,0) node[anchor=south east] {$x$};
+         \draw[-to] (O) -- ++(0,1.75,0) node[anchor=south west] {$y$};
+         \draw[-to] (O) -- ++(0,0,1.75) node[anchor=north east] {$z$};
+
+         % Draw surface in fg
+         \foreach \x/\y in {330/360,300/330,270/300,240/270,210/240,180/210,150/180,120/150,90/120,60/90,30/60,0/30} {
+             \foreach \i/\j in {0/30,30/60,60/90} {
+                 \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+               }
+           }
+       \end{tikzpicture}
+    \\[\tskip]
+    \textbf{Ellipszoid:}
+     & $\volsign (r;s;t) = \begin{bmatrix} a \, r \sin s \cos t \\ b \, r \sin s \sin t \\ c \, r \cos s \end{bmatrix}$
+     & $r \in [0;1]$ \newline $s \in [0;\pi]$ \newline $t \in [0, 2\pi]$
+     & \begin{tikzpicture}[
+           3d view={110}{20},
+           baseline,
+           scale=.85
+         ]
+         % Origin coordinate
+         \coordinate (O) at (0,0,0);
+
+         % Helper coordinates
+         \foreach \s in {0,30,...,360} {
+             \foreach \t in {0,30,...,330} {
+                 \coordinate (\s-\t) at
+                 (
+                 {0.8*sin(\s/2)*cos(\t)},
+                 {1.4*sin(\s/2)*sin(\t)},
+                 {0.6*cos(\s/2)}
+                 );
+               }
+           }
+
+         % Draw surface in bg
+         \foreach \x/\y in {330/360,300/330,270/300,240/270,210/240,180/210,150/180,120/150,90/120,60/90,30/60,0/30} {
+             \foreach \i/\j in {150/180,180/210,210/240,240/270,270/300,300/330,330/0,120/150,90/120}{
+                 \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+               }
+           }
+
+         % Coordinate system
+         \draw[-to] (O) -- ++(2.25,0,0) node[anchor=east] {$x$};
+         \draw[-to] (O) -- ++(0,2.00,0) node[anchor=south] {$y$};
+         \draw[-to] (O) -- ++(0,0,1.25) node[anchor=north east] {$z$};
+
+         % Draw surface in fg
+         \foreach \x/\y in {330/360,300/330,270/300,240/270,210/240,180/210,150/180,120/150,90/120,60/90,30/60,0/30} {
+             \foreach \i/\j in {0/30,30/60,60/90} {
+                 \fill[thick, draw=red-base, fill=red-base!20, rounded corners=.1pt] (\x-\i) -- (\y-\i) -- (\y-\j) -- (\x-\j) -- cycle;
+               }
+           }
+       \end{tikzpicture}
+    \\[\tskip]
+    \textbf{Тórusz:}
+     & $\volsign (r;s;t) = \begin{bmatrix} (R + r \cos s) \cos t \\ (R + r \cos s) \sin t \\ r \sin s \end{bmatrix}$
+     & $r \in [0;r_0]$ \newline $s \in [0;2\pi]$ \newline $t \in [0, 2\pi]$
+     & \begin{tikzpicture}
+         \begin{axis}[
+          axis equal image,
+          hide axis,
+          % z buffer = sort,
+          view={110}{20},
+          xmax=2.5,
+          ymax=2.5,
+          zmax=2.25,
+          scale=.66,
+        ]
+
+        \draw[-to] (axis cs:0,0,0) -- (axis cs:1.25,0,0);
+        \draw[-to] (axis cs:0,0,0) -- (axis cs:0,1.25,0);
+
+        \addplot3[
+          surf,
+          faceted color=red-base,
+          fill=red-base!20,
+          ultra thin,
+          samples=15,
+          samples y=48,
+          domain=0:2*pi,
+          domain y=0:2*pi,
+          z buffer=sort,
+        ](
+        {(1.25+0.25*sin(deg(\x)))*cos(deg(\y))},
+        {(1.25+0.25*sin(deg(\x)))*sin(deg(\y))},
+        {0.25*cos(deg(\x))}
+        );
+
+        \draw[-to] (axis cs:0,0,0) -- (axis cs:0,0,2) node[anchor=north east] {$z$};
+
+        \draw[-to] (axis cs:1.5,0,0) -- (axis cs:2.25,0,0) node[anchor=north] {$x$};
+        \draw[-to] (axis cs:0,1.5,0) -- (axis cs:0,1.75,0) node[anchor=north] {$y$};
+
+        \coordinate (C) at (axis cs:0,1.25,1.25);
+        \coordinate (T) at (axis cs:0,1.25,1.65);
+        \coordinate (T+) at (axis cs:0,1.25,1.75);
+        \coordinate (Z) at (axis cs:0,0,1.65);
+      \end{axis}
+
+         \begin{scope}[3d view={110}{20},canvas is yz plane at x=0]
+        \draw[red-base, fill=red-base!20] (C) circle (0.33);
+        \draw[red-base, fill=red-base, ultra thick] (C) circle (0.02);
+
+        \draw[gray] (C) -- (T+);
+        \draw[to-to, thick, draw=blue-base]
+        (Z) -- (T)
+        node[midway, anchor=north] {\scriptsize$R$};
+        \draw[-to, thick, draw=blue-base]
+        (C) -- ++(0.75*0.8,0.75*0.6) -- ($(C)+(0.33*0.8,0.33*0.6)$)
+        node[midway, anchor=south, inner sep=.5mm, font=\scriptsize] {$r_0$};
+      \end{scope}
+       \end{tikzpicture}
+  \end{tabular}
 \end{blueBox}
-
-\begin{note}
-  A Gradiens-tételből következik, hogy skalárpotenciálos vektormező zárt görbe
-  mentén vett körintegrálja zérus.
-\end{note}
-
-\begin{example}
-  Integrálja a $\rvec v(\coordv) = \ijk{y + z}{x + z}{x + y}$ vektormezőt
-  a $z = 0$ síkon lévő, origó középpontú, $r = 3$ sugárú kör mentén!
-
-  Vizsgáljuk meg, hogy a vektormező skalárpotenciálos-e:
-  $$
-    \rot \rvec v
-    =
-    \begin{bmatrix}
-      \partial_x \\ \partial_y \\ \partial_z
-    \end{bmatrix}
-    \times
-    \begin{bmatrix}
-      y + z \\ x + z \\ x + y
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-      \partial_x (x + z) - \partial_y (y + z) \\
-      \partial_y (x + y) - \partial_z (x + z) \\
-      \partial_z (y + z) - \partial_x (x + y)
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-      1 - 1 \\ 1 - 1 \\ 1 - 1
-    \end{bmatrix}
-    =
-    \nvec
-    \text.
-  $$
-  Mivel a vektormező skalárpotenciálos, ezért létezik olyan skalármező,
-  melynek gradiense maga a $\rvec v$ vektormező. Az integrál értéke tehát
-  csak a kezdő- és végpontoktól függ, melyek jelen esetben megegyeznek,
-  vagyis az integrál értéke zérus:
-  $$
-    \oint_{\curveimage} \scalar{\rvec v}{\dd \curvevec} = 0
-    \text.
-  $$
-\end{example}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% ~~~~~~~~~~~~~~~~~~~~ Stokes' theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\begin{theorem}[Stokes-tétel]
-  Legyen $\surfsign: \surfdomain\subset\Reals^2 \to \surfimage \subset \Reals^3$
-  irányított, parametrizált, elemi felület. Legyen továbbá $\rvec v : \Reals^3
-    \to \Reals^3$ legalább egyszer folytonosan differenciálható vektormező.
-  Jelölje az $\curvesign: \curvedomain\subset\Reals \to \partial\surfimage =
-    \curveimage$ a $\surfsign$ peremét indukált, jobbézszabály szerinti
-  irányítással. Ekkor:
-  $$
-    \iint_{\surfimage} \scalar{\rot \rvec v}{\dd \surfvec}
-    =
-    \oint_{\partial \surfimage} \scalar{\rvec v}{\dd \curvevec}
-    \text.
-  $$
-\end{theorem}
-
-\begin{note}
-  Ha $\rvec v$ skalárpotenciálos, akkor az integrál értéke zérus, hiszen
-  $\rot \rvec v = \rot \grad \varphi = \rvec 0$.
-\end{note}
-
-\begin{example}
-  Integrálja a $\rvec v(\coordv) = \ijk{y}{x}{0}$ vektormezőt a $P_1(0;1;0)$,
-  $P_2(2;0;0)$ és $P_3(0;0;0)$ által meghatározott háromszög mentén!
-
-  Határozzuk meg a $\rvec v$ vektormező rotációját:
-  $$
-    \rot \rvec v
-    =
-    \begin{bmatrix}
-      \partial_x \\ \partial_y \\ \partial_z
-    \end{bmatrix}
-    \times
-    \begin{bmatrix}
-      y \\ x \\ 0
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-      0 \\ 0 \\ 1 - 1
-    \end{bmatrix}
-    =
-    \nvec
-    \text.
-  $$
-  A Stokes-tétel alapján:
-  $$
-    \oint_{\partial \surfimage} \scalar{\rvec v}{\dd \curvevec}
-    = \int_{\surfimage} \scalar{\rot \rvec v}{\dd \surfvec}
-    = \int_{\surfimage} \scalar{\nvec}{\dd \surfvec}
-    = 0
-    \text.
-  $$
-\end{example}
-
-\begin{learnMore}[Stokes-tétel Maxwell III. és IV. egyenletében]
-  A Stokes-tétel a Maxwell-egyenletekben is fontos szerepet játszik. A harmadik
-  és negyedik egyenlet a mágneses tér és az elektromos tér közötti
-  kapcsolatot írja le:
-  $$
-    \begin{aligned}
-      (III) & \quad \Rightarrow \quad \rot \rvec E = -\dot{\rvec B}
-            &
-            & \quad \Rightarrow \quad \text{elektromos tér -- mágneses tér változása,}
-      \\
-      (IV)  & \quad \Rightarrow \quad \rot \rvec B = \mu_0 \rvec j + \mu_0
-      \varepsilon_0 \dot{\rvec E}
-            &
-            & \quad \Rightarrow \quad \text{mágneses tér -- elektromos tér változása,}
-    \end{aligned}
-  $$
-  ahol $\rvec E$ az elektromos tér, $\rvec B$ a mágneses tér, $\rvec j$ az áram
-  sűrűség, $\mu_0$ a mágneses permeabilitás és $\varepsilon_0$ az elektromos
-  permittivitás.
-
-  Az egyenletek közötti kapcsolatot a Stokes-tétel segítségével:
-  $$
-    \begin{aligned}
-      (III) & \quad \Rightarrow \quad
-      \oint_{\partial \surfimage} \scalar{\rvec E}{\dd \curvevec}
-      = -\iint_{\surfimage} \scalar{\dot{\rvec B}}{\dd \surfvec}
-      \text,
-      \\
-      (IV)  & \quad \Rightarrow \quad
-      \oint_{\partial \surfimage} \scalar{\rvec B}{\dd \curvevec}
-      = \iint_{\surfimage} \scalar{\mu_0 \rvec j + \mu_0 \varepsilon_0 \dot{\rvec E}}{\dd \surfvec}
-      \text.
-    \end{aligned}
-  $$
-
-  A III. egyenlet azt mondja ki, hogy változó mágneses tér maga körül
-  balkézszabály szerint elektormos teret indukál, míg a IV. egyenlet azt
-  jelenti, hogy az elektromos tér változása jobbkézszabály szerint
-  mágneses teret indukál.
-\end{learnMore}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ~~~~~~~~~~~~~~~~~~~~ Divergence theorem ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -267,7 +288,7 @@
       \text.
     \end{aligned}
   $$
-  Az első egyenlet azt mondja ki, hogy zárt felületen áthaladő elektromos
+  Az első egyenlet azt mondja ki, hogy zárt felületen áthaladó elektromos
   tér fluxusa arányos az elektromos töltéssűrűség térfogati integráljával.
   A második egyenlet pedig azt jelenti, hogy a mágneses tér fluxusa zárt
   felületen zérus, a mágneses tér forrásmentes.
@@ -359,46 +380,55 @@
 \subsection{Feladatok}
 
 \begin{enumerate}
-  \item Egy automata raktárrendszer ferromágneses manipulátora egy előre
-        számított mágneses potenciálmezőben mozog. A számított Joule-potenciál a
-        munkatérben
+  \item Vezesse le az $R$ sugarú gömb térfogatát térfogati integrál
+        segítségével, majd számítsa ki a $\varphi(\coordvec) = 1 / \|\coordvec\|$
+        skalármező térfogati integrálját a gömbön! A tértartomány ajánlott
+        paraméterezése:
         $$
-          \varphi(\coordv) = 2x^2 y + 3yz
-          \text.
+          \volsign(r; s; t) = \begin{bmatrix}
+            r \sin s \cos t \\
+            r \sin s \sin t \\
+            r \cos s
+          \end{bmatrix}
+          \qquad
+          \begin{array}{l}
+            r \in [0; R]   \\
+            s \in [0; \pi] \\
+            t \in [0; 2\pi]
+          \end{array}
         $$
-        A csípőkaron lévő, $Q = \SI{1}{\coulomb}$ ekvivalens töltéssel
-        modellezett végfogót a vezérlőnek az
-        $$
-          A(0;0;0) \rightarrow B(2;1;3)
-        $$
-        pontok között kell mozgatnia. Mennyi munkát végez a mágneses tér a
-        végfogón, és miért nem kell törődnünk az útvonal pontos alakjával?
-        ($\rvec F = -Q \grad \varphi$, a munka az erő pálya menti integrálja)
 
-  \item Egy mágneses rendszer vezérlője egy
+  \item Vezesse le az $R$ sugarú, $h$ magasságú henger térfogatát térfogati
+        integrál segítségével, majd számítsa ki a
+        $\varphi(\coordvec) = x^2 + y^2$ skalármező térfogati integrálját a
+        hengerben! A tértartomány ajánlott paraméterezése:
         $$
-          \rvec B(\coordv) = \ijk{y \, \sin x}{z^2 \, \cos y - \cos x}{b_3}
+          \volsign(r; s; t) = \begin{bmatrix}
+            r \cos s \\
+            r \sin s \\
+            t
+          \end{bmatrix}
+          \qquad
+          \begin{array}{l}
+            r \in [0; R]    \\
+            s \in [0; 2\pi] \\
+            t \in [0; h]
+          \end{array}
         $$
-        vektormezővel modellezett mágneses teret hoz létre. Határozza meg
-        $b_3$ értékét, ha
+
+  \item Legyen $\rvec v(\coordvec) = \ijk{y \sin x}{z^2 \cos y - \cos x}{v_3}$.
+        Határozza meg $v_3$-at, ha tudjuk, hogy $\rvec v$ tetszőleges zárt
+        felületen vett felületi integrálja zérus!
+
+  \item Legyen $\rvec v(\coordvec) = \coordvec$. Adja meg a vektormező alábbi
+        zárt felületeken vett felületi integráljait:
         \begin{enumerate}
-          \item $\rvec B$ bármely zárt görbe menti cirkulációja zérus,
-          \item $\rvec B$ bármely zárt felület menti fluxusa zérus.
+          \item az $R = 2$ sugarú gömb felületén befelé mutató irányítással,
+          \item az $x^2 + y^2 = 4$ hengerfelületen, amelyet a $z = -1$ és
+                $z = 1$ síkok zárnak le, kifelé mutató irányítással,
+          \item a $z = x^2 + y^2$ forgásparaboloid és a $z = 4$ sík által
+                határolt test felületén kifelé mutató irányítással.
         \end{enumerate}
-
-  \item Egy $R = 1$ sugarú, kör keresztmetszetű, $z$ tengellyel egybeeső
-        szimmetriavonalú hengerben áramló folyadék sebességét a
-        $$
-          \rvec v(\coordv) = \ijk{2xy + z}{x^2 + z}{y - x}
-        $$
-        vektormező írja le. Adja meg a $z = 1$ síkban lévő keresztmetszet
-        menti cirkulációt!
-        (A cirkuláció a vektormező zárt görbe menti integrálja.)
-
-  \item Jelölje $\surfimage$ az $x^2 + y^2 - z^2 = 1$ egyenlezű
-        forgáshiperboloid $z = -1$ és $z = 1$ síkok közötti részét.
-        Határozza meg a $\rvec v(\coordvec) = \ijk{x^2}{y^3}{z^4}$
-        vektormező $\surfimage$ peremén vett integrálját!
 
   \item Egy fotonikus chipeket hordozó wafer-darabot egy ellipszoid alakú
         Faraday-kalitkába rögzítenek. A kalitka belsejében lineáris
@@ -412,7 +442,7 @@
         $$
 
   \item Egy drón IMU-modulját teljes egészében kitöltő, hővezető műgyanta gömb
-        alakú, sugara $R = 0,02 \, \text{m}$, A vezérlő egység folyamatosan
+        alakú, sugara $R = \SI{0.02}{\meter}$, A vezérlő egység folyamatosan
         hőt disszipál, az állandósult hő\-mér\-sék\-let-mező jó közelítéssel
         $$
           \varphi(\coordv) = T_c - \alpha \rvec r^2
@@ -423,26 +453,11 @@
         Becsülje meg, mekkora teljes hőáram távozik a burkolaton át, ha
         $$
           q_{\text{hő}}
-          = -\lambda \oiint_{\partial \volimage} \scalar{\grad \varphi}{\dd \surfvec}
+          = - \oiint_{\partial \volimage} \scalar{\lambda \grad \varphi}{\dd \surfvec}
           \text,\quad
           \lambda = \SI[per-mode=symbol]{0,2}{\watt\per\meter\per\kelvin}
           \text.
         $$
 \end{enumerate}
-
-% \vfill
-% \subsection{Megoldások}
-
-% \begin{enumerate}
-%   \item $W = \SI{-17}{J}$
-%   \item \begin{enumerate}
-%           \item $b_3 = 2 z \sin y + C$
-%           \item $b_3 = \dfrac{z^3 \sin y}{3} - y z \cos x + C$
-%         \end{enumerate}
-%   \item $\text{cirkuláció} = 0$
-%   \item $0$
-%   \item $Q = 8\pi\varepsilon_0\sqrt{95} \approx \SI{2,17}{nC}$
-%   \item $q_\text{hő} = 8\pi\lambda\alpha R^3 = \SI{5,23}{W}$
-% \end{enumerate}
 
 \end{document}

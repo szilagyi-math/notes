@@ -51,12 +51,14 @@ practice_material:
       latex_solution_source: 05.tex
       latex_solution_target: G3-gyak-05-megoldas
       display_name: G3 5. gyakorlat
-      description: Vektoranalízis – Integrálátalakító tételek, mérnöki példák
+      description: Vektoranalízis – Integrálátalakító tételek I
       week: 5
     - source: 06.tex
       target: G3-gyak-06
+      latex_solution_source: 06.tex
+      latex_solution_target: G3-gyak-06-megoldas
       display_name: G3 6. gyakorlat
-      description: Vektoranalízis – Integrálátalakító tételek
+      description: Vektoranalízis – Integrálátalakító tételek II
       week: 6
     - source: 07.tex
       target: G3-gyak-07

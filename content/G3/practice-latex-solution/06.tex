@@ -1,0 +1,495 @@
+\documentclass{szb-solution}
+
+\usepackage{siunitx}
+\sisetup{locale = DE}
+
+\title{Integrálátalakító tételek II}
+\area{Vektoranalízis}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{6}
+
+\begin{document}
+\allowdisplaybreaks
+
+\maketitle
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 111111111111111111111111111111111111111111111111111111111111111111111111111111
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Gömb térfogata, gömbi integrál}
+
+Vezesse le az $R$ sugarú gömb térfogatát térfogati integrál
+segítségével, majd számítsa ki a $\varphi(\coordvec) = 1 / \|\coordvec\|$
+skalármező térfogati integrálját a gömbön!
+
+A tértartomány paraméterezése:
+$$
+  \volsign(r; s; t) = \begin{bmatrix}
+    r \sin s \cos t \\
+    r \sin s \sin t \\
+    r \cos s
+  \end{bmatrix}
+  \qquad
+  \begin{array}{l}
+    r \in [0; R]   \\
+    s \in [0; \pi] \\
+    t \in [0; 2\pi]
+  \end{array}
+$$
+
+A Jacobi-mátrix:
+$$
+  \DD \volsign(r; s; t)
+  = \begin{bmatrix}
+    \sin s \cos t & r \cos s \cos t & -r \sin s \sin t \\
+    \sin s \sin t & r \cos s \sin t & r \sin s \cos t  \\
+    \cos s        & -r \sin s       & 0
+  \end{bmatrix}
+  \text.
+$$
+
+Ennek determinánsa az utolsó sor alapján kifejtve:
+\begin{align*}
+  \det
+   & \left( \DD \volsign(r; s; t) \right)
+  = -\cos s \cdot \begin{vmatrix}
+                    r \cos s \cos t & -r \sin s \sin t \\
+                    r \cos s \sin t & r \sin s \cos t
+                  \end{vmatrix}
+  + r \sin s \cdot \begin{vmatrix}
+                     \sin s \cos t & -r \sin s \sin t \\
+                     \sin s \sin t & r \sin s \cos t
+                   \end{vmatrix}
+  \\
+   & = r^2 \cos s \left(
+  \cos^2 t \cos s \sin s + \sin^2 t \cos s \sin s
+  \right) +
+  + r^2 \sin s \left(
+  \sin^2 s \cos^2 t + \sin^2 s \sin^2 t
+  \right)
+  \\
+   & = r^2 \cos s \cdot \cos s \sin s + r^2 \sin s \cdot \sin^2 s
+  \\
+   & = r^2 \sin s
+  \text.
+\end{align*}
+
+A gömb térfogata tehát:
+\begin{align*}
+  V
+   & = \iiint_{\volimage} \dd \volscalar
+  = \iiint_{\voldomain} \det \left( \DD \volsign(r; s; t) \right)
+  \dd r \dd s \dd t
+  \\
+   & = \int_0^{2\pi} \int_0^{\pi} \int_0^R r^2 \sin s \dd r \dd s \dd t
+  = \int_0^{2\pi} \int_0^{\pi} \left[ \frac{r^3}{3} \right]_0^R \sin s \dd s \dd t
+  \\
+   & = \int_0^{2\pi} \int_0^{\pi} \frac{R^3}{3} \sin s \dd s \dd t
+  = \int_0^{2\pi} \left[ -\frac{R^3}{3} \cos s \right]_0^{\pi} \dd t
+  \\
+   & = \int_0^{2\pi} \frac{2R^3}{3} \dd t
+  = \left[ \frac{2R^3}{3} t \right]_0^{2\pi}
+  = \frac{4\pi R^3}{3}
+  \text.
+\end{align*}
+
+A skalármező átparaméterezése:
+$$
+  \varphi(\volsign(r; s; t)) = \frac{1}{\|\volsign(r; s; t)\|}
+  = \frac{1}{\sqrt{r^2 \sin^2 s \cos^2 t + r^2 \sin^2 s \sin^2 t + r^2 \cos^2 s}}
+  = \frac{1}{r}
+  \text.
+$$
+
+A skalármező térfogati integrálja a gömbön:
+\begin{align*}
+  I
+   & = \iiint_{\volimage} \varphi(\coordvec) \dd \volscalar
+  = \iiint_{\voldomain} \varphi(\volsign(r; s; t))
+  \det \left( \DD \volsign(r; s; t) \right) \dd r \dd s \dd t
+  \\
+   & = \int_0^{2\pi} \int_0^{\pi} \int_0^R \frac{1}{r} r^2 \sin s \dd r \dd s \dd t
+  = \int_0^{2\pi} \int_0^{\pi} \int_0^R r \sin s \dd r \dd s \dd t
+  \\
+   & = \int_0^{2\pi} \int_0^{\pi} \left[ \frac{r^2}{2} \right]_0^R \sin s \dd s \dd t
+  = \int_0^{2\pi} \int_0^{\pi} \frac{R^2}{2} \sin s \dd s \dd t
+  \\
+   & = \int_0^{2\pi} \left[ -\frac{R^2}{2} \cos s \right]_0^{\pi} \dd t
+  = \int_0^{2\pi} R^2 \dd t
+  \\
+   & = \left[ R^2 t \right]_0^{2\pi}
+  = 2\pi R^2
+  \text.
+\end{align*}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 222222222222222222222222222222222222222222222222222222222222222222222222222222
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Henger térfogata}
+
+Vezesse le az $R$ sugarú, $h$ magasságú henger térfogatát térfogati integrál
+segítségével, majd számítsa ki a $\varphi(\coordvec) = x^2 + y^2$ skalármező
+térfogati integrálját a hengerben!
+
+A tértartomány paraméterezése:
+$$
+  \volsign(r; s; t) = \begin{bmatrix}
+    r \cos t \\
+    r \sin t \\
+    s
+  \end{bmatrix}
+  \qquad
+  \begin{array}{l}
+    r \in [0; R] \\
+    s \in [0; h] \\
+    t \in [0; 2\pi]
+  \end{array}
+$$
+A Jacobi-mátrix:
+$$
+  \DD \volsign(r; s; t) = \begin{bmatrix}
+    \cos t & 0 & -r \sin t \\
+    \sin t & 0 & r \cos t  \\
+    0      & 1 & 0
+  \end{bmatrix}
+  \text.
+$$
+Ennek determinánsa:
+$$
+  \det \left( \DD \volsign(r; s; t) \right) = r
+  \text.
+$$
+A henger térfogata tehát:
+\begin{align*}
+  V
+   & = \iiint_{\volimage} \dd \volscalar
+  = \iiint_{\voldomain} \det \left( \DD \volsign(r; s; t) \right)
+  \dd r \dd s \dd t
+  \\
+   & = \int_0^{2\pi} \int_0^h \int_0^R r \dd r \dd s \dd t
+  = \int_0^{2\pi} \int_0^h \left[ \frac{r^2}{2} \right]_0^R \dd s \dd t
+  \\
+   & = \int_0^{2\pi} \int_0^h \frac{R^2}{2} \dd s \dd t
+  = \int_0^{2\pi} \left[ \frac{R^2}{2} s \right]_0^h \dd t
+  \\
+   & = \int_0^{2\pi} \frac{R^2 h}{2} \dd t
+  = \left[ \frac{R^2 h}{2} t \right]_0^{2\pi}
+  = \pi R^2 h
+  \text.
+\end{align*}
+
+A skalármező átparaméterezése:
+$$
+  \varphi(\volsign(r; s; t)) = (r \cos t)^2 + (r \sin t)^2 = r^2
+  \text.
+$$
+A skalármező térfogati integrálja a hengerben:
+\begin{align*}
+  I
+   & = \iiint_{\volimage} \varphi(\coordvec) \dd \volscalar
+  = \iiint_{\voldomain} \varphi(\volsign(r; s; t))
+  \det \left( \DD \volsign(r; s; t) \right) \dd r \dd s \dd t
+  \\
+   & = \int_0^{2\pi} \int_0^h \int_0^R r^2 \cdot r \dd r \dd s \dd t
+  = \int_0^{2\pi} \int_0^h \int_0^R r^3 \dd r \dd s \dd t
+  \\
+   & = \int_0^{2\pi} \int_0^h \left[ \frac{r^4}{4} \right]_0^R \dd s \dd t
+  = \int_0^{2\pi} \int_0^h \frac{R^4}{4} \dd s \dd t
+  \\
+   & = \int_0^{2\pi} \left[ \frac{R^4}{4} s \right]_0^h \dd t
+  = \int_0^{2\pi} \frac{R^4 h}{4} \dd t
+  \\
+   & = \left[ \frac{R^4 h}{4} t \right]_0^{2\pi}
+  = \frac{\pi R^4 h}{2}
+  \text.
+\end{align*}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 333333333333333333333333333333333333333333333333333333333333333333333333333333
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Vektormező ismeretlen komponense}
+
+Legyen $\rvec v(\coordvec) = \ijk{y \sin x}{z^2 \cos y - \cos x}{v_3}$.
+Határozza meg $v_3$-at, ha tudjuk, hogy $\rvec v$ tetszőleges zárt felületen
+vett felületi integrálja zérus!
+
+A Gauss-Osztogradszkij tétel szerint:
+$$
+  \oiint_{\partial \volimage} \scalar{\rvec v}{\dd \surfvec}
+  =
+  \iiint_{\volimage} \Div \rvec v \dd \volscalar
+  \text,
+$$
+vagyis a tetszőleges zárt felületen vett felületi integrál akkor zérus, ha
+a vektormező divergenciája zérus. Tehát:
+$$
+  \Div \rvec v
+  = \pdv{}{x} (y \sin x) + \pdv{}{y} (z^2 \cos y - \cos x) + \pdv{v_3}{z}
+  = y \cos x - z^2 \sin y + \pdv{v_3}{z}
+  = 0
+  \text.
+$$
+Ebből következik, hogy
+$$
+  \pdv{v_3}{z} = -y \cos x + z^2 \sin y
+  \text.
+$$
+Integráljuk ezt $z$ szerint:
+$$
+  v_3 = \int \left( -y \cos x + z^2 \sin y \right) \dd z
+  = -y z \cos x + \frac{z^3}{3} \sin y + f(x; y)
+  \text,
+$$
+ahol $f(x; y)$ tetszőleges függvény, nem befolyásolja a dirvergenciát.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 333333333333333333333333333333333333333333333333333333333333333333333333333333
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Zárt felületi integrálok}
+
+Legyen $\rvec v(\coordvec) = \coordvec$. Adja meg a vektormező alábbi
+zárt felületeken vett felületi integráljait:
+\begin{enumerate}[a)]
+  \item az $R = 2$ sugarú gömb felületén befelé mutató irányítással:
+        $$
+          I
+          = \oiint_{\partial \volimage} \scalar{\rvec v}{\dd \surfvec}
+          = - \iiint_{\volimage} \Div \rvec v \dd \volscalar
+          = -3 \cdot \operatorname{Vol}(\volimage)
+          = -3 \cdot \frac{4\pi R^3}{3}
+          = -4 \pi R^3
+          = -32 \pi
+          \text.
+        $$
+
+  \item az $x^2 + y^2 = 4$ hengerfelületen, amelyet a $z = -1$ és
+        $z = 1$ síkok zárnak le, kifelé mutató irányítással:
+        $$
+          I
+          = \oiint_{\partial \volimage} \scalar{\rvec v}{\dd \surfvec}
+          = \iiint_{\volimage} \Div \rvec v \dd \volscalar
+          = 3 \cdot \operatorname{Vol}(\volimage)
+          = 3 \cdot (\pi R^2 h)
+          = 3 \cdot (\pi \cdot 2^2 \cdot 2)
+          = 24 \pi
+          \text.
+        $$
+
+  \item a $z = x^2 + y^2$ forgásparaboloid és a $z = 4$ sík által
+        határolt test felületén kifelé mutató irányítással:
+
+        Itt már nem tudjuk kapásból felírni a tértartomány térfogatát, így
+        parametrizálnunk kell a tértartományt:
+        $$
+          \volsign(r; s; t) = \begin{bmatrix}
+            r \, s \cos t \\
+            r \, s \sin t \\
+            r^2
+          \end{bmatrix}
+          \qquad
+          \begin{array}{l}
+            r \in [0; 2] \\
+            s \in [0; 1] \\
+            t \in [0; 2\pi]
+          \end{array}
+        $$
+        A Jacobi-mátrix:
+        $$
+          \DD \volsign(r; s; t) = \begin{bmatrix}
+            s \cos t & r \cos t & -r s \sin t \\
+            s \sin t & r \sin t & r s \cos t  \\
+            2 r      & 0        & 0
+          \end{bmatrix}
+          \text.
+        $$
+        Ennek determinánsa:
+        \begin{align*}
+          \det \left( \DD \volsign(r; s; t) \right)
+           & = 2 r^3 s \cos^2 t + 2 r^2 s \sin^2 t
+          = 2 r^3 s (\cos^2 t + \sin^2 t)
+          = 2 r^3 s
+          \text.
+        \end{align*}
+        A felületi integrál:
+        \begin{align*}
+          I
+           & = \oiint_{\partial \volimage} \scalar{\rvec v}{\dd \surfvec}
+          = \iiint_{\volimage} \Div \rvec v \dd \volscalar
+          = 3 \cdot \iiint_{\volimage} \dd \volscalar
+          \\
+           & = 3 \cdot \iiint_{\voldomain} \det \left( \DD \volsign(r; s; t) \right) \dd r \dd s \dd t
+          = 3 \cdot \int_0^{2\pi} \int_0^1 \int_0^2 2 r^3 s \dd r \dd s \dd t
+          \\
+           & = 3 \cdot \int_0^{2\pi} \int_0^1 \left[ \frac{r^4}{2} \right]_0^2 s \dd s \dd t
+          = 3 \cdot \int_0^{2\pi} \int_0^1 8 s \dd s \dd t
+          \\
+           & = 3 \cdot \int_0^{2\pi} \left[ 4 s^2 \right]_0^1 \dd t
+          = 3 \cdot \int_0^{2\pi} 4 \dd t
+          = 12 \cdot \left[ t \right]_0^{2\pi}
+          = 24 \pi
+          \text.
+        \end{align*}
+
+        Akár hengerkordinátákkal is megoldhattuk volna a feladatot:
+
+        A helyettesítés:
+        $$
+          \begin{cases}
+            x = r \cos t \\
+            y = r \sin t \\
+            z = z
+          \end{cases}
+          \qquad
+          \begin{array}{l}
+            r \in [0; 2]    \\
+            t \in [0; 2\pi] \\
+            z \in [r^2; 4]
+          \end{array}
+        $$
+
+        A Jacobi-mátrix:
+        $$
+          \DD \volsign(r; t; z) = \begin{bmatrix}
+            \cos t & -r \sin t & 0 \\
+            \sin t & r \cos t  & 0 \\
+            0      & 0         & 1
+          \end{bmatrix}
+          \text.
+        $$
+        Ennek determinánsa:
+        $$
+          \det \left( \DD \volsign(r; t; z) \right) = r
+          \text.
+        $$
+        A felületi integrál:
+        \begin{align*}
+          I
+           & = \oiint_{\partial \volimage} \scalar{\rvec v}{\dd \surfvec}
+          = \iiint_{\volimage} \Div \rvec v \dd \volscalar
+          = 3 \cdot \iiint_{\volimage} \dd \volscalar
+          \\
+           & = 3 \cdot \iiint_{\voldomain} \det \left( \DD \volsign(r; t; z) \right) \dd r \dd t \dd z
+          = 3 \cdot \int_0^{2\pi} \int_0^2 \int_{r^2}^4 r \dd z \dd r \dd t
+          \\
+           & = 3 \cdot \int_0^{2\pi} \int_0^2 r (4 - r^2) \dd r \dd t
+          = 3 \cdot \int_0^{2\pi} \left[ 2 r^2 - \frac{r^4}{4} \right]_0^2 \dd t
+          \\
+           & = 3 \cdot \int_0^{2\pi} \left( 8 - 4 \right) \dd t
+          = 12 \cdot \left[ t \right]_0^{2\pi}
+          = 24 \pi
+          \text.
+        \end{align*}
+\end{enumerate}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 444444444444444444444444444444444444444444444444444444444444444444444444444444
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Faraday-kalitka}
+
+Egy fotonikus chipeket hordozó wafer-darabot egy ellipszoid alakú
+Faraday-kalitkába rögzítenek. A kalitka belsejében lineáris
+feszültségelosztással ($\rvec E(\coordv) = \coordv$) térerőt állítanak
+elő. Számolja ki a Faraday-kalitka belsejében lévő nettó töltést, ha
+$\varepsilon_0 = \SI[per-mode=symbol]{8,85e-12}{\farad\per\meter}$,
+az ellipszoid egyenlete pedig:
+$$
+  \frac{(x - 2)^2}{5} + \frac{(y + 3)^2}{19} + \frac{(z - 1)^2}{4} = 1
+  \text.
+$$
+
+A nettó töltés kiszámításához a Gauss-törvényt alkalmazzuk:
+$$
+  \oiint_{\partial \volimage} \scalar{\rvec E}{\dd \surfvec}
+  = \frac{Q_{\text{net}}}{\varepsilon_0}
+  \text,
+$$
+ahol $\rvec E$ az elektromos térerősség, $\varepsilon_0$ a vákuum
+permittivitása, $Q_{\text{net}}$ pedig a kalitka belsejében lévő nettó töltés.
+
+A vektormező divergenciája:
+$$
+  \Div \rvec E = 3
+  \text.
+$$
+
+A tértartomány nagysága:
+$$
+  \operatorname{Vol}(\volimage)
+  = \frac{4\pi}{3} \sqrt{5 \cdot 19 \cdot 4}
+  = \frac{8\pi \sqrt{95}}{3}
+$$
+
+A Gauss-törvény alapján a nettó töltés:
+$$
+  Q_{\text{net}}
+  = \varepsilon_0 \oiint_{\partial \volimage} \scalar{\rvec E}{\dd \surfvec}
+  = \varepsilon_0 \iiint_{\volimage} \Div \rvec E \dd \volscalar
+  = 3 \, \varepsilon_0 \, \operatorname{Vol}(\volimage)
+  = \SI[per-mode=symbol]{8,85e-12}{} \cdot 8 \pi \sqrt{95}
+  \approx \SI{2,17}{\nano\coulomb}
+  \text.
+$$
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 555555555555555555555555555555555555555555555555555555555555555555555555555555
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Hőáram}
+
+Egy drón IMU-modulját teljes egészében kitöltő, hővezető műgyanta gömb alakú,
+sugara $R = \SI{0.02}{\meter}$, A vezérlő egység folyamatosan hőt disszipál, az
+állandósult hő\-mér\-sék\-let-mező jó közelítéssel
+$$
+  \varphi(\coordv) = T_c - \alpha \rvec r^2
+  \text, \quad
+  \alpha = \SI[per-mode=symbol]{1,3e5}{\kelvin\per\meter\squared}
+  \text.
+$$
+Becsülje meg, mekkora teljes hőáram távozik a burkolaton át, ha
+$$
+  q_{\text{hő}}
+  = -\oiint_{\partial \volimage} \scalar{\lambda \grad \varphi}{\dd \surfvec}
+  \text,\quad
+  \lambda = \SI[per-mode=symbol]{0,2}{\watt\per\meter\per\kelvin}
+  \text.
+$$
+Használjuk a Green-tétel asszimetrikus alakját $\psi = -\lambda$ állandó
+választással:
+$$
+  q_\text{hő}
+  = \oiint_{\partial \volimage} \scalar{-\lambda \grad \varphi}{\dd \surfvec}
+  = - \iiint_{\volimage} \psi \, \Delta \varphi + \scalar{\underbrace{\grad \lambda}_{= \nvec}}{\grad \varphi} \dd \volscalar
+  = -\lambda \iiint_{\volimage} \Delta \varphi \dd \volscalar
+  \text.
+$$
+A hőmérséklet-mező Laplace-operátora:
+$$
+  \Delta \varphi
+  = \Div \grad \varphi
+  = \Div (-2 \alpha \coordvec)
+  = -2 \alpha \Div \coordvec
+  = -6 \alpha
+  \text.
+$$
+A tértartomány nagysága:
+$$
+  \operatorname{Vol}(\volimage)
+  = \frac{4\pi R^3}{3}
+  \text.
+$$
+A teljes hőáram:
+\begin{align*}
+  q_\text{hő}
+   & = -\lambda \iiint_{\volimage} \Delta \varphi \dd \volscalar
+  = 6 \alpha \lambda \operatorname{Vol}(\volimage)
+  = \lambda \, 6 \, \alpha \, \frac{4\pi R^3}{3}
+  \\
+   & = 8 \pi \alpha \lambda R^3
+  = 8 \pi \cdot 0,2 \cdot \SI[per-mode=symbol]{1,3e5}{} \cdot (0,02)^3
+  \approx \SI{5.23}{\watt}
+  \text.
+\end{align*}
+
+\end{document}
