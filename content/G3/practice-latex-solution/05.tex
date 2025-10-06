@@ -177,6 +177,45 @@ $\si{\tesla\per\meter}$.
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % 444444444444444444444444444444444444444444444444444444444444444444444444444444
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsection{Vektormező ismeretlen komponense}
+
+Legyen $\rvec v(\coordvec) = \ijk{y \sin x}{z^2 \cos y - \cos x}{v_3}$.
+Határozza meg $v_3$-at, ha tudjuk, hogy $\rvec v$ tetszőleges zárt
+görbén vett vonalintegrálja zérus!
+
+Tetszőleges zárt görbén vett vonalintegrál zérus, ha a vektormező örvénymentes,
+vagyis:
+$$
+  \rot \rvec v = \begin{bmatrix}
+    \partial_x \\ \partial_y \\ \partial_z
+  \end{bmatrix} \times \begin{bmatrix}
+    y \sin x \\ z^2 \cos y - \cos x \\ v_3
+    % \end{bmatrix} = \begin{bmatrix}
+    %   \partial_y v_3 - \partial_z (z^2 \cos y - \cos x) \\
+    %   \partial_z (y \sin x) - \partial_x v_3            \\
+    %   \partial_x (z^2 \cos y - \cos x) - \partial_y (y \sin x)
+  \end{bmatrix} = \begin{bmatrix}
+    \partial_y v_3 - 2z \cos y \\
+    0 - \partial_x v_3         \\
+    \sin x - \sin x
+  \end{bmatrix} = \begin{bmatrix}
+    0 \\ 0 \\ 0
+  \end{bmatrix}
+  \text.
+$$
+
+A második koordináta alapján $v_3$ nem függ $x$-től, így $v_3 = v_3(y; z)$. Az
+első koordináta alapján:
+$$
+  v_3 = \int 2z \cos y \dd y = 2z \sin y + f(z)
+  \text,
+$$
+ahol $f(z)$ tetszőleges $z$-függvény, nem befolyásolja a rotációt.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 555555555555555555555555555555555555555555555555555555555555555555555555555555
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Áramló folyadék keresztmetszet menti cirkulációja}
 
 Egy $R = 1$ sugarú, kör keresztmetszetű, $z$ tengellyel egybeeső
@@ -290,7 +329,7 @@ Az integrál értéke:
 \end{align*}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% 555555555555555555555555555555555555555555555555555555555555555555555555555555
+% 666666666666666666666666666666666666666666666666666666666666666666666666666666
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Forgásparaboloid peremén vett integrál}
 
@@ -383,7 +422,7 @@ A két integrál összege 0, ami megegyezik a Stokes-tétel segítségével kapo
 eredménnyel.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% 666666666666666666666666666666666666666666666666666666666666666666666666666666
+% 777777777777777777777777777777777777777777777777777777777777777777777777777777
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Háromszögvonal menti integrál}
 
