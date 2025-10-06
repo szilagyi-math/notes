@@ -38,7 +38,7 @@
       % Operátor & 
       $\nabla \times \rvec v$
        & $\scalar{\nabla}{\rvec v}$
-       & $\nabla \cdot \varphi$
+       & $\nabla \varphi$
       \\
       % Számítás &
       $\nablavec \times \dspl{v_x}{v_y}{v_z}$
@@ -85,60 +85,72 @@
             \\
             \Div \rot \rvec v  & \equiv 0
           \end{align*}
-          \vspace{-2.5em}
+          % \vspace{-2.5em}
 
-    \item Deriválási szabályokhoz hasonló:
-          \vspace{-.5em}
-          \begin{align*}
-            \grad \left( \varPhi \, \varPsi \right)
-             & = \varPhi \, \grad \varPsi
-            + \varPsi \, \grad \varPhi
-            \\
-            \Div \left( \varPhi \, \rvec v \right)
-             & = \varPhi \, \Div \rvec v \,
-            + \scalar{\rvec v}{\grad \varPhi}
-            \\
-            \rot \left( \varPhi \, \rvec v \right)
-             & = \varPhi \, \rot \rvec v
-            - \rvec v \times \grad \varPhi
-          \end{align*}
-          \vspace{-2.5em}
+          % \item Deriválási szabályokhoz hasonló:
+          %       \vspace{-.5em}
+          %       \begin{align*}
+          %         \grad \left( \varPhi \, \varPsi \right)
+          %          & = \varPhi \, \grad \varPsi
+          %         + \varPsi \, \grad \varPhi
+          %         \\
+          %         \Div \left( \varPhi \, \rvec v \right)
+          %          & = \varPhi \, \Div \rvec v \,
+          %         + \scalar{\rvec v}{\grad \varPhi}
+          %         \\
+          %         \rot \left( \varPhi \, \rvec v \right)
+          %          & = \varPhi \, \rot \rvec v
+          %         - \rvec v \times \grad \varPhi
+          %       \end{align*}
+          %       \vspace{-2.5em}
 
-    \item Egyéb szabályok:
-          \vspace{-.5em}
-          \begin{align*}
-            \rot \rot \rvec v
-             & =\grad \Div \rvec v
-            - \Delta \rvec v
-            \\
-            \rot \left( \rvec u \times \rvec v \right)
-             & = \rvec u \, \Div \rvec v
-            - \rvec v \, \Div \rvec u
-            + (\DD \rvec u) \rvec v
-            - (\DD \rvec v) \rvec u
-            \\
-            \Div \left( \rvec u \times \rvec v \right)
-             & = \; \scalar{\rvec v}{\rot \rvec u}
-            - \scalar{\rvec u}{\rot \rvec v}
-            \\
-            \grad \left( \scalar{\rvec u}{\rvec v} \right)
-             & = (\DD \rvec u) \rvec v
-            + (\DD \rvec v) \rvec u
-            + \rvec v \times \rot \rvec u
-            + \rvec u \times \rot \rvec v
-          \end{align*}
+          % \item Egyéb szabályok:
+          %       \vspace{-.5em}
+          %       \begin{align*}
+          %         \rot \rot \rvec v
+          %          & =\grad \Div \rvec v
+          %         - \Delta \rvec v
+          %         \\
+          %         \rot \left( \rvec u \times \rvec v \right)
+          %          & = \rvec u \, \Div \rvec v
+          %         - \rvec v \, \Div \rvec u
+          %         + (\DD \rvec u) \rvec v
+          %         - (\DD \rvec v) \rvec u
+          %         \\
+          %         \Div \left( \rvec u \times \rvec v \right)
+          %          & = \; \scalar{\rvec v}{\rot \rvec u}
+          %         - \scalar{\rvec u}{\rot \rvec v}
+          %         \\
+          %         \grad \left( \scalar{\rvec u}{\rvec v} \right)
+          %          & = (\DD \rvec u) \rvec v
+          %         + (\DD \rvec v) \rvec u
+          %         + \rvec v \times \rot \rvec u
+          %         + \rvec u \times \rot \rvec v
+          %       \end{align*}
   \end{itemize}
 \end{blueBox}
 
-\clearpage
-\begin{blueBox}[\underline{Potenciálosság}]
+\begin{blueBox}[\underline{Potenciálosság}][nobreak]
   Egy $\rvec v: V \rightarrow V$ vektormező skalárpotenciálos, ha létezik olyan
   $\varphi: V \rightarrow \Reals$ skalármező, hogy $\rvec v = \grad \varphi$.
   Ekkor $\rot \rvec v = \rot \grad \varphi = \nvec$.
-
+  \begin{itemize}
+    \item $\rvec v$ skalárpotenciálos
+          $\;\Leftrightarrow\;$
+          $\rot \rvec v = \nvec$,
+          hiszen $\rot \grad \varphi \equiv \nvec$
+          \hfill (\textbf{örvénymentes})
+  \end{itemize}
   Egy $\rvec v: V \rightarrow V$ vektormező vektorpotenciálos, ha létezik olyan
   $\rvec u: V \rightarrow V$ vektormező, hogy $\rvec v = \rot \rvec u$.
-  Ekkor $\div \rvec v = \div \rot \rvec u = 0$.
+  Ekkor $\Div \rvec v = \Div \rot \rvec u = 0$.
+  \begin{itemize}
+    \item $\rvec v$ vektorpotenciálos
+          $\;\Leftrightarrow\;$
+          $\Div \rvec v = 0$,
+          hiszen $\Div \rot \rvec u \equiv 0$
+          \hfill (\textbf{forrásmentes})
+  \end{itemize}
 \end{blueBox}
 
 \begin{blueBox}[\underline{Vonalmenti integrálok}][nobreak]
@@ -150,6 +162,14 @@
   $\dd \curvescalar = \norma{\dot{\curvesign}(t)} \dd t$,
   $\dd \curvevec = \dot{\curvesign}(t) \dd t$. Ekkor:
   \begin{itemize}
+    \item a görbe ívhossza:
+          \begin{equation*}
+            L = \int_{\curveimage} \dd \curvescalar
+            = \int_{\curvedomain} \norma{\dot{\curvesign}(t)} \dd t
+            \text,
+          \end{equation*}
+          \vspace{-1.5em}
+
     \item skalármező görbe menti skalárértékű integrálja:
           \begin{equation*}
             \int_{\curveimage} \varphi(\coordvec) \dd \curvescalar
@@ -186,6 +206,14 @@
   $\uvec n = (\partial_s \surfsign \times \partial_t \surfsign) / \norma{\partial_s \surfsign \times \partial_t \surfsign}$.
   Ekkor:
   \begin{itemize}
+    \item a felület felszíne:
+          \begin{equation*}
+            A = \iint_{\surfimage} \dd \surfscalar
+            = \iint_{\surfdomain} \norma{\pdv{\surfsign}{s} \times \pdv{\surfsign}{t}} \dd s \dd t
+            \text,
+          \end{equation*}
+          \vspace{-1.5em}
+
     \item skalármező skalárértékű felületi integrálja:
           \begin{equation*}
             \int_{\surfimage} \varphi(\coordvec) \dd \surfscalar
@@ -218,6 +246,14 @@
   $\volsign(\voldomain) = \volimage$ a tértartomány képe,
   $\dd \volscalar = \det(\DD \volsign(r; s; t)) \dd r \dd s \dd t$. Ekkor:
   \begin{itemize}
+    \item a tértartomány térfogata:
+          \begin{equation*}
+            V = \iiint_{\volimage} \dd \volscalar
+            = \iiint_{\voldomain} \det \left( \DD \volsign(r; s; t) \right) \dd r \dd s \dd t
+            \text,
+          \end{equation*}
+          \vspace{-1.5em}
+
     \item skalármező térfogati integrálja:
           \begin{equation*}
             \iiint_{\volimage} \varphi(\coordvec) \dd \volscalar
@@ -229,7 +265,7 @@
   \end{itemize}
 \end{blueBox}
 
-\begin{blueBox}[\underline{Integrálási tételek}]
+\begin{blueBox}[\underline{Integrálási tételek}][nobreak]
   \begin{itemize}
     \item \textbf{Gradiens-tétel}:
           \begin{equation*}
@@ -285,9 +321,5 @@
 
 \clearpage
 \subsection{Feladatok}
-
-\begin{enumerate}
-  \item
-\end{enumerate}
 
 \end{document}

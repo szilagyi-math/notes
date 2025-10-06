@@ -364,16 +364,16 @@ $$
 Amennyiben a Stokes-tételt nem ismerjük, akkor a peremkörök paraméterezése:
 $$
   \curvesign_{1,2}(t) = \begin{bmatrix}
-    \cos t \\
-    \sin t \\
+    \sqrt{2} \cos t \\
+    \sqrt{2} \sin t \\
     \pm 1
   \end{bmatrix}
   \text, \quad
   t \in [0; 2\pi]
   \text, \quad
   \dot{\curvesign}_{1,2}(t) = \begin{bmatrix}
-    -\sin t \\
-    \cos t  \\
+    -\sqrt{2} \sin t \\
+    \sqrt{2} \cos t  \\
     0
   \end{bmatrix}
   \text.
@@ -383,12 +383,12 @@ A vektormező átparaméterezése:
 $$
   \rvec v(\curvesign_{1,2}(t))
   = \begin{bmatrix}
-    \cos^2 t \\
-    \sin^3 t \\
+    (\sqrt{2} \cos t)^2 \\
+    (\sqrt{2} \sin t)^3 \\
     (\pm 1)^4
   \end{bmatrix} = \begin{bmatrix}
-    \cos^2 t \\
-    \sin^3 t \\
+    2 \cos^2 t         \\
+    2\sqrt{2} \sin^3 t \\
     1
   \end{bmatrix}
   \text.
@@ -399,9 +399,9 @@ A $z = 1$ síkon lévő kör menti integrál:
   \oint_{\curveimage_1} \scalar{\rvec v}{\dd \curvevec}
    & = \int_0^{2\pi} \scalar{\rvec v(\curvesign_1(t))}{\dot{\curvesign}_1(t)} \dd t
   \\
-   & = \int_0^{2\pi} \scalar{\begin{bmatrix}\cos^2 t \\ \sin^3 t \\ 1\end{bmatrix}}{\begin{bmatrix}-\sin t \\ \cos t \\ 0\end{bmatrix}} \dd t
+   & = \int_0^{2\pi} \scalar{\begin{bmatrix}2 \cos^2 t \\ 2\sqrt{2} \sin^3 t \\ 1\end{bmatrix}}{\begin{bmatrix}-\sqrt{2} \sin t \\ \sqrt{2} \cos t \\ 0\end{bmatrix}} \dd t
   \\
-   & = \int_0^{2\pi} -\cos^2 t \sin t + \sin^3 t \cos t + 0 \dd t
+   & = \int_0^{2\pi} -2\sqrt{2} \cos^2 t \sin t + 4 \sin^3 t \cos t + 0 \dd t
   = 0
   \text.
 \end{align*}
@@ -411,9 +411,9 @@ A $z = -1$ síkon lévő kör menti integrál:
   \oint_{\curveimage_2} \scalar{\rvec v}{\dd \curvevec}
    & = \int_0^{2\pi} \scalar{\rvec v(\curvesign_2(t))}{\dot{\curvesign}_2(t)} \dd t
   \\
-   & = \int_0^{2\pi} \scalar{\begin{bmatrix}\cos^2 t \\ \sin^3 t \\ 1\end{bmatrix}}{\begin{bmatrix}-\sin t \\ \cos t \\ 0\end{bmatrix}} \dd t
+   & = \int_0^{2\pi} \scalar{\begin{bmatrix}2 \cos^2 t \\ 2\sqrt{2} \sin^3 t \\ 1\end{bmatrix}}{\begin{bmatrix}-\sqrt{2} \sin t \\ \sqrt{2} \cos t \\ 0\end{bmatrix}} \dd t
   \\
-   & = \int_0^{2\pi} -\cos^2 t \sin t + \sin^3 t \cos t + 0 \dd t
+   & = \int_0^{2\pi} -2\sqrt{2} \cos^2 t \sin t + 4 \sin^3 t \cos t + 0 \dd t
   = 0
   \text.
 \end{align*}
