@@ -153,6 +153,34 @@
   \end{itemize}
 \end{blueBox}
 
+\begin{blueBox}[\underline{Skalárpotenciál}][nobreak]
+  Legyen $\varphi$ skalármező $\rvec v$ vektormező skalárpotenciálja. Ebben
+  az esetben tudjuk, hogy $\rvec v = \grad \varphi$. Ekkor $\rvec v$
+  vektormező skalárpotenciálja:
+  $$
+    \varphi(\coordvec)
+    = \int_0^{x_1} v_1(\xi; x_2; \dots; x_n) \dd \xi
+    + \int_0^{x_2} v_2(0; \xi; \dots; x_n) \dd \xi
+    + \dots
+    + \int_0^{x_n} v_n(0; 0; \dots; \xi) \dd \xi
+    \text.
+  $$
+\end{blueBox}
+
+\begin{blueBox}[\underline{Vektorpotenciál}][nobreak]
+  Legyen $\rvec u(u_x; u_y; 0)$ vektormező $\rvec v$ vektormező
+  vektorpotenciálja. Ebben az esetben tudjuk, hogy $\rvec v = \rot \rvec u$.
+  Ekkor $\rvec u$ komponensei az alábbi módon számíthatóak:
+  $$
+    u_x = \int_0^z v_y(x; y; \zeta) \dd \zeta
+    \text,
+    \qquad
+    u_y = \int_0^x v_z(\xi; y; 0) \dd \xi
+    - \int_0^z v_x(x; y; \zeta) \dd \zeta
+    \text.
+  $$
+\end{blueBox}
+
 \begin{blueBox}[\underline{Vonalmenti integrálok}][nobreak]
   Legyen $\rvec v(\coordvec) : \Reals^3 \to \Reals^3$ vektormező,
   $\varphi(\coordvec): \Reals^3 \to \Reals$ skalármező,
@@ -162,13 +190,13 @@
   $\dd \curvescalar = \norma{\dot{\curvesign}(t)} \dd t$,
   $\dd \curvevec = \dot{\curvesign}(t) \dd t$. Ekkor:
   \begin{itemize}
-    \item a görbe ívhossza:
-          \begin{equation*}
-            L = \int_{\curveimage} \dd \curvescalar
-            = \int_{\curvedomain} \norma{\dot{\curvesign}(t)} \dd t
-            \text,
-          \end{equation*}
-          \vspace{-1.5em}
+    % \item a görbe ívhossza:
+    %       \begin{equation*}
+    %         L = \int_{\curveimage} \dd \curvescalar
+    %         = \int_{\curvedomain} \norma{\dot{\curvesign}(t)} \dd t
+    %         \text,
+    %       \end{equation*}
+    %       \vspace{-1.5em}
 
     \item skalármező görbe menti skalárértékű integrálja:
           \begin{equation*}
@@ -186,12 +214,12 @@
           \end{equation*}
           \vspace{-1.5em}
 
-    \item vektormező görbe menti vektorértékű integrálja:
-          \begin{equation*}
-            \int_{\curveimage} \rvec v(\coordvec) \times \dd \curvevec
-            = \int_{\curvedomain} \rvec v(\curvesign(t)) \times \dot{\curvesign}(t) \dd t
-            \text.
-          \end{equation*}
+          % \item vektormező görbe menti vektorértékű integrálja:
+          %       \begin{equation*}
+          %         \int_{\curveimage} \rvec v(\coordvec) \times \dd \curvevec
+          %         = \int_{\curvedomain} \rvec v(\curvesign(t)) \times \dot{\curvesign}(t) \dd t
+          %         \text.
+          %       \end{equation*}
   \end{itemize}
 \end{blueBox}
 
@@ -206,13 +234,13 @@
   $\uvec n = (\partial_s \surfsign \times \partial_t \surfsign) / \norma{\partial_s \surfsign \times \partial_t \surfsign}$.
   Ekkor:
   \begin{itemize}
-    \item a felület felszíne:
-          \begin{equation*}
-            A = \iint_{\surfimage} \dd \surfscalar
-            = \iint_{\surfdomain} \norma{\pdv{\surfsign}{s} \times \pdv{\surfsign}{t}} \dd s \dd t
-            \text,
-          \end{equation*}
-          \vspace{-1.5em}
+    % \item a felület felszíne:
+    %       \begin{equation*}
+    %         A = \iint_{\surfimage} \dd \surfscalar
+    %         = \iint_{\surfdomain} \norma{\pdv{\surfsign}{s} \times \pdv{\surfsign}{t}} \dd s \dd t
+    %         \text,
+    %       \end{equation*}
+    %       \vspace{-1.5em}
 
     \item skalármező skalárértékű felületi integrálja:
           \begin{equation*}
@@ -230,12 +258,12 @@
           \end{equation*}
           \vspace{-1.5em}
 
-    \item vektormező vektorértékű felületi integrálja:
-          \begin{equation*}
-            \int_{\surfimage} \rvec v(\coordvec) \times \dd \surfvec
-            = \int_{\surfdomain} \rvec v(\surfsign(s; t)) \times \left(\pdv{\surfsign}{s} \times \pdv{\surfsign}{t}\right) \dd s \dd t
-            \text.
-          \end{equation*}
+          % \item vektormező vektorértékű felületi integrálja:
+          %       \begin{equation*}
+          %         \int_{\surfimage} \rvec v(\coordvec) \times \dd \surfvec
+          %         = \int_{\surfdomain} \rvec v(\surfsign(s; t)) \times \left(\pdv{\surfsign}{s} \times \pdv{\surfsign}{t}\right) \dd s \dd t
+          %         \text.
+          %       \end{equation*}
   \end{itemize}
 \end{blueBox}
 
@@ -246,13 +274,13 @@
   $\volsign(\voldomain) = \volimage$ a tértartomány képe,
   $\dd \volscalar = \det(\DD \volsign(r; s; t)) \dd r \dd s \dd t$. Ekkor:
   \begin{itemize}
-    \item a tértartomány térfogata:
-          \begin{equation*}
-            V = \iiint_{\volimage} \dd \volscalar
-            = \iiint_{\voldomain} \det \left( \DD \volsign(r; s; t) \right) \dd r \dd s \dd t
-            \text,
-          \end{equation*}
-          \vspace{-1.5em}
+    % \item a tértartomány térfogata:
+    %       \begin{equation*}
+    %         V = \iiint_{\volimage} \dd \volscalar
+    %         = \iiint_{\voldomain} \det \left( \DD \volsign(r; s; t) \right) \dd r \dd s \dd t
+    %         \text,
+    %       \end{equation*}
+    %       \vspace{-1.5em}
 
     \item skalármező térfogati integrálja:
           \begin{equation*}
@@ -295,31 +323,132 @@
           A tételből következik, hogy vektorpotenciálos vektormező bármely zárt
           felületen vett integrálja zérus.
 
-    \item \textbf{Green-tétel asszimetrikus alakja}:
+          % \item \textbf{Green-tétel asszimetrikus alakja}:
+          %       \begin{equation*}
+          %         \iiint_{\volimage}
+          %         \psi \, \Delta \varphi +
+          %         \scalar{\grad \psi}{\grad \varphi}
+          %         \dd \volscalar
+          %         =
+          %         \oiint_{\partial \volimage} \scalar{\psi \grad \varphi}{\dd \surfvec}
+          %         \text.
+          %       \end{equation*}
+
+          % \item \textbf{Green-tétel szimmetrikus alakja}:
+          %       \begin{equation*}
+          %         \iiint_{\volimage}
+          %         \psi \, \Delta \varphi + \varphi \, \Delta \psi
+          %         \dd \volscalar
+          %         =
+          %         \oiint_{\partial \volimage}
+          %         \scalar{\psi \grad \varphi - \varphi \grad \psi}{\dd \surfvec}
+          %         \text.
+          %       \end{equation*}
+  \end{itemize}
+\end{blueBox}
+
+\begin{blueBox}[\underline{Integrálásos összefüggések}][nobreak]
+  \begin{itemize}
+    % \item \textbf{Parciális integrálásás}:
+    %       \begin{equation*}
+    %         \int f'(x) \, g(x) \dd x
+    %         = f(x) \, g(x) - \int f(x) \, g'(x) \dd x
+    %         \text.
+    %       \end{equation*}
+
+    \item \textbf{Belső függvény megjelenik szorzótényezőként}:
           \begin{equation*}
-            \iiint_{\volimage}
-            \psi \, \Delta \varphi +
-            \scalar{\grad \psi}{\grad \varphi}
-            \dd \volscalar
-            =
-            \oiint_{\partial \volimage} \scalar{\psi \grad \varphi}{\dd \surfvec}
-            \text.
+            \int (f \circ g)(x) \, g'(x) \dd x
+            = (F \circ g)(x) + C
+            \text{, ahol } F(x) \text{ az } f(x) \text{ primitív függvénye.}
           \end{equation*}
 
-    \item \textbf{Green-tétel szimmetrikus alakja}:
+    \item \textbf{Hatványfüggvény integrálása}:
           \begin{equation*}
-            \iiint_{\volimage}
-            \psi \, \Delta \varphi + \varphi \, \Delta \psi
-            \dd \volscalar
-            =
-            \oiint_{\partial \volimage}
-            \scalar{\psi \grad \varphi - \varphi \grad \psi}{\dd \surfvec}
-            \text.
+            \int f^{\alpha} (x) \, f'(x) \dd x = \begin{cases}
+              \dfrac{f^{\alpha + 1} (x)}{\alpha + 1} + C, & \alpha \neq -1
+              \\[2mm]
+              \ln |f(x)| + C,                             & \alpha = -1
+            \end{cases}
           \end{equation*}
   \end{itemize}
 \end{blueBox}
 
 \clearpage
 \subsection{Feladatok}
+
+\begin{enumerate}
+  \item Adja meg a $\varphi(\coordvec) = {2 x^2 y} + {x y^2 z} + {3 x z^2}$
+        skalármező gradiensét a $P(-3; -2; 1)$ pontban!
+
+  \item Adja meg a $\rvec v(\coordvec) = \ijk{x y^2 - z}{y z}{x y + 2 z}$
+        vektormező divergenciáját és rotációját a $P(-1; 2; -1)$ pontban!
+
+  \item Adja meg a $\rvec v(\coordvec) = \ijk{y^2}{2xy + 3e^{3z}}{3ye^{3z}}$
+        egy olyan $\varphi$ skalárpotenciálját, melyre $\varphi(\nvec) = 0$.
+
+  \item Legyen $\curvesign(t) = x(t) \cdot \hat{\uvec i} + y(t) \cdot
+          \hat{\uvec j}$ a $(2; 1) \to (6; 4)$ egyenes szakasz paraméterezése.
+        Adja meg $x(t)$ és $y(t)$ függvényeket, ha a paramétertartomány
+        $t \in [0; 1]$. Számítsa ki a $\varphi(x; y) = 3x - 4y$ skalármező
+        $\curvesign$ görbe menti integrálját!
+
+  \item Adott az $\rvec F(x; y) = x^2 \cdot \hat{\uvec i} - xy \cdot
+          \hat{\uvec j}$ erőmező. Számítsa ki az erőmező munkáját, az origó
+        középpontú, $r = 1$ sugarú első síknegyedben lévő körív mentén, ha a
+        bejárás az óramutató járásával ellentétes irányú! Mit mondhatunk el,
+        ha a bejárási irányt megfordítjuk?
+
+  \item Számítsa ki a $\varphi(x; y; z) = 2x$ skalármező egységgömbömbön
+        vett felületi integrálját! Segítség:
+        $\surfsign(s; t) = \ijk{\sin s \cos t}{\sin s \sin t}{\cos s}$,
+        $\dd \surfscalar = \sin s \dd s \dd t$.
+
+  \item Számítsa ki a $\rvec v$ vektormező $\surfsign$ felületen vett
+        fluxusát, ha
+        $$
+          \rvec v(x; y; z) = \begin{bmatrix}
+            x y    \\
+            2x + y \\
+            z
+          \end{bmatrix}
+          \text,
+          \qquad
+          \surfsign(s; t) = \begin{bmatrix}
+            s + 2t \\
+            -t     \\
+            s^2 + 3t
+          \end{bmatrix}
+          \text,
+          \qquad
+          \begin{array}{l}
+            s \in [0; 3] \\
+            t \in [0; 1]
+          \end{array}
+          \text.
+        $$
+
+  \item Számítsa ki a $\rvec v(\coordvec) = \ijk{y^2}{2xy + 3e^{3z}}{3ye^{3z}}$
+        vektormező $(0; 1; 1) \to (0; -1; 1)$ szakaszon vett vonalmenti
+        integrálját!
+
+  \item Adja meg a $\rvec v(\coordvec) = \ijk{z - y}{x - z}{y - x}$ vektormezőt
+        az alábbi zárt görbén:
+        \begin{enumerate}
+          \item Az origóból először egy egyenes szakasz mentén eljutunk az
+                $(1;0;0)$ pontba.
+
+          \item Ezután egy origó középpontú körív mentén az $(-1;0;0)$ pontba
+                jutunk. (A körív síkja legyen az $x y$ sík, és a bejárás
+                az óramutató járásával ellentétes irányú.)
+
+          \item Végül egy egyenes szakasz mentén visszatérünk az origóba.
+        \end{enumerate}
+
+  \item Határozza meg a $\rvec v(\coordvec) = \ijk{x}{y}{z}$ vektormező
+        azon zárt felületen vett felületi integrálját, melyet az
+        $x = y^2 + z^2$ forgásparaboloid $z > 0$ része, a $z = 0$ és az
+        $x = 4$ síkok határolnak.
+\end{enumerate}
 
 \end{document}
