@@ -67,7 +67,12 @@ practice_material:
       display_name: G3 7. gyakorlat
       description: Vektoranalízis – Gyakorlás
       week: 7
-    - description: Differenciálegyenletek bevezetés
+    - source: 08.tex
+      target: G3-gyak-08
+      latex_solution_source: 08.tex
+      latex_solution_target: G3-gyak-08-megoldas
+      display_name: G3 8. gyakorlat
+      description: Differenciálegyenletek bevezetés
       week: 8
     - description: Elsőrendű és szétválasztható differenciálegyenletek
       week: 9

@@ -15,6 +15,273 @@
 
 \subsection{Elméleti áttekintő}
 
+\begin{definition}[Differenciálegyenlet]
+  Legyen $y : \Reals \rightarrow \Reals$ $n$-szer folytonosan differenciálható
+  függvény, vagyis $y^{(0)} = y$, $y^{(1)} = y'$, $y^{(2)} = y''$, $\dots$,
+  $y^{(n)} = y^{(n)}$ folytonos függvények, $x$ független változó. Ekkor az
+  $F \left( x ; y ; y' ; \dots ; y^{(n)} \right) = 0$ egyenletet $y$-ra
+  vonatkoztatott, $n$-edrendű, közönséges differenciálegyenletnek nevezzük.
+\end{definition}
+
+\begin{note}
+  A \textbf{közönséges} arra utal, hogy egy független változót tartalmaz az
+  egyenlet. Ha nem közönséges, akkor \textbf{parciális} (többváltozós) a
+  differenciálegyenlet.
+
+  A \textbf{rend} a legmagasabb fokú deriváltra utal.
+
+  A differenciálegyenletek megadási módja alapján:
+  \begin{itemize}
+    \item \textbf{implicit} megadás:
+          $F \left( x ; y ; y' ; \dots ; y^{(n)} \right) = 0$,
+
+    \item \textbf{explicit} megadás:
+          $y^{(n)} = f(x; y; y'; \dots; y^{(n-1)})$.
+  \end{itemize}
+\end{note}
+
+\begin{definition}[Lineáris differenciálegyenlet]
+  Azt a differenciálegyenletet, amelyben az ismeretlen függvény, és annak
+  deriváltjai csak elsőfokon, szorzatuk pedig egyáltalán nem fordul elő,
+  lineáris differenciálegyenletnek mondjuk. Ellenkező esetben nemlineáris.
+\end{definition}
+
+\begin{example}
+  A következő egyenlet $y$-ra vonatkoztatott, lineáris, másodrendű közönséges
+  differenciálegyenlet, a független változó $x$:
+  $$
+    y'' + 2y' + y = 4e^x.
+  $$
+\end{example}
+
+\begin{blueBox}[\underline{Newton II. törvénye}][nobreak]
+  Az $F = ma$ egyenlet a testre ható erő és a test gyorsulásának kapcsolatát
+  írja le. Mivel a gyorsulás az elmozdulás idő szerinti második deriváltja
+  ($a = \ddot x$), ezért a mozgásegyenlet egy másodrendű differenciálegyenlet
+  lesz:
+  $$
+    F = m a = m \ddot x
+    \text.
+  $$
+\end{blueBox}
+
+\begin{blueBox}[\underline{Szabadesés során megtett út}]
+  Szabadesés során a testre ható erő a test tömegével és a gravitációs
+  gyorsulással arányos:
+  $$
+    F = mg = m \ddot x
+    \quad \implies \quad
+    \ddot x = g
+    \text.
+  $$
+  Ha kétszer integráljuk az egyenletet, akkor megkapjuk a megtett utat:
+  \begin{align*}
+    \dot x & = \int g \dd t = gt + v_0 \text,                                \\
+    x      & = \int (gt + v_0) \dd t = \frac{1}{2} gt^2 + v_0 t + x_0 \text.
+  \end{align*}
+\end{blueBox}
+
+\begin{blueBox}[\underline{Ferde hajítás}]
+  Egy testet $\rvec v(v_x; v_y)$ kezdeti sebességgel elhajítunk. A testre ható
+  erő a gravitációs erő $-y$ irányú. $x$ irányban a testre nem hat erő.
+  A mozgásegyenletek:
+  \vspace{-1em}
+  \begin{center}
+    \def\arraystretch{1.5}
+    \begin{tabular}{r l c l}
+      $(x)$ & $m \ddot x = 0$   & $\implies$ & $\ddot x = 0$,
+      \\
+      $(y)$ & $m \ddot y = -mg$ & $\implies$ & $\ddot y = -g$.
+    \end{tabular}
+  \end{center}
+  \vspace{-1em}
+  Ha ezeket az egyenleteket kétszer integráljuk, akkor megkapjuk a vízszintes
+  és függőleges elmozdulást:
+  \begin{align*}
+    x(t) & = v_x t + x_0 \text,                     \\
+    y(t) & = -\frac{1}{2} gt^2 + v_y t + y_0 \text.
+  \end{align*}
+  Az időt kifejezve az $x(t)$ egyenletből, majd ebből a pályák egyenlete:
+  $$
+    t = \frac{x - x_0}{v_x}
+    \quad \implies \quad
+    y(x) = -\frac{g}{2 v_x^2} (x - x_0)^2 + \frac{v_y}{v_x} (x - x_0) + y_0
+    \text.
+  $$
+  A pályák lefele nyíló parabolák.
+\end{blueBox}
+
+% \begin{blueBox}[\underline{Rugalmas szál differenciálegyenlete}][nobreak]
+%   Egy egyik végén befogott, másik végén $F$ erővel terhelt rúd
+%   lehajásfüggvénye:
+%   $$
+%     v''(x) = \frac{-M_h(x)}{IE}
+%     \text{,\quad ahol \quad}
+%     M_h(x) = F (L - x) = M_0 - Fx
+%     \text.
+%   $$
+%   Integráljuk az egyenletet kétszer:
+%   \begin{align*}
+%     v'(x) & = \frac{-M_0 x}{IE} + \frac{F x^2}{2IE} + C_1
+%     \text,                                                           \\
+%     v(x)  & = \frac{-M_0 x^2}{2IE} + \frac{F x^3}{6IE} + C_1 x + C_2
+%     \text.
+%   \end{align*}
+% \end{blueBox}
+
+\begin{definition}[Megoldásgörbe]
+  A közönséges differenciálegyenlet megoldásfüggvényének görbéje a
+  differenciálegyenlet integrálgörbéje/megoldásgörbéje.
+\end{definition}
+
+\begin{note}
+  Végtelen sok megoldásgörbe létezik. Egy $n$-edrendű differenciálegyenlet
+  esetén $n$ darab tetszőleges konstans jelenik meg a megoldásban.
+\end{note}
+
+\begin{definition}[Differenciálegyenlet megoldása][nobreak]
+  Az $F \left( x ; y ; y' ; \dots ; y^{(n)} \right) = 0$ differenciálegyenlet
+  megoldása a $\varphi : \Reals \rightarrow \Reals$ függvény, ha
+  $\forall x \in \Reals$-re
+  $$
+    F \left( x ; \varphi(x) ; \varphi'(x) ; \dots ; \varphi^{(n)}(x) \right) = 0
+    \text.
+  $$
+\end{definition}
+
+\begin{example}[][nobreak]
+  Az $y'' + 2y' + y = 4e^x$ differenciálegyenlet megoldása a
+  $\varphi(x) = e^x + C_1 e^{-x} + C_2 x e^{-x}$ függvény:
+  \begin{align*}
+    \varphi'(x)  & = e^x - C_1 e^{-x} + C_2 e^{-x} - C_2 x e^{-x},  \\
+    \varphi''(x) & = e^x + C_1 e^{-x} - 2C_2 e^{-x} + C_2 x e^{-x}.
+  \end{align*}
+  Behelyettesítve a $\varphi$, $\varphi'$, és $\varphi''$ kifejezéseket:
+  \begin{align*}
+    \varphi''(x) + 2\varphi'(x) + \varphi(x)
+     & = e^x + C_1 e^{-x} - 2C_2 e^{-x} + C_2 x e^{-x}
+    \\
+     & \quad + 2 \left( e^x - C_1 e^{-x} + C_2 e^{-x} - C_2 x e^{-x} \right)
+    \\
+     & \quad + e^x + C_1 e^{-x} + C_2 x e^{-x}
+    \\
+     & = 4e^x.
+  \end{align*}
+\end{example}
+
+\begin{definition}[Cauchy-feladat][nobreak]
+  Ha az $n$-ed rendű differenciálegyenlet olyan megoldását keressük, hogy
+  $$
+    y(x_0) = y_0, \quad
+    y'(x_0) = y_0', \quad
+    y''(x_0) = y_0'', \quad
+    \dots, \quad
+    y^{(n)}(x_0) = y_0^{(n)}
+  $$
+  feltételeket kiegyenlíti, akkor Cauchy-feladatról / kezdeti érték feladatról
+  beszélünk.
+\end{definition}
+
+\begin{example}
+  Határozzuk meg az $y'' + 2y' + y = 4e^x$ differenciálegyenlet azon megoldását,
+  amely kielégíti az $y(0) = 2$ és $y'(0) = 1$ kezdeti feltételeket!
+
+  Az általános megoldás és ennek deriváltja:
+  $$
+    \begin{aligned}
+      y(x)  & = e^x + C_1 e^{-x} + C_2 x e^{-x} \text,
+      \\
+      y'(x) & = e^x - C_1 e^{-x} + C_2 e^{-x} - C_2 x e^{-x} \text.
+    \end{aligned}
+  $$
+  Behelyettesítve a kezdeti feltételeket:
+  $$
+    \begin{aligned}
+      y(0)  & = 1 + C_1 + 0 = 2
+            & \qquad \Rightarrow \qquad C_1 = 1 \text,
+      \\
+      y'(0) & = 1 + (C_2 - 1) - 0 = 1
+            & \qquad \Rightarrow \qquad C_2 = 1 \text.
+    \end{aligned}
+  $$
+  Vagyis a keresett partikuláris megoldás:
+  $$
+    y(x) = e^x + e^{-x} + x e^{-x}
+    \text.
+  $$
+\end{example}
+
+\begin{blueBox}[\underline{Izoklinák és iránymező}][nobreak]
+  Az $y' = f(x; y)$ differenciálegyenlet izoklinái azok a görbék, amelyek
+  mentén a megoldásgörbék érintőinek meredeksége állandó. Az izoklinák
+  egyenlete:
+  $$
+    f(x; y) = c
+    \text.
+  $$
+  Az iránymező a megoldásgörbék érintőinek irányát mutatja meg egy tetszőleges
+  pontban.
+\end{blueBox}
+
+\begin{blueBox}[\underline{Görbesereg differenciálegyenlete}]
+  Minden $n$-edrendű differenciálegyenlethez tartozik egy $n$ paraméteres $g$
+  görbesereg:
+  $$
+    g(x; y; c_1; \dots; c_n) = 0
+    \text.
+  $$
+  Hogyan kapható meg a egy adott görbesereghez tartozó differenciálegyenlet?
+  \begin{itemize}
+    \item Deriváljuk az egyenletet $n$-szer.
+    \item Fejezzük ki a $c_1$, $c_2$, $\dots$, $c_n$ paramétereket az
+          egyenletekből.
+    \item Helyettesítsük vissza ezeket az eredeti egyenletbe.
+  \end{itemize}
+\end{blueBox}
+
+\begin{example}
+  Adja meg az alábbi görbesereg differenciálegyenletét:
+  $$
+    y = c_1 e^x + c_2 x e^{x} = e^x (c_1 + c_2 x)
+    \text.
+  $$
+  Deriváljuk az egyenletet kétszer:
+  \begin{align*}
+    y'  & = c_1 e^x + c_2 e^x + c_2 x e^x = e^x (c_1 + c_2 + c_2 x) \text,     \\
+    y'' & = c_1 e^x + 2 c_2 e^x + c_2 x e^x = e^x (c_1 + 2 c_2 + c_2 x) \text.
+  \end{align*}
+  Számítsuk ki $y' - y$ különbséget:
+  $$
+    y' - y
+    = e^x (c_1 + c_2 + c_2 x) - e^x (c_1 + c_2 x)
+    = c_2 e^x
+    \quad \implies \quad
+    c_2 = e^{-x} (y' - y)
+    \text.
+  $$
+  Az első konstans az eredeti egyenletből:
+  $$
+    c_1
+    = ye^{-x} - c_2x
+    = e^{-x}(y - x(y' - y))
+    = e^{-x} (y - xy' + xy)
+    \text.
+  $$
+  A konstansokat helyettesítsük be az $y''$-s egyenletbe:
+  \begin{align*}
+    y''
+     & = e^x (c_1 + 2 c_2 + c_2 x)              \\
+     & = (y - xy' + xy) + 2(y' - y) + x(y' - y) \\
+     & = 2y' - y
+    \text.
+  \end{align*}
+  A keresett differenciálegyenlet tehát:
+  $$
+    y'' - 2y' + y = 0
+    \text.
+  $$
+\end{example}
+
 \clearpage
 \subsection{Feladatok}
 
@@ -29,15 +296,15 @@
           \end{enumerate}
         \end{multicols}
 
-  \item Newton második törvénye ($F = ma$) segítségével vezesse le a
-        szabadesés egyenletét, ha a légellenállást elhanyagoljuk!
+        %   \item Newton második törvénye ($F = ma$) segítségével vezesse le a
+        %         szabadesés egyenletét, ha a légellenállást elhanyagoljuk!
 
-  \item Egy testet $\rvec v(v_x; v_y)$ kezdeti sebességgel elhajítunk. Adja
-        meg a test vízszintes és függőleges elmozdulását leíró
-        differenciálegyenleteit!
+        %   \item Egy testet $\rvec v(v_x; v_y)$ kezdeti sebességgel elhajítunk. Adja
+        %         meg a test vízszintes és függőleges elmozdulását leíró
+        %         differenciálegyenleteit!
 
-  \item Vezesse le egy $L$ hosszúságú, egyik végénél befogott, másik oldalon
-        $F$ erővel terhelt rúd lehajlásfüggvényét!
+        %   \item Vezesse le egy $L$ hosszúságú, egyik végénél befogott, másik oldalon
+        %         $F$ erővel terhelt rúd lehajlásfüggvényét!
 
   \item Mik lesznek az izoklinák és a vonalelemek?
         \begin{enumerate}
@@ -60,360 +327,370 @@
   \item Adja meg az $y'' + 4y = 0$ differenciálegyenlet $y(0) = 1$ és
         $y'(\pi/4) = 2$ kezdeti feltételek melletti megoldását!
 
-  \item Adja meg az $y' = 3y^{2/3}$ differenciálegyenlet $y(0) = 0$ kezdeti
-        feltétel melletti megoldását! Vizsgálja meg a megoldás egyértelműségét!
-
-  \item Adja meg azt a tértartományt, ahol az $y' = x^2 + y^2$
-        differenciálegyenlet megoldása egyértelmű!
-
-  \item Adja meg azt a tértartományt, ahol az $y'' = y + 3 \sqrt{y} + e^{y'}$
-        differenciálegyenlet megoldása egyértelmű!
-
-  \item Számítsa ki az $y' = y$ differenciálegyenlet szukcesszív
-        approximációjával kapott első négy közelítő függvényt, ha a kezdeti
-        feltétel $y(0) = 1$!
-
-  \item Számítsa ki az $y' = xy$ differenciálegyenlet szukcesszív
-        approximációjával kapott első négy közelítő függvényt, ha a kezdeti
-        feltétel $y(0) = 1$!
-
-  \item Oldja meg a következő szétválasztható differenciálegyenleteket!
-        \begin{alignat*}{9}
-          a & ) \quad (2x + 1) y' - 3y = 0
-          \text,                                                            \\
-          b & ) \quad \sqrt{1 + x^2} \, y' - \sqrt{1 - y^2} = 0
-          \text,                                                            \\
-          c & ) \quad y' = \frac{1 - x - y}{2x - 2y - 3}
-          \text,                                                            \\
-          d & ) \quad xy' = y(1 + \ln x - \ln y)
-          \text,                                                            \\
-          e & ) \quad 2xyy' = x^2 + y^2
-          \text,                                                            \\
-          f & ) \quad y' = \frac{3x^2 + 4x + 2}{2y - 2}
-          \text,
-            & \qquad                                            & y(0) = -1
-          \text,                                                            \\
-          g & ) \quad xy' = x \cdot e^{\sfrac{y}{x}} + y
-          \text,
-            & \qquad                                            & y(1) = 0
-          \text.
-        \end{alignat*}
-
-  \item Adja meg azon görbét, amelynek bármely pontjában az érintő a
-        a koordináta-ten\-ge\-lyek közé eső részét az adott pontban felezi!
-
-  \item Newton-törvénye értelmében ismert, hogy egy test hőmérsékletének
-        változása a környezet hőmérsékletével való különbséggel arányos.
-        Egy kenyeret a $t = 0$ időpillanatban kiveszünk a
-        $\SI{200}{\degreeCelsius}$-os sütőből, majd hűlni hagyjuk. 20 perc
-        után $\SI{60}{\degreeCelsius}$-ra hűl le. Mennyi idő múlva éri el a
-        kenyér hőmérséklete a $\SI{30}{\degreeCelsius}$-ot, ha a környezet
-        hőmérséklete $\SI{20}{\degreeCelsius}$?
-
-  \item $\SI{100}{\kilogram}$ $\SI{10}{\percent}$-os sóoldatot tartalmazó
-        edénybe másodpercenként $\SI{10}{\liter}$ tiszta víz áramlik be.
-        Mikor lesz a sóoldat koncentrációja $\SI{5}{\percent}$-os, ha a
-        keveredés azonnal megtörténik, és ugyanilyen sebességgel folyik ki az
-        edényből a keverék?
-
-        % OLD 9
-  \item Oldja meg a következő elsőrendű differenciálegyenleteket!
-        \begin{align*}
-          a) \quad y' & - \frac{y}{x} = x \, e^x
-          \text,                                      \\
-          b) \quad y' & + 2xy + x \, e^{-x^2} = 0
-          \text,                                      \\
-          c) \quad y' & + \frac{1 - 2x}{x^2} \, y = 1
-          \text,                                      \\
-          d) \quad y' & + y \cos x = \cos x \sin x
-          \text,                                      \\[2mm]
-          e) \quad y' & (1 + x^2) + 2xy = \tan x
-          \text.
-        \end{align*}
-
-  \item $\SI{10}{\liter}$ vizet tartalmazó edénybe literenként
-        $\SI{0,3}{\kilogram}$ sót tartalmazó oldat folyik be
-        $\SI[per-mode = symbol]{2}{\liter\per\minute}$ sebességgel. Az edényen
-        a folyadék azonnal elkeveredik, majd ugyanilyen sebességgel kifolyik.
-        Mennyi só lesz $\SI{5}{\minute}$ múlva az edényben?
-
-  \item Egy testet függőlegesen hajítunk lefelé $v_0$ kezdeti sebességgel.
-        Határozza meg a mozgás sebességének változását, amennyiben a testre csak
-        a nehézségi erő hat, valamint a levegő fékezőerelye a sebességgel
-        egyenesen arányos!
-
-  \item Oldja meg a következő másodrendű, hiányos differenciálegyenleteket!
-        \begin{align*}
-          a) \quad y'' & = 6x + \sin x
-          \text,                                                     \\[2mm]
-          b) \quad y'' & x^2 + \ln x = 1
-          \text,                                                     \\[2mm]
-          c) \quad y'' & - \frac{x}{x^2 - 1} \, y' = 0 \quad (x > 1)
-          \text,                                                     \\[2mm]
-          d) \quad y'' & (1 + y^2) = y \, y'^2
-          \text,                                                     \\[2mm]
-          e) \quad y'' & {}^2 - y' = 0
-          \text,                                                     \\[2mm]
-          e) \quad y'' & y = 1 + y'^2
-          \text.                                                     \\[2mm]
-        \end{align*}
-
-        % OLD 10
-  \item Egy soros RL-körre konstans $u_0$ feszültséget kapcsolunk. Adja meg
-        az áram időfüggvényét!
-
-        \begin{minipage}{.25\textwidth}
-          \centering
-          \begin{tikzpicture}[european resistors]
-            \draw
-            % (1.5,0) to[short,o-]
-            (0,0)
-            to (0,1.5)
-            to[R=$R$] (2,1.5)
-            to[L=$L$] (4,1.5)
-            to (4,0)
-            % to[short,-o] (2.5,0)
-            to[battery2] (0,0)
-            -- cycle
-            ;
-          \end{tikzpicture}
-        \end{minipage}\begin{minipage}{.4\textwidth}
-          \begin{align*}
-            u_R & = R \cdot i
-            \\
-            u_L & = L \cdot \odv{i}{t}
-          \end{align*}
-        \end{minipage}
-
-  \item Határozza meg, hogy milyen alakot vesz fel saját súlyának hatására a $C$
-        és $D$ végein felfüggesztett, homogén, hajlékony lánc!
-
-  \item Oldja meg az alábbi egzakt, illetve egyakttá tehető
-        differenciálegyenleteket!
-        \begin{enumerate}
-          \item $\displaystyle
-                  (2x + 2 \sin y) \dd x
-                  + (2x \cos y - \sin y) \dd y
-                  = 0
-                $,
-                \vspace{2mm}
-
-          \item $\displaystyle
-                  (1 - xy) \dd x
-                  + (xy - x^2) \dd y
-                  = 0
-                $,
-
-          \item $\displaystyle
-                  \left( \ln (y^2 + 1) \right) \dd x
-                  + \frac{2y(x - 1)}{y^2 + 1} \dd y
-                  = 0
-                $,
-
-          \item $\displaystyle
-                  \left( e^{-y} \right) \dd x
-                  + \left( x \, e^{-y} - 2y \, e^{-2y} \right) \dd y
-                  = 0
-                $.
+  \item Adja meg az alábbi görbeserekek differenciálegyenleteit:
+        \begin{enumerate}[a)]
+          \item $y = c x^2$,
+          \item $x^2 + y^2 = cx$,
+          \item $y = c_1 e^x + c_2 e^{2x}$.
         \end{enumerate}
 
-  \item Oldja meg az alábbi Bernoulli-féle differenciálegyenletet!
-        $$
-          y' - \frac{3y}{x} = x^4 y^{1/3}
-        $$
+  \item Adja meg az olyan $xy$ síkban elhelyezkedő körök differenciálegyenletét,
+        amelyek az $x$-tengelyt az origóban érintik!
 
-  \item Oldja meg az alábbi Ricatti féle differenciálegyenletet!
-        $$
-          y' = xy^2 - (4 - 2x^2)y + x^3 + 4x + 1
-        $$
+        %   \item Adja meg az $y' = 3y^{2/3}$ differenciálegyenlet $y(0) = 0$ kezdeti
+        %         feltétel melletti megoldását! Vizsgálja meg a megoldás egyértelműségét!
 
-        % OLD 11
-  \item Határozza meg, hogy milyen halmazon lineárisan függetlenek az alábbi
-        függvények!
-        $$
-          H_1 = \Big\{\;
-          \;e^x;
-          \;xe^x;
-          \;x^2e^x
-          \;\Big\}
-          \hspace{2cm}
-          H_2 = \Big\{\;
-          \;1;
-          \;\cos x;
-          \;\sin x;
-          \;\Big\}
-        $$
+        %   \item Adja meg azt a tértartományt, ahol az $y' = x^2 + y^2$
+        %         differenciálegyenlet megoldása egyértelmű!
 
-  \item Hol lesz a $\{ \; e^x; \; -(x + 1) \; \}$ függvényrendszer az
-        $xy'' - (x + 1)y' + y = 0$ differenciálegyenlet alaphalmaza?
+        %   \item Adja meg azt a tértartományt, ahol az $y'' = y + 3 \sqrt{y} + e^{y'}$
+        %         differenciálegyenlet megoldása egyértelmű!
 
-  \item Hol lesz a $\{ \; 1; \; x; \; \ln x \; \}$ függvényrendszer az
-        $xy''' + 2y'' = 0$ differenciálegyenlet alaphalmaza?
+        %   \item Számítsa ki az $y' = y$ differenciálegyenlet szukcesszív
+        %         approximációjával kapott első négy közelítő függvényt, ha a kezdeti
+        %         feltétel $y(0) = 1$!
 
-  \item Adja meg az $y'' - 5y' + 6y = 0$ differenciálegyenlet $y(0) = 1$ és
-        $y'(0) = 1$ kezdeti feltételek melletti megoldását!
+        %   \item Számítsa ki az $y' = xy$ differenciálegyenlet szukcesszív
+        %         approximációjával kapott első négy közelítő függvényt, ha a kezdeti
+        %         feltétel $y(0) = 1$!
 
-  \item Adja meg a $8y''' + 12y'' + 6y' + y = 0$ differenciálegyenlet
-        általános megoldását!
+        %   \item Oldja meg a következő szétválasztható differenciálegyenleteket!
+        %         \begin{alignat*}{9}
+        %           a & ) \quad (2x + 1) y' - 3y = 0
+        %           \text,                                                            \\
+        %           b & ) \quad \sqrt{1 + x^2} \, y' - \sqrt{1 - y^2} = 0
+        %           \text,                                                            \\
+        %           c & ) \quad y' = \frac{1 - x - y}{2x - 2y - 3}
+        %           \text,                                                            \\
+        %           d & ) \quad xy' = y(1 + \ln x - \ln y)
+        %           \text,                                                            \\
+        %           e & ) \quad 2xyy' = x^2 + y^2
+        %           \text,                                                            \\
+        %           f & ) \quad y' = \frac{3x^2 + 4x + 2}{2y - 2}
+        %           \text,
+        %             & \qquad                                            & y(0) = -1
+        %           \text,                                                            \\
+        %           g & ) \quad xy' = x \cdot e^{\sfrac{y}{x}} + y
+        %           \text,
+        %             & \qquad                                            & y(1) = 0
+        %           \text.
+        %         \end{alignat*}
 
-  \item Adja meg a $y''' - 2y'' + 2y' = 0$ differenciálegyenlet
-        általános megoldását!
+        %   \item Adja meg azon görbét, amelynek bármely pontjában az érintő a
+        %         a koordináta-ten\-ge\-lyek közé eső részét az adott pontban felezi!
 
-  \item Adja meg a $y^{(\mathbf{V})} - 2y^{(\mathbf{IV})} + 8y''' - 16y'' + 16y'
-          -32y = 0$ differenciálegyenlet általános megoldását!
+        %   \item Newton-törvénye értelmében ismert, hogy egy test hőmérsékletének
+        %         változása a környezet hőmérsékletével való különbséggel arányos.
+        %         Egy kenyeret a $t = 0$ időpillanatban kiveszünk a
+        %         $\SI{200}{\degreeCelsius}$-os sütőből, majd hűlni hagyjuk. 20 perc
+        %         után $\SI{60}{\degreeCelsius}$-ra hűl le. Mennyi idő múlva éri el a
+        %         kenyér hőmérséklete a $\SI{30}{\degreeCelsius}$-ot, ha a környezet
+        %         hőmérséklete $\SI{20}{\degreeCelsius}$?
 
-  \item Adja meg azt a legkisebb rendű differenciálegyenletet, amelynek a
-        $\{\; 6x^2; \; 5e^{2x} \;\}$ függvényrendszer az alaphalmaza!
+        %   \item $\SI{100}{\kilogram}$ $\SI{10}{\percent}$-os sóoldatot tartalmazó
+        %         edénybe másodpercenként $\SI{10}{\liter}$ tiszta víz áramlik be.
+        %         Mikor lesz a sóoldat koncentrációja $\SI{5}{\percent}$-os, ha a
+        %         keveredés azonnal megtörténik, és ugyanilyen sebességgel folyik ki az
+        %         edényből a keverék?
 
-  \item Adja meg azt a legkisebb rendű differenciálegyenletet, amelynek a
-        $\{\; 7x; \; \sin 5x \;\}$ függvényrendszer az alaphalmaza!
+        %         % OLD 9
+        %   \item Oldja meg a következő elsőrendű differenciálegyenleteket!
+        %         \begin{align*}
+        %           a) \quad y' & - \frac{y}{x} = x \, e^x
+        %           \text,                                      \\
+        %           b) \quad y' & + 2xy + x \, e^{-x^2} = 0
+        %           \text,                                      \\
+        %           c) \quad y' & + \frac{1 - 2x}{x^2} \, y = 1
+        %           \text,                                      \\
+        %           d) \quad y' & + y \cos x = \cos x \sin x
+        %           \text,                                      \\[2mm]
+        %           e) \quad y' & (1 + x^2) + 2xy = \tan x
+        %           \text.
+        %         \end{align*}
 
-  \item Adja meg azt a legkisebb rendű differenciálegyenletet, amelynek a
-        $\{\; x e^x; \; e^{2x} \cos x \;\}$ függvényrendszer az alaphalmaza!
+        %   \item $\SI{10}{\liter}$ vizet tartalmazó edénybe literenként
+        %         $\SI{0,3}{\kilogram}$ sót tartalmazó oldat folyik be
+        %         $\SI[per-mode = symbol]{2}{\liter\per\minute}$ sebességgel. Az edényen
+        %         a folyadék azonnal elkeveredik, majd ugyanilyen sebességgel kifolyik.
+        %         Mennyi só lesz $\SI{5}{\minute}$ múlva az edényben?
 
-  \item Adja meg az $y'' - 5y' + 6y = 2 \sin 2x$ differenciálegyenlet
-        általános megoldását!
+        %   \item Egy testet függőlegesen hajítunk lefelé $v_0$ kezdeti sebességgel.
+        %         Határozza meg a mozgás sebességének változását, amennyiben a testre csak
+        %         a nehézségi erő hat, valamint a levegő fékezőerelye a sebességgel
+        %         egyenesen arányos!
 
-  \item Adja meg az $y'' - 5y' + 6y = 2x e^x + e^{2x}$ differenciálegyenlet
-        általános megoldását!
+        %   \item Oldja meg a következő másodrendű, hiányos differenciálegyenleteket!
+        %         \begin{align*}
+        %           a) \quad y'' & = 6x + \sin x
+        %           \text,                                                     \\[2mm]
+        %           b) \quad y'' & x^2 + \ln x = 1
+        %           \text,                                                     \\[2mm]
+        %           c) \quad y'' & - \frac{x}{x^2 - 1} \, y' = 0 \quad (x > 1)
+        %           \text,                                                     \\[2mm]
+        %           d) \quad y'' & (1 + y^2) = y \, y'^2
+        %           \text,                                                     \\[2mm]
+        %           e) \quad y'' & {}^2 - y' = 0
+        %           \text,                                                     \\[2mm]
+        %           e) \quad y'' & y = 1 + y'^2
+        %           \text.                                                     \\[2mm]
+        %         \end{align*}
 
-  \item Adja meg az $y'' + 4y = x^2 \sin 2x$ differenciálegyenlet
-        általános megoldását!
+        %         % OLD 10
+        %   \item Egy soros RL-körre konstans $u_0$ feszültséget kapcsolunk. Adja meg
+        %         az áram időfüggvényét!
 
-        % OLD 12
-  \item Egy $\SI{6}{\meter}$ hosszú lánc súrlódásmentesen csúszik az asztalon.
-        Ha a csúszás akkor következik be, amikor $\SI{1}{\meter}$-nyi lánc
-        lóg lefelé, akkor mennyi idő múlva esik le a lánc?
+        %         \begin{minipage}{.25\textwidth}
+        %           \centering
+        %           \begin{tikzpicture}[european resistors]
+        %             \draw
+        %             % (1.5,0) to[short,o-]
+        %             (0,0)
+        %             to (0,1.5)
+        %             to[R=$R$] (2,1.5)
+        %             to[L=$L$] (4,1.5)
+        %             to (4,0)
+        %             % to[short,-o] (2.5,0)
+        %             to[battery2] (0,0)
+        %             -- cycle
+        %             ;
+        %           \end{tikzpicture}
+        %         \end{minipage}\begin{minipage}{.4\textwidth}
+        %           \begin{align*}
+        %             u_R & = R \cdot i
+        %             \\
+        %             u_L & = L \cdot \odv{i}{t}
+        %           \end{align*}
+        %         \end{minipage}
 
-  \item REZGŐRENDSZER TODO
+        %   \item Határozza meg, hogy milyen alakot vesz fel saját súlyának hatására a $C$
+        %         és $D$ végein felfüggesztett, homogén, hajlékony lánc!
 
-  \item Adja meg az alábbi Euler-féle differenciálegyenlet megoldását!
-        $$
-          y'' - \frac{3}{x} \, y' + 20 \frac{y}{x^2} = 0
-          \quad
-          y(1) = 2
-          \quad
-          y'(1) = 0
-        $$
+        %   \item Oldja meg az alábbi egzakt, illetve egyakttá tehető
+        %         differenciálegyenleteket!
+        %         \begin{enumerate}
+        %           \item $\displaystyle
+        %                   (2x + 2 \sin y) \dd x
+        %                   + (2x \cos y - \sin y) \dd y
+        %                   = 0
+        %                 $,
+        %                 \vspace{2mm}
 
-  \item Az $(1 + x^2) y'' + xy' - y = 0$ differenciálegyenleteit
-        $y_1(x) = x$ megoldás ismeri. Adja meg az általános megoldást!
+        %           \item $\displaystyle
+        %                   (1 - xy) \dd x
+        %                   + (xy - x^2) \dd y
+        %                   = 0
+        %                 $,
 
-  \item Az $xy'' - (1 + x) y' + y = 0$ differenciálegyenleteit
-        $y_1(x) = e^x$ megoldás ismeri. Adja meg az általános megoldást!
+        %           \item $\displaystyle
+        %                   \left( \ln (y^2 + 1) \right) \dd x
+        %                   + \frac{2y(x - 1)}{y^2 + 1} \dd y
+        %                   = 0
+        %                 $,
 
-  \item Oldja meg az alábbi differenciálegyenlet-rendszert!
-        $$
-          \left\{
-          \begin{array}{l}
-            \dot x = 2x + y \\
-            \dot y = 3x + 4y
-          \end{array}
-          \right.
-          \qquad
-          \begin{array}{l}
-            x(0) = 0 \\
-            y(0) = 1
-          \end{array}
-        $$
+        %           \item $\displaystyle
+        %                   \left( e^{-y} \right) \dd x
+        %                   + \left( x \, e^{-y} - 2y \, e^{-2y} \right) \dd y
+        %                   = 0
+        %                 $.
+        %         \end{enumerate}
 
-  \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
-        $$
-          \left\{
-          \begin{array}{l}
-            \dot x = 2x + y \\
-            \dot y = y
-            \dot z = 3z
-          \end{array}
-          \right.
-        $$
+        %   \item Oldja meg az alábbi Bernoulli-féle differenciálegyenletet!
+        %         $$
+        %           y' - \frac{3y}{x} = x^4 y^{1/3}
+        %         $$
 
-  \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
-        $$
-          \left\{
-          \begin{array}{l}
-            \dot x = -x - 5y \\
-            \dot y = x + y
-          \end{array}
-          \right.
-        $$
+        %   \item Oldja meg az alábbi Ricatti féle differenciálegyenletet!
+        %         $$
+        %           y' = xy^2 - (4 - 2x^2)y + x^3 + 4x + 1
+        %         $$
 
-        % OLD 13
-  \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
-        $$
-          \dot{\rvec x} = \begin{bmatrix}
-            2 & 2 & 1 \\
-            1 & 3 & 1 \\
-            1 & 2 & 2 \\
-          \end{bmatrix} \rvec x
-        $$
+        %         % OLD 11
+        %   \item Határozza meg, hogy milyen halmazon lineárisan függetlenek az alábbi
+        %         függvények!
+        %         $$
+        %           H_1 = \Big\{\;
+        %           \;e^x;
+        %           \;xe^x;
+        %           \;x^2e^x
+        %           \;\Big\}
+        %           \hspace{2cm}
+        %           H_2 = \Big\{\;
+        %           \;1;
+        %           \;\cos x;
+        %           \;\sin x;
+        %           \;\Big\}
+        %         $$
 
-  \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
-        $$
-          \dot{\rvec x} = \begin{bmatrix}
-            0 & 1 & 1 \\
-            0 & 0 & 1 \\
-            0 & 0 & 0 \\
-          \end{bmatrix} \rvec x
-        $$
+        %   \item Hol lesz a $\{ \; e^x; \; -(x + 1) \; \}$ függvényrendszer az
+        %         $xy'' - (x + 1)y' + y = 0$ differenciálegyenlet alaphalmaza?
 
-  \item Oldja meg az $y''' + 5y'' + 6y' = 0$ differenciálegyenletet
-        differenciálegyenlet-rendszer segítségével!
+        %   \item Hol lesz a $\{ \; 1; \; x; \; \ln x \; \}$ függvényrendszer az
+        %         $xy''' + 2y'' = 0$ differenciálegyenlet alaphalmaza?
 
-  \item Osztályozza stabilitás szempontjából az alábbi differenciálegyenleteket!
-        \begin{multicols}{2}
-          \begin{enumerate}
-            \item $
-                    \ddot x + 6 \dot x + 5x = 0
-                  $
+        %   \item Adja meg az $y'' - 5y' + 6y = 0$ differenciálegyenlet $y(0) = 1$ és
+        %         $y'(0) = 1$ kezdeti feltételek melletti megoldását!
 
-            \item $
-                    \ddot x + \dot x + 5x = 0
-                  $
+        %   \item Adja meg a $8y''' + 12y'' + 6y' + y = 0$ differenciálegyenlet
+        %         általános megoldását!
 
-            \item $
-                    \ddot x + 9x = 0
-                  $
+        %   \item Adja meg a $y''' - 2y'' + 2y' = 0$ differenciálegyenlet
+        %         általános megoldását!
 
-            \item $
-                    \dddot x + 8\ddot x + 22\dot x + 20x = 0
-                  $
-          \end{enumerate}
-        \end{multicols}
+        %   \item Adja meg a $y^{(\mathbf{V})} - 2y^{(\mathbf{IV})} + 8y''' - 16y'' + 16y'
+        %           -32y = 0$ differenciálegyenlet általános megoldását!
 
-  \item Vizsgálja az $\ddot x + (1 - e^{2 - \mu}) \dot x + x = 0$
-        differenciálegyenlet stabilitását $\mu$ függvényében!
+        %   \item Adja meg azt a legkisebb rendű differenciálegyenletet, amelynek a
+        %         $\{\; 6x^2; \; 5e^{2x} \;\}$ függvényrendszer az alaphalmaza!
 
-  \item Rajzolja fel az alábbi differenciálegyenletek trajektóriáit!
-        \begin{multicols}{3}
-          \begin{enumerate}
-            \item $
-                    \left\{
-                    \begin{array}{l}
-                      \dot x = 2x \\
-                      \dot y = y
-                    \end{array}
-                    \right.
-                  $
+        %   \item Adja meg azt a legkisebb rendű differenciálegyenletet, amelynek a
+        %         $\{\; 7x; \; \sin 5x \;\}$ függvényrendszer az alaphalmaza!
 
-            \item $
-                    \left\{
-                    \begin{array}{l}
-                      \dot x = x - y \\
-                      \dot y = x + y
-                    \end{array}
-                    \right.
-                  $
+        %   \item Adja meg azt a legkisebb rendű differenciálegyenletet, amelynek a
+        %         $\{\; x e^x; \; e^{2x} \cos x \;\}$ függvényrendszer az alaphalmaza!
 
-            \item $
-                    \left\{
-                    \begin{array}{l}
-                      \dot x = 2x - 3y \\
-                      \dot y = -4y
-                    \end{array}
-                    \right.
-                  $
-          \end{enumerate}
-        \end{multicols}
+        %   \item Adja meg az $y'' - 5y' + 6y = 2 \sin 2x$ differenciálegyenlet
+        %         általános megoldását!
+
+        %   \item Adja meg az $y'' - 5y' + 6y = 2x e^x + e^{2x}$ differenciálegyenlet
+        %         általános megoldását!
+
+        %   \item Adja meg az $y'' + 4y = x^2 \sin 2x$ differenciálegyenlet
+        %         általános megoldását!
+
+        %         % OLD 12
+        %   \item Egy $\SI{6}{\meter}$ hosszú lánc súrlódásmentesen csúszik az asztalon.
+        %         Ha a csúszás akkor következik be, amikor $\SI{1}{\meter}$-nyi lánc
+        %         lóg lefelé, akkor mennyi idő múlva esik le a lánc?
+
+        %   \item REZGŐRENDSZER TODO
+
+        %   \item Adja meg az alábbi Euler-féle differenciálegyenlet megoldását!
+        %         $$
+        %           y'' - \frac{3}{x} \, y' + 20 \frac{y}{x^2} = 0
+        %           \quad
+        %           y(1) = 2
+        %           \quad
+        %           y'(1) = 0
+        %         $$
+
+        %   \item Az $(1 + x^2) y'' + xy' - y = 0$ differenciálegyenleteit
+        %         $y_1(x) = x$ megoldás ismeri. Adja meg az általános megoldást!
+
+        %   \item Az $xy'' - (1 + x) y' + y = 0$ differenciálegyenleteit
+        %         $y_1(x) = e^x$ megoldás ismeri. Adja meg az általános megoldást!
+
+        %   \item Oldja meg az alábbi differenciálegyenlet-rendszert!
+        %         $$
+        %           \left\{
+        %           \begin{array}{l}
+        %             \dot x = 2x + y \\
+        %             \dot y = 3x + 4y
+        %           \end{array}
+        %           \right.
+        %           \qquad
+        %           \begin{array}{l}
+        %             x(0) = 0 \\
+        %             y(0) = 1
+        %           \end{array}
+        %         $$
+
+        %   \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
+        %         $$
+        %           \left\{
+        %           \begin{array}{l}
+        %             \dot x = 2x + y \\
+        %             \dot y = y
+        %             \dot z = 3z
+        %           \end{array}
+        %           \right.
+        %         $$
+
+        %   \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
+        %         $$
+        %           \left\{
+        %           \begin{array}{l}
+        %             \dot x = -x - 5y \\
+        %             \dot y = x + y
+        %           \end{array}
+        %           \right.
+        %         $$
+
+        %         % OLD 13
+        %   \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
+        %         $$
+        %           \dot{\rvec x} = \begin{bmatrix}
+        %             2 & 2 & 1 \\
+        %             1 & 3 & 1 \\
+        %             1 & 2 & 2 \\
+        %           \end{bmatrix} \rvec x
+        %         $$
+
+        %   \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
+        %         $$
+        %           \dot{\rvec x} = \begin{bmatrix}
+        %             0 & 1 & 1 \\
+        %             0 & 0 & 1 \\
+        %             0 & 0 & 0 \\
+        %           \end{bmatrix} \rvec x
+        %         $$
+
+        %   \item Oldja meg az $y''' + 5y'' + 6y' = 0$ differenciálegyenletet
+        %         differenciálegyenlet-rendszer segítségével!
+
+        %   \item Osztályozza stabilitás szempontjából az alábbi differenciálegyenleteket!
+        %         \begin{multicols}{2}
+        %           \begin{enumerate}
+        %             \item $
+        %                     \ddot x + 6 \dot x + 5x = 0
+        %                   $
+
+        %             \item $
+        %                     \ddot x + \dot x + 5x = 0
+        %                   $
+
+        %             \item $
+        %                     \ddot x + 9x = 0
+        %                   $
+
+        %             \item $
+        %                     \dddot x + 8\ddot x + 22\dot x + 20x = 0
+        %                   $
+        %           \end{enumerate}
+        %         \end{multicols}
+
+        %   \item Vizsgálja az $\ddot x + (1 - e^{2 - \mu}) \dot x + x = 0$
+        %         differenciálegyenlet stabilitását $\mu$ függvényében!
+
+        %   \item Rajzolja fel az alábbi differenciálegyenletek trajektóriáit!
+        %         \begin{multicols}{3}
+        %           \begin{enumerate}
+        %             \item $
+        %                     \left\{
+        %                     \begin{array}{l}
+        %                       \dot x = 2x \\
+        %                       \dot y = y
+        %                     \end{array}
+        %                     \right.
+        %                   $
+
+        %             \item $
+        %                     \left\{
+        %                     \begin{array}{l}
+        %                       \dot x = x - y \\
+        %                       \dot y = x + y
+        %                     \end{array}
+        %                     \right.
+        %                   $
+
+        %             \item $
+        %                     \left\{
+        %                     \begin{array}{l}
+        %                       \dot x = 2x - 3y \\
+        %                       \dot y = -4y
+        %                     \end{array}
+        %                     \right.
+        %                   $
+        %           \end{enumerate}
+        %         \end{multicols}
 \end{enumerate}
 \end{document}

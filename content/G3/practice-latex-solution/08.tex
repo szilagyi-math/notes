@@ -1,0 +1,330 @@
+\documentclass{szb-solution}
+
+\title{Bevezetés}
+\area{Differenciálegyenletek}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{8}
+
+\usepackage{siunitx}
+\sisetup{locale = DE}
+
+\begin{document}
+\maketitle
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 111111111111111111111111111111111111111111111111111111111111111111111111111111
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Differenciálegyenletek osztályozása}
+
+\begin{center}
+  \def\arraystretch{1.5}
+  \begin{tabular}{ll|c|c|c|}
+       & Egyenlet                                                       & Megadási mód & Rend & Lineáris?    \\
+    \hline
+    a) & $y' = \cosh x - 3xy$                                           & Explicit     & 1    & lineáris     \\
+    b) & $y'' = y'^2 \, \cos x$                                         & Explicit     & 2    & nem lineáris \\
+    c) & $\left( 1 + y^{(\mathrm{IV})} \right)^2 - y'' = x^3 y''' + xy$ & Implicit     & 4    & nem lineáris \\
+    d) & $y'' = e^y \, \ln x$                                           & Explicit     & 2    & nem lineáris \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 222222222222222222222222222222222222222222222222222222222222222222222222222222
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Izoklinák és vonalelemek}
+
+\begin{enumerate}
+  \item $y' = y / x \qquad x > 0$
+
+        \textbf{Izoklinák}:
+        $\sfrac{y}{x} = c \implies y = cx$
+        \quad -- \quad origón áthaladó egyenesek
+
+        \textbf{Vonalelemek}:
+        $y' = \sfrac{y}{x} = \sfrac{cx}{x} = c$
+        \quad -- \quad állandó meredekségű egyenesek
+
+        \textbf{Megoldásgörbék}:
+        $y = Cx$
+        \quad -- \quad origón áthaladó egyenesek
+
+  \item $y' = -x / y \qquad y < 0$
+
+        \textbf{Izoklinák}:
+        $-\sfrac{x}{y} = c \implies y = -\sfrac{x}{c}$
+        \quad -- \quad origón áthaladó egyenesek
+
+        \textbf{Vonalelemek}:
+        $y' = -\sfrac{x}{y} = c$
+        \quad -- \quad állandó meredekségű egyenesek
+
+        \textbf{Megoldásgörbék}:
+        $x^2 + y^2 = C$
+        \quad -- \quad origó középpontú félkörök
+\end{enumerate}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 333333333333333333333333333333333333333333333333333333333333333333333333333333
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Megoldás-e I}
+
+Az $(y')^4 + y^2 = -1$ differenciálegyenlet megoldása-e az $y = x^2 - 1$
+függvény?
+
+Az első derivált:
+$$
+  y' = 2x
+  \text.
+$$
+
+Helyettesítsük be a differenciálegyenletbe:
+$$
+  (y')^4 + y^2
+  = (2x)^4 + (x^2 - 1)^2
+  = 16x^4 + (x^4 - 2x^2 + 1)
+  = 17x^4 - 2x^2 + 1
+  \text.
+$$
+Mivel ez a kifejezés nem egyenlő $-1$-gyel minden $x$ értékre, ezért a
+megadott függvény \textbf{nem} megoldása a differenciálegyenletnek.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 444444444444444444444444444444444444444444444444444444444444444444444444444444
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Megoldás-e II}
+
+Megoldása-e az $y = C_1 \sin 2x + C_2 \cos 2x$ függvény az $y'' + 4y = 0$
+differenciálegyenletnek?
+
+Az első és második derivált:
+\begin{align*}
+  y'  & = 2C_1 \cos 2x - 2C_2 \sin 2x \text,  \\
+  y'' & = -4C_1 \sin 2x - 4C_2 \cos 2x \text.
+\end{align*}
+
+Vegyük észre, hogy $y'' = -4y$, tehát
+$$
+  y'' + 4y = -4y + 4y = 0
+  \text,
+$$
+tehát a megadott függvény valóban megoldása a differenciálegyenletnek.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 555555555555555555555555555555555555555555555555555555555555555555555555555555
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Megoldás-e III}
+
+Megoldása-e az $y = \ln x$ függvény az $xy'' + y' = 0$ differenciálegyenletnek?
+
+Az első és második derivált:
+\begin{align*}
+  y'  & = \frac{1}{x},    \\
+  y'' & = -\frac{1}{x^2}.
+\end{align*}
+
+Helyettesítsük be a differenciálegyenletbe:
+$$
+  xy'' + y' = x \cdot \left( -\frac{1}{x^2} \right) + \frac{1}{x} = -\frac{1}{x} + \frac{1}{x} = 0
+  \text,
+$$
+tehát a megadott függvény valóban megoldása a differenciálegyenletnek.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 666666666666666666666666666666666666666666666666666666666666666666666666666666
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Cauchy-feladat I}
+
+Adja meg az $y'' + 4y = 0$ differenciálegyenlet $y(0) = 0$ és $y'(0) = 1$
+kezdeti feltételek melletti megoldását!
+
+Az általános megoldás és annak első deriváltja:
+\begin{align*}
+  y  & = C_1 \sin 2x + C_2 \cos 2x \text,   \\
+  y' & = 2C_1 \cos 2x - 2C_2 \sin 2x \text.
+\end{align*}
+
+Az első egyenletből:
+$$
+  y(0)
+  = C_1 \underbrace{\sin 0}_{=0} + C_2 \underbrace{\cos 0}_{=1}
+  = C_2
+  = 0
+  \text.
+$$
+
+A második egyenletből:
+$$
+  y'(0)
+  = 2C_1 \underbrace{\cos 0}_{=1} - 2 \cdot 0 \cdot \underbrace{\sin 0}_{=0}
+  = 2C_1
+  = 1
+  \implies C_1 = \frac{1}{2}
+  \text.
+$$
+
+Tehát a keresett megoldás:
+$$
+  y = \frac{1}{2} \sin 2x
+  \text.
+$$
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 777777777777777777777777777777777777777777777777777777777777777777777777777777
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Cauchy-feladat II}
+
+Adja meg az $y'' + 4y = 0$ differenciálegyenlet $y(0) = 1$ és $y'(\pi/4) = 2$
+kezdeti feltételek melletti megoldását!
+
+Az általános megoldás és annak első deriváltja:
+\begin{align*}
+  y  & = C_1 \sin 2x + C_2 \cos 2x \text,   \\
+  y' & = 2C_1 \cos 2x - 2C_2 \sin 2x \text.
+\end{align*}
+
+Az első egyenletből:
+$$
+  y(0)
+  = C_1 \underbrace{\sin 0}_{=0} + C_2 \underbrace{\cos 0}_{=1}
+  = C_2
+  = 1
+  \text.
+$$
+
+A második egyenletből:
+$$
+  y'(\pi/4)
+  = 2C_1 \underbrace{\cos \pi/2}_{=0} - 2 \cdot 1 \cdot \underbrace{\sin \pi/2}_{=1}
+  = -2
+  \neq 2
+  \text.
+$$
+
+Ellentmondásra jutottunk, tehát a megadott kezdeti feltételek mellett nincs
+megoldás.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 888888888888888888888888888888888888888888888888888888888888888888888888888888
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Görbeseregek differenciálegyenletei}
+
+\begin{enumerate}
+  \item $y = c x^2$:
+
+        Deriváljuk az egyenletet, és fejezzük ki a $c$ konstansot:
+        $$
+          y' = 2cx
+          \quad \text{és} \quad
+          c = \frac{y}{x^2}
+          \quad \implies \quad
+          y' = 2 \frac{y}{x}
+          \text.
+        $$
+
+
+  \item $x^2 + y^2 = cx$:
+
+        Deriváljuk az egyenletet implicit módon:
+        $$
+          2x + 2yy' = c
+          \text.
+        $$
+
+        Helyettesítsük be az eredeti egyenletbe $c$-t:
+        $$
+          x^2 + y^2 = 2x^2 + 2yy'x
+          \quad \implies \quad
+          2xyy' + x^2 - y^2 = 0
+          \text.
+        $$
+
+  \item $y = c_1 e^x + c_2 e^{2x}$:
+
+        Számítsuk ki az első deriváltat:
+        $$
+          y'  = c_1 e^x + 2c_2 e^{2x} \text.
+        $$
+
+        Számítsuk ki $y' - y$ különbséget:
+        $$
+          y' - y
+          = \left( c_1 e^x + 2c_2 e^{2x} \right) - \left( c_1 e^x + c_2 e^{2x} \right)
+          = c_2 e^{2x}
+          \quad \implies \quad
+          c_2 = e^{-2x} (y' - y)
+          \text.
+        $$
+
+        A kapott konstanst helyettesítsük be az eredeti egyenletbe:
+        $$
+          y
+          = c_1 e^x + e^{-2x} (y' - y) e^{2x}
+          = c_1 e^x + y' - y
+          \quad \implies \quad
+          c_1 = e^{-x} (2y - y')
+          \text.
+        $$
+
+        Most számítsuk ki a második deriváltat is, és helyettesítsük be
+        a konstansokat:
+        \begin{align*}
+          y''
+           & = c_1 e^x + 4c_2 e^{2x}                            \\
+           & = e^{-x} (2y - y') e^x + 4 e^{-2x} (y' - y) e^{2x} \\
+           & = 2y - y' + 4y' - 4y                               \\
+           & = -2y + 3y' \text.
+        \end{align*}
+
+        Végül rendezzük az egyenletet:
+        $$
+          y'' + 2y - 3y' = 0
+          \text.
+        $$
+\end{enumerate}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 999999999999999999999999999999999999999999999999999999999999999999999999999999
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Körök differenciálegyenlete}
+
+Adja meg az olyan $xy$ síkban elhelyezkedő körök differenciálegyenletét,
+amelyek az $x$-ten\-gelyt az origóban érintik!
+
+Az ilyen körök egyenlete:
+$$
+  x^2 + (y - r)^2 = r^2
+  \text.
+$$
+
+Deriváljuk az egyenletet implicit módon:
+$$
+  2x + 2(y - r)y' = 0
+  \quad \implies \quad
+  2x + 2yy' - 2ry' = 0
+  \quad \implies \quad
+  r = \frac{x}{y'} + y
+$$
+
+Helyettesítsük be az eredeti egyenletbe $r$-t:
+$$
+  x^2 + \left(
+  t - \frac{x}{y'} + y
+  \right)^2 = \left(
+  \frac{x}{y'} + y
+  \right)^2
+  \text.
+$$
+
+
+\end{document}
