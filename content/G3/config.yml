@@ -79,7 +79,10 @@ practice_material:
       display_name: G3 9. gyakorlat
       description: Elsőrendű és szétválasztható differenciálegyenletek
       week: 9
-    - description:
+    - source: 10.tex
+      target: G3-gyak-10
+      display_name: G3 10. gyakorlat
+      description:
         Elsőrendű lineáris és másodrendű hiányos differenciálegyenletek
       week: 10
     - description: Egzakt és speciális differenciálegyenletek

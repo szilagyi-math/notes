@@ -1,4 +1,4 @@
-\documentclass{szb-practice}
+\documentclass[]{szb-practice}
 
 \title{Elsőrendű lineáris és másodrendű hiányos DE}
 \area{Differenciálegyenletek}
@@ -7,16 +7,104 @@
 \date{Utoljára frissítve: \today}
 \docno{10}
 
+\usepackage{siunitx}
+\sisetup{locale = DE}
+
 \begin{document}
 \maketitle
 
 \subsection{Elméleti áttekintő}
 
+\begin{blueBox}[\underline{Elsőrendű, lineáris differenciálegyenlet}]
+  $$
+    y' + p(x) y = q(x)
+  $$
+  Ha $q(x) \equiv 0 $, akkor az egyenlet homogén, egyébként inhomogén.
+
+  Az általános megoldás a homogén és inhomogén megoldás
+  összegeként adódik:
+  \begin{itemize}
+    \item A homogén megoldást meghaphatjuk, ha megoldjuk az
+          $y' + p(x)y = 0$ egyenletet a tanult módszerek alapján.
+
+    \item Az inhomogén megoldást konstans variálással
+          kaphatjuk meg. Ez azt jelenti, hogy a homogén megoldásban
+          lévő konstanst $x$-től függőnek vesszük, majd megoldjuk
+          az egyenletet.
+  \end{itemize}
+\end{blueBox}
+
+\begin{blueBox}[\underline{Hiányos másodrendű egyenletek}]
+  Az $y'' = f(x; y; y')$ hiányos, ha $x$, $y$, vagy $y'$
+  hiányzik az egyenletből.
+  \begin{enumerate}
+    \item $y'' = f(x)$
+          \tabto{2.65cm} $\rightarrow$ \tabto{3.65cm}
+          $y$ és $y'$ hiányos, kétszer integrálunk
+
+    \item $y'' = f(x; y')$
+          \tabto{2.65cm} $\rightarrow$ \tabto{3.65cm}
+          $p(x) = y'(x)$ helyettesítés,
+
+          \tabto{3.65cm}
+          így $p$-re elsőrendű
+
+    \item $y'' = f(y; y')$
+          \tabto{2.65cm} $\rightarrow$ \tabto{3.65cm}
+          $P(y) = y'$ helyettesítés,
+
+          \tabto{3.65cm}
+          ekkor $y'' = \partial_y P \cdot y' = \partial_y P \cdot P$
+
+          \tabto{3.65cm}
+          így $P$-re elsőrendű, szeparábilis
+  \end{enumerate}
+\end{blueBox}
+
 \clearpage
 \subsection{Feladatok}
 
 \begin{enumerate}
-  \item
+  \item Oldja meg a következő elsőrendű differenciálegyenleteket!
+        \begin{align*}
+          a) \quad y' & - \frac{y}{x} = x \, e^x
+          \text,                                      \\
+          b) \quad y' & + 2xy + x \, e^{-x^2} = 0
+          \text,                                      \\
+          c) \quad y' & + \frac{1 - 2x}{x^2} \, y = 1
+          \text,                                      \\
+          d) \quad y' & + y \cos x = \cos x \sin x
+          \text,                                      \\[2mm]
+          e) \quad y' & (1 + x^2) + 2xy = \tan x
+          \text.
+        \end{align*}
+
+  \item $\SI{10}{\liter}$ vizet tartalmazó edénybe literenként
+        $\SI{0,3}{\kilogram}$ sót tartalmazó oldat folyik be
+        $\SI[per-mode = symbol]{2}{\liter\per\minute}$ sebességgel. Az edényben
+        a folyadék azonnal elkeveredik, majd ugyanilyen sebességgel kifolyik.
+        Mennyi só lesz $\SI{5}{\minute}$ múlva az edényben?
+
+  \item Egy testet függőlegesen hajítunk lefelé $v_0$ kezdeti sebességgel.
+        Határozza meg a mozgás sebességének változását, amennyiben a testre csak
+        a nehézségi erő hat, valamint a levegő fékezőerelye a sebességgel
+        egyenesen arányos!
+
+  \item Oldja meg a következő másodrendű, hiányos differenciálegyenleteket!
+        \begin{align*}
+          a) \quad y'' & = 6x + \sin x
+          \text,                                                     \\[2mm]
+          b) \quad y'' & x^2 + \ln x = 1
+          \text,                                                     \\[2mm]
+          c) \quad y'' & - \frac{x}{x^2 - 1} \, y' = 0 \quad (x > 1)
+          \text,                                                     \\[2mm]
+          d) \quad y'' & (1 + y^2) = y \, y'^2
+          \text,                                                     \\[2mm]
+          e) \quad y'' & {}^2 - y' = 0
+          \text,                                                     \\[2mm]
+          e) \quad y'' & y = 1 + y'^2
+          \text.                                                     \\[2mm]
+        \end{align*}
 \end{enumerate}
 
 \end{document}
