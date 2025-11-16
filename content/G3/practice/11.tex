@@ -12,17 +12,540 @@
 
 \subsection{Elméleti áttekintő}
 
+\begin{definition}[Egzakt differenciálegyenlet]
+  A $P(x;y) \dd x + Q(x;y) \dd y = 0$ differenciálegyenlet -- ahol
+  $P;Q : \Reals^2 \rightarrow \Reals$ folytonosan differenciálható függvények
+  -- egzaktnak nevezzük, ha teljesül az alábbi feltétel:
+  $$
+    \pdv{P(x;y)}{y} = \pdv{Q(x;y)}{x}
+    \text.
+  $$
+  Ekkor $\exists F : \Reals^2 \rightarrow \Reals$, melyre igaz, hogy:
+  \begin{gather*}
+    \pdv{F(x;y)}{x} = P(x;y)
+    \quad \text{és} \quad
+    \pdv{F(x;y)}{y} = Q(x;y)
+    \\
+    \pdv{F(x;y)}{x}   \dd y
+    + \pdv{F(x;y)}{y} \dd x
+    = 0
+    \\
+    F(x;y) = C
+  \end{gather*}
+\end{definition}
+
+\begin{example}[Oldjuk meg az alábbi egzakt differenciálegyenletet!][nobreak]
+  $$
+    \underbrace{(2xy + y)}_{P(x; y)} \dd x + \underbrace{(x^2 + x)}_{Q(x; y)} \dd y = 0
+  $$
+  \boxrule
+
+  Ellenőrizzük, hogy valóban egzakt-e a differenciálegyenlet:
+  $$
+    \left\{
+    \begin{array}{l}
+      \displaystyle\pdv{P}{y}  = 2x + 1
+      \\[.33em]
+      \displaystyle \pdv{Q}{x} = 2x + 1
+    \end{array}
+    \right.
+    \qquad \Rightarrow \qquad
+    \pdv{P}{y} = \pdv{Q}{x}
+    \text,
+  $$
+  tehát egzakt. Integráljuk $P$-t $x$ szerint, $Q$-t pedig $y$ szerint:
+  \begin{align*}
+    F(x;y) & = \int P \dd x = \int (2xy + y) \dd x
+    = x^2 y + xy + C_y(y)
+    \text,
+    \\
+    F(x;y) & = \int Q \dd y = \int (x^2 + x) \dd y
+    = x^2 y + xy + C_x(x)
+    \text,
+  \end{align*}
+  ahol $C_y(y)$ és $C_x(x)$ rendre $y$-tól és $x$-tól függő függvények,
+  jelen esetben nullának válasthatóak. A megoldás tehát:
+  $$
+    x^2 y + xy = C
+    \text.
+  $$
+\end{example}
+
+\begin{note}
+  Az előző példát más módszerekkel is megoldhattuk volna, például szeparábilis
+  differenciálegyenletként:
+  $$
+    \int\frac{\dd y}{y}
+    = - \int\frac{(2x + 1)\dd x}{x^2 + x}
+    \quad \Rightarrow \quad
+    \ln y = -\ln(x^2 + x) + K
+    \quad \Rightarrow \quad
+    y = \frac{C}{x^2 + x}
+    \text.
+  $$
+\end{note}
+
+\begin{blueBox}[\underline{Differenciálegyenlet egzakttá tevése}][nobreak]
+  Előfordulhat, hogy a $P(x;y)\dd x + Q(x;y) \,\dd y = 0$ differenciálegyenlet
+  nem egzakt, de integráló tényező segítségével egzakttá tehető.
+
+  Tegyük fel, hogy $\exists M : \Reals^2 \rightarrow \Reals$, hogy
+  $M(x;y) P(x;y) \dd x + M(x;y) Q(x;y) \dd y = 0$ differenciálegyenlet már
+  egzakt, azaz:
+  \begin{gather*}
+    \pdv{MP}{y} = \pdv{MQ}{x}
+    \\[.33em]
+    \pdv{M}{y} P
+    + M \pdv{P}{y}
+    = \pdv{M}{x} Q
+    + M \pdv{Q}{x}
+    \\[.33em]
+    Q \pdv{M}{x}
+    - P \pdv{M}{y}
+    + M \left(
+    \pdv{Q}{x}
+    - \pdv{P}{y}
+    \right) = 0
+  \end{gather*}
+  Tegyük fel, hogy $M$ egyváltozós:
+
+  $!M(x)$, ekkor a differenciálegyenlet az alábbi alakra redukálódik:
+  $$
+    Q \pdv{M}{x} + M \left( \pdv{Q}{x} - \pdv{P}{y} \right) = 0
+    \text.
+  $$
+  Ez már $M(x)$-re szeparábilis:
+  \begin{gather*}
+    \frac{1}{M} \dd M = \frac{1}{Q} \left( \pdv{P}{y} - \pdv{Q}{x} \right) \dd x
+    \\[.33em]
+    \ln M = \int \frac{\partial_y P - \partial_x Q}{Q} \dd x
+    \qquad\Rightarrow\quad
+    M(x) = C e^{\int \frac{\partial_y P - \partial_x Q}{Q} \dd x}
+    \text.
+  \end{gather*}
+  Itt $C$ tetszőlegesen megválasztható, ezért célszerű $1$-nek választani.
+
+  $!M(y)$, ebben az esetben pedig a differenciálegyenlet az alábbi alakot ölit:
+  $$
+    P \pdv{M}{y}
+    + M \left(
+    \pdv{Q}{x}
+    - \pdv{P}{y}
+    \right) = 0
+    \text.
+  $$
+  Ez már $M(y)$-re szeparábilis:
+  \begin{gather*}
+    \frac{1}{M} \dd M = \frac{1}{P} \left( \pdv{Q}{x} - \pdv{P}{y} \right) \dd y
+    \\[.33em]
+    \ln M = \int \frac{\partial_y Q - \partial_x P}{P} \dd y
+    \qquad\Rightarrow\quad
+    M(y) = Ce^{\int \frac{\partial_y Q - \partial_x P}{P} \dd y}
+    \text.
+  \end{gather*}
+  $C$ ebben az esetben is tetszőlegesen megválasztható.
+\end{blueBox}
+
+\begin{note}
+  Előfordulhat, hogy a differenciálegyenlet nem egzakt, és egyváltozós
+  multiplikátorral sem tehetó azzá. Ilyen például:
+  $$
+    (x^2 + xy) \dd x + (y^2 + xy) \dd y = 0
+    \text.
+  $$
+\end{note}
+
+\begin{example}[Tegyük egzakttá az alábbi differenciálegyenlet!][nobreak]
+  $$
+    (y^3 + y) x^2 \dd x
+    + \frac{2y^3 + 3y^2 + 2y + 1}{3} \, x^3 \dd y
+    = 0
+  $$
+  \boxrule
+
+  A parciális deriváltak:
+  $$
+    \left\{
+    \begin{array}{l}
+      \displaystyle\pdv{P}{y} = x^2 (3y^2 + 1)
+      \\[.33em]
+      \displaystyle\pdv{Q}{x} = x^2 (2y^3 + 3y^2 + 2y + 1)
+    \end{array}
+    \right.
+    \qquad \Rightarrow \qquad
+    \pdv{P}{y} \neq \pdv{Q}{x}
+    \text.
+  $$
+  A differenciálegyenlet valóban nem egzakt. Viszont megfigyelhetjük, hogy
+  mind a parciális deriváltakban, mind $P(x; y)$-ben szerepel egy $x^2$-es
+  szorzó. Ezek az $y$-től függő multiplikátoros képletben kiejtik egymást:
+  $$
+    \ln M(y)
+    = \int \frac{\partial_y Q - \partial_x P}{P} \dd y
+    = \int \frac{2y^3 + 2y}{y^3 + y} \dd y
+    = \int 2 \dd y
+    = 2y(+ C)
+    \quad\Rightarrow\quad
+    M(y) = e^{2y}
+    \text.
+  $$
+  Ezek után a differenciálegyenlet már egzakt:
+  $$
+    \underbrace{e^{2y} (y^3 + y) x^2}_{P'} \dd x
+    + \underbrace{e^{2y} \frac{2y^3 + 3y^2 + 2y + 1}{3} x^3}_{Q'} \dd y
+    = 0
+    \text.
+  $$
+  Ellenőrizzük a parciális deriváltakat:
+  $$
+    \left\{
+    \begin{array}{l}
+      \displaystyle\pdv{P'}{y} = x^2\,e^{2y}\,\left[
+        2(y^3 + y) + 3y^2 + 1
+        \right]
+      \\[.33em]
+      \displaystyle\pdv{Q'}{x} = x^2\,e^{2y}\,(2y^3+3y^2+2y+1)
+    \end{array}
+    \right.
+    \qquad \Rightarrow \qquad
+    \pdv{P'}{y} = \pdv{Q'}{x}
+    \text.
+  $$
+  Most már integrálhatjuk $P'$-t $x$ szerint, $Q'$-t pedig $y$ szerint:
+  \begin{align*}
+    F(x;y) & = \int P' \dd x
+    = \int e^{2y} (y^3 + y) x^2 \dd x
+    = \frac{e^{2y} \, x^3}{3} \left( y^3 + y \right) + C_y(y)
+    \text,
+    \\
+    F(x;y) & = \int Q' \dd y
+    = \frac{x^3}{3} \int e^{2y} (2y^3 + 3y^2 + 2y + 1) \dd y
+    = \frac{e^{2y} \, x^3}{3} \left( y^3 + y \right) + C_x(x)
+    \text.
+  \end{align*}
+  Ahol $C_y(y)$ és $C_x(x)$ rendre $y$-tól és $x$-tól függő függvények,
+  jelen esetben nullának válaszhatóak. A megoldás tehát:
+  $$
+    \frac{e^{2y} \, x^3}{3} \left( y^3 + y \right) = C
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Bernoulli-féle differenciálegyenlet]
+  Az olyan egyenleteket, melyek
+  $$
+    y'(x) + p(x)y(x) = q(x)y^n(x)
+  $$
+  alakban írhatóak fel, és $p; q : I \subset \Reals \rightarrow \Reals$
+  folytonos függvények, valamint $n \not\in \left\{0; 1\right\}$, Bernoulli-féle
+  differenciálegyenletnek nevezzük.
+\end{definition}
+
+\begin{blueBox}[\underline{Bernoulli-féle differenciálegyenlet megoldása}]
+  Az ilyen típusú differenciálegyenletek nem lineárisak, de az alábbi
+  helyettesítéssel lineárissá tehetőek:
+  $$
+    z = y^{1 - n}
+    \quad\Rightarrow\quad
+    z' = (1 - n)y^{-n}y'
+    \quad\Rightarrow\quad
+    y' \, y^{-n} = \frac{y^n}{1 - n}
+    \text.
+  $$
+  A helyettesítés után az egyenlet:
+  $$
+    y' \, y^{-n} + p(x)y^{1 - n} = \frac{q(x)}{1 - n}
+    \frac{z'}{1 - n} + p(x)z = q(x)
+    \text,
+  $$
+  amely már lineáris, megoldható a korábban tanult módszerekkel.
+\end{blueBox}
+
+\begin{example}[Oldjuk meg az alábbi Bernoulli-féle differenciálegyenletet:][nobreak]
+  $$
+    y' + \frac{2}{x} y = x^2 y^3
+    \text,\quad
+    x > 0
+  $$
+
+  \boxrule
+
+  Jelen esetben $n = 3$, éljünk a $z = y^{1 - 3} = y^{-2}$ helyettesítéssel,
+  ekkor
+  $$
+    z' = -2y^{-3}y'
+    \quad\Rightarrow\quad
+    y'y^3 = -\frac{z'}{2}
+  $$
+  Helyettesítsük be az egyenletbe:
+  $$
+    y'y^{-3} + \frac{2}{x} y^{-2} = x^2
+    \quad\Rightarrow\quad
+    -\frac{z'}{2} + \frac{2}{x} z = x^2
+    \quad\Rightarrow\quad
+    z' - \frac{4}{x} z = -2x^2
+  $$
+  Homogén megoldás z-re:
+  $$
+    z_h = C e^{\int \sfrac{4}{x} \dd x} = C x^4
+    \text.
+  $$
+  Partikuláris megoldás $z$-re:
+  $$
+    z_p
+    = x^4 \int \frac{-2x^2}{x^4} \dd x
+    = x^4 \int -2x^{-2} \dd x
+    = x^4 \left(2x^{-1} + \underbrace{K}_{=0}\right)
+    = 2x^3
+    \text.
+  $$
+  Általános megoldás:
+  \vspace{-1em}
+  $$
+    z = z_h + z_p
+    = C x^4 + 2x^3
+    \quad\Rightarrow\quad
+    y = z^{-\sfrac{1}{2}}
+    = \left(C x^4 + 2x^3\right)^{-\sfrac{1}{2}}
+    \text.
+  $$
+\end{example}
+
+\begin{definition}[Ricatti-féle differenciálegyenletek]
+  A Ricatti-típusú diffegyenletek elsőrendű, másodfokú, nemlineáris egyenletek,
+  amelyek az alábbi alakban írhatóak fel:
+  $$
+    y'(x) + p(x)y(x) = q(x)y^2(x) + h(x)
+    \text.
+  $$
+\end{definition}
+
+\begin{note}
+  Ha $q(x) = 0$, akkor a Ricatti-egyenlet lineáris.
+
+  Ha $h(x) = 0$, akkor Bernoulli-típusú egyenletet kapunk.
+\end{note}
+
+\begin{blueBox}[\underline{Ricatti-féle differenciálegyenlet megoldása}][nobreak]
+  Egy Ricatti-egyenlet általában nem oldható meg integrálással. A standard
+  módszer akkor működik közvetlenül, ha ismerjük az egyenlet $y_p$ partikuláris
+  megoldását.
+
+  \underline{\textbf{Bernoulli-típusra redukálás, majd linearizálás}}
+
+  Alkalmazzuk az alábbi eltolást:
+  $$
+    y = y_p + z
+    \text.
+  $$
+  Ekkor, felhasználva hogy
+  $$
+    y_p' + p y_p = q y_p^2 + h
+    \text,
+  $$
+  az egyenlet $z$-re:
+  $$
+    z' + p z = 2q y_p z + q z^2
+    \quad\Leftrightarrow\quad
+    z' = (2qy_p - p) z + q z^2
+    \text.
+  $$
+  Az egyenlet már Bernoulli-típusú, használhatjuk a korábban tanult
+  helyettesítést:
+  $$
+    z = \frac{1}{u}
+    \quad\Rightarrow\quad
+    z' = -\frac{u'}{u^2}
+  $$
+  Behelyettesítve:
+  $$
+    -\frac{u'}{u^2} = (2qy_p - p)\frac{1}{u} + q\frac{1}{u^2}
+    \quad\Rightarrow\quad
+    -u' = (2qy_p - p)u + q
+    \text.
+  $$
+  Az egyenlet már lineáris, megoldható a korábban tanult módszerekkel:
+  $$
+    u' + \alpha\,u = \beta,
+    \qquad
+    \text{, ahol}
+    \begin{cases}
+      \;\;\alpha := 2q\,y_p - p,
+      \\
+      \;\;\beta := -q
+    \end{cases}
+  $$
+
+  \underline{\textbf{Egylépéses linearizálás}}
+
+  Alkalmazzuk az alábbi helyettesítést:
+  $$
+    y = \frac{1}{u} + y_p
+    \quad\Rightarrow\quad
+    y' = -\frac{u'}{u^2} + y_p'
+    \text.
+  $$
+  Ezt visszahelyettesítve ugyanarra az alakra jutnánk, mint az előző módszer
+  során.
+\end{blueBox}
+
+\begin{example}[Oldjuk meg az alábbi Ricatti-féle differenciálegyenletet:][nobreak]
+  $$
+    y' + e^x \, y = e^{2x} \, y^2 - e^{-x}
+    \text,\qquad
+    y_p = e^{-x}
+  $$
+
+  \boxrule
+
+  \underline{\textbf{Bernoulli-típusra redukálás, majd linearizálás}}
+
+  Eltolás a partikuláris megoldással:
+  $$
+    y = y_p + z = e^{-x} + z,
+    \qquad
+    y' = -e^{-x} + z'
+    \text.
+  $$
+  Behelyettesítve az egyenletbe:
+  $$
+    -e^{-x} + z' + e^x(e^{-x} + z) = e^{2x}(e^{-x} + z)^2 - e^{-x}
+    \text.
+  $$
+  Az egyszerűsítés után:
+  $$
+    z' = e^x z + e^{2x} z^2
+    \text.
+  $$
+  Most linearizáljuk az egyenletet $u = 1 / z$ helyettesítéssel:
+  $$
+    \left(\frac1z\right)' = \frac{e^x}{u} + \frac{e^{2x}}{u^2}
+    \quad\Rightarrow\quad
+    -\frac{u'}{u^2} = \frac{e^x}{u} + \frac{e^{2x}}{u^2}
+    \quad\Rightarrow\quad
+    u' + e^x u = - e^{2x}
+    \text.
+  $$
+  A linearizált egyenlet homogén megoldása:
+  $$
+    u_p(x)
+    = C e^{-\int e^x \dd x}
+    = C \underbrace{e^{-e^x}}_{U(x)}
+    \text.
+  $$
+  Az általános megoldás az eddigiekhez képest egy más módszerrel is megkapható.
+  Osz\-szuk el az egyenlet mindkét oldalát $U(x)$-szel:
+  $$
+    e^{e^x} u' + e^x e^{e^x} u = -e^{2x} e^{e^x}
+    \text.
+  $$
+  Az egyenlet bal oldalán $U(x) \cdot u'(x)$ szorzatfüggvény deriváltja
+  található, vagyis:
+  $$
+    \left(e^{e^x} u\right)' = -e^{2x} e^{e^x}
+    \quad\Rightarrow\quad
+    e^{e^x} u
+    = -\int e^{2x} e^{e^x} \dd x
+    = -\int e^{e^x + 2x} \dd x
+  $$
+  Éljünk a $t = e^{e^x}$ helyettesítéssel, ekkor $x = \ln \ln t$, $e^x = \ln t$,
+  $\dd t = e^{e^x} \cdot e^x \dd x = e^{e^x + 1}$.
+  $$
+    e^{e^x} u
+    = -\int e^{2x} e^{e^x} \frac{\dd t}{e^{e^x + 1}}
+    = -\int e^x \dd t
+    = -\int \ln t \dd t
+    = -t \ln t + t
+    = -e^{e^x} e^x + e^{e^x} + C
+  $$
+  Az általános megoldás $u$-ra:
+  $$
+    u = e^{-e^x} \cdot \left[e^{e^x}(1 - e^x) + C\right]
+    = 1 - e^x + C e^{-e^x}
+    \text.
+  $$
+  Visszahelyettesítve $z$-re, majd $y$-ra:
+  $$
+    z
+    = \frac{1}{u} = \frac{1}{1 - e^x + C e^{-e^x}}
+    \quad\Rightarrow\quad
+    y = e^{-x} + z
+    = e^{-x} + \frac{1}{1 - e^x + C e^{-e^x}}
+    \text.
+  $$
+\end{example}
+
 \clearpage
 \subsection{Feladatok}
 
 \begin{enumerate}
-  \item Alma
-\end{enumerate}
+  \item Egy soros RL-körre konstans $u_0$ feszültséget kapcsolunk. Adja meg
+        az áram időfüggvényét!
 
-\clearpage
-\subsection{Megoldások}
-\begin{enumerate}
-  \item Alma
+        \hfill\begin{minipage}{.25\textwidth}
+          \centering
+          \begin{tikzpicture}[european resistors]
+            \draw
+            % (1.5,0) to[short,o-]
+            (0,0)
+            to (0,1.5)
+            to[R=$R$] (2,1.5)
+            to[L=$L$] (4,1.5)
+            to (4,0)
+            % to[short,-o] (2.5,0)
+            to[battery2] (0,0)
+            -- cycle
+            ;
+          \end{tikzpicture}
+        \end{minipage}\begin{minipage}{.25\textwidth}
+          \begin{align*}
+            u_R & = R \cdot i
+            \\
+            u_L & = L \cdot \odv{i}{t}
+          \end{align*}
+        \end{minipage}\hfill\null
+
+        % \item Határozza meg, hogy milyen alakot vesz fel saját súlyának hatására a $C$
+        %       és $D$ végein felfüggesztett, homogén, hajlékony lánc!
+
+  \item Oldja meg az alábbi egzakt, illetve egyakttá tehető
+        differenciálegyenleteket!
+        \begin{enumerate}
+          \item $\displaystyle
+                  (2x + 2 \sin y) \dd x
+                  + (2x \cos y - \sin y) \dd y
+                  = 0
+                $,
+                \vspace{2mm}
+
+          \item $\displaystyle
+                  (1 - xy) \dd x
+                  + (xy - x^2) \dd y
+                  = 0
+                $,
+
+          \item $\displaystyle
+                  \left( \ln (y^2 + 1) \right) \dd x
+                  + \frac{2y(x - 1)}{y^2 + 1} \dd y
+                  = 0
+                $,
+
+          \item $\displaystyle
+                  \left( e^{-y} \right) \dd x
+                  + \left( x \, e^{-y} - 2y \, e^{-2y} \right) \dd y
+                  = 0
+                $.
+        \end{enumerate}
+
+  \item Oldja meg az alábbi Bernoulli-féle differenciálegyenletet!
+        $$
+          y' - \frac{3y}{x} = x^4 y^{1/3}
+        $$
+
+  \item Oldja meg az alábbi Ricatti féle differenciálegyenletet!
+        $$
+          y' = xy^2 - (4 - 2x^2)y + x^3 + 4x + 1
+        $$
 \end{enumerate}
 
 \end{document}

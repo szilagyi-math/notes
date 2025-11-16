@@ -85,7 +85,10 @@ practice_material:
       description:
         Elsőrendű lineáris és másodrendű hiányos differenciálegyenletek
       week: 10
-    - description: Egzakt és speciális differenciálegyenletek
+    - source: 11.tex
+      target: G3-gyak-11
+      display_name: G3 11. gyakorlat
+      description: Egzakt és speciális differenciálegyenletek
       week: 11
     - description: Állandó együtthatós differenciálegyenletek
       week: 12
