@@ -90,7 +90,10 @@ practice_material:
       display_name: G3 11. gyakorlat
       description: Egzakt és speciális differenciálegyenletek
       week: 11
-    - description: Állandó együtthatós differenciálegyenletek
+    - source: 12.tex
+      target: G3-gyak-12
+      display_name: G3 12. gyakorlat
+      description: Állandó együtthatós differenciálegyenletek
       week: 12
     - description: Differenciálegyenlet-rendszerek I
       week: 13
