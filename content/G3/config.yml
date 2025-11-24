@@ -89,6 +89,7 @@ practice_material:
       target: G3-gyak-11
       display_name: G3 11. gyakorlat
       description: Egzakt és speciális differenciálegyenletek
+      video_link: https://youtu.be/50bbfg5gH9w
       week: 11
     - source: 12.tex
       target: G3-gyak-12
