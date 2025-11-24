@@ -17,6 +17,7 @@ hide_edubase: true
 practice_material:
   dir: practice
   latex_solutions_dir: practice-latex-solution
+  pdf_solutions_dir: practice-pdf-solution
   files:
     - source: 01.tex
       target: G3-gyak-01
@@ -76,11 +77,13 @@ practice_material:
       week: 8
     - source: 09.tex
       target: G3-gyak-09
+      pdf_solution_source: G3-gyak-09-megoldas.pdf
       display_name: G3 9. gyakorlat
       description: Elsőrendű és szétválasztható differenciálegyenletek
       week: 9
     - source: 10.tex
       target: G3-gyak-10
+      pdf_solution_source: G3-gyak-10-megoldas.pdf
       display_name: G3 10. gyakorlat
       description:
         Elsőrendű lineáris és másodrendű hiányos differenciálegyenletek
