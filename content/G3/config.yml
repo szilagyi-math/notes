@@ -100,7 +100,10 @@ practice_material:
       display_name: G3 12. gyakorlat
       description: Állandó együtthatós differenciálegyenletek
       week: 12
-    - description: Differenciálegyenlet-rendszerek I
+    - source: 13.tex
+      target: G3-gyak-13
+      display_name: G3 13. gyakorlat
+      description: Differenciálegyenlet-rendszerek I
       week: 13
     - description: Differenciálegyenlet-rendszerek II
       week: 14

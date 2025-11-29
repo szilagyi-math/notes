@@ -1,28 +1,229 @@
 \documentclass{szb-practice}
 
-\title{TODO}
+\title{Differenciálegyenlet-rendszerek I}
 \area{Differenciálegyenletek}
 \subject{Matematika G3}
 \subjectCode{BMETE94BG03}
 \date{Utoljára frissítve: \today}
 \docno{13}
 
+\usepackage{siunitx}
+\sisetup{locale = DE}
+
 \begin{document}
 \maketitle
 
 \subsection{Elméleti áttekintő}
 
+\begin{blueBox}[\underline{Euler-féle differenciálegyenletek}]%
+  \textbf{\underline{Áltanos alak}}:
+  $$
+    a_n y^{(n)}
+    + \frac{a_{n-1}}{x} y^{(n-1)}
+    + \frac{a_{n-2}}{x^2} y^{(n-2)}
+    + \dots
+    + \frac{a_1}{x^{n-1}} y'
+    + \frac{a_0}{x^n} y
+    = f(x)
+  $$
+  A differenciálegyenlet $x = 0$-ban nincs értelmezve, $x > 0$, vagy $x < 0$
+  intervallumon lehet megoldani.
+
+  \textbf{\underline{Megoldási módszer}}: $x = e^t$ helyettesítés, majd konstans együtthatós
+  differenciálegyenlet megoldása:
+  $$
+    x = e^t
+    \quad \Rightarrow \quad
+    t = \ln x
+    \quad \Rightarrow \quad
+    y' = \frac{\dot y}{e^t}
+    \text, \quad
+    y'' = \frac{\ddot y - \dot y}{e^{2t}}
+    \text, \quad
+    \dots
+    \text.
+  $$
+\end{blueBox}
+
+\begin{blueBox}[\underline{Másodrendű, változó együtthatós, lineáros differenciálegyenletek}]%
+  \textbf{\underline{Áltanos alak}}:
+  $$
+    a_2(x) y'' + a_1(x) y' + a_0(x) y = 0
+  $$
+
+  \textbf{\underline{Megoldási módszer}}: Ha ismerjük az egyik megoldást ($y_1$),
+  akkor a másik ($y_2$) megolddás konstans variációs módszerrel határozható meg:
+  $$
+    y_2(x) = v(x) y_1(x)
+    \text.
+  $$
+
+  $y_1$ és $y_2$ lineárisan függetlenségét a Wronski-determináns
+  segítségével ellenőrizni kell.
+\end{blueBox}
+
+\begin{blueBox}[\underline{Állandó együtthetós, lineáris, homogén, elsőrendű DE-rendszerek}]%
+  \textbf{\underline{Áltanos alak}}:
+  $$
+    \dot{\rvec x} = \rmat A \, \rvec x
+    \text,
+  $$
+  ahol $\rmat A$ egy kvadratikus mátrix, $\rvec x$ pedig az ismeretlenek
+  vektora, $t$ pedig a független változó (általában idő).
+
+  \textbf{\underline{Megoldási módszer}}:
+  \begin{enumerate}
+    \item Határozzuk meg a mátrix sajátértékeit az
+          $\det(\rmat A - \lambda \imat) = 0$ karakterisztikus egyenlet
+          segítségével.
+
+    \item Határozzuk meg a sajátértékekhez tartozó sajátvektorokat a
+          $(\rmat A - \lambda_i \imat) \rvec v_i = \rvec 0$ egyenlet
+          segítségével.
+
+    \item Az alaphalmaz ekkor:
+          $$
+            \rmat X(t) = \begin{bmatrix}
+              \rvec v_1 e^{\lambda_1 t}
+               & \rvec v_2 e^{\lambda_2 t}
+               & \dots
+               & \rvec v_n e^{\lambda_n t}
+            \end{bmatrix}
+            \text.
+          $$
+
+    \item Az általános megoldás:
+          $$
+            \rvec x(t)
+            = \rmat X(t) \, \rvec C
+            = C_1 \, \rvec v_1 e^{\lambda_1 t}
+            + C_2 \, \rvec v_2 e^{\lambda_2 t}
+            + \dots
+            + C_n \, \rvec v_n e^{\lambda_n t}
+            \text.
+          $$
+  \end{enumerate}
+\end{blueBox}
+
 \clearpage
 \subsection{Feladatok}
 
 \begin{enumerate}
-  \item Alma
-\end{enumerate}
+  \item Egy $\SI{6}{\meter}$ hosszú lánc súrlódásmentesen csúszik az asztalon.
+        Ha a csúszás akkor következik be, amikor $\SI{1}{\meter}$-nyi lánc
+        lóg lefelé, akkor mennyi idő múlva esik le a lánc?
 
-\clearpage
-\subsection{Megoldások}
-\begin{enumerate}
-  \item Alma
+  \item Írja fel az alábbi rezgőrendszer mozgásegyenletét, ha a rugóerő az
+        $F_r = k x$ Hooke-törvény szerint, a csillapító erő pedig
+        $F_c = b v$ alakú, ahol $k$ a rugóállandó, $b$ a csillapítási
+        tényező, $x$ a kitérés, $v$ a sebesség. A test tömege $m$.
+
+        \begin{center}
+          \tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post
+              length=0.3cm,segment length=6}]
+
+          \tikzstyle{damper}=[thick,decoration={markings,
+              mark connection node=dmp,
+              mark=at position 0.5 with
+                {
+                  \node (dmp) [thick,inner sep=0pt,transform shape,rotate=-90,minimum
+                    width=15pt,minimum height=3pt,draw=none] {};
+                  \draw [thick] ($(dmp.north east)+(2pt,0)$) -- (dmp.south east) -- (dmp.south
+                  west) -- ($(dmp.north west)+(2pt,0)$);
+                  \draw [thick] ($(dmp.north)+(0,-5pt)$) -- ($(dmp.north)+(0,5pt)$);
+                }
+            }, decorate]
+
+          \begin{tikzpicture}[
+              thick,
+            ]
+            % mass
+            \draw[fill=gray!10, rounded corners] (1.75,0)
+            rectangle ++(2.5,1.75)
+            node[midway] {$m$}
+            ;
+
+            % wall
+            \draw[ultra thick] (0,2.75) -- (0,0) -- (5,0);
+            \fill[pattern=north east lines]
+            (0,2.75) -- (0,0) -- (5,0)
+            -- (5,-0.15) -- ++(-5.15,0) -- ++(0,2.9) -- cycle;
+
+            % spring
+            \draw[spring] (0,1.25) -- (1.75,1.25)
+            node[midway, above left] {$k$}
+            ;
+
+            % damper
+            \draw[damper] (0,0.5) -- (1.75,0.5)
+            node[midway, above left] {$b$}
+            ;
+
+            % null line
+            \draw[dashed] (1.75,1) -- ++(0,1.75);
+            \draw[->] (1.75,2.525) -- ++(1.5,0) node[above left] {$x$};
+          \end{tikzpicture}
+        \end{center}
+
+  \item Adja meg az alábbi Euler-féle differenciálegyenlet megoldását!
+        $$
+          y'' - \frac{3}{x} \, y' + 20 \frac{y}{x^2} = 0
+          \quad
+          y(1) = 2
+          \quad
+          y'(1) = 0
+        $$
+
+  \item Az $(1 + x^2) y'' + xy' - y = 0$ differenciálegyenleteit
+        $y_1(x) = x$ megoldás ismeri. Adja meg az általános megoldást!
+
+  \item Az $xy'' - (1 + x) y' + y = 0$ differenciálegyenleteit
+        $y_1(x) = e^x$ megoldás ismeri. Adja meg az általános megoldást!
+
+  \item Oldja meg az alábbi differenciálegyenlet-rendszert!
+        $$
+          \left\{
+          \begin{array}{l}
+            \dot x = 2x + y \\
+            \dot y = 3x + 4y
+          \end{array}
+          \right.
+          \qquad
+          \begin{array}{l}
+            x(0) = 0 \\
+            y(0) = 1
+          \end{array}
+        $$
+
+  \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
+        $$
+          \left\{
+          \begin{array}{l}
+            \dot x = 2x + y \\
+            \dot y = y      \\
+            \dot z = 3z
+          \end{array}
+          \right.
+        $$
+
+  \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
+        $$
+          \left\{
+          \begin{array}{l}
+            \dot x = -x - 5y \\
+            \dot y = x + y
+          \end{array}
+          \right.
+        $$
+
+  \item Adja meg az alábbi differenciálegyenlet-rendszer általános megoldását!
+        $$
+          \dot{\rvec x} = \begin{bmatrix}
+            2 & 2 & 1 \\
+            1 & 3 & 1 \\
+            1 & 2 & 2 \\
+          \end{bmatrix} \rvec x
+        $$
 \end{enumerate}
 
 \end{document}
