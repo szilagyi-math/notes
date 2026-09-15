@@ -1,0 +1,313 @@
+\documentclass{szb-solution}
+
+\title{Elsőrendű és szétválasztható DE}
+\area{Differenciálegyenletek}
+\subject{Matematika G3}
+\subjectCode{BMETE94BG03}
+\date{Utoljára frissítve: \today}
+\docno{9}
+
+\usepackage{siunitx}
+\sisetup{locale = DE, per-mode = symbol}
+
+\usetikzlibrary{snakes}
+
+\begin{document}
+\maketitle
+
+\clearpage
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 333333333333333333333333333333333333333333333333333333333333333333333333333333
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Szukcesszív approximáció I}
+
+Számítsa ki az $y' = y$ differenciálegyenlet szukcesszív approximációjával
+kapott első négy közelítő függvényt, ha a kezdeti feltétel $y(0) = 1$!
+
+\begin{align*}
+  y_0(x)        & = 1 \text,
+  \\
+  y_1(x)        & = y_0 + \int_{x_0}^x f(t; y_0) \dd t
+  = 1 + \int_0^x 0 \dd t = 1 \text,
+  \\
+  y_2(x)        & = y_0 + \int_{x_0}^x f(t; y_1) \dd t
+  = 1 + \int_0^x 1 \dd t = 1 + x \text,
+  \\
+  y_3(x)        & = y_0 + \int_{x_0}^x f(t; y_2) \dd t
+  = 1 + \int_0^x (1 + t) \dd t = 1 + x + \frac{x^2}{2} \text,
+  \\
+  y_4(x)        & = y_0 + \int_{x_0}^x f(t; y_3) \dd t
+  = 1 + \int_0^x \left( 1 + t + \frac{t^2}{2} \right) \dd t
+  = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} \text,
+  \\
+                & \vdots
+  \\
+  y_{\infty}(x) & = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \cdots
+  + \frac{x^k}{k!} + \cdots
+  = \sum_{k=0}^{\infty} \frac{x^k}{k!} = e^x \text.
+\end{align*}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 444444444444444444444444444444444444444444444444444444444444444444444444444444
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Szukcesszív approximáció II}
+
+Számítsa ki az $y' = xy$ differenciálegyenlet szukcesszív approximációjával
+kapott első négy közelítő függvényt, ha a kezdeti feltétel $y(0) = 1$!
+
+\begin{align*}
+  y_0(x)        & = 1 \text,
+  \\
+  y_1(x)        & = y_0 + \int_{x_0}^x f(t; y_0) \dd t
+  = 1 + \int_0^x t \cdot 1 \dd t = 1 + \frac{x^2}{2} \text,
+  \\
+  y_2(x)        & = y_0 + \int_{x_0}^x f(t; y_1) \dd t
+  = 1 + \int_0^x t \left( 1 + \frac{t^2}{2} \right) \dd t
+  = 1 + \frac{x^2}{2} + \frac{x^4}{8} \text,
+  \\
+  y_3(x)        & = y_0 + \int_{x_0}^x f(t; y_2) \dd t
+  = 1 + \int_0^x t \left( 1 + \frac{t^2}{2} + \frac{t^4}{8} \right) \dd t
+  = 1 + \frac{x^2}{2} + \frac{x^4}{8} + \frac{x^6}{48} \text,
+  \\
+                & \vdots
+  \\
+  y_{\infty}(x) & = 1 + \frac{x^2}{2} + \frac{x^4}{8} + \frac{x^6}{48} + \cdots
+  + \frac{x^{2k}}{2^k k!} + \cdots
+  = \sum_{k=0}^{\infty} \frac{x^{2k}}{2^k k!} = e^{x^2/2} \text.
+\end{align*}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 666666666666666666666666666666666666666666666666666666666666666666666666666666
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Szétválasztható differenciálegyenletek}
+
+\begin{enumerate}[a)]
+  \item $(2x + 1) y' - 3y = 0$
+        $$
+          \frac{\dd y}{y} = \frac{3 \dd x}{2x + 1}
+          \quad \Rightarrow \quad
+          \ln y = \frac{3}{2} \ln(2x + 1) + K
+          \quad \Rightarrow \quad
+          y = C (2x + 1)^{\sfrac{3}{2}}
+        $$
+
+
+  \item $\displaystyle\sqrt{1 + x^2} \, y' - \sqrt{1 - y^2} = 0$
+        $$
+          \frac{\dd y}{\sqrt{1 - y^2}} = \frac{\dd x}{\sqrt{1 + x^2}}
+          \quad \Rightarrow \quad
+          \arcsin y = \arcsinh x + K
+          \quad \Rightarrow \quad
+          y = \sin(\arcsinh x + K)
+        $$
+
+  \item $y' = \frac{1 - x - y}{2x - 2y - 3}$
+
+        Írjuk át úgy az egyenletet, hogy $2x - 2y -3$ szerepeljen a nevezőben
+        is:
+        $$
+          \frac{1 - x - y}{2x - 2y - 3}
+          = -\frac12 \frac{2x -2y - 3 + 1}{2x - 2y - 3}
+        $$
+
+        Éljünk az $u = 2x - 2y - 3$ helyettesítéssel, ekkor:
+        $$
+          y' =
+        $$
+
+  \item $xy' = y(1 + \ln x - \ln y)$
+  \item $2xyy' = x^2 + y^2$
+
+  \item $y' = \frac{3x^2 + 4x + 2}{2y - 2}$, \quad $y(0) = -1$
+
+        A differenciálegyenlet szétválaszható, így az alábbi megoldáshoz jutunk:
+        $$
+          (2y - 2) \dd y = (3x^2 + 4x + 2) \dd x
+          \quad \Rightarrow \quad
+          y^2 - 2y = x^3 + 2x^2 + 2x + C
+          \text.
+        $$
+        A kezdeti feltétel alapján $y(0) = -1$, amiből kiszámítható a $C$ értéke:
+        $$
+          (-1)^2 - 2 \cdot (-1) = 0 + 0 + 0 + C
+          \quad \Rightarrow \quad
+          C = 3
+          \text.
+        $$
+        Végül az implicit megoldás:
+        $$
+          y^2 - 2y = x^3 + 2x^2 + 2x + 3
+          \text.
+        $$
+
+  \item $xy' = x \cdot e^{\sfrac{y}{x}} + y$, \quad $y(1) = 0$
+
+        Éljünk az $u = y / x$ helyettesítéssel, ekkor
+        $$
+          y = x \, u
+          \quad \text{és} \quad
+          y' = u + x \, u'
+          \text.
+        $$
+        Visszahelyettesítve az eredeti egyenletbe:
+        $$
+          x (u + x \, u') = x \, e^u + x \, u
+          \quad \Rightarrow \quad
+          x \, u' = e^u
+        $$
+        Az egyenlet szétválaszható, így az alábbi megoldáshoz jutunk:
+        $$
+          \frac{\dd u}{e^u} = \frac{\dd x}{x}
+          \quad \Rightarrow \quad
+          -e^{-u} = \ln x + C
+          \text.
+        $$
+        A kezdeti feltétel alapján $y(1) = 0$, tehát $u(1) = 0$, amiből
+        kiszámítható a $C$ értéke:
+        $$
+          -e^{0} = \ln 1 + C
+          \quad \Rightarrow \quad
+          C = -1
+          \text.
+        $$
+        Végül visszahelyettesítve $u$-t:
+        $$
+          -e^{-\frac{y}{x}} = \ln x - 1
+          \quad \Rightarrow \quad
+          y = -x \ln(1 - \ln x)
+          \text.
+        $$
+\end{enumerate}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 777777777777777777777777777777777777777777777777777777777777777777777777777777
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Görbe egyenlete}
+
+Adja meg azon görbét, amelynek bármely pontjában az érintő a
+koordináta-ten\-ge\-lyek közé eső részét az adott pontban felezi!
+
+Ilyen görbék esetén az $(x; y)$ pontban felírt érintő egyenes az $x$-tengelyt
+a $(2x; 0)$ pontban, míg az $y$-tengelyt a $(0; 2y)$ pontban metszi. Az
+egyenes meredeksége tehát:
+$$
+  m = \frac{2y - 0}{0 - 2x} = -\frac{y}{x}
+  \text.
+$$
+Ez pont megegyezik $y'$-vel, így a következő differenciálegyenletet kapjuk:
+$$
+  y' = -\frac{y}{x}
+  \text.
+$$
+A differenciálegyenlet szétválaszható, így az alábbi megoldáshoz jutunk:
+$$
+  \frac{\dd y}{y} = -\frac{\dd x}{x}
+  \quad \Rightarrow \quad
+  \ln |y| = -\ln |x| + K
+  \quad \Rightarrow \quad
+  y = \pm C \cdot \frac{1}{x}
+  \text.
+$$
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 888888888888888888888888888888888888888888888888888888888888888888888888888888
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Lehűlő kenyér}
+
+Newton-törvénye értelmében ismert, hogy egy test hőmérsékletének változása a
+környezet hőmérsékletével való különbséggel arányos. Egy kenyeret a $t = 0$
+időpillanatban kiveszünk a $\SI{200}{\degreeCelsius}$-os sütőből, majd hűlni
+hagyjuk. 20 perc után $\SI{60}{\degreeCelsius}$-ra hűl le. Mennyi idő múlva éri
+el a kenyér hőmérséklete a $\SI{30}{\degreeCelsius}$-ot, ha a környezet
+hőmérséklete $\SI{20}{\degreeCelsius}$?
+
+Legyen a hőmérséklet $x(t)$, ekkor a Newton-törvény alapján:
+$$
+  \dot x = \alpha (x - x_k)
+  \text,
+$$
+ahol $x_k = \SI{20}{\degreeCelsius}$ a környezet hőmérséklete, $\alpha < 0$
+pedig az arányossági tényező. A differenciálegyenlet szétválaszható, így az alábbi
+megoldáshoz jutunk:
+$$
+  \frac{\dd x}{x - x_k} = \alpha \dd t
+  \quad \Rightarrow \quad
+  x(t) = x_k + C \cdot e^{\alpha t}
+  \text.
+$$
+Tudjuk, hogy $x(0) = 200$, tehát $C = 180$. Ezenkívül $x(20) = 60$, amiből
+kiszámítható az $\alpha$ értéke:
+$$
+  60 = 20 + 180 \cdot e^{20\alpha}
+  \quad \Rightarrow \quad
+  \alpha = \frac{1}{20} \ln \frac{2}{9}
+  \text.
+$$
+Végül megkeressük azt az időpontot, amikor a hőmérséklet eléri a
+$\SI{30}{\degreeCelsius}$-ot:
+$$
+  30 = 20 + 180 \cdot e^{\frac{1}{20} \ln \frac{2}{9} \; t}
+  \quad \Rightarrow \quad
+  t = 20 \cdot \frac{\ln \frac{30 - 20}{180}}{\ln \frac{2}{9}} \approx \SI{38.43}{perc}
+  \text.
+$$
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 999999999999999999999999999999999999999999999999999999999999999999999999999999
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Keveredő sóoldat}
+
+$\SI{100}{\kilogram}$ $\SI{10}{\percent}$-os sóoldatot tartalmazó edénybe
+másodpercenként $\SI{10}{\liter}$ tiszta víz áramlik be. Mikor lesz a sóoldat
+koncentrációja $\SI{5}{\percent}$-os, ha a keveredés azonnal megtörténik, és
+ugyanilyen sebességgel folyik ki az edényből a keverék?
+
+A be, illetve kiáramló térfogatáram $\dot V = \SI{10}{\liter\per\second}$, a
+beáramló koncentráció $p_\text{be} = 0$, a kezdeti koncentráció pedig
+$p_0 = \SI{0.1}{\kilogram\per\liter}$. A kívánt koncentráció
+$p_k = \SI{0.05}{\kilogram\per\liter}$, vagyis $x = \SI{5}{\kilogram}$.
+A be és kiáramló anyagmennyiség:
+$$
+  x_\text{be} = \dot{V} \cdot p_\text{be} = 0
+  \quad \text{és} \quad
+  x_\text{ki}(t)
+  = \dot{V} \cdot p(t)
+  = \dot{V} \cdot \frac{x(t)}{V_0}
+  = 0,1 \cdot x(t)
+$$
+Az anyagmérleg alapján a következő differenciálegyenletet kapjuk:
+$$
+  \dot{x}(t) = x_\text{be} - x_\text{ki}(t)
+  \quad \Rightarrow \quad
+  \dot{x}(t) = -0,1 \cdot x(t)
+  \text.
+$$
+A differenciálegyenlet szétválaszható, így az alábbi megoldáshoz jutunk:
+$$
+  \frac{\dd x}{x} = -0,1 \dd t
+  \quad \Rightarrow \quad
+  \ln x = -0,1 t + K
+  \quad \Rightarrow \quad
+  x(t) = C \cdot e^{-0,1 t}
+  \text.
+$$
+A kezdeti feltétel alapján $x(0) = 10$, tehát $C = 10$. Végül megkeressük azt az
+időpontot, amikor $x(t) = 5$:
+$$
+  5 = 10 \cdot e^{-0,1 t}
+  \quad \Rightarrow \quad
+  t = -10 \cdot \ln \frac{5}{10} \approx \SI{6.93}{\second}
+  \text.
+$$
+
+\end{document}
