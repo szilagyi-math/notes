@@ -18,8 +18,6 @@ interface NotesLocalTocProps {
 }
 
 const NotesLocalToc = ({ items }: NotesLocalTocProps) => {
-  console.log(items);
-
   const setOpen = useSetAtom(rightAsideOpen);
 
   const ids = useMemo(
@@ -28,7 +26,7 @@ const NotesLocalToc = ({ items }: NotesLocalTocProps) => {
     [],
   );
 
-  const isVisible = useMedia('(min-width: 1200px)');
+  const isVisible = useMedia('(min-width: 1200px)', false);
   const activeIndex = useScrollSpy(ids, isVisible);
 
   const [{ top, height }, set] = useState({

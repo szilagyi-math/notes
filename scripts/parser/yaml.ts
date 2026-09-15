@@ -41,20 +41,31 @@ export async function parseConfig(
   for (let i = 0; i < config.practiceMaterial.files.length; i++) {
     const file = config.practiceMaterial.files[i];
 
+    if (file.pdfSolutionSource) {
+      config.practiceMaterial.files[i].pdfSolutionTarget ??=
+        file.pdfSolutionSource;
+    }
+
     if (file.displayName && file.source && file.target) {
       downloads.practice.push({
         displayName: file.displayName,
         fileName: `${file.target}.pdf`,
       });
 
-      if (globalSolutionsMode === 'no-copy') {
+      if (
+        globalSolutionsMode === 'no-copy' ||
+        globalSolutionsMode === 'no-link'
+      ) {
         continue;
       }
 
       const localSolutionsMode: undefined | false | 'no-copy' | 'no-link' =
         file.hideSolution;
 
-      if (localSolutionsMode === 'no-copy') {
+      if (
+        localSolutionsMode === 'no-copy' ||
+        localSolutionsMode === 'no-link'
+      ) {
         continue;
       }
 
@@ -66,8 +77,6 @@ export async function parseConfig(
       // }
 
       if (file.pdfSolutionSource) {
-        config.practiceMaterial.files[i].pdfSolutionTarget ??=
-          file.pdfSolutionSource;
         downloads.practice.push({
           displayName: `${file.displayName} - Megoldások (PDF)`,
           fileName: file.pdfSolutionTarget,

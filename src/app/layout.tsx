@@ -9,7 +9,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang='hu'>
+    <html lang='hu' data-scroll-behavior='smooth'>
       <body>
         <Header />
         <Main>{children}</Main>

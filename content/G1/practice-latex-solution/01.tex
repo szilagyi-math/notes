@@ -1,0 +1,438 @@
+\documentclass{szb-solution}
+
+\area{Analitikus geometria}
+\title{Vektorok}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{1}
+
+\begin{document}
+\maketitle
+
+\subsection{Kollinearitás paraméterekkel}
+
+Legyen $\rvec u$ és $\rvec v$ két tetszőleges vektor. Milyen $\alpha$ és
+$\beta$ paraméterek esetén lesznek kollineárisak, ha az
+$\{\rvec a;\rvec b;\rvec c\}$ vektorrendszer lineárisan független?
+
+\begin{enumerate}[a)]
+  \item
+        $\rvec u=2\rvec a+3\rvec b$ és
+        $\rvec v=4\rvec a+\alpha\rvec b$.
+
+        A kollinearitás feltétele, hogy valamely $\lambda\in\Reals$ esetén
+        $\rvec u=\lambda\rvec v$. A lineáris függetlenség miatt az együtthatók
+        rendre megegyeznek:
+        $$
+          2=4\lambda,
+          \qquad
+          3=\alpha\lambda
+          \quad\Longrightarrow\quad
+          \lambda=\frac12,
+          \qquad
+          \boxed{\alpha=6}
+          \text.
+        $$
+
+  \item
+        $\rvec u=3\rvec a-3\alpha\rvec b+\beta\rvec c$ és
+        $\rvec v=\rvec a-\alpha\rvec b-\rvec c$.
+
+        Ismét $\rvec u=\lambda\rvec v$ alakban hasonlítjuk össze az
+        együtthatókat:
+        $$
+          3=\lambda,
+          \qquad
+          -3\alpha=-\lambda\alpha,
+          \qquad
+          \beta=-\lambda
+          \text.
+        $$
+        Innen $\lambda=3$, a középső egyenlet minden $\alpha$ esetén teljesül,
+        ezért
+        $$
+          \boxed{\alpha\in\Reals,
+          \qquad
+          \beta=-3}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Lineáris függetlenség}
+
+Legyen a $\{\rvec a;\rvec b;\rvec c\}$ vektorrendszer lineárisan független.
+Lineárisan független lesz-e a $\{\rvec r;\rvec s;\rvec t\}$ vektorrendszer?
+
+\begin{enumerate}[a)]
+  \item Ha
+        $$
+          \rvec r=3\rvec a+2\rvec b+\rvec c,
+          \qquad
+          \rvec s=5\rvec a-3\rvec b-2\rvec c,
+          \qquad
+          \rvec t=\nvec,
+        $$
+        akkor a rendszer a nullvektor miatt
+        \textbf{lineárisan összefüggő}.
+
+  \item Ha
+        $$
+          \rvec r=\rvec a+\rvec b+\rvec c,
+          \qquad
+          \rvec s=\rvec b+\rvec c,
+          \qquad
+          \rvec t=\rvec a+\rvec c,
+        $$
+        akkor a
+        $\lambda_1\rvec r+\lambda_2\rvec s+\lambda_3\rvec t=\nvec$
+        egyenletből
+        $$
+          (\lambda_1+\lambda_3)\rvec a
+          +(\lambda_1+\lambda_2)\rvec b
+          +(\lambda_1+\lambda_2+\lambda_3)\rvec c=\nvec
+        $$
+        adódik. Az eredeti rendszer lineáris függetlensége miatt
+        $$
+          \lambda_1+\lambda_3=0,
+          \qquad
+          \lambda_1+\lambda_2=0,
+          \qquad
+          \lambda_1+\lambda_2+\lambda_3=0
+          \text.
+        $$
+        Ennek egyetlen megoldása
+        $\lambda_1=\lambda_2=\lambda_3=0$, tehát a rendszer
+        \textbf{lineárisan független}.
+\end{enumerate}
+
+\subsection{Vektorok végpontjainak kollinearitása}
+
+Legyen $\rvec a$, $\rvec b$ és $\rvec c$ három közös kezdőpontú komplanáris
+vektor, ahol $\rvec a$ és $\rvec b$ nem kollineáris. Bizonyítsuk be, hogy a
+végpontjaik akkor és csak akkor esnek egy egyenesre, ha
+$\rvec c=\alpha\rvec a+\beta\rvec b$ előállításban $\alpha+\beta=1$.
+
+Ha a három végpont egy egyenesen van, akkor valamely $t\in\Reals$ esetén
+$$
+  \rvec c=\rvec a+t(\rvec b-\rvec a)
+  =(1-t)\rvec a+t\rvec b
+  \text.
+$$
+Ezért $\alpha=1-t$, $\beta=t$, vagyis $\alpha+\beta=1$.
+
+Megfordítva, ha $\alpha+\beta=1$, akkor $\alpha=1-\beta$, így
+$$
+  \rvec c=(1-\beta)\rvec a+\beta\rvec b
+  =\rvec a+\beta(\rvec b-\rvec a)
+  \text.
+$$
+Ez éppen az $\rvec a$ és $\rvec b$ végpontján átmenő egyenes paraméteres
+egyenlete, tehát $\rvec c$ végpontja is ezen az egyenesen van.
+
+\subsection{Két vektor által bezárt szög}
+
+Legyen $\rvec a=(7;-1;6)$ és $\rvec b=(2;20;2)$. Ekkor
+$$
+  \rvec a\cdot\rvec b=7\cdot2+(-1)\cdot20+6\cdot2=6,
+$$
+$$
+  |\rvec a|=\sqrt{7^2+(-1)^2+6^2}=\sqrt{86},
+  \qquad
+  |\rvec b|=\sqrt{2^2+20^2+2^2}=\sqrt{408}
+  \text.
+$$
+Ezért
+$$
+  \cos\varphi
+  =\frac{\rvec a\cdot\rvec b}{|\rvec a|\,|\rvec b|}
+  =\frac{6}{\sqrt{86}\sqrt{408}},
+  \qquad
+  \boxed{\varphi\approx88{,}16^\circ}
+  \text.
+$$
+
+\subsection{Merőlegességi feltétel}
+
+A $\rvec b=(6;-2;z)$ vektor akkor merőleges az
+$\rvec a=(2;-3;1)$ vektorra, ha skaláris szorzatuk nulla:
+$$
+  \rvec a\cdot\rvec b
+  =2\cdot6+(-3)(-2)+z
+  =18+z=0
+  \quad\Longrightarrow\quad
+  \boxed{z=-18}
+  \text.
+$$
+
+\subsection{A bezárt szög koszinusza}
+
+A feltételekből
+\begin{align*}
+  (\rvec a+3\rvec b)\cdot(7\rvec a-5\rvec b)=0
+  &\quad\Longrightarrow\quad
+  7|\rvec a|^2+16\rvec a\cdot\rvec b-15|\rvec b|^2=0,
+  \\
+  (\rvec a-4\rvec b)\cdot(7\rvec a-2\rvec b)=0
+  &\quad\Longrightarrow\quad
+  7|\rvec a|^2-30\rvec a\cdot\rvec b+8|\rvec b|^2=0
+  \text.
+\end{align*}
+Tehát
+$$
+  \rvec a\cdot\rvec b
+  =\frac{-7|\rvec a|^2+15|\rvec b|^2}{16}
+  =\frac{7|\rvec a|^2+8|\rvec b|^2}{30}
+  \text,
+$$
+amiből $|\rvec a|^2=|\rvec b|^2$ következik. Ezt visszahelyettesítve
+$\rvec a\cdot\rvec b=|\rvec a|^2/2$, ezért
+$$
+  \boxed{
+    \cos\varphi
+    =\frac{\rvec a\cdot\rvec b}{|\rvec a|\,|\rvec b|}
+    =\frac12
+  }
+  \text.
+$$
+
+\subsection{A téglalap hiányzó csúcsa}
+
+Az ismert csúcsok $A(2;6;0)$, $B(1;2;3)$ és $C(-2;8;z)$. A $B$ csúcsból
+induló oldalirányok:
+$$
+  \overrightarrow{BA}=A-B=(1;4;-3),
+  \qquad
+  \overrightarrow{BC}=C-B=(-3;6;z-3)
+  \text.
+$$
+A téglalap oldalai merőlegesek, ezért
+$$
+  \overrightarrow{BA}\cdot\overrightarrow{BC}
+  =-3+24-3(z-3)=30-3z=0
+  \quad\Longrightarrow\quad
+  \boxed{z=10}
+  \text.
+$$
+Ekkor $\overrightarrow{BC}=(-3;6;7)$ és
+$\overrightarrow{AD}=\overrightarrow{BC}$, tehát
+$$
+  D=A+\overrightarrow{BC}
+  =(2;6;0)+(-3;6;7)
+  =\boxed{(-1;12;7)}
+  \text.
+$$
+
+\subsection{Keresztszorzat}
+
+Az $\rvec a=(-4;2;1)$ és $\rvec b=(-2;7;8)$ vektorok keresztszorzata:
+$$
+  \rvec a\times\rvec b
+  =\begin{bmatrix}
+    2\cdot8-1\cdot7 \\
+    1\cdot(-2)-(-4)\cdot8 \\
+    (-4)\cdot7-2\cdot(-2)
+  \end{bmatrix}
+  =\boxed{
+    \begin{bmatrix}
+      9\\30\\-24
+    \end{bmatrix}
+  }
+  \text.
+$$
+
+\subsection{Keresztszorzatos kifejezés egyszerűsítése}
+
+A bilinearitást és az antikommutativitást használva:
+\begin{align*}
+  (3\rvec a-\rvec b)\times(\rvec b+3\rvec a)
+  &=3(\rvec a\times\rvec b)
+    +9(\rvec a\times\rvec a)
+    -(\rvec b\times\rvec b)
+    -3(\rvec b\times\rvec a)
+  \\
+  &=3(\rvec a\times\rvec b)+3(\rvec a\times\rvec b)
+  =\boxed{6(\rvec a\times\rvec b)}
+  \text.
+\end{align*}
+
+\subsection{Kollinearitás koordinátákból}
+
+Az $\rvec a=(-3;4;7)$ és $\rvec b=(2;5;1)$ vektorokra
+$$
+  \rvec a\times\rvec b
+  =\begin{bmatrix}
+    4\cdot1-7\cdot5 \\
+    7\cdot2-(-3)\cdot1 \\
+    (-3)\cdot5-4\cdot2
+  \end{bmatrix}
+  =\begin{bmatrix}
+    -31\\17\\-23
+  \end{bmatrix}
+  \neq\nvec
+  \text.
+$$
+Így a két vektor \textbf{nem kollineáris}.
+
+\subsection{Háromszög területe}
+
+Az $A(1;0;2)$, $B(-1;4;7)$ és $C(5;-2;1)$ pontok esetén
+$$
+  \overrightarrow{AB}=(-2;4;5),
+  \qquad
+  \overrightarrow{AC}=(4;-2;-1)
+  \text,
+$$
+$$
+  \overrightarrow{AB}\times\overrightarrow{AC}
+  =\begin{bmatrix}
+    6\\18\\-12
+  \end{bmatrix},
+  \qquad
+  \left|\overrightarrow{AB}\times\overrightarrow{AC}\right|
+  =\sqrt{6^2+18^2+(-12)^2}=6\sqrt{14}
+  \text.
+$$
+A háromszög területe a kifeszített paralelogramma területének fele:
+$$
+  \boxed{T=\frac12\cdot6\sqrt{14}=3\sqrt{14}}
+  \text.
+$$
+
+\subsection{Következik-e a vektorok egyenlősége?}
+
+Az
+$\rvec a\times\rvec c=\rvec b\times\rvec c$ egyenletből
+$$
+  (\rvec a-\rvec b)\times\rvec c=\nvec
+$$
+következik. Ez csak azt jelenti, hogy $\rvec a-\rvec b$ és $\rvec c$
+kollineárisak (vagy $\rvec c=\nvec$), tehát általában
+\textbf{nem következik}, hogy $\rvec a=\rvec b$.
+
+Például legyen $\rvec c=(1;0;0)$, $\rvec a=(1;0;0)$ és
+$\rvec b=(0;0;0)$. Ekkor mindkét keresztszorzat nulla, miközben
+$\rvec a\neq\rvec b$.
+
+\subsection{Egy kocka élvektorai}
+
+Legyen $\rvec a=(6;2;-3)$ és $\rvec b=(-3;6;-2)$. Ekkor
+$$
+  \rvec a\cdot\rvec b
+  =6(-3)+2\cdot6+(-3)(-2)=0,
+$$
+$$
+  |\rvec a|=\sqrt{36+4+9}=7,
+  \qquad
+  |\rvec b|=\sqrt{9+36+4}=7
+  \text.
+$$
+A két vektor tehát merőleges és egyenlő hosszú, így lehetnek egy kocka
+élvektorai. Továbbá
+$$
+  \rvec a\times\rvec b
+  =\begin{bmatrix}14\\21\\42\end{bmatrix}
+  =7\begin{bmatrix}2\\3\\6\end{bmatrix}
+  \text,
+$$
+ahol $(2;3;6)$ hossza $7$. A harmadik élvektor ezért
+$$
+  \boxed{\rvec c=\pm(2;3;6)}
+  \text.
+$$
+
+\subsection{Három vektor lineáris függetlensége}
+
+Legyen $\rvec a=(2;3;-1)$, $\rvec b=(1;-1;3)$ és
+$\rvec c=(1;9;-11)$. A vegyesszorzat:
+$$
+  \rvec b\times\rvec c
+  =\begin{bmatrix}-16\\14\\10\end{bmatrix},
+  \qquad
+  \rvec a\cdot(\rvec b\times\rvec c)
+  =2(-16)+3\cdot14+(-1)\cdot10=0
+  \text.
+$$
+A vegyesszorzat nulla, tehát a három vektor
+\textbf{lineárisan összefüggő}.
+
+\subsection{Paralelepipedon térfogata}
+
+Az $\rvec a$, $\rvec b$ és $\rvec c$ által kifeszített paralelepipedon
+térfogata legyen $V$. Az új élvektorok együtthatómátrixa
+$$
+  \rmat M=
+  \begin{bmatrix}
+    2&1&2\\
+    3&-1&4\\
+    4&1&-1
+  \end{bmatrix},
+  \qquad
+  \det\rmat M=27
+  \text,
+$$
+mivel az oszlopok rendre
+$\rvec r=2\rvec a+3\rvec b+4\rvec c$,
+$\rvec s=\rvec a-\rvec b+\rvec c$ és
+$\rvec t=2\rvec a+4\rvec b-\rvec c$ koordinátái.
+Az új térfogat ezért
+$$
+  \boxed{V_{\rvec r,\rvec s,\rvec t}
+  =|\det\rmat M|\,V=27V}
+  \text.
+$$
+
+\subsection{Paraméteres lineáris függetlenség}
+
+Legyen $\rvec a=(3;\alpha;0)$, $\rvec b=(0;3;\alpha)$ és
+$\rvec c=(1;0;-1)$. Ekkor
+$$
+  \rvec b\times\rvec c
+  =\begin{bmatrix}-3\\\alpha\\-3\end{bmatrix},
+  \qquad
+  \rvec a\cdot(\rvec b\times\rvec c)
+  =-9+\alpha^2
+  \text.
+$$
+A rendszer pontosan akkor lineárisan összefüggő, ha a vegyesszorzat nulla:
+$$
+  \boxed{\alpha=\pm3
+  \quad\Longrightarrow\quad
+  \text{lineárisan összefüggő}}
+  \text.
+$$
+Minden más valós paraméterérték esetén
+$$
+  \boxed{\alpha\in\Reals\setminus\{-3,3\}
+  \quad\Longrightarrow\quad
+  \text{lineárisan független}}
+  \text.
+$$
+
+\subsection{Vektor vetülete}
+
+Legyen $\rvec a=(-1;2;1)$ és $\rvec b=(1;2;2)$. Mivel
+$$
+  \rvec a\cdot\rvec b=-1+4+2=5,
+  \qquad
+  |\rvec b|^2=1+4+4=9,
+$$
+az $\rvec a$ vektor $\rvec b$ irányú vetülete
+$$
+  \boxed{
+    \operatorname{proj}_{\rvec b}\rvec a
+    =\frac{\rvec a\cdot\rvec b}{|\rvec b|^2}\rvec b
+    =\frac59\begin{bmatrix}1\\2\\2\end{bmatrix}
+    =\begin{bmatrix}5/9\\10/9\\10/9\end{bmatrix}
+  }
+  \text.
+$$
+A merőleges komponens:
+$$
+  \rvec a_\perp
+  =\rvec a-\operatorname{proj}_{\rvec b}\rvec a
+  =\begin{bmatrix}-14/9\\8/9\\-1/9\end{bmatrix}
+  \text.
+$$
+
+\end{document}

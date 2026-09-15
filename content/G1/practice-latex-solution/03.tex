@@ -1,0 +1,263 @@
+\documentclass{szb-solution}
+
+\area{Komplex számok}
+\title{Komplex számok}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{3}
+
+\begin{document}
+\maketitle
+
+\subsection{Komplex kifejezések egyszerűsítése}
+
+\begin{enumerate}[a)]
+  \item Mivel $e^{\iu\pi/3}=\frac12+\frac{\sqrt3}{2}\iu$, ezért
+        \begin{align*}
+          \overline{\left(\frac{2-\iu}{e^{\iu\pi/3}}\right)}
+          &=\frac{2+\iu}{e^{-\iu\pi/3}}
+          =(2+\iu)e^{\iu\pi/3}
+          \\
+          &=(2+\iu)\left(\frac12+\frac{\sqrt3}{2}\iu\right)
+          =\boxed{1-\frac{\sqrt3}{2}
+          +\left(\sqrt3+\frac12\right)\iu}
+          \text.
+        \end{align*}
+
+  \item Először
+        $$
+          \frac{5+\iu}{3-2\iu}
+          =\frac{(5+\iu)(3+2\iu)}{13}
+          =1+\iu
+          =\sqrt2e^{\iu\pi/4}
+          \text.
+        $$
+        A konjugált tényező:
+        $$
+          \overline{
+            3e^{\iu\pi/4}\cdot2e^{\iu3\pi/2}\cdot e^{\iu5\pi/12}
+          }
+          =\overline{6e^{\iu13\pi/6}}
+          =6e^{-\iu\pi/6}
+          \text.
+        $$
+        Így a teljes kifejezés
+        $$
+          6\sqrt2e^{\iu(\pi/4-\pi/6)}
+          =6\sqrt2e^{\iu\pi/12}
+          =\boxed{3(\sqrt3+1)+3(\sqrt3-1)\iu}
+          \text.
+        $$
+
+  \item A tényezők trigonometrikus alakban:
+        $$
+          \frac{5e^{\iu7\pi/13}}{4e^{\iu3\pi/4}},
+          \qquad
+          \overline{\left(\frac{1}{2\iu}\right)}=\frac{\iu}{2}
+          =\frac12e^{\iu\pi/2},
+          \qquad
+          2\sqrt3+2\iu=4e^{\iu\pi/6}
+          \text.
+        $$
+        Ezért
+        \begin{align*}
+          \frac{5e^{\iu7\pi/13}}{4e^{\iu3\pi/4}}
+          \cdot\frac12e^{\iu\pi/2}\cdot4e^{\iu\pi/6}
+          &=\frac52e^{\iu(7\pi/13-3\pi/4+\pi/2+\pi/6)}
+          \\
+          &=\boxed{\frac52e^{\iu71\pi/156}}
+          \text.
+        \end{align*}
+\end{enumerate}
+
+\subsection{Hatványozás}
+
+\begin{enumerate}[a)]
+  \item Mivel $\iu-1=\sqrt2e^{\iu3\pi/4}$, a Moivre-formula alapján
+        $$
+          (\iu-1)^{16}
+          =(\sqrt2)^{16}e^{\iu12\pi}
+          =\boxed{256}
+          \text.
+        $$
+
+  \item Vegyük észre, hogy $21-35\iu=7(3-5\iu)$ és
+        $$
+          \frac{1+\iu}{1-\iu}=\iu,
+          \qquad \iu^4=1
+          \text.
+        $$
+        Ezért
+        \begin{align*}
+          &(3+5\iu)^4(21-35\iu)^5
+          \left(\frac{1+\iu}{1-\iu}\right)^4
+          \\
+          &\qquad
+          =7^5(3+5\iu)^4(3-5\iu)^5
+          =7^5\bigl((3+5\iu)(3-5\iu)\bigr)^4(3-5\iu)
+          \\
+          &\qquad
+          =\boxed{7^5\cdot34^4(3-5\iu)}
+          \text.
+        \end{align*}
+\end{enumerate}
+
+\subsection{Gyökvonás}
+
+\begin{enumerate}[a)]
+  \item A $-8=8e^{\iu(\pi+2k\pi)}$ harmadik gyökei
+        $$
+          z_k=2e^{\iu(\pi+2k\pi)/3},
+          \qquad k=0,1,2
+          \text,
+        $$
+        vagyis
+        $$
+          \boxed{\sqrt[3]{-8}=\{1+\sqrt3\iu;\,-2;\,1-\sqrt3\iu\}}
+          \text.
+        $$
+
+  \item Az egység negyedik gyökei
+        $$
+          z_k=e^{\iu k\pi/2},
+          \qquad k=0,1,2,3
+          \text,
+        $$
+        tehát
+        $$
+          \boxed{\sqrt[4]{1}=\{1;\,\iu;\,-1;\,-\iu\}}
+          \text.
+        $$
+
+  \item Legyen $(x+y\iu)^2=3+4\iu$. Ekkor
+        $$
+          x^2-y^2=3,
+          \qquad 2xy=4
+          \text.
+        $$
+        A rendszer valós megoldásai $(x,y)=(2,1)$ és $(-2,-1)$, ezért
+        $$
+          \boxed{\sqrt{3+4\iu}=\{2+\iu;\,-2-\iu\}}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Komplex egyenletek}
+
+\begin{enumerate}[a)]
+  \item A $z^4=81\iu=81e^{\iu(\pi/2+2k\pi)}$ egyenlet gyökei
+        $$
+          \boxed{
+            z_k=3e^{\iu(\pi/8+k\pi/2)},
+            \qquad k=0,1,2,3
+          }
+          \text.
+        $$
+
+  \item A másodfokú megoldóképlettel
+        $$
+          z_{1,2}
+          =\frac{6\pm\sqrt{36-52}}{2}
+          =\frac{6\pm4\iu}{2}
+          =\boxed{3\pm2\iu}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Komplex egyenletrendszer}
+
+Az első egyenletből $z_1=1+\iu-2z_2$. Ezt a másodikba helyettesítve
+$$
+  3(1+\iu-2z_2)+\iu z_2=2-3\iu,
+$$
+$$
+  (-6+\iu)z_2=-1-6\iu
+  \quad\Longrightarrow\quad
+  z_2=\frac{-1-6\iu}{-6+\iu}=\iu
+  \text.
+$$
+Végül $z_1=1+\iu-2\iu=1-\iu$, tehát
+$$
+  \boxed{z_1=1-\iu,
+  \qquad z_2=\iu}
+  \text.
+$$
+
+\subsection{Geometriai helyek}
+
+Írjuk $z=x+y\iu$ alakban.
+
+\begin{enumerate}[a)]
+  \item Az $\iIm\{z\}>0$ feltétel a komplex számsík nyílt felső félsíkját,
+        vagyis az $y>0$ pontokat adja.
+
+  \item Az $|z-a|=|z-b|$ feltétel az $a$ és $b$ pontoktól egyenlő távolságra
+        levő pontokat írja le: ez az $ab$ szakasz felezőmerőlegese
+        ($a\neq b$ esetén).
+
+  \item Az $|z|<1-\iRe\{z\}$ feltétel
+        $$
+          \sqrt{x^2+y^2}<1-x
+        $$
+        alakú. Négyzetre emelve
+        $$
+          x^2+y^2<(1-x)^2
+          \quad\Longleftrightarrow\quad
+          \boxed{x<\frac{1-y^2}{2}}
+          \text.
+        $$
+        Ez az $x=(1-y^2)/2$ balra nyíló parabola bal oldalán fekvő nyílt
+        tartomány; a határparabola nem része a halmaznak.
+\end{enumerate}
+
+\subsection{Négyzet további csúcsai}
+
+A két szomszédos csúcs $z_1=3+2\iu$ és $z_2=5+4\iu$, így az oldal vektora
+$$
+  d=z_2-z_1=2+2\iu
+  \text.
+$$
+A rá merőleges, azonos hosszúságú oldal $\pm\iu d$. Az egyik irányban
+$$
+  \iu d=-2+2\iu,
+  \qquad
+  z_1+\iu d=1+4\iu,
+  \qquad
+  z_2+\iu d=3+6\iu
+  \text,
+$$
+a másik irányban
+$$
+  -\iu d=2-2\iu,
+  \qquad
+  z_1-\iu d=5,
+  \qquad
+  z_2-\iu d=7+2\iu
+  \text.
+$$
+Tehát a további csúcsok
+$$
+  \boxed{\{1+4\iu,\,3+6\iu\}}
+  \quad\text{vagy}\quad
+  \boxed{\{5,\,7+2\iu\}}
+  \text.
+$$
+
+\subsection{Kör a komplex számsíkon}
+
+A $(-2;1)$ középponthoz a $-2+\iu$ komplex szám tartozik. A $4$ sugarú kör
+egyenlete
+$$
+  \boxed{|z-(-2+\iu)|=4}
+  \quad\Longleftrightarrow\quad
+  \boxed{|z+2-\iu|=4}
+  \text.
+$$
+Ha $z=x+y\iu$, akkor ugyanez
+$$
+  \boxed{(x+2)^2+(y-1)^2=16}
+  \text.
+$$
+
+\end{document}

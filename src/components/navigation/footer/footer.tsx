@@ -12,7 +12,7 @@ const Footer = ({}: FooterProps) => {
         <div className='col-span-3'>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src='static/eu-szechenyi-mo.svg'
+            src='/static/eu-szechenyi-mo.svg'
             alt='Európai Unió és a Magyar Állam támogatásával'
           />
         </div>
