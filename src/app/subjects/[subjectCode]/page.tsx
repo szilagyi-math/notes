@@ -97,6 +97,23 @@ const SubjectsPage: NextPage<SubjectsPageProps> = async props => {
         </p>
       </div>
 
+      {subjectCode === 'G1' && (
+        <>
+          <h2 className='mx-4 text-xl mt-4 py-2 border-b-2'>Eredmények</h2>
+          <div className='p-4'>
+            <p className='mb-4'>
+              A ZH- és vizsgaeredmények Neptun-kód alapján kérdezhetők le.
+            </p>
+            <Link
+              href='/subjects/G1/results'
+              className='inline-flex rounded-md bg-accent-9 px-4 py-2 font-semibold text-gray-1 transition-opacity hover:opacity-90'
+            >
+              Eredmények megtekintése
+            </Link>
+          </div>
+        </>
+      )}
+
       <h2 className='mx-4 text-xl mt-4 py-2 border-b-2'>Ütemterv</h2>
       <div className='p-4 overflow-x-auto'>
         <LectureTable subjectCode={subjectCode} />

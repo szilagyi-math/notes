@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <base target="_top" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        color: #202124;
+        background: #fff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 2px;
+      }
+
+      .panel {
+        border: 1px solid #d9d9d9;
+        border-radius: 12px;
+        padding: 24px;
+      }
+
+      h2 {
+        margin: 0 0 8px;
+        font-size: 1.35rem;
+      }
+
+      .intro,
+      .privacy {
+        color: #5f6368;
+        line-height: 1.55;
+      }
+
+      form {
+        display: flex;
+        gap: 12px;
+        align-items: end;
+        margin-top: 22px;
+      }
+
+      label {
+        display: block;
+        flex: 1;
+        font-weight: 650;
+      }
+
+      input {
+        width: 100%;
+        margin-top: 7px;
+        padding: 11px 12px;
+        border: 1px solid #a9a9a9;
+        border-radius: 7px;
+        font: inherit;
+        text-transform: uppercase;
+      }
+
+      input:focus {
+        outline: 3px solid rgba(123, 62, 152, 0.2);
+        border-color: #7b3e98;
+      }
+
+      button {
+        min-height: 44px;
+        padding: 10px 20px;
+        border: 0;
+        border-radius: 7px;
+        background: #7b3e98;
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        opacity: 0.65;
+        cursor: wait;
+      }
+
+      .message {
+        margin-top: 18px;
+        padding: 12px 14px;
+        border-radius: 7px;
+        background: #f4f1f6;
+      }
+
+      .message.error {
+        color: #8a1c1c;
+        background: #fff0f0;
+      }
+
+      .results {
+        margin-top: 22px;
+      }
+
+      .results h3 {
+        margin: 0 0 14px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .item {
+        min-height: 76px;
+        padding: 13px;
+        border: 1px solid #e1e1e1;
+        border-radius: 8px;
+        background: #fafafa;
+      }
+
+      .item span {
+        display: block;
+        color: #666;
+        font-size: 0.84rem;
+      }
+
+      .item strong {
+        display: block;
+        margin-top: 5px;
+        font-size: 1.08rem;
+      }
+
+      .privacy {
+        margin: 18px 0 0;
+        font-size: 0.85rem;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      @media (max-width: 620px) {
+        .panel {
+          padding: 18px;
+        }
+
+        form {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="panel">
+      <h2>Saját eredmények lekérdezése</h2>
+      <p class="intro">
+        Adja meg a hat karakterből álló Neptun-kódját. A kis- és nagybetűk
+        között nincs különbség.
+      </p>
+
+      <form id="lookup-form">
+        <label for="neptun">
+          Neptun-kód
+          <input
+            id="neptun"
+            name="neptun"
+            type="text"
+            minlength="6"
+            maxlength="6"
+            pattern="[A-Za-z0-9]{6}"
+            autocomplete="off"
+            autocapitalize="characters"
+            spellcheck="false"
+            required
+          />
+        </label>
+        <button
+          id="submit-button"
+          type="submit"
+        >
+          Lekérdezés
+        </button>
+      </form>
+
+      <div
+        id="message"
+        class="message"
+        role="status"
+        aria-live="polite"
+        hidden
+      ></div>
+
+      <section
+        id="results"
+        class="results"
+        aria-live="polite"
+        hidden
+      >
+        <h3 id="result-title"></h3>
+        <div
+          id="result-grid"
+          class="grid"
+        ></div>
+      </section>
+
+      <p class="privacy">
+        A lekérdezés nem jelenít meg nevet vagy e-mail-címet. Az eredmények
+        tájékoztató jellegűek.
+      </p>
+    </main>
+
+    <script>
+      const form = document.getElementById('lookup-form');
+      const input = document.getElementById('neptun');
+      const button = document.getElementById('submit-button');
+      const message = document.getElementById('message');
+      const results = document.getElementById('results');
+      const resultTitle = document.getElementById('result-title');
+      const resultGrid = document.getElementById('result-grid');
+
+      const fields = [
+        ['1. ZH', 'firstTest'],
+        ['2. ZH', 'secondTest'],
+        ['Pluszpontok', 'bonusPoints'],
+        ['Vizsgára bocsátható', 'examEligibility'],
+        ['Vizsga 1', 'firstExam'],
+        ['Vizsga 2', 'secondExam'],
+        ['Vizsga 3', 'thirdExam'],
+        ['Vizsga 4', 'fourthExam'],
+        ['Számító vizsgaeredmény', 'countedExam'],
+        ['Összesített százalék', 'percentage'],
+        ['Jegy', 'grade'],
+        ['Szóbeli mentesség', 'oralExemption'],
+        ['Végső jegy szóbelivel', 'finalOralGrade'],
+      ];
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        const neptun = input.value.trim().toUpperCase();
+        input.value = neptun;
+
+        if (!/^[A-Z0-9]{6}$/.test(neptun)) {
+          showMessage(
+            'A Neptun-kódnak 6 betűből vagy számból kell állnia.',
+            true,
+          );
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = 'Lekérdezés…';
+        results.hidden = true;
+        showMessage('Az eredmények betöltése folyamatban…', false);
+
+        google.script.run
+          .withSuccessHandler(handleResponse)
+          .withFailureHandler(() => {
+            finishRequest();
+            showMessage(
+              'A lekérdezés most nem sikerült. Kérjük, próbálja újra később.',
+              true,
+            );
+          })
+          .lookupResult(neptun);
+      });
+
+      function handleResponse(response) {
+        finishRequest();
+
+        if (!response || !response.ok) {
+          showMessage(
+            response && response.message
+              ? response.message
+              : 'A lekérdezés most nem sikerült.',
+            true,
+          );
+          return;
+        }
+
+        message.hidden = true;
+        resultTitle.textContent = response.result.neptun + ' eredményei';
+        resultGrid.replaceChildren();
+
+        fields.forEach(([label, key]) => {
+          const item = document.createElement('div');
+          item.className = 'item';
+
+          const fieldLabel = document.createElement('span');
+          fieldLabel.textContent = label;
+
+          const value = document.createElement('strong');
+          value.textContent = response.result[key] || 'Még nincs eredmény';
+
+          item.append(fieldLabel, value);
+          resultGrid.append(item);
+        });
+
+        results.hidden = false;
+      }
+
+      function showMessage(text, isError) {
+        message.textContent = text;
+        message.classList.toggle('error', isError);
+        message.hidden = false;
+      }
+
+      function finishRequest() {
+        button.disabled = false;
+        button.textContent = 'Lekérdezés';
+      }
+    </script>
+  </body>
+</html>

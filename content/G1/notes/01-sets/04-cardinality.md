@@ -23,7 +23,9 @@ title: A halmazok számossága
   végtelen számosságúnak mondjuk. Létezik megszámlálhatóan és
   megszámlálhatatlanul végtelen halmaz.
 
-  TODO: Tikz diagram
+  A végtelen halmazok között is vannak különböző számosságok. A természetes,
+  egész és racionális számok halmaza megszámlálhatóan végtelen, míg a valós
+  számok halmaza nem megszámlálható.
 </Note>
 
 <Theorem title="Racionális számok halmazának számossága" id="theorem.1.4.3">
@@ -42,7 +44,17 @@ title: A halmazok számossága
     is kiterjeszthető, tehát a racionális számok halmaza valóban
     megszámlálhatóan végtelen.
 
-    TODO: Tikz diagram
+    A pozitív racionális számokat például a következő táblázatban rendezhetjük:
+
+    | | $1$ | $2$ | $3$ | $4$ |
+    |---:|:---:|:---:|:---:|:---:|
+    | $1$ | $1/1$ | $2/1$ | $3/1$ | $4/1$ |
+    | $2$ | $1/2$ | $2/2$ | $3/2$ | $4/2$ |
+    | $3$ | $1/3$ | $2/3$ | $3/3$ | $4/3$ |
+    | $4$ | $1/4$ | $2/4$ | $3/4$ | $4/4$ |
+
+    Az átlók mentén haladva minden pozitív racionális számhoz természetes
+    sorszám rendelhető. Az ismétlődő, nem egyszerűsített törteket kihagyjuk.
   </Proof>
 </Theorem>
 
@@ -58,7 +70,14 @@ title: A halmazok számossága
   $K(a; \varepsilon) := (a - \varepsilon; a + \varepsilon)$
   (ezzel ekvivalens: $|x-a| < \varepsilon$).
 
-TODO: Tikz diagram
+Az $a$ pont $\varepsilon$ sugarú környezete a számegyenesen az $a$ körüli
+nyílt intervallum:
+
+$$
+  K(a;\varepsilon)
+  = (a-\varepsilon;a+\varepsilon)
+  = \{x\in\mathbb R \mid |x-a|<\varepsilon\}.
+$$
 
 <Definition title="Alsó és felső korlát" id="definition.1.15">
   A felülről korlátos $H$ halmaz legkisebb felső korlátja: supremum, jele: $\sup

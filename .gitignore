@@ -27,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+/.secrets/
 
 # vercel
 .vercel
@@ -39,3 +40,4 @@ next-env.d.ts
 *.log
 generate
 latex-docs
+/public/downloads/

@@ -29,7 +29,14 @@ a középiskolában megismert számhalmazokat:
 -   $\mathbb Q^*$ : az irracionális számok halmaza,
 -   $\Reals$ : a valós számok halmaza ($\mathbb Q \cup \mathbb Q^*$).
 
-TODO: Tikz picture
+Az alapvető számhalmazok egymásba ágyazódnak:
+
+$$
+  \mathbb N \subset \mathbb Z \subset \mathbb Q
+  \subset \mathbb R \subset \mathbb C,
+  \qquad
+  \mathbb Q^* = \mathbb R \setminus \mathbb Q.
+$$
 
 <Note>
   A **transzcendens** számok olyan irracionális valós számok, amelyek nem

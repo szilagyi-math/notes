@@ -78,34 +78,39 @@ const NotFound: NextPage = () => {
                           {')'}
                         </>
                       )}
-                      {row.pdfSolutionSource && (
-                        <>
-                          {' ('}
-                          <a
-                            href={`/downloads/${row.pdfSolutionTarget}`}
-                            target='_blank'
-                            rel='noreferrer'
-                            className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
-                          >
-                            Megoldások
-                          </a>
-                          {')'}
-                        </>
-                      )}
-                      {row.latexSolutionSource && !row.pdfSolutionSource && (
-                        <>
-                          {' ('}
-                          <a
-                            href={`/downloads/${row.latexSolutionTarget}.pdf`}
-                            target='_blank'
-                            rel='noreferrer'
-                            className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
-                          >
-                            Megoldások
-                          </a>
-                          {')'}
-                        </>
-                      )}
+                      {d.practiceMaterial.hideSolutions !== 'no-link' &&
+                        row.hideSolution !== 'no-link' &&
+                        row.pdfSolutionSource && (
+                          <>
+                            {' ('}
+                            <a
+                              href={`/downloads/${row.pdfSolutionTarget}`}
+                              target='_blank'
+                              rel='noreferrer'
+                              className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
+                            >
+                              Megoldások
+                            </a>
+                            {')'}
+                          </>
+                        )}
+                      {d.practiceMaterial.hideSolutions !== 'no-link' &&
+                        row.hideSolution !== 'no-link' &&
+                        row.latexSolutionSource &&
+                        !row.pdfSolutionSource && (
+                          <>
+                            {' ('}
+                            <a
+                              href={`/downloads/${row.latexSolutionTarget}.pdf`}
+                              target='_blank'
+                              rel='noreferrer'
+                              className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
+                            >
+                              Megoldások
+                            </a>
+                            {')'}
+                          </>
+                        )}
                     </li>
                   ))}
                 </ul>
