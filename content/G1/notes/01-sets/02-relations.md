@@ -57,7 +57,16 @@ title: Relációk, leképezések, függvények
 </Definition>
 
 <Example>
-  TODO: TIKZ diagram
+  Az egész számokon legyen $a \sim b$ pontosan akkor, ha $a$ és $b$ azonos
+  paritású. Ekkor két ekvivalenciaosztályt kapunk:
+
+  $$
+    [0] = \{\dots;-4;-2;0;2;4;\dots\},
+    \qquad
+    [1] = \{\dots;-3;-1;1;3;5;\dots\}.
+  $$
+
+  A reláció reflexív, szimmetrikus és tranzitív, ezért ekvivalenciareláció.
 </Example>
 
 <Definition title="Függvény" id="definition.1.10">
@@ -85,5 +94,12 @@ title: Relációk, leképezések, függvények
 </Note>
 
 <Example>
-  TODO: TIKZ diagram
+  Legyen $A=\{1;2;3\}$ és $B=\{a;b;c\}$. Az
+
+  $$
+    f(1)=b, \qquad f(2)=c, \qquad f(3)=a
+  $$
+
+  hozzárendelés bijekció, mert $B$ minden elemének pontosan egy ősképe van.
+  Inverze: $f^{-1}(a)=3$, $f^{-1}(b)=1$, $f^{-1}(c)=2$.
 </Example>

@@ -12,15 +12,17 @@ book:
   source: main.tex
   target: G1-tankonyv
   display_name: G1 előadás jegyzet
-online_notes: null
+online_notes: /subjects/G1/notes/01-sets
 hide_edubase: true
 practice_material:
   dir: practice
+  latex_solutions_dir: practice-latex-solution
   pdf_solutions_dir: practice-solutions
   files:
     - source: 01.tex
       target: G1-gyak-01
-      pdf_solution_source: G1-gyak-01-megoldas.pdf
+      latex_solution_source: 01.tex
+      latex_solution_target: G1-gyak-01-megoldas
       video_link: https://youtu.be/xIiAnpM3uSI
       video_mistakes:
         - '44:10 -> Ha két vektor skaláris szorzata 0, ÉS EGYIK VEKTOR SEM
@@ -43,7 +45,8 @@ practice_material:
       week: 1
     - source: 02.tex
       target: G1-gyak-02
-      pdf_solution_source: G1-gyak-02-megoldas.pdf
+      latex_solution_source: 02.tex
+      latex_solution_target: G1-gyak-02-megoldas
       video_link: https://youtu.be/qOatMC5SSCU
       video_mistakes:
         - '32:43 - irányvektorok és nem egységvektorok'
@@ -52,7 +55,8 @@ practice_material:
       week: 2
     - source: 03.tex
       target: G1-gyak-03
-      pdf_solution_source: G1-gyak-03-megoldas.pdf
+      latex_solution_source: 03.tex
+      latex_solution_target: G1-gyak-03-megoldas
       video_link: https://youtu.be/R7WRV5dkUVQ
       video_mistakes:
         - '1:20:48-nál egy elírás látható: nem parabola hanem ELLIPSZIS
@@ -64,7 +68,8 @@ practice_material:
     - source: 04.tex
       target: G1-gyak-04
       display_name: G1 4. gyakorlat
-      pdf_solution_source: G1-gyak-04-megoldas.pdf
+      latex_solution_source: 04.tex
+      latex_solution_target: G1-gyak-04-megoldas
       video_link: https://youtu.be/Q7re319JuNo5
       description: Numerikus sorozatok I
       week: 4
@@ -85,6 +90,7 @@ practice_material:
       display_name: G1 5. gyakorlat
       description: Numerikus sorozatok II
       week: 5
+      hide_solution: no-link
     - source: 06.tex
       target: G1-gyak-06
       display_name: G1 6. gyakorlat
@@ -99,6 +105,7 @@ practice_material:
           eredmény, ami 8/5'
       description: Függvények – folytonosság, határérték
       week: 6
+      hide_solution: no-link
     - source: 07.tex
       target: G1-gyak-07
       display_name: G1 7. gyakorlat
@@ -106,6 +113,7 @@ practice_material:
       video_link: https://youtu.be/qzTEZYRykUA
       description: Differenciálszámítás I
       week: 7
+      hide_solution: no-link
     - source: 08.tex
       target: G1-gyak-08
       display_name: G1 8. gyakorlat
@@ -113,6 +121,7 @@ practice_material:
       description: Differenciálszámítás II
       video_link: https://youtu.be/t_ZtR2x0eFA
       week: 8
+      hide_solution: no-link
     - source: 09.tex
       target: G1-gyak-09
       display_name: G1 9. gyakorlat
@@ -120,6 +129,7 @@ practice_material:
       description: Differenciálszámítás III
       video_link: https://youtu.be/wImfxPqRqNk
       week: 9
+      hide_solution: no-link
     - source: 10.tex
       target: G1-gyak-10
       display_name: G1 10. gyakorlat
@@ -127,6 +137,7 @@ practice_material:
       description: Integrálszámítás I
       video_link: https://youtu.be/2YKb0qVEljo
       week: 10
+      hide_solution: no-link
     - source: 11.tex
       target: G1-gyak-11
       display_name: G1 11. gyakorlat
@@ -135,6 +146,7 @@ practice_material:
       video_mistakes:
         - '17:55 -> F5-ös példánál lemaradt a +c valós konstans.'
       week: 11
+      hide_solution: no-link
     - source: 12.tex
       target: G1-gyak-12
       display_name: G1 12. gyakorlat
@@ -152,18 +164,21 @@ practice_material:
         - 'F10: Az integrálás kiértékelésnél a chx behelyettesítésénél hibás az
           előjel, ugyanakkor a megoldás helyes.'
       week: 12
+      hide_solution: no-link
     - source: 13.tex
       target: G1-gyak-13
       display_name: G1 11. gyakorlat
       description: Integrálszámítás IV
       video_link: https://youtu.be/bzMjsAGt1x0
       week: 13
+      hide_solution: no-link
     - source: 14.tex
       target: G1-gyak-14
       display_name: G1 14. gyakorlat
       description: Numerikus sorok
       video_link: https://youtu.be/Y33dpnUZ5hk
       week: 14
+      hide_solution: no-link
 hide_lectures: true
 lectures:
   - room: CHFMAX
@@ -174,81 +189,82 @@ lectures:
     day: 5 # Friday
     start: [10, 15]
     end: [12, 0]
-hide_practicals: true
+hide_practicals: false
 practicals:
-  - group: HM1
-    room: R501
-    day: 1 # Monday
-    start: [8, 15]
-    end: [10, 0]
-    edubase: https://www.edubase.net/coupon/6xXc9n9mdn8DfL46
-    staff:
-      - name: Beharóczki István
-      - name: Sovák Adrienn
-  - group: 'HM2'
-    room: 'R513'
+  - group: 'HE1'
+    room: 'KF84'
     day: 1 # Monday
     start: [10, 15]
     end: [12, 0]
-    edubase: 'https://www.edubase.net/coupon/ejWTL7MpQzkiG4nW'
     staff:
-      - name: 'Biebel Botond'
-      - name: 'Pesti Patrik'
-  - group: 'HM3'
-    room: 'R513'
+      - name: Szabó Boglárka
+      - name: Vass Benedek
+  - group: 'HE2'
+    room: 'R512'
     day: 1 # Monday
-    start: [16, 15]
-    end: [18, 0]
-    edubase: 'https://www.edubase.net/coupon/WK39KrnBS96bYa4C'
+    start: [10, 15]
+    end: [12, 0]
     staff:
-      - name: 'Biebel Botond'
-      - name: 'Pesti Patrik'
-  - group: 'HM4'
+      - name: 'Sütő Áron'
+  - group: 'HM1'
     room: 'R513'
     day: 2 # Tuesday
-    start: [14, 15]
-    end: [16, 0]
-    edubase: 'https://www.edubase.net/coupon/AbOwIp5tXQ8LYJ5q'
-    staff:
-      - name: 'Török Regina'
-      - name: 'Tusor Bálint'
-  - group: 'HM5'
-    room: 'R515'
-    day: 3
     start: [12, 15]
     end: [14, 0]
-    edubase: 'https://www.edubase.net/coupon/Ox9fS9dsw9thHT1A'
     staff:
-      - name: 'Sándor Tibor'
-  - group: 'HM6'
-    room: 'R516'
-    day: 3 # Wednesday
-    start: [14, 15]
-    end: [16, 0]
-    edubase: 'https://www.edubase.net/coupon/8SCh2JFsyU7XrxFY'
+      - name: 'Frey Máté'
+      - name: 'Török Bence'
+  - group: 'HM2'
+    room: 'R511'
+    day: 2 # Tuesday
+    start: [12, 15]
+    end: [14, 0]
+    staff:
+      - name: 'Farkas Bence'
+  - group: 'HM3'
+    room: 'R515'
+    day: 4 # Thursday
+    start: [8, 15]
+    end: [10, 0]
+    staff:
+      - name: 'Pluzsik Mihály'
+      - name: 'Szabó Márton'
+  - group: 'HM4'
+    room: 'R511'
+    day: 4 # Thursday
+    start: [8, 15]
+    end: [10, 0]
     staff:
       - name: 'Kun László Ákos'
-  - group: 'HM7'
+  - group: 'HE3'
+    room: 'R514'
+    day: 4 # Thursday
+    start: [8, 15]
+    end: [10, 0]
+    staff:
+      - name: 'Csányi Balázs'
+      - name: 'Vigh Olivér'
+  - group: 'HM5'
     room: 'R501'
     day: 4 # Thursday
     start: [10, 15]
     end: [12, 0]
-    edubase: 'https://www.edubase.net/coupon/76SkYrSQRQ4O91hF'
     staff:
-      - name: 'Patacsi Mátyás'
-  - group: 'HE1'
-    room: 'R513'
-    day: 4
-    start: [12, 15]
-    end: [14, 0]
-    edubase: 'https://www.edubase.net/coupon/JGz2gogz7NsxZUpn'
-    staff:
-      - name: 'Sándor Tibor'
-  - group: 'HE2'
-    room: 'R514'
+      - name: 'Tihanyi Olivér'
+      - name: 'Pesti Benjámin Lóránt'
+  - group: 'HM6'
+    room: 'R511'
     day: 4 # Thursday
     start: [12, 15]
     end: [14, 0]
-    edubase: 'https://www.edubase.net/coupon/TWUEMzRzK3V8LjRD'
     staff:
-      - name: 'Prónai Sára'
+      - name: 'Horváth-Tőkés Konrád'
+      - name: 'Pápai Ferenc'
+  - group: 'HM7'
+    room: 'R501'
+    day: 4 # Thursday
+    start: [12, 15]
+    end: [14, 0]
+    staff:
+      - name: 'Tihanyi Olivér'
+      - name: 'Pesti Benjámin Lóránt'

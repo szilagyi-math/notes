@@ -1,0 +1,253 @@
+\documentclass{szb-solution}
+
+\area{Sorozatok}
+\title{Numerikus sorozatok I}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{4}
+
+\begin{document}
+\maketitle
+
+\subsection{Konvergencia a definíció alapján}
+
+\begin{enumerate}[a)]
+  \item Legyen
+        $$
+          a_n=\left|\frac{n+1}{3n-8}\right|
+          \text.
+        $$
+        A várható határérték $A=1/3$. Ha $n\geq3$, akkor $3n-8>0$, ezért
+        $$
+          \left|a_n-\frac13\right|
+          =\left|\frac{n+1}{3n-8}-\frac13\right|
+          =\frac{11}{9n-24}
+          \text.
+        $$
+        Adott $\varepsilon>0$ esetén válasszuk az $N$ természetes számot úgy,
+        hogy
+        $$
+          N>\max\left\{3,\frac{11}{9\varepsilon}+\frac83\right\}
+          \text.
+        $$
+        Ekkor minden $n>N$ esetén
+        $11/(9n-24)<\varepsilon$, tehát
+        $$
+          \boxed{a_n\longrightarrow\frac13}
+          \text.
+        $$
+
+  \item A
+        $$
+          b_n=\frac{n(-1)^n-1}{2n}
+          =\frac{(-1)^n}{2}-\frac{1}{2n}
+        $$
+        sorozat páros és páratlan indexű részsorozatai:
+        $$
+          b_{2k}=\frac12-\frac{1}{4k}\longrightarrow\frac12,
+          \qquad
+          b_{2k+1}=-\frac12-\frac{1}{4k+2}\longrightarrow-\frac12
+          \text.
+        $$
+        A két részsorozat határértéke különböző, ezért
+        $\boxed{(b_n)\text{ nem konvergens}}$.
+\end{enumerate}
+
+\subsection{Sorozatok határértéke}
+
+\begin{enumerate}[a)]
+  \item
+        $$
+          \lim_{n\to\infty}\frac{n^2-6n+7}{n^2+12n+49}
+          =\lim_{n\to\infty}
+          \frac{1-6/n+7/n^2}{1+12/n+49/n^2}
+          =\boxed{1}
+          \text.
+        $$
+
+  \item Mivel $1+2+\dots+n=n(n+1)/2$,
+        \begin{align*}
+          \frac{1+2+\dots+n}{n+2}-\frac n2
+          &=\frac{n(n+1)-n(n+2)}{2(n+2)}
+          =-\frac{n}{2n+4}
+          \longrightarrow\boxed{-\frac12}
+          \text.
+        \end{align*}
+
+  \item A számlálót és a nevezőt $3^n$-nel osztva
+        $$
+          \frac{(-2)^n+3^n}{(-2)^{n+1}+3^{n+1}}
+          =\frac{(-2/3)^n+1}{-2(-2/3)^n+3}
+          \longrightarrow\boxed{\frac13}
+          \text.
+        $$
+
+  \item Az első tört számlálójában $n^{3/2}$, nevezőjében
+        $\sqrt[4]{5}\,n^{3/2}$ a domináns rend. Ezért
+        $$
+          \frac{\sqrt{n^3+3n^2}+\sqrt[3]{n^4+1}}
+          {\sqrt[4]{5n^6+2}+\sqrt[5]{n^7+3n^3}}
+          \longrightarrow\frac{1}{\sqrt[4]{5}}
+          \text.
+        $$
+        A második tagra
+        $$
+          0\leq\frac{n!}{(n+1)!+3^{2n}}
+          \leq\frac{n!}{(n+1)!}=\frac{1}{n+1}\longrightarrow0
+          \text,
+        $$
+        így a teljes határérték
+        $$
+          \boxed{\frac{1}{\sqrt[4]{5}}}
+          \text.
+        $$
+
+  \item Konjugálttal bővítve
+        \begin{align*}
+          &\sqrt{n^2+n+1}-\sqrt{n^2-n+1}
+          \\
+          &\qquad
+          =\frac{2n}{\sqrt{n^2+n+1}+\sqrt{n^2-n+1}}
+          =\frac{2}{\sqrt{1+1/n+1/n^2}+\sqrt{1-1/n+1/n^2}}
+          \longrightarrow\boxed{1}
+          \text.
+        \end{align*}
+
+  \item Legyen $u_n=\sqrt[3]{n^2-n^3}$. A köbök összegének azonosságával
+        $$
+          u_n+n
+          =\frac{u_n^3+n^3}{u_n^2-nu_n+n^2}
+          =\frac{n^2}{u_n^2-nu_n+n^2}
+          \text.
+        $$
+        Mivel $u_n=-n(1-1/n)^{1/3}$, ezért
+        $$
+          u_n+n
+          =\frac{1}
+          {(1-1/n)^{2/3}+(1-1/n)^{1/3}+1}
+          \longrightarrow\boxed{\frac13}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Rendőrelv}
+
+Minden $n\geq1$ esetén $1\leq n\leq2^n$, ezért
+$$
+  0<\frac{1}{3^n}\leq\frac{n}{3^n}\leq\left(\frac23\right)^n
+  \text.
+$$
+Mindkét szélső sorozat nullához tart, így a rendőrelv alapján
+$$
+  \boxed{\frac{n}{3^n}\longrightarrow0}
+  \text.
+$$
+
+\subsection{További határértékek}
+
+\begin{enumerate}[a)]
+  \item
+        \begin{align*}
+          \sqrt[n]{5n^2-30n-21}
+          &=n^{2/n}\left(5-\frac{30}{n}-\frac{21}{n^2}\right)^{1/n}
+          \longrightarrow\boxed{1}
+          \text.
+        \end{align*}
+
+  \item Mivel $|\cos n^3|\leq1$,
+        $$
+          \frac{\cos n^3}{2n}\longrightarrow0,
+          \qquad
+          \frac{3n}{6n+1}\longrightarrow\frac12
+          \text,
+        $$
+        tehát
+        $$
+          \boxed{
+            \lim_{n\to\infty}\left(
+              \frac{\cos n^3}{2n}-\frac{3n}{6n+1}
+            \right)=-\frac12
+          }
+          \text.
+        $$
+
+  \item Logaritmust véve
+        $$
+          n\ln\left(1+\frac{1}{n^2}\right)
+          \sim\frac1n\longrightarrow0,
+        $$
+        ezért
+        $$
+          \boxed{\left(1+\frac{1}{n^2}\right)^n\longrightarrow1}
+          \text.
+        $$
+
+  \item
+        $$
+          \left(\frac{3n-1}{3n+2}\right)^{2n}
+          =\left(1-\frac{3}{3n+2}\right)^{2n}
+          \longrightarrow
+          e^{\lim\limits_{n\to\infty}-6n/(3n+2)}
+          =\boxed{e^{-2}}
+          \text.
+        $$
+
+  \item
+        $$
+          \ln\left(\left(1+\frac1n\right)^{\ln n}\right)
+          =\ln n\cdot\ln\left(1+\frac1n\right)
+          \sim\frac{\ln n}{n}\longrightarrow0
+          \text,
+        $$
+        tehát
+        $$
+          \boxed{\left(1+\frac1n\right)^{\ln n}\longrightarrow1}
+          \text.
+        $$
+
+  \item
+        $$
+          \left(\frac{n^2-n+1}{n^2+n+1}\right)^{2n+5}
+          =\left(1-\frac{2n}{n^2+n+1}\right)^{2n+5}
+          \text.
+        $$
+        Mivel
+        $$
+          (2n+5)\left(-\frac{2n}{n^2+n+1}\right)\longrightarrow-4,
+        $$
+        a határérték
+        $$
+          \boxed{e^{-4}}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Az $e^k$ határérték teljes indukcióval}
+
+Bizonyítsuk, hogy minden $k\geq0$ egészre
+$$
+  \lim_{n\to\infty}\left(1+\frac{k}{n}\right)^n=e^k
+  \text.
+$$
+A $k=0$ eset nyilvánvaló, a $k=1$ eset pedig az $e$ szám sorozatos
+definíciója. Tegyük fel, hogy az állítás valamely $k$-ra igaz. Ekkor
+\begin{align*}
+  \left(1+\frac{k+1}{n}\right)^n
+  &=\left(1+\frac{k}{n+1}\right)^{n+1}
+    \left(1+\frac1n\right)^n
+    \frac{n+1}{n+k+1}
+  \\
+  &\longrightarrow e^k\cdot e\cdot1=e^{k+1}
+  \text.
+\end{align*}
+Az indukciós lépés teljesült, tehát
+$$
+  \boxed{
+    \lim_{n\to\infty}\left(1+\frac{k}{n}\right)^n=e^k
+    \quad(k\in\mathbb N_0)
+  }
+  \text.
+$$
+
+\end{document}

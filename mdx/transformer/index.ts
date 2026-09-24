@@ -29,11 +29,13 @@ export const mdx = () =>
       const { mdx } = meta.config;
 
       const { path } = meta;
-      const [, ...slug] = path
-        .split('/content/')
-        .pop()!
-        .split('/')
-        .slice(0, -1);
+      const pathParts = path.split('/content/').pop()!.split('/');
+      const notesIndex = pathParts.indexOf('notes');
+      const chapterPart = pathParts[notesIndex + 1] ?? '0';
+      const sectionPart = (pathParts[notesIndex + 2] ?? '0').replace(
+        /\.[^.]+$/,
+        '',
+      );
       const localToc: Array<{
         type: 'definition' | 'theorem' | 'heading';
         title: string;
@@ -47,8 +49,8 @@ export const mdx = () =>
         remarkRemoveComments,
         () => {
           return (tree: Root) => {
-            const chap = parseInt(slug[0].split('-')[0]);
-            const sec = slug[1] ? parseInt(slug[1].split('-')[0]) : 0;
+            const chap = parseInt(chapterPart.split('-')[0]);
+            const sec = parseInt(sectionPart.split('-')[0]);
             let subsec = 0;
             let subsubsec = 0;
 

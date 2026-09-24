@@ -43,34 +43,38 @@ const LectureTable = ({ subjectCode }: LectureTableProps) => {
                   {')'}
                 </>
               )}
-              {row.pdfSolutionSource && (
-                <>
-                  {' ('}
-                  <a
-                    href={`/downloads/${row.pdfSolutionTarget}`}
-                    target='_blank'
-                    rel='noreferrer'
-                    className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
-                  >
-                    Megoldások
-                  </a>
-                  {')'}
-                </>
-              )}
-              {row.latexSolutionSource && (
-                <>
-                  {' ('}
-                  <a
-                    href={`/downloads/${row.latexSolutionTarget}.pdf`}
-                    target='_blank'
-                    rel='noreferrer'
-                    className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
-                  >
-                    Megoldások
-                  </a>
-                  {')'}
-                </>
-              )}
+              {subject.practiceMaterial.hideSolutions !== 'no-link' &&
+                row.hideSolution !== 'no-link' &&
+                row.pdfSolutionSource && (
+                  <>
+                    {' ('}
+                    <a
+                      href={`/downloads/${row.pdfSolutionTarget}`}
+                      target='_blank'
+                      rel='noreferrer'
+                      className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
+                    >
+                      Megoldások
+                    </a>
+                    {')'}
+                  </>
+                )}
+              {subject.practiceMaterial.hideSolutions !== 'no-link' &&
+                row.hideSolution !== 'no-link' &&
+                row.latexSolutionSource && (
+                  <>
+                    {' ('}
+                    <a
+                      href={`/downloads/${row.latexSolutionTarget}.pdf`}
+                      target='_blank'
+                      rel='noreferrer'
+                      className='underline transition-colors duration-300 hover:text-accent-9 font-semibold'
+                    >
+                      Megoldások
+                    </a>
+                    {')'}
+                  </>
+                )}
               {row.videoLink && (
                 <>
                   {' ('}
