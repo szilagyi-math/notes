@@ -1,0 +1,223 @@
+\documentclass{szb-solution}
+
+\area{Integrálszámítás}
+\title{Integrálszámítás III}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{12}
+
+\begin{document}
+\maketitle
+
+\subsection{Trigonometrikus integrálok}
+
+Minden határozatlan integrálban $C\in\mathbb R$ tetszőleges állandó.
+
+\begin{enumerate}[a)]
+  \item Az $u=\cos x$, $\dd u=-\sin x\dd x$ helyettesítéssel
+        $$
+          \boxed{\int\cos^3x\sin x\dd x=-\frac{\cos^4x}{4}+C}
+          \text.
+        $$
+
+  \item Egy koszinuszt leválasztunk, a többit szinusz segítségével írjuk fel:
+        $$
+          \cos^5x=(1-\sin^2x)^2\cos x
+          \text.
+        $$
+        Az $u=\sin x$ helyettesítés után
+        $$
+          \boxed{\int\cos^5x\dd x
+          =\sin x-\frac23\sin^3x+\frac15\sin^5x+C}
+          \text.
+        $$
+
+  \item A hatványcsökkentő azonosságokkal
+        $$
+          \sin^4x\cos^2x
+          =\frac1{16}-\frac1{32}\cos2x
+           -\frac1{16}\cos4x+\frac1{32}\cos6x
+          \text.
+        $$
+        Így
+        $$
+          \boxed{\int\sin^4x\cos^2x\dd x
+          =\frac{x}{16}-\frac{\sin2x}{64}
+           -\frac{\sin4x}{64}+\frac{\sin6x}{192}+C}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Összetett integrálási feladatok}
+
+\begin{enumerate}[a)]
+  \item Legyen $t=\sqrt x$, így $x=t^2$ és $\dd x=2t\dd t$. Parciális
+        integrálással
+        $$
+          2\int t\sin t\dd t=-2t\cos t+2\sin t+C
+          \text,
+        $$
+        ezért
+        $$
+          \boxed{\int\sin\sqrt x\dd x
+          =-2\sqrt x\cos\sqrt x+2\sin\sqrt x+C}
+          \text.
+        $$
+
+  \item Legyen $t=\ln x$, ekkor $\dd t=\dd x/x$. A valós logaritmusok miatt
+        $x>1$, és
+        $$
+          \boxed{\int\frac{\ln\ln x}{x}\dd x
+          =\ln x\,\ln\ln x-\ln x+C}
+          \text.
+        $$
+
+  \item Az abszolútérték miatt intervallumonként integrálhatunk:
+        $$
+          \int|x|\dd x=
+          \begin{cases}
+            -x^2/2+C,&x<0,\\
+            x^2/2+C,&x\geq0.
+          \end{cases}
+        $$
+        Ez egyetlen képlettel
+        $$
+          \boxed{\int|x|\dd x=\frac{x|x|}{2}+C}
+          \text.
+        $$
+
+  \item Legyen $t=x^x$. Mivel $x>0$ esetén
+        $$
+          \dd t=x^x(\ln x+1)\dd x=t(\ln x+1)\dd x,
+        $$
+        ezért
+        \begin{align*}
+          \int\frac{\ln x+1}{x^x-1}\dd x
+          &=\int\frac{\dd t}{t(t-1)}
+            =\int\left(-\frac1t+\frac1{t-1}\right)\dd t\\
+          &=\boxed{\ln\left|\frac{x^x-1}{x^x}\right|+C}
+          \text.
+        \end{align*}
+
+  \item Legyen $t=2x-1$, így $x=(t+1)/2$ és $\dd x=\dd t/2$. Ekkor
+        $$
+          x^2-3x+2=\frac{t^2-4t+3}{4}
+          \text,
+        $$
+        tehát
+        $$
+          \int(x^2-3x+2)\sqrt{2x-1}\dd x
+          =\frac18\int(t^{5/2}-4t^{3/2}+3t^{1/2})\dd t
+          \text.
+        $$
+        Visszahelyettesítve
+        $$
+          \boxed{\frac{(2x-1)^{7/2}}{28}
+          -\frac{(2x-1)^{5/2}}5
+          +\frac{(2x-1)^{3/2}}4+C}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Határozott integrálok}
+
+\begin{enumerate}[a)]
+  \item Egy teljes perióduson
+        $$
+          \boxed{\int_0^{2\pi}\cos x\dd x
+          =[\sin x]_0^{2\pi}=0}
+          \text.
+        $$
+
+  \item Parciális integrálással
+        $$
+          \int_0^1x\sinh x\dd x
+          =[x\cosh x]_0^1-\int_0^1\cosh x\dd x
+          =\cosh1-\sinh1
+          \text.
+        $$
+        Mivel $\cosh1-\sinh1=e^{-1}$,
+        $$
+          \boxed{\int_0^1x\sinh x\dd x=\frac1e}
+          \text.
+        $$
+
+  \item Az $y=\sqrt{9-x^2}$ görbe a $3$ sugarú kör felső félköre, ezért
+        $$
+          \boxed{\int_{-3}^3\sqrt{9-x^2}\dd x=\frac{9\pi}{2}}
+          \text.
+        $$
+        Ugyanez az $x=3\sin t$ helyettesítéssel is megkapható.
+\end{enumerate}
+
+\subsection{Polinom és az x-tengely által bezárt terület}
+
+Legyen
+$$
+  f(x)=(x+1)x(x-2)=x^3-x^2-2x
+  \text.
+$$
+A zérushelyek $-1$, $0$ és $2$, így a két korlátos tartomány a $[-1,0]$ és
+$[0,2]$ intervallumokon található. Egy primitív függvény
+$$
+  F(x)=\frac{x^4}{4}-\frac{x^3}{3}-x^2
+  \text.
+$$
+Az első intervallumon $f\geq0$, a másodikon $f\leq0$, ezért
+\begin{align*}
+  T
+  &=\int_{-1}^0f(x)\dd x-\int_0^2f(x)\dd x\\
+  &=\bigl(F(0)-F(-1)\bigr)-\bigl(F(2)-F(0)\bigr)\\
+  &=\frac5{12}+\frac83
+  =\boxed{\frac{37}{12}}
+  \text.
+\end{align*}
+
+\subsection{Két görbe által bezárt terület}
+
+Az $f(x)=x^4$ és $g(x)=3x^2-2$ görbék metszéspontjainak abszcisszái:
+$$
+  x^4=3x^2-2
+  \quad\Longleftrightarrow\quad
+  (x^2-1)(x^2-2)=0
+  \quad\Longleftrightarrow\quad
+  x=\pm1,\ \pm\sqrt2
+  \text.
+$$
+Mindkét függvény páros. A $[0,1]$ intervallumon $f\geq g$, az
+$[1,\sqrt2]$ intervallumon $g\geq f$. A három korlátos tartomány teljes
+területe tehát
+\begin{align*}
+  T
+  &=2\left(
+    \int_0^1(f-g)\dd x+
+    \int_1^{\sqrt2}(g-f)\dd x\right)\\
+  &=2\left(\frac65+\frac65-\frac{4\sqrt2}{5}\right)\\
+  &=\boxed{\frac{24-8\sqrt2}{5}}
+  \text.
+\end{align*}
+
+\subsection{A kör görbevonalú trapézének területe}
+
+A paraméterezés
+$$
+  x(t)=a\cos t,
+  \qquad
+  y(t)=a\sin t,
+  \qquad
+  0\leq t\leq2\pi
+  \text,
+$$
+ahol $\dot x(t)=-a\sin t$. A görbevonalú trapéz területe
+\begin{align*}
+  T
+  &=\int_0^{2\pi}|\dot x(t)y(t)|\dd t
+    =a^2\int_0^{2\pi}\sin^2t\dd t\\
+  &=a^2\int_0^{2\pi}\frac{1-\cos2t}{2}\dd t
+    =\boxed{\pi a^2}
+  \text.
+\end{align*}
+Ez természetesen megegyezik az $a$ sugarú kör területével.
+
+\end{document}

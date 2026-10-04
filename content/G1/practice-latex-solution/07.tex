@@ -1,0 +1,322 @@
+\documentclass{szb-solution}
+
+\area{Kalkulus}
+\title{Differenciálás I}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{7}
+
+\begin{document}
+\maketitle
+
+\subsection{A hatványfüggvény deriváltja a definícióból}
+
+Legyen $f(x)=x^n$, ahol $n\in\mathbb N$. A differenciálhányados definíciója
+szerint
+$$
+  f'(x_0)=\lim_{x\to x_0}\frac{x^n-x_0^n}{x-x_0}
+  \text.
+$$
+Felhasználjuk a hatványok különbségének szorzattá alakítását:
+$$
+  x^n-x_0^n=(x-x_0)
+  \left(x^{n-1}+x^{n-2}x_0+\dots+xx_0^{n-2}+x_0^{n-1}\right)
+  \text.
+$$
+Ha $x\neq x_0$, egyszerűsíthetünk $x-x_0$-lal, majd határértéket vehetünk:
+\begin{align*}
+  f'(x_0)
+  &=\lim_{x\to x_0}
+    \left(x^{n-1}+x^{n-2}x_0+\dots+x_0^{n-1}\right)\\
+  &=\underbrace{x_0^{n-1}+x_0^{n-1}+\dots+x_0^{n-1}}_{n\text{ darab}}
+  =n x_0^{n-1}
+  \text.
+\end{align*}
+Tehát
+$$
+  \boxed{(x^n)'=nx^{n-1}}
+  \text.
+$$
+
+\subsection{Szakaszonként megadott függvények differenciálhatósága}
+
+\begin{enumerate}[a)]
+  \item A függvény mindkét oldalról nullához tart, és $f(0)=0$, tehát
+        folytonos a nullában. Az egyoldali differenciálhányadosok:
+        $$
+          f'_-(0)=\lim_{x\to0^-}\frac{\sin^2x}{x}
+          =\lim_{x\to0^-}\frac{\sin x}{x}\sin x=0,
+        $$
+        $$
+          f'_+(0)=\lim_{x\to0^+}\frac{x^2}{x}
+          =\lim_{x\to0^+}x=0
+          \text.
+        $$
+        A két érték megegyezik, ezért
+        $$
+          \boxed{f\text{ differenciálható }0\text{-ban, és }f'(0)=0.}
+        $$
+        A derivált teljes alakja
+        $$
+          f'(x)=
+          \begin{cases}
+            \sin2x,&x<0,\\
+            0,&x=0,\\
+            2x,&x>0.
+          \end{cases}
+        $$
+
+  \item A jobb oldali határérték $0$, a bal oldali viszont
+        $$
+          \lim_{x\to0^-}(x^3+x+1)=1
+          \text.
+        $$
+        Ezek nem egyeznek meg, ezért a függvény a nullában nem folytonos.
+        A differenciálhatóság folytonosságot von maga után, így
+        $$
+          \boxed{f\text{ nem differenciálható }0\text{-ban}.}
+        $$
+\end{enumerate}
+
+\subsection{Példák folytonosságra és differenciálhatóságra}
+
+\begin{enumerate}[a)]
+  \item Az $f(x)=|x-1|$ függvény mindenütt folytonos, de $x=1$-ben a bal
+        oldali derivált $-1$, a jobb oldali derivált $1$, tehát ott nem
+        differenciálható.
+
+  \item Ilyen függvény nem létezik. Ha egy függvény differenciálható egy
+        pontban, akkor abban a pontban szükségképpen folytonos is.
+
+  \item Például $f(x)=x^2$. Ekkor $f'(x)=2x$, így mind $f$, mind $f'$ az egész
+        valós számegyenesen folytonos.
+
+  \item Legyen
+        $$
+          f(x)=
+          \begin{cases}
+            x^2\sin(1/x),&x\neq0,\\
+            0,&x=0.
+          \end{cases}
+        $$
+        A nullában
+        $$
+          f'(0)=\lim_{x\to0}\frac{x^2\sin(1/x)}x
+          =\lim_{x\to0}x\sin(1/x)=0
+          \text,
+        $$
+        tehát $f$ mindenütt differenciálható. Ha $x\neq0$, akkor
+        $$
+          f'(x)=2x\sin(1/x)-\cos(1/x)
+          \text.
+        $$
+        Ez $x\to0$ esetén nem tart nullához, ezért $f'$ nem folytonos a
+        nullában.
+\end{enumerate}
+
+\subsection{Differenciálhatóság és közeli töréspontok}
+
+Legyen
+$$
+  f(x)=
+  \begin{cases}
+    x^2|\sin(1/x)|,&x\neq0,\\
+    0,&x=0.
+  \end{cases}
+$$
+A nullában
+$$
+  \left|\frac{f(x)-f(0)}{x}\right|
+  =|x|\,|\sin(1/x)|\leq|x|\longrightarrow0
+  \text,
+$$
+tehát $f'(0)=0$: a függvény differenciálható a nullában.
+
+Ugyanakkor $\sin(1/x)=0$, ha
+$$
+  x=x_k=\frac1{k\pi},
+  \qquad k\in\mathbb Z\setminus\{0\}
+  \text.
+$$
+Ezekben a pontokban $\sin(1/x)$ egyszeres zérushelyű, ezért az abszolútérték
+bal és jobb oldali meredeksége ellentétes előjelű. Az $x^2$ pozitív tényező ezt
+a törést nem szünteti meg, így $f$ egyik $x_k$ pontban sem differenciálható.
+Mivel $x_k\to0$, a nulla bármilyen kis környezetében található ilyen pont.
+
+\subsection{Deriválási gyakorlatok}
+
+\begin{enumerate}[a)]
+  \item A $\sin^2x+\cos^2x=1$ tag deriváltja nulla, ezért
+        $$
+          \boxed{
+          f'(x)=5(6x^7+7x^4+2x^2)^4(42x^6+28x^3+4x)}
+          \text.
+        $$
+
+  \item A szorzat- és hatványszabályt alkalmazva
+        $$
+          \boxed{
+          g'(x)=\frac{e^x}{x}+e^x\ln x
+          +2x\cot x-\frac{x^2}{\sin^2x}-\frac13x^{-4/3}}
+          \text.
+        $$
+
+  \item Jelölje $C=\operatorname{arctanh}\pi$ a nevezőben szereplő
+        konstans értéket. Az eredeti kifejezést formálisan differenciálva,
+        logaritmikus deriválással tömör alakot kapunk:
+        \begin{align*}
+          h'(x)=h(x)\bigg(&\frac{2x+3}{x^2+3x}
+          +\coth x
+          +\frac{1}{(1+x^2)\arctan x}\\
+          &+\frac{\sin x}{1+\cos x}\bigg)
+          \text.
+        \end{align*}
+        Ez az alak minden olyan intervallumon használható, ahol az eredeti
+        függvény és a feltüntetett hányadosok értelmezettek. Megjegyzés: valós
+        függvényként $\operatorname{arctanh}\pi$ nem értelmezett, ezért a
+        feladat nevezőjében valószínűleg elírás van; a deriválás szempontjából
+        mindenképpen konstansként viselkedik.
+
+  \item Legyen $u(x)=\ln(\cos^2(x^4))$. Ekkor
+        $$
+          u'(x)=\frac{2\cos(x^4)(-\sin(x^4))4x^3}{\cos^2(x^4)}
+          =-8x^3\tan(x^4)
+          \text.
+        $$
+        Tehát
+        $$
+          \boxed{
+          i'(x)=-\frac{8x^3\tan(x^4)}
+          {3\,[\ln(\cos^2(x^4))]^{2/3}}}
+          \text.
+        $$
+
+  \item Írjuk
+        $$
+          u(x)=\sqrt{\frac{x^2+3}{e^{2x}}}
+          =e^{-x}\sqrt{x^2+3}
+          \text.
+        $$
+        Logaritmikus deriválással
+        $$
+          \frac{u'}u=\frac{x}{x^2+3}-1
+          \text.
+        $$
+        Mivel $(\ln(\arcsin u))'=u'/[\arcsin u\sqrt{1-u^2}]$,
+        $$
+          \boxed{
+          j'(x)=\frac{u(x)\left(\dfrac{x}{x^2+3}-1\right)}
+          {\arcsin(u(x))\sqrt{1-u(x)^2}}}
+          \text,
+        $$
+        ahol a képlet az eredeti függvény értelmezési tartományának belső
+        pontjain érvényes.
+
+  \item $x>0$ esetén $x^x=e^{x\ln x}$, ezért
+        $$
+          \boxed{(x^x)'=x^x(\ln x+1)}
+          \text.
+        $$
+
+  \item Mivel $(x^2+1)^{\sin x}
+        =e^{\sin x\ln(x^2+1)}$,
+        $$
+          \boxed{
+          l'(x)=(x^2+1)^{\sin x}
+          \left(\cos x\ln(x^2+1)+\frac{2x\sin x}{x^2+1}\right)}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Magasabb rendű deriváltak}
+
+\begin{enumerate}[a)]
+  \item Ha $m\in\mathbb N_0$, akkor
+        $$
+          \boxed{
+          \frac{\mathrm d^n}{\mathrm dx^n}x^m=
+          \begin{cases}
+            \dfrac{m!}{(m-n)!}x^{m-n},&0\leq n\leq m,\\
+            0,&n>m.
+          \end{cases}}
+          \text.
+        $$
+        Különösen az $m$-edik derivált $m!$, nem pedig $1$.
+
+  \item A deriváltak négyes periódusban ismétlődnek:
+        $$
+          \sin x,\quad\cos x,\quad-\sin x,\quad-\cos x,\quad\sin x,\dots
+        $$
+        Ezt egyetlen képlet foglalja össze:
+        $$
+          \boxed{\displaystyle
+          \frac{\mathrm d^n}{\mathrm dx^n}\sin x
+          =\sin\left(x+\frac{n\pi}{2}\right)}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Érintő és normális}
+
+Legyen
+$$
+  f(x)=2x^3+3\sqrt x-\frac{3}{2x^2}
+  \text.
+$$
+Az $x_0=1$ pontban
+$$
+  f(1)=2+3-\frac32=\frac72
+  \text,
+$$
+és
+$$
+  f'(x)=6x^2+\frac{3}{2\sqrt x}+3x^{-3},
+  \qquad
+  f'(1)=6+\frac32+3=\frac{21}{2}
+  \text.
+$$
+Az érintő egyenlete
+$$
+  y-\frac72=\frac{21}{2}(x-1),
+  \qquad
+  \boxed{y=\frac{21x-14}{2}}
+  \text.
+$$
+A normális meredeksége a negatív reciprok, $-2/21$, ezért
+$$
+  y-\frac72=-\frac2{21}(x-1),
+  \qquad
+  \boxed{y=-\frac2{21}x+\frac{151}{42}}
+  \text.
+$$
+
+\clearpage
+\subsection{A kör megadott irányú érintői}
+
+A $3x-4y+7=0$ egyenes meredeksége $3/4$. Az
+$x^2+y^2=25$ kör implicit deriválásából
+$$
+  2x+2yy'=0,
+  \qquad y'=-\frac{x}{y}
+  \text.
+$$
+A párhuzamosság feltétele
+$$
+  -\frac{x}{y}=\frac34,
+  \qquad y=-\frac43x
+  \text.
+$$
+Ezt a kör egyenletébe helyettesítve
+$$
+  x^2+\frac{16}{9}x^2=25,
+  \qquad x^2=9
+  \text.
+$$
+Így a keresett pontok
+$$
+  \boxed{(3,-4)\quad\text{és}\quad(-3,4)}
+  \text.
+$$
+
+\end{document}

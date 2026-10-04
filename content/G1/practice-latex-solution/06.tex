@@ -1,0 +1,363 @@
+\documentclass{szb-solution}
+
+\area{Függvények}
+\title{Folytonosság és határérték}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{6}
+
+\begin{document}
+\maketitle
+
+\subsection{Határérték a Heine- és a Cauchy-definíció alapján}
+
+Tekintsük az
+$$
+  f(x)=\frac{3x+1}{5x+4}
+$$
+függvényt. Igazoljuk, hogy
+$$
+  \lim_{x\to2}f(x)=\frac12
+  \text.
+$$
+
+\paragraph{Heine-definíció.}
+Legyen $(x_n)$ tetszőleges olyan sorozat, amelyre $x_n\to2$, és
+$x_n\neq2$. Mivel $5x_n+4\to14\neq0$, a nevező egy indextől kezdve nem
+nulla, és a sorozatok határértékére vonatkozó műveleti szabályok szerint
+\begin{align*}
+  f(x_n)&=\frac{3x_n+1}{5x_n+4}\\
+  &\longrightarrow\frac{3\cdot2+1}{5\cdot2+4}
+  =\frac7{14}=\frac12
+  \text.
+\end{align*}
+Ez minden megfelelő $(x_n)$ sorozatra igaz, tehát a Heine-definíció alapján
+a határérték valóban $1/2$.
+
+\paragraph{Cauchy-definíció.}
+Legyen $\varepsilon>0$. Ha $|x-2|<1$, akkor $1<x<3$, így
+$5x+4>9$. Ekkor
+\begin{align*}
+  \left|f(x)-\frac12\right|
+  &=\left|\frac{2(3x+1)-(5x+4)}{2(5x+4)}\right|\\
+  &=\frac{|x-2|}{2|5x+4|}
+  <\frac{|x-2|}{18}
+  \text.
+\end{align*}
+Válasszuk
+$$
+  \delta=\min\{1,18\varepsilon\}
+  \text.
+$$
+Ha $0<|x-2|<\delta$, akkor a fenti becslés szerint
+$$
+  \left|f(x)-\frac12\right|
+  <\frac{|x-2|}{18}<\varepsilon
+  \text.
+$$
+Ez pontosan a Cauchy-féle definíció, tehát
+$$
+  \boxed{\displaystyle\lim_{x\to2}\frac{3x+1}{5x+4}=\frac12}
+  \text.
+$$
+
+\subsection{Határértékek}
+
+\begin{enumerate}[a)]
+  \item Közös nevezőre hozva
+        \begin{align*}
+          &\frac{x^2}{2x+1}+\frac{x^3+4x^2-2}{1-2x^2}\\
+          &\qquad=
+          \frac{9x^3+5x^2-4x-2}{-4x^3-2x^2+2x+1}
+          \text.
+        \end{align*}
+        A számláló és a nevező azonos fokú, ezért a vezető együtthatók
+        hányadosa adja a határértéket:
+        $$
+          \boxed{\displaystyle
+          \lim_{x\to-\infty}\left(
+          \frac{x^2}{2x+1}+\frac{x^3+4x^2-2}{1-2x^2}
+          \right)=-\frac94}
+          \text.
+        $$
+
+  \item A két egyoldali határértéket külön kell vizsgálni. Ha $x\to0^+$,
+        akkor $\sqrt2/x\to+\infty$, míg $x\to0^-$ esetén
+        $\sqrt2/x\to-\infty$. Így
+        $$
+          \lim_{x\to0^+}\frac3{2^{\sqrt2/x}+1}=0,
+          \qquad
+          \lim_{x\to0^-}\frac3{2^{\sqrt2/x}+1}=3
+          \text.
+        $$
+        Mivel a két egyoldali határérték különbözik,
+        $$
+          \boxed{\displaystyle
+          \lim_{x\to0}\frac3{2^{\sqrt2/x}+1}\text{ nem létezik}}
+          \text.
+        $$
+
+  \item Konjugálttal bővítve, majd $x+1$-gyel egyszerűsítve:
+        \begin{align*}
+          \frac{x+1}{\sqrt{6x^2+3}+3x}
+          &=\frac{(x+1)(\sqrt{6x^2+3}-3x)}{3(1-x^2)}\\
+          &=\frac{\sqrt{6x^2+3}-3x}{3(1-x)}
+          \qquad(x\neq-1)
+          \text.
+        \end{align*}
+        Ezért
+        $$
+          \boxed{\displaystyle
+          \lim_{x\to-1}\frac{x+1}{\sqrt{6x^2+3}+3x}=1}
+          \text.
+        $$
+
+  \item A kitevőben
+        $$
+          \frac{1-\sqrt x}{1-x}
+          =\frac1{1+\sqrt x}\longrightarrow\frac12
+          \text,
+        $$
+        az alap pedig $(1+x)/(2+x)\to2/3>0$. A hatványfüggvény
+        folytonossága miatt
+        $$
+          \boxed{\displaystyle
+          \lim_{x\to1}\left(\frac{1+x}{2+x}\right)^{
+          \frac{1-\sqrt x}{1-x}}
+          =\left(\frac23\right)^{1/2}=\sqrt{\frac23}}
+          \text.
+        $$
+
+  \item Legyen $y=\sin x$. Ekkor $y\to1/2$, és
+        $$
+          2y^2+y-1=(2y-1)(y+1),
+          \qquad
+          2y^2-3y+1=(2y-1)(y-1)
+          \text.
+        $$
+        Az eltűnő közös tényező egyszerűsítése után
+        $$
+          \boxed{\displaystyle
+          \lim_{x\to\pi/6}
+          \frac{2\sin^2x+\sin x-1}{2\sin^2x-3\sin x+1}
+          =\frac{1/2+1}{1/2-1}=-3}
+          \text.
+        $$
+
+  \item Használjuk az $1-\sin x=\cos^2x/(1+\sin x)$ azonosságot:
+        \begin{align*}
+          \frac{\cos x-\sin x+1}{\cos x+\sin x-1}
+          &=\frac{\cos x+(1-\sin x)}{\cos x-(1-\sin x)}\\
+          &=\frac{1+\dfrac{\cos x}{1+\sin x}}
+                  {1-\dfrac{\cos x}{1+\sin x}}
+          \longrightarrow1
+          \text.
+        \end{align*}
+        Tehát
+        $$
+          \boxed{\displaystyle
+          \lim_{x\to\pi/2}\frac{\cos x-\sin x+1}
+          {\cos x+\sin x-1}=1}
+          \text.
+        $$
+
+  \item Az alap-határértéket felhasználva
+        $$
+          \boxed{\displaystyle
+          \lim_{x\to0}\frac{\sin5x}{x}
+          =5\lim_{x\to0}\frac{\sin5x}{5x}=5}
+          \text.
+        $$
+
+  \item Átalakítással minden tényező ismert határértékű:
+        \begin{align*}
+          \frac{\tan x-\sin x}{x^3}
+          &=\frac{\sin x(1-\cos x)}{x^3\cos x}\\
+          &=\frac{\sin x}{x}\cdot
+            \frac{1-\cos x}{x^2}\cdot\frac1{\cos x}
+          \longrightarrow1\cdot\frac12\cdot1
+          \text.
+        \end{align*}
+        Így a határérték
+        $$
+          \boxed{\frac12}
+          \text.
+        $$
+
+  \item
+        \begin{align*}
+          \frac{\sin8x}{\tan5x}
+          &=\frac{\sin8x}{8x}\cdot
+            \frac{5x}{\sin5x}\cdot
+            \frac85\cos5x
+          \longrightarrow1\cdot1\cdot\frac85\cdot1
+          \text.
+        \end{align*}
+        Tehát
+        $$
+          \boxed{\displaystyle\lim_{x\to0}\frac{\sin8x}{\tan5x}=\frac85}
+          \text.
+        $$
+
+  \item Legyen $t=\pi/2-x$. Ekkor $t\to0$, és
+        $$
+          \left(\frac\pi2-x\right)\tan x
+          =t\tan\left(\frac\pi2-t\right)
+          =\frac{t\cos t}{\sin t}
+          \longrightarrow1
+          \text.
+        $$
+        Ezért a határérték $\boxed{1}$.
+
+  \item A $t=\sin x$ helyettesítéssel $t\to0$, ezért
+        $$
+          \boxed{\displaystyle
+          \lim_{x\to0}\frac{1-\cos(\sin x)}{\sin^2x}
+          =\lim_{t\to0}\frac{1-\cos t}{t^2}=\frac12}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Racionális függvény folytonossága}
+
+Legyen
+$$
+  f(x)=\frac{x^2+3x-10}{x^2-3x+2}
+  =\frac{(x-2)(x+5)}{(x-1)(x-2)}
+  \text.
+$$
+Az eredeti függvény értelmezési tartománya
+$\mathbb R\setminus\{1,2\}$. Ezen belül racionális függvényként mindenütt
+folytonos. Ha $x\neq1,2$, akkor
+$$
+  f(x)=\frac{x+5}{x-1}
+  \text.
+$$
+
+Az $x=1$ pontban
+$$
+  \lim_{x\to1^-}f(x)=-\infty,
+  \qquad
+  \lim_{x\to1^+}f(x)=+\infty
+  \text,
+$$
+tehát itt nem megszüntethető szakadási hely, hanem függőleges aszimptota van.
+Az $x=2$ pontban viszont
+$$
+  \lim_{x\to2}f(x)=\lim_{x\to2}\frac{x+5}{x-1}=7
+  \text.
+$$
+Ez megszüntethető szakadás: ha $f(2)=7$-et definiálnánk, a függvény ott is
+folytonossá válna. Összefoglalva:
+$$
+  \boxed{f\text{ folytonos }\mathbb R\setminus\{1,2\}\text{-n};
+  \ x=2\text{ megszüntethető, }x=1\text{ nem megszüntethető szakadás}.}
+$$
+
+\subsection{Egy oszcilláló függvény a nullában}
+
+Az $f(x)=x\sin(1/x)$ képlet $x=0$-ban önmagában nem értelmezett, ezért az
+eredeti függvény ott nem lehet folytonos. Vizsgáljuk azonban a természetes
+kiterjesztést:
+$$
+  \widetilde f(x)=
+  \begin{cases}
+    x\sin(1/x),&x\neq0,\\
+    0,&x=0.
+  \end{cases}
+$$
+Mivel $|\sin(1/x)|\leq1$,
+$$
+  |x\sin(1/x)|\leq|x|\longrightarrow0
+  \qquad(x\to0)
+  \text.
+$$
+A rendőrelv szerint $\lim_{x\to0}x\sin(1/x)=0=\widetilde f(0)$, így
+$$
+  \boxed{\widetilde f\text{ folytonos a }0\text{ pontban}.}
+$$
+
+\subsection{Paraméteres, szakaszonként definiált függvény}
+
+Legyen
+$$
+  f(x)=
+  \begin{cases}
+    x,&|x|<1,\\
+    x^2+ax+b,&|x|\geq1.
+  \end{cases}
+$$
+A két ág külön-külön folytonos, ezért csak $x=-1$ és $x=1$ illesztését
+kell megvizsgálni. Az $x=1$ pontban
+$$
+  1+a+b=1,
+  \qquad\text{vagyis}\qquad a+b=0
+  \text.
+$$
+Az $x=-1$ pontban
+$$
+  1-a+b=-1,
+  \qquad\text{vagyis}\qquad -a+b=-2
+  \text.
+$$
+A két egyenlet megoldása
+$$
+  \boxed{a=1,\qquad b=-1}
+  \text.
+$$
+Ezekkel az értékekkel a függvény mindkét csatlakozási pontban, tehát az
+egész valós számegyenesen folytonos.
+
+\subsection{Összetettebb határértékek}
+
+\begin{enumerate}[a)]
+  \item A szorzatalakhoz használjuk a
+        $\lim_{u\to0}\ln(1+u)/u=1$ határértéket:
+        \begin{align*}
+          \frac{\ln(\cos2x)}{x^2}
+          &=\frac{\ln(\cos2x)}{\cos2x-1}
+            \cdot\frac{\cos2x-1}{x^2}\\
+          &\longrightarrow1\cdot(-2)=-2
+          \text,
+        \end{align*}
+        hiszen $1-\cos2x=2\sin^2x$ és $\sin x/x\to1$. Tehát
+        $$
+          \boxed{\displaystyle\lim_{x\to0}\frac{\ln(\cos2x)}{x^2}=-2}
+          \text.
+        $$
+
+  \item A kifejezés $1^{\infty}$ típusú. Legyen
+        $$
+          y=(\tan x)^{\tan2x}
+          \text,
+        $$
+        ami $x$-nek $\pi/4$-hez elég közeli, de attól különböző értékein
+        pozitív. Logaritmust véve
+        $$
+          \ln y=\tan2x\,\ln(\tan x)
+          \text.
+        $$
+        Tegyük $t=\tan x$-et; ekkor $t\to1$, továbbá
+        $$
+          \tan2x=\frac{2t}{1-t^2}
+          =-\frac{2t}{(t-1)(t+1)}
+          \text.
+        $$
+        Így
+        \begin{align*}
+          \lim_{x\to\pi/4}\ln y
+          &=-\lim_{t\to1}
+            \frac{2t}{t+1}\cdot\frac{\ln t}{t-1}\\
+          &=-1\cdot1=-1
+          \text.
+        \end{align*}
+        Az exponenciális függvény folytonosságából
+        $$
+          \boxed{\displaystyle
+          \lim_{x\to\pi/4}(\tan x)^{\tan2x}=e^{-1}}
+          \text.
+        $$
+\end{enumerate}
+
+\end{document}
