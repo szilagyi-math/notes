@@ -1,0 +1,211 @@
+\documentclass{szb-solution}
+
+\area{Integrálszámítás}
+\title{Integrálszámítás IV}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{13}
+
+\begin{document}
+\maketitle
+
+\subsection{Paraméteres határozott integrál minimuma}
+
+Legyen $f(x)=x^4-2x^2=x^2(x^2-2)$. A függvény negatív pontosan a
+$(-\sqrt2,\sqrt2)$ intervallumon, a végpontokban nulla, azon kívül pozitív.
+Ezért az
+$$
+  I(a,b)=\int_a^b f(x)\dd x,
+  \qquad a<b,
+$$
+integrál akkor a legkisebb, ha a teljes negatív részt integráljuk, pozitív
+részt pedig nem veszünk hozzá. Tehát
+$$
+  \boxed{a=-\sqrt2,\qquad b=\sqrt2}
+  \text.
+$$
+Az integrandus páros, így a minimális érték
+\begin{align*}
+  I_{\min}
+  &=2\int_0^{\sqrt2}(x^4-2x^2)\dd x\\
+  &=2\left[\frac{x^5}{5}-\frac{2x^3}{3}\right]_0^{\sqrt2}
+  =\boxed{-\frac{16\sqrt2}{15}}
+  \text.
+\end{align*}
+
+\subsection{Improprius integrálok}
+
+\begin{enumerate}[a)]
+  \item A felső határ végtelen:
+        $$
+          \int_0^\infty\frac{\dd x}{1+x^2}
+          =\lim_{R\to\infty}[\arctan x]_0^R
+          =\boxed{\frac\pi2}
+          \text.
+        $$
+        Az integrál konvergens.
+
+  \item A függvény a bal végpontban nem korlátos, ezért
+        $$
+          \int_0^1\frac{\dd x}{\sqrt x}
+          =\lim_{\varepsilon\to0^+}[2\sqrt x]_{\varepsilon}^{1}
+          =\boxed{2}
+          \text.
+        $$
+        Az integrál konvergens.
+
+  \item A bal végpontban pólus van:
+        \begin{align*}
+          \int_{-2}^0\frac{\dd x}{x+2}
+          &=\lim_{\varepsilon\to0^+}
+            [\ln(x+2)]_{-2+\varepsilon}^{0}\\
+          &=\lim_{\varepsilon\to0^+}(\ln2-\ln\varepsilon)=+\infty
+          \text.
+        \end{align*}
+        Ezért az integrál \boxed{\text{divergens}}.
+
+  \item Legyen $t=\sqrt{x-1}$, vagyis $x=t^2+1$ és
+        $\dd x=2t\dd t$. Ekkor
+        $$
+          \int_1^\infty\frac{\dd x}{x\sqrt{x-1}}
+          =2\int_0^\infty\frac{\dd t}{1+t^2}
+          =\boxed{\pi}
+          \text.
+        $$
+
+  \item Egy primitív függvény
+        $$
+          \int e^{-x}\cos x\dd x
+          =\frac{e^{-x}}2(\sin x-\cos x)+C
+          \text.
+        $$
+        Mivel az exponenciális tényező a végtelenben nullához tart,
+        $$
+          \int_0^\infty e^{-x}\cos x\dd x
+          =\boxed{\frac12}
+          \text.
+        $$
+
+  \item A bal végpontban $x\ln x\to0$, ezért
+        $$
+          \int_0^1\ln x\dd x
+          =\lim_{\varepsilon\to0^+}[x\ln x-x]_{\varepsilon}^{1}
+          =\boxed{-1}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{A parabolaív hossza}
+
+Az $f(x)=x^2$ függvény deriváltja $f'(x)=2x$. Az ívhossz
+$$
+  L=\int_0^2\sqrt{1+4x^2}\dd x
+  \text.
+$$
+Az $u=2x$ helyettesítéssel
+$$
+  L=\frac12\int_0^4\sqrt{1+u^2}\dd u
+  \text.
+$$
+Felhasználva, hogy
+$$
+  \int\sqrt{1+u^2}\dd u
+  =\frac12\left(u\sqrt{1+u^2}+\operatorname{arsinh}u\right)+C,
+$$
+kapjuk
+$$
+  \boxed{L=\sqrt{17}+\frac14\operatorname{arsinh}4
+  =\sqrt{17}+\frac14\ln(4+\sqrt{17})}
+  \text.
+$$
+
+\subsection{A ciklois egy ívének hossza}
+
+A paraméterezés deriváltjai
+$$
+  \dot x(t)=a(1-\cos t),
+  \qquad
+  \dot y(t)=a\sin t
+  \text.
+$$
+Ezért a sebesség nagysága
+\begin{align*}
+  \sqrt{\dot x^2+\dot y^2}
+  &=a\sqrt{(1-\cos t)^2+\sin^2t}\\
+  &=a\sqrt{2-2\cos t}
+   =2a\left|\sin\frac t2\right|
+  \text.
+\end{align*}
+A $[0,2\pi]$ intervallumon $\sin(t/2)\geq0$, így
+$$
+  L=2a\int_0^{2\pi}\sin\frac t2\dd t
+  =\boxed{8a}
+  \text.
+$$
+
+\subsection{A csonkakúp térfogata}
+
+Vegyük fel az $x$ tengelyt a csonkakúp tengelye mentén. A sugár a
+$[0,6]$ intervallumon lineárisan csökken $5$-ről $2$-re:
+$$
+  r(x)=5-\frac{x}{2}
+  \text.
+$$
+Korongmódszerrel
+\begin{align*}
+  V
+  &=\pi\int_0^6\left(5-\frac x2\right)^2\dd x\\
+  &=\pi\left[25x-\frac52x^2+\frac{x^3}{12}\right]_0^6
+  =\boxed{78\pi}
+  \text.
+\end{align*}
+Ez megegyezik a
+$V=\pi h(R^2+Rr+r^2)/3$ képletbe való közvetlen behelyettesítés
+eredményével.
+
+\subsection{A gömb térfogatképletének levezetése}
+
+Az $R$ sugarú gömböt az
+$$
+  y=\sqrt{R^2-x^2},
+  \qquad -R\leq x\leq R,
+$$
+felső félkör $x$ tengely körüli megforgatásával kapjuk. A korongmódszer
+alapján
+\begin{align*}
+  V
+  &=\pi\int_{-R}^{R}y^2\dd x
+    =\pi\int_{-R}^{R}(R^2-x^2)\dd x\\
+  &=\pi\left[R^2x-\frac{x^3}{3}\right]_{-R}^{R}
+    =\boxed{\frac43\pi R^3}
+  \text.
+\end{align*}
+
+\subsection{Síktartomány súlypontja}
+
+Az $f(x)=x^3$, az $x$ tengely és az $x=1$ egyenes által határolt tartomány
+$0\leq x\leq1$ között helyezkedik el. Területe
+$$
+  T=\int_0^1x^3\dd x=\frac14
+  \text.
+$$
+A súlypont vízszintes koordinátája
+$$
+  S_x=\frac{\int_0^1x\,x^3\dd x}{T}
+     =\frac{1/5}{1/4}=\frac45
+  \text,
+$$
+a függőleges koordinátája pedig
+$$
+  S_y=\frac{\frac12\int_0^1(x^3)^2\dd x}{T}
+     =\frac{1/14}{1/4}=\frac27
+  \text.
+$$
+Tehát
+$$
+  \boxed{S\left(\frac45,\frac27\right)}
+  \text.
+$$
+
+\end{document}

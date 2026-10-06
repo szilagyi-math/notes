@@ -1,0 +1,254 @@
+\documentclass{szb-solution}
+
+\area{Kalkulus}
+\title{Differenciálszámítás III}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{9}
+
+\begin{document}
+\maketitle
+
+\subsection{Teljes függvényvizsgálat}
+
+Legyen
+$$
+  f(x)=\frac{2x^2}{x^2-9}
+  \text.
+$$
+Az értelmezési tartomány
+$$
+  \Domain_f=\mathbb R\setminus\{-3,3\}
+  \text.
+$$
+A függvény páros, mert $f(-x)=f(x)$, ezért a grafikon az $y$ tengelyre
+szimmetrikus. Egyetlen zérushelye $x=0$, és $f(0)=0$.
+
+A nevezetes határértékek:
+\begin{align*}
+  \lim_{x\to\pm\infty}f(x)&=2,\\
+  \lim_{x\to-3^-}f(x)&=+\infty,
+  &\lim_{x\to-3^+}f(x)&=-\infty,\\
+  \lim_{x\to3^-}f(x)&=-\infty,
+  &\lim_{x\to3^+}f(x)&=+\infty
+  \text.
+\end{align*}
+Így $x=-3$ és $x=3$ függőleges, $y=2$ pedig vízszintes
+aszimptota.
+
+Az első derivált
+$$
+  f'(x)=\frac{4x(x^2-9)-4x^3}{(x^2-9)^2}
+       =\frac{-36x}{(x^2-9)^2}
+  \text.
+$$
+A nevező pozitív, ezért a derivált előjelét $-x$ előjele dönti el. A
+függvény szigorúan növekvő a $(-\infty,-3)$ és $(-3,0)$ intervallumokon,
+szigorúan csökkenő a $(0,3)$ és $(3,\infty)$ intervallumokon. Az
+$x=0$ pontban lokális maximuma van:
+$$
+  \boxed{f(0)=0}
+  \text.
+$$
+
+A második derivált
+$$
+  f''(x)=\frac{108(x^2+3)}{(x^2-9)^3}
+  \text.
+$$
+Mivel a számláló mindig pozitív, $f$ konkáv a $(-3,3)$ intervallumon,
+és konvex a $(-\infty,-3)$, illetve $(3,\infty)$ intervallumon. A
+konvexitás csak a nem értelmezett $\pm3$ pontokban változik, ezért nincs
+inflexiós pont.
+
+Az értékkészlethez oldjuk meg az $y=f(x)$ egyenletet $x^2$-re:
+$$
+  y=\frac{2x^2}{x^2-9}
+  \quad\Longleftrightarrow\quad
+  x^2=\frac{9y}{y-2}
+  \text.
+$$
+Valós $x$ pontosan akkor létezik, ha a jobb oldal nemnegatív. Ezért
+$$
+  \boxed{\Range_f=(-\infty,0]\cup(2,\infty)}
+  \text.
+$$
+
+\subsection{Legkisebb felszínű, felül nyitott henger}
+
+Egy liter $1\,\mathrm{dm}^3$. Ha a henger sugara $r>0$, magassága $h>0$,
+akkor
+$$
+  \pi r^2h=1,
+  \qquad
+  h=\frac{1}{\pi r^2}
+  \text.
+$$
+A felül nyitott henger felszíne a palást és az alsó körlap összege:
+$$
+  A(r)=2\pi rh+\pi r^2=\frac{2}{r}+\pi r^2
+  \text.
+$$
+Deriválva
+$$
+  A'(r)=-\frac{2}{r^2}+2\pi r
+  \text,
+$$
+így $A'(r)=0$ pontosan akkor, ha $r^3=1/\pi$. Továbbá
+$$
+  A''(r)=\frac{4}{r^3}+2\pi>0
+  \qquad(r>0),
+$$
+tehát ez valóban az egyetlen globális minimum. A hozzá tartozó magasság
+megegyezik a sugárral:
+$$
+  \boxed{r=h=\pi^{-1/3}\,\mathrm{dm}}
+  \text,
+  \qquad
+  \boxed{A_{\min}=3\pi^{1/3}\,\mathrm{dm}^2}
+  \text.
+$$
+
+\subsection{Legnagyobb térfogatú, adott alkotójú kúp}
+
+Jelölje az adott alkotó hosszát $h$, az alkotó és a tengely által bezárt
+szöget pedig $\alpha\in(0,\pi/2)$. Ekkor a kúp alapkörének sugara és
+magassága
+$$
+  r=h\sin\alpha,
+  \qquad
+  m=h\cos\alpha
+  \text.
+$$
+A térfogat tehát
+$$
+  V(\alpha)=\frac{\pi h^3}{3}\sin^2\alpha\cos\alpha
+  \text.
+$$
+Mivel a pozitív állandó szorzó a szélsőérték helyét nem befolyásolja,
+elég a $\sin^2\alpha\cos\alpha$ kifejezést vizsgálni. Deriváltja
+$$
+  \sin\alpha\bigl(2\cos^2\alpha-\sin^2\alpha\bigr)
+  \text.
+$$
+A belső kritikus pontban
+$$
+  2\cos^2\alpha=\sin^2\alpha,
+  \qquad
+  \sin^2\alpha=\frac23,
+  \qquad
+  \cos\alpha=\frac1{\sqrt3}
+  \text.
+$$
+A térfogat az intervallum mindkét végén nullához tart, ezért ez a pont adja
+a maximumot. Így
+$$
+  \boxed{r=h\sqrt{\frac23},\qquad m=\frac{h}{\sqrt3}}
+$$
+és
+$$
+  \boxed{V_{\max}=\frac{2\pi h^3}{9\sqrt3}}
+  \text.
+$$
+
+\subsection{Körbe írt legnagyobb területű téglalap}
+
+Legyen a téglalap két oldalhossza $a,b>0$. A téglalap átlója a kör
+átmérője, ezért
+$$
+  a^2+b^2=4r^2
+  \text.
+$$
+Az $a^2+b^2$ rögzített összeg mellett
+$$
+  2ab\leq a^2+b^2=4r^2
+  \text,
+$$
+és egyenlőség pontosan $a=b$ esetén áll fenn. A maximális területű
+téglalap tehát négyzet, melynek
+$$
+  \boxed{a=b=\sqrt2\,r}
+  \qquad\text{és}\qquad
+  \boxed{T_{\max}=2r^2}
+  \text.
+$$
+
+\subsection{A folyosósaroknál befordítható gerenda}
+
+Legyen $\alpha\in(0,\pi/2)$ a gerenda és a $b$ szélességű folyosó
+hossziránya által bezárt szög. A sarkot éppen érintő gerenda két része
+$$
+  \ell_1=\frac{a}{\sin\alpha},
+  \qquad
+  \ell_2=\frac{b}{\cos\alpha}
+  \text,
+$$
+így az akadályt jelentő teljes hossz
+$$
+  \ell(\alpha)=\frac{a}{\sin\alpha}+\frac{b}{\cos\alpha}
+  \text.
+$$
+A befordítható legnagyobb gerendahossz e mennyiség minimuma. Deriválva
+$$
+  \ell'(\alpha)
+  =-\frac{a\cos\alpha}{\sin^2\alpha}
+   +\frac{b\sin\alpha}{\cos^2\alpha}
+  \text.
+$$
+A kritikus pont feltétele
+$$
+  b\sin^3\alpha=a\cos^3\alpha,
+  \qquad
+  \tan\alpha=\sqrt[3]{\frac ab}
+  \text.
+$$
+Mivel $\ell(\alpha)$ mindkét végponton $+\infty$-hez tart, a belső
+kritikus pont globális minimum. Behelyettesítés után
+$$
+  \boxed{\ell_{\max}
+  =\left(a^{2/3}+b^{2/3}\right)^{3/2}}
+  \text.
+$$
+
+\subsection{A gazda legrövidebb útja}
+
+Feltesszük, hogy a szárazföldön mindenütt azonos sebességgel halad, és a
+pataknál elegendő egy pontot érintenie. Jelölje $x$ kilométerben a ház
+patakra eső merőleges vetülete és az érintési pont közötti távolságot a
+kocsma irányában. Ekkor a teljes út
+$$
+  L(x)=\sqrt{x^2+0{,}25^2}
+       +\sqrt{(1-x)^2+0{,}75^2},
+  \qquad 0\leq x\leq1
+  \text.
+$$
+Deriváltja
+$$
+  L'(x)=\frac{x}{\sqrt{x^2+0{,}25^2}}
+       -\frac{1-x}{\sqrt{(1-x)^2+0{,}75^2}}
+  \text.
+$$
+Az $L'(x)=0$ egyenletben mindkét oldal nemnegatív, ezért négyzetre emelhetünk.
+Egyszerűsítés után
+$$
+  0{,}75^2x^2=0{,}25^2(1-x)^2,
+  \qquad
+  0{,}75x=0{,}25(1-x),
+$$
+tehát
+$$
+  \boxed{x=0{,}25\,\mathrm{km}}
+  \text.
+$$
+Ezt a visszatükrözés módszere is igazolja: a házat a patakra tükrözve a
+legrövidebb törtvonal kiegyenesedik. A minimális teljes út hossza
+$$
+  L_{\min}
+  =\sqrt{0{,}25^2+0{,}25^2}
+   +\sqrt{0{,}75^2+0{,}75^2}
+  =\boxed{\sqrt2\,\mathrm{km}}
+  \text.
+$$
+
+\end{document}

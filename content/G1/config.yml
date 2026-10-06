@@ -75,7 +75,8 @@ practice_material:
       week: 4
     - source: 05.tex
       target: G1-gyak-05
-      pdf_solution_source: G1-gyak-05-megoldas.pdf
+      latex_solution_source: 05.tex
+      latex_solution_target: G1-gyak-05-megoldas
       video_link: https://youtu.be/2EL1Qg0bEnU
       video_mistakes:
         - '27:00 → Mivel n tart a végtelenbe, így a számláló negatív lesz
@@ -90,11 +91,11 @@ practice_material:
       display_name: G1 5. gyakorlat
       description: Numerikus sorozatok II
       week: 5
-      hide_solution: no-link
     - source: 06.tex
       target: G1-gyak-06
       display_name: G1 6. gyakorlat
-      pdf_solution_source: G1-gyak-06-megoldas.pdf
+      latex_solution_source: 06.tex
+      latex_solution_target: G1-gyak-06-megoldas
       video_link: https://youtu.be/VJoVvFfEagc
       video_mistakes:
         - '58:36 -> A konstans megfogalmazás a számlálóra nem megfelelő. A
@@ -105,52 +106,53 @@ practice_material:
           eredmény, ami 8/5'
       description: Függvények – folytonosság, határérték
       week: 6
-      hide_solution: no-link
     - source: 07.tex
       target: G1-gyak-07
       display_name: G1 7. gyakorlat
-      pdf_solution_source: G1-gyak-07-megoldas.pdf
+      latex_solution_source: 07.tex
+      latex_solution_target: G1-gyak-07-megoldas
       video_link: https://youtu.be/qzTEZYRykUA
       description: Differenciálszámítás I
       week: 7
-      hide_solution: no-link
     - source: 08.tex
       target: G1-gyak-08
       display_name: G1 8. gyakorlat
-      pdf_solution_source: G1-gyak-08-megoldas.pdf
+      latex_solution_source: 08.tex
+      latex_solution_target: G1-gyak-08-megoldas
       description: Differenciálszámítás II
       video_link: https://youtu.be/t_ZtR2x0eFA
       week: 8
-      hide_solution: no-link
     - source: 09.tex
       target: G1-gyak-09
       display_name: G1 9. gyakorlat
-      pdf_solution_source: G1-gyak-09-megoldas.pdf
+      latex_solution_source: 09.tex
+      latex_solution_target: G1-gyak-09-megoldas
       description: Differenciálszámítás III
       video_link: https://youtu.be/wImfxPqRqNk
       week: 9
-      hide_solution: no-link
     - source: 10.tex
       target: G1-gyak-10
       display_name: G1 10. gyakorlat
-      pdf_solution_source: G1-gyak-10-megoldas.pdf
+      latex_solution_source: 10.tex
+      latex_solution_target: G1-gyak-10-megoldas
       description: Integrálszámítás I
       video_link: https://youtu.be/2YKb0qVEljo
       week: 10
-      hide_solution: no-link
     - source: 11.tex
       target: G1-gyak-11
       display_name: G1 11. gyakorlat
+      latex_solution_source: 11.tex
+      latex_solution_target: G1-gyak-11-megoldas
       description: Integrálszámítás II
       video_link: https://youtu.be/7Wc1erfk1Ug
       video_mistakes:
         - '17:55 -> F5-ös példánál lemaradt a +c valós konstans.'
       week: 11
-      hide_solution: no-link
     - source: 12.tex
       target: G1-gyak-12
       display_name: G1 12. gyakorlat
-      pdf_solution_source: G1-gyak-12-megoldas.pdf
+      latex_solution_source: 12.tex
+      latex_solution_target: G1-gyak-12-megoldas
       description: Integrálszámítás III
       video_link: https://youtu.be/mU497mbNvyg
       video_mistakes:
@@ -164,21 +166,22 @@ practice_material:
         - 'F10: Az integrálás kiértékelésnél a chx behelyettesítésénél hibás az
           előjel, ugyanakkor a megoldás helyes.'
       week: 12
-      hide_solution: no-link
     - source: 13.tex
       target: G1-gyak-13
-      display_name: G1 11. gyakorlat
+      display_name: G1 13. gyakorlat
+      latex_solution_source: 13.tex
+      latex_solution_target: G1-gyak-13-megoldas
       description: Integrálszámítás IV
       video_link: https://youtu.be/bzMjsAGt1x0
       week: 13
-      hide_solution: no-link
     - source: 14.tex
       target: G1-gyak-14
       display_name: G1 14. gyakorlat
+      latex_solution_source: 14.tex
+      latex_solution_target: G1-gyak-14-megoldas
       description: Numerikus sorok
       video_link: https://youtu.be/Y33dpnUZ5hk
       week: 14
-      hide_solution: no-link
 hide_lectures: true
 lectures:
   - room: CHFMAX

@@ -1,0 +1,333 @@
+\documentclass{szb-solution}
+
+\area{Sorozatok}
+\title{Numerikus sorozatok II}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{5}
+
+\begin{document}
+\maketitle
+
+\subsection{Konvergencia a definíció alapján}
+
+\begin{enumerate}[a)]
+  \item Legyen
+        $$
+          a_n=\frac{2n+5}{n-1}
+          \text.
+        $$
+        A számláló és a nevező legmagasabb fokú tagjainak együtthatóiból
+        sejthető, hogy $a_n\to2$. Ezt a definícióval is igazoljuk:
+        $$
+          |a_n-2|
+          =\left|\frac{2n+5-2(n-1)}{n-1}\right|
+          =\frac{7}{n-1}
+          \qquad(n>1)
+          \text.
+        $$
+        Adott $\varepsilon>0$ esetén a
+        $$
+          \frac{7}{n-1}<\varepsilon
+        $$
+        egyenlőtlenség teljesül, ha $n>1+7/\varepsilon$. Választhatjuk tehát
+        $$
+          N(\varepsilon)=\left\lceil 1+\frac7\varepsilon\right\rceil
+          \text.
+        $$
+        Az $\varepsilon=10^{-6}$ értékhez például $N=7\,000\,001$
+        megfelelő. Ekkor $n>N$ esetén $|a_n-2|<10^{-6}$, vagyis
+        $$
+          \boxed{a_n\longrightarrow2}
+          \text.
+        $$
+
+  \item Legyen
+        $$
+          b_n=\frac{2n+3\sqrt n}{3n+1}
+          \text.
+        $$
+        A várható határérték $2/3$, és
+        \begin{align*}
+          \left|b_n-\frac23\right|
+          &=\left|\frac{3(2n+3\sqrt n)-2(3n+1)}{3(3n+1)}\right|\\
+          &=\frac{9\sqrt n-2}{9n+3}
+          <\frac{9\sqrt n}{9n}
+          =\frac1{\sqrt n}
+          \qquad(n\geq1)
+          \text.
+        \end{align*}
+        Ezért elég $n>1/\varepsilon^2$-et megkövetelni. Az
+        $\varepsilon=10^{-3}$ értékhez például $N=1\,000\,000$ választható.
+        (Ez egyszerű, biztonságos választás; nem a legkisebb lehetséges
+        küszöb.) Így
+        $$
+          \boxed{b_n\longrightarrow\frac23}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Torlódási pontok}
+
+\begin{enumerate}[a)]
+  \item Írjuk a sorozatot két tényező szorzataként:
+        $$
+          a_n=
+          \underbrace{\frac{(\sqrt{n^2+1}+n)^2}{\sqrt[3]{n^6+1}}}_{u_n}
+          \cos\frac{n\pi}{3}
+          \text.
+        $$
+        Az első tényezőt $n^2$-tel normálva kapjuk, hogy
+        $$
+          u_n=
+          \frac{(\sqrt{1+1/n^2}+1)^2}{\sqrt[3]{1+1/n^6}}
+          \longrightarrow4
+          \text.
+        $$
+        A második tényező $6$-periodikus. Az $n$ maradéka szerint:
+        $$
+          \cos\frac{n\pi}{3}\in
+          \left\{1,\frac12,-\frac12,-1\right\}
+          \text,
+        $$
+        és mind a négy érték végtelen sokszor előfordul. Az egyes
+        maradékosztályokhoz tartozó részsorozatok határértékei tehát
+        $4$, $2$, $-2$ és $-4$. Más torlódási pont nincs, mert minden index
+        a hat maradékosztály egyikébe tartozik. Így
+        $$
+          \boxed{T(a_n)=\{-4,-2,2,4\}}
+          \text.
+        $$
+
+  \item Egyszerűsítés után
+        $$
+          b_n=\frac{(-1)^n+2}{3}\sin\frac{2n\pi}{3}
+          \text.
+        $$
+        Az első tényező páros $n$ esetén $1$, páratlan $n$ esetén $1/3$;
+        a szinuszos tényező pedig $3$-periodikusan a
+        $\sqrt3/2$, $-\sqrt3/2$, $0$ értékeket veszi fel. A teljes sorozat
+        ezért $6$-periodikus. A hat maradékosztály értékei rendre
+        $$
+          \frac{\sqrt3}{6},\quad -\frac{\sqrt3}{2},\quad 0,
+          \quad \frac{\sqrt3}{2},\quad -\frac{\sqrt3}{6},\quad 0
+          \text.
+        $$
+        Mivel egy periodikus sorozat minden, a periódusban előforduló értéke
+        torlódási pont,
+        $$
+          \boxed{
+            T(b_n)=\left\{-\frac{\sqrt3}{2},-\frac{\sqrt3}{6},0,
+            \frac{\sqrt3}{6},\frac{\sqrt3}{2}\right\}
+          }
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Monotonitás és korlátosság}
+
+\begin{enumerate}[a)]
+  \item Legyen
+        $$
+          a_n=\frac{2n^2+1}{n^2-n+1}
+          \text.
+        $$
+        A szomszédos tagok különbsége
+        \begin{align*}
+          a_{n+1}-a_n
+          &=\frac{2n^2+4n+3}{n^2+n+1}
+            -\frac{2n^2+1}{n^2-n+1}\\
+          &=\frac{2(1-n^2)}{(n^2+n+1)(n^2-n+1)}
+          \text.
+        \end{align*}
+        A nevező pozitív. $n=1$ esetén a különbség nulla, $n\geq2$ esetén
+        negatív. Tehát $a_1=a_2=3$, majd a sorozat szigorúan csökken.
+        Továbbá
+        $$
+          a_n-2=\frac{2n-1}{n^2-n+1}>0,
+          \qquad
+          \lim_{n\to\infty}a_n=2
+          \text.
+        $$
+        Következésképpen
+        $$
+          \boxed{2<a_n\leq3}
+          \text,
+        $$
+        vagyis a sorozat korlátos, és $a_n\to2$.
+
+  \item Legyen $b_n=n^5/n!$. A hányadosvizsgálat:
+        $$
+          \frac{b_{n+1}}{b_n}
+          =\frac{(n+1)^4}{n^5}
+          \text.
+        $$
+        Az első három hányados $16$, $81/32$, illetve $256/243$, tehát a
+        sorozat $b_1$-től $b_4$-ig nő. Ha $n\geq4$, akkor
+        $$
+          \frac{(n+1)^4}{n^5}
+          =\frac1n\left(1+\frac1n\right)^4
+          \leq\frac14\left(\frac54\right)^4
+          =\frac{625}{1024}<1
+          \text,
+        $$
+        ezért $b_4$ után szigorúan csökken. A teljes sorozat tehát nem
+        monoton, de pozitív és a maximuma
+        $$
+          b_4=\frac{4^5}{4!}=\frac{128}{3}
+          \text.
+        $$
+        A fenti becslésből $b_{n+1}\leq(625/1024)b_n$ következik $n\geq4$
+        esetén, így a farokrész egy nullához tartó mértani sorozattal
+        becsülhető. Ezért
+        $$
+          \boxed{0<b_n\leq\frac{128}{3},\qquad b_n\longrightarrow0}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Lineáris rekurzió}
+
+A rekurzió ismételt alkalmazásával
+$$
+  a_n=1+\frac12+\frac1{2^2}+\dots+\frac1{2^{n-1}}
+  \text.
+$$
+Ez egy véges mértani összeg, ezért
+$$
+  a_n=\frac{1-(1/2)^n}{1-1/2}
+  =2-\frac1{2^{n-1}}
+  \text.
+$$
+Az explicit alakból azonnal látszik, hogy a sorozat szigorúan növekvő,
+$1\leq a_n<2$, és
+$$
+  \boxed{a_n\longrightarrow2}
+  \text.
+$$
+
+\subsection{Gyökös rekurzió}
+
+Legyen $a_1=1$ és $a_n=\sqrt{1+a_{n-1}}$. Jelölje
+$$
+  \varphi=\frac{1+\sqrt5}{2}
+  \text,
+$$
+ekkor $\varphi^2=1+\varphi$.
+
+Először belátjuk indukcióval, hogy $1\leq a_n<\varphi$. Ez $n=1$-re igaz.
+Ha $a_n<\varphi$, akkor a gyökfüggvény szigorú monotonitása miatt
+$$
+  a_{n+1}=\sqrt{1+a_n}<\sqrt{1+\varphi}=\varphi
+  \text.
+$$
+Az alsó korlát is nyilvánvaló, így az indukció teljes.
+
+A növekedést szintén indukcióval igazoljuk. $a_2=\sqrt2>a_1$. Ha
+$a_n>a_{n-1}$, akkor
+$$
+  a_{n+1}=\sqrt{1+a_n}>\sqrt{1+a_{n-1}}=a_n
+  \text.
+$$
+Tehát $(a_n)$ növekvő és felülről korlátos, ezért konvergens. Ha a
+határértéke $A$, akkor a gyökfüggvény folytonossága miatt
+$$
+  A=\sqrt{1+A},
+  \qquad A^2-A-1=0
+  \text.
+$$
+Mivel $A\geq1$, csak a pozitív gyök jöhet szóba:
+$$
+  \boxed{a_n\longrightarrow\frac{1+\sqrt5}{2}}
+  \text.
+$$
+
+\subsection{Komplex sorozatok}
+
+Komplex sorozat akkor és csak akkor konvergens, ha a valós és a képzetes
+része is konvergens; ekvivalensen a különbség abszolút értéke nullához tart.
+
+\begin{enumerate}[a)]
+  \item $n^2$-tel osztva
+        $$
+          \frac{n^2-i(n^2-1)}{n^2-i}
+          =\frac{1-i+i/n^2}{1-i/n^2}
+          \longrightarrow\boxed{1-i}
+          \text.
+        $$
+
+  \item A háromszög-egyenlőtlenségből
+        $$
+          \left|\frac{i^n}{3^n+i^n}\right|
+          \leq\frac{|i^n|}{3^n-|i^n|}
+          =\frac1{3^n-1}\longrightarrow0
+          \text.
+        $$
+        Ezért
+        $$
+          \boxed{\frac{i^n}{3^n+i^n}\longrightarrow0}
+          \text.
+        $$
+
+  \item
+        $$
+          |(1-i)^n|=|1-i|^n=(\sqrt2)^n\longrightarrow\infty
+          \text.
+        $$
+        Egy konvergens komplex sorozat szükségképpen korlátos, ez a sorozat
+        viszont nem az. Tehát
+        $$
+          \boxed{((1-i)^n)\text{ divergens}}
+          \text.
+        $$
+\end{enumerate}
+
+\subsection{Egy hatványegyenlőtlenség}
+
+Az állítás $n\geq3$ esetén ekvivalens a
+$$
+  n\geq\left(1+\frac1n\right)^n
+  \text.
+$$
+egyenlőtlenséggel. A binomiális tétel szerint
+\begin{align*}
+  \left(1+\frac1n\right)^n
+  &=\sum_{k=0}^n\binom nk\frac1{n^k}
+  =\sum_{k=0}^n
+    \frac{n(n-1)\cdots(n-k+1)}{k!\,n^k}\\
+  &\leq\sum_{k=0}^n\frac1{k!}
+  <3
+  \leq n
+  \text.
+\end{align*}
+Itt az utolsó szigorú becsléshez felhasználtuk, hogy $k!\geq2^{k-1}$
+$k\geq2$ esetén, és legalább egy helyen szigorú az egyenlőtlenség. Ezzel
+$$
+  \boxed{n^{n+1}\geq(n+1)^n\qquad(n\geq3)}
+  \text.
+$$
+
+\subsection{Binomiális együtthatók hányadosa}
+
+A sorozat $n\geq3$ esetén értelmezett, és
+$$
+  a_n=\frac{\binom n2}{\binom n3}
+  =\frac{n!}{(n-2)!2!}\frac{(n-3)!3!}{n!}
+  =\frac3{n-2}
+  \text.
+$$
+Innen
+$$
+  a_{n+1}-a_n
+  =\frac3{n-1}-\frac3{n-2}
+  =-\frac3{(n-1)(n-2)}<0
+  \text,
+$$
+tehát a sorozat szigorúan csökken. Továbbá
+$$
+  \boxed{0<a_n\leq3,\qquad a_n\longrightarrow0}
+  \text.
+$$
+
+\end{document}

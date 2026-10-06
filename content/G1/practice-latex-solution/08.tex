@@ -1,0 +1,382 @@
+\documentclass{szb-solution}
+
+\area{Kalkulus}
+\title{Differenciálás II}
+\subject{Matematika G1}
+\subjectCode{BMETE94BG01}
+\date{Utoljára frissítve: \today}
+\docno{8}
+
+\begin{document}
+\maketitle
+
+\subsection{Implicit függvény deriváltjai}
+
+Legyen
+$$
+  F(x,y)=x^4y+5y^2x-4=0
+  \text.
+$$
+A parciális deriváltak
+$$
+  F_x=4x^3y+5y^2,
+  \qquad
+  F_y=x^4+10xy
+  \text.
+$$
+Ha $F_y\neq0$, akkor az implicit függvény $x$ szerinti deriváltja
+$$
+  \boxed{
+  \frac{\mathrm dy}{\mathrm dx}
+  =-\frac{F_x}{F_y}
+  =-\frac{4x^3y+5y^2}{x^4+10xy}}
+  \text.
+$$
+Ugyanezt közvetlenül is megkapjuk, mert
+$$
+  4x^3y+x^4y'+5y^2+10xyy'=0
+  \text.
+$$
+
+Ha viszont $F_x\neq0$, akkor $x$ tekinthető $y$ függvényének, és
+$$
+  \boxed{
+  \frac{\mathrm dx}{\mathrm dy}
+  =-\frac{F_y}{F_x}
+  =-\frac{x^4+10xy}{4x^3y+5y^2}}
+  \text.
+$$
+A két derivált ott reciprok egymással, ahol mindkettő értelmezett és nem
+nulla.
+
+\subsection{Első és második implicit derivált, érintő}
+
+Az egyenlet
+$$
+  \ln y+xy=1
+$$
+csak $y>0$ esetén értelmezett. A $P(1,1)$ pont rajta van a görbén, mert
+$\ln1+1\cdot1=1$.
+
+Implicit deriválással
+$$
+  \frac{y'}y+y+xy'=0
+  \text,
+$$
+tehát
+$$
+  y'\left(\frac1y+x\right)=-y,
+  \qquad
+  \boxed{y'=-\frac{y^2}{1+xy}}
+  \text.
+$$
+A második deriválthoz újra deriváljuk az eredeti első derivált egyenletét:
+$$
+  \frac{y''y-(y')^2}{y^2}+2y'+xy''=0
+  \text.
+$$
+Innen
+$$
+  y''\left(\frac1y+x\right)
+  =\frac{(y')^2}{y^2}-2y'
+  \text.
+$$
+$y'=-y^2/(1+xy)$ behelyettesítésével és egyszerűsítéssel
+$$
+  \boxed{y''=\frac{y^3(3+2xy)}{(1+xy)^3}}
+  \text.
+$$
+A $P(1,1)$ pontban
+$$
+  y'(1)=-\frac12,
+  \qquad
+  y''(1)=\frac58
+  \text.
+$$
+Az érintő egyenlete ezért
+$$
+  y-1=-\frac12(x-1),
+  \qquad
+  \boxed{y=-\frac12x+\frac32}
+  \text.
+$$
+
+\subsection{A kör adott meredekségű érintői}
+
+Az $x^2+y^2=25$ kör implicit deriválásából
+$$
+  2x+2yy'=0,
+  \qquad y'=-\frac{x}{y}
+  \text.
+$$
+A $3/4$ meredekség feltétele
+$$
+  -\frac{x}{y}=\frac34,
+  \qquad y=-\frac43x
+  \text.
+$$
+A kör egyenletébe visszahelyettesítve
+$$
+  x^2+\frac{16}{9}x^2=25,
+  \qquad x=\pm3
+  \text,
+$$
+majd $y=-4x/3$. Tehát
+$$
+  \boxed{(3,-4)\quad\text{és}\quad(-3,4)}
+  \text.
+$$
+
+\subsection{Inverz függvény és deriváltja}
+
+Legyen $f(x)=5x^3+x-7$. Mivel
+$$
+  f'(x)=15x^2+1>0
+$$
+minden valós $x$-re, $f$ szigorúan növekvő. Továbbá a két végtelenben
+$\pm\infty$-hez tart, ezért $\mathbb R$-ről $\mathbb R$-re bijektív, tehát
+létezik inverze.
+
+Ha $g=f^{-1}$, akkor $5g(x)^3+g(x)-7=x$. Az inverz deriválási szabálya
+szerint
+$$
+  \boxed{g'(x)=\frac{1}{f'(g(x))}
+  =\frac{1}{15g(x)^2+1}}
+  \text.
+$$
+Az inverz Cardano-képlettel explicit alakban is felírható:
+\begin{align*}
+  g(x)
+  &=\sqrt[3]{\frac{x+7}{10}
+    +\sqrt{\frac{(x+7)^2}{100}+\frac1{3375}}}\\
+  &\quad+\sqrt[3]{\frac{x+7}{10}
+    -\sqrt{\frac{(x+7)^2}{100}+\frac1{3375}}}
+  \text,
+\end{align*}
+ahol a valós köbgyököket értjük.
+
+$x_0=1$ esetén $f(1)=5+1-7=-1$, ezért
+$$
+  \boxed{(f^{-1})'(-1)=\frac1{f'(1)}=\frac1{16}}
+  \text.
+$$
+
+\subsection{Paraméteres görbe deriváltjai}
+
+Legyen
+$$
+  x(t)=e^t\cos t,
+  \qquad y(t)=e^t\sin t
+  \text.
+$$
+Először a paraméter szerinti deriváltak:
+$$
+  \dot x=e^t(\cos t-\sin t),
+  \qquad
+  \dot y=e^t(\sin t+\cos t)
+  \text.
+$$
+Ha $\dot x\neq0$, akkor
+$$
+  \boxed{
+  \frac{\mathrm dy}{\mathrm dx}
+  =\frac{\dot y}{\dot x}
+  =\frac{\sin t+\cos t}{\cos t-\sin t}}
+  \text.
+$$
+A második deriválthoz
+$$
+  \ddot x=-2e^t\sin t,
+  \qquad
+  \ddot y=2e^t\cos t
+  \text,
+$$
+így
+\begin{align*}
+  \frac{\mathrm d^2y}{\mathrm dx^2}
+  &=\frac{\ddot y\dot x-\dot y\ddot x}{\dot x^3}\\
+  &=\boxed{\frac{2}{e^t(\cos t-\sin t)^3}}
+  \text.
+\end{align*}
+A $t=\pi/6$ paraméterhez tartozó érintő meredeksége
+$$
+  \frac{1/2+\sqrt3/2}{\sqrt3/2-1/2}
+  =\frac{1+\sqrt3}{\sqrt3-1}
+  =\boxed{2+\sqrt3}
+  \text.
+$$
+
+\subsection{Paraméteresen megadott kör}
+
+A kör paraméterezése
+$$
+  x(t)=5\cos t,
+  \qquad y(t)=5\sin t
+  \text.
+$$
+Ezért
+$$
+  \frac{\mathrm dy}{\mathrm dx}
+  =\frac{5\cos t}{-5\sin t}=-\cot t
+  \text.
+$$
+A $3/4$ meredekséghez $\cot t=-3/4$, vagyis $\tan t=-4/3$. Az ehhez
+tartozó egységkörbeli pontok $(3/5,-4/5)$ és $(-3/5,4/5)$, ezért a
+$5$ sugarú körön
+$$
+  \boxed{(3,-4)\quad\text{és}\quad(-3,4)}
+  \text.
+$$
+
+\subsection{L'Hôpital-szabály alkalmazása}
+
+\begin{enumerate}[a)]
+  \item A kifejezés $0/0$ típusú, ezért
+        $$
+          \boxed{
+          \lim_{x\to3}\frac{3^x-x^3}{x-3}
+          =\lim_{x\to3}(3^x\ln3-3x^2)
+          =27\ln3-27}
+          \text.
+        $$
+
+  \item $x\to3^+$ esetén mindkét logaritmus $-\infty$-hez tart. Az első
+        L'Hôpital-lépés után még $0/0$ alakot kapunk, ezért még egyszer
+        alkalmazzuk a szabályt:
+        \begin{align*}
+          \lim_{x\to3^+}\frac{\ln(x-3)}{\ln(e^x-e^3)}
+          &=\lim_{x\to3^+}\frac{e^x-e^3}{e^x(x-3)}\\
+          &=\lim_{x\to3^+}\frac{e^x}{e^x(x-3)+e^x}
+          =\boxed{1}
+          \text.
+        \end{align*}
+
+  \item A logaritmus miatt itt $x\to0^+$ értendő. Átírva
+        $$
+          x\ln x=\frac{\ln x}{1/x}
+          \text,
+        $$
+        ami $(-\infty)/(+\infty)$ típusú. Így
+        $$
+          \boxed{
+          \lim_{x\to0^+}x\ln x
+          =\lim_{x\to0^+}\frac{1/x}{-1/x^2}
+          =\lim_{x\to0^+}(-x)=0}
+          \text.
+        $$
+
+  \item Szintén $x\to0^+$ értendő. Legyen $y=x^x$. Ekkor
+        $\ln y=x\ln x\to0$, tehát
+        $$
+          \boxed{\displaystyle\lim_{x\to0^+}x^x=e^0=1}
+          \text.
+        $$
+
+  \item Közös nevezőre hozva
+        $$
+          \frac{\cos x}{x}-\frac1{\sin x}
+          =\frac{\sin x\cos x-x}{x\sin x}
+          \text.
+        $$
+        Ez $0/0$ típusú. Kétszer alkalmazva a L'Hôpital-szabályt:
+        \begin{align*}
+          \lim_{x\to0}\frac{\sin x\cos x-x}{x\sin x}
+          &=\lim_{x\to0}\frac{\cos2x-1}{\sin x+x\cos x}\\
+          &=\lim_{x\to0}\frac{-2\sin2x}{2\cos x-x\sin x}
+          =\boxed{0}
+          \text.
+        \end{align*}
+\end{enumerate}
+
+\subsection{Mikor nem segít a L'Hôpital-szabály?}
+
+Az eredeti határérték létezik, mert
+$$
+  \frac{x^2\sin(1/x)}{\sin x}
+  =\frac{x}{\sin x}\,x\sin(1/x)
+  \longrightarrow1\cdot0=0
+  \text.
+$$
+A tört $0/0$ típusú, tehát formálisan megpróbálható a L'Hôpital-szabály, de
+a deriváltak hányadosa
+$$
+  \frac{2x\sin(1/x)-\cos(1/x)}{\cos x}
+$$
+nem rendelkezik határértékkel a nullában a $\cos(1/x)$ oszcillációja miatt.
+A szabály elegendő feltétele tehát nem teljesül, és ebből a deriválthányadosból
+nem számítható ki a határérték. A helyes eredmény:
+$$
+  \boxed{\displaystyle
+  \lim_{x\to0}\frac{x^2\sin(1/x)}{\sin x}=0}
+  \text.
+$$
+
+\subsection{Egy valós gyök létezése és egyértelműsége}
+
+Legyen $f(x)=3x^5+15x-2$. Mivel polinom, folytonos, továbbá
+$$
+  f(0)=-2<0,
+  \qquad
+  f(1)=16>0
+  \text.
+$$
+A Bolzano-tétel szerint van legalább egy gyöke a $(0,1)$ intervallumban.
+
+Tegyük fel, hogy két különböző valós gyök létezik, $a<b$. Ekkor a
+Rolle-tétel szerint volna olyan $\xi\in(a,b)$, amelyre $f'(\xi)=0$. Azonban
+$$
+  f'(x)=15x^4+15>0
+$$
+minden valós $x$-re, ami ellentmondás. Így
+$$
+  \boxed{f\text{-nek pontosan egy valós gyöke van}.}
+$$
+
+\clearpage
+\subsection{Lokális szélsőértékek}
+
+Legyen
+$$
+  f(x)=\frac{x^3}{x^2-x-2}
+  =\frac{x^3}{(x-2)(x+1)},
+  \qquad
+  D_f=\mathbb R\setminus\{-1,2\}
+  \text.
+$$
+A derivált
+\begin{align*}
+  f'(x)
+  &=\frac{3x^2(x^2-x-2)-x^3(2x-1)}{(x^2-x-2)^2}\\
+  &=\frac{x^2(x^2-2x-6)}{(x-2)^2(x+1)^2}
+  \text.
+\end{align*}
+A kritikus pontok
+$$
+  x=0,
+  \qquad
+  x=1\pm\sqrt7
+  \text.
+$$
+A nevező az értelmezési tartományon pozitív, és az $x^2$ tényező nem vált
+előjelet. Ezért $f'$ előjele az $x^2-2x-6$ másodfokú tényező előjele:
+pozitív a két gyökön kívül, negatív közöttük. Következésképpen
+$x=1-\sqrt7$ pontban pozitívról negatívra vált, tehát lokális maximum van;
+$x=1+\sqrt7$ pontban negatívról pozitívra vált, tehát lokális minimum van.
+$x=0$-ban nincs előjelváltás, így ott nincs szélsőérték.
+
+Mivel a két nemnulla kritikus pontban $x^2=2x+6$, egyszerűsíthetjük a
+függvényértékeket, és kapjuk:
+$$
+  \boxed{
+  f(1-\sqrt7)=\frac{20-14\sqrt7}{9}
+  \quad\text{(lokális maximum)}}
+  \text,
+$$
+$$
+  \boxed{
+  f(1+\sqrt7)=\frac{20+14\sqrt7}{9}
+  \quad\text{(lokális minimum)}}
+  \text.
+$$
+
+\end{document}

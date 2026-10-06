@@ -119,6 +119,17 @@ const SubjectsPage: NextPage<SubjectsPageProps> = async props => {
         <LectureTable subjectCode={subjectCode} />
       </div>
 
+      {subjectCode === 'G1' && (
+        <div className='px-4 pb-2'>
+          <Link
+            href='/subjects/G1/handwritten'
+            className='underline transition-colors duration-300 hover:text-accent-9'
+          >
+            Kézzel írt kidolgozások
+          </Link>
+        </div>
+      )}
+
       <h2 className='mx-4 text-xl mt-4 py-2 border-b-2'>
         Gyakorlati csoportok
       </h2>
