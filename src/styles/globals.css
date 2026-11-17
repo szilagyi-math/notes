@@ -379,18 +379,6 @@ a.course-card:hover {
   background: rgb(var(--accent-2));
 }
 
-.practice-exercises {
-  display: grid;
-  gap: .5rem;
-  margin-top: .75rem;
-}
-
-.practice-exercises > li {
-  border: 1px solid rgb(var(--border));
-  border-radius: .5rem;
-  padding: .625rem .875rem;
-}
-
 .exercise-content {
   margin-block: .75rem;
   overflow-x: auto;

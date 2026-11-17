@@ -23,8 +23,11 @@ export function PracticeExercises({
   worksheet: string;
   count: number;
 }) {
+  const [selected, setSelected] = useState(0);
   const [exercises, setExercises] = useState<Exercise[]>();
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
+
+  const exercise = exercises?.[selected];
 
   async function loadExercises() {
     if (exercises || status === 'loading') return;
@@ -71,26 +74,38 @@ export function PracticeExercises({
           </button>
         </div>
       )}
-      {exercises && (
-        <ol className='practice-exercises'>
-          {exercises.map((exercise, index) => {
-            const number = index + 1;
-            return (
-              <li key={number}>
-                <details>
-                  <summary>{number}. feladat</summary>
-                  <ExerciseContent html={exercise.question} />
-                  {exercise.solution && (
-                    <details className='practice-solution'>
-                      <summary>Megoldás</summary>
-                      <ExerciseContent html={exercise.solution} />
-                    </details>
-                  )}
-                </details>
-              </li>
-            );
-          })}
-        </ol>
+      {exercises && exercise && (
+        <div className='mt-3'>
+          <label className='flex flex-wrap items-center gap-2 text-sm font-medium'>
+            Feladat kiválasztása
+            <select
+              className='exercise-button bg-secondary-bg'
+              value={selected}
+              onChange={event => setSelected(Number(event.currentTarget.value))}
+            >
+              {exercises.map((_, index) => (
+                <option
+                  key={index}
+                  value={index}
+                >
+                  {index + 1}. feladat
+                </option>
+              ))}
+            </select>
+          </label>
+          <div
+            key={selected}
+            className='mt-3'
+          >
+            <ExerciseContent html={exercise.question} />
+            {exercise.solution && (
+              <details className='practice-solution'>
+                <summary>Megoldás</summary>
+                <ExerciseContent html={exercise.solution} />
+              </details>
+            )}
+          </div>
+        </div>
       )}
     </details>
   );
