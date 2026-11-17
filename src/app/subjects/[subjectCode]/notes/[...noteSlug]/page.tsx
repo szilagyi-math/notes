@@ -1,6 +1,8 @@
 import { getNoteRef } from '@/utils';
 import { notFound } from 'next/navigation';
 import { mathNotes } from 'content';
+import { data } from 'latex-docs';
+import Link from 'next/link';
 
 import type { Subject, NoteSlug } from 'common/types';
 import type { Metadata, NextPage } from 'next';
@@ -65,6 +67,13 @@ const NotesPage: NextPage<NotePageProps> = async props => {
 
   if (!note) return notFound();
 
+  const sectionNumber = note.slug
+    .map(slug => Number.parseInt(slug, 10))
+    .join('.');
+  const textbookDestination = note.parentRef
+    ? `section.${sectionNumber}`
+    : `chapter.${sectionNumber}`;
+
   let subitems:
     | { title: string; href: string; description: string }[]
     | undefined = undefined;
@@ -108,12 +117,22 @@ const NotesPage: NextPage<NotePageProps> = async props => {
           rightBreakpoint='lg'
         />
         <div className='prose prose-custom mx-auto px-4 md:pl-8 lg:pr-8 max-w-full'>
+          {params.subjectCode === 'G1' && (
+            <nav
+              className='notes-trail not-prose'
+              aria-label='Jegyzet navigáció'
+            >
+              <Link href='/subjects/G1'>Matematika G1</Link>
+              <Link href='/subjects/G1/textbook'>Teljes előadásjegyzet</Link>
+              <a
+                href={`/downloads/${data.G1.downloads.book.fileName}#nameddest=${textbookDestination}`}
+              >
+                Eredeti fejezet (PDF)
+              </a>
+            </nav>
+          )}
           <h1 className='mt-7'>
-            {note.slug
-              .map(s => {
-                return parseInt(s.split('-')[0]);
-              })
-              .join('.')}
+            {sectionNumber}
             <span className='ml-4' />
             {note.title}
           </h1>

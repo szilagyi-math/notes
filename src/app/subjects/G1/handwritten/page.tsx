@@ -1,4 +1,3 @@
-import { Main } from '@/components';
 import type { Metadata, NextPage } from 'next';
 import Link from 'next/link';
 
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
 
 const HandwrittenNotesPage: NextPage = () => {
   return (
-    <Main>
+    <div className='course-page'>
       <div className='mx-4 mt-6'>
         <Link
           href='/subjects/G1'
@@ -21,9 +20,7 @@ const HandwrittenNotesPage: NextPage = () => {
         </Link>
       </div>
 
-      <h1 className='text-3xl mt-6 pb-2 mx-4 border-b-2 font-semibold'>
-        Kézzel írt kidolgozások
-      </h1>
+      <h1 className='page-title mx-4'>Kézzel írt kidolgozások</h1>
 
       <div className='p-4'>
         <ul className='space-y-2'>
@@ -45,7 +42,7 @@ const HandwrittenNotesPage: NextPage = () => {
           })}
         </ul>
       </div>
-    </Main>
+    </div>
   );
 };
 

@@ -1,4 +1,3 @@
-import { Main } from '@/components';
 import type { Metadata, NextPage } from 'next';
 import Link from 'next/link';
 
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
 
 const ResultsPage: NextPage = () => {
   return (
-    <Main>
+    <div className='course-page'>
       <div className='mx-4 mt-6'>
         <Link
           href='/subjects/G1'
@@ -22,9 +21,7 @@ const ResultsPage: NextPage = () => {
         </Link>
       </div>
 
-      <h1 className='text-3xl mt-6 pb-2 mx-4 border-b-2 font-semibold'>
-        G1 eredmények
-      </h1>
+      <h1 className='page-title mx-4'>G1 eredmények</h1>
 
       <div className='p-4'>
         <iframe
@@ -34,7 +31,7 @@ const ResultsPage: NextPage = () => {
           referrerPolicy='no-referrer'
         />
       </div>
-    </Main>
+    </div>
   );
 };
 

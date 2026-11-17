@@ -57,6 +57,7 @@ export type SubjectData = {
       // Compilation
       source?: string;
       target?: string;
+      exerciseLines?: number[];
       // Solutions
       hideSolution?: false | 'no-copy' | 'no-link';
       // Other

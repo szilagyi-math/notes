@@ -21,7 +21,7 @@ const SUBJECT_DIRS: Array<[Subject, string]> = [
   ['G3', 'G3'],
 ];
 
-const SHEBANG = '#!/bin/bash';
+const SHEBANG = '#!/bin/bash\nset -e';
 
 if (!existsSync(GENERATE_DIR)) {
   mkdirSync(GENERATE_DIR, { recursive: true });

@@ -25,13 +25,14 @@ const NotFound: NextPage = () => {
   const subjects = Object.keys(data) as (keyof typeof data)[];
 
   return (
-    <div className='p-4 gap-8 flex flex-col'>
+    <div className='course-page px-4 gap-6 flex flex-col'>
+      <h1 className='page-title'>Letöltések</h1>
       {subjects.map(subject => {
         const d = data[subject];
 
         return (
           <section
-            className='flex flex-col gap-2'
+            className='download-card flex flex-col gap-2'
             key={subject}
           >
             <h2 className='text-2xl font-bold'>

@@ -4,6 +4,7 @@ import { stringify, parse } from 'yaml';
 import { writeFile, readFile } from 'fs/promises';
 import { SubjectData, Subject, Downloads } from 'common/types';
 import { join } from 'path';
+import { findPracticeExercises } from './practice-exercises';
 
 export async function writeYaml(path: string, content: string) {
   const yaml = stringify(content);
@@ -47,6 +48,16 @@ export async function parseConfig(
     }
 
     if (file.displayName && file.source && file.target) {
+      const sourcePath = join(
+        baseDir,
+        subjectDir,
+        config.practiceMaterial.dir,
+        file.source,
+      );
+      file.exerciseLines = findPracticeExercises(
+        await readFile(sourcePath, 'utf-8'),
+      );
+
       downloads.practice.push({
         displayName: file.displayName,
         fileName: `${file.target}.pdf`,

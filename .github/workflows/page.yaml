@@ -158,6 +158,7 @@ jobs:
       - name: Move pdfs
         run: |
           mv latex-docs out/downloads
+          node scripts/verify-published-pdfs.mjs
 
       # - name: Move static files
       #   run: |

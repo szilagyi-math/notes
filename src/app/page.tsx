@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   ],
 };
 
-const NotFound: NextPage = () => {
-  return <SubjectsPage />;
+const Home: NextPage = () => {
+  return <SubjectsPage home />;
 };
 
-export default NotFound;
+export default Home;
