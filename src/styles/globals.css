@@ -391,16 +391,18 @@ a.course-card:hover {
   padding: .625rem .875rem;
 }
 
-.practice-figure-scroll {
+.exercise-content {
+  margin-block: .75rem;
   overflow-x: auto;
 }
 
-.practice-figure {
-  display: block;
-  width: clamp(35rem, 100%, 47rem);
-  max-width: none;
-  height: auto;
-  margin-block: .5rem;
+.exercise-content > :first-child {
+  margin-top: 0;
+}
+
+.exercise-content img {
+  margin-inline: auto;
+  max-width: 100%;
 }
 
 .practice-solution {

@@ -2,43 +2,18 @@
 
 import { useState } from 'react';
 
-type Figure = {
-  file: string;
-  width: number;
-  height: number;
-  text: string;
-};
-
 type Exercise = {
-  question: Figure[];
-  solution?: Figure[];
+  question: string;
+  solution?: string;
 };
 
-function Figures({
-  figures,
-  base,
-  label,
-}: {
-  figures: Figure[];
-  base: string;
-  label: string;
-}) {
-  return figures.map(({ file, width, height, text }) => (
+function ExerciseContent({ html }: { html: string }) {
+  return (
     <div
-      key={file}
-      className='practice-figure-scroll'
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className='practice-figure'
-        src={`${base}/${file}`}
-        alt={text || label}
-        width={width}
-        height={height}
-        loading='lazy'
-      />
-    </div>
-  ));
+      className='exercise-content prose prose-sm max-w-none'
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
 }
 
 export function PracticeExercises({
@@ -50,14 +25,13 @@ export function PracticeExercises({
 }) {
   const [exercises, setExercises] = useState<Exercise[]>();
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
-  const base = `/static/practice/${worksheet}`;
 
   async function loadExercises() {
     if (exercises || status === 'loading') return;
     setStatus('loading');
 
     try {
-      const response = await fetch(`${base}/index.json`);
+      const response = await fetch(`/static/practice/${worksheet}/index.json`);
       if (!response.ok) throw new Error('A feladatok nem érhetők el.');
       setExercises(await response.json());
       setStatus('idle');
@@ -105,19 +79,11 @@ export function PracticeExercises({
               <li key={number}>
                 <details>
                   <summary>{number}. feladat</summary>
-                  <Figures
-                    figures={exercise.question}
-                    base={base}
-                    label={`${number}. feladat`}
-                  />
+                  <ExerciseContent html={exercise.question} />
                   {exercise.solution && (
                     <details className='practice-solution'>
                       <summary>Megoldás</summary>
-                      <Figures
-                        figures={exercise.solution}
-                        base={base}
-                        label={`${number}. feladat megoldása`}
-                      />
+                      <ExerciseContent html={exercise.solution} />
                     </details>
                   )}
                 </details>

@@ -155,11 +155,11 @@ jobs:
           name: latex-docs
           path: latex-docs
 
-      - name: Render G1 exercises and solutions
+      - name: Convert G1 exercises and solutions to HTML
         run: |
           sudo apt-get update
-          sudo apt-get install -y poppler-utils python3-pil
-          /usr/bin/python3 scripts/render-g1-practice.py latex-docs out/static/practice
+          sudo apt-get install -y pandoc
+          node scripts/convert-g1-practice.mjs
 
       - name: Move pdfs
         run: |
