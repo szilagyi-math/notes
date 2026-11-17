@@ -155,9 +155,16 @@ jobs:
           name: latex-docs
           path: latex-docs
 
+      - name: Convert G1 exercises and solutions to HTML
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+          node scripts/convert-g1-practice.mjs
+
       - name: Move pdfs
         run: |
           mv latex-docs out/downloads
+          node scripts/verify-published-pdfs.mjs
 
       # - name: Move static files
       #   run: |

@@ -22,7 +22,7 @@ export function movePdfSolutions(subject: SubjectData) {
     return null;
   }
 
-  let script = `Moving pdf solutions in ${subject.dir}`;
+  let script = `echo "Moving PDF solutions in ${subject.dir}"`;
 
   filenames.forEach(({ source, target }) => {
     script += `

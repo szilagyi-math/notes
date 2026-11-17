@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 
 import { useCallback, useState } from 'react';
 import { Input, Label, RadioGroup } from '@/components';
@@ -136,43 +137,40 @@ const typeRadioItems = [
 
 const semesterRadioItems = [
   {
-    value: 0,
+    value: '0',
     label: 'Összes',
   },
   {
-    value: 1,
+    value: '1',
     label: '1. félév',
   },
   {
-    value: 2,
+    value: '2',
     label: '2. félév',
   },
   {
-    value: 3,
+    value: '3',
     label: '3. félév',
   },
   {
-    value: 4,
+    value: '4',
     label: '4. félév',
   },
 ];
 
-type Semester = 1 | 2 | 3 | 4;
-type Type = 'mandatory' | 'catch-up' | 'optional';
-
-const SubjectsPage = () => {
+const SubjectsPage = ({ home = false }: { home?: boolean }) => {
   const [name, setName] = useState('');
   const [code, setCode] = useState('');
-  const [semester, setSemester] = useState<Semester | 0>(0);
-  const [type, setType] = useState<Type | 'all'>('all');
+  const [semester, setSemester] = useState('0');
+  const [type, setType] = useState('all');
 
-  const isDirty = name || code || semester || type !== 'all';
+  const isDirty = name || code || semester !== '0' || type !== 'all';
   let nonEmpty = false;
 
   const reset = useCallback(() => {
     setName('');
     setCode('');
-    setSemester(0);
+    setSemester('0');
     setType('all');
   }, []);
 
@@ -191,10 +189,16 @@ const SubjectsPage = () => {
   );
 
   return (
-    <>
-      <h1 className='text-3xl font-semibold mt-8 border-b-2 pb-2 mx-4'>
-        Tantárgyak
-      </h1>
+    <div className='course-catalog'>
+      {home ? (
+        <section className='course-intro mx-4'>
+          <p className='course-intro-owner'>Szilágyi Brigitta</p>
+          <h1>BME matematika</h1>
+          <p>Jegyzetek, gyakorlófeladatok és letölthető tananyagok.</p>
+        </section>
+      ) : (
+        <h1 className='page-title mx-4'>Tantárgyak</h1>
+      )}
 
       <h2 className='text-xl mt-4 border-b-2 py-2 mb-2 mx-4'>
         Szűrés
@@ -208,7 +212,7 @@ const SubjectsPage = () => {
         ) : null}
       </h2>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-2 border-b-2 pb-4 mx-4'>
+      <div className='course-filters grid grid-cols-1 sm:grid-cols-2 gap-4 mx-4'>
         <div>
           <Label htmlFor='name'>Tárgy neve</Label>
           <Input
@@ -230,22 +234,34 @@ const SubjectsPage = () => {
         </div>
 
         <div>
-          <Label htmlFor='semester'>Ajánlott félév</Label>
+          <p
+            className='label'
+            id='semester-label'
+          >
+            Ajánlott félév
+          </p>
           <RadioGroup
             name='semester'
+            aria-labelledby='semester-label'
             items={semesterRadioItems}
-            value={semester as any}
-            onValueChange={setSemester as any}
+            value={semester}
+            onValueChange={setSemester}
           />
         </div>
 
         <div>
-          <Label htmlFor='type'>Típus</Label>
+          <p
+            className='label'
+            id='type-label'
+          >
+            Típus
+          </p>
           <RadioGroup
             name='type'
+            aria-labelledby='type-label'
             items={typeRadioItems}
-            value={type as any}
-            onValueChange={setType as any}
+            value={type}
+            onValueChange={setType}
           />
         </div>
       </div>
@@ -255,9 +271,9 @@ const SubjectsPage = () => {
 
         let filteredSubjects = subjects;
 
-        if (semester) {
+        if (semester !== '0') {
           filteredSubjects = filteredSubjects.filter(
-            ({ semester: s }) => s === semester,
+            ({ semester: s }) => String(s) === semester,
           );
         }
 
@@ -283,52 +299,52 @@ const SubjectsPage = () => {
             key={value}
           >
             <h2 className='text-xl mt-4'>{title}</h2>
-            <div className='overflow-x-auto w-full max-w-full py-2'>
-              <table className='mt-2 min-w-[500px] w-full'>
-                <thead className='bg-accent-9 text-accent-contrast border-2 border-accent-9'>
-                  <tr>
-                    <th className='text-left p-2'>Tárgy neve</th>
-                    <th className='w-[150px] p-2'>Kód</th>
-                    <th className='w-[100px] p-2'>Félév</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredSubjects.map(({ name, code, semester, href }) => (
-                    <tr
-                      className='border-2'
-                      key={code}
-                    >
-                      <td className='p-2'>
-                        {href ? (
-                          <Link
-                            className={`transition duration-300
-                              hover:text-accent-9 underline
-                              `}
-                            href={href}
-                          >
-                            {name}
-                          </Link>
-                        ) : (
-                          name
-                        )}
-                      </td>
-                      <td className='p-2 text-center font-mono'>{code}</td>
-                      <td className='p-2 text-center font-bold'>{semester}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <ul className='course-grid'>
+              {filteredSubjects.map(({ name, code, semester, href }) => {
+                const details = (
+                  <>
+                    <span className='course-card-title'>{name}</span>
+                    <span className='course-card-meta'>
+                      {code} · {semester}. félév
+                    </span>
+                  </>
+                );
+
+                return (
+                  <li key={code}>
+                    {href ? (
+                      <Link
+                        className='course-card'
+                        href={href}
+                      >
+                        <div>{details}</div>
+                        <ArrowUpRight
+                          size={18}
+                          aria-hidden='true'
+                        />
+                      </Link>
+                    ) : (
+                      <div className='course-card course-card-static'>
+                        {details}
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         );
       })}
 
       {!nonEmpty && (
-        <div className='text-lg mt-4'>
+        <div
+          className='text-lg mt-4 mx-4'
+          role='status'
+        >
           Nincs találat a keresési feltételeknek.
         </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -12,12 +12,12 @@ export function createPracticeCompilationScript(subject: SubjectData) {
   const script = `echo "Now compiling practice material in ${subject.dir}"
 
 cd $CWD/content/${subject.dir}/${subject.practiceMaterial.dir}
-  
+
 ${subject.practiceMaterial.files
   .map(file => {
     if (file.displayName && file.source && file.target) {
       return `latexmk -r $CWD/.latexmkrc.prod ${file.source}
-    
+
 cp ${subject.buildDir}/${fn(file.source)} $CWD/${docsDir}/${file.target}.pdf`;
     } else {
       return `echo 'Skipping ${file.description}'`;
