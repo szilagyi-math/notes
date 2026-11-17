@@ -71,12 +71,14 @@ const LectureTable = ({ subjectCode }: LectureTableProps) => {
               </a>
             )}
           </div>
-          {row.target && !!row.exerciseLines?.length && (
-            <PracticeExercises
-              pdf={`/downloads/${row.target}.pdf`}
-              count={row.exerciseLines.length}
-            />
-          )}
+          {subjectCode === 'G1' &&
+            row.target &&
+            !!row.exerciseLines?.length && (
+              <PracticeExercises
+                worksheet={row.target}
+                count={row.exerciseLines.length}
+              />
+            )}
         </li>
       ))}
     </ol>

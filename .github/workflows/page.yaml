@@ -155,6 +155,12 @@ jobs:
           name: latex-docs
           path: latex-docs
 
+      - name: Render G1 exercises and solutions
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils python3-pil
+          /usr/bin/python3 scripts/render-g1-practice.py latex-docs out/static/practice
+
       - name: Move pdfs
         run: |
           mv latex-docs out/downloads

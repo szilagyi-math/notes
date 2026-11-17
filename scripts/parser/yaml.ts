@@ -48,16 +48,17 @@ export async function parseConfig(
     }
 
     if (file.displayName && file.source && file.target) {
-      const sourcePath = join(
-        baseDir,
-        subjectDir,
-        config.practiceMaterial.dir,
-        file.source,
-      );
-      file.exerciseLines = findPracticeExercises(
-        await readFile(sourcePath, 'utf-8'),
-      );
-
+      if (subject === 'G1') {
+        const sourcePath = join(
+          baseDir,
+          subjectDir,
+          config.practiceMaterial.dir,
+          file.source,
+        );
+        file.exerciseLines = findPracticeExercises(
+          await readFile(sourcePath, 'utf-8'),
+        );
+      }
       downloads.practice.push({
         displayName: file.displayName,
         fileName: `${file.target}.pdf`,

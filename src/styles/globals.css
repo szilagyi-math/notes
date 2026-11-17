@@ -379,7 +379,32 @@ a.course-card:hover {
   background: rgb(var(--accent-2));
 }
 
-.exercise-button[aria-pressed='true'] {
-  background: rgb(var(--accent-9));
-  color: white;
+.practice-exercises {
+  display: grid;
+  gap: .5rem;
+  margin-top: .75rem;
+}
+
+.practice-exercises > li {
+  border: 1px solid rgb(var(--border));
+  border-radius: .5rem;
+  padding: .625rem .875rem;
+}
+
+.practice-figure-scroll {
+  overflow-x: auto;
+}
+
+.practice-figure {
+  display: block;
+  width: clamp(35rem, 100%, 47rem);
+  max-width: none;
+  height: auto;
+  margin-block: .5rem;
+}
+
+.practice-solution {
+  margin-top: .75rem;
+  padding-block: .5rem;
+  border-top: 1px solid rgb(var(--border));
 }
