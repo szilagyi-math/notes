@@ -125,23 +125,6 @@ const SubjectsPage: NextPage<SubjectsPageProps> = async props => {
           {subjectCode === 'G1' && (
             <Link
               className='course-card'
-              href='/subjects/G1/textbook'
-            >
-              <div>
-                <span className='course-card-title'>Teljes jegyzet online</span>
-                <span className='course-card-meta'>
-                  A teljes PDF a böngészőben
-                </span>
-              </div>
-              <ArrowUpRight
-                size={18}
-                aria-hidden='true'
-              />
-            </Link>
-          )}
-          {subjectCode === 'G1' && (
-            <Link
-              className='course-card'
               href='/subjects/G1/handwritten'
             >
               <span className='course-card-title'>Kézzel írt kidolgozások</span>

@@ -58,10 +58,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
           changeFrequency: 'daily',
         }) as const,
     ),
-    {
-      url: `${BASE_URL}/subjects/G1/textbook`,
-      changeFrequency: 'weekly',
-    },
     // ONLINE NOTES
     ...mathNotes.map(
       note =>

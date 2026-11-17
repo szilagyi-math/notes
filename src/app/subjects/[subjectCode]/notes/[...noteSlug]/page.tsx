@@ -123,7 +123,6 @@ const NotesPage: NextPage<NotePageProps> = async props => {
               aria-label='Jegyzet navigáció'
             >
               <Link href='/subjects/G1'>Matematika G1</Link>
-              <Link href='/subjects/G1/textbook'>Teljes előadásjegyzet</Link>
               <a
                 href={`/downloads/${data.G1.downloads.book.fileName}#nameddest=${textbookDestination}`}
               >
