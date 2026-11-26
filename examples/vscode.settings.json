@@ -1,0 +1,12 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.latex.tools": [
+    {
+      "name": "project-latexmk",
+      "command": "latexmk",
+      "args": ["-r", "%WORKSPACE_FOLDER%/.latexmkrc", "%DOC%"],
+      "env": {"TEXINPUTS": "%WORKSPACE_FOLDER%/latex-packages//:"}
+    }
+  ],
+  "latex-workshop.latex.recipes": [{"name": "Project LaTeX", "tools": ["project-latexmk"]}]
+}

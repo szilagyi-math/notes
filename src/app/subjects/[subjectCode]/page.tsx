@@ -40,6 +40,7 @@ export const generateMetadata = async (
 
   return {
     title: `${subject.name} - Tantárgyak | Szilágyi Brigitta Weboldala`,
+    description: `${subject.name}: előadásjegyzetek, heti gyakorlatok és letölthető megoldások.`,
     keywords: [subject.name, subject.code, ...(parentMetadata.keywords || [])],
   };
 };

@@ -56,9 +56,9 @@ echo "Saving the current directory"
 CWD=$(pwd)
 
 # This only runs on GitHub Actions
-if [ "$GITHUB_ACTIONS" == "true" ]; then
+if [ "\${GITHUB_ACTIONS:-false}" = "true" ]; then
   echo "Adding safe directory"
-  git config --global --add safe.directory /__w/notes/notes
+  git config --global --add safe.directory "$CWD"
 
   echo 'Changing \\today to the last modification date in the practice files'
 
