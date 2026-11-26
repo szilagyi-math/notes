@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+command -v gitleaks >/dev/null || { echo 'Install gitleaks before committing (see CONTRIBUTING.md).' >&2; exit 1; }
+command -v exiftool >/dev/null || { echo 'Install exiftool before committing (see CONTRIBUTING.md).' >&2; exit 1; }
+gitleaks git --staged --redact=100 --no-banner --log-level error
+python3 tools/privacy/check.py --staged
