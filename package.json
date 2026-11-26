@@ -61,7 +61,7 @@
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
-    "shiki": "^2.5.0",
+    "shiki": "^4.6.0",
     "tailwindcss": "^4.1.13",
     "terser": "^5.44.0",
     "tsx": "4.23.15",
