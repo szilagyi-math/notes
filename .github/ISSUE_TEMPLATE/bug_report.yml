@@ -1,0 +1,18 @@
+name: Bug report / Hibajelentés
+description: Report a public functional issue without personal data.
+body:
+  - type: markdown
+    attributes:
+      value: "Security/privacy issues: use private vulnerability reporting; never paste names, identifiers or secrets."
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and expected behavior / Probléma és elvárt működés
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps and affected public page / Lépések és érintett publikus oldal
+    validations:
+      required: true
