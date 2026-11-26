@@ -11,7 +11,7 @@ import sys
 import tempfile
 
 MEDIA = {'.pdf', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.tif', '.tiff', '.svg', '.docx', '.heic', '.avif', '.eps'}
-SENSITIVE = re.compile(r'author|creator|producer|gps|artist|owner|software|comment|description|title|subject|keywords|createdate|modifydate|metadatadate|documentid|instanceid|history|filepath|username|company|manager|lastmodifiedby', re.I)
+SENSITIVE = re.compile(r'author|creator|producer|gps|artist|owner|software|comment|description|title|subject|keywords|createdate|modifydate|metadatadate|documentid|instanceid|history|filepath|username|company|manager|lastmodifiedby|copyright|by-line|credit|caption|contact|serialnumber|person|email|address|phone|location', re.I)
 LIMIT = 10 * 1024 * 1024
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -27,8 +27,8 @@ def metadata_fields(path):
         # A parser failure must not turn into a clean result.
         raise ValueError('Metadata could not be completely inspected')
     return sorted(key for key, value in row.items()
-                  if value not in (None, '') and SENSITIVE.search(key)
-                  and not key.startswith(('System:', 'File:', 'ICC-header:', 'ICC_Profile:')))
+                  if value not in (None, '') and (SENSITIVE.search(key) or key.startswith('XMP-'))
+                  and not key.startswith(('System:', 'ICC-header:', 'ICC_Profile:')))
 
 
 def forbidden(path):

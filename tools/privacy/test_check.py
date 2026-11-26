@@ -39,6 +39,13 @@ class PrivacyTests(unittest.TestCase):
         self.assertIn('PDF:Author', problems[0])
         self.assertNotIn('new file', problems[0])
 
+    def test_file_group_comments_and_arbitrary_xmp_are_checked(self):
+        result = subprocess.CompletedProcess([], 0, stdout=b'[{"File:Comment":"private-value", "XMP-custom:Unfamiliar":"private-value", "System:FileModifyDate":"technical-date"}]')
+        with unittest.mock.patch.object(privacy.subprocess, 'run', return_value=result):
+            fields = privacy.metadata_fields(Path('example.jpg'))
+        self.assertEqual(fields, ['File:Comment', 'XMP-custom:Unfamiliar'])
+        self.assertNotIn('private-value', str(fields))
+
     def test_index_snapshot_cannot_be_hidden_by_clean_worktree(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

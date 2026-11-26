@@ -37,6 +37,16 @@
 
 No filter-repo command, force push, branch deletion or history rewrite was run.
 
+## Függőségek / Dependency follow-up
+
+A 2026-11-26-i npm-audit a javított Next.js 15.5.28 és a tar 7.5.21 rögzítése
+után 0 kritikus, 39 magas, 24 közepes és 4 alacsony találatot jelez (advisory
+számok, nem egyedi csomagszámok). A fennmaradó, részben buildeszközöket érintő
+frissítések külön indokolt PR-okat igényelnek, kompatibilitási ellenőrzéssel;
+ez a változás nem állít teljes függőségi sérülékenységmentességet.
+After the critical fixes, remaining advisories need separate focused dependency
+PRs; rerun `pnpm audit` because the registry advisory database changes over time.
+
 ## GitHub-beállítások ellenőrzése / Verify settings
 
 Settings → Pages: `gh-pages`, `/`, `szilagyi-math.hu`, Enforce HTTPS.
