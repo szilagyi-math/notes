@@ -54,7 +54,7 @@ export const generateMetadata = async (
 
   return {
     title,
-    description: note.description,
+    description: note.description || `${note.title} – Matematika ${subjectCode}: fogalmak, tételek és példák.`,
     keywords: note.tags,
   };
 };
