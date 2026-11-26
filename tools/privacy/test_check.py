@@ -46,6 +46,15 @@ class PrivacyTests(unittest.TestCase):
         self.assertEqual(fields, ['File:Comment', 'XMP-custom:Unfamiliar'])
         self.assertNotIn('private-value', str(fields))
 
+    def test_renamed_media_cannot_bypass_inspection(self):
+        for data in [b'%PDF-1.7\n', b'\x89PNG\r\n\x1a\n', b'GIF89a']:
+            with unittest.mock.patch.object(privacy, 'metadata_fields', return_value=['File:Comment']) as inspect:
+                problems, legacy = privacy.inspect('disguised.txt', data, {})
+            inspect.assert_called_once()
+            self.assertFalse(legacy)
+            self.assertTrue(any('extension' in p for p in problems))
+            self.assertTrue(any('File:Comment' in p for p in problems))
+
     def test_index_snapshot_cannot_be_hidden_by_clean_worktree(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

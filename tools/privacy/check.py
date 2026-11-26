@@ -43,6 +43,26 @@ def inspect(path, data, baseline, mode='100644'):
     if forbidden(path):
         problems.append('private/local configuration must not be tracked')
     suffix = Path(path).suffix.lower()
+    # Renaming a PDF/image to .txt must not bypass metadata inspection.
+    detected = None
+    head = data[:8192].lstrip()
+    for magic, extension in [(b'%PDF-', '.pdf'), (b'\x89PNG\r\n\x1a\n', '.png'),
+                             (b'\xff\xd8\xff', '.jpg'), (b'GIF87a', '.gif'),
+                             (b'GIF89a', '.gif'), (b'II*\x00', '.tif'),
+                             (b'MM\x00*', '.tif'), (b'\xc5\xd0\xd3\xc6', '.eps'),
+                             (b'%!PS', '.eps')]:
+        if head.startswith(magic):
+            detected = extension
+            break
+    if head.startswith(b'RIFF') and head[8:12] == b'WEBP':
+        detected = '.webp'
+    if head.startswith(b'<svg') or (head.startswith(b'<?xml') and b'<svg' in head):
+        detected = '.svg'
+    if head.startswith(b'PK\x03\x04') and b'word/' in data:
+        detected = '.docx'
+    if detected and suffix not in MEDIA:
+        problems.append('media requires an appropriate file extension')
+        suffix = detected
     if len(data) > LIMIT and (suffix in MEDIA or b'\0' in data[:8192]):
         problems.append('binary exceeds 10 MiB')
     if suffix not in MEDIA:
