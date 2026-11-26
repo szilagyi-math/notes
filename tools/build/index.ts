@@ -21,7 +21,7 @@ const SUBJECT_DIRS: Array<[Subject, string]> = [
   ['G3', 'G3'],
 ];
 
-const SHEBANG = '#!/bin/bash\nset -e';
+const SHEBANG = '#!/bin/bash\nset -euo pipefail';
 
 if (!existsSync(GENERATE_DIR)) {
   mkdirSync(GENERATE_DIR, { recursive: true });
@@ -76,4 +76,8 @@ export { data }
 `,
       ),
     ]);
+  })
+  .catch(() => {
+    console.error('Failed to generate build configuration. Check content/*/config.yml.');
+    process.exitCode = 1;
   });

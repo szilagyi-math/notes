@@ -5,8 +5,18 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "python3 -m http.server --directory out 3000",
+    "lint": "eslint src mdx common tools/build --ext .ts,.tsx,.mjs",
+    "generate": "node --import tsx tools/build/index.ts",
+    "prebuild": "pnpm generate && velite",
+    "latex": "pnpm generate && bash tools/build/compile-latex.sh",
+    "practice:html": "node tools/build/convert-g1-practice.mjs",
+    "site:assemble": "node tools/build/assemble-site.mjs",
+    "check:links": "python3 tools/check_links.py",
+    "check:privacy": "python3 tools/privacy/check.py",
+    "check:privacy:staged": "python3 tools/privacy/check.py --staged",
+    "test:privacy": "python3 -m unittest discover -s tools/privacy -p \"test_*.py\"",
+    "prepare": "node tools/install-hooks.mjs"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
@@ -19,7 +29,7 @@
     "jotai": "^2.13.1",
     "lucide-react": "^0.414.0",
     "mini-svg-data-uri": "^1.4.4",
-    "next": "15.5.2",
+    "next": "15.5.28",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-qr-code": "^2.0.18",
@@ -40,7 +50,7 @@
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "cssnano": "^7.1.1",
     "eslint": "^8.57.1",
-    "eslint-config-next": "14.2.5",
+    "eslint-config-next": "15.5.28",
     "eslint-plugin-unused-imports": "^3.2.0",
     "hastscript": "^9.0.1",
     "mdast": "^3.0.0",
@@ -54,11 +64,17 @@
     "shiki": "^2.5.0",
     "tailwindcss": "^4.1.13",
     "terser": "^5.44.0",
+    "tsx": "4.23.15",
     "typescript": "^5.9.2",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "velite": "^0.1.1",
     "yaml": "^2.8.1"
   },
-  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0"
+  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
+  "pnpm": {
+    "overrides": {
+      "tar@>=7.0.0 <7.5.21": "7.5.21"
+    }
+  }
 }

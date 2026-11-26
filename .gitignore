@@ -41,3 +41,22 @@ next-env.d.ts
 generate
 latex-docs
 /public/downloads/
+
+# Private machine configuration and legacy local helpers
+.env
+.env.*
+!.env.example
+!.env.*.example
+/.vscode/
+/scripts/
+/latex-linker.sh
+/latex-linker.bat
+/.venv/
+/.audit-tools/
+
+__pycache__/
+*.py[cod]
+
+# Build tooling is source; other build directories remain ignored.
+!/tools/build/
+!/tools/build/**
